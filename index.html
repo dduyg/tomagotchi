@@ -33,15 +33,24 @@
             font-size: 24px;
         }
         ul {
-            list-style-type: none;
-            padding: 0;
+            padding-left: 50px;
         }
-        ul li {
-            line-height: 0.95;
-        }
-        ul li::before {
-            content: '○ ';
-        }
+        ul li {  
+            padding-left: 16px;
+            position: relative;
+  
+  &:before {
+    content: '';
+    display: block;
+    height: 27px;
+    width: 27px;
+    border-radius: 50%;
+    border: 2px solid black;
+    position: absolute;
+    top: -6px;
+    left: -27px;
+  }
+}      
     </style>
 </head>
 <body>
