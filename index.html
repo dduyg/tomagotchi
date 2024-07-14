@@ -33,27 +33,12 @@
             font-size: 24px;
         }
         ul {
-            padding-left: 3.125em;
+            list-style-type: none;
+            padding: 0;
         }
-        ul li {
-            display: flex;
-            align-items: center;
-            padding-left: 0;
-            position: relative;
+        li::before {
+            content: '○ ';
         }
-        ul li:before {
-            content: '';
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 0.625em;
-            width: 0.625em;
-            border-radius: 50%;
-            border: 1px solid #000;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-        }    
     </style>
 </head>
 <body>
