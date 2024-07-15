@@ -3,66 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liminal Loop</title>
+    <title>LiminalLoop</title>
     <style>
-        @font-face {
-            font-family: 'HK Grotesk';
-            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/HKGrotesk-Regular.woff2') format('woff2'),
-                 url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/HKGrotesk-Regular.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'HK Grotesk';
-            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/HKGrotesk-Bold.woff2') format('woff2'),
-                 url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/HKGrotesk-Bold.woff') format('woff');
-            font-weight: bold;
-            font-style: normal;
-        } 
         body {
-            font-family: 'HK Grotesk', sans-serif;
-            background-color: #DAE5E7;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        main {
-            font-size: 1.5em;
-            padding: 1rem;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        ul li { 
-            padding-left: 16px;
-            position: relative;
-            display: inline-block;        
-        }
-        ul li::before {
-            content: "•";
-            display: inline-block;
-            padding-right: 8px;
-            height: 1em;
-            width: 1em;
-            border-radius: 50%;
-            border: 2px solid black;
-        }      
+    margin: 0;
+    padding: 0;
+    background-color: #E6F1F5;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.container p {
+    font-size: 24px;
+    color: #000;
+    margin: 10px 0;
+    position: relative;
+}
+
+.container p::before {
+    content: '⦿';
+    font-size: 24px;
+    position: absolute;
+    left: -30px;
+    top: 0;
+    color: #000;
+}
     </style>
 </head>
 <body>
-    <main>
-        <ul>
-            <li>PIANO ENTHUSIAST</li>
-            <li>PLANT LOVER</li>
-            <li>ANALOG-FILM WASTER</li>
-            <li>RETRO PATTERNS SPOTTER</li>
-            <li>AVID TRAVELER</li>
-            <li>MUSIC NOMAD</li>
-        </ul>
-    </main>
+    <div class="container">
+        <p>PIANO ENTHUSIAST</p>
+        <p>PLANT LOVER</p>
+        <p>ANALOG-FILM WASTER</p>
+        <p>RETRO PATTERNS SPOTTER</p>
+        <p>AVID TRAVELER</p>
+        <p>MUSIC NOMAD</p>
+    </div>
 </body>
 </html>
