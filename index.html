@@ -6,55 +6,17 @@
   <title>Liminal Loop</title>
   <style>
     body {
-      margin: 0;
       font-family: Georgia, serif;
       background-color: #3A3A3C;
       color: #B8B9BE;
-      padding-top: 40%; /* Adjust based on height of top asset  */
-    }
-    #fixed-corner {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 35%;
-      max-width: 35vw;
-      z-index: -1;
     }
     .container {
       max-width: 800px;
       margin: 0 auto;
       padding: 20px;
     }
-    nav {
+    h1 {
       margin-top: 35px;
-      margin-left: 60px; 
-    }
-    section {
-      margin-top: 20px;
-    }
-    a {
-      color: #ffffff;
-      display: inline-block;
-      padding: 10px;
-      font-size: 2.5rem;
-      background-color: transparent;
-      text-decoration: none;
-      text-align: center;
-      transition: background-color 0.3s ease;
-      outline: none; /* Remove default outline */
-      -webkit-tap-highlight-color: transparent;
-      -webkit-user-select: none;
-         -moz-user-select: none;
-          -ms-user-select: none;
-              user-select: none;
-    }
-    a:hover {
-      background-color: #AC4E5E;
-      font-weight: bold;
-    }
-    a:focus, a:active {
-      outline: none;
-      -webkit-tap-highlight-color: transparent;
     }
     u {
       text-decoration: none;
@@ -69,21 +31,208 @@
       height: 1.1px; /* Intermediate thickness */
       background-color: currentColor;
     }
+
+
+
+/* Default Navigation for smaller screens */
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: table;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem 1rem;
+}
+
+.home-badge {
+  display: table-cell;
+  vertical-align: middle;
+  width: 25%;
+  cursor: pointer;
+}
+
+#badge {
+  display: inline-block;
+  width: 4.5rem;
+}
+
+#menu {
+  display: none; /* Hide this by default for smaller screens */
+}
+
+#dropdown-menu {
+  display: table-cell;
+  vertical-align: middle;
+  width: 75%;
+  text-align: right;
+  letter-spacing: 1px;
+  color: var(--color-light-main);
+  font-family: var(--mono-font);
+}
+
+.dropdown-btn {
+  position: relative;
+  display: inline-block;
+  font-size: 1em;
+  margin-right: 1rem;
+  letter-spacing: 3px;
+  cursor: pointer;
+}
+
+.dropdown-btn::before {
+  content: '';
+  display: inline-block;
+  width: 0.75em;
+  height: 0.75em;
+  border-radius: 50%;
+  background-color: black;
+  margin-right: 0.5em;
+  animation: rotate 1.5s ease-in-out infinite;
+}
+
+@keyframes rotate {
+  0% { transform: rotateX(0deg); }
+  100% { transform: rotateX(360deg); }
+}
+
+.dropdown-btn:hover::before,
+.dropdown-btn:focus::before,
+.dropdown-btn:active::before {
+  animation: none;
+}
+
+.dropdown-content {
+  position: absolute;
+  top: 5rem;
+  right: 2rem;
+  width: 85%;
+  max-width: 550px;
+  visibility: hidden;
+  overflow: hidden;
+  z-index: 11;
+}
+
+.dropdown-content .item {
+  position: relative;
+  left: 100%;
+  transition: 0.5s;
+  transition-delay: calc(60ms * var(--delay));
+  display: block;
+  border: solid var(--color-main);
+  border-width: 2px 1px 1px 2px;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: .5rem 1rem;
+  margin-bottom: .5rem;
+  background: #7B7B7B;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 2.475em;
+}
+
+.dropdown-content .item.active {
+  color: #232b2b;
+}
+
+.dropdown-content .item.active::before {
+  content: '';
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  border-radius: 50%;
+  background-color: var(--color-main);
+  margin-right: 0.3em;
+  animation: rotate 1.5s ease-in-out infinite;
+}
+
+.dropdown-btn:focus + .dropdown-content .item {
+  left: 0;
+}
+
+.dropdown-btn:focus + .dropdown-content {
+  visibility: visible;
+}
+
+.dropdown-content .item:hover {
+  background: #969696;
+}
+
+/* Navigation for screens with a min-width of 30em */
+@media screen and (min-width: 30em) {
+  nav {
+    padding: 0.75rem 4rem;
+  }
+
+  #menu {
+    display: table-cell;
+    vertical-align: middle;
+    width: 75%;
+    text-align: right;
+    letter-spacing: 1px;
+    color: var(--color-light-main);
+    font-family: var(--mono-font);
+  }
+
+  #menu .item {
+    display: inline-block;
+    font-size: 1.1em;
+    margin-right: 2rem;
+  }
+
+  #dropdown-menu {
+    display: none; /* Hide the dropdown menu for larger screens */
+  }
+
+  .logo-item {
+    display: inline; /* Show the logo-item inside the home-badge for larger screens */
+  }
+}
+
+/* Hide logo-item by default */
+.logo-item {
+  display: none;
+}
   </style>
 </head>
 <body>
-  <img id="fixed-corner" src="liminal.png">
-  <div class="container">
-    <h1>Convolu<u>tional&nbsp;</u> Neural Networks</h1>
-    <section>
-      <p>
-        CNNs are a type of deep learning technique commonly used for image recognition tasks. They work by learning patterns and features from images through layers of filters. 
-        CNNs excel at recognizing spatial patterns, making them effective for tasks like object detection and classification in images. They are widely used in computer vision applications.
-      </p>
-      <nav>
-        <a href="../03/">➪</a>
-      </nav>
-    </section>
+  <nav>
+  <a class="home-badge" href="{{ site.baseurl }}/">
+    <img id="badge" src="{{ site.baseurl }}/assets/images/badge.gif">
+    <div class="logo-item">dduyg</div>  
+  </a>
+  <div id="menu">
+    <a class="item {% if page.url == '/' %}active{% endif %}" href="{{ site.baseurl }}/">Home</a>
+    <a class="item {% if page.url contains '/posts/' %}active{% endif %}" href="{{ site.baseurl }}/posts">Posts</a>
+    <a class="item {% if page.url == '/about.html' %}active{% endif %}" href="{{ site.baseurl }}/about">About</a>
+    <a class="item {% if page.url contains '/works/' %}active{% endif %}" href="{{ site.baseurl }}/works">Works</a>
+    <a class="item {% if page.url == '/contact.html' %}active{% endif %}" href="{{ site.baseurl }}/contact">Contact</a>
   </div>
+  <div id="dropdown-menu">
+    <a href="#" class="dropdown-btn" tabindex="0" aria-haspopup="menu">dduyg</a>
+    <div class="dropdown-content">
+      <a class="item {% if page.url == '/' %}active{% endif %}" style="--delay: 1;" href="{{ site.baseurl }}/">Home</a>
+      <a class="item {% if page.url contains '/posts/' %}active{% endif %}" style="--delay: 2;" href="{{ site.baseurl }}/posts">Posts</a>
+      <a class="item {% if page.url == '/about.html' %}active{% endif %}" style="--delay: 3;" href="{{ site.baseurl }}/about">About</a>
+      <a class="item {% if page.url contains '/works/' %}active{% endif %}" style="--delay: 4;" href="{{ site.baseurl }}/works">Works</a>
+      <a class="item {% if page.url == '/contact.html' %}active{% endif %}" style="--delay: 5;" href="{{ site.baseurl }}/contact">Contact</a>
+    </div>
+  </div>
+  </nav>
+  
+    <h1>Convolu<u>tional&nbsp;</u> Neural Networks</h1>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
