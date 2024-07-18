@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Liminal Loop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/63e03a9b9c.js" crossorigin="anonymous"></script>
+  <style>
+    html, body {
+      padding: 0;
+      margin: 0;
+      border: 0;
+      background-color: #898989;
+      color: #292721;
+      line-height: 1.5;
+      font-family: "Lato", sans-serif;
+    }
+    main {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+    
+    section {
+      border-right: 1px black solid;
+      display: flex;
+      flex: 1;
+      height: 70%;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    #contact {
+      border-right: none;
+    }
+
+    header {
+      transform: rotate(-90deg);
+    } 
+    header h1 {
+      font-size: min(5vw, 32px);
+      margin: 0;
+    }
+    @media screen and (min-width: 1200px) {
+      header h1 {
+          font-size: 32px; /* Resets font size to 32px for screens wider than 1200px */
+      }
+    }
+    .panel-active header {
+      color: #F5FFFA;
+      letter-spacing: 3px;
+      transform: rotate(0deg);
+      transition: 0.5s ease;
+    }
+    .panel-active header h1 {
+      font-size: calc(1.3 * min(5vw, 32px));
+    }
+    #contact header {
+      transform: rotate(0deg); /* Rotation normal for icon */
+    }
+    #contact h1 i {
+      font-size: 1.1em;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    .content {
+      display: none;
+      font-size: min(4vw, 19px); /* Limits font size to 19px or 4vw, whichever is smaller */
+      padding: 3% 10%;
+      overflow-x: hidden;
+      overflow-y: auto;
+      max-width: 800px;
+      max-height: calc(100% - 20px);
+    }
+    @media screen and (min-width: 1200px) {
+      .content {
+          font-size: 19px; /* Resets font size to 19px for screens wider than 1200px */
+      }
+    }
+
+    .panel-inactive:hover {
+      flex: 1.1;
+      background-color: rgba(0, 0, 0, 0.1);
+      transition: 0.5s ease;
+    }
+    .panel-active {
+      flex: 16;
+      transition: 1s ease;
+    }
+    .panel-active .content {
+      display: block;
+    }
+
+    .panel-link {
+      font-style: italic;
+      border-bottom: 3px solid #F5FFFA;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    #badge {
+      position: absolute;
+      top: 0;
+      left: 3%;
+      box-sizing: border-box;      
+      padding: 10px;
+      width: 5.1em;
+    }
+    #credits {
+      position: absolute;
+      top: 2%;
+      right: 3%;
+      margin: 0;
+      padding: 0.75em 1em;
+      text-align: center;
+      color: black;
+      font-family: "Arial", sans-serif;
+      font-size: 1.1em;
+    }
+    #credits a::before {
+      content: '';
+      display: inline-block;
+      position: relative;
+      transform-origin: center center;
+      top: -0.0325em;
+      height: 0.65em;
+      width: 0.65em;
+      background-color: black;
+      color: black;
+      border-radius: 100%;
+      margin-right: 0.35em;
+      animation: 1.5s rotate ease-in-out infinite;
+    }
+    @keyframes rotate {
+      0% { transform: rotateX(0deg); }
+      100% { transform: rotateX(360deg); }
+    }
+  </style>
+</head>
+<body>
+<img id="badge" src="badge.gif">
+<div id="credits"><a href="https://ko-fi.com/dduyg" target="_blank">See More</a></div>
+<main>
+  <section id="welcome" class="panel-active">
+    <header>
+      <h1>/dduyg</h1>
+    </header>
+    <div class="content">
+      <p>Lorem ipsum dolor <a href="#about" class="panel-link">sit</a> amet, consectetur adipiscing elit. Vestibulum sed consectetur mauris, vel consectetur mi. Fusce volutpat lorem id cursus iaculis. Vivamus eget lobortis libero. Sed sodales tempor venenatis. Vivamus iaculis eros non sem aliquam ornare. Ut eget feugiat massa. Sed aliquam tincidunt elit ac scelerisque.</p>   
+    </div>
+  </section>
+  <section id="about" class="panel-inactive">
+    <header>
+      <h1>About</h1>
+    </header>
+    <div class="content">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sed consectetur mauris, vel consectetur mi. Fusce volutpat lorem id cursus iaculis. Vivamus eget lobortis libero. Sed sodales tempor venenatis. Vivamus iaculis eros non sem aliquam ornare. Ut eget feugiat massa. Morbi condimentum, neque vitae vestibulum hendrerit, tortor metus vulputate augue, ut lacinia turpis sem sed dolor. Sed aliquam tincidunt elit ac scelerisque. Donec eleifend libero nisl, feugiat vulputate enim elementum consequat. Nullam scelerisque lorem fringilla urna ullamcorper consectetur.</p>
+      <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent finibus ac enim vel iaculis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et egestas ante. Nullam ac elementum velit, quis aliquam nisi. Pellentesque cursus eu ligula non semper. Nam pharetra velit sit amet orci tempor fringilla. Donec pretium mattis gravida. Morbi ut leo felis.</p>
+    </div>
+  </section>
+  <section id="posts" class="panel-inactive">
+    <header>
+      <h1>Webring</h1>
+    </header>
+    <div class="content">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sed consectetur mauris, vel consectetur mi. Fusce volutpat lorem id cursus iaculis. Vivamus eget lobortis libero. Sed sodales tempor venenatis. Vivamus iaculis eros non sem aliquam ornare. Ut eget feugiat massa. Morbi condimentum, neque vitae vestibulum hendrerit, tortor metus vulputate augue, ut lacinia turpis sem sed dolor. Sed aliquam tincidunt elit ac scelerisque. Donec eleifend libero nisl, feugiat vulputate enim elementum consequat. Nullam scelerisque lorem fringilla urna ullamcorper consectetur.</p>
+    </div>
+  </section>
+  <section id="contact" class="panel-inactive">
+    <header>
+      <h1><i class="far fa-paper-plane"></i></h1>
+    </header>
+    <div class="content">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sed consectetur mauris, vel consectetur mi. Fusce volutpat lorem id cursus iaculis. Vivamus eget lobortis libero. Sed sodales tempor venenatis. Vivamus iaculis eros non sem aliquam ornare. Ut eget feugiat massa. Morbi condimentum, neque vitae vestibulum hendrerit, tortor metus vulputate augue, ut lacinia turpis sem sed dolor. Sed aliquam tincidunt elit ac scelerisque. Donec eleifend libero nisl, feugiat vulputate enim elementum consequat. Nullam scelerisque lorem fringilla urna ullamcorper consectetur.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sed consectetur mauris, vel consectetur mi. Fusce volutpat lorem id cursus iaculis. Vivamus eget lobortis libero. Sed sodales tempor venenatis. Vivamus iaculis eros non sem aliquam ornare. Ut eget feugiat massa. Morbi condimentum, neque vitae vestibulum hendrerit, tortor metus vulputate augue, ut lacinia turpis sem sed dolor. Sed aliquam tincidunt elit ac scelerisque. Donec eleifend libero nisl, feugiat vulputate enim elementum consequat. Nullam scelerisque lorem fringilla urna ullamcorper consectetur.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sed consectetur mauris, vel consectetur mi. Fusce volutpat lorem id cursus iaculis. Vivamus eget lobortis libero. Sed sodales tempor venenatis. Vivamus iaculis eros non sem aliquam ornare. Ut eget feugiat massa. Morbi condimentum, neque vitae vestibulum hendrerit, tortor metus vulputate augue, ut lacinia turpis sem sed dolor. Sed aliquam tincidunt elit ac scelerisque. Donec eleifend libero nisl, feugiat vulputate enim elementum consequat. Nullam scelerisque lorem fringilla urna ullamcorper consectetur.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sed consectetur mauris, vel consectetur mi. Fusce volutpat lorem id cursus iaculis. Vivamus eget lobortis libero. Sed sodales tempor venenatis. Vivamus iaculis eros non sem aliquam ornare. Ut eget feugiat massa. Morbi condimentum, neque vitae vestibulum hendrerit, tortor metus vulputate augue, ut lacinia turpis sem sed dolor. Sed aliquam tincidunt elit ac scelerisque. Donec eleifend libero nisl, feugiat vulputate enim elementum consequat. Nullam scelerisque lorem fringilla urna ullamcorper consectetur.</p>
+    </div>
+  </section>
+</main>
+<script>
+  const sections = document.querySelectorAll('section');
+  const panelLinks = document.querySelectorAll('.panel-link');
+
+  sections.forEach((section) => {
+    section.addEventListener('click', activatePanel);  
+  });
+
+  panelLinks.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault(); // Prevent default link behavior
+      const targetId = link.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) {
+        deactivatePanels();
+        targetSection.classList.remove('panel-inactive');
+        targetSection.classList.add('panel-active');
+        targetSection.querySelector('.content').style.display = 'block';
+      }
+    });
+  });
+
+  function deactivatePanels() {
+    sections.forEach((section) => {
+      section.classList.add('panel-inactive');
+      section.classList.remove('panel-active');
+      section.querySelector('.content').style.display = 'none'; // Hide panel content
+    });
+  }
+
+  function activatePanel(event) {
+    if (!event.target.closest('.panel-link')) {
+      deactivatePanels();
+      this.classList.remove('panel-inactive');
+      this.classList.add('panel-active');
+      this.querySelector('.content').style.display = 'block'; // Show panel content
+    }
+  }
+</script>
+</body>
+</html>
