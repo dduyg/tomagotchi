@@ -144,7 +144,7 @@
       100% { transform: rotateX(360deg); }
     }
 
-    /* Custom scrollbar styling using image */
+    /* Custom scrollbar styling for WebKit browsers */
     .content::-webkit-scrollbar {
       width: 12px;
     }
@@ -155,16 +155,23 @@
     }
 
     .content::-webkit-scrollbar-thumb {
-      background: url('scroll.png') no-repeat center;
+      background: url('scroll.png') no-repeat center center;
+      background-size: contain;
       border-radius: 10px;
+      border: 3px solid #f5f5f5;
     }
 
+    .content::-webkit-scrollbar-thumb:hover {
+      background-color: #494848;
+    }
+
+    /* Custom scrollbar styling for Firefox */
     .content {
       scrollbar-width: thin;
       scrollbar-color: #292721 #f5f5f5;
     }
 
-    /* Fallback for Firefox using scrollbar width and color */
+    /* Custom scrollbar for other browsers (basic fallback) */
     .content {
       scrollbar-width: thin;
       scrollbar-color: #292721 #f5f5f5;
