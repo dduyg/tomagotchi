@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Liminal Loop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --back: #2b2e4a;
+      --theme: #ffc857;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      display: grid;
+      place-content: center;
+      grid-template-columns: repeat(auto-fit, min(100%, 30rem));
+      min-height: 100vh;
+      place-items: start;
+      gap: 1rem;
+      margin: 0;
+      padding: 1rem;
+      color: var(--theme);
+      background: var(--back);
+      font-family: "Lato", sans-serif;
+      line-height: 1.5;
+    }
+    /* Core styles/functionality */
+    .tab input {
+      position: absolute;
+      opacity: 0;
+      z-index: -1;
+    }
+    .tab__content {
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.35s;
+    }
+    .tab input:checked ~ .tab__content {
+      max-height: 10rem;
+    }
+    /* Visual styles */
+    main {
+      color: var(--theme);
+      border: 2px solid;
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+    .tab__label,
+    .tab__close {
+      display: flex;
+      color: var(--back);
+      background: var(--theme);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .tab__label {
+      justify-content: space-between;
+      padding: 1rem;
+    }
+    .tab__label::after {
+      content: "\276F";
+      width: 1em;
+      height: 1em;
+      text-align: center;
+      transform: rotate(90deg);
+      transition: all 0.35s;
+    }
+    .tab input:checked + .tab__label::after {
+      transform: rotate(270deg);
+    }
+    .tab__content p {
+      margin: 0;
+      padding: 1rem;
+    }
+    .tab__close {
+      justify-content: flex-end;
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+    }
+    /* Arrow animation */
+    .tab input:not(:checked) + .tab__label:hover::after {
+      animation: bounce .5s infinite;
+    }
+    @keyframes bounce {
+      25% {
+        transform: rotate(90deg) translate(.25rem);
+      }
+      75% {
+        transform: rotate(90deg) translate(-.25rem);
+      }
+    }
+    /* Remove focus outline */
+    .tab input:focus,
+    .tab__label:focus,
+    .tab__close:focus {
+      outline: none;
+    }
+    .tab input:checked:focus + .tab__label {
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <div class="tab">
+    <input type="radio" name="syntax-serenity" id="section-1" checked>
+    <label for="section-1" class="tab__label">Cybernetic Abyss</label>
+    <div class="tab__content">
+      <p>Whoa! You've entered the vaporwave abyss... It seems like this cyber data lover is lost in the digital waves. But don't worry, let's groove back to reality together!</p>
+    </div>
+  </div>
+  <div class="tab">
+    <input type="radio" name="syntax-serenity" id="section-2">
+    <label for="section-2" class="tab__label">Radio</label>
+    <div class="tab__content">
+      <p>If you want to have only one tab open, you can use <code>&lt;input type="checkbox"&gt;</code>.</p>
+    </div>
+  </div>
+  <div class="tab">
+    <input type="radio" name="syntax-serenity" id="section-3">
+    <label for="section-3" class="tab__label">Open single</label>
+    <div class="tab__content">
+      <p>But if you wanna close the opened tab, you must add a "close" button somewhere, like the one below, that is just another styled radio input.</p>
+    </div>
+  </div>
+  <div class="tab">
+    <input type="radio" name="syntax-serenity" id="section-4">
+    <label for="section-4" class="tab__close">Close open tab &times;</label>
+  </div>
+</main>
+</body>
+</html>
