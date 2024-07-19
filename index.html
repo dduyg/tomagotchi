@@ -6,95 +6,99 @@
   <title>Accordion</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
   <style>
-    body {
-      font-family: "Open Sans", sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-    main {
-      padding: 0 1.25em;
-    }
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  max-width: 800px;
+  padding: 0 1.25em;
+  box-sizing: border-box;
+}
 
-    h1 {
-      padding: 0;
-      margin: 0;
-    }
+h1 {
+  padding: 0;
+  margin: 0;
+}
 
-    .works {
-      max-width: 560px;
-      margin: 0 auto 100px;
-      border-top: 1px solid #000;
-    }
+.works {
+  width: 100%;
+  border-top: 1px solid #000;
+}
 
-    details {
-      border-bottom: 1px solid #000;
-      position: relative;
-      padding: 10px 0;
-    }
+details {
+  border-bottom: 1px solid #000;
+  position: relative;
+  padding: 10px 0;
+}
 
-    summary {
-      cursor: pointer;
-      position: relative;
-      -webkit-user-select: none;
-         -moz-user-select: none;
-          -ms-user-select: none;
-              user-select: none;  
-      list-style-type: none;
-      padding-left: 0;
-      margin-left: 0;
-    }
-    summary::marker {
-      display: none;
-    }
+summary {
+  cursor: pointer;
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;  
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+summary::marker {
+  display: none;
+}
 
-    summary::after {
-      content: " ";
-      width: 8px;
-      height: 8px;
-      border-right: 1px solid #000;
-      border-bottom: 1px solid #000;
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%) rotate(-45deg);
-      transition: transform 0.2s ease-in-out;
-    }
+summary::after {
+  content: " ";
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+  transition: transform 0.2s ease-in-out;
+}
 
-    details[open] summary::after {
-      transform: translateY(-50%) rotate(45deg);
-    }
+details[open] summary::after {
+  transform: translateY(-50%) rotate(45deg);
+}
 
-    details p {
-      padding: 10px;
-      margin: 0;
-    }
+details p {
+  padding: 10px;
+  margin: 0;
+}
 
-    details[open] p {
-      display: block;
-      animation: slideDown 0.3s ease-out;
-    }
+details[open] p {
+  display: block;
+  animation: slideDown 0.3s ease-out;
+}
 
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-
-    
-    details, details:focus, details:active {
-      outline: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-    details:focus {
-      box-shadow: 0 0 0 2px #00f;
-    }
+details, details:focus, details:active {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+details:focus {
+  box-shadow: 0 0 0 2px #00f;
+} 
   </style>
 </head>
 <body>
