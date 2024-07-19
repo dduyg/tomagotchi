@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Accordion</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
   <style>
     :root {
       --font-family: "Open Sans", sans-serif;
@@ -102,6 +103,24 @@
         opacity: 1;
         transform: translateY(0);
       }
+    }
+
+    summary {
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+    }
+    details {
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    details:focus, details:active {
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    details:focus {
+      box-shadow: 0 0 0 2px #00f;
     }
   </style>
 </head>
