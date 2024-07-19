@@ -2,13 +2,126 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Styling HTML Details Tag</title>
+  <title>Details Tag</title>
   <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,700,400italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><link rel="stylesheet" href="./style.css">
+  <style>
+body {
+	font-family: 'Roboto', sans-serif;
+	font-size: 1.125rem;
+	line-height: 1.4;
+	margin: 0;
+	padding: 0;
+}
+section {
+	width: 100%;
+	max-width: 752px;
+	padding: 20px;
+	margin: 0 auto;
+}
 
+/* Details Styling
+---------------------------- */
+details, summary {
+	margin-bottom: 0 !important; /* for WordPress theme Blocksy */
+}
+details summary::-webkit-details-marker {
+	display: none;
+}
+details summary {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	padding: 1rem 1.5rem;
+	outline: none;
+	cursor: pointer;
+	font-size: 1.35rem;
+	font-weight: 400;
+	line-height: 1.2;
+	border-bottom: 1px solid #000;
+}
+details[open] summary {
+	background: #000;
+	color: #fff;
+}
+details summary:before,
+details summary:after {
+	font-family: "FontAwesome";
+}
+details summary:before {
+  content:"\f107"; 
+	padding-right: 1.5rem;
+}
+details[open] summary:before {
+	content:"\f106";
+}
+details[open] {
+	border-bottom: 1px solid #000;
+}
+details > div {
+	padding: 1.5rem 1.5rem .5rem;
+	background: #f2f2f2;
+}
+details > div > * {
+	margin-top: 0;
+	margin-bottom: 1rem;
+}
+
+
+/* Accordion Details Img + Text elements
+------------------------------*/
+
+/* Reset previous styles */
+details.accordion-details-img summary:before,
+details.accordion-details-img[open] summary:before {
+	display: none;
+}
+
+details.accordion-details-img summary {
+	justify-content: space-between;
+}
+details.accordion-details-img summary:after {
+	content:"\f107";
+}
+details.accordion-details-img[open] summary:after {
+	content:"\f106";
+}
+
+details.accordion-details-img > div {
+	display: flex;
+	flex-wrap: wrap;
+	overflow: auto;
+}
+details.accordion-details-img > div > a {
+	width: 25%;
+}
+details.accordion-details-img > div > a > img {
+	width: 100%;
+}
+details.accordion-details-img > div > div {
+	flex: 1;
+	margin: 0;
+	padding-left: 1.5rem;
+}
+details.accordion-details-img > div > div p {
+	margin: 0 0 1rem 0;
+}
+
+@media (max-width:600px) {
+	details summary {
+		font-size: 1.5rem;
+	}
+	details.accordion-details-img > div > a {
+		width: 100%;
+	}
+	details.accordion-details-img > div > div {
+		padding: 0;
+		padding-top: .5rem;
+	}
+}
+  </style>
 </head>
 <body>
-<!-- partial:index.partial.html -->
 <section>
 <h1>Styling HTML Details Tag</h1>
 
@@ -108,8 +221,5 @@
 	</details>
 
 </section>
-<!-- partial -->
-  <script  src="./script.js"></script>
-
 </body>
 </html>
