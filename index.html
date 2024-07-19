@@ -24,6 +24,14 @@ main {
   box-sizing: border-box;
 }
 
+* {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+}   
+
 h1 {
   align-self: flex-start;
   padding: 0 0 10px;
@@ -138,15 +146,13 @@ details:focus {
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const elements = Array.from(document.querySelectorAll('h1, .works details')).reverse();
+    const container = document.querySelector('main');
+    const elements = Array.from(container.children).reverse();
     
     elements.forEach((el, index) => {
-      el.style.opacity = 0;
-      el.style.transform = 'translateY(20px)';
+      el.classList.add('hidden'); // Initially hide elements
       setTimeout(() => {
-        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-        el.style.opacity = 1;
-        el.style.transform = 'translateY(0)';
+        el.classList.remove('hidden'); // Apply animation after delay
       }, index * 500); // Delay each element by 500ms
     });
 
