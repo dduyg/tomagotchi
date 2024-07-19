@@ -27,15 +27,16 @@ main {
 h1 {
   padding: 0;
   margin: 0;
+  text-align: left;
 }
 
 .works {
   width: 100%;
-  border-top: 1px solid #000;
+  border-top: 1px solid currentColor;
 }
 
 details {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid currentColor;
   position: relative;
   padding: 0;
 }
@@ -48,7 +49,7 @@ summary {
       -ms-user-select: none;
           user-select: none;  
   list-style-type: none;
-  padding: 10px 0;
+  padding: 0.625em 0;
   margin: 0;
 }
 summary::marker {
@@ -57,32 +58,31 @@ summary::marker {
 
 summary::after {
   content: " ";
-  width: 8px;
-  height: 8px;
-  border-right: 1px solid #000;
-  border-bottom: 1px solid #000;
+  width: 0.5em;
+  height: 0.5em;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
   position: absolute;
-  right: 10px;
+  right: 0.625em;
   top: 50%;
   transform: translateY(-50%) rotate(-45deg);
   transition: transform 0.2s ease-in-out;
 }
 
 details[open] summary {
-	background: #000;
-	color: #fff;
+  background: #000;
+  color: #fff;
 }
 
 details[open] summary::after {
   transform: translateY(-50%) rotate(45deg);
 }
 
-details .content {
-	padding: 1.5rem 1.5rem .5rem;
-	background: #f2f2f2;
+details .work {
+  padding: 1.5rem 1.5rem .5rem;
 }
 
-details[open] .content {
+details[open] .work {
   display: block;
   animation: slideDown 0.3s ease-out;
 }
@@ -109,23 +109,23 @@ details:focus {
 </head>
 <body>
 <main>
-<h1>Accordion</h1>
+<h1>Products</h1>
 <div class="works">
   <details>
     <summary>Lorem ipsum</summary>
-    <div class="content">
+    <div class="work">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.
     </div>
   </details>
   <details>
     <summary>Repellat Odit Aliquid</summary>
-    <div class="content">
+    <div class="work">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.
     </div>
   </details>
   <details>
     <summary>Dolor sit Amet</summary>
-    <div class="content">
+    <div class="work">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.
     </div>
   </details>
