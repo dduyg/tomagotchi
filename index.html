@@ -27,10 +27,11 @@ main {
 * {
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
+
 .hidden {
   opacity: 0;
   transform: translateY(20px);
-}   
+}
 
 h1 {
   align-self: flex-start;
@@ -112,7 +113,7 @@ details, details:focus, details:active {
 }
 details:focus {
   box-shadow: 0 0 0 2px #00f;
-} 
+}
   </style>
 </head>
 <body>
@@ -147,7 +148,7 @@ details:focus {
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const container = document.querySelector('main');
-    const elements = Array.from(container.children).reverse();
+    const elements = Array.from(container.querySelectorAll('h1, .works > details')).reverse();
     
     elements.forEach((el, index) => {
       el.classList.add('hidden'); // Initially hide elements
