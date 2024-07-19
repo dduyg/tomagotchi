@@ -2,18 +2,13 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Sexy Accordion</title>
+  <title>Sexy Accordion</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-<link rel="stylesheet" href="./style.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+  <style></style>
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-  
 <h1>Sexy Accordion</h1>
-
 <ul class="accordion">
 	<li>
 		<a>Lorem ipsum</a>
@@ -27,9 +22,30 @@
 		<a>Dolor sit Amet</a>
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.</p>
 	</li>
-</ul> <!-- / accordion -->
-<!-- partial -->
-  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./script.js"></script>
+</ul>
+  
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>	
+  <script>
+	  (function($) {
+    $('.accordion > li:eq(0) a').addClass('active').next().slideDown();
 
+    $('.accordion a').click(function(j) {
+        var dropDown = $(this).closest('li').find('p');
+
+        $(this).closest('.accordion').find('p').not(dropDown).slideUp();
+
+        if ($(this).hasClass('active')) {
+            $(this).removeClass('active');
+        } else {
+            $(this).closest('.accordion').find('a.active').removeClass('active');
+            $(this).addClass('active');
+        }
+
+        dropDown.stop(false, true).slideToggle();
+
+        j.preventDefault();
+    });
+})(jQuery);	  
+  </script>
 </body>
 </html>
