@@ -21,6 +21,7 @@ main {
   max-width: 800px;
   margin: 0 auto;
   padding: 0 1.25em;
+  box-sizing: border-box;
 }
 
 h1 {
@@ -67,16 +68,21 @@ summary::after {
   transition: transform 0.2s ease-in-out;
 }
 
+details[open] summary {
+	background: #000;
+	color: #fff;
+}
+
 details[open] summary::after {
   transform: translateY(-50%) rotate(45deg);
 }
 
-details p {
-  padding: 10px;
-  margin: 0;
+details .content {
+	padding: 1.5rem 1.5rem .5rem;
+	background: #f2f2f2;
 }
 
-details[open] p {
+details[open] .content {
   display: block;
   animation: slideDown 0.3s ease-out;
 }
@@ -107,15 +113,21 @@ details:focus {
 <div class="works">
   <details>
     <summary>Lorem ipsum</summary>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.</p>
+    <div class="content">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.
+    </div>
   </details>
   <details>
     <summary>Repellat Odit Aliquid</summary>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.</p>
+    <div class="content">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.
+    </div>
   </details>
   <details>
     <summary>Dolor sit Amet</summary>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.</p>
+    <div class="content">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.
+    </div>
   </details>
 </div>
 
