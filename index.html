@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Accessible Accordion</title>
+  <title>Accordion</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <style>
     :root {
       --font-family: "Open Sans", sans-serif;
@@ -14,7 +15,7 @@
       --color-secondary: #6b97a4;
       --color-border: #d9e5e8;
     }
-    
+
     body {
       font-family: var(--font-family);
       font-size: var(--font-size);
@@ -43,10 +44,6 @@
       padding: 10px 25px;
     }
 
-    .accordion details[open] summary {
-      font-weight: bold;
-    }
-
     .accordion summary {
       cursor: pointer;
       font-weight: 600;
@@ -56,6 +53,11 @@
       user-select: none;
       position: relative;
       outline: none;
+      list-style: none;
+    }
+
+    .accordion summary::marker {
+      display: none;
     }
 
     .accordion summary::after {
@@ -83,13 +85,29 @@
       margin: 0;
     }
 
-    .accordion details:not([open]) p {
+    .accordion details p {
       display: none;
+    }
+
+    .accordion details[open] p {
+      display: block;
+      animation: slideDown 0.3s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 <body>
-<h1>Accessible Accordion</h1>
+<h1>Accordion</h1>
 <div class="accordion">
   <details>
     <summary>Lorem ipsum</summary>
@@ -104,5 +122,22 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.</p>
   </details>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const details = document.querySelectorAll('.accordion details');
+    details.forEach(detail => {
+      detail.addEventListener('toggle', function(event) {
+        if (event.target.open) {
+          details.forEach(d => {
+            if (d !== event.target) {
+              d.removeAttribute('open');
+            }
+          });
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>
