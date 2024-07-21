@@ -59,15 +59,12 @@ header {
   transform: rotate(-90deg);
   font-size: min(5vw, 32px);
   margin: 0;
-  
-  white-space: nowrap; /* Prevent text from wrapping to the next line */ 
 }
 @media screen and (min-width: 1200px) {
   header {
       font-size: 32px; /* Resets font size to 32px for screens wider than 1200px */
   }
 }
-    
 .panel-active header {
   color: var(--marker);
   font-size: min(6vw, 32px);
@@ -107,6 +104,38 @@ header {
   max-width: 800px;
   max-height: calc(100% - 20px);
 }
+
+/* Custom scrollbar */
+.content::-webkit-scrollbar {
+  width: 12px;
+}
+
+.content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: url('scroll.png') no-repeat center center;
+  background-size: cover;
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: url('scroll.png') no-repeat center center;
+  background-size: cover;
+}
+
+/* Firefox scrollbar */
+@-moz-document url-prefix() {
+  .content {
+    scrollbar-color: #888 #f1f1f1;
+    scrollbar-width: thin;
+  }
+  .content::-webkit-scrollbar-thumb {
+    background: url('scroll.png') no-repeat center center;
+    background-size: cover;
+  }
+}
+
 @media screen and (min-width: 1200px) {
   .content {
       font-size: 19px; /* Resets font size to 19px for screens wider than 1200px */
@@ -138,15 +167,6 @@ header {
   color: var(--marker);
   font-weight: bold;
 }
-
-
-
-#bio.panel-active header .profile-img {
-  display: none; /* Hide the image in the header */
-}
-#bio.panel-inactive div {
-  display: none; /* Hide the text div */
-}
   </style>
 </head>
 <body>
@@ -162,14 +182,14 @@ header {
     </div>
   </section>
   <section id="approach" class="panel-inactive">
-    <header>My Approach</header>
+    <header>About</header>
     <div class="content">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sed consectetur mauris, vel consectetur mi. Fusce volutpat lorem id cursus iaculis. Vivamus eget lobortis libero. Sed sodales tempor venenatis. Vivamus iaculis eros non sem aliquam ornare. Ut eget feugiat massa. Morbi condimentum, neque vitae vestibulum hendrerit, tortor metus vulputate augue, ut lacinia turpis sem sed dolor. Sed aliquam tincidunt elit ac scelerisque. Donec eleifend libero nisl, feugiat vulputate enim elementum consequat. Nullam scelerisque lorem fringilla urna ullamcorper consectetur.</p>
       <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Praesent finibus ac enim vel iaculis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et egestas ante. Nullam ac elementum velit, quis aliquam nisi. Pellentesque cursus eu ligula non semper. Nam pharetra velit sit amet orci tempor fringilla. Donec pretium mattis gravida. Morbi ut leo felis.</p>
     </div>
   </section>
   <section id="background" class="panel-inactive">
-    <header>Background</header>
+    <header>About</header>
     <div class="content">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sed consectetur mauris, vel consectetur mi. Fusce volutpat lorem id cursus iaculis. Vivamus eget lobortis libero. Sed sodales tempor venenatis. Vivamus iaculis eros non sem aliquam ornare. Ut eget feugiat massa. Morbi condimentum, neque vitae vestibulum hendrerit, tortor metus vulputate augue, ut lacinia turpis sem sed dolor. Sed aliquam tincidunt elit ac scelerisque. Donec eleifend libero nisl, feugiat vulputate enim elementum consequat. Nullam scelerisque lorem fringilla urna ullamcorper consectetur.</p>
     </div>
