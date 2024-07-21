@@ -29,16 +29,16 @@ a {
   text-decoration: none;
 } 
 
-    main {
-      width: 100%;
-      margin: 0 auto;
-      padding: 0;
-      border: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      max-width: 900px;
-    }
+main {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  max-width: 900px;
+}
 
 section {
   border-right: 0.0625em black solid;
@@ -94,12 +94,6 @@ header {
   width: 4em;
   margin-left: 0.3em;
 }
-.panel-active #bio header .profile-img {
-  display: none;
-}
-.panel-inactive #bio header div {
-  display: none;
-}
 
 .content {
   display: none;
@@ -141,6 +135,16 @@ header {
   color: var(--marker);
   font-weight: bold;
 }
+
+/* Hide image in header when panel is active */
+.panel-active #bio header .profile-img {
+  display: none;
+}
+
+/* Hide text in header when panel is inactive */
+.panel-inactive #bio header div {
+  display: none;
+}
   </style>
 </head>
 <body>
@@ -148,7 +152,7 @@ header {
  <section id="bio" class="panel-active">
     <header>
       <img src="tools-section1.jpg" class="profile-img">
-      <div>Duygu Dağdelen</div>
+      <div>Lorem</div>
     </header>
     <div class="content">
       <img src="tools-section1.jpg" class="profile-img">
