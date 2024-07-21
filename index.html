@@ -136,14 +136,21 @@ header {
   font-weight: bold;
 }
 
-/* Hide image in header when panel is active */
-.panel-active #bio header .profile-img {
-  display: none;
+    
+/* For panel-active state in bio section */
+#bio.panel-active .profile-img {
+  display: none; /* Hide the image */
+}
+#bio.panel-active div {
+  display: block; /* Ensure the text div is shown */
 }
 
-/* Hide text in header when panel is inactive */
-.panel-inactive #bio header div {
-  display: none;
+/* For panel-inactive state in bio section */
+#bio.panel-inactive .profile-img {
+  display: inline-block; /* Show the image */
+}
+#bio.panel-inactive div {
+  display: none; /* Hide the text div */
 }
   </style>
 </head>
