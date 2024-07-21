@@ -111,13 +111,14 @@ header {
 }
 
 .content::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Light gray track */
+  background: transparent; /* Fully transparent track */
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2); /* Slight inner shadow for visibility */
+  border-radius: 10px;
 }
 
 .content::-webkit-scrollbar-thumb {
   background: url('scroll.png') no-repeat center center;
   background-size: contain;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.7);
 }
 
 .content::-webkit-scrollbar-thumb:hover {
