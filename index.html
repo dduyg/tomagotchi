@@ -18,13 +18,6 @@
     gap: 10px;
 }
 
-.property, .info {
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 .property {
     font-weight: bold;
 }
@@ -44,13 +37,34 @@ h3 {
 
 @media screen and (min-width: 30em) {
     .container {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
     }
+
     .property, .info {
         grid-column: span 1;
     }
+
+    .property:nth-child(odd), .info:nth-child(odd) {
+        grid-column: 1 / span 1;
+    }
+
+    .property:nth-child(even), .info:nth-child(even) {
+        grid-column: 2 / span 1;
+    }
+
     .summary {
-        grid-column: span 3;
+        grid-column: span 2;
+    }
+
+    @media screen and (min-width: 45em) {
+        .container {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .summary {
+            grid-column: span 3;
+        }
     }
 }
     </style>
