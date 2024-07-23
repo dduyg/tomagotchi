@@ -5,11 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LiminalLoop</title>
   <style>
+    :root {
+  --color-main: rgba(0, 0, 0, 0.87);
+  --color-light-main: #292721; 
+  --marker: #C9C9BF;
+  --back: #9D9D9D;
+  --main-font: "ABeeZee", sans-serif;
+  --mono-font: "Fira Code", monospace;
+    }
 body {
   font-family: "Open Sans", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: beige;
+  background-color: var(--back);
+  color: var(--color-main);
 }
 
 main {
@@ -68,12 +77,12 @@ h1 {
 }
 
 .work.open .title {
-  color: fuchsia;
+  color: var(--marker);
   font-weight: bold;
 }
 
 .work.open .title::after {
-  color: black;
+  color: var(--color-main);
   transform: translateY(-50%) rotate(45deg);
 }
 
