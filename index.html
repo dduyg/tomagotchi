@@ -15,19 +15,19 @@
         .container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            align-items: start;
+            gap: 10px; /* Closer gap between the first two columns */
+            align-items: start; /* Align items to the top */
         }
 
         .property-info {
             display: grid;
             grid-template-columns: 1fr 2fr;
             gap: 10px;
-            margin-bottom: 10px;
         }
 
         .property {
             font-weight: bold;
+            margin-bottom: 10px;
         }
 
         .info {
@@ -44,20 +44,27 @@
 
         @media screen and (min-width: 30em) {
             .container {
-                grid-template-columns: 1fr 1fr 1fr;
-                grid-template-rows: auto auto auto;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+                gap: 20px;
             }
 
-            .column:nth-child(3) {
+            .column:nth-child(1) {
                 grid-column: span 1;
             }
 
-            .column:nth-child(1), .column:nth-child(2) {
+            .column:nth-child(2) {
                 grid-column: span 1;
             }
 
             .column:nth-child(3) {
-                width: 100%;
+                grid-column: span 2;
+            }
+
+            .property-info {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                gap: 10px;
             }
         }
     </style>
@@ -68,17 +75,12 @@
             <div class="property-info">
                 <div class="property">CATEGORY:</div>
                 <div class="info">Branding, Design, Web Development</div>
-            </div>
-            <div class="property-info">
                 <div class="property">YEAR:</div>
                 <div class="info">2024</div>
-            </div>
-            <div class="property-info">
                 <div class="property">CLIENT:</div>
                 <div class="info">LiminalLoop</div>
             </div>
         </div>
-        <div class="column"></div> <!-- Empty column for spacing -->
         <div class="column">
             <h3>Summary</h3>
             <p>ACT Responsable is a French association created to identify and collect the best communications campaigns around the world in order to raise awareness on social and environmental issues...</p>
