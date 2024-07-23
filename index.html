@@ -20,6 +20,11 @@
     align-items: start; /* Align items to the top */
 }
 
+.properties, .infos {
+    display: grid;
+    grid-template-rows: auto auto auto;
+}
+
 .column {
     background-color: #fff;
     padding: 20px;
@@ -47,29 +52,22 @@ h3 {
 @media screen and (min-width: 30em) {
     .container {
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: auto auto auto; /* Ensuring all rows align */
+        gap: 20px;
     }
     .column:nth-child(3) {
         grid-column: span 1;
-    }
-    .column:nth-child(1), .column:nth-child(2) {
-        grid-column: span 1;
-        width: 50%; /* Making sure the first two columns take 50% width */
-    }
-    .column:nth-child(3) {
-        width: 100%; /* The third column takes the remaining width */
     }
 }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="column">
+        <div class="column properties">
             <div class="property">CATEGORY:</div>
             <div class="property">YEAR:</div>
             <div class="property">CLIENT:</div>
         </div>
-        <div class="column">
+        <div class="column infos">
             <div class="info">Branding, Design, Web Development</div>
             <div class="info">2024</div>
             <div class="info">LiminalLoop</div>
