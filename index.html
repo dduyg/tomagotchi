@@ -1,71 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Three Column Layout</title>
-  <style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Columns</title>
+    <style>
       body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  margin: 0;
-  padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+    margin: 0;
+    padding: 20px;
 }
 
 .container {
-  display: flex;
-  flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
 }
 
 .column {
-  background-color: #fff;
-  padding: 20px;
-  margin: 10px;
-  border: 1px solid #ddd;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-@media screen and (min-width: 30em) {
-  .container {
-    display: table;
-    width: 100%;
-  }
-  .column {
-    display: table-cell;
-    width: 33.33%;
-    vertical-align: top;
-  }
+h3 {
+    margin-top: 0;
 }
 
-@media screen and (max-width: 30em) {
-  .column:nth-child(1),
-  .column:nth-child(2) {
-    display: inline-block;
-    width: 100%;
-  }
-  .column:nth-child(3) {
-    display: none;
-  }
+@media screen and (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr 1fr;
+    }
+    .column:nth-child(3) {
+        grid-column: span 2;
+    }
 }
-  </style>
+
+@media screen and (max-width: 480px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="column">
-      <h2>Category</h2>
-      <p>Web Development<br>UX/UI Design</p>
+    <div class="container">
+        <div class="column">
+            <h3>Category</h3>
+            <p>Web Development<br>UX/UI Design</p>
+        </div>
+        <div class="column">
+            <h3>Year</h3>
+            <p>2020</p>
+        </div>
+        <div class="column">
+            <h3>Team</h3>
+            <p>Laurine Simon<br>Laura Van Maël</p>
+            <h3>Client</h3>
+            <p>ACT Responsable</p>
+            <p>ACT Responsable is a French association created to identify and collect the best communications campaigns around the world in order to raise awareness on social and environmental issues...</p>
+        </div>
     </div>
-    <div class="column">
-      <h2>Year</h2>
-      <p>2020</p>
-      <h2>Team</h2>
-      <p>Laurine Simon<br>Laura Van Maël</p>
-    </div>
-    <div class="column">
-      <h2>Client</h2>
-      <p>ACT Responsable</p>
-      <p>ACT Responsable is a French association created to identify and collect the best communications campaigns around the world in order to raise awareness on social and environmental issues (solidarity, environment, human rights and education). The aim was to redesign the French website by focusing on their actions which are exhibitions, schools interventions or even the NG’Ad club.</p>
-    </div>
-  </div>
 </body>
 </html>
