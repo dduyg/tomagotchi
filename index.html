@@ -6,21 +6,20 @@
   <title>LiminalLoop</title>
   <style>
     :root {
-  --color-main: rgba(0, 0, 0, 0.87);
-  --color-light-main: #292721; 
-  --marker: #C9C9BF;
-  --back: #9D9D9D;
-  --main-font: "ABeeZee", sans-serif;
-  --mono-font: "Fira Code", monospace;
+      --color-main: rgba(0, 0, 0, 0.87);
+      --color-light-main: #292721; 
+      --marker: #C9C9BF;
+      --back: #9D9D9D;
+      --main-font: "ABeeZee", sans-serif;
+      --mono-font: "Fira Code", monospace;
     }
-body {
-  font-family: "Open Sans", sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: var(--back);
-  color: var(--color-main);
-}
-
+    body {
+      font-family: "Open Sans", sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--back);
+      color: var(--color-main);
+    }
     main {
       display: flex;
       flex-direction: column;
@@ -32,24 +31,20 @@ body {
       padding: 0 1.25em;
       box-sizing: border-box;
     }
-
     h1 {
       align-self: flex-start;
       padding: 0 0 10px;
       margin: 0;
     }
-
     .works {
       width: 100%;
       border-top: 0.0625em solid currentColor;
     }
-
     .work {
       border-bottom: 0.0625em solid currentColor;
       position: relative;
       padding: 0;
     }
-
     header {
       cursor: pointer;
       position: relative;
@@ -58,11 +53,9 @@ body {
           -ms-user-select: none;
               user-select: none;  
       list-style-type: none;
-      padding: 0.625em 0;
+      padding: 0.625em 1.5em 0.625em 0; /* Added padding-right */
       margin: 0;
-
       display: table;
-      table-layout: fixed;
       width: 100%;
     }
     header::after {
@@ -77,37 +70,33 @@ body {
       transform: translateY(-50%) rotate(-45deg);
       transition: transform 0.2s ease-in-out;
     }
-
     .work.open header {
       color: var(--marker);
       font-weight: bold;
     }
-
     .work.open header::after {
       color: var(--color-main);
       transform: translateY(-50%) rotate(45deg);
     }
-
     .title, .labels { 
       display: table-cell;
+      width: 50%;
       vertical-align: middle;
     }
     .labels {
+      text-align: right !important;
       font-family: var(--mono-font) !important;
       color: #484848 !important;
       font-weight: normal !important; 
     }
-
     section {
       display: none;
       padding: 1.25em 0;
     }
-
     .work.open section {
       display: block;
       animation: slideDown 0.3s ease-out;
     }
-
     @keyframes slideDown {
       from {
         opacity: 0;
@@ -118,7 +107,6 @@ body {
         transform: translateY(0);
       }
     }
-
     .container {
       display: flex;
       flex-direction: column;
@@ -144,7 +132,6 @@ body {
       flex: 1;
       color: var(--color-light-main);
     }
-
     .work, .work:focus, .work:active {
       outline: none;
       -webkit-tap-highlight-color: transparent;
@@ -152,7 +139,6 @@ body {
     .work:focus {
       box-shadow: 0 0 0 2px #00f;
     }
-
     @media screen and (min-width: 30em) {
       .container {
         flex-direction: row;
