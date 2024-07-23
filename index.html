@@ -60,6 +60,8 @@ body {
       list-style-type: none;
       padding: 0.625em 0;
       margin: 0;
+
+      display: table;
       width: 100%;
     }
     header::after {
@@ -86,16 +88,14 @@ body {
     }
 
     .title, .labels { 
+      display: table-cell;
+      width: 50%;
       vertical-align: middle;
     }
-
-    .title {
-        font-size: 1.15em !important;
-    }
     .labels {
+      text-align: right !important;
       font-family: var(--mono-font) !important;
       color: #484848 !important;
-      padding-left: 2.2em !important;
       font-weight: normal !important; 
     }
 
@@ -160,10 +160,6 @@ body {
         table-layout: fixed;
         width: 100%;
       }
-      .title, .labels {
-        display: table-cell;
-      }
-
       .container {
         flex-direction: row;
         gap: 1.25em;
