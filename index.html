@@ -102,6 +102,9 @@ body {
     section {
       display: none;
       padding: 1.25em 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
     }
 
     .work.open section {
@@ -118,6 +121,24 @@ body {
         opacity: 1;
         transform: translateY(0);
       }
+    }
+    
+    .details {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .property {
+      font-weight: bold;
+      width: 150px; /* Set a fixed width for alignment */
+    }
+    .detail {
+      flex: 1;
     }
 
     .work, .work:focus, .work:active {
@@ -140,7 +161,23 @@ body {
       .labels {
         padding-left: 0.8em !important; 
       }
-    }
+      
+      section {
+        flex-direction: row;
+        gap: 20px;
+      }
+      .details {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .summary {
+        flex: 1;
+      }
+      .details, .summary {
+        max-width: 50%;
+      }    
+    } 
   </style>
 </head>
 <body>
@@ -153,7 +190,23 @@ body {
          <div class="labels">Studioooo</div>
       </header>
       <section>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.</p>
+        <div class="details">
+            <div class="item">
+                <div class="property">CATEGORY:</div>
+                <div class="detail">Python, NLP, Web Application</div>
+            </div>
+            <div class="item">
+                <div class="property">YEAR:</div>
+                <div class="detail">2024</div>
+            </div>
+            <div class="item">
+                <div class="property">CLIENT:</div>
+                <div class="detail">LiminalLoop</div>
+            </div>
+        </div>
+        <div class="summary">
+            <div class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci.</div>
+        </div>
       </section>
     </div>
     <div class="work">
