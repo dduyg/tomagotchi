@@ -20,26 +20,29 @@
     align-items: start; /* Align items to the top */
 }
 
-.column {
-    display: contents;
+.info-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+    margin-bottom: 10px;
 }
 
 .property {
     font-weight: bold;
-    margin-bottom: 10px;
-    grid-column: 1; /* Place in the first column */
 }
 
 .info {
-    margin-bottom: 10px;
-    grid-column: 2; /* Place in the second column */
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 h3 {
     margin-top: 0;
 }
 
-.column:nth-child(3) {
+.column.summary {
     grid-column: span 2;
 }
 
@@ -47,29 +50,33 @@ h3 {
     .container {
         grid-template-columns: 1fr 1fr 1fr;
     }
-    .column:nth-child(3) {
+    .column.summary {
         grid-column: span 1;
     }
-    .column:nth-child(1), .column:nth-child(2) {
-        grid-column: span 1;
-        width: auto;
+    .info-group:nth-child(1), .info-group:nth-child(2), .info-group:nth-child(3) {
+        width: 50%; /* Making sure the first two columns take 50% width */
+    }
+    .column.summary {
+        width: 100%; /* The third column takes the remaining width */
     }
 }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="column">
+        <div class="info-group">
             <div class="property">CATEGORY:</div>
-            <div class="property">YEAR:</div>
-            <div class="property">CLIENT:</div>
-        </div>
-        <div class="column">
             <div class="info">Branding, Design, Web Development</div>
+        </div>
+        <div class="info-group">
+            <div class="property">YEAR:</div>
             <div class="info">2024</div>
+        </div>
+        <div class="info-group">
+            <div class="property">CLIENT:</div>
             <div class="info">LiminalLoop</div>
         </div>
-        <div class="column">
+        <div class="column summary">
             <h3>Summary</h3>
             <p>ACT Responsable is a French association created to identify and collect the best communications campaigns around the world in order to raise awareness on social and environmental issues...</p>
         </div>
