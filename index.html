@@ -21,168 +21,166 @@ body {
   color: var(--color-main);
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 1.25em;
-  box-sizing: border-box;
-}
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1.25em;
+      box-sizing: border-box;
+    }
 
-h1 {
-  align-self: flex-start;
-  padding: 0 0 10px;
-  margin: 0;
-}
+    h1 {
+      align-self: flex-start;
+      padding: 0 0 10px;
+      margin: 0;
+    }
 
-.works {
-  width: 100%;
-  border-top: 0.0625em solid currentColor;
-}
+    .works {
+      width: 100%;
+      border-top: 0.0625em solid currentColor;
+    }
 
-.work {
-  border-bottom: 0.0625em solid currentColor;
-  position: relative;
-  padding: 0;
-}
+    .work {
+      border-bottom: 0.0625em solid currentColor;
+      position: relative;
+      padding: 0;
+    }
 
-.title {
-  cursor: pointer;
-  position: relative;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;  
-  list-style-type: none;
-  padding: 0.625em 0;
-  margin: 0;
-  
-  width: 100%;
-}
-.title::after {
-  content: " ";
-  width: 0.5em;
-  height: 0.5em;
-  border-right: 0.0625em solid currentColor;
-  border-bottom: 0.0625em solid currentColor;
-  position: absolute;
-  right: 0.625em;
-  top: 50%;
-  transform: translateY(-50%) rotate(-45deg);
-  transition: transform 0.2s ease-in-out;
-}
+    header {
+      cursor: pointer;
+      position: relative;
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;  
+      list-style-type: none;
+      padding: 0.625em 0;
+      margin: 0;
+      width: 100%;
+    }
+    header::after {
+      content: " ";
+      width: 0.5em;
+      height: 0.5em;
+      border-right: 0.0625em solid currentColor;
+      border-bottom: 0.0625em solid currentColor;
+      position: absolute;
+      right: 0.625em;
+      top: 50%;
+      transform: translateY(-50%) rotate(-45deg);
+      transition: transform 0.2s ease-in-out;
+    }
 
-.work.open .title {
-  color: var(--marker);
-  font-weight: bold;
-}
+    .work.open header {
+      color: var(--marker);
+      font-weight: bold;
+    }
 
-.work.open .title::after {
-  color: var(--color-main);
-  transform: translateY(-50%) rotate(45deg);
-}
+    .work.open header::after {
+      color: var(--color-main);
+      transform: translateY(-50%) rotate(45deg);
+    }
 
-.text-title, .labels { 
-  vertical-align: middle;
-}
+    .text-title, .labels { 
+      vertical-align: middle;
+    }
 
-.info {
-  display: none;
-  padding: 1.25em 0;
-}
+    .info {
+      display: none;
+      padding: 1.25em 0;
+    }
 
-.work.open .info {
-  display: block;
-  animation: slideDown 0.3s ease-out;
-}
+    .work.open .info {
+      display: block;
+      animation: slideDown 0.3s ease-out;
+    }
 
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-.work, .work:focus, .work:active {
-  outline: none;
-  -webkit-tap-highlight-color: transparent;
-}
-.work:focus {
-  box-shadow: 0 0 0 2px #00f;
-}
+    .work, .work:focus, .work:active {
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .work:focus {
+      box-shadow: 0 0 0 2px #00f;
+    }
 
-
-@media screen and (min-width: 30em) {
-    .title {
+    @media screen and (min-width: 30em) {
+      header {
         display: table;
         table-layout: fixed;
         width: 100%;
-    }
-    .text-title, .labels {
+      }
+      .text-title, .labels {
         display: table-cell;
+      }
     }
-}
   </style>
 </head>
 <body>
 <main>
-<h1>Products</h1>
-<div class="works">
-  <div class="work">
-    <div class="title">
-       <div class="text-title">Lorem ipsum</div>
-       <div class="labels">Studioooo</div>
+  <h1>Products</h1>
+  <div class="works">
+    <div class="work">
+      <header>
+         <div class="text-title">Lorem ipsum</div>
+         <div class="labels">Studioooo</div>
+      </header>
+      <div class="info">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.</p>
+      </div>
     </div>
-    <div class="info">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.</p>
+    <div class="work">
+      <header>Repellat Odit Aliquid</header>
+      <div class="info">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.</p>
+      </div>
+    </div>
+    <div class="work">
+      <header>Dolor sit Amet</header>
+      <div class="info">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.</p>
+      </div>
     </div>
   </div>
-  <div class="work">
-    <div class="title">Repellat Odit Aliquid</div>
-    <div class="info">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.</p>
-    </div>
-  </div>
-  <div class="work">
-    <div class="title">Dolor sit Amet</div>
-    <div class="info">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.</p>
-    </div>
-  </div>
-</div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const works = document.querySelectorAll('.work');
-    works.forEach(work => {
-      const title = work.querySelector('.title');
-      title.addEventListener('click', function() {
-        if (!work.classList.contains('open')) {
-          works.forEach(w => w.classList.remove('open'));
-        }
-        work.classList.toggle('open');
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const works = document.querySelectorAll('.work');
+      works.forEach(work => {
+        const header = work.querySelector('header');
+        header.addEventListener('click', function() {
+          if (!work.classList.contains('open')) {
+            works.forEach(w => w.classList.remove('open'));
+          }
+          work.classList.toggle('open');
+        });
       });
     });
-  });
-</script>
+  </script>
 
-<script src="https://unpkg.com/scrollreveal"></script>
-<script>
-  ScrollReveal().reveal('h1, .works, .work', {
-    origin: 'bottom',
-    distance: '50px',
-    duration: 1000,
-    interval: 200
-  });
-</script>
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script>
+    ScrollReveal().reveal('h1, .works, .work', {
+      origin: 'bottom',
+      distance: '50px',
+      duration: 1000,
+      interval: 200
+    });
+  </script>
 </main>
 </body>
 </html>
