@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Columns</title>
+    <style>
+      body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.column {
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.column h3 {
+    margin-top: 0;
+}
+
+.column p {
+    margin: 5px 0;
+}
+
+/* Larger screens */
+@media screen and (min-width: 30em) {
+    .column {
+        flex: 1;
+    }
+
+    .collapsible {
+        display: block !important;
+    }
+}
+
+/* Smaller screens */
+@media screen and (max-width: 30em) {
+    .column {
+        flex: 1 1 50%;
+    }
+
+    .collapsible {
+        display: none;
+    }
+}
+
+.collapse-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="column" id="column1">
+            <h3>CATEGORY</h3>
+            <p>Web Development<br>UX/UI Design</p>
+        </div>
+        <div class="column" id="column2">
+            <h3>YEAR</h3>
+            <p>2020</p>
+            <h3>TEAM</h3>
+            <p>Laurine Simon<br>Laura Van Maël</p>
+        </div>
+        <div class="column collapsible" id="column3">
+            <h3>CLIENT</h3>
+            <p>ACT Responsable</p>
+            <p>ACT Responsable is a French association created to identify and collect the best communications campaigns around the world in order to raise awareness on social and environmental issues (solidarity, environment, human rights, and education). The aim was to redesign the French website by focusing on their actions which are exhibitions, schools interventions, or even the NG'Ad club.</p>
+            <a href="#">view the website</a>
+        </div>
+    </div>
+    <button class="collapse-button" onclick="toggleCollapse()">Toggle Collapse</button>
+
+    <script>
+      function toggleCollapse() {
+    const column3 = document.getElementById('column3');
+    if (window.getComputedStyle(column3).display === 'none') {
+        column3.style.display = 'block';
+    } else {
+        column3.style.display = 'none';
+    }
+      }
+    </script>
+</body>
+</html>
