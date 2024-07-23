@@ -13,10 +13,9 @@
         }
 
         .container {
-            display: grid;
-            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 10px;
-            align-items: start;
         }
 
         .properties-info {
@@ -25,17 +24,19 @@
             gap: 10px;
         }
 
-        .property, .info {
+        .row {
             display: flex;
+            gap: 10px;
+            align-items: flex-start;
         }
 
         .property {
             font-weight: bold;
-            margin-bottom: 0;
+            width: 150px; /* Set a fixed width for alignment */
         }
 
         .info {
-            margin-bottom: 0;
+            flex: 1;
         }
 
         .column h3 {
@@ -44,27 +45,26 @@
 
         @media screen and (min-width: 30em) {
             .container {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto;
+                flex-direction: row;
+                gap: 20px;
             }
 
             .properties-info {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
-                align-items: start;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
             }
 
-            .properties-info .property {
-                grid-column: 1;
+            .column {
+                flex: 1;
             }
 
-            .properties-info .info {
-                grid-column: 2;
+            .column:nth-child(2) {
+                max-width: 50%;
             }
 
             .column:nth-child(3) {
-                grid-column: span 2;
+                max-width: 50%;
             }
         }
     </style>
@@ -72,12 +72,18 @@
 <body>
     <div class="container">
         <div class="properties-info">
-            <div class="property">CATEGORY:</div>
-            <div class="info">Branding, Design, Web Development</div>
-            <div class="property">YEAR:</div>
-            <div class="info">2024</div>
-            <div class="property">CLIENT:</div>
-            <div class="info">LiminalLoop</div>
+            <div class="row">
+                <div class="property">CATEGORY:</div>
+                <div class="info">Branding, Design, Web Development</div>
+            </div>
+            <div class="row">
+                <div class="property">YEAR:</div>
+                <div class="info">2024</div>
+            </div>
+            <div class="row">
+                <div class="property">CLIENT:</div>
+                <div class="info">LiminalLoop</div>
+            </div>
         </div>
         <div class="column">
             <h3>Summary</h3>
