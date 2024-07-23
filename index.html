@@ -14,72 +14,70 @@
 
         .container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px; /* Closer gap between the first two columns */
-            align-items: start; /* Align items to the top */
+            grid-template-columns: 1fr;
+            gap: 10px;
+            align-items: start;
         }
 
-        .property-info {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
+        .properties-info {
+            display: flex;
+            flex-direction: column;
             gap: 10px;
+        }
+
+        .property, .info {
+            display: flex;
         }
 
         .property {
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 0;
         }
 
         .info {
-            margin-bottom: 10px;
+            margin-bottom: 0;
         }
 
-        h3 {
+        .column h3 {
             margin-top: 0;
-        }
-
-        .column:nth-child(3) {
-            grid-column: span 2;
         }
 
         @media screen and (min-width: 30em) {
             .container {
                 grid-template-columns: 1fr 1fr;
                 grid-template-rows: auto;
-                gap: 20px;
             }
 
-            .column:nth-child(1) {
-                grid-column: span 1;
+            .properties-info {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                align-items: start;
             }
 
-            .column:nth-child(2) {
-                grid-column: span 1;
+            .properties-info .property {
+                grid-column: 1;
+            }
+
+            .properties-info .info {
+                grid-column: 2;
             }
 
             .column:nth-child(3) {
                 grid-column: span 2;
-            }
-
-            .property-info {
-                display: grid;
-                grid-template-columns: 1fr 2fr;
-                gap: 10px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="column">
-            <div class="property-info">
-                <div class="property">CATEGORY:</div>
-                <div class="info">Branding, Design, Web Development</div>
-                <div class="property">YEAR:</div>
-                <div class="info">2024</div>
-                <div class="property">CLIENT:</div>
-                <div class="info">LiminalLoop</div>
-            </div>
+        <div class="properties-info">
+            <div class="property">CATEGORY:</div>
+            <div class="info">Branding, Design, Web Development</div>
+            <div class="property">YEAR:</div>
+            <div class="info">2024</div>
+            <div class="property">CLIENT:</div>
+            <div class="info">LiminalLoop</div>
         </div>
         <div class="column">
             <h3>Summary</h3>
