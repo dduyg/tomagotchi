@@ -20,25 +20,19 @@
     align-items: start; /* Align items to the top */
 }
 
-.properties, .infos {
-    display: grid;
-    grid-template-rows: auto auto auto;
-}
-
 .column {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: contents;
 }
 
 .property {
     font-weight: bold;
     margin-bottom: 10px;
+    grid-column: 1; /* Place in the first column */
 }
 
 .info {
     margin-bottom: 10px;
+    grid-column: 2; /* Place in the second column */
 }
 
 h3 {
@@ -52,22 +46,25 @@ h3 {
 @media screen and (min-width: 30em) {
     .container {
         grid-template-columns: 1fr 1fr 1fr;
-        gap: 20px;
     }
     .column:nth-child(3) {
         grid-column: span 1;
+    }
+    .column:nth-child(1), .column:nth-child(2) {
+        grid-column: span 1;
+        width: auto;
     }
 }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="column properties">
+        <div class="column">
             <div class="property">CATEGORY:</div>
             <div class="property">YEAR:</div>
             <div class="property">CLIENT:</div>
         </div>
-        <div class="column infos">
+        <div class="column">
             <div class="info">Branding, Design, Web Development</div>
             <div class="info">2024</div>
             <div class="info">LiminalLoop</div>
