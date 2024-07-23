@@ -34,13 +34,13 @@ h1 {
   border-top: 0.0625em solid currentColor;
 }
 
-details {
+.work {
   border-bottom: 0.0625em solid currentColor;
   position: relative;
   padding: 0;
 }
 
-summary {
+.title {
   cursor: pointer;
   position: relative;
   -webkit-user-select: none;
@@ -51,11 +51,7 @@ summary {
   padding: 0.625em 0;
   margin: 0;
 }
-summary::marker {
-  display: none;
-}
-
-summary::after {
+.title::after {
   content: " ";
   width: 0.5em;
   height: 0.5em;
@@ -68,20 +64,21 @@ summary::after {
   transition: transform 0.2s ease-in-out;
 }
 
-details[open] summary {
+.work.open .title {
   color: pink;
   font-weight: bold;
 }
 
-details[open] summary::after {
+.work.open .title::after {
   transform: translateY(-50%) rotate(45deg);
 }
 
-details .info {
+.info {
+  display: none;
   padding: 1.25em 0;
 }
 
-details[open] .info {
+.work.open .info {
   display: block;
   animation: slideDown 0.3s ease-out;
 }
@@ -97,11 +94,11 @@ details[open] .info {
   }
 }
 
-details, details:focus, details:active {
+.work, .work:focus, .work:active {
   outline: none;
   -webkit-tap-highlight-color: transparent;
 }
-details:focus {
+.work:focus {
   box-shadow: 0 0 0 2px #00f;
 } 
   </style>
@@ -110,43 +107,41 @@ details:focus {
 <main>
 <h1>Products</h1>
 <div class="works">
-  <details>
-    <summary>
+  <div class="work">
+    <div class="title">
       Lorem ipsum<br>
       <span>
        Studioooo
       </span>
-    </summary>
+    </div>
     <div class="info">
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.</p>
     </div>
-  </details>
-  <details>
-    <summary>Repellat Odit Aliquid</summary>
+  </div>
+  <div class="work">
+    <div class="title">Repellat Odit Aliquid</div>
     <div class="info">
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.</p>
     </div>
-  </details>
-  <details>
-    <summary>Dolor sit Amet</summary>
+  </div>
+  <div class="work">
+    <div class="title">Dolor sit Amet</div>
     <div class="info">
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.</p>
     </div>
-  </details>
+  </div>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const details = document.querySelectorAll('details');
-    details.forEach(detail => {
-      detail.addEventListener('toggle', function(event) {
-        if (event.target.open) {
-          details.forEach(d => {
-            if (d !== event.target) {
-              d.removeAttribute('open');
-            }
-          });
+    const works = document.querySelectorAll('.work');
+    works.forEach(work => {
+      const title = work.querySelector('.title');
+      title.addEventListener('click', function() {
+        if (!work.classList.contains('open')) {
+          works.forEach(w => w.classList.remove('open'));
         }
+        work.classList.toggle('open');
       });
     });
   });
@@ -154,7 +149,7 @@ details:focus {
 
 <script src="https://unpkg.com/scrollreveal"></script>
 <script>
-  ScrollReveal().reveal('h1, .works, details', {
+  ScrollReveal().reveal('h1, .works, .work', {
     origin: 'bottom',
     distance: '50px',
     duration: 1000,
