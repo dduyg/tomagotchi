@@ -8,75 +8,65 @@
         body {
     font-family: Arial, sans-serif;
     background-color: gray;
-    color: #333;
     margin: 0;
     padding: 20px;
 }
 
 .container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px; /* Closer gap between the first two columns */
-    align-items: start; /* Align items to the top */
+    grid-template-columns: auto 1fr;
+    gap: 10px;
 }
 
-.info-group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 10px;
-    margin-bottom: 10px;
-}
-
-.property {
-    font-weight: bold;
-}
-
-.info {
+.property, .info {
     background-color: #fff;
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.property {
+    font-weight: bold;
+}
+
+.summary {
+    grid-column: span 2;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
 h3 {
     margin-top: 0;
 }
 
-.column.summary {
-    grid-column: span 2;
-}
-
 @media screen and (min-width: 30em) {
     .container {
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
     }
-    .column.summary {
+    .property, .info {
         grid-column: span 1;
     }
-    .info-group:nth-child(1), .info-group:nth-child(2), .info-group:nth-child(3) {
-        width: 50%; /* Making sure the first two columns take 50% width */
-    }
-    .column.summary {
-        width: 100%; /* The third column takes the remaining width */
+    .summary {
+        grid-column: span 3;
     }
 }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="info-group">
-            <div class="property">CATEGORY:</div>
-            <div class="info">Branding, Design, Web Development</div>
-        </div>
-        <div class="info-group">
-            <div class="property">YEAR:</div>
-            <div class="info">2024</div>
-        </div>
-        <div class="info-group">
-            <div class="property">CLIENT:</div>
-            <div class="info">LiminalLoop</div>
-        </div>
-        <div class="column summary">
+        <div class="property">CATEGORY:</div>
+        <div class="info">Branding, Design, Web Development</div>
+
+        <div class="property">YEAR:</div>
+        <div class="info">2024</div>
+
+        <div class="property">CLIENT:</div>
+        <div class="info">LiminalLoop</div>
+
+        <div class="summary">
             <h3>Summary</h3>
             <p>ACT Responsable is a French association created to identify and collect the best communications campaigns around the world in order to raise awareness on social and environmental issues...</p>
         </div>
