@@ -6,66 +6,79 @@
     <title>Responsive Columns</title>
     <style>
         body {
-    font-family: Arial, sans-serif;
-    background-color: gray;
-    margin: 0;
-    padding: 20px;
-}
+            font-family: Arial, sans-serif;
+            background-color: gray;
+            margin: 0;
+            padding: 20px;
+        }
 
-.container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px; /* Closer gap between the first two columns */
-    align-items: start; /* Align items to the top */
-}
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            align-items: start;
+        }
 
-.property {
-    font-weight: bold;
-    margin-bottom: 10px;
-}
+        .property-info {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
 
-.info {
-    margin-bottom: 10px;
-}
+        .property {
+            font-weight: bold;
+        }
 
-h3 {
-    margin-top: 0;
-}
+        .info {
+            margin-bottom: 10px;
+        }
 
-.column:nth-child(3) {
-    grid-column: span 2;
-}
+        h3 {
+            margin-top: 0;
+        }
 
-@media screen and (min-width: 30em) {
-    .container {
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: auto auto auto; /* Ensuring all rows align */
-    }
-    .column:nth-child(3) {
-        grid-column: span 1;
-    }
-    .column:nth-child(1), .column:nth-child(2) {
-        grid-column: span 1;
-        width: 50%; /* Making sure the first two columns take 50% width */
-    }
-    .column:nth-child(3) {
-        width: 100%; /* The third column takes the remaining width */
-    }
-}
+        .column:nth-child(3) {
+            grid-column: span 2;
+        }
+
+        @media screen and (min-width: 30em) {
+            .container {
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: auto auto auto;
+            }
+
+            .column:nth-child(3) {
+                grid-column: span 1;
+            }
+
+            .column:nth-child(1), .column:nth-child(2) {
+                grid-column: span 1;
+            }
+
+            .column:nth-child(3) {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="column">
-            <div class="property">CATEGORY:</div>
-            <div class="property">YEAR:</div>
-            <div class="property">CLIENT:</div>
+            <div class="property-info">
+                <div class="property">CATEGORY:</div>
+                <div class="info">Branding, Design, Web Development</div>
+            </div>
+            <div class="property-info">
+                <div class="property">YEAR:</div>
+                <div class="info">2024</div>
+            </div>
+            <div class="property-info">
+                <div class="property">CLIENT:</div>
+                <div class="info">LiminalLoop</div>
+            </div>
         </div>
-        <div class="column">
-            <div class="info">Branding, Design, Web Development</div>
-            <div class="info">2024</div>
-            <div class="info">LiminalLoop</div>
-        </div>
+        <div class="column"></div> <!-- Empty column for spacing -->
         <div class="column">
             <h3>Summary</h3>
             <p>ACT Responsable is a French association created to identify and collect the best communications campaigns around the world in order to raise awareness on social and environmental issues...</p>
