@@ -6,20 +6,21 @@
   <title>LiminalLoop</title>
   <style>
     :root {
-      --color-main: rgba(0, 0, 0, 0.87);
-      --color-light-main: #292721; 
-      --marker: #C9C9BF;
-      --back: #9D9D9D;
-      --main-font: "ABeeZee", sans-serif;
-      --mono-font: "Fira Code", monospace;
+  --color-main: rgba(0, 0, 0, 0.87);
+  --color-light-main: #292721; 
+  --marker: #C9C9BF;
+  --back: #9D9D9D;
+  --main-font: "ABeeZee", sans-serif;
+  --mono-font: "Fira Code", monospace;
     }
-    body {
-      font-family: "Open Sans", sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: var(--back);
-      color: var(--color-main);
-    }
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--back);
+  color: var(--color-main);
+}
+
     main {
       display: flex;
       flex-direction: column;
@@ -31,20 +32,24 @@
       padding: 0 1.25em;
       box-sizing: border-box;
     }
+
     h1 {
       align-self: flex-start;
       padding: 0 0 10px;
       margin: 0;
     }
+
     .works {
       width: 100%;
       border-top: 0.0625em solid currentColor;
     }
+
     .work {
       border-bottom: 0.0625em solid currentColor;
       position: relative;
       padding: 0;
     }
+
     header {
       cursor: pointer;
       position: relative;
@@ -69,17 +74,21 @@
       transform: translateY(-50%) rotate(-45deg);
       transition: transform 0.2s ease-in-out;
     }
+
     .work.open header {
       color: var(--marker);
       font-weight: bold;
     }
+
     .work.open header::after {
       color: var(--color-main);
       transform: translateY(-50%) rotate(45deg);
     }
+
     .title, .labels { 
       vertical-align: middle;
     }
+
     .title {
         font-size: 1.1em !important;
     }
@@ -89,17 +98,17 @@
       padding-left: 2.2em !important;
       font-weight: normal !important; 
     }
+
     section {
       display: none;
       padding: 1.25em 0;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
     }
+
     .work.open section {
       display: block;
       animation: slideDown 0.3s ease-out;
     }
+
     @keyframes slideDown {
       from {
         opacity: 0;
@@ -110,23 +119,7 @@
         transform: translateY(0);
       }
     }
-    .details {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .item {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-    }
-    .property {
-      font-weight: bold;
-      width: 150px; /* Set a fixed width for alignment */
-    }
-    .detail {
-      flex: 1;
-    }
+
     .work, .work:focus, .work:active {
       outline: none;
       -webkit-tap-highlight-color: transparent;
@@ -134,6 +127,7 @@
     .work:focus {
       box-shadow: 0 0 0 2px #00f;
     }
+
     @media screen and (min-width: 30em) {
       header {
         display: table;
@@ -146,22 +140,7 @@
       .labels {
         padding-left: 0.8em !important; 
       }
-      section {
-        flex-direction: row;
-        gap: 20px;
-      }
-      .details {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-      }
-      .summary {
-        flex: 1;
-      }
-      .details, .summary {
-        max-width: 50%;
-      }    
-    } 
+    }
   </style>
 </head>
 <body>
@@ -174,23 +153,7 @@
          <div class="labels">Studioooo</div>
       </header>
       <section>
-        <div class="details">
-            <div class="item">
-                <div class="property">CATEGORY:</div>
-                <div class="detail">Python, NLP, Web Application</div>
-            </div>
-            <div class="item">
-                <div class="property">YEAR:</div>
-                <div class="detail">2024</div>
-            </div>
-            <div class="item">
-                <div class="property">CLIENT:</div>
-                <div class="detail">LiminalLoop</div>
-            </div>
-        </div>
-        <div class="summary">
-            <div class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci.</div>
-        </div>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.</p>
       </section>
     </div>
     <div class="work">
@@ -207,8 +170,10 @@
       works.forEach(work => {
         const header = work.querySelector('header');
         header.addEventListener('click', function() {
-          works.forEach(w => w.classList.remove('open')); // Close all open works
-          work.classList.toggle('open'); // Toggle the clicked work
+          if (!work.classList.contains('open')) {
+            works.forEach(w => w.classList.remove('open'));
+          }
+          work.classList.toggle('open');
         });
       });
     });
