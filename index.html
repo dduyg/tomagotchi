@@ -5,267 +5,264 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LiminalLoop</title>
   <style>
-    :root {
-      --color-main: rgba(0, 0, 0, 0.87);
-      --color-light-main: #292721;
-      --marker: #C9C9BF;
-      --back: #9D9D9D;
-      --main-font: "ABeeZee", sans-serif;
-      --mono-font: "Fira Code", monospace;
-    }
+:root {
+  --color-main: rgba(0, 0, 0, 0.87);
+  --color-light-main: #292721;
+  --marker: #C9C9BF;
+  --back: #9D9D9D;
+  --main-font: "ABeeZee", sans-serif;
+  --mono-font: "Fira Code", monospace;
+}
 
-    body {
-      font-family: "Open Sans", sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: var(--back);
-      color: var(--color-main);
-    }
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--back);
+  color: var(--color-main);
+}
 
-    /* Layout
-    ------------------------------*/
-    main {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 1.25em;
-      box-sizing: border-box;
-    }
-    h1 {
-      align-self: flex-start;
-      padding: 0 0 10px;
-      margin: 0;
-    }
-    .works {
-      width: 100%;
-      border-top: 0.0625em solid currentColor;
-    }
-    .work {
-      border-bottom: 0.0625em solid currentColor;
-      position: relative;
-      padding: 0;
-    }
+/* Layout
+------------------------------*/
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1.25em;
+  box-sizing: border-box;
+}
+h1 {
+  align-self: flex-start;
+  padding: 0 0 10px;
+  margin: 0;
+}
+.works {
+  width: 100%;
+  border-top: 0.0625em solid currentColor;
+}
+.work {
+  border-bottom: 0.0625em solid currentColor;
+  position: relative;
+  padding: 0;
+}
 
-    /* Header
-    ------------------------------*/
-    header {
-      cursor: pointer;
-      position: relative;
-      -webkit-user-select: none;
-         -moz-user-select: none;
-          -ms-user-select: none;
-              user-select: none;  
-      list-style-type: none;
-      padding: 0.625em 0;
-      margin: 0;
-      display: table;
-      width: 100%;
-    }
-    header::after {
-      content: " ";
-      width: 0.5em;
-      height: 0.5em;
-      border-right: 0.0625em solid currentColor;
-      border-bottom: 0.0625em solid currentColor;
-      position: absolute;
-      right: 0.625em;
-      top: 50%;
-      transform: translateY(-50%) rotate(-45deg);
-      transition: transform 0.2s ease-in-out;
-    }
-    .work.open header {
-      color: var(--marker);
-      font-weight: bold;
-      text-decoration: underline;
-      text-decoration-color: #484848;
-      text-underline-offset: 6px;
-      text-decoration-thickness: 1px;
-    }
-    .work.open header::after {
-      color: var(--color-main);
-      transform: translateY(-50%) rotate(45deg);
-    }
+/* Header
+------------------------------*/
+header {
+  cursor: pointer;
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;  
+  list-style-type: none;
+  padding: 0.625em 0;
+  margin: 0;
+  display: table;
+  width: 100%;
+}
+header::after {
+  content: " ";
+  width: 0.5em;
+  height: 0.5em;
+  border-right: 0.0625em solid currentColor;
+  border-bottom: 0.0625em solid currentColor;
+  position: absolute;
+  right: 0.625em;
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+  transition: transform 0.2s ease-in-out;
+}
+.work.open header {
+  color: var(--marker);
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: #484848;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+}
+.work.open header::after {
+  color: var(--color-main);
+  transform: translateY(-50%) rotate(45deg);
+}
 
-    /* Work Title
-    ------------------------------*/
-    .title, .labels { 
-      display: table-cell;
-      width: 50%;
-      vertical-align: middle;
-    }
-    .title {
-      font-size: 1.15em !important;
-    }
-    .labels {
-      text-align: right !important;
-      padding-right: 10% !important;
-      font-family: var(--mono-font) !important;
-      color: #484848 !important;
-      font-weight: normal !important; 
-    }
+/* Work Title
+------------------------------*/
+.title, .labels { 
+  display: table-cell;
+  width: 50%;
+  vertical-align: middle;
+}
+.title {
+  font-size: 1.15em !important;
+}
+.labels {
+  text-align: right !important;
+  padding-right: 10% !important;
+  font-family: var(--mono-font) !important;
+  color: #484848 !important;
+  font-weight: normal !important; 
+}
 
-    /* Section
-    ------------------------------*/
-    section {
-      display: none;
-      padding: 1.25em 0;
-    }
-    .work.open section {
-      display: block;
-      animation: slideDown 0.3s ease-out;
-    }
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+/* Section
+------------------------------*/
+section {
+  display: none;
+  padding: 1.25em 0;
+}
+.work.open section {
+  display: block;
+  animation: slideDown 0.3s ease-out;
+}
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-    /* Work Details & Summary
-    ------------------------------*/
-    .container {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25em;
-    }
-    .details {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25em;
-    }
-    .item {
-      display: flex;
-      gap: 1.25em;
-      align-items: flex-start;
-    }
-    .property {
-      font-family: var(--mono-font);
-      font-weight: bold;
-      color: #484848;
-      width: 150px; /* Set a fixed width for alignment */
-    }
-    .detail {
-      flex: 1;
-      color: var(--color-light-main);
-    }
-    .summary {
-      flex: 1;
-    }
-    .source {
-      order: 2; /* Default order of .source after .summary */
-    }
+/* Work Details & Summary
+------------------------------*/
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25em;
+}
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25em;
+}
+.item {
+  display: flex;
+  gap: 1.25em;
+  align-items: flex-start;
+}
+.property {
+  font-family: var(--mono-font);
+  font-weight: bold;
+  color: #484848;
+  width: 150px; /* Set a fixed width for alignment */
+}
+.detail {
+  flex: 1;
+  color: var(--color-light-main);
+}
+.source {
+  order: 2; /* Default order of .source after .summary */
+}
 
-    .work, .work:focus, .work:active {
-      outline: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .work:focus {
-      box-shadow: 0 0 0 2px #00f;
-    }
+.work, .work:focus, .work:active {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.work:focus {
+  box-shadow: 0 0 0 2px #00f;
+}
 
-    @media screen and (min-width: 30em) {
-      .container {
-        flex-direction: row;
-        gap: 1.25em;
-      }
-      .details {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1.25em;
-      }
-      .source {
-        grid-column: 1; /* Make the .source span the full width of the grid */
-      }
-      .details .item {
-        grid-column: 1; /* Ensure item elements are in the first column */
-      }
-      .summary {
-        grid-column: 1 / -1; /* Ensure the summary spans full width */
-      }
-    }
+@media screen and (min-width: 30em) {
+  .container {
+    flex-direction: row;
+    gap: 1.25em;
+  }
+  .details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .summary {
+    flex: 1;
+  }
+  .details, .summary {
+    max-width: 50%;
+  }
+  .source {
+    order: 0; /* Move .source within .details on larger screens */
+  }
+}
   </style>
 </head>
 <body>
-  <main>
-    <h1>Products</h1>
-    <div class="works">
-      <div class="work">
-        <header>
-          <div class="title">Lorem ipsum</div>
-          <div class="labels">Studioooo</div>
-        </header>
-        <section>
-          <div class="container">
-            <div class="details">
-              <div class="item">
+<main>
+  <h1>Products</h1>
+  <div class="works">
+    <div class="work">
+      <header>
+         <div class="title">Lorem ipsum</div>
+         <div class="labels">Studioooo</div>
+      </header>
+      <section>
+        <div class="container">
+         <div class="details">
+            <div class="item">
                 <div class="property">Category:</div>
                 <div class="detail">Python, NLP, Web Application</div>
-              </div>
-              <div class="item">
+            </div>
+            <div class="item">
                 <div class="property">Year:</div>
                 <div class="detail">2024</div>
-              </div>
-              <div class="item">
+            </div>
+            <div class="item">
                 <div class="property">Client:</div>
                 <div class="detail">LiminalLoop</div>
-              </div>
             </div>
-            <div class="summary">
-              <div class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci.</div>
-            </div>
-            <div class="source">
-              In the shadowed dawn of a land reborn,  
-              Atatürk rose, a beacon fierce and worn,  
-              With vision clear and heart unyielding,  
-              He forged a nation, hope revealing.  
-              Through trials deep and dreams unbound,  
-              In every step, a future found,  
-              His name, a chant of freedom’s call,
-              A legacy to stand, proud and tall.
-            </div>
-          </div>  
-        </section>
-      </div>
-      <div class="work">
-        <header>Repellat Odit Aliquid</header>
-        <section>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.</p>
-        </section>
-      </div>
+         </div>
+         <div class="summary">
+            <div class="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci.</div>
+         </div>
+         <div class="source">
+           In the shadowed dawn of a land reborn,  
+           Atatürk rose, a beacon fierce and worn,  
+           With vision clear and heart unyielding,  
+           He forged a nation, hope revealing.  
+           Through trials deep and dreams unbound,  
+           In every step, a future found,  
+           His name, a chant of freedom’s call,
+           A legacy to stand, proud and tall.
+         </div>
+        </div>  
+      </section>
     </div>
+    <div class="work">
+      <header>Repellat Odit Aliquid</header>
+      <section>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci. Aliquid, iure.</p>
+      </section>
+    </div>
+  </div>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const works = document.querySelectorAll('.work');
-        works.forEach(work => {
-          const header = work.querySelector('header');
-          header.addEventListener('click', function() {
-            if (!work.classList.contains('open')) {
-              works.forEach(w => w.classList.remove('open'));
-            }
-            work.classList.toggle('open');
-          });
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const works = document.querySelectorAll('.work');
+      works.forEach(work => {
+        const header = work.querySelector('header');
+        header.addEventListener('click', function() {
+          if (!work.classList.contains('open')) {
+            works.forEach(w => w.classList.remove('open'));
+          }
+          work.classList.toggle('open');
         });
       });
-    </script>
+    });
+  </script>
 
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <script>
-      ScrollReveal().reveal('h1, .works, .work', {
-        origin: 'bottom',
-        distance: '50px',
-        duration: 1000,
-        interval: 200
-      });
-    </script>
-  </main>
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script>
+    ScrollReveal().reveal('h1, .works, .work', {
+      origin: 'bottom',
+      distance: '50px',
+      duration: 1000,
+      interval: 200
+    });
+  </script>
+</main>
 </body>
 </html>
