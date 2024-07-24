@@ -35,6 +35,7 @@ main {
   height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: space-between; /* Ensure sections are spaced evenly */
   max-width: 900px;
 }
 section {
@@ -45,12 +46,13 @@ section {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  transition: flex 1s ease; /* Smooth transition for flex changes */
 }
 #approach {
   border-right: none;
 }
 
-/*  Panel */
+/* Panel */
 header {
   font-family: "Sofia Sans Extra Condensed", sans-serif;
   transform: rotate(-90deg);
@@ -60,7 +62,7 @@ header {
 }
 @media screen and (min-width: 1200px) {
   header {
-      font-size: 32px; /* Resets font size to 32px for screens wider than 1200px */
+    font-size: 32px; /* Resets font size to 32px for screens wider than 1200px */
   }
 }
 .panel-active header {
@@ -112,7 +114,7 @@ header {
 
 @media screen and (min-width: 1200px) {
   .content {
-      font-size: 19px; /* Resets font size to 19px for screens wider than 1200px */
+    font-size: 19px; /* Resets font size to 19px for screens wider than 1200px */
   }
 }
 
@@ -123,7 +125,7 @@ header {
 }
 .panel-active {
   flex: 16;
-  transition: 1s ease;
+  transition: flex 1s ease;
 }
 .panel-active .content {
   display: block;
