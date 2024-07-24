@@ -9,138 +9,143 @@
   <script src="https://kit.fontawesome.com/63e03a9b9c.js" crossorigin="anonymous"></script>  
   <style>
     :root {
-      --color-main: rgba(0, 0, 0, 0.87);
-      --color-light-main: #292721; 
-      --marker: #C9C9BF;
-      --back: #9D9D9D;
-      --main-font: "ABeeZee", sans-serif;
-      --mono-font: "Fira Code", monospace;
-    }
-    html, body {
-      background-color: var(--back);
-      color: var(--color-main);
-      margin: 0;
-      padding: 0;
-      line-height: 1.5;
-      font-family: var(--main-font);
-      font-weight: 400;
-      -webkit-font-smoothing: antialiased;
-      border: 0;
-    }
-    main {
-      display: flex;
-      align-items: stretch;
-      max-width: 900px; /* Adjust this value as needed */
-      width: 100%;
-      margin: 0 auto;
-      padding: 0;
-      border: 0;
-      height: 100vh;
-    }
-    section {
-      border-right: 0.0625em black solid;
-      display: flex;
-      flex: 1;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-    #approach {
-      border-right: none;
-    }
+  --color-main: rgba(0, 0, 0, 0.87);
+  --color-light-main: #292721; 
+  --marker: #C9C9BF;
+  --back: #9D9D9D;
+  --main-font: "ABeeZee", sans-serif;
+  --mono-font: "Fira Code", monospace;
+}
+html, body {
+  background-color: var(--back);
+  color: var(--color-main);
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  font-family: var(--main-font);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  border: 0;
+}
+main {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  max-width: 900px;
+}
+section {
+  border-right: 0.0625em black solid;
+  display: flex;
+  flex: 1;
+  height: 70%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#approach {
+  border-right: none;
+}
 
-    /* Panel styles */
-    .panel-inactive {
-      flex: 1; /* Equally divide inactive panels */
-      background-color: rgba(0, 0, 0, 0.1);
-      transition: 0.5s ease;
-    }
-    .panel-active {
-      flex: 16;
-      transition: 1s ease;
-    }
-    .panel-active .content {
-      display: block;
-    }
+/*  Panel */
+header {
+  font-family: "Sofia Sans Extra Condensed", sans-serif;
+  transform: rotate(-90deg);
+  font-size: min(5vw, 32px);
+  margin: 0;
+  padding: 0;
+}
+@media screen and (min-width: 1200px) {
+  header {
+      font-size: 32px; /* Resets font size to 32px for screens wider than 1200px */
+  }
+}
+.panel-active header {
+  color: var(--marker);
+  font-size: min(5.5vw, 32px) !important;
+  transform: rotate(0deg);
+  transition: 0.5s ease;
+  padding: 0 8%;
+  white-space: normal;
+}
+.panel-inactive header {
+  white-space: nowrap;
+}
 
-    header {
-      font-family: "Sofia Sans Extra Condensed", sans-serif;
-      transform: rotate(-90deg);
-      font-size: min(5vw, 32px);
-      margin: 0;
-      padding: 0;
-    }
-    @media screen and (min-width: 1200px) {
-      header {
-        font-size: 32px; /* Resets font size to 32px for screens wider than 1200px */
-      }
-    }
-    .panel-active header {
-      color: var(--marker);
-      font-size: min(5.5vw, 32px) !important;
-      transform: rotate(0deg);
-      transition: 0.5s ease;
-      padding: 0 8%;
-      white-space: normal;
-    }
-    .panel-inactive header {
-      white-space: nowrap;
-    }
+#bio header {
+  transform: rotate(0deg); /* No rotation for image */
+}
+.profile-img {
+  position: relative;
+  display: inline-block;
+  width: 5em;
+  border-radius: 50%;
+  border: 1px solid black;
+  float: right;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+#bio.panel-inactive .profile-img {
+  width: 3.4em !important;
+  margin-left: 0.3em;
+}
+#bio.panel-active header .profile-img {
+  display: none; /* Hide the image in the header */
+}
+#bio.panel-inactive .name { 
+  display: none; /* Hide the text */
+}
 
-    #bio header {
-      transform: rotate(0deg); /* No rotation for image */
-    }
-    .profile-img {
-      position: relative;
-      display: inline-block;
-      width: 5em;
-      border-radius: 50%;
-      border: 1px solid black;
-      float: right;
-      margin: 0;
-      padding: 0;
-      pointer-events: none;
-    }
-    #bio.panel-inactive .profile-img {
-      width: 3.4em !important;
-      margin-left: 0.3em;
-    }
-    #bio.panel-active header .profile-img {
-      display: none; /* Hide the image in the header */
-    }
-    #bio.panel-inactive .name { 
-      display: none; /* Hide the text */
-    }
+.content {
+  display: none;
+  font-size: min(4vw, 19px); /* Limits font size to 19px or 4vw, whichever is smaller */
+  padding: 0 8%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-width: 800px;
+  max-height: calc(100% - 20px);
+}
 
-    .content {
-      display: none;
-      font-size: min(4vw, 19px); /* Limits font size to 19px or 4vw, whichever is smaller */
-      padding: 0 8%;
-      overflow-x: hidden;
-      overflow-y: auto;
-      max-width: 800px;
-      max-height: calc(100% - 20px);
-    }
+@media screen and (min-width: 1200px) {
+  .content {
+      font-size: 19px; /* Resets font size to 19px for screens wider than 1200px */
+  }
+}
 
-    @media screen and (min-width: 1200px) {
-      .content {
-        font-size: 19px; /* Resets font size to 19px for screens wider than 1200px */
-      }
-    }
+.panel-inactive:hover {
+  flex: 1.1;
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: 0.5s ease;
+}
+.panel-active {
+  flex: 16;
+  transition: 1s ease;
+}
+.panel-active .content {
+  display: block;
+}
 
-    .links, .panel-link {
-      font-style: italic;
-      text-decoration: underline;
-      text-decoration-thickness: 2px;
-      text-decoration-color: var(--marker);
-      text-underline-offset: 4px;
-      transition: color 0.3s ease;
-      cursor: pointer;
-    }
-    .links:hover, .panel-link:hover {
-      color: var(--marker);
-      font-weight: bold;
-    }
+.panel-inactive {
+  flex: 1; /* Ensures equal width for inactive panels */
+}
+
+.links, .panel-link {
+  font-style: italic;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--marker);
+  text-underline-offset: 4px;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+.links:hover, .panel-link:hover {
+  color: var(--marker);
+  font-weight: bold;
+}
   </style>
 </head>
 <body>
