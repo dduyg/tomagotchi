@@ -16,6 +16,7 @@
   --main-font: "ABeeZee", sans-serif;
   --mono-font: "Fira Code", monospace;
 }
+
 html, body {
   background-color: var(--back);
   color: var(--color-main);
@@ -26,7 +27,9 @@ html, body {
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   border: 0;
+  height: 100%;
 }
+
 main {
   width: 100%;
   margin: 0 auto;
@@ -35,24 +38,23 @@ main {
   height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Ensure sections are spaced evenly */
   max-width: 900px;
 }
+
 section {
   border-right: 0.0625em black solid;
   display: flex;
   flex: 1;
-  height: 70%;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  transition: flex 1s ease; /* Smooth transition for flex changes */
+  transition: flex 0.5s ease;
 }
+
 #approach {
   border-right: none;
 }
 
-/* Panel */
 header {
   font-family: "Sofia Sans Extra Condensed", sans-serif;
   transform: rotate(-90deg);
@@ -60,11 +62,13 @@ header {
   margin: 0;
   padding: 0;
 }
+
 @media screen and (min-width: 1200px) {
   header {
     font-size: 32px; /* Resets font size to 32px for screens wider than 1200px */
   }
 }
+
 .panel-active header {
   color: var(--marker);
   font-size: min(5.5vw, 32px) !important;
@@ -73,6 +77,7 @@ header {
   padding: 0 8%;
   white-space: normal;
 }
+
 .panel-inactive header {
   white-space: nowrap;
 }
@@ -80,6 +85,7 @@ header {
 #bio header {
   transform: rotate(0deg); /* No rotation for image */
 }
+
 .profile-img {
   position: relative;
   display: inline-block;
@@ -91,14 +97,17 @@ header {
   padding: 0;
   pointer-events: none;
 }
+
 #bio.panel-inactive .profile-img {
   width: 3.4em !important;
   margin-left: 0.3em;
 }
+
 #bio.panel-active header .profile-img {
   display: none; /* Hide the image in the header */
 }
-#bio.panel-inactive .name { 
+
+#bio.panel-inactive .name {
   display: none; /* Hide the text */
 }
 
@@ -118,21 +127,17 @@ header {
   }
 }
 
-.panel-inactive:hover {
-  flex: 1.1;
+.panel-inactive {
+  flex: 1; /* Set equal flex value for inactive panels */
   background-color: rgba(0, 0, 0, 0.1);
-  transition: 0.5s ease;
-}
-.panel-active {
-  flex: 16;
-  transition: flex 1s ease;
-}
-.panel-active .content {
-  display: block;
 }
 
-.panel-inactive {
-  flex: 1; /* Ensures equal width for inactive panels */
+.panel-active {
+  flex: 4; /* Set larger flex value for active panel */
+}
+
+.panel-active .content {
+  display: block;
 }
 
 .links, .panel-link {
@@ -144,6 +149,7 @@ header {
   transition: color 0.3s ease;
   cursor: pointer;
 }
+
 .links:hover, .panel-link:hover {
   color: var(--marker);
   font-weight: bold;
