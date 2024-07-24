@@ -35,18 +35,15 @@ main {
   padding: 0 1.25em;
   box-sizing: border-box;
 }
-
 h1 {
   align-self: flex-start;
   padding: 0 0 10px;
   margin: 0;
 }
-
 .works {
   width: 100%;
   border-top: 0.0625em solid currentColor;
 }
-
 .work {
   border-bottom: 0.0625em solid currentColor;
   position: relative;
@@ -65,11 +62,9 @@ header {
   list-style-type: none;
   padding: 0.625em 0;
   margin: 0;
-
   display: table;
   width: 100%;
 }
-
 header::after {
   content: " ";
   width: 0.5em;
@@ -82,7 +77,6 @@ header::after {
   transform: translateY(-50%) rotate(-45deg);
   transition: transform 0.2s ease-in-out;
 }
-
 .work.open header {
   color: var(--marker);
   font-weight: bold;
@@ -91,7 +85,6 @@ header::after {
   text-underline-offset: 6px;
   text-decoration-thickness: 1px;
 }
-
 .work.open header::after {
   color: var(--color-main);
   transform: translateY(-50%) rotate(45deg);
@@ -104,11 +97,9 @@ header::after {
   width: 50%;
   vertical-align: middle;
 }
-
 .title {
   font-size: 1.15em !important;
 }
-
 .labels {
   text-align: right !important;
   padding-right: 10% !important;
@@ -123,12 +114,10 @@ section {
   display: none;
   padding: 1.25em 0;
 }
-
 .work.open section {
   display: block;
   animation: slideDown 0.3s ease-out;
 }
-
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -147,50 +136,36 @@ section {
   flex-direction: column;
   gap: 1.25em;
 }
-
 .details {
   display: flex;
   flex-direction: column;
   gap: 1.25em;
 }
-
 .item {
   display: flex;
   gap: 1.25em;
   align-items: flex-start;
 }
-
 .property {
   font-family: var(--mono-font);
   font-weight: bold;
   color: #484848;
   width: 150px; /* Set a fixed width for alignment */
 }
-
 .detail {
   flex: 1;
   color: var(--color-light-main);
 }
-
-.details .source {
-  color: var(--color-light-main);
-  font-family: var(--main-font);
-  padding: 1.25em 0;
-  box-sizing: border-box;
+.container .source {
+  order: 2; /* Default order of .source after .summary */
 }
 
 .work, .work:focus, .work:active {
   outline: none;
   -webkit-tap-highlight-color: transparent;
 }
-
 .work:focus {
   box-shadow: 0 0 0 2px #00f;
-}
-
-/* Default placement of .source after .summary */
-.container .source {
-  order: 2; /* Default order */
 }
 
 @media screen and (min-width: 30em) {
@@ -198,24 +173,19 @@ section {
     flex-direction: row;
     gap: 1.25em;
   }
-
   .details {
     flex: 1;
     display: flex;
     flex-direction: column;
   }
-
   .summary {
     flex: 1;
   }
-
   .details, .summary {
     max-width: 50%;
   }
-
-  /* Move .source within .details on larger screens */
   .container .source {
-    order: 0; /* Change order for larger screens */
+    order: 0; /* Move .source within .details on larger screens */
   }
 }
   </style>
