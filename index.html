@@ -183,7 +183,7 @@
     aside {
       display: grid;
       grid-gap: 1em; /* Adjust spacing between items */
-      grid-template-columns: repeat(5, 1fr); /* 5 columns by default */
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Dynamic column count with a minimum size */
       padding-top: 1.25em;
     }
     .showcase {
@@ -227,7 +227,7 @@
     }
     @media screen and (max-width: 30em) {
       aside {
-        grid-template-columns: repeat(2, 1fr); /* Stack images in two columns on smaller screens */
+        grid-template-columns: repeat(2, 1fr); /* On screens smaller than 30em, stack in two columns */
       }
     }
   </style>
