@@ -177,59 +177,59 @@
         max-width: 50%;
       }  
     }
-
-    /* Showcase Images
-    ------------------------------*/
-    aside {
-      display: grid;
-      grid-gap: 1em; /* Adjust spacing between items */
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Dynamic column count with a minimum size */
-      padding-top: 1.25em;
-    }
-    .showcase {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .showcase a {
-      display: block;
-      text-align: center;
-      transition: opacity .15s ease-in;
-    }
-    .showcase a:hover, .showcase a:focus {
-      opacity: .5;
-    }
-    .showcase a:active {
-      opacity: .8;
-    }  
-    .showcase img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .showcase dl {
-      margin-top: .5rem;
-      font-size: .875rem;
-    }
-    .showcase dt {
-      position: fixed !important;
-      position: absolute !important;
-      clip: rect(1px 1px 1px 1px);
-      clip: rect(1px, 1px, 1px, 1px);
-    }
-    .showcase dd {
-      margin-left: 0;
-      color: #777;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      width: 100%;
-    }
-    @media screen and (max-width: 30em) {
-      aside {
-        grid-template-columns: repeat(2, 1fr); /* On screens smaller than 30em, stack in two columns */
-      }
-    }
+   
+/* Showcase Images
+------------------------------*/
+aside {
+  display: grid;
+  grid-gap: 1em; /* Adjust spacing between items */
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); /* Automatically adjust columns */
+  padding-top: 1.25em;
+}
+.showcase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.showcase a {
+  display: block;
+  text-align: center;
+  transition: opacity .15s ease-in;
+}
+.showcase a:hover, .showcase a:focus {
+  opacity: .5;
+}
+.showcase a:active {
+  opacity: .8;
+}
+.showcase img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.showcase dl {
+  margin-top: .5rem;
+  font-size: .875rem;
+}
+.showcase dt {
+  position: fixed !important;
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+}
+.showcase dd {
+  margin-left: 0;
+  color: #777;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+@media screen and (max-width: 30em) {
+  aside {
+    grid-template-columns: repeat(2, 1fr); /* On screens smaller than 30em, stack in two columns */
+  }
+}
   </style>
 </head>
 <body>
