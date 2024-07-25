@@ -183,7 +183,7 @@
     aside {
       display: grid;
       grid-gap: 1em; /* Adjust spacing between items */
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(5, 1fr); /* 5 columns by default */
       margin: 0 -0.5em; /* Adjust margin to prevent gaps */
       padding-top: 1.25em;
     }
@@ -228,7 +228,7 @@
     }
     @media screen and (max-width: 30em) {
       aside {
-        grid-template-columns: 1fr; /* Stack images in a single column on smaller screens */
+        grid-template-columns: repeat(2, 1fr); /* Stack images in a double column on smaller screens */
       }
     }
   </style>
