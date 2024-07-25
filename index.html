@@ -178,6 +178,77 @@ body {
         max-width: 50%;
       }  
     }
+
+/* Showcase Images
+------------------------------*/
+aside:before, aside:after {
+  content: " ";
+  display: table;
+}
+aside:after {
+  clear: both;
+}
+aside { 
+  *zoom: 1;
+}
+.showcase {
+  float: left;
+  display: inline;
+  width: 50%;
+  padding: .5rem;
+}
+.showcase a {
+  display: block;
+  transition: color .15s ease-in;
+  opacity: 1;
+  transition: opacity .15s ease-in;
+  text-align: center;
+}
+.showcase a:hover, .showcase a:active, .showcase a:focus {
+  transition: color .15s ease-in;
+}
+.showcase a:hover, .showcase a:focus {
+  opacity: .5;
+  transition: opacity .15s ease-in;
+}
+.showcase a:active {
+  opacity: .8;
+  transition: opacity .15s ease-out;
+}
+.showcase img {
+  width: 100%;
+  display: block;
+  color: rgba(0, 0, 0, .1)
+}
+.showcase dl {
+  margin-top: .5rem;
+  font-size: .875rem;
+  line-height: 1.5;
+}
+.showcase dt {
+  position: fixed !important;
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+}
+.showcase dd {
+  margin-left: 0;
+  color: #777;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+@media screen and (min-width: 30em) and (max-width: 60em) {
+  .showcase {
+    width: 25%;
+  }
+}
+@media screen and (min-width: 60em) {
+  .showcase {
+    width: 20%;
+  }
+}
   </style>
 </head>
 <body>
@@ -208,7 +279,18 @@ body {
          <div class="summary">
             <div class="info">In the shadowed dawn of a land reborn, Atatürk rose, a beacon fierce and worn, With vision clear and heart unyielding, He forged a nation, hope revealing. Through trials deep and dreams unbound, In every step, a future found, His name, a chant of freedom’s call, A legacy to stand, proud and tall.</div>
          </div>
-       </div>  
+       </div>
+       <aside>
+         <div class="showcase">
+           <a href="#">
+             <img src="image.png"/>
+             <dl>
+               <dt>Title</dt>
+               <dd>Frank Ocean</dd>
+             </dl>
+           </a>
+         </div>   
+       </aside>     
       </section>
     </div>
     <div class="work">
