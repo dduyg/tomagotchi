@@ -3,59 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Not Found</title>
+    <title>404 - Page Not Found</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #0f0c29;
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
             color: #fff;
-            background: linear-gradient(135deg, #ff77ff, #00d4ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             text-align: center;
-            overflow: hidden;
         }
         .container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            padding: 20px;
+            border: 2px solid #ff6ec7;
+            box-shadow: 0 0 20px #ff6ec7;
         }
         h1 {
-            font-size: 6em;
+            font-size: 4em;
+            color: #ff6ec7;
             margin: 0;
-            color: #fff;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
         p {
             font-size: 1.5em;
-            margin: 0.5em 0;
-            color: #fff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        .glitch {
+            color: #00ffea;
+            text-shadow: 2px 2px 0 #ff00f4, -2px -2px 0 #00ffea;
+            animation: glitch 1s infinite;
+        }
+        @keyframes glitch {
+            0% {
+                text-shadow: 2px 2px 0 #ff00f4, -2px -2px 0 #00ffea;
+            }
+            20% {
+                text-shadow: 2px -2px 0 #ff00f4, -2px 2px 0 #00ffea;
+            }
+            40% {
+                text-shadow: -2px 2px 0 #ff00f4, 2px -2px 0 #00ffea;
+            }
+            60% {
+                text-shadow: -2px -2px 0 #ff00f4, 2px 2px 0 #00ffea;
+            }
+            80% {
+                text-shadow: 2px 2px 0 #ff00f4, -2px -2px 0 #00ffea;
+            }
+            100% {
+                text-shadow: -2px -2px 0 #ff00f4, 2px 2px 0 #00ffea;
+            }
+        }
+        .vaporwave-image {
+            width: 100%;
+            max-width: 400px;
+            margin-top: 20px;
+            border: 2px solid #ff6ec7;
         }
         a {
-            color: #ff77ff;
+            color: #ff6ec7;
             text-decoration: none;
-            font-weight: bold;
+            font-size: 1.2em;
         }
         a:hover {
             text-decoration: underline;
-        }
-        .image {
-            position: absolute;
-            bottom: 10%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            max-width: 600px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>404</h1>
-        <p>Oops! Looks like this page is lost in the void.</p>
-        <p><a href="/">Return to the homepage</a></p>
+        <h1 class="glitch">404</h1>
+        <p>Oops! This page is lost in the vaporwave universe.</p>
+        <img src="https://i.imgur.com/V8IWu4E.png" alt="Vaporwave" class="vaporwave-image">
+        <p><a href="/">Take me home</a></p>
     </div>
-    <img class="image" src="https://example.com/vaporwave-image.jpg" alt="Vaporwave Background">
 </body>
 </html>
