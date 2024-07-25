@@ -8,9 +8,9 @@
         body {
             margin: 0;
             padding: 0;
-            background: #2d2d2d;
-            color: #fff;
             font-family: 'Arial', sans-serif;
+            color: #fff;
+            background: linear-gradient(135deg, #ff77ff, #00d4ff);
             text-align: center;
             overflow: hidden;
         }
@@ -21,46 +21,41 @@
             transform: translate(-50%, -50%);
         }
         h1 {
-            font-size: 5em;
-            color: #ff77ff;
-            text-shadow: 0 0 10px #ff77ff;
+            font-size: 6em;
+            margin: 0;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
         }
         p {
             font-size: 1.5em;
-            color: #00ffff;
-            text-shadow: 0 0 10px #00ffff;
-        }
-        .image {
-            width: 200px;
-            margin-top: 20px;
-            animation: float 3s ease-in-out infinite;
-        }
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0); }
+            margin: 0.5em 0;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
         a {
             color: #ff77ff;
             text-decoration: none;
-            font-size: 1.2em;
-            border: 2px solid #ff77ff;
-            padding: 10px;
-            border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s;
+            font-weight: bold;
         }
         a:hover {
-            background-color: #ff77ff;
-            color: #2d2d2d;
+            text-decoration: underline;
+        }
+        .image {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 600px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>404</h1>
-        <p>Oops! This page is lost in the digital cosmos.</p>
-        <img src="https://via.placeholder.com/200x200.png?text=Vaporwave" alt="Vaporwave" class="image">
-        <p><a href="/">Return to Homepage</a></p>
+        <p>Oops! Looks like this page is lost in the void.</p>
+        <p><a href="/">Return to the homepage</a></p>
     </div>
+    <img class="image" src="https://example.com/vaporwave-image.jpg" alt="Vaporwave Background">
 </body>
 </html>
