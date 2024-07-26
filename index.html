@@ -76,7 +76,7 @@
     .start-filter ul li {  
       position: relative;
       margin-top: 0.0625em;
-      cursor: pointer;
+      cursor: pointer; /* Add cursor pointer */
     }
     .start-filter ul li:before {
       content: "•";
@@ -88,6 +88,12 @@
       margin-right: 0.07em;
       line-height: 1em;
       text-align: center;
+    }
+    .start-filter ul li.active {
+      font-style: italic;
+    }
+    .start-filter ul li.active:before {
+      color: #f0e5e5;
     }
 
     /* Header
@@ -264,7 +270,7 @@ aside {
     <div class="start-header">Works</div>
     <div class="start-filter">
       <ul>
-        <li data-filter="all">All</li>
+        <li data-filter="all" class="active">All</li>
         <li data-filter="product">Products&nbsp;&nbsp;&nbsp;</li>
         <li data-filter="piece">Piece</li>  
       </ul>
@@ -320,48 +326,64 @@ aside {
     </div>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const works = document.querySelectorAll('.work');
-      works.forEach(work => {
-        const header = work.querySelector('header');
-        header.addEventListener('click', function() {
-          if (!work.classList.contains('open')) {
-            works.forEach(w => w.classList.remove('open'));
-          }
-          work.classList.toggle('open');
-        });
-      });
-
-      const filterItems = document.querySelectorAll('.start-filter ul li');
-      filterItems.forEach(item => {
-        item.addEventListener('click', function() {
-          const filter = this.getAttribute('data-filter');
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const works = document.querySelectorAll('.work');
+        const filterItems = document.querySelectorAll('.start-filter ul li');
+        
+        // Function to filter works
+        function filterWorks(type) {
           works.forEach(work => {
-            if (filter === 'all') {
+            if (type === 'all' || work.getAttribute('data-type') === type) {
               work.style.display = 'block';
             } else {
-              if (work.getAttribute('data-type') === filter) {
-                work.style.display = 'block';
-              } else {
-                work.style.display = 'none';
-              }
+              work.style.display = 'none';
             }
+          });
+        }
+
+        // Function to set active filter
+        function setActiveFilter(element) {
+          filterItems.forEach(item => {
+            item.classList.remove('active');
+          });
+          element.classList.add('active');
+        }
+
+        // Add click event to filter items
+        filterItems.forEach(item => {
+          item.addEventListener('click', function() {
+            const filterType = this.getAttribute('data-filter');
+            filterWorks(filterType);
+            setActiveFilter(this);
+          });
+        });
+
+        // Default filter on page load
+        filterWorks('all');
+
+        // Expand and collapse work sections
+        works.forEach(work => {
+          const header = work.querySelector('header');
+          header.addEventListener('click', function() {
+            if (!work.classList.contains('open')) {
+              works.forEach(w => w.classList.remove('open'));
+            }
+            work.classList.toggle('open');
           });
         });
       });
-    });
-  </script>
+    </script>
 
-  <script src="https://unpkg.com/scrollreveal"></script>
-  <script>
-    ScrollReveal().reveal('.start-menu, .works, .work', {
-      origin: 'bottom',
-      distance: '50px',
-      duration: 1000,
-      interval: 200
-    });
-  </script>
-</main>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+      ScrollReveal().reveal('.start-menu, .works, .work', {
+        origin: 'bottom',
+        distance: '50px',
+        duration: 1000,
+        interval: 200
+      });
+    </script>
+  </main>
 </body>
 </html>
