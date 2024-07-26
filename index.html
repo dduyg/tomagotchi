@@ -65,7 +65,28 @@
     .start-filter {
       width: 40%;
       text-align: right !important; 
-    } 
+    }
+    .start-filter ul {
+      list-style: none;
+      text-align: center;
+      text-transform: uppercase;
+      padding: 0;
+      margin: 0;
+    }    
+    .start-filter ul li {  
+      position: relative;
+      margin-top: 0.0625em;
+    }
+    .start-filter ul li:before {
+      content: "•";
+      display: inline-block;
+      height: 1em;
+      width: 1em;
+      border-radius: 50%;
+      border: 2px solid black;
+      margin-right: 0.07em;
+      line-height: 1em;
+    }
 
     /* Header
     ------------------------------*/
@@ -237,7 +258,16 @@ aside {
 </head>
 <body>
 <main>
-  <h1>Products</h1>
+  <div class="start-menu">
+    <div class="start-header">Works</div>
+    <div class="start-filter">
+      <ul>
+        <li>All</li>
+        <li>Works</li>
+        <li>Products</li>  
+      </ul>
+    </div>
+  </div>
   <div class="works">
     <div class="work">
       <header>
