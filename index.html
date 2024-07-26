@@ -76,6 +76,7 @@
     .start-filter ul li {  
       position: relative;
       margin-top: 0.0625em;
+      cursor: pointer;
     }
     .start-filter ul li:before {
       content: "•";
@@ -263,14 +264,14 @@ aside {
     <div class="start-header">Works</div>
     <div class="start-filter">
       <ul>
-        <li>All</li>
-        <li>Products&nbsp;&nbsp;&nbsp;</li>
-        <li>Piece</li>  
+        <li data-filter="all">All</li>
+        <li data-filter="product">Products&nbsp;&nbsp;&nbsp;</li>
+        <li data-filter="piece">Piece</li>  
       </ul>
     </div>
   </div>
   <div class="works">
-    <div class="work">
+    <div class="work" data-type="product">
       <header>
          <div class="title">Lorem ipsum</div>
          <div class="labels">Studioooo</div>
@@ -305,13 +306,13 @@ aside {
        </aside>     
       </section>
     </div>
-    <div class="work">
+    <div class="work" data-type="piece">
       <header>Repellat Odit Aliquid</header>
       <section>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci.</p>
       </section>
     </div>
-    <div class="work">
+    <div class="work" data-type="product">
       <header>Repellat Odit Aliquid</header>
       <section>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci.</p>
@@ -329,6 +330,24 @@ aside {
             works.forEach(w => w.classList.remove('open'));
           }
           work.classList.toggle('open');
+        });
+      });
+
+      const filterItems = document.querySelectorAll('.start-filter ul li');
+      filterItems.forEach(item => {
+        item.addEventListener('click', function() {
+          const filter = this.getAttribute('data-filter');
+          works.forEach(work => {
+            if (filter === 'all') {
+              work.style.display = 'block';
+            } else {
+              if (work.getAttribute('data-type') === filter) {
+                work.style.display = 'block';
+              } else {
+                work.style.display = 'none';
+              }
+            }
+          });
         });
       });
     });
