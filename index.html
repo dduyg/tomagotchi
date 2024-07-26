@@ -185,8 +185,6 @@ aside {
   grid-gap: 1em; /* Adjust spacing between items */
   grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); /* Automatically adjust columns */
   padding-top: 1.5em;
-  max-width: 500px;
-  margin: 0 auto;
 }
 .showcase {
   display: flex;
@@ -210,6 +208,11 @@ aside {
 @media screen and (max-width: 30em) {
   aside {
     grid-template-columns: repeat(2, 1fr); /* On screens smaller than 30em, stack in two columns */
+  }
+}
+@media screen and (min-width: 30em) {
+  aside {
+    max-width: 50%;
   }
 }
   </style>
