@@ -190,17 +190,13 @@ aside {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center; /* Add this to keep text centered */
+  transition: transform 0.3s, opacity .15s ease-in;
 }
-.showcase a {
-  display: block;
-  text-align: center;
-  transition: transform 0.3s;
-  transition: opacity .15s ease-in;
-}
-.showcase a:hover, .showcase a:focus {
+.showcase:hover, .showcase:focus {
   transform: scale(1.05);
 }
-.showcase a:active {
+.showcase:active {
   opacity: .8;
 }
 .showcase img {
@@ -247,21 +243,15 @@ aside {
          </div>
        </div>
        <aside>
-         <div class="showcase">
-           <a href="#">
-             <img src="https://via.placeholder.com/400x400/ff66ff/000000?text=Vaporwave+Image"/>
-           </a>
-         </div>
-         <div class="showcase">
-           <a href="#">
-             <img src="https://via.placeholder.com/400x400/ff66ff/000000?text=Vaporwave+Image"/>
-           </a>
-         </div>
-         <div class="showcase">
-           <a href="#">
-             <img src="https://via.placeholder.com/400x400/ff66ff/000000?text=Vaporwave+Image"/>
-           </a>
-         </div>
+         <a href="#" class="showcase">
+           <img src="https://via.placeholder.com/400x400/ff66ff/000000?text=Vaporwave+Image"/>
+         </a>
+         <a href="#" class="showcase">
+           <img src="https://via.placeholder.com/400x400/ff66ff/000000?text=Vaporwave+Image"/>
+         </a>
+         <a href="#" class="showcase">
+           <img src="https://via.placeholder.com/400x400/ff66ff/000000?text=Vaporwave+Image"/>
+         </a>
        </aside>     
       </section>
     </div>
