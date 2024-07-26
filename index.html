@@ -89,10 +89,10 @@
       line-height: 1em;
       text-align: center;
     }
-    .start-filter ul li.active {
+    .start-filter ul li.active-filter {
       font-style: italic;
     }
-    .start-filter ul li.active:before {
+    .start-filter ul li.active-filter:before {
       color: #f0e5e5;
     }
 
@@ -270,7 +270,7 @@ aside {
     <div class="start-header">Works</div>
     <div class="start-filter">
       <ul>
-        <li data-filter="all" class="active">All</li>
+        <li data-filter="all" class="active-filter">All</li>
         <li data-filter="product">Products&nbsp;&nbsp;&nbsp;</li>
         <li data-filter="piece">Piece</li>  
       </ul>
@@ -304,10 +304,10 @@ aside {
        </div>
        <aside>
          <a href="#" class="showcase">
-           <img src="https://via.placeholder.com/400x400/ff66ff/000000?text=Vaporwave+Image"/>
+           <img src="https://via.placeholder.com/400x400/ff66ff/000000?text=Vaporwave+Image" alt="Showcase Image"/>
          </a>
          <a href="#" class="showcase">
-           <img src="https://via.placeholder.com/400x400/ff66ff/000000?text=Vaporwave+Image"/>
+           <img src="https://via.placeholder.com/400x400/ff66ff/000000?text=Vaporwave+Image" alt="Showcase Image"/>
          </a>
        </aside>     
       </section>
@@ -326,64 +326,64 @@ aside {
     </div>
   </div>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const works = document.querySelectorAll('.work');
-        const filterItems = document.querySelectorAll('.start-filter ul li');
-        
-        // Function to filter works
-        function filterWorks(type) {
-          works.forEach(work => {
-            if (type === 'all' || work.getAttribute('data-type') === type) {
-              work.style.display = 'block';
-            } else {
-              work.style.display = 'none';
-            }
-          });
-        }
-
-        // Function to set active filter
-        function setActiveFilter(element) {
-          filterItems.forEach(item => {
-            item.classList.remove('active');
-          });
-          element.classList.add('active');
-        }
-
-        // Add click event to filter items
-        filterItems.forEach(item => {
-          item.addEventListener('click', function() {
-            const filterType = this.getAttribute('data-filter');
-            filterWorks(filterType);
-            setActiveFilter(this);
-          });
-        });
-
-        // Default filter on page load
-        filterWorks('all');
-
-        // Expand and collapse work sections
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const works = document.querySelectorAll('.work');
+      const filterItems = document.querySelectorAll('.start-filter ul li');
+      
+      // Function to filter works
+      function filterWorks(type) {
         works.forEach(work => {
-          const header = work.querySelector('header');
-          header.addEventListener('click', function() {
-            if (!work.classList.contains('open')) {
-              works.forEach(w => w.classList.remove('open'));
-            }
-            work.classList.toggle('open');
-          });
+          if (type === 'all' || work.getAttribute('data-type') === type) {
+            work.style.display = 'block';
+          } else {
+            work.style.display = 'none';
+          }
+        });
+      }
+
+      // Function to set active filter
+      function setActiveFilter(element) {
+        filterItems.forEach(item => {
+          item.classList.remove('active-filter');
+        });
+        element.classList.add('active-filter');
+      }
+
+      // Add click event to filter items
+      filterItems.forEach(item => {
+        item.addEventListener('click', function() {
+          const filterType = this.getAttribute('data-filter');
+          filterWorks(filterType);
+          setActiveFilter(this);
         });
       });
-    </script>
 
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <script>
-      ScrollReveal().reveal('.start-menu, .works, .work', {
-        origin: 'bottom',
-        distance: '50px',
-        duration: 1000,
-        interval: 200
+      // Default filter on page load
+      filterWorks('all');
+
+      // Expand and collapse work sections
+      works.forEach(work => {
+        const header = work.querySelector('header');
+        header.addEventListener('click', function() {
+          if (!work.classList.contains('open')) {
+            works.forEach(w => w.classList.remove('open'));
+          }
+          work.classList.toggle('open');
+        });
       });
-    </script>
-  </main>
+    });
+  </script>
+
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script>
+    ScrollReveal().reveal('.start-menu, .works, .work', {
+      origin: 'bottom',
+      distance: '50px',
+      duration: 1000,
+      interval: 200
+    });
+  </script>
+</main>
 </body>
 </html>
