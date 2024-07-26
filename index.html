@@ -76,9 +76,10 @@
     .start-filter ul li {  
       position: relative;
       margin-top: 0.0625em;
-      cursor: pointer; /* Add cursor pointer */
+      cursor: pointer;
+      transition: color 0.3s ease-in-out; /* Add transition */
     }
-    .start-filter ul li:before {
+    .start-filter ul li::before {
       content: "•";
       display: inline-block;
       height: 1em;
@@ -88,11 +89,12 @@
       margin-right: 0.07em;
       line-height: 1em;
       text-align: center;
+      transition: color 0.3s ease-in-out; /* Add transition */
     }
     .start-filter ul li.active-filter {
       font-style: italic;
     }
-    .start-filter ul li.active-filter:before {
+    .start-filter ul li.active-filter::before {
       color: #f0e5e5;
     }
 
@@ -225,43 +227,43 @@
       }  
     }
    
-/* Showcase Images
-------------------------------*/
-aside {
-  display: grid;
-  grid-gap: 1em; /* Adjust spacing between items */
-  grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); /* Automatically adjust columns */
-  padding-top: 1.5em;
-}
-.showcase {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: opacity .15s ease-in;
-}
-.showcase:hover, .showcase:focus {
-  opacity: .5;
-}
-.showcase:active {
-  opacity: .8;
-}
-.showcase img {
-  width: 100%;
-  height: auto;
-  display: block;
-  pointer-events: none;
-  border: 1px solid var(--color-main);
-}
-@media screen and (max-width: 30em) {
-  aside {
-    grid-template-columns: repeat(2, 1fr); /* On screens smaller than 30em, stack in two columns */
-  }
-}
-@media screen and (min-width: 30em) {
-  aside {
-    max-width: 48%;
-  }
-}
+    /* Showcase Images
+    ------------------------------*/
+    aside {
+      display: grid;
+      grid-gap: 1em; /* Adjust spacing between items */
+      grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); /* Automatically adjust columns */
+      padding-top: 1.5em;
+    }
+    .showcase {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: opacity .15s ease-in;
+    }
+    .showcase:hover, .showcase:focus {
+      opacity: .5;
+    }
+    .showcase:active {
+      opacity: .8;
+    }
+    .showcase img {
+      width: 100%;
+      height: auto;
+      display: block;
+      pointer-events: none;
+      border: 1px solid var(--color-main);
+    }
+    @media screen and (max-width: 30em) {
+      aside {
+        grid-template-columns: repeat(2, 1fr); /* On screens smaller than 30em, stack in two columns */
+      }
+    }
+    @media screen and (min-width: 30em) {
+      aside {
+        max-width: 48%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -355,7 +357,19 @@ aside {
         item.addEventListener('click', function() {
           const filterType = this.getAttribute('data-filter');
           filterWorks(filterType);
+
+          // Reset transition
+          filterItems.forEach(el => {
+            el.style.transition = 'none';
+          });
+
           setActiveFilter(this);
+
+          // Force reflow to restart transition
+          filterItems.forEach(el => {
+            el.offsetHeight; // Trigger reflow
+            el.style.transition = ''; // Re-enable transition
+          });
         });
       });
 
