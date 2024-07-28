@@ -78,6 +78,7 @@
       margin-top: 0.0625em;
       cursor: pointer;
       transition: background 0.3s ease-in-out;
+      transition: transform 0.3s;
       -webkit-user-select: none;
          -moz-user-select: none;
           -ms-user-select: none;
@@ -100,6 +101,12 @@
     }
     .start-filter ul li.active-filter::before {
       background: #7B7B7B;
+    }    
+    .start-filter ul li:hover, .start-filter ul li:focus {
+      transform: scale(1.05);
+    }
+    .start-filter ul li:active {
+      font-weight: bold;
     }
 
     /* Header
