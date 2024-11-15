@@ -51,27 +51,25 @@
 position: relative;
     }
     
-    /* Matrix Code Rain */
-    .matrix {
+    /* Data Stream Effect */
+    .data-stream {
       position: relative;
       overflow: hidden;
     }
-    .matrix::before {
-      content: "█ █ █ █ █ █ █ █ █ █ █ █";
+    .data-stream::before {
+      content: "|| || || || ||";
       position: absolute;
-      top: -100%;
+      top: 0;
       left: 0;
       width: 100%;
-      color: rgba(0, 0, 0, 0.1);
-      font-size: 1.2em;
-      line-height: 1.2em;
-      animation: matrixRain 3s infinite linear;
-      white-space: nowrap;
+      animation: dataStream 0.7s infinite linear;
+      color: rgba(0, 0, 0, 0.4);
+      opacity: 0.8;
       z-index: -1;
     }
-    @keyframes matrixRain {
-      0% { top: -100%; }
-      100% { top: 100%; }
+    @keyframes dataStream {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
     }
     
     #aside-menu {
@@ -171,7 +169,7 @@ position: relative;
 
   <div class="siteHeader">
     <a class="siteHeader_title" href="{{ site.baseurl }}/">
-      <div class="matrix">/dduyg</div>  
+      <div class="data-stream">/dduyg</div>  
     </a>
     <nav id="aside-menu"> 
       <a class="item {% if page.url contains '/posts/' %}active{% endif %}" href="{{ site.baseurl }}/posts">posts</a>
