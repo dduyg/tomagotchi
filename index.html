@@ -47,27 +47,19 @@
       font-size: 1.6rem;
       letter-spacing: 3px;
       cursor: pointer;
-
-      position: relative;
+      
+position: relative;
     }
     
-.glitch { position: relative; display: inline-block; }
-.glitch::before, .glitch::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; overflow: hidden; }
-.glitch::before { animation: glitch 2s infinite linear; color: rgba(0, 0, 0, 0.2); clip: rect(0, 900px, 0, 0); }
-.glitch::after { animation: glitch 2s infinite linear; color: rgba(0, 0, 0, 0.1); clip: rect(0, 900px, 0, 0); }
-@keyframes glitch { 
-  0% { clip: rect(42px, 9999px, 44px, 0); }
-  10% { clip: rect(12px, 9999px, 54px, 0); }
-  20% { clip: rect(32px, 9999px, 24px, 0); }
-  30% { clip: rect(22px, 9999px, 44px, 0); }
-  40% { clip: rect(12px, 9999px, 14px, 0); }
-  50% { clip: rect(32px, 9999px, 24px, 0); }
-  60% { clip: rect(22px, 9999px, 54px, 0); }
-  70% { clip: rect(12px, 9999px, 44px, 0); }
-  80% { clip: rect(42px, 9999px, 24px, 0); }
-  90% { clip: rect(22px, 9999px, 14px, 0); }
-  100% { clip: rect(12px, 9999px, 54px, 0); }
-}
+   /* 11. Vertical Stretch Glitch */
+    .vertical-stretch {
+      animation: stretch 1s infinite alternate;
+    }
+    @keyframes stretch {
+      0% { transform: scaleY(1); }
+      50% { transform: scaleY(1.2); }
+      100% { transform: scaleY(1); }
+    }
     
     #aside-menu {
       display: none; /* Hide this by default for smaller screens */
@@ -166,7 +158,7 @@
 
   <div class="siteHeader">
     <a class="siteHeader_title" href="{{ site.baseurl }}/">
-      <div class="glitch" data-text="/dduyg">/dduyg</div>  
+      <div class="vertical-stretch">/dduyg</div>  
     </a>
     <nav id="aside-menu"> 
       <a class="item {% if page.url contains '/posts/' %}active{% endif %}" href="{{ site.baseurl }}/posts">posts</a>
