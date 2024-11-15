@@ -48,14 +48,10 @@
       letter-spacing: 3px;
       cursor: pointer;
       
-position: relative;
-    }
-    
+    position: relative;
+    }   
 
-    /* 14. Horizontal Line Distortion */
-    .line-distortion {
-      position: relative;
-    }
+    /* HorizontalLineDistortion */
     .line-distortion::after {
       content: attr(data-text);
       position: absolute;
@@ -65,7 +61,7 @@ position: relative;
       height: 100%;
       color: gray;
       clip-path: inset(50% 0 0 0);
-      animation: line-distortion 1s infinite;
+      animation: line-distortion 2s infinite;
     }
     @keyframes line-distortion {
       0% { clip-path: inset(0 0 90% 0); }
