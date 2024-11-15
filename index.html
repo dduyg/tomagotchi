@@ -45,23 +45,31 @@
     .siteHeader_title {
       display: block;
       font-size: 1.6rem;
+      letter-spacing: 3px;
       cursor: pointer;
       
 position: relative;
     }
     
-   /* 5. Pixelated Breakdown */
-    .pixel-breakdown {
+    /* 9. Data Stream */
+    .data-stream {
       position: relative;
-      display: inline-block;
-      animation: pixelBreak 1.5s infinite;
+      overflow: hidden;
     }
-    @keyframes pixelBreak {
-      0% { letter-spacing: normal; }
-      25% { letter-spacing: 5px; }
-      50% { letter-spacing: 10px; }
-      75% { letter-spacing: 5px; }
-      100% { letter-spacing: normal; }
+    .data-stream::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.1);
+      animation: data-scan 2s infinite;
+    }
+    @keyframes data-scan {
+      0% { left: -100%; }
+      50% { left: 100%; }
+      100% { left: 100%; }
     }
     
     #aside-menu {
@@ -161,7 +169,7 @@ position: relative;
 
   <div class="siteHeader">
     <a class="siteHeader_title" href="{{ site.baseurl }}/">
-      <div class="pixel-breakdown">/dduyg</div>  
+      <div class="data-stream">/dduyg</div>  
     </a>
     <nav id="aside-menu"> 
       <a class="item {% if page.url contains '/posts/' %}active{% endif %}" href="{{ site.baseurl }}/posts">posts</a>
