@@ -51,25 +51,16 @@
 position: relative;
     }
     
-    /* Data Stream Effect */
-    .data-stream {
-      position: relative;
-      overflow: hidden;
+   /* Static Noise Glitch */
+    .static-shake {
+      animation: staticShake 0.2s infinite alternate;
     }
-    .data-stream::before {
-      content: "|| || || || ||";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      animation: dataStream 0.7s infinite linear;
-      color: rgba(0, 0, 0, 0.4);
-      opacity: 0.8;
-      z-index: -1;
-    }
-    @keyframes dataStream {
-      0% { transform: translateY(-100%); }
-      100% { transform: translateY(100%); }
+    @keyframes staticShake {
+      0% { transform: skew(2deg); }
+      25% { transform: skew(-2deg); }
+      50% { transform: skew(1deg); }
+      75% { transform: skew(-1deg); }
+      100% { transform: skew(0deg); }
     }
     
     #aside-menu {
@@ -169,7 +160,7 @@ position: relative;
 
   <div class="siteHeader">
     <a class="siteHeader_title" href="{{ site.baseurl }}/">
-      <div class="data-stream">/dduyg</div>  
+      <div class="static-shake">/dduyg</div>  
     </a>
     <nav id="aside-menu"> 
       <a class="item {% if page.url contains '/posts/' %}active{% endif %}" href="{{ site.baseurl }}/posts">posts</a>
