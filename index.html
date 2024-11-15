@@ -54,7 +54,7 @@
     .glitch { position: relative; display: inline-block; animation: glitch 1s infinite; }
     .glitch::before, .glitch::after { content: attr(data-text); position: absolute; top: 0; left: 0; }
     .glitch::before { animation: glitch-anim 2s infinite linear alternate-reverse; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); background: #00FF00; }
-    .glitch::after { animation: glitch-anim2 2s infinite linear alternate-reverse; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); background: #9e9e9e; }
+    .glitch::after { animation: glitch-anim2 2s infinite linear alternate-reverse; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); background: none; }
     @keyframes glitch { 2%,64% { transform: translate(2px,0) skew(0deg); } 4%,60% { transform: translate(-2px,0) skew(0deg); } 62% { transform: translate(0,0) skew(5deg); } } 
     @keyframes glitch-anim { 2%,64% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); } 4%,60% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); } 62% { clip-path: polygon(0 0, 90% 0, 85% 100%, 0 100%); } }
     @keyframes glitch-anim2 { 2%,64% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); } 4%,60% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); } 62% { clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%); } }
