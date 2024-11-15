@@ -47,13 +47,25 @@
       font-size: 1.6rem;
       letter-spacing: 3px;
       cursor: pointer;
-      
-    position: relative;
-    }   
-
-    .glitch { position: relative; display: inline-block; animation: glitch 1s infinite; }
-    .glitch::before, .glitch::after { content: attr(data-text); position: absolute; top: 0; left: 0; }
-    @keyframes glitch { 2%, 64% { transform: translate(2px,0) skew(0deg); } 4%, 60% { transform: translate(-2px,0) skew(0deg); } 62% { transform: translate(0,0) skew(5deg); } }
+    }
+    
+.glitch { position: relative; display: inline-block; }
+.glitch::before, .glitch::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; overflow: hidden; }
+.glitch::before { animation: glitch 2s infinite linear; color: #f0f; clip: rect(0, 900px, 0, 0); }
+.glitch::after { animation: glitch 2s infinite linear; color: #0ff; clip: rect(0, 900px, 0, 0); }
+@keyframes glitch { 
+  0% { clip: rect(42px, 9999px, 44px, 0); }
+  10% { clip: rect(12px, 9999px, 54px, 0); }
+  20% { clip: rect(32px, 9999px, 24px, 0); }
+  30% { clip: rect(22px, 9999px, 44px, 0); }
+  40% { clip: rect(12px, 9999px, 14px, 0); }
+  50% { clip: rect(32px, 9999px, 24px, 0); }
+  60% { clip: rect(22px, 9999px, 54px, 0); }
+  70% { clip: rect(12px, 9999px, 44px, 0); }
+  80% { clip: rect(42px, 9999px, 24px, 0); }
+  90% { clip: rect(22px, 9999px, 14px, 0); }
+  100% { clip: rect(12px, 9999px, 54px, 0); }
+}
     
     #aside-menu {
       display: none; /* Hide this by default for smaller screens */
