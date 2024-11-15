@@ -51,16 +51,25 @@
 position: relative;
     }
     
-    /* 4. Pixel Shift Jitter */
-    .pixel-shift {
-      animation: jitter 0.5s infinite;
+ /* 5. Horizontal Scan Glitch */
+    .scan-glitch {
+      position: relative;
+      overflow: hidden;
     }
-    @keyframes jitter {
-      0% { transform: translate(1px, -1px); }
-      25% { transform: translate(-1px, 1px); }
-      50% { transform: translate(-1px, -1px); }
-      75% { transform: translate(1px, 1px); }
-      100% { transform: translate(0px, 0px); }
+    .scan-glitch::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, #80ffea, transparent);
+      animation: scan-move 2s infinite;
+    }
+    @keyframes scan-move {
+      0% { left: -100%; }
+      50% { left: 50%; }
+      100% { left: 100%; }
     }
     
     #aside-menu {
@@ -160,7 +169,7 @@ position: relative;
 
   <div class="siteHeader">
     <a class="siteHeader_title" href="{{ site.baseurl }}/">
-      <div class="pixel-shift">/dduyg</div>  
+      <div class="scan-glitch">/dduyg</div>  
     </a>
     <nav id="aside-menu"> 
       <a class="item {% if page.url contains '/posts/' %}active{% endif %}" href="{{ site.baseurl }}/posts">posts</a>
