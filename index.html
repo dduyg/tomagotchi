@@ -48,19 +48,17 @@
       letter-spacing: 3px;
       cursor: pointer;
       
-    position: relative;
-    }   
-
-    /* Static Noise Glitch */
-    .static-shake {
-      animation: staticShake 1s infinite alternate;
+position: relative;
     }
-    @keyframes staticShake {
-      0% { transform: skew(2deg); }
-      25% { transform: skew(-2deg); }
-      50% { transform: skew(1deg); }
-      75% { transform: skew(-1deg); }
-      100% { transform: skew(0deg); }
+    
+   /* 11. Vertical Stretch Glitch */
+    .vertical-stretch {
+      animation: stretch 1s infinite alternate;
+    }
+    @keyframes stretch {
+      0% { transform: scaleY(1); }
+      50% { transform: scaleY(1.2); }
+      100% { transform: scaleY(1); }
     }
     
     #aside-menu {
@@ -160,7 +158,7 @@
 
   <div class="siteHeader">
     <a class="siteHeader_title" href="{{ site.baseurl }}/">
-      <div class="static-shake">/dduyg</div>  
+      <div class="vertical-stretch">/dduyg</div>  
     </a>
     <nav id="aside-menu"> 
       <a class="item {% if page.url contains '/posts/' %}active{% endif %}" href="{{ site.baseurl }}/posts">posts</a>
