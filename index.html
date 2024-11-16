@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>8 More Glitch Text Effects</title>
+    <title>Glitch Text Effects 2</title>
     <style>
         body {
             background: #121212;
@@ -20,190 +20,127 @@
 
         h1 {
             margin: 20px 0;
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            position: relative;
         }
 
         .glitch-effect {
             position: relative;
             display: inline-block;
+            font-size: 2rem;
+            text-transform: uppercase;
             color: #00ff99;
+            overflow: hidden;
+            white-space: nowrap;
         }
 
-        /* Effect 1: Binary Flicker */
-        .glitch-effect.binary {
-            background: linear-gradient(to bottom, #00ff99, #00ffff, #ff0066);
+        /* Effect 1: Binary Matrix Flicker */
+        .glitch-effect.one {
+            background: linear-gradient(90deg, #00ff99, #004d33, #00ff99);
             -webkit-background-clip: text;
             color: transparent;
-            animation: binary-flicker 0.2s infinite alternate;
+            animation: binary-matrix 0.5s infinite alternate;
         }
 
-        /* Effect 2: Static Jitter */
-        .glitch-effect.jitter::before,
-        .glitch-effect.jitter::after {
+        /* Effect 2: Scanline Glitch */
+        .glitch-effect.two::before {
             content: attr(data-text);
             position: absolute;
-            left: 0;
-            width: 100%;
             top: 0;
-            color: #ff0066;
-            animation: jitter 0.1s infinite alternate;
-        }
-        .glitch-effect.jitter::after {
-            color: #00ffff;
-            animation-delay: 0.05s;
-        }
-
-        /* Effect 3: Diagonal Glitch */
-        .glitch-effect.diagonal::before,
-        .glitch-effect.diagonal::after {
-            content: attr(data-text);
-            position: absolute;
             left: 0;
-            width: 100%;
-            top: 0;
-            color: #00ffff;
-            animation: diagonal-glitch 0.2s infinite alternate;
-        }
-        .glitch-effect.diagonal::after {
-            color: #ff0066;
-            animation-delay: 0.1s;
-        }
-
-        /* Effect 4: Recursive Glitch */
-        .glitch-effect.recursive {
-            background: repeating-linear-gradient(
-                -45deg,
-                #00ff99,
-                #00ff99 10px,
-                transparent 10px,
-                transparent 20px
-            );
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: recursive 2s infinite linear;
-        }
-
-        /* Effect 5: Grid Overlay */
-        .glitch-effect.grid::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
             width: 100%;
             height: 100%;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 10px,
-                #00ff99 10px,
-                #00ff99 11px
-            );
-            mix-blend-mode: difference;
-            animation: grid-move 1s infinite linear;
+            background: repeating-linear-gradient(transparent 2px, rgba(255, 255, 255, 0.1) 4px);
+            mix-blend-mode: color-dodge;
+            animation: scanline 0.2s infinite;
         }
 
-        /* Effect 6: Broken Glitch */
-        .glitch-effect.broken::before,
-        .glitch-effect.broken::after {
-            content: attr(data-text);
-            position: absolute;
-            left: 0;
-            width: 100%;
-            top: 0;
-            animation: broken-glitch 0.3s infinite;
-        }
-        .glitch-effect.broken::before {
-            color: #ff0000;
-        }
-        .glitch-effect.broken::after {
-            color: #00ffcc;
+        /* Effect 3: Pixelation */
+        .glitch-effect.three {
+            text-shadow: 1px 1px 0 #00ff99, -1px -1px 0 #ff00ff;
+            animation: pixelate 0.2s steps(5) infinite alternate;
         }
 
-        /* Effect 7: Wave Glitch */
-        .glitch-effect.wave {
+        /* Effect 4: Wave Distortion */
+        .glitch-effect.four {
             display: inline-block;
             position: relative;
-            background: linear-gradient(to right, #00ff99, #00ffff);
+            animation: wave-distortion 1s infinite;
+        }
+
+        /* Effect 5: Digital Block Glitch */
+        .glitch-effect.five::before,
+        .glitch-effect.five::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            clip-path: polygon(0 0, 100% 0, 100% 25%, 0 25%);
+            animation: digital-block 0.3s infinite;
+        }
+        .glitch-effect.five::after {
+            clip-path: polygon(0 75%, 100% 75%, 100% 100%, 0 100%);
+            animation-delay: 0.15s;
+        }
+
+        /* Effect 6: Shimmering Noise */
+        .glitch-effect.six {
+            background: linear-gradient(90deg, #00ff99, #ff00ff);
             -webkit-background-clip: text;
             color: transparent;
-            animation: wave 1s infinite;
+            animation: shimmer-noise 1.5s infinite alternate;
         }
 
-        /* Effect 8: Screen Tear */
-        .glitch-effect.tear::before {
-            content: attr(data-text);
-            position: absolute;
-            left: 0;
-            width: 100%;
-            top: 0;
-            color: #ff0066;
-            clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
-            animation: tear 0.4s infinite alternate-reverse;
-        }
-        .glitch-effect.tear::after {
-            content: attr(data-text);
-            position: absolute;
-            left: 0;
-            width: 100%;
-            top: 0;
-            color: #00ffff;
-            clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
-            animation: tear 0.4s infinite alternate;
+        /* Effect 7: Static Buzz */
+        .glitch-effect.seven {
+            animation: static-buzz 0.1s infinite alternate;
         }
 
-        /* Keyframes */
-        @keyframes binary-flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        @keyframes jitter {
-            0%, 100% { transform: translate(2px, -2px); }
-            50% { transform: translate(-2px, 2px); }
-        }
-
-        @keyframes diagonal-glitch {
-            0%, 100% { transform: translate(3px, -3px); }
-            50% { transform: translate(-3px, 3px); }
-        }
-
-        @keyframes recursive {
-            0% { background-position: 0 0; }
+        @keyframes binary-matrix {
+            0% { background-position: 0% 0%; }
             100% { background-position: 100% 100%; }
         }
 
-        @keyframes grid-move {
+        @keyframes scanline {
             0% { transform: translateY(0); }
-            100% { transform: translateY(10px); }
+            100% { transform: translateY(4px); }
         }
 
-        @keyframes broken-glitch {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(5px); }
+        @keyframes pixelate {
+            0%, 100% { text-shadow: 1px 1px 0 #00ff99, -1px -1px 0 #ff00ff; }
+            50% { text-shadow: 3px 3px 0 #00ff99, -3px -3px 0 #ff00ff; }
         }
 
-        @keyframes wave {
+        @keyframes wave-distortion {
             0% { transform: skewX(0deg); }
             50% { transform: skewX(10deg); }
             100% { transform: skewX(0deg); }
         }
 
-        @keyframes tear {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(5px); }
+        @keyframes digital-block {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        @keyframes shimmer-noise {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        @keyframes static-buzz {
+            0% { transform: translate(1px, -1px); }
+            50% { transform: translate(-1px, 1px); }
+            100% { transform: translate(1px, 1px); }
         }
     </style>
 </head>
 <body>
-    <h1 class="glitch-effect binary" data-text="Binary Flicker">Binary Flicker</h1>
-    <h1 class="glitch-effect jitter" data-text="Static Jitter">Static Jitter</h1>
-    <h1 class="glitch-effect diagonal" data-text="Diagonal Glitch">Diagonal Glitch</h1>
-    <h1 class="glitch-effect recursive" data-text="Recursive Glitch">Recursive Glitch</h1>
-    <h1 class="glitch-effect grid" data-text="Grid Overlay">Grid Overlay</h1>
-    <h1 class="glitch-effect broken" data-text="Broken Glitch">Broken Glitch</h1>
-    <h1 class="glitch-effect wave" data-text="Wave Glitch">Wave Glitch</h1>
-    <h1 class="glitch-effect tear" data-text="Screen Tear">Screen Tear</h1>
+    <h1 class="glitch-effect one" data-text="Binary Matrix">Binary Matrix</h1>
+    <h1 class="glitch-effect two" data-text="Scanline Glitch">Scanline Glitch</h1>
+    <h1 class="glitch-effect three" data-text="Pixelation">Pixelation</h1>
+    <h1 class="glitch-effect four" data-text="Wave Distortion">Wave Distortion</h1>
+    <h1 class="glitch-effect five" data-text="Digital Block">Digital Block</h1>
+    <h1 class="glitch-effect six" data-text="Shimmer Noise">Shimmer Noise</h1>
+    <h1 class="glitch-effect seven" data-text="Static Buzz">Static Buzz</h1>
 </body>
 </html>
