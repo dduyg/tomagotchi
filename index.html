@@ -44,33 +44,15 @@
     }
     .siteHeader_title {
       display: block;
-      font-size: 1.6rem;
+      font-size: 1.7rem;  
       letter-spacing: 3px;
       cursor: pointer;
-      
-    position: relative;
-    }   
-
-  
-    .scanning::before {
-        content: attr(data-text);
-        position: absolute;
-        left: 0;
-        top: 0;
-        color: gray;
-        animation: scanner 0.8s infinite alternate;
+      animation: stretch 1s infinite alternate;
     }
-    .scanning::after {
-        content: attr(data-text);
-        position: absolute;
-        left: 0;
-        top: 0;
-        color: rgba(0, 0, 0, 0.1);
-        animation: scanner 0.8s infinite alternate-reverse;
-    }
-    @keyframes scanner {
-        0% { clip-path: inset(0% 0% 90% 0%); }
-        100% { clip-path: inset(90% 0% 0% 0%); }
+    @keyframes stretch {
+      0% { transform: scaleY(1); }
+      50% { transform: scaleY(1.2); }
+      100% { transform: scaleY(1); }
     }
     
     #aside-menu {
@@ -170,7 +152,7 @@
 
   <div class="siteHeader">
     <a class="siteHeader_title" href="{{ site.baseurl }}/">
-      <div class="scanning" data-text="/dduyg">/dduyg</div>  
+      /dduyg
     </a>
     <nav id="aside-menu"> 
       <a class="item {% if page.url contains '/posts/' %}active{% endif %}" href="{{ site.baseurl }}/posts">posts</a>
