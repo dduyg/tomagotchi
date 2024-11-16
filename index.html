@@ -21,8 +21,6 @@
             margin: 30px 0;
             position: relative;
             font-size: 2rem;
-            text-transform: uppercase;
-            white-space: nowrap;
         }
 
         /* Barcode Glitch */
@@ -42,23 +40,23 @@
         }
 
         /* Vertical Scan */
-        .scan::before {
+        .scanning::before {
             content: attr(data-text);
             position: absolute;
             left: 0;
             top: 0;
             color: #66ff99;
-            animation: scan 0.8s infinite alternate;
+            animation: scanner 0.8s infinite alternate;
         }
-        .scan::after {
+        .scanning::after {
             content: attr(data-text);
             position: absolute;
             left: 0;
             top: 0;
             color: #ff9933;
-            animation: Vscan 0.8s infinite alternate-reverse;
+            animation: scanner 0.8s infinite alternate-reverse;
         }
-        @keyframes Vscan {
+        @keyframes scanner {
             0% { clip-path: inset(0% 0% 90% 0%); }
             100% { clip-path: inset(90% 0% 0% 0%); }
         }
@@ -106,7 +104,7 @@
 </head>
 <body>
     <h1 class="barcode" data-text="Barcode Glitch">Barcode Glitch</h1>
-    <h1 class="scan" data-text="Vertical Scan">Vertical Scan</h1>
+    <h1 class="scanning" data-text="Vertical Scan">Vertical Scan</h1>
     <h1 class="typing-effect" data-text="Typing Effect">Typing Effect</h1>
     <h1 class="warping" data-text="Text Warp">Text Warp</h1>
 </body>
