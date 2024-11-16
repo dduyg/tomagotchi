@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glitch Text Effects</title>
+    <title>New Glitch Text Effects</title>
     <style>
         body {
-            background: #0d0d0d;
+            background: #0b0b0b;
             color: #00ff99;
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
@@ -16,159 +16,144 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
+            overflow: hidden;
         }
 
         h1 {
             margin: 20px 0;
+            position: relative;
+            font-size: 2rem;
+            color: #00ff99;
+            text-transform: uppercase;
         }
 
         .glitch-effect {
             position: relative;
             display: inline-block;
-            font-size: 2rem;
-            text-transform: uppercase;
+            text-shadow: none;
+        }
+
+        /* Effect 1: Matrix Trail */
+        .glitch-effect.matrix::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
             color: #00ff99;
-            white-space: nowrap;
+            animation: matrix-trail 1s infinite alternate;
+            text-shadow: 0 0 8px #00ff99;
+        }
+        @keyframes matrix-trail {
+            0%, 100% { clip-path: inset(0% 0% 20% 0%); }
+            50% { clip-path: inset(80% 0% 0% 0%); }
         }
 
-        /* Effect 1: Horizontal Split */
-        .glitch-effect.one::before,
-        .glitch-effect.one::after {
-            content: attr(data-text);
-            position: absolute;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            color: #00ffff;
-            clip-path: inset(50% 0 0 0);
-            animation: glitch 0.3s infinite linear alternate-reverse;
-        }
-        .glitch-effect.one::after {
-            color: #ff0066;
-            clip-path: inset(0 0 50% 0);
-        }
-
-        /* Effect 2: Vertical Lines */
-        .glitch-effect.two::before,
-        .glitch-effect.two::after {
-            content: attr(data-text);
-            position: absolute;
-            left: 0;
-            width: 100%;
-            top: 0;
-            color: #ff00ff;
-            transform: translateX(-2px);
-            animation: glitch-vertical 0.5s infinite alternate-reverse;
-        }
-        .glitch-effect.two::after {
-            color: #00ffcc;
-            transform: translateX(2px);
-        }
-
-        /* Effect 3: Random Flicker */
-        .glitch-effect.three {
-            animation: flicker 0.15s infinite;
-        }
-
-        /* Effect 4: RGB Split */
-        .glitch-effect.four::before,
-        .glitch-effect.four::after {
+        /* Effect 2: Glitch Flicker */
+        .glitch-effect.flicker::before,
+        .glitch-effect.flicker::after {
             content: attr(data-text);
             position: absolute;
             top: 0;
             left: 0;
-            color: #ff0000;
-            animation: rgb-split 0.2s infinite;
+            color: #ff003c;
+            animation: flicker-color 0.2s infinite;
         }
-        .glitch-effect.four::after {
-            color: #0000ff;
+        .glitch-effect.flicker::after {
+            color: #00aaff;
             animation-delay: 0.1s;
         }
-
-        /* Effect 5: Noise */
-        .glitch-effect.five {
-            background: linear-gradient(90deg, #00ff99, #ff00ff, #00ffff);
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: noise 1s infinite;
+        @keyframes flicker-color {
+            0%, 100% { opacity: 1; transform: translate(0, 0); }
+            50% { opacity: 0.4; transform: translate(-2px, 2px); }
         }
 
-        /* Effect 6: Data Stream */
-        .glitch-effect.six::before {
+        /* Effect 3: Binary Shift */
+        .glitch-effect.binary::before,
+        .glitch-effect.binary::after {
             content: attr(data-text);
             position: absolute;
-            top: -2px;
-            left: -2px;
+            left: 0;
             color: #00ff99;
-            animation: data-stream 0.1s infinite;
+            opacity: 0.8;
+            animation: binary-shift 0.5s infinite;
         }
-        .glitch-effect.six::after {
+        .glitch-effect.binary::after {
+            color: #ff33ff;
+            animation-delay: 0.25s;
+        }
+        @keyframes binary-shift {
+            0%, 100% { transform: translateX(0); opacity: 1; }
+            50% { transform: translateX(5px); opacity: 0.5; }
+        }
+
+        /* Effect 4: Text Decoder */
+        .glitch-effect.decoder::before {
             content: attr(data-text);
             position: absolute;
-            top: 2px;
-            left: 2px;
-            color: #00ffcc;
-            animation: data-stream 0.1s infinite alternate;
-        }
-
-        /* Effect 7: Zigzag Glitch */
-        .glitch-effect.seven {
-            animation: zigzag-glitch 0.3s infinite;
-        }
-
-        /* Effect 8: Code Rain */
-        .glitch-effect.eight {
-            background: url('https://i.imgur.com/oZOxoVu.gif');
-            background-clip: text;
+            top: 0;
+            left: 0;
+            animation: decoder 1.5s infinite;
+            background: linear-gradient(90deg, transparent, #ff66cc, #66ccff, transparent);
             -webkit-background-clip: text;
             color: transparent;
         }
-
-        @keyframes glitch {
-            0% { clip-path: inset(10% 0 85% 0); }
-            100% { clip-path: inset(85% 0 10% 0); }
+        @keyframes decoder {
+            0%, 100% { letter-spacing: 5px; opacity: 0; }
+            50% { letter-spacing: normal; opacity: 1; }
         }
 
-        @keyframes glitch-vertical {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(5px); }
+        /* Effect 5: Pixel Break */
+        .glitch-effect.pixel::before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #00ffcc;
+            animation: pixel-break 1s infinite alternate;
+        }
+        .glitch-effect.pixel::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #ff66ff;
+            animation: pixel-break 1s infinite alternate-reverse;
+        }
+        @keyframes pixel-break {
+            0% { transform: scale(1) translateX(0); }
+            50% { transform: scale(1.1) translateX(-3px); }
+            100% { transform: scale(1) translateX(3px); }
         }
 
-        @keyframes flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
+        /* Effect 6: Vertical Scan */
+        .glitch-effect.scan::before {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #66ff99;
+            animation: scan 0.8s infinite alternate;
         }
-
-        @keyframes rgb-split {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(5px); }
+        .glitch-effect.scan::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #ff9933;
+            animation: scan 0.8s infinite alternate-reverse;
         }
-
-        @keyframes noise {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 100% 100%; }
-        }
-
-        @keyframes data-stream {
-            0% { transform: translateY(-2px); }
-            100% { transform: translateY(2px); }
-        }
-
-        @keyframes zigzag-glitch {
-            0%, 100% { transform: skewX(0); }
-            50% { transform: skewX(-10deg); }
+        @keyframes scan {
+            0% { clip-path: inset(0% 0% 90% 0%); }
+            100% { clip-path: inset(90% 0% 0% 0%); }
         }
     </style>
 </head>
 <body>
-    <h1 class="glitch-effect one" data-text="Effect 1">Effect 1</h1>
-    <h1 class="glitch-effect two" data-text="Effect 2">Effect 2</h1>
-    <h1 class="glitch-effect three" data-text="Effect 3">Effect 3</h1>
-    <h1 class="glitch-effect four" data-text="Effect 4">Effect 4</h1>
-    <h1 class="glitch-effect five" data-text="Effect 5">Effect 5</h1>
-    <h1 class="glitch-effect six" data-text="Effect 6">Effect 6</h1>
-    <h1 class="glitch-effect seven" data-text="Effect 7">Effect 7</h1>
-    <h1 class="glitch-effect eight" data-text="Effect 8">Effect 8</h1>
+    <h1 class="glitch-effect matrix" data-text="Matrix Trail">Matrix Trail</h1>
+    <h1 class="glitch-effect flicker" data-text="Glitch Flicker">Glitch Flicker</h1>
+    <h1 class="glitch-effect binary" data-text="Binary Shift">Binary Shift</h1>
+    <h1 class="glitch-effect decoder" data-text="Text Decoder">Text Decoder</h1>
+    <h1 class="glitch-effect pixel" data-text="Pixel Break">Pixel Break</h1>
+    <h1 class="glitch-effect scan" data-text="Vertical Scan">Vertical Scan</h1>
 </body>
 </html>
