@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>More Glitch Text Effects</title>
+    <title>LiminalLoop</title>
     <style>
         body {
             background: #0d0d0d;
@@ -18,60 +18,31 @@
             min-height: 100vh;
         }
         h1 {
-            margin: 20px 0;
+            margin: 30px 0;
             position: relative;
             font-size: 2rem;
             text-transform: uppercase;
             white-space: nowrap;
         }
-        .glitch-effect {
-            position: relative;
-            display: inline-block;
-            color: #00ff99;
-        }
 
         /* Barcode Glitch */
-        .glitch-effect.barcode::before {
+        .barcode::before {
             content: '';
             position: absolute;
             left: 0;
             bottom: 0;
             width: 100%;
             height: 5px;
-            background: repeating-linear-gradient(
-                90deg,
-                #00ff99,
-                #00ff99 10px,
-                transparent 10px,
-                transparent 20px
-            );
+            background: repeating-linear-gradient(90deg, #00ff99, #00ff99 10px, transparent 10px, transparent 20px);
             animation: barcode-scroll 1s infinite linear;
         }
         @keyframes barcode-scroll {
             0% { transform: translateY(0); }
             100% { transform: translateY(10px); }
-        }    
-
-        /* Horizontal Split */
-        .glitch-effect.one::before,
-        .glitch-effect.one::after {
-            content: attr(data-text);
-            position: absolute;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            color: #00ffff;
-            clip-path: inset(50% 0 0 0);
-            animation: glitch 0.3s infinite linear alternate-reverse;
         }
-        .glitch-effect.one::after {
-            color: #ff0066;
-            clip-path: inset(0 0 50% 0);
-        } 
 
         /* Vertical Scan */
-        .glitch-effect.scan::before {
+        .scan::before {
             content: attr(data-text);
             position: absolute;
             left: 0;
@@ -79,21 +50,21 @@
             color: #66ff99;
             animation: scan 0.8s infinite alternate;
         }
-        .glitch-effect.scan::after {
+        .scan::after {
             content: attr(data-text);
             position: absolute;
             left: 0;
             top: 0;
             color: #ff9933;
-            animation: scan 0.8s infinite alternate-reverse;
+            animation: Vscan 0.8s infinite alternate-reverse;
         }
-        @keyframes scan {
+        @keyframes Vscan {
             0% { clip-path: inset(0% 0% 90% 0%); }
             100% { clip-path: inset(90% 0% 0% 0%); }
         }
 
         /* Typing Effect */
-        .glitch-effect.five {
+        .typing-effect {
             overflow: hidden;
             white-space: nowrap;
             animation: typing 2s steps(15, end) infinite, blink 0.5s step-end infinite;
@@ -107,13 +78,13 @@
         }
 
         /* Text Warp */
-        .glitch-effect.seven {
+        .warping {
             display: inline-block;
             position: relative;
             color: #00ff99;
             animation: text-warp 2s infinite;
         }
-        .glitch-effect.seven::before {
+        .warping::before {
             content: attr(data-text);
             position: absolute;
             left: 0;
@@ -134,10 +105,9 @@
     </style>
 </head>
 <body>
-    <h1 class="glitch-effect barcode" data-text="Barcode Glitch">Barcode Glitch</h1>
-    <h1 class="glitch-effect one" data-text="Effect 1">Effect 1</h1>
-    <h1 class="glitch-effect scan" data-text="Vertical Scan">Vertical Scan</h1>
-    <h1 class="glitch-effect five" data-text="Typing Effect">Typing Effect</h1>
-    <h1 class="glitch-effect seven" data-text="Text Warp">Text Warp</h1>
+    <h1 class="barcode" data-text="Barcode Glitch">Barcode Glitch</h1>
+    <h1 class="scan" data-text="Vertical Scan">Vertical Scan</h1>
+    <h1 class="typing-effect" data-text="Typing Effect">Typing Effect</h1>
+    <h1 class="warping" data-text="Text Warp">Text Warp</h1>
 </body>
 </html>
