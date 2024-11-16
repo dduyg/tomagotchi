@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glitch Text Effects</title>
+    <style>
+        body {
+            background: black;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            margin: 20px;
+            position: relative;
+            display: inline-block;
+            font-size: 2.5rem;
+        }
+
+        /* Effect 1 */
+        .glitch1 {
+            color: white;
+            position: relative;
+        }
+        .glitch1::before,
+        .glitch1::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            color: red;
+            width: 100%;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            animation: glitch 2s infinite;
+        }
+        .glitch1::after {
+            color: blue;
+            animation-delay: 1s;
+        }
+        @keyframes glitch {
+            0%, 100% {
+                clip: rect(0, 900px, 0, 0);
+            }
+            25% {
+                clip: rect(5px, 900px, 5px, 0);
+                transform: translate(-5px, -2px);
+            }
+            50% {
+                clip: rect(10px, 900px, 15px, 0);
+                transform: translate(5px, 2px);
+            }
+        }
+
+        /* Effect 2 */
+        .glitch2 {
+            color: white;
+            text-shadow: 2px 2px 1px red, -2px -2px 1px blue;
+            animation: glitch2 1.5s infinite;
+        }
+        @keyframes glitch2 {
+            0% {
+                text-shadow: 2px 2px red, -2px -2px blue;
+            }
+            50% {
+                text-shadow: -2px -2px red, 2px 2px blue;
+            }
+        }
+
+        /* Effect 3 */
+        .glitch3 {
+            position: relative;
+            color: white;
+        }
+        .glitch3::before {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            text-shadow: -1px -1px red;
+            animation: glitch3a 1s infinite;
+        }
+        .glitch3::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            text-shadow: 1px 1px blue;
+            animation: glitch3b 1s infinite;
+        }
+        @keyframes glitch3a {
+            0% {
+                transform: translate(2px, 2px);
+            }
+            50% {
+                transform: translate(-2px, -2px);
+            }
+            100% {
+                transform: translate(2px, 2px);
+            }
+        }
+        @keyframes glitch3b {
+            0% {
+                transform: translate(-2px, -2px);
+            }
+            50% {
+                transform: translate(2px, 2px);
+            }
+            100% {
+                transform: translate(-2px, -2px);
+            }
+        }
+
+        /* Add 12 more glitch effects below */
+
+        /* Effect 4 */
+        .glitch4 {
+            animation: colorShift 2s infinite;
+        }
+        @keyframes colorShift {
+            0% { color: white; }
+            25% { color: red; }
+            50% { color: blue; }
+            75% { color: green; }
+            100% { color: white; }
+        }
+
+        /* Effect 5 */
+        .glitch5 {
+            background: linear-gradient(90deg, red, blue, green);
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: backgroundShift 2s infinite;
+        }
+        @keyframes backgroundShift {
+            0% { background-position: 0%; }
+            100% { background-position: 100%; }
+        }
+
+        /* Effect 6 */
+        .glitch6 {
+            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff, 0 0 20px #ff00ff;
+            animation: neon 1s infinite alternate;
+        }
+        @keyframes neon {
+            0% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        /* Effect 7 */
+        .glitch7 {
+            animation: shake 0.5s infinite;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(-2px, 2px); }
+            50% { transform: translate(2px, -2px); }
+            75% { transform: translate(-1px, 1px); }
+        }
+
+        /* Add similar CSS styles for effects 8-15... */
+
+    </style>
+</head>
+<body>
+    <h1 class="glitch1" data-text="Glitch Effect 1">Glitch Effect 1</h1>
+    <h1 class="glitch2">Glitch Effect 2</h1>
+    <h1 class="glitch3" data-text="Glitch Effect 3">Glitch Effect 3</h1>
+    <h1 class="glitch4">Glitch Effect 4</h1>
+    <h1 class="glitch5">Glitch Effect 5</h1>
+    <h1 class="glitch6">Glitch Effect 6</h1>
+    <h1 class="glitch7">Glitch Effect 7</h1>
+    <!-- Add effects 8-15 here -->
+
+</body>
+</html>
