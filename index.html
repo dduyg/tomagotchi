@@ -51,15 +51,16 @@
     position: relative;
     }   
 
-    /* 12. Soft Shadow Jitter */
-    .shadow-jitter {
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-      animation: shadow 0.2s infinite;
+    /* Static Noise Glitch */
+    .static-shake {
+      animation: staticShake 0.2s infinite alternate;
     }
-    @keyframes shadow {
-      0% { text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); }
-      50% { text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3); }
-      100% { text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); }
+    @keyframes staticShake {
+      0% { transform: skew(2deg); }
+      25% { transform: skew(-2deg); }
+      50% { transform: skew(1deg); }
+      75% { transform: skew(-1deg); }
+      100% { transform: skew(0deg); }
     }
     
     #aside-menu {
@@ -159,7 +160,7 @@
 
   <div class="siteHeader">
     <a class="siteHeader_title" href="{{ site.baseurl }}/">
-      <div class="shadow-jitter">/dduyg</div>  
+      <div class="static-shake">/dduyg</div>  
     </a>
     <nav id="aside-menu"> 
       <a class="item {% if page.url contains '/posts/' %}active{% endif %}" href="{{ site.baseurl }}/posts">posts</a>
