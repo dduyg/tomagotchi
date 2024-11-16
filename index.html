@@ -30,6 +30,28 @@
             color: #00ff99;
         }
 
+        /* Barcode Glitch */
+        .glitch-effect.barcode::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 5px;
+            background: repeating-linear-gradient(
+                90deg,
+                #00ff99,
+                #00ff99 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            animation: barcode-scroll 1s infinite linear;
+        }
+        @keyframes barcode-scroll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(10px); }
+        }    
+
         /* Horizontal Split */
         .glitch-effect.one::before,
         .glitch-effect.one::after {
@@ -112,6 +134,7 @@
     </style>
 </head>
 <body>
+    <h1 class="glitch-effect barcode" data-text="Barcode Glitch">Barcode Glitch</h1>
     <h1 class="glitch-effect one" data-text="Effect 1">Effect 1</h1>
     <h1 class="glitch-effect scan" data-text="Vertical Scan">Vertical Scan</h1>
     <h1 class="glitch-effect five" data-text="Typing Effect">Typing Effect</h1>
