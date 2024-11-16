@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Glitch Text Effects</title>
+    <title>More Glitch Text Effects</title>
     <style>
         body {
-            background: #0b0b0b;
+            background: #0d0d0d;
             color: #00ff99;
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
@@ -16,144 +16,141 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            overflow: hidden;
         }
 
         h1 {
             margin: 20px 0;
             position: relative;
             font-size: 2rem;
-            color: #00ff99;
             text-transform: uppercase;
+            white-space: nowrap;
         }
 
         .glitch-effect {
             position: relative;
             display: inline-block;
-            text-shadow: none;
-        }
-
-        /* Effect 1: Matrix Trail */
-        .glitch-effect.matrix::before {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
             color: #00ff99;
-            animation: matrix-trail 1s infinite alternate;
-            text-shadow: 0 0 8px #00ff99;
-        }
-        @keyframes matrix-trail {
-            0%, 100% { clip-path: inset(0% 0% 20% 0%); }
-            50% { clip-path: inset(80% 0% 0% 0%); }
         }
 
-        /* Effect 2: Glitch Flicker */
-        .glitch-effect.flicker::before,
-        .glitch-effect.flicker::after {
+        /* Effect 1: Binary Flicker */
+        .glitch-effect.one {
+            animation: binary-flicker 1s infinite alternate;
+        }
+        @keyframes binary-flicker {
+            0% { content: "101010"; color: #00ff99; }
+            50% { content: "010101"; color: #ff0066; }
+            100% { content: "111000"; color: #00ffff; }
+        }
+
+        /* Effect 2: Vertical Shift */
+        .glitch-effect.two::before,
+        .glitch-effect.two::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            width: 100%;
+            top: 0;
+            color: #00ffff;
+            transform: translateY(-5px);
+            animation: vertical-shift 0.3s infinite;
+        }
+        .glitch-effect.two::after {
+            color: #ff00ff;
+            transform: translateY(5px);
+        }
+        @keyframes vertical-shift {
+            0% { transform: translateY(-5px); }
+            50% { transform: translateY(5px); }
+            100% { transform: translateY(-5px); }
+        }
+
+        /* Effect 3: Static Noise */
+        .glitch-effect.three {
+            animation: static-noise 0.1s infinite;
+        }
+        @keyframes static-noise {
+            0%, 100% { text-shadow: 2px 0 #ff00ff, -2px 0 #00ff99; }
+            50% { text-shadow: -2px 0 #00ffff, 2px 0 #ff0066; }
+        }
+
+        /* Effect 4: Diagonal Glitch */
+        .glitch-effect.four::before,
+        .glitch-effect.four::after {
             content: attr(data-text);
             position: absolute;
             top: 0;
             left: 0;
-            color: #ff003c;
-            animation: flicker-color 0.2s infinite;
+            color: #ff0000;
+            transform: skewX(-10deg);
+            animation: diagonal-glitch 0.3s infinite;
         }
-        .glitch-effect.flicker::after {
-            color: #00aaff;
-            animation-delay: 0.1s;
+        .glitch-effect.four::after {
+            color: #0000ff;
+            transform: skewX(10deg);
         }
-        @keyframes flicker-color {
-            0%, 100% { opacity: 1; transform: translate(0, 0); }
-            50% { opacity: 0.4; transform: translate(-2px, 2px); }
+        @keyframes diagonal-glitch {
+            0% { transform: skewX(-10deg); }
+            50% { transform: skewX(10deg); }
+            100% { transform: skewX(-10deg); }
         }
 
-        /* Effect 3: Binary Shift */
-        .glitch-effect.binary::before,
-        .glitch-effect.binary::after {
-            content: attr(data-text);
-            position: absolute;
-            left: 0;
+        /* Effect 5: Typing Effect */
+        .glitch-effect.five {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 2s steps(15, end) infinite, blink 0.5s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink {
+            50% { border-right: 2px solid #00ff99; }
+        }
+
+        /* Effect 6: Fractal Pulse */
+        .glitch-effect.six {
+            animation: fractal-pulse 1s infinite;
+        }
+        @keyframes fractal-pulse {
+            0%, 100% { text-shadow: 0 0 2px #00ff99, 0 0 5px #00ffff, 0 0 10px #ff0066; }
+            50% { text-shadow: 0 0 5px #ff0066, 0 0 10px #00ffff, 0 0 20px #00ff99; }
+        }
+
+        /* Effect 7: Text Warp */
+        .glitch-effect.seven {
+            display: inline-block;
+            position: relative;
             color: #00ff99;
-            opacity: 0.8;
-            animation: binary-shift 0.5s infinite;
+            animation: text-warp 2s infinite;
         }
-        .glitch-effect.binary::after {
-            color: #ff33ff;
-            animation-delay: 0.25s;
-        }
-        @keyframes binary-shift {
-            0%, 100% { transform: translateX(0); opacity: 1; }
-            50% { transform: translateX(5px); opacity: 0.5; }
-        }
-
-        /* Effect 4: Text Decoder */
-        .glitch-effect.decoder::before {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            animation: decoder 1.5s infinite;
-            background: linear-gradient(90deg, transparent, #ff66cc, #66ccff, transparent);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-        @keyframes decoder {
-            0%, 100% { letter-spacing: 5px; opacity: 0; }
-            50% { letter-spacing: normal; opacity: 1; }
-        }
-
-        /* Effect 5: Pixel Break */
-        .glitch-effect.pixel::before {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            color: #00ffcc;
-            animation: pixel-break 1s infinite alternate;
-        }
-        .glitch-effect.pixel::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            color: #ff66ff;
-            animation: pixel-break 1s infinite alternate-reverse;
-        }
-        @keyframes pixel-break {
-            0% { transform: scale(1) translateX(0); }
-            50% { transform: scale(1.1) translateX(-3px); }
-            100% { transform: scale(1) translateX(3px); }
-        }
-
-        /* Effect 6: Vertical Scan */
-        .glitch-effect.scan::before {
+        .glitch-effect.seven::before {
             content: attr(data-text);
             position: absolute;
             left: 0;
             top: 0;
-            color: #66ff99;
-            animation: scan 0.8s infinite alternate;
+            color: #ff00ff;
+            animation: text-warp-before 2s infinite;
         }
-        .glitch-effect.scan::after {
-            content: attr(data-text);
-            position: absolute;
-            left: 0;
-            top: 0;
-            color: #ff9933;
-            animation: scan 0.8s infinite alternate-reverse;
+        @keyframes text-warp {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(-10deg) scale(1.1); }
+            100% { transform: rotate(0deg) scale(1); }
         }
-        @keyframes scan {
-            0% { clip-path: inset(0% 0% 90% 0%); }
-            100% { clip-path: inset(90% 0% 0% 0%); }
+        @keyframes text-warp-before {
+            0% { transform: translate(-2px, -2px); }
+            50% { transform: translate(2px, 2px); }
+            100% { transform: translate(-2px, -2px); }
         }
     </style>
 </head>
 <body>
-    <h1 class="glitch-effect matrix" data-text="Matrix Trail">Matrix Trail</h1>
-    <h1 class="glitch-effect flicker" data-text="Glitch Flicker">Glitch Flicker</h1>
-    <h1 class="glitch-effect binary" data-text="Binary Shift">Binary Shift</h1>
-    <h1 class="glitch-effect decoder" data-text="Text Decoder">Text Decoder</h1>
-    <h1 class="glitch-effect pixel" data-text="Pixel Break">Pixel Break</h1>
-    <h1 class="glitch-effect scan" data-text="Vertical Scan">Vertical Scan</h1>
+    <h1 class="glitch-effect one" data-text="Binary Flicker">Binary Flicker</h1>
+    <h1 class="glitch-effect two" data-text="Vertical Shift">Vertical Shift</h1>
+    <h1 class="glitch-effect three" data-text="Static Noise">Static Noise</h1>
+    <h1 class="glitch-effect four" data-text="Diagonal Glitch">Diagonal Glitch</h1>
+    <h1 class="glitch-effect five" data-text="Typing Effect">Typing Effect</h1>
+    <h1 class="glitch-effect six" data-text="Fractal Pulse">Fractal Pulse</h1>
+    <h1 class="glitch-effect seven" data-text="Text Warp">Text Warp</h1>
 </body>
 </html>
