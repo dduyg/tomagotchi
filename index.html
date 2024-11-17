@@ -56,6 +56,18 @@
       animation: stretch 1s infinite alternate;
     }
     @keyframes stretch { 0% {transform: scaleY(1);} 50% {transform: scaleY(1.2);} 100% {transform: scaleY(1);} }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+    }
+    .badge::before {
+      content: url('https://raw.githubusercontent.com/dduyg/dduyg.github.io/refs/heads/main/assets/images/badge.gif');
+      display: inline-block;
+      margin-right: 0.5em;
+      width: 1em;
+      height: 1em;
+    }
     
     #aside-menu {
       display: none; /* Hide this by default for smaller screens */
@@ -170,7 +182,9 @@
 <body>
 
   <div class="siteHeader">
-    <a class="siteHeader_title" href="{{ site.baseurl }}/">/dduyg</a>
+    <a class="siteHeader_title" href="{{ site.baseurl }}/">
+     <span class="badge">/dduyg</span>
+    </a>
     <nav id="aside-menu"> 
       <a class="item {% if page.url contains '/posts/' %}active{% endif %}" href="{{ site.baseurl }}/posts">posts</a>
       <a class="item {% if page.url == '/about.html' %}active{% endif %}" href="{{ site.baseurl }}/about">about</a>
