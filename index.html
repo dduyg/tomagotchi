@@ -29,8 +29,8 @@
       font-feature-settings: "palt";
       font-synthesis: none;
       -moz-osx-font-smoothing: grayscale;
-       margin: 0;
-       padding: 0;
+      margin: 0;
+      padding: 0;
     }
     a {
       color: inherit;
@@ -84,7 +84,7 @@
     .siteHeader_menuBtn .ring2 { top: 11px; }
     .siteHeader_menuBtn .ring3 { top: 16px; }
 
-    .siteHeader_menuBtn.active .ring {
+    .siteHeader_menuBtn.open .ring { /* Change 'active' to 'open' */
       transform: translateY(6px) scaleY(0.8);
       border-color: rgba(0, 0, 0, 0.9);
     }
@@ -116,7 +116,7 @@
       opacity: 0;
     }
     
-    .dropNav .item.active {
+    .dropNav .item.open { /* Change 'active' to 'open' */
       opacity: 1;
       transform: translateX(0); /* Move into view */
     }
@@ -182,14 +182,14 @@
     const dropContent = document.querySelector('.dropNav');
 
     menuBtn.addEventListener('click', () => {
-      // Toggle the 'active' class on the menu button and toggle visibility of drop content
-      menuBtn.classList.toggle('active');
+      // Toggle the 'open' class on the menu button and toggle visibility of drop content
+      menuBtn.classList.toggle('open');
       dropContent.style.visibility = 
         dropContent.style.visibility === 'visible' ? 'hidden' : 'visible';
 
-      // Add 'active' to each drop item for the staggered transition
+      // Add 'open' to each drop item for the staggered transition
       const items = dropContent.querySelectorAll('.item');
-      items.forEach(item => item.classList.toggle('active'));
+      items.forEach(item => item.classList.toggle('open'));
     });
   </script>
 </body>
