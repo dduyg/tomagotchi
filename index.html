@@ -56,8 +56,8 @@
       animation: stretch 1s infinite alternate;
     }
     @keyframes stretch { 0% {transform: scaleY(1);} 50% {transform: scaleY(1.2);} 100% {transform: scaleY(1);} }    
-    .badge {
-      display: none; /* Hide by default for smaller screens */
+    .siteHeader_title::before {
+      content: none; /* Hide by default the ::before image */
     }
     
     #aside-menu {
@@ -167,22 +167,24 @@
       #drop-menu {
         display: none;
       }
-      .badge {
+      .siteHeader_title::before {
+        content: "";
         display: inline-block;
-        height: 1.2em;
-        width: auto;
-        line-height: 1em;
+        background-image: url('https://raw.githubusercontent.com/dduyg/dduyg.github.io/refs/heads/main/assets/images/badge.gif');
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 1em;
+        height: auto;
         vertical-align: middle;
-      }
+        margin-right: 0.1em;
+      }     
     }
   </style>
 </head>
 <body>
 
   <div class="siteHeader">
-    <a class="siteHeader_title" href="{{ site.baseurl }}/">
-     <img src="https://raw.githubusercontent.com/dduyg/dduyg.github.io/refs/heads/main/assets/images/badge.gif" class="badge">/dduyg
-    </a>
+    <a class="siteHeader_title" href="{{ site.baseurl }}/">/dduyg</a>
     <nav id="aside-menu"> 
       <a class="item {% if page.url contains '/posts/' %}active{% endif %}" href="{{ site.baseurl }}/posts">posts</a>
       <a class="item {% if page.url == '/about.html' %}active{% endif %}" href="{{ site.baseurl }}/about">about</a>
