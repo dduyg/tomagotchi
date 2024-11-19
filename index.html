@@ -25,7 +25,6 @@
       font-family: var(--main-font);
       -webkit-font-smoothing: antialiased;
       line-height: 1.6;
-
       font-feature-settings: "palt";
       font-synthesis: none;
       -moz-osx-font-smoothing: grayscale;
@@ -187,22 +186,19 @@
       const items = Array.from(dropContent.querySelectorAll('.item'));
 
       if (isOpen) {
-        // Reset the transition delay to ensure animations work correctly every time
+        // Reset transition delay and the 'open' class to ensure animations are applied correctly
         items.forEach((item) => {
-          item.style.transitionDelay = ''; // Reset delay before adding new one
-          item.classList.remove('open'); // Remove 'open' to reset the animation
+          item.style.transitionDelay = ''; // Reset the transition delay
+          item.classList.remove('open'); // Remove the 'open' class to reset animations
         });
 
-        // Sort items by their natural DOM order
-        items.sort((a, b) => a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1);
-
-        // Apply staggered animation
+        // No need to change the order based on active class, always animate in DOM order
         items.forEach((item, index) => {
-          item.style.transitionDelay = `${index * 0.2}s`;
-          item.classList.add('open'); // Add 'open' to trigger animation
+          item.style.transitionDelay = `${index * 0.2}s`; // Stagger the delay
+          item.classList.add('open'); // Add the 'open' class to trigger the animation
         });
       } else {
-        // Reset items when closing
+        // Reset when menu is closed
         items.forEach((item) => {
           item.style.transitionDelay = '';
           item.classList.remove('open'); // Remove 'open' to reset animations
