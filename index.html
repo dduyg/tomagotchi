@@ -181,26 +181,22 @@
     const dropContent = document.querySelector('.dropNav');
 
     menuBtn.addEventListener('click', () => {
+      // Toggle the 'open' class on the menu button and toggle visibility of drop content
       menuBtn.classList.toggle('open');
-      dropContent.style.visibility = 
+      dropContent.style.visibility =
         dropContent.style.visibility === 'visible' ? 'hidden' : 'visible';
 
+      // Get all items in correct order
       const items = Array.from(dropContent.querySelectorAll('.item'));
 
-      // Ensure the animation always starts with the first item, in order
+      // Sort items by their natural DOM order
+      items.sort((a, b) => a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1);
+
+      // Apply staggered animation
       items.forEach((item, index) => {
         item.style.transitionDelay = `${index * 0.2}s`;
-        item.classList.remove('open'); // Reset classes
+        item.classList.toggle('open'); // Use 'open' for animations
       });
-
-      // Apply animation to items in correct order
-      setTimeout(() => {
-        items.forEach((item, index) => {
-          setTimeout(() => {
-            item.classList.add('open');
-          }, index * 200); // Delay for staggered effect
-        });
-      }, 50); // Ensure reset completes before animation starts
     });
   </script>
 </body>
