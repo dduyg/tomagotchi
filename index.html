@@ -12,7 +12,7 @@
     }
     :root {
       --color-main: rgba(0, 0, 0, 0.87);
-      --color-light-main: #292721; 
+      --color-light-main: #292721;
       --marker: #C9C9BF;
       --back: #9e9e9e;
       --main-font: "Fira Sans", sans-serif;
@@ -50,13 +50,17 @@
     }
     .siteHeader_title {
       display: block;
-      font-size: 1.6rem;
-      letter-spacing: 2px;
+      font-size: 1.5rem;
+      letter-spacing: 3px;
       cursor: pointer;
       animation: stretch 1s infinite alternate;
     }
-    @keyframes stretch { 0% {transform: scaleY(1);} 50% {transform: scaleY(1.2);} 100% {transform: scaleY(1);} }
-    
+    @keyframes stretch {
+      0% { transform: scaleY(1); }
+      50% { transform: scaleY(1.2); }
+      100% { transform: scaleY(1); }
+    }
+
     #aside-menu {
       display: none; /* Hide this by default for smaller screens */
     }
@@ -115,54 +119,19 @@
       transform: translateX(100%); /* Initially out of screen on the right */
       opacity: 0;
     }
-    
+
     .dropNav .item.open {
       opacity: 1;
       transform: translateX(0); /* Move into view */
     }
-    /* Apply staggered delay animation */
-    .dropNav .item:nth-child(1) { transition-delay: 0.2s; }
-    .dropNav .item:nth-child(2) { transition-delay: 0.4s; }
-    .dropNav .item:nth-child(3) { transition-delay: 0.6s; }
-    .dropNav .item:nth-child(4) { transition-delay: 0.8s; }
-    .dropNav .item:nth-child(5) { transition-delay: 1s; }
 
-    .dropNav .item.active {
-      color: #484848;
-      transition: color 0.5s cubic-bezier(0.3, 0.1, 0.1, 1);
+    .item.active { /* This is only for Jekyll's page highlighting */
+      font-weight: bold;
     }
-    
-    .item.active::before {
-      content: '';
-      display: inline-block;
-      width: 0.6em;
-      height: 0.6em;
-      border-radius: 50%;
-      background-color: var(--color-main);
-      margin-right: 0.3em;
-      animation: rotate 1.5s ease-in-out infinite;
-    }
-    @keyframes rotate { 0% {transform: rotateX(0deg);} 100% {transform: rotateX(360deg);} }
 
-    @media screen and (min-width: 30em) {  /* Navigation for larger screens */
+    @media screen and (min-width: 30em) { /* Navigation for larger screens */
       .siteHeader {
         padding: 1.5rem 4rem;
-      }
-      .siteHeader_title {
-        position: relative;  
-        padding-left: 1.1em; /* Create space for the SVG */
-      }
-      .siteHeader_title::before {
-        content: '';
-        display: inline-block;
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 1em;
-        height: 1em;
-        background: url('data:image/svg+xml;utf8,<svg fill="%23000000" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 108.04 108.04" xml:space="preserve"><path d="M29,5.493H0v29h29V5.493z M24,29.493H5v-19h19V29.493z M92.915,72.297c-8.34,0-15.125,6.785-15.125,15.125 c0,8.341,6.785,15.125,15.125,15.125s15.125-6.784,15.125-15.125C108.04,79.082,101.255,72.297,92.915,72.297z M92.915,97.547 c-5.583,0-10.125-4.542-10.125-10.125s4.542-10.125,10.125-10.125s10.125,4.542,10.125,10.125S98.498,97.547,92.915,97.547z M90.415,55.778H30.559H26.5H12.016V54.61h-0.014V39.445h5v11.333H26.5h4.059h64.805v2.346h0.052V68.29h-5L90.415,55.778 L90.415,55.778z"></path></svg>') no-repeat center;
-        background-size: contain;
       }
       #aside-menu {
         display: block;
@@ -172,15 +141,12 @@
       #aside-menu .item {
         display: inline-block;
         font-size: 1.1em;
-        margin-right: 2rem;
+        margin-right: 1.2rem;
         cursor: pointer;
-      }
-      .item.active {
-        font-weight: bold;
       }
       #drop-menu {
         display: none;
-      }     
+      }
     }
   </style>
 </head>
@@ -188,7 +154,7 @@
 
   <div class="siteHeader">
     <a class="siteHeader_title" href="{{ site.baseurl }}/">/dduyg</a>
-    <nav id="aside-menu"> 
+    <nav id="aside-menu">
       <a class="item {% if page.url contains '/posts/' %}active{% endif %}" href="{{ site.baseurl }}/posts">posts</a>
       <a class="item {% if page.url == '/about.html' %}active{% endif %}" href="{{ site.baseurl }}/about">about</a>
       <a class="item {% if page.url contains '/works/' %}active{% endif %}" href="{{ site.baseurl }}/works">works</a>
@@ -220,9 +186,13 @@
       dropContent.style.visibility = 
         dropContent.style.visibility === 'visible' ? 'hidden' : 'visible';
 
-      // Add 'open' to each drop item for the staggered transition
-      const items = dropContent.querySelectorAll('.item');
-      items.forEach(item => item.classList.toggle('open'));
+      // Add 'open' to each drop item in sequential order
+      const items = Array.from(dropContent.querySelectorAll('.item'));
+      items.forEach((item, index) => {
+        // Reset transition delay to ensure consistent behavior
+        item.style.transitionDelay = `${index * 0.2}s`;
+        item.classList.toggle('open'); // Use 'open' instead of 'active'
+      });
     });
   </script>
 </body>
