@@ -181,22 +181,33 @@
     const dropContent = document.querySelector('.dropNav');
 
     menuBtn.addEventListener('click', () => {
-      // Toggle the 'open' class on the menu button and toggle visibility of drop content
-      menuBtn.classList.toggle('open');
-      dropContent.style.visibility =
-        dropContent.style.visibility === 'visible' ? 'hidden' : 'visible';
+      const isOpen = menuBtn.classList.toggle('open');
+      dropContent.style.visibility = isOpen ? 'visible' : 'hidden';
 
-      // Get all items in correct order
       const items = Array.from(dropContent.querySelectorAll('.item'));
 
-      // Sort items by their natural DOM order
-      items.sort((a, b) => a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1);
+      if (isOpen) {
+        // Reset the transition delay to ensure animations work correctly every time
+        items.forEach((item) => {
+          item.style.transitionDelay = ''; // Reset delay before adding new one
+          item.classList.remove('open'); // Remove 'open' to reset the animation
+        });
 
-      // Apply staggered animation
-      items.forEach((item, index) => {
-        item.style.transitionDelay = `${index * 0.2}s`;
-        item.classList.toggle('open'); // Use 'open' for animations
-      });
+        // Sort items by their natural DOM order
+        items.sort((a, b) => a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1);
+
+        // Apply staggered animation
+        items.forEach((item, index) => {
+          item.style.transitionDelay = `${index * 0.2}s`;
+          item.classList.add('open'); // Add 'open' to trigger animation
+        });
+      } else {
+        // Reset items when closing
+        items.forEach((item) => {
+          item.style.transitionDelay = '';
+          item.classList.remove('open'); // Remove 'open' to reset animations
+        });
+      }
     });
   </script>
 </body>
