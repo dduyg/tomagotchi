@@ -3,149 +3,361 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Empowering</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Data Product Company</title>
     <style>
-        /* Reset and Basic Styling */
-        body {
+        /* General Reset */
+        * {
             margin: 0;
-            font-family: Arial, sans-serif;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
             line-height: 1.6;
+            background-color: #f4f4f9;
             color: #333;
         }
+
+        /* Header Styles */
         header {
-            background: #4CAF50;
+            background: #007BFF;
+            color: #fff;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .logo {
+            float: left;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        header nav {
+            float: right;
+        }
+
+        header nav a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 1em;
+        }
+
+        header nav a:hover {
+            text-decoration: underline;
+        }
+
+        header .cta-btn {
+            background-color: #fff;
+            color: #007BFF;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        header .cta-btn:hover {
+            background-color: #0069d9;
+            color: #fff;
+        }
+
+        /* Mobile Navigation */
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            font-size: 2em;
             color: white;
-            padding: 20px 0;
-            text-align: center;
         }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
+
+        .navbar-links {
+            display: flex;
         }
-        header p {
-            margin: 0;
-            font-size: 1.2em;
-        }
-        nav {
+
+        /* Hero Section */
+        .hero {
+            background: url('https://via.placeholder.com/1200x600') no-repeat center center/cover;
+            height: 60vh;
             display: flex;
             justify-content: center;
-            background: #333;
-        }
-        nav a {
+            align-items: center;
             color: white;
-            text-decoration: none;
-            padding: 15px 20px;
-            display: block;
-        }
-        nav a:hover {
-            background: #575757;
-        }
-        .container {
-            padding: 20px;
-        }
-        .section {
-            padding: 40px 0;
-        }
-        .section:nth-child(even) {
-            background: #f4f4f4;
-        }
-        .section h2 {
             text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+        }
+
+        .hero .cta-btn {
+            background-color: #fff;
+            color: #007BFF;
+            padding: 12px 25px;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            text-decoration: none;
+        }
+
+        .hero .cta-btn:hover {
+            background-color: #0069d9;
+            color: #fff;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2em;
             margin-bottom: 20px;
         }
-        .grid {
-            display: flex;
-            justify-content: space-around;
-            gap: 20px;
-            flex-wrap: wrap;
+
+        .section-content p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1em;
+            margin-bottom: 30px;
         }
-        .card {
-            flex: 1 1 calc(30% - 40px);
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+
+        /* Grid for Products / Solutions */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background-color: #fff;
             padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
             text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
-        .card h3 {
-            margin-top: 0;
+
+        .product-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
         }
-        footer {
-            background: #333;
+
+        .product-card p {
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+
+        .product-card a {
+            text-decoration: none;
+            color: #007BFF;
+            font-weight: bold;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: #f8f9fa;
+            padding: 60px 20px;
+        }
+
+        .testimonial-item {
+            display: inline-block;
+            width: 30%;
+            margin: 0 1.5%;
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .testimonial-item p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        /* Call to Action Section */
+        .cta-section {
+            background-color: #007BFF;
             color: white;
-            text-align: center;
-            padding: 20px 0;
+            padding: 60px 20px;
         }
-        footer p {
-            margin: 0;
+
+        .cta-section h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
+        .cta-btn {
+            background-color: #fff;
+            color: #007BFF;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            text-decoration: none;
+            margin: 10px 5px;
+        }
+
+        .cta-btn:hover {
+            background-color: #0069d9;
+            color: white;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            header .navbar-links {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            header .menu-icon {
+                display: block;
+            }
+
+            .menu-icon.active + .navbar-links {
+                display: flex;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-item {
+                width: 80%;
+                margin: 20px auto;
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- Header -->
     <header>
-        <h1>Data Innovations</h1>
-        <p>Empowering businesses with data-driven solutions</p>
+        <div class="logo">DataPro</div>
+        <div class="menu-icon" onclick="toggleMenu()">☰</div>
+        <nav class="navbar-links">
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#">Solutions</a>
+            <a href="#">About Us</a>
+            <a href="#">Blog</a>
+            <a href="#">Contact</a>
+            <a href="#" class="cta-btn">Request a Demo</a>
+        </nav>
     </header>
-    <nav>
-        <a href="#services">Services</a>
-        <a href="#products">Products</a>
-        <a href="#about">About Us</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    <div class="container">
-        <!-- Services Section -->
-        <section id="services" class="section">
-            <h2>Our Services</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Data Analytics</h3>
-                    <p>Transforming raw data into actionable insights.</p>
-                </div>
-                <div class="card">
-                    <h3>Custom Dashboards</h3>
-                    <p>Interactive dashboards tailored for your business needs.</p>
-                </div>
-                <div class="card">
-                    <h3>Data Strategy</h3>
-                    <p>Comprehensive data strategies to boost growth.</p>
-                </div>
-            </div>
-        </section>
-        <!-- Products Section -->
-        <section id="products" class="section">
-            <h2>Our Products</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Insight Pro</h3>
-                    <p>AI-powered analytics tool for smarter decisions.</p>
-                </div>
-                <div class="card">
-                    <h3>DataFlow</h3>
-                    <p>Streamlined data pipeline solutions for enterprises.</p>
-                </div>
-                <div class="card">
-                    <h3>VizMaster</h3>
-                    <p>Data visualization platform for in-depth understanding.</p>
-                </div>
-            </div>
-        </section>
-        <!-- About Section -->
-        <section id="about" class="section">
-            <h2>About Us</h2>
-            <p>We are a team of data enthusiasts committed to helping businesses thrive through innovative data solutions. With expertise in analytics, strategy, and visualization, we deliver measurable results that drive growth.</p>
-        </section>
-        <!-- Contact Section -->
-        <section id="contact" class="section">
-            <h2>Contact Us</h2>
-            <p>Have a question or want to learn more? Reach out to us:</p>
-            <p>Email: info@datainnovations.com</p>
-            <p>Phone: +1 (234) 567-890</p>
-            <p>Address: 123 Data Street, Tech City</p>
-        </section>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div>
+            <h1>Turning Data Into Possibilities</h1>
+            <p>Empowering businesses with tailored data-driven solutions.</p>
+            <a href="#" class="cta-btn">Learn More</a>
+        </div>
     </div>
+
+    <!-- Introduction Section -->
+    <section>
+        <h2 class="section-title">Who We Are</h2>
+        <div class="section-content">
+            <p>We specialize in creating powerful data products that help businesses unlock insights and optimize operations. Our expertise lies in developing customized data solutions that scale with your business needs.</p>
+            <div>
+                <span>Custom Data Solutions</span> | 
+                <span>Scalable Products</span> | 
+                <span>Trusted Expertise</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section>
+        <h2 class="section-title">Our Solutions</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <h3>Product 1</h3>
+                <p>Overview of Product 1 and how it benefits businesses.</p>
+                <a href="#">Read More</a>
+            </div>
+            <div class="product-card">
+                <h3>Product 2</h3>
+                <p>Overview of Product 2 and how it benefits businesses.</p>
+                <a href="#">Read More</a>
+            </div>
+            <div class="product-card">
+                <h3>Product 3</h3>
+                <p>Overview of Product 3 and how it benefits businesses.</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2 class="section-title">What Our Clients Say</h2>
+        <div class="testimonial-item">
+            <p>"DataPro transformed our operations with their insights. Our business is thriving!"</p>
+            <span>- Client 1</span>
+        </div>
+        <div class="testimonial-item">
+            <p>"The data solutions were exactly what we needed to scale our business."</p>
+            <span>- Client 2</span>
+        </div>
+        <div class="testimonial-item">
+            <p>"Their expertise in data products helped us unlock new growth opportunities."</p>
+            <span>- Client 3</span>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section">
+        <h2>Ready to transform your data into impact?</h2>
+        <a href="#" class="cta-btn">Get Started</a>
+        <a href="#" class="cta-btn">Request a Demo</a>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Data Innovations. All rights reserved.</p>
+        <p>&copy; 2024 DataPro. All rights reserved.</p>
+        <div>
+            <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+        </div>
+        <div>
+            <a href="#">LinkedIn</a> | <a href="#">Twitter</a> | <a href="#">Facebook</a>
+        </div>
     </footer>
+
+    <!-- JavaScript for Mobile Menu -->
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.navbar-links');
+            menu.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
