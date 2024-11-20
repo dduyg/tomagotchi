@@ -187,11 +187,6 @@
       const items = Array.from(dropContent.querySelectorAll('.item'));
 
       if (isOpen) {
-        items.forEach((item) => {
-          item.style.transitionDelay = '';
-          item.classList.remove('open');
-        });
-
         items.forEach((item, index) => {
           item.style.transitionDelay = `${index * 0.2}s`;
           item.classList.add('open');
