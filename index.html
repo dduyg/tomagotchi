@@ -25,6 +25,7 @@
       font-family: var(--main-font);
       -webkit-font-smoothing: antialiased;
       line-height: 1.6;
+
       font-feature-settings: "palt";
       font-synthesis: none;
       -moz-osx-font-smoothing: grayscale;
@@ -186,22 +187,19 @@
       const items = Array.from(dropContent.querySelectorAll('.item'));
 
       if (isOpen) {
-        // Reset transition delay and the 'open' class to ensure animations are applied correctly
-        items.forEach((item) => {
-          item.style.transitionDelay = ''; // Reset the transition delay
-          item.classList.remove('open'); // Remove the 'open' class to reset animations
-        });
-
-        // No need to change the order based on active class, always animate in DOM order
-        items.forEach((item, index) => {
-          item.style.transitionDelay = `${index * 0.2}s`; // Stagger the delay
-          item.classList.add('open'); // Add the 'open' class to trigger the animation
-        });
-      } else {
-        // Reset when menu is closed
         items.forEach((item) => {
           item.style.transitionDelay = '';
-          item.classList.remove('open'); // Remove 'open' to reset animations
+          item.classList.remove('open');
+        });
+
+        items.forEach((item, index) => {
+          item.style.transitionDelay = `${index * 0.2}s`;
+          item.classList.add('open');
+        });
+      } else {
+        items.forEach((item) => {
+          item.style.transitionDelay = '';
+          item.classList.remove('open');
         });
       }
     });
