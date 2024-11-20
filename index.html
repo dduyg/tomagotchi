@@ -55,11 +55,7 @@
       cursor: pointer;
       animation: stretch 1s infinite alternate;
     }
-    @keyframes stretch { 
-      0% {transform: scaleY(1);} 
-      50% {transform: scaleY(1.2);} 
-      100% {transform: scaleY(1);} 
-    }
+    @keyframes stretch { 0% {transform: scaleY(1);} 50% {transform: scaleY(1.2);} 100% {transform: scaleY(1);} }
 
     #aside-menu {
       display: none; /* Hide this by default for smaller screens */
@@ -122,12 +118,10 @@
     .dropNav .item.open {
       opacity: 1;
       transform: translateX(0); /* Move into view */
-      transition: transform 0.5s ease, opacity 0.5s ease;
     }
 
     .dropNav .item.active {
-      color: #484848; /* Style for active menu item */
-      font-weight: bold; /* Emphasis */
+      color: #484848;
     }
     .item.active::before {
       content: '';
@@ -139,10 +133,7 @@
       margin-right: 0.3em;
       animation: rotate 1.5s ease-in-out infinite;
     }
-    @keyframes rotate { 
-      0% {transform: rotateX(0deg);} 
-      100% {transform: rotateX(360deg);} 
-    }
+    @keyframes rotate { 0% {transform: rotateX(0deg);} 100% {transform: rotateX(360deg);} }
 
     @media screen and (min-width: 30em) { /* Navigation for larger screens */
       .siteHeader {
@@ -213,6 +204,7 @@
   <script>
     const menuBtn = document.getElementById('menuBtn');
     const dropNav = document.querySelector('.dropNav');
+    const body = document.body; // This is to detect clicks outside of the menu
 
     menuBtn.addEventListener('click', () => {
       const isOpen = menuBtn.classList.toggle('open');
@@ -222,18 +214,29 @@
 
       if (isOpen) {
         items.forEach((item, index) => {
-          // Ensure items always animate in order
           item.classList.remove('open'); // Reset class for fresh animations
-          item.style.transitionDelay = `${index * 0.2}s`; // Apply delay based on order
+          item.style.transitionDelay = `${index * 0.2}s`; // Add delay for animation
           item.classList.add('open');
         });
       } else {
         items.forEach((item) => {
-          item.style.transitionDelay = ''; // Reset delay when menu closes
+          item.style.transitionDelay = '';
+          item.classList.remove('open');
+        });
+      }
+    });
+
+    // Close menu if clicked outside
+    body.addEventListener('click', (e) => {
+      if (!menuBtn.contains(e.target) && !dropNav.contains(e.target)) {
+        menuBtn.classList.remove('open');
+        dropNav.style.visibility = 'hidden';
+        const items = [...dropNav.querySelectorAll('.item')];
+        items.forEach((item) => {
           item.classList.remove('open');
         });
       }
     });
   </script>
 </body>
-</html>      
+</html>
