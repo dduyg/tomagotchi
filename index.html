@@ -55,7 +55,11 @@
       cursor: pointer;
       animation: stretch 1s infinite alternate;
     }
-    @keyframes stretch { 0% {transform: scaleY(1);} 50% {transform: scaleY(1.2);} 100% {transform: scaleY(1);} }
+    @keyframes stretch { 
+      0% {transform: scaleY(1);} 
+      50% {transform: scaleY(1.2);} 
+      100% {transform: scaleY(1);} 
+    }
 
     #aside-menu {
       display: none; /* Hide this by default for smaller screens */
@@ -112,19 +116,19 @@
       font-family: "Syncopate", sans-serif;
       cursor: pointer;
       transition: transform 0.5s ease, opacity 0.5s ease;
-      transform: translateX(100%); /* Initially off-screen */
+      transform: translateX(100%); /* Initially out of screen on the right */
       opacity: 0;
     }
     .dropNav .item.open {
       opacity: 1;
       transform: translateX(0); /* Move into view */
+      transition: transform 0.5s ease, opacity 0.5s ease;
     }
 
-    .item.active {
-      color: #484848;
-      transition: color 0.5s cubic-bezier(0.3, 0.1, 0.1, 1);
+    .dropNav .item.active {
+      color: #484848; /* Style for active menu item */
+      font-weight: bold; /* Emphasis */
     }
-
     .item.active::before {
       content: '';
       display: inline-block;
@@ -135,10 +139,9 @@
       margin-right: 0.3em;
       animation: rotate 1.5s ease-in-out infinite;
     }
-
-    @keyframes rotate {
-      0% {transform: rotateX(0deg);}
-      100% {transform: rotateX(360deg);}
+    @keyframes rotate { 
+      0% {transform: rotateX(0deg);} 
+      100% {transform: rotateX(360deg);} 
     }
 
     @media screen and (min-width: 30em) { /* Navigation for larger screens */
@@ -219,17 +222,18 @@
 
       if (isOpen) {
         items.forEach((item, index) => {
+          // Ensure items always animate in order
           item.classList.remove('open'); // Reset class for fresh animations
-          item.style.transitionDelay = `${index * 0.2}s`; // Add delay for animation
+          item.style.transitionDelay = `${index * 0.2}s`; // Apply delay based on order
           item.classList.add('open');
         });
       } else {
         items.forEach((item) => {
-          item.style.transitionDelay = '';
+          item.style.transitionDelay = ''; // Reset delay when menu closes
           item.classList.remove('open');
         });
       }
     });
   </script>
 </body>
-</html>
+</html>      
