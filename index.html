@@ -178,20 +178,28 @@
 
   <script>
     const menuBtn = document.getElementById('menuBtn');
-    const dropContent = document.querySelector('.dropNav');
+    const dropNav = document.querySelector('.dropNav');
 
     menuBtn.addEventListener('click', () => {
       const isOpen = menuBtn.classList.toggle('open');
-      dropContent.style.visibility = isOpen ? 'visible' : 'hidden';
+      dropNav.style.visibility = isOpen ? 'visible' : 'hidden';
 
-      const items = Array.from(dropContent.querySelectorAll('.item'));
+      const items = Array.from(dropNav.querySelectorAll('.item'));
 
       if (isOpen) {
+        // Reset all animations
+        items.forEach((item) => {
+          item.style.transitionDelay = ''; // Reset transition delay
+          item.classList.remove('open');  // Remove 'open' class for a fresh animation
+        });
+
+        // Animate items in natural DOM order
         items.forEach((item, index) => {
           item.style.transitionDelay = `${index * 0.2}s`;
           item.classList.add('open');
         });
       } else {
+        // Reset when menu is closed
         items.forEach((item) => {
           item.style.transitionDelay = '';
           item.classList.remove('open');
