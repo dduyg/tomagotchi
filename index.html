@@ -186,18 +186,14 @@
 
       const items = [...dropNav.querySelectorAll('.item')];
 
-      // Always sort items by their DOM position to ignore active classes affecting order
-      const sortedItems = items.sort((a, b) =>
-        a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1
-      );
-
       if (isOpen) {
-        sortedItems.forEach((item, index) => {
-          item.style.transitionDelay = `${index * 0.2}s`;
+        items.forEach((item, index) => {
+          item.classList.remove('open'); // Reset class for fresh animations
+          item.style.transitionDelay = `${index * 0.2}s`; // Add delay for animation
           item.classList.add('open');
         });
       } else {
-        sortedItems.forEach((item) => {
+        items.forEach((item) => {
           item.style.transitionDelay = '';
           item.classList.remove('open');
         });
