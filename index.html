@@ -187,14 +187,17 @@
       const items = Array.from(dropNav.querySelectorAll('.item'));
 
       if (isOpen) {
+        // Sort items to always start with the first menu item (natural order)
+        const sortedItems = items.sort((a, b) => a.textContent.localeCompare(b.textContent));
+
         // Reset all animations
-        items.forEach((item) => {
+        sortedItems.forEach((item) => {
           item.style.transitionDelay = ''; // Reset transition delay
           item.classList.remove('open');  // Remove 'open' class for a fresh animation
         });
 
         // Animate items in natural DOM order
-        items.forEach((item, index) => {
+        sortedItems.forEach((item, index) => {
           item.style.transitionDelay = `${index * 0.2}s`;
           item.classList.add('open');
         });
