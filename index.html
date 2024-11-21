@@ -3,116 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Leeya - Data & Coding</title>
+    <title>Leeya's Coding & Data Page</title>
     <style>
-        /* Global styles */
         body {
             font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ff66b2, #00ffff, #ff6600);
+            background-size: 300% 300%;
+            animation: gradient 10s ease infinite;
+            color: white;
+            text-align: center;
             margin: 0;
             padding: 0;
-            background: #0a0a0a;
-            color: #fff;
-            overflow-x: hidden;
         }
-
-        /* Vaporwave color palette */
-        --pink: #ff77ff;
-        --purple: #8a2be2;
-        --blue: #00bcd4;
-        --neon-green: #39ff14;
-        --black: #121212;
-
-        /* Background and header styles */
-        header {
-            background: linear-gradient(45deg, var(--pink), var(--purple), var(--blue));
-            padding: 10vh 0;
-            text-align: center;
-            color: white;
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+        
+        h1 {
+            font-size: 3em;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
         }
-
-        header h1 {
-            font-size: 4em;
-            margin: 0;
-            font-family: 'Courier New', Courier, monospace;
-            letter-spacing: 5px;
-        }
-
-        header p {
+        
+        h2 {
             font-size: 1.5em;
-            margin-top: 20px;
-            font-family: 'Courier New', Courier, monospace;
+            margin-top: 10px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4);
         }
 
-        /* Button styles */
-        .intro-button {
-            background-color: var(--neon-green);
-            color: #121212;
+        .content {
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
             font-size: 1.2em;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            border-radius: 30px;
+            text-decoration: none;
             margin-top: 30px;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
-        .intro-button:hover {
-            background-color: var(--blue);
+        .button:hover {
+            background-color: #ff66b2;
+            color: black;
+            border-color: #ff66b2;
         }
 
-        /* Main content section */
-        .main-content {
-            text-align: center;
-            padding: 40px;
+        @keyframes gradient {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
         }
 
-        .main-content h2 {
-            color: var(--neon-green);
-            font-size: 2.5em;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        .vaporwave-font {
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #ff66b2;
         }
 
-        .main-content p {
+        .intro-text {
             font-size: 1.2em;
-            color: var(--pink);
-            max-width: 800px;
-            margin: 20px auto;
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
-        /* Footer styles */
         footer {
-            background-color: var(--black);
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.6);
         }
-
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
     <header>
-        <h1>Welcome to Leeya's World</h1>
-        <p>Your go-to space for data and coding adventures</p>
-        <button class="intro-button" onclick="alert('Thanks for visiting!')">Explore</button>
+        <h1 class="vaporwave-font">Welcome to Leeya's Coding & Data World</h1>
+        <h2>Exploring the digital landscape with creativity and logic</h2>
     </header>
 
-    <!-- Main Content Section -->
-    <div class="main-content">
-        <h2>About Leeya</h2>
-        <p>Hi there! I'm Leeya, a data enthusiast and coder. I love diving into complex datasets, solving problems, and exploring the latest trends in technology. Whether it's programming or working with data, I'm always ready to learn something new!</p>
+    <div class="content">
+        <p class="intro-text">Hi there! I'm Leeya, a passionate explorer of the realms of data and coding. With an ever-growing curiosity, I dive deep into analyzing data, building applications, and creating digital solutions. I love blending logic and creativity to craft meaningful experiences.</p>
+        <p class="intro-text">Stay tuned for projects, tutorials, and insights on coding, data science, and the digital future!</p>
+
+        <a href="#contact" class="button">Get in Touch</a>
     </div>
 
-    <!-- Footer Section -->
     <footer>
-        <p>© 2024 Leeya | Data & Coding</p>
+        <p>Built with love and code in a vaporwave universe.</p>
     </footer>
 
 </body>
