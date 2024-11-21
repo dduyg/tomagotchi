@@ -3,90 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leeya Data/Coding</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Leeya - Data & Coding</title>
     <style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Body Styling */
+        /* Global styles */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #2e2e2e;
-            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Vaporwave color palette */
+        --pink: #ff77ff;
+        --purple: #8a2be2;
+        --blue: #00bcd4;
+        --neon-green: #39ff14;
+        --black: #121212;
+
+        /* Background and header styles */
+        header {
+            background: linear-gradient(45deg, var(--pink), var(--purple), var(--blue));
+            padding: 10vh 0;
+            text-align: center;
+            color: white;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        header h1 {
+            font-size: 4em;
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+            letter-spacing: 5px;
+        }
+
+        header p {
+            font-size: 1.5em;
+            margin-top: 20px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* Button styles */
+        .intro-button {
+            background-color: var(--neon-green);
+            color: #121212;
+            font-size: 1.2em;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        .intro-button:hover {
+            background-color: var(--blue);
+        }
+
+        /* Main content section */
+        .main-content {
             text-align: center;
             padding: 40px;
         }
 
-        /* Vaporwave Gray Color Palette */
-        .vaporwave-gray {
-            background: linear-gradient(135deg, #424242, #616161);
-            color: #f8f8f8;
-            border-radius: 10px;
-            padding: 20px;
+        .main-content h2 {
+            color: var(--neon-green);
+            font-size: 2.5em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
 
-        h1 {
-            font-size: 3em;
-            color: #d9d9d9;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            margin-bottom: 20px;
-        }
-
-        p {
+        .main-content p {
             font-size: 1.2em;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .intro {
+            color: var(--pink);
             max-width: 800px;
-            margin: 0 auto;
+            margin: 20px auto;
+            line-height: 1.6;
         }
 
-        a {
-            color: #ff7f50;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        a:hover {
-            color: #ff6347;
-        }
-
-        /* Footer Styling */
+        /* Footer styles */
         footer {
-            margin-top: 40px;
-            font-size: 1em;
-            color: #b0b0b0;
+            background-color: var(--black);
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
 
-        footer a {
-            color: #ff7f50;
-        }
-
-        footer a:hover {
-            color: #ff6347;
-        }
     </style>
 </head>
 <body>
 
-    <div class="vaporwave-gray">
-        <h1>Welcome to Leeya's Data & Coding Hub</h1>
-        <div class="intro">
-            <p>Hello! I'm Leeya, a passionate data enthusiast and coding expert. This is where I share my journey, knowledge, and projects in the world of data analysis, machine learning, and coding.</p>
-            <p>Feel free to explore my work and get in touch for collaborations or inquiries.</p>
-            <p><a href="mailto:leeya@example.com">Contact me</a> for more information!</p>
-        </div>
+    <!-- Header Section -->
+    <header>
+        <h1>Welcome to Leeya's World</h1>
+        <p>Your go-to space for data and coding adventures</p>
+        <button class="intro-button" onclick="alert('Thanks for visiting!')">Explore</button>
+    </header>
+
+    <!-- Main Content Section -->
+    <div class="main-content">
+        <h2>About Leeya</h2>
+        <p>Hi there! I'm Leeya, a data enthusiast and coder. I love diving into complex datasets, solving problems, and exploring the latest trends in technology. Whether it's programming or working with data, I'm always ready to learn something new!</p>
     </div>
 
+    <!-- Footer Section -->
     <footer>
-        <p>Designed by Leeya | <a href="https://www.github.com/Leeya" target="_blank">GitHub</a></p>
+        <p>© 2024 Leeya | Data & Coding</p>
     </footer>
 
 </body>
