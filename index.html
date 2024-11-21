@@ -4,106 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Leeya - Data & Coding</title>
+    <title>Leeya - Data/Coding</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #ff77ff, #00e0ff);
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #1e1e2f;
             color: #fff;
             margin: 0;
             padding: 0;
-            text-align: center;
-        }
-        h1, h2 {
-            font-family: 'Helvetica', sans-serif;
-            letter-spacing: 1px;
         }
         header {
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 20px;
+            background: linear-gradient(135deg, #ff77ff, #00d2ff);
+            padding: 50px 0;
             text-align: center;
-            font-size: 36px;
-            margin-bottom: 40px;
-            border-radius: 8px;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
-        h1 {
-            font-size: 48px;
-            color: #ff66b2;
+        header h1 {
+            margin: 0;
+            font-size: 3.5em;
+            color: #fff;
+            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
         }
-        h2 {
-            color: #33e0ff;
-        }
-        .content {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 20px;
+        section {
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.7);
             margin: 20px;
             border-radius: 8px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
         }
-        .footer {
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+        section h2 {
+            font-size: 2em;
+            text-align: center;
+            color: #ff77ff;
+            text-transform: uppercase;
+        }
+        .content {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #d0d0d0;
             text-align: center;
         }
-        .links a {
-            color: #ff66b2;
+        footer {
+            background-color: #111;
+            color: #999;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+        .highlight {
+            color: #ff77ff;
+            font-weight: bold;
+        }
+        .button {
+            background-color: #ff77ff;
+            color: #1e1e2f;
+            padding: 12px 20px;
+            border-radius: 5px;
             text-decoration: none;
-            margin: 0 10px;
+            font-size: 1em;
+            transition: background 0.3s;
         }
-        .links a:hover {
-            text-decoration: underline;
-        }
-        .glitch {
-            position: relative;
-            display: inline-block;
-            color: #ff66b2;
-            font-size: 4em;
-            letter-spacing: 1px;
-        }
-        .glitch::before {
-            content: attr(data-text);
-            position: absolute;
-            left: 2px;
-            text-shadow: -2px 0px 10px rgba(255, 0, 255, 0.7);
-            top: 0;
-            animation: glitch 1s infinite linear alternate-reverse;
-        }
-        @keyframes glitch {
-            0% {
-                transform: translate(0);
-            }
-            50% {
-                transform: translate(-5px, -5px);
-            }
-            100% {
-                transform: translate(5px, 5px);
-            }
+        .button:hover {
+            background-color: #00d2ff;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1 class="glitch" data-text="Leeya - Data & Coding">Leeya - Data & Coding</h1>
-    </header>
 
+<header>
+    <h1>Leeya - Data / Coding</h1>
+</header>
+
+<section>
+    <h2>About Me</h2>
     <div class="content">
-        <h2>About Me</h2>
-        <p>Hi! I'm Leeya, a passionate data enthusiast and coding lover. I enjoy solving problems through data analysis, coding, and automation. Currently, I am exploring various technologies and building projects that blend data science and coding.</p>
-        <p>I believe in the power of data to unlock insights and drive decisions. When I'm not coding, I spend time learning new tools, reading about tech trends, or experimenting with new ways to approach data challenges.</p>
+        <p>Hello! My name is <span class="highlight">Leeya</span>. I'm a passionate data enthusiast and coding expert. I specialize in analyzing complex datasets and creating efficient solutions using the latest technologies in data science and programming. My work revolves around making data accessible, understandable, and actionable.</p>
+        <p>When I'm not coding or working with data, you can usually find me experimenting with new programming languages or diving into machine learning projects. I enjoy creating clean, effective code that solves real-world problems.</p>
+        <p>Feel free to connect with me through <a href="mailto:leeya@example.com" class="button">Email Me</a></p>
     </div>
+</section>
 
-    <div class="footer">
-        <div class="links">
-            <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>|
-            <a href="https://github.com" target="_blank">GitHub</a>|
-            <a href="mailto:leeya@example.com">Email</a>
-        </div>
-        <p>&copy; 2024 Leeya - All Rights Reserved</p>
-    </div>
+<footer>
+    <p>&copy; 2024 Leeya. All rights reserved.</p>
+</footer>
+
 </body>
 </html>
