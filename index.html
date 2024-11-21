@@ -3,89 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Leeya - Data & Coding Enthusiast">
     <title>Leeya - Data & Coding</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #ff7eb9, #ff66b2, #9c00b3);
-            color: white;
+        /* Basic reset */
+        body, h1, p {
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            font-family: 'Courier New', Courier, monospace;
         }
 
-        .container {
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            font-size: 18px;
+            line-height: 1.6;
+            padding: 50px;
             text-align: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            max-width: 600px;
-            width: 100%;
         }
 
         h1 {
             font-size: 3em;
-            letter-spacing: 3px;
-            color: #ff66b2;
-            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
         }
 
         h2 {
-            font-size: 1.5em;
-            margin-top: 0;
-            color: #ff7eb9;
-            letter-spacing: 2px;
+            font-size: 2em;
+            margin-bottom: 20px;
         }
 
         p {
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin-top: 10px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 20px;
         }
 
-        .button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 1.1em;
-            color: white;
-            background: #9c00b3;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
+        .footer {
+            margin-top: 50px;
+            font-size: 1em;
+            color: #7f8c8d;
         }
 
-        .button:hover {
-            background: #ff7eb9;
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
         }
 
-        footer {
-            position: absolute;
-            bottom: 10px;
-            font-size: 0.9em;
-            color: white;
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Typewriter effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #3498db;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .1em;
+            animation: typing 3.5s steps(40) 1s 1 normal both, blink 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Leeya</h1>
-        <h2>Data & Coding Enthusiast</h2>
-        <p>Hi! I'm Leeya. I'm passionate about exploring the world of data and diving deep into coding challenges. With a love for finding insights hidden in complex datasets, I specialize in programming and creating innovative solutions that make data more accessible. Whether it's data analysis, machine learning, or web development, I am always eager to learn and build!</p>
-        <button class="button" onclick="window.location.href='mailto:leeya@example.com'">Contact Me</button>
+
+    <h1>Welcome to My Personal Page</h1>
+
+    <div class="content">
+        <h2>About Me</h2>
+        <p class="typewriter">Hello! I'm Leeya, a passionate Data Analyst and Coding Enthusiast.</p>
+        <p>I specialize in turning raw data into meaningful insights and enjoy working on coding projects that push the boundaries of technology.</p>
+        <p>With a deep interest in data analysis, machine learning, and programming, I am always looking to learn more and improve my skills in these areas.</p>
     </div>
 
-    <footer>
-        <p>Designed with love in a soft vaporwave style</p>
-    </footer>
+    <div class="footer">
+        <p>Feel free to reach out to me on <a href="mailto:leeya@example.com">Email</a>.</p>
+    </div>
+
 </body>
 </html>
