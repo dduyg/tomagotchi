@@ -3,93 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leeya - Data & Coding</title>
+    <title>Leeya - About Me</title>
     <style>
-        /* General Reset */
-        body, html {
+        /* General reset and styling */
+        body {
             margin: 0;
-            padding: 0;
-            font-family: 'Courier New', Courier, monospace;
-            color: #e0e0e0;
-            background: linear-gradient(135deg, #121212, #320d3e);
-            height: 100%;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #a8d0e6, #f8a5c2);
+            color: #ffffff;
             overflow-x: hidden;
         }
 
-        /* Background grid animation */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/dark-geometric.png');
-            opacity: 0.1;
-            z-index: -2;
-        }
-
-        /* Glow effect */
-        h1, h2 {
-            text-align: center;
-            color: #ff73fa;
-            text-shadow: 0 0 10px #ff73fa, 0 0 20px #ff73fa, 0 0 30px #ff73fa;
-        }
-
-        .container {
-            text-align: center;
-            padding: 30px;
-        }
-
-        /* Vaporwave Grid Box */
-        .grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
+        /* Vaporwave-inspired header */
+        header {
+            background: rgba(36, 36, 62, 0.8);
             padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #ffffff30;
         }
 
-        .card {
+        header h1 {
+            font-size: 2.5rem;
+            color: #f5d7e3;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            margin: 0;
+        }
+
+        header h2 {
+            font-size: 1.5rem;
+            color: #d9f3ff;
+            font-weight: lighter;
+            margin-top: 5px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* About section */
+        .about {
+            padding: 50px 20px;
+            max-width: 800px;
+            margin: 0 auto;
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 10px;
-            padding: 20px;
-            width: 300px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+        .about h3 {
+            font-size: 1.8rem;
+            color: #fcefee;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
         }
 
-        .card h3 {
-            margin-top: 0;
-            color: #ff93a1;
-        }
-
-        .card p {
-            color: #e0e0e0;
-            font-size: 14px;
+        .about p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #e4f7ff;
         }
 
         /* Footer */
         footer {
             text-align: center;
             padding: 20px;
-            font-size: 12px;
-            color: #808080;
+            background: rgba(36, 36, 62, 0.8);
+            border-top: 2px solid #ffffff30;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
 
-        a {
-            color: #ff93a1;
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #b7e2ff;
+        }
+
+        footer a {
+            color: #f8c4d9;
             text-decoration: none;
         }
 
-        a:hover {
+        footer a:hover {
             text-decoration: underline;
         }
     </style>
@@ -97,44 +90,24 @@
 <body>
     <header>
         <h1>Leeya</h1>
-        <h2>Data & Coding Enthusiast</h2>
+        <h2>Data / Coding Enthusiast</h2>
     </header>
-    <div class="container">
-        <section>
-            <p>
-                Hi, I'm Leeya! Welcome to my personal space on the web. I am passionate about exploring the 
-                intersection of data, code, and creativity. Whether it's crafting innovative solutions, diving 
-                deep into datasets, or building cyber-inspired projects, I'm always driven by curiosity and 
-                the desire to learn.
-            </p>
-        </section>
-
-        <section class="grid">
-            <div class="card">
-                <h3>About Me</h3>
-                <p>
-                    With a background in data science and coding, I specialize in turning raw data into meaningful 
-                    insights. I also enjoy experimenting with web design and cyberpunk-inspired art.
-                </p>
-            </div>
-            <div class="card">
-                <h3>Projects</h3>
-                <p>
-                    From interactive dashboards to creative coding projects, I love bringing ideas to life through 
-                    technology. Check out my portfolio or GitHub for more.
-                </p>
-            </div>
-            <div class="card">
-                <h3>Contact</h3>
-                <p>
-                    Got a project in mind or just want to say hi? Reach out to me at 
-                    <a href="mailto:leeya@cybermail.com">leeya@cybermail.com</a>.
-                </p>
-            </div>
-        </section>
-    </div>
+    <section class="about">
+        <h3>About Me</h3>
+        <p>
+            Hi, I'm Leeya, a passionate coder and data enthusiast with a love for solving complex problems and discovering meaningful insights. 
+            My journey in the world of coding began with a curiosity about how things work and quickly transformed into a career centered around innovation and learning.
+        </p>
+        <p>
+            When I'm not immersed in data or writing code, you can find me exploring new technologies, enjoying music with a retro aesthetic, 
+            or delving into creative projects that merge technology with art.
+        </p>
+        <p>
+            Feel free to reach out if you'd like to collaborate or just chat about tech and ideas!
+        </p>
+    </section>
     <footer>
-        <p>© 2024 Leeya | Designed in a vaporwave-cyberpunk style</p>
+        <p>Crafted with care by Leeya. Connect with me on <a href="#">LinkedIn</a> or <a href="#">GitHub</a>.</p>
     </footer>
 </body>
 </html>
