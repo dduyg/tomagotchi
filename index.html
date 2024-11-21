@@ -33,21 +33,36 @@
             padding: 20px 0;
             position: fixed;
             bottom: 0;
-            width: 100%;
+            display: inline-block;
+            border-right: 3px solid #00ff99;
+            padding-right: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 4s steps(40) 1s forwards, blink 0.75s step-end infinite;
         }
+        @keyframes typing {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }   
     </style>
 </head>
 <body>
-    <header>
-        <h1>Leeya</h1>
-    </header>
+    <header>Automated Machine Learning (AutoML) refers to the process of automating the end-to-end process of applying machine learning to real-world problems. The goal of AutoML is to make machine learning accessible to non-experts and to improve the efficiency of experts by automating tasks that would traditionally require manual intervention.</header>
     
     <main>
-        <p>My journey in the world of data and coding began with a deep curiosity for how numbers and algorithms shape our world. Over the years, I've honed my skills in various programming languages and tools, striving to continuously learn and grow in this ever-evolving field.</p>
+Key components of AutoML include:
+1. Data Preprocessing: Automatically cleaning, transforming, and structuring raw data into a suitable format for modeling.
+2. Model Selection: AutoML systems automatically search for the most appropriate machine learning model for a given dataset and problem, often trying various algorithms and hyperparameters.
+3. Feature Engineering: Automatically selecting and creating the best features from raw data, which are essential for improving model performance.
+4. Hyperparameter Tuning: Optimizing the hyperparameters of machine learning models to improve their performance, usually through methods like grid search or Bayesian optimization.
+5. Model Training and Evaluation: AutoML platforms manage the process of training models, evaluating their performance, and selecting the best-performing models.
+6. Deployment: Some AutoML systems also help automate the deployment of models into production environments.
     </main>
-
-    <footer>
-        <p>ights reserved.</p>
-    </footer>
+    
+    <footer>AutoML simplifies and accelerates the process of building machine learning models, making it more efficient and accessible, even for those with limited expertise in data science or machine learning. Popular AutoML frameworks include Google Cloud AutoML, H2O.ai, and Microsoft Azure AutoML.</footer>
 </body>
 </html>
