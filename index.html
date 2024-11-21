@@ -3,56 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiminalLoop</title>
+    <meta name="description" content="Leeya Data Coding Blog">
+    <title>Leeya Data Coding - Blog</title>
     <style>
+        /* Vaporwave Aesthetic */
         body {
-            background-color: #2C003E;
-            color: #e0e0e0;
-            font-family: 'Courier New', monospace;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ff5f6d, #ffc3a0);
+            color: white;
             margin: 0;
             padding: 0;
+            background-size: 400% 400%;
+            animation: gradientAnimation 5s ease infinite;
         }
-        header {
-            padding: 50px 0;
-            font-size: 36px;
-            color: #ff80c0;
+
+        h1, h2 {
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
         }
-        main {
-            padding: 40px;
-            max-width: 800px;
-            margin: auto;
+
+        h1 {
+            font-size: 3em;
+            margin-top: 50px;
+            color: #ffeb3b;
         }
-        footer {
-            display: inline-block;
-            border-right: 3px solid #00ff99;
-            padding-right: 10px;
-            white-space: nowrap;
-            overflow: hidden;
-            width: 0;
-            animation: typing 4s steps(40) 1s forwards, blink 0.75s step-end infinite;
+
+        h2 {
+            font-size: 2em;
+            margin-top: 20px;
+            color: #00bcd4;
         }
-        @keyframes typing {
-            0% { width: 0; }
-            100% { width: 100%; }
+
+        .content {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            margin-top: 20px;
         }
-        @keyframes blink {
-            50% { border-color: transparent; }
-        }   
+
+        .content a {
+            color: #ffeb3b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .content a:hover {
+            text-decoration: underline;
+        }
+
+        .blog-post {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .blog-post:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #9e9e9e;
+        }
+
+        /* Animation for background gradient */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
     </style>
 </head>
 <body>
-    <header>Automated Machine Learning (AutoML) refers to the process of automating the end-to-end process of applying machine learning to real-world problems. The goal of AutoML is to make machine learning accessible to non-experts and to improve the efficiency of experts by automating tasks that would traditionally require manual intervention.</header>
-    
-    <main>
-Key components of AutoML include:
-1. Data Preprocessing: Automatically cleaning, transforming, and structuring raw data into a suitable format for modeling.
-2. Model Selection: AutoML systems automatically search for the most appropriate machine learning model for a given dataset and problem, often trying various algorithms and hyperparameters.
-3. Feature Engineering: Automatically selecting and creating the best features from raw data, which are essential for improving model performance.
-4. Hyperparameter Tuning: Optimizing the hyperparameters of machine learning models to improve their performance, usually through methods like grid search or Bayesian optimization.
-5. Model Training and Evaluation: AutoML platforms manage the process of training models, evaluating their performance, and selecting the best-performing models.
-6. Deployment: Some AutoML systems also help automate the deployment of models into production environments.
-    </main>
-    
-    <footer>AutoML simplifies and accelerates the process of building machine learning models, making it more efficient and accessible, even for those with limited expertise in data science or machine learning. Popular AutoML frameworks include Google Cloud AutoML, H2O.ai, and Microsoft Azure AutoML.</footer>
+
+    <h1>Leeya Data Coding</h1>
+    <h2>Blog</h2>
+
+    <div class="content">
+        <p>Welcome to my personal blog where I share insights, tutorials, and tips about data coding and tech. Feel free to explore my posts!</p>
+        
+        <div class="blog-post">
+            <h3>Post Title: Introduction to Data Science</h3>
+            <p>In this post, I will cover the basics of data science, including key concepts like data cleaning, data visualization, and machine learning. Stay tuned for more!</p>
+            <a href="#">Read more...</a>
+        </div>
+
+        <div class="blog-post">
+            <h3>Post Title: Learning Python for Data Analysis</h3>
+            <p>Python is one of the most popular languages for data analysis. In this post, I'll walk you through some Python libraries and tools you'll need to get started with data analysis.</p>
+            <a href="#">Read more...</a>
+        </div>
+
+        <div class="blog-post">
+            <h3>Post Title: The Importance of Data Privacy</h3>
+            <p>As data grows in importance, so does the need to protect it. In this post, I’ll discuss some fundamental practices for ensuring data privacy and security.</p>
+            <a href="#">Read more...</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Leeya Data Coding. All rights reserved.</p>
+    </div>
+
 </body>
 </html>
