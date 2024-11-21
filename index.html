@@ -6,93 +6,135 @@
     <title>Leeya - Data & Coding</title>
     <style>
         /* General Reset */
-        body, h1, h2, p {
+        body, html {
             margin: 0;
             padding: 0;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            color: #fff;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            color: #e0e0e0;
+            background: linear-gradient(135deg, #121212, #320d3e);
+            height: 100%;
             overflow-x: hidden;
         }
 
+        /* Background grid animation */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/dark-geometric.png');
+            opacity: 0.1;
+            z-index: -2;
+        }
+
+        /* Glow effect */
         h1, h2 {
-            font-weight: bold;
+            text-align: center;
+            color: #ff73fa;
+            text-shadow: 0 0 10px #ff73fa, 0 0 20px #ff73fa, 0 0 30px #ff73fa;
         }
 
-        h1 {
-            font-size: 3rem;
-            color: #ff69b4;
-            text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4;
+        .container {
+            text-align: center;
+            padding: 30px;
         }
 
-        h2 {
-            font-size: 1.5rem;
-            margin-top: 10px;
-            color: #50fa7b;
-            text-shadow: 0 0 5px #50fa7b, 0 0 10px #50fa7b;
+        /* Vaporwave Grid Box */
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
         }
 
-        p {
-            margin-top: 20px;
-            font-size: 1rem;
-            line-height: 1.6;
-            max-width: 600px;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .button {
-            margin-top: 30px;
-            padding: 10px 20px;
-            font-size: 1rem;
-            color: #fff;
-            background: linear-gradient(135deg, #ff0080, #ff8c00);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            box-shadow: 0 0 10px #ff69b4;
-            text-shadow: none;
-            text-decoration: none;
-            transition: all 0.3s ease;
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
         }
 
-        .button:hover {
-            background: linear-gradient(135deg, #ff8c00, #ff0080);
-            box-shadow: 0 0 15px #ff69b4, 0 0 25px #ff69b4;
+        .card h3 {
+            margin-top: 0;
+            color: #ff93a1;
         }
 
+        .card p {
+            color: #e0e0e0;
+            font-size: 14px;
+        }
+
+        /* Footer */
         footer {
-            margin-top: 50px;
-            font-size: 0.8rem;
-            color: #aaa;
-            text-shadow: none;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #808080;
+        }
+
+        a {
+            color: #ff93a1;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <h1>Leeya</h1>
-    <h2>Data & Coding Enthusiast</h2>
-    <p>
-        Welcome to my personal webpage! I'm Leeya, a passionate data analyst and coder who thrives on solving complex problems 
-        and finding meaningful insights in data. Whether I'm working on scripts, exploring new tech, or building creative solutions, 
-        I love pushing the boundaries of what's possible.
-    </p>
-    <p>
-        In my free time, I enjoy diving into cyberpunk aesthetics, experimenting with code, and exploring the intersection of art and technology. 
-        Let's connect and create something amazing!
-    </p>
-    <a href="mailto:leeya@example.com" class="button">Get in Touch</a>
+    <header>
+        <h1>Leeya</h1>
+        <h2>Data & Coding Enthusiast</h2>
+    </header>
+    <div class="container">
+        <section>
+            <p>
+                Hi, I'm Leeya! Welcome to my personal space on the web. I am passionate about exploring the 
+                intersection of data, code, and creativity. Whether it's crafting innovative solutions, diving 
+                deep into datasets, or building cyber-inspired projects, I'm always driven by curiosity and 
+                the desire to learn.
+            </p>
+        </section>
+
+        <section class="grid">
+            <div class="card">
+                <h3>About Me</h3>
+                <p>
+                    With a background in data science and coding, I specialize in turning raw data into meaningful 
+                    insights. I also enjoy experimenting with web design and cyberpunk-inspired art.
+                </p>
+            </div>
+            <div class="card">
+                <h3>Projects</h3>
+                <p>
+                    From interactive dashboards to creative coding projects, I love bringing ideas to life through 
+                    technology. Check out my portfolio or GitHub for more.
+                </p>
+            </div>
+            <div class="card">
+                <h3>Contact</h3>
+                <p>
+                    Got a project in mind or just want to say hi? Reach out to me at 
+                    <a href="mailto:leeya@cybermail.com">leeya@cybermail.com</a>.
+                </p>
+            </div>
+        </section>
+    </div>
     <footer>
-        © 2024 Leeya. Designed in a vaporwave cyberpunk style.
+        <p>© 2024 Leeya | Designed in a vaporwave-cyberpunk style</p>
     </footer>
 </body>
 </html>
