@@ -3,121 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leeya - Data & Coding</title>
+    <title>Leeya - Data/Coding</title>
     <style>
         /* General Reset */
-        body, h1, h2, p {
+        body, h1, h2, p, a {
             margin: 0;
             padding: 0;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            text-align: center;
         }
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #ff8cf4, #8a2be2, #00ffff);
-            color: #ffffff;
-            min-height: 100vh;
+            background: linear-gradient(135deg, #2d1e3e, #4a148c, #ff77e9, #00d2ff);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            height: 100vh;
             overflow: hidden;
         }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
         .container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 15px;
             max-width: 800px;
-            width: 90%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
         }
-        .header {
-            grid-column: span 2;
-            text-align: center;
-        }
-        .header h1 {
+        h1 {
             font-size: 3rem;
-            font-family: 'Courier New', monospace;
-            background: linear-gradient(to right, #ff8cf4, #00ffff);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-        .header p {
-            font-size: 1.2rem;
-            margin-top: 10px;
-        }
-        .section {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-        }
-        .section h2 {
-            font-size: 1.5rem;
             margin-bottom: 10px;
-            text-shadow: 0 0 5px #ff8cf4, 0 0 10px #8a2be2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
-        .section p {
-            line-height: 1.5;
-            font-size: 1rem;
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
         }
-        .footer {
-            grid-column: span 2;
-            text-align: center;
-            margin-top: 10px;
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
         }
-        .footer p {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        .footer a {
-            color: #00ffff;
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            color: #00d2ff;
             text-decoration: none;
             font-weight: bold;
+            border: 2px solid #00d2ff;
+            border-radius: 5px;
+            transition: all 0.3s ease;
         }
-        .footer a:hover {
-            text-decoration: underline;
+        a:hover {
+            background: #00d2ff;
+            color: #2d1e3e;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>Leeya</h1>
-            <p>Data | Coding | Innovator</p>
-        </div>
-        <div class="section">
-            <h2>About Me</h2>
-            <p>
-                Hi! I'm Leeya, a passionate data enthusiast and coder who loves exploring innovative ways to make sense of complex data. 
-                My expertise lies in data analysis, visualization, and creating efficient algorithms to solve real-world problems.
-            </p>
-        </div>
-        <div class="section">
-            <h2>Skills</h2>
-            <p>
-                - Data Analysis & Visualization<br>
-                - Python, R, SQL, and JavaScript<br>
-                - Machine Learning & AI<br>
-                - Web Development & Automation
-            </p>
-        </div>
-        <div class="section">
-            <h2>Hobbies</h2>
-            <p>
-                Outside of coding, I enjoy experimenting with digital art, listening to vaporwave, and exploring sci-fi literature. 
-                I'm also a fan of retro gaming and creating music mixes!
-            </p>
-        </div>
-        <div class="section">
-            <h2>Contact</h2>
-            <p>
-                Feel free to reach out!<br>
-                Email: <a href="mailto:leeya@example.com">leeya@example.com</a><br>
-                LinkedIn: <a href="https://linkedin.com/in/leeya" target="_blank">linkedin.com/in/leeya</a>
-            </p>
-        </div>
-        <div class="footer">
-            <p>Designed with ❤️ by Leeya</p>
-        </div>
+        <h1>Leeya</h1>
+        <h2>Data & Coding Enthusiast</h2>
+        <p>
+            Welcome to my personal space on the web! I am passionate about exploring the world of data,
+            crafting efficient code, and building solutions that make a difference. 
+        </p>
+        <p>
+            Feel free to connect, explore, and discover what I’m working on.
+        </p>
+        <a href="mailto:leeya@example.com">Get in Touch</a>
     </div>
+    <footer>
+        © 2024 Leeya. Crafted with creativity and a vaporwave vibe.
+    </footer>
 </body>
 </html>
