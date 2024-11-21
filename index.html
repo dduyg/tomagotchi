@@ -4,112 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Leeya - Data & Coding</title>
+    <title>Leeya Data/Coding</title>
     <style>
+        /* Cyberpunk Theme */
         body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #00ff99;
             margin: 0;
             padding: 0;
-            background-color: #111;
-            color: white;
-            font-family: 'Arial', sans-serif;
-            overflow: hidden;
-            position: relative;
+            overflow-x: hidden;
         }
 
         h1, h2 {
+            color: #ff33cc;
             text-align: center;
-            text-transform: uppercase;
-            font-size: 3em;
-            letter-spacing: 5px;
+            text-shadow: 0 0 10px rgba(255, 51, 204, 0.8);
         }
 
-        .glitch {
-            position: relative;
-            display: inline-block;
-            font-size: 5em;
-            color: white;
-            text-transform: uppercase;
-        }
-
-        .glitch::before, .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            background: linear-gradient(45deg, #ff0080, #ffcc00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: glitch-anim 1s infinite;
-        }
-
-        .glitch::after {
-            left: 2px;
-            text-shadow: -2px 0 red, 2px 0 blue;
-            animation-delay: 0.1s;
-        }
-
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            text-align: center;
-            padding: 50px 0;
-        }
-
-        .content {
-            background-color: rgba(0, 0, 0, 0.7);
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 30px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        h3 {
+            color: #00bfff;
+            text-shadow: 0 0 8px rgba(0, 191, 255, 0.7);
         }
 
         p {
-            font-size: 1.5em;
+            color: #ccc;
             line-height: 1.6;
-            color: #ddd;
+            margin: 20px 0;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
         }
 
-        a {
-            color: #ffcc00;
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            background-color: #ff33cc;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
             text-decoration: none;
-            font-weight: bold;
-            letter-spacing: 2px;
+            border-radius: 5px;
+            margin: 20px 0;
+            transition: background-color 0.3s;
         }
 
-        a:hover {
-            color: #ff0080;
+        .button:hover {
+            background-color: #ff66cc;
         }
 
-        @keyframes glitch-anim {
+        .footer {
+            text-align: center;
+            color: #ccc;
+            padding: 20px;
+            font-size: 14px;
+            border-top: 1px solid #444;
+        }
+
+        .footer a {
+            color: #00bfff;
+            text-decoration: none;
+        }
+
+        /* Glowing effect for text */
+        @keyframes glow {
             0% {
-                transform: translate(-2px, 0);
+                text-shadow: 0 0 5px rgba(0, 255, 255, 0.5), 0 0 10px rgba(0, 255, 255, 0.5), 0 0 15px rgba(0, 255, 255, 0.5);
             }
-            20% {
-                transform: translate(2px, 0);
-            }
-            40% {
-                transform: translate(-2px, 0);
-            }
-            60% {
-                transform: translate(2px, 0);
-            }
-            80% {
-                transform: translate(-2px, 0);
+            50% {
+                text-shadow: 0 0 20px rgba(0, 255, 255, 1), 0 0 30px rgba(0, 255, 255, 1), 0 0 40px rgba(0, 255, 255, 1);
             }
             100% {
-                transform: translate(2px, 0);
+                text-shadow: 0 0 5px rgba(0, 255, 255, 0.5), 0 0 10px rgba(0, 255, 255, 0.5), 0 0 15px rgba(0, 255, 255, 0.5);
             }
+        }
+
+        h1, h2, h3 {
+            animation: glow 1.5s infinite alternate;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="glitch" data-text="Leeya">Leeya</h1>
-        <h2>Data & Coding Enthusiast</h2>
-        <div class="content">
-            <p>Hello! I'm Leeya, a passionate coder with a love for working with data. I specialize in data analysis, machine learning, and creating efficient algorithms to solve complex problems. My goal is to explore the ever-evolving world of technology and make meaningful contributions to data science.</p>
-            <p>When I'm not coding, you can find me experimenting with new programming languages, contributing to open-source projects, or learning about the latest trends in artificial intelligence and big data.</p>
-            <p>If you’d like to connect, feel free to reach out to me via <a href="mailto:leeya@example.com">email</a>.</p>
+        <h1>Leeya Data/Coding</h1>
+        <h2>Welcome to my Digital World</h2>
+        <p>Hi, I'm Leeya. I'm a passionate coder and data enthusiast, with a keen interest in pushing the boundaries of what's possible through technology. My work revolves around solving complex problems, automating processes, and extracting valuable insights from data.</p>
+
+        <h3>About Me</h3>
+        <p>I'm a developer with expertise in various programming languages, including Python, JavaScript, and C++. My focus lies in data analytics, machine learning, and creating innovative solutions that blend code with data to create a better future.</p>
+        
+        <p>When I'm not coding, you can find me diving deep into new technologies, exploring futuristic trends, or experimenting with new algorithms and AI models.</p>
+
+        <a href="mailto:leeya@example.com" class="button">Contact Me</a>
+
+        <div class="footer">
+            <p>Thanks for visiting my page. Check out my <a href="https://github.com/leeya" target="_blank">GitHub</a> for more projects.</p>
         </div>
     </div>
 </body>
