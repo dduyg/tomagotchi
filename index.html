@@ -3,114 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leeya - Data/Coding</title>
+    <title>Leeya - Data & Coding</title>
     <style>
         /* General Reset */
-        body, html {
+        body, h1, h2, p {
             margin: 0;
             padding: 0;
-            font-family: 'Courier New', Courier, monospace;
-            box-sizing: border-box;
         }
-
-        /* Vaporwave Colors and Background */
         body {
-            background: linear-gradient(to bottom, #2c1f4a, #5d2c75, #b44e8d, #f481bc, #ffccf9);
-            color: #fff;
-            text-align: center;
-            overflow-x: hidden;
-        }
-
-        h1, h2 {
             font-family: 'Arial', sans-serif;
-            margin: 10px;
+            background: linear-gradient(135deg, #ff8cf4, #8a2be2, #00ffff);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
         }
-
-        h1 {
-            font-size: 3rem;
-            text-transform: uppercase;
-            color: #00ffff;
-            text-shadow: 2px 2px 5px #ff0090, -2px -2px 5px #ffff00;
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            color: #ffb3fe;
-            text-shadow: 2px 2px 5px #00f0ff;
-        }
-
-        .about-me {
-            max-width: 800px;
-            margin: 50px auto;
-            background: rgba(255, 255, 255, 0.1);
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            max-width: 800px;
+            width: 90%;
         }
-
-        p {
+        .header {
+            grid-column: span 2;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 3rem;
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(to right, #ff8cf4, #00ffff);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .header p {
             font-size: 1.2rem;
-            line-height: 1.8;
-            color: #e0e0e0;
+            margin-top: 10px;
         }
-
-        /* Decorative Elements */
-        .divider {
-            width: 60%;
-            height: 2px;
-            background: #ff66ff;
-            margin: 20px auto;
+        .section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
         }
-
-        footer {
-            margin-top: 50px;
+        .section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 5px #ff8cf4, 0 0 10px #8a2be2;
+        }
+        .section p {
+            line-height: 1.5;
+            font-size: 1rem;
+        }
+        .footer {
+            grid-column: span 2;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .footer p {
             font-size: 0.9rem;
-            color: #888;
+            color: rgba(255, 255, 255, 0.8);
         }
-
-        footer a {
+        .footer a {
             color: #00ffff;
             text-decoration: none;
+            font-weight: bold;
         }
-
-        footer a:hover {
+        .footer a:hover {
             text-decoration: underline;
-        }
-
-        /* Glitch Animation for Text */
-        @keyframes glitch {
-            0% { text-shadow: 2px 2px 5px #ff0090; }
-            20% { text-shadow: -2px -2px 5px #ffff00; }
-            40% { text-shadow: 3px -3px 5px #00ffff; }
-            60% { text-shadow: -3px 3px 5px #ffb3fe; }
-            80% { text-shadow: 2px 2px 5px #ff0090; }
-            100% { text-shadow: -2px -2px 5px #ffff00; }
-        }
-
-        h1 {
-            animation: glitch 3s infinite;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Leeya</h1>
-        <h2>Data / Coding</h2>
-    </header>
-    <div class="divider"></div>
-    <section class="about-me">
-        <h2>About Me</h2>
-        <p>
-            Hi, I'm Leeya! I’m passionate about transforming data into meaningful insights and creating efficient, innovative solutions through code. 
-            With a love for problem-solving and a keen eye for detail, I enjoy working on projects that bridge the gap between technology and creativity.
-        </p>
-        <p>
-            When I'm not coding, you’ll find me exploring new technologies, analyzing trends, or enjoying the retro aesthetic of vaporwave culture.
-        </p>
-    </section>
-    <footer>
-        <p>Designed by Leeya • <a href="mailto:your.email@example.com">Contact Me</a></p>
-    </footer>
+    <div class="container">
+        <div class="header">
+            <h1>Leeya</h1>
+            <p>Data | Coding | Innovator</p>
+        </div>
+        <div class="section">
+            <h2>About Me</h2>
+            <p>
+                Hi! I'm Leeya, a passionate data enthusiast and coder who loves exploring innovative ways to make sense of complex data. 
+                My expertise lies in data analysis, visualization, and creating efficient algorithms to solve real-world problems.
+            </p>
+        </div>
+        <div class="section">
+            <h2>Skills</h2>
+            <p>
+                - Data Analysis & Visualization<br>
+                - Python, R, SQL, and JavaScript<br>
+                - Machine Learning & AI<br>
+                - Web Development & Automation
+            </p>
+        </div>
+        <div class="section">
+            <h2>Hobbies</h2>
+            <p>
+                Outside of coding, I enjoy experimenting with digital art, listening to vaporwave, and exploring sci-fi literature. 
+                I'm also a fan of retro gaming and creating music mixes!
+            </p>
+        </div>
+        <div class="section">
+            <h2>Contact</h2>
+            <p>
+                Feel free to reach out!<br>
+                Email: <a href="mailto:leeya@example.com">leeya@example.com</a><br>
+                LinkedIn: <a href="https://linkedin.com/in/leeya" target="_blank">linkedin.com/in/leeya</a>
+            </p>
+        </div>
+        <div class="footer">
+            <p>Designed with ❤️ by Leeya</p>
+        </div>
+    </div>
 </body>
 </html>
