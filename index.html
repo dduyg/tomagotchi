@@ -3,80 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Leeya - Data & Coding</title>
+    <title>Leeya - Data/Coding</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
+        /* General Reset */
+        * {
             margin: 0;
             padding: 0;
-            background: #2e003e;
-            color: white;
-            text-align: center;
-            background-image: linear-gradient(45deg, #ff00d8, #00d8ff, #ff00f0);
-            background-size: 400% 400%;
-            animation: gradientAnimation 15s ease infinite;
+            box-sizing: border-box;
         }
 
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        h1 {
-            font-size: 3.5em;
-            margin-top: 20vh;
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #1b1b2f;
             color: #fff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 0, 255, 0.7);
+            line-height: 1.6;
+            text-align: center;
+            padding: 0;
+            margin: 0;
         }
 
-        h2 {
-            font-size: 1.8em;
-            color: #b3b3b3;
-            text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-            margin-top: 20px;
+        /* Vaporwave Gradient Background */
+        .background {
+            background: linear-gradient(135deg, #f3a683, #b44c98, #4a3f9e);
+            background-size: 300% 300%;
+            animation: gradient 6s ease infinite;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
         }
 
-        p {
-            font-size: 1.1em;
+        @keyframes gradient {
+            0% { background-position: 100% 50%; }
+            50% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .intro {
+            margin-top: 50px;
+        }
+
+        .intro h1 {
+            font-size: 3rem;
+            font-family: 'Courier New', monospace;
+            color: #fff;
+            text-shadow: 0 0 15px rgba(255, 0, 255, 0.8);
+        }
+
+        .intro p {
+            font-size: 1.2rem;
             max-width: 800px;
             margin: 20px auto;
-            color: #dcdcdc;
+            line-height: 1.5;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
         }
 
-        .intro-container {
-            margin-top: 15vh;
+        .cta {
+            margin-top: 30px;
         }
 
-        .button {
-            display: inline-block;
-            padding: 15px 30px;
-            margin-top: 40px;
-            background: #ff00d8;
-            color: white;
-            font-size: 1.2em;
-            border-radius: 5px;
+        .cta a {
             text-decoration: none;
-            box-shadow: 0px 0px 20px rgba(255, 0, 255, 0.8);
-            transition: all 0.3s ease;
+            background-color: #ff79c6;
+            color: #1b1b2f;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            transition: 0.3s;
         }
 
-        .button:hover {
-            background: #ff4cbf;
-            box-shadow: 0px 0px 30px rgba(255, 0, 255, 1);
+        .cta a:hover {
+            background-color: #ff48c4;
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
         }
 
     </style>
 </head>
 <body>
 
-    <div class="intro-container">
-        <h1>Leeya</h1>
-        <h2>Data & Coding Enthusiast</h2>
-        <p>Welcome to my personal homepage! I'm passionate about data, coding, and everything in between. I work on projects that explore the intersection of technology and information, with a focus on solving real-world problems through programming and analytics.</p>
-        <a href="#projects" class="button">See My Projects</a>
-    </div>
+    <!-- Vaporwave Gradient Background -->
+    <div class="background"></div>
+
+    <!-- Introduction Section -->
+    <section class="intro">
+        <h1>Welcome to Leeya's World of Data and Coding</h1>
+        <p>Hello! I'm Leeya, a passionate data enthusiast and coding aficionado. I love exploring the world of data science, coding algorithms, and working on exciting tech projects. My goal is to make an impact through data-driven decisions and innovative coding solutions. Stay tuned for my upcoming projects!</p>
+        <div class="cta">
+            <a href="mailto:leeya@example.com">Contact Me</a>
+        </div>
+    </section>
 
 </body>
 </html>
