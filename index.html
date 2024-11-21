@@ -3,114 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leeya - Data/Coding</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Leeya - Data & Coding</title>
     <style>
         body {
-            font-family: 'Courier New', monospace;
-            background-color: black;
-            color: white;
-            text-align: center;
             margin: 0;
             padding: 0;
+            background-color: #111;
+            color: white;
+            font-family: 'Arial', sans-serif;
             overflow: hidden;
-        }
-        
-        h1 {
-            font-size: 4em;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            animation: glitch 1s infinite;
             position: relative;
-            z-index: 1;
         }
 
-        h1::before, h1::after {
-            content: 'Leeya - Data/Coding';
+        h1, h2 {
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 3em;
+            letter-spacing: 5px;
+        }
+
+        .glitch {
+            position: relative;
+            display: inline-block;
+            font-size: 5em;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
             position: absolute;
             top: 0;
             left: 0;
-            color: lime;
-            z-index: -1;
-            animation: glitch-effect 2s infinite linear alternate-reverse;
+            background: linear-gradient(45deg, #ff0080, #ffcc00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glitch-anim 1s infinite;
         }
 
-        h1::before {
+        .glitch::after {
             left: 2px;
-            text-shadow: 1px 0 lime;
+            text-shadow: -2px 0 red, 2px 0 blue;
+            animation-delay: 0.1s;
         }
 
-        h1::after {
-            left: -2px;
-            text-shadow: -1px 0 red;
-        }
-
-        @keyframes glitch {
-            0% {
-                transform: skew(0.5deg, -0.5deg);
-            }
-            50% {
-                transform: skew(-0.5deg, 0.5deg);
-            }
-            100% {
-                transform: skew(0.5deg, -0.5deg);
-            }
-        }
-
-        @keyframes glitch-effect {
-            0% {
-                transform: translate(-5px, -5px);
-            }
-            50% {
-                transform: translate(5px, 5px);
-            }
-            100% {
-                transform: translate(-5px, -5px);
-            }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            padding: 50px 0;
         }
 
         .content {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid lime;
+            background-color: rgba(0, 0, 0, 0.7);
             border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
         }
 
         p {
-            font-size: 1.2em;
-            line-height: 1.5;
-            margin: 20px 0;
+            font-size: 1.5em;
+            line-height: 1.6;
+            color: #ddd;
         }
 
-        footer {
-            position: fixed;
-            bottom: 10px;
-            width: 100%;
-            text-align: center;
-            font-size: 1em;
-            color: lime;
+        a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        a:hover {
+            color: #ff0080;
+        }
+
+        @keyframes glitch-anim {
+            0% {
+                transform: translate(-2px, 0);
+            }
+            20% {
+                transform: translate(2px, 0);
+            }
+            40% {
+                transform: translate(-2px, 0);
+            }
+            60% {
+                transform: translate(2px, 0);
+            }
+            80% {
+                transform: translate(-2px, 0);
+            }
+            100% {
+                transform: translate(2px, 0);
+            }
         }
     </style>
 </head>
 <body>
-
-    <h1>Leeya - Data/Coding</h1>
-
-    <div class="content">
-        <h2>About Me</h2>
-        <p>
-            Hi, I'm Leeya. I'm passionate about data and coding. I specialize in data science, machine learning, and building efficient systems using code. 
-            My goal is to leverage the power of data to solve real-world problems and create meaningful solutions.
-        </p>
-        <p>
-            I enjoy exploring new technologies, algorithms, and frameworks, and I am always looking to expand my knowledge and skills. My journey in coding started with a curiosity for how data could shape our understanding of the world, and it has since evolved into a career in data science and software development.
-        </p>
+    <div class="container">
+        <h1 class="glitch" data-text="Leeya">Leeya</h1>
+        <h2>Data & Coding Enthusiast</h2>
+        <div class="content">
+            <p>Hello! I'm Leeya, a passionate coder with a love for working with data. I specialize in data analysis, machine learning, and creating efficient algorithms to solve complex problems. My goal is to explore the ever-evolving world of technology and make meaningful contributions to data science.</p>
+            <p>When I'm not coding, you can find me experimenting with new programming languages, contributing to open-source projects, or learning about the latest trends in artificial intelligence and big data.</p>
+            <p>If you’d like to connect, feel free to reach out to me via <a href="mailto:leeya@example.com">email</a>.</p>
+        </div>
     </div>
-
-    <footer>
-        <p>&copy; 2024 Leeya - Data/Coding</p>
-    </footer>
-
 </body>
 </html>
