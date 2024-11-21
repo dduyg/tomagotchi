@@ -5,82 +5,135 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leeya - Data & Coding</title>
     <style>
-        /* General Styles */
-        body {
+        /* General Reset */
+        body, html {
             margin: 0;
+            padding: 0;
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #a29bfe, #74b9ff, #55efc4);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: #ffffff;
-            text-align: center;
+            color: #fff;
+            background: linear-gradient(135deg, #50c9c3, #96deda);
+            height: 100%;
+            overflow-x: hidden;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* Seapunk Theme Elements */
+        body {
+            background: radial-gradient(circle, #96f6ff 0%, #30b6c9 50%, #1e3a5f 100%);
+            animation: moveBg 15s linear infinite;
+        }
+
+        @keyframes moveBg {
+            0% { background-position: 0 0; }
+            100% { background-position: 1000px 1000px; }
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin: 0;
         }
 
         h1 {
-            font-size: 3rem;
-            margin: 50px 0 10px;
-            text-shadow: 2px 2px #81ecec;
+            font-size: 3.5rem;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px #50e5ff;
         }
 
         h2 {
             font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #dfe6e9;
+            color: #d2f7ff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
-        p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin: 20px auto;
-            max-width: 600px;
+        /* Main Container */
+        .container {
+            text-align: center;
+            padding: 20px;
+            margin-top: 15vh;
         }
 
-        a {
+        /* Seapunk Bubble Effect */
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            animation: float 10s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 1; }
+            100% { transform: translateY(-10vh); opacity: 0; }
+        }
+
+        /* Randomly Placed Bubbles */
+        .bubble:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            left: 10%;
+            animation-duration: 12s;
+        }
+        .bubble:nth-child(2) {
+            width: 50px;
+            height: 50px;
+            left: 30%;
+            animation-duration: 8s;
+        }
+        .bubble:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            left: 50%;
+            animation-duration: 14s;
+        }
+        .bubble:nth-child(4) {
+            width: 60px;
+            height: 60px;
+            left: 70%;
+            animation-duration: 9s;
+        }
+        .bubble:nth-child(5) {
+            width: 40px;
+            height: 40px;
+            left: 90%;
+            animation-duration: 7s;
+        }
+
+        /* Buttons for Interaction */
+        .buttons {
+            margin-top: 30px;
+        }
+
+        .buttons a {
             display: inline-block;
-            margin: 15px 10px;
-            padding: 10px 20px;
-            font-size: 1.1rem;
-            color: #ffffff;
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 1rem;
+            color: #fff;
             text-decoration: none;
-            background: #6c5ce7;
-            border-radius: 25px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 2px solid #50e5ff;
+            border-radius: 30px;
             transition: all 0.3s ease;
+            background: transparent;
         }
 
-        a:hover {
-            background: #a29bfe;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        footer {
-            margin-top: 50px;
-            padding: 20px 0;
-            background: rgba(0, 0, 0, 0.1);
-            color: #dfe6e9;
-            font-size: 0.9rem;
+        .buttons a:hover {
+            background: #50e5ff;
+            color: #00384d;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to Leeya's World</h1>
-    <h2>Data Enthusiast | Coding Aficionado</h2>
-    <p>
-        Hi there! I'm Leeya, passionate about exploring the limitless possibilities of data and coding.  
-        I love transforming raw data into meaningful insights and crafting elegant code to solve complex problems.  
-        Join me on this journey as I learn, create, and innovate in the world of technology.
-    </p>
-    <a href="#projects">My Projects</a>
-    <a href="#contact">Contact Me</a>
+    <div class="container">
+        <h1>Welcome to Leeya's World</h1>
+        <h2>Data Enthusiast & Coding Explorer</h2>
+        <div class="buttons">
+            <a href="#about">Learn More</a>
+            <a href="#contact">Get in Touch</a>
+        </div>
+    </div>
 
-    <footer>
-        © 2024 Leeya | Made with ❤️ and code
-    </footer>
+    <!-- Bubble Decorations -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
 </body>
 </html>
