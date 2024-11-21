@@ -3,86 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leeya Data/Coding</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Leeya - Data & Coding</title>
     <style>
-        /* General Styles */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #ff6b6b, #ff9f80);
+            background: #2e003e;
             color: white;
             text-align: center;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            overflow: hidden;
+            background-image: linear-gradient(45deg, #ff00d8, #00d8ff, #ff00f0);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         h1 {
-            font-size: 3em;
-            margin-bottom: 0.2em;
+            font-size: 3.5em;
+            margin-top: 20vh;
             color: #fff;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 0, 255, 0.7);
         }
 
         h2 {
-            font-size: 1.5em;
-            margin-top: 0.2em;
-            color: #f1f1f1;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            font-size: 1.8em;
+            color: #b3b3b3;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+            margin-top: 20px;
         }
 
-        .intro {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 2em;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 600px;
-            margin: 0 auto;
+        p {
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 20px auto;
+            color: #dcdcdc;
         }
 
-        .intro p {
+        .intro-container {
+            margin-top: 15vh;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            margin-top: 40px;
+            background: #ff00d8;
+            color: white;
             font-size: 1.2em;
-            color: #e0e0e0;
-            line-height: 1.6;
+            border-radius: 5px;
+            text-decoration: none;
+            box-shadow: 0px 0px 20px rgba(255, 0, 255, 0.8);
+            transition: all 0.3s ease;
         }
 
-        .vaporwave {
-            font-size: 2em;
-            font-family: 'Courier New', monospace;
-            color: #e1e1e1;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.8);
-            margin-bottom: 30px;
+        .button:hover {
+            background: #ff4cbf;
+            box-shadow: 0px 0px 30px rgba(255, 0, 255, 1);
         }
 
-        /* Animation for Vaporwave text */
-        @keyframes glow {
-            0% {
-                text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.8);
-            }
-            50% {
-                text-shadow: 0 0 20px rgba(255, 0, 255, 1), 0 0 30px rgba(255, 0, 255, 1);
-            }
-            100% {
-                text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.8);
-            }
-        }
-
-        .vaporwave:hover {
-            animation: glow 1.5s ease-in-out infinite;
-        }
     </style>
 </head>
 <body>
-    <div class="intro">
-        <h1 class="vaporwave">Leeya Data/Coding</h1>
-        <h2>Welcome to my homepage</h2>
-        <p>Hello! My name is Leeya, and I'm passionate about data science, coding, and exploring the world of technology. My expertise includes analyzing complex data and developing solutions with clean, efficient code. Stay tuned as I continue to explore new challenges and opportunities in the field of data and coding.</p>
+
+    <div class="intro-container">
+        <h1>Leeya</h1>
+        <h2>Data & Coding Enthusiast</h2>
+        <p>Welcome to my personal homepage! I'm passionate about data, coding, and everything in between. I work on projects that explore the intersection of technology and information, with a focus on solving real-world problems through programming and analytics.</p>
+        <a href="#projects" class="button">See My Projects</a>
     </div>
+
 </body>
 </html>
