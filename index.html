@@ -3,56 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leeya - Data & Coding</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Leeya - Data/Coding</title>
     <style>
-        /* Basic reset */
-        body, h1, p {
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #1e1e1e;
+            color: #f5f5f5;
             margin: 0;
             padding: 0;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        body {
-            background-color: #f4f4f4;
-            color: #333;
-            font-size: 18px;
-            line-height: 1.6;
-            padding: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             text-align: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         h1 {
-            font-size: 3em;
-            color: #2c3e50;
-        }
-
-        .content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: left;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #00ff99;
+            letter-spacing: 2px;
         }
 
         h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #ffcc00;
         }
 
         p {
-            margin-bottom: 20px;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-top: 20px;
+            text-align: justify;
+        }
+
+        .highlight {
+            color: #ff69b4;
+            font-weight: bold;
         }
 
         .footer {
-            margin-top: 50px;
-            font-size: 1em;
-            color: #7f8c8d;
+            margin-top: 40px;
+            font-size: 1rem;
+            color: #888;
         }
 
         .footer a {
-            color: #3498db;
+            color: #00ff99;
             text-decoration: none;
         }
 
@@ -60,46 +66,39 @@
             text-decoration: underline;
         }
 
-        /* Typewriter effect */
-        .typewriter {
-            overflow: hidden;
-            border-right: .15em solid #3498db;
+        .typing-effect {
+            display: inline-block;
+            border-right: 3px solid #00ff99;
+            padding-right: 10px;
             white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: .1em;
-            animation: typing 3.5s steps(40) 1s 1 normal both, blink 0.75s step-end infinite;
+            overflow: hidden;
+            width: 0;
+            animation: typing 4s steps(40) 1s forwards, blink 0.75s step-end infinite;
         }
 
         @keyframes typing {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100%;
-            }
+            0% { width: 0; }
+            100% { width: 100%; }
         }
 
         @keyframes blink {
-            50% {
-                border-color: transparent;
-            }
+            50% { border-color: transparent; }
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <h1>Leeya</h1>
+        <h2>Data / Coding</h2>
+        <p class="typing-effect">Welcome to my personal webpage. I specialize in data analysis, programming, and solving complex coding challenges.</p>
+        
+        <p>Hi, I'm Leeya. I am passionate about working with data and using my coding skills to uncover insights. My main focus is on leveraging the power of code to automate processes, analyze large datasets, and create efficient solutions. I have experience working with languages like <span class="highlight">Python</span>, <span class="highlight">R</span>, and <span class="highlight">SQL</span>, and I am always learning new tools and techniques.</p>
+        
+        <p>I believe in the power of technology to solve real-world problems, and I am constantly pushing myself to improve my skills and contribute to meaningful projects. When I'm not coding, you can find me experimenting with new technologies, reading, or exploring nature.</p>
 
-    <h1>Welcome to My Personal Page</h1>
-
-    <div class="content">
-        <h2>About Me</h2>
-        <p class="typewriter">Hello! I'm Leeya, a passionate Data Analyst and Coding Enthusiast.</p>
-        <p>I specialize in turning raw data into meaningful insights and enjoy working on coding projects that push the boundaries of technology.</p>
-        <p>With a deep interest in data analysis, machine learning, and programming, I am always looking to learn more and improve my skills in these areas.</p>
+        <div class="footer">
+            <p>Feel free to <a href="mailto:leeya@email.com">contact me</a> for collaborations or if you have any questions!</p>
+        </div>
     </div>
-
-    <div class="footer">
-        <p>Feel free to reach out to me on <a href="mailto:leeya@example.com">Email</a>.</p>
-    </div>
-
 </body>
 </html>
