@@ -3,90 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leeya - Data/Coding</title>
+    <title>Leeya - Data & Coding</title>
     <style>
-        /* General Reset */
-        body, h1, h2, p, a {
+        /* General Styles */
+        body {
             margin: 0;
-            padding: 0;
             font-family: 'Arial', sans-serif;
-            color: white;
+            background: linear-gradient(135deg, #a29bfe, #74b9ff, #55efc4);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #ffffff;
             text-align: center;
         }
-        body {
-            background: linear-gradient(135deg, #2d1e3e, #4a148c, #ff77e9, #00d2ff);
-            background-size: 400% 400%;
-            animation: gradientShift 10s ease infinite;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-        @keyframes gradientShift {
+
+        @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-        .container {
-            max-width: 800px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
-        }
+
         h1 {
             font-size: 3rem;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            margin: 50px 0 10px;
+            text-shadow: 2px 2px #81ecec;
         }
+
         h2 {
             font-size: 1.5rem;
             margin-bottom: 20px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+            color: #dfe6e9;
         }
+
         p {
             font-size: 1.2rem;
-            line-height: 1.6;
+            line-height: 1.8;
+            margin: 20px auto;
+            max-width: 600px;
         }
+
         a {
             display: inline-block;
-            margin-top: 20px;
+            margin: 15px 10px;
             padding: 10px 20px;
-            color: #00d2ff;
+            font-size: 1.1rem;
+            color: #ffffff;
             text-decoration: none;
-            font-weight: bold;
-            border: 2px solid #00d2ff;
-            border-radius: 5px;
+            background: #6c5ce7;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
         }
+
         a:hover {
-            background: #00d2ff;
-            color: #2d1e3e;
+            background: #a29bfe;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
+
         footer {
-            margin-top: 20px;
+            margin-top: 50px;
+            padding: 20px 0;
+            background: rgba(0, 0, 0, 0.1);
+            color: #dfe6e9;
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Leeya</h1>
-        <h2>Data & Coding Enthusiast</h2>
-        <p>
-            Welcome to my personal space on the web! I am passionate about exploring the world of data,
-            crafting efficient code, and building solutions that make a difference. 
-        </p>
-        <p>
-            Feel free to connect, explore, and discover what I’m working on.
-        </p>
-        <a href="mailto:leeya@example.com">Get in Touch</a>
-    </div>
+    <h1>Welcome to Leeya's World</h1>
+    <h2>Data Enthusiast | Coding Aficionado</h2>
+    <p>
+        Hi there! I'm Leeya, passionate about exploring the limitless possibilities of data and coding.  
+        I love transforming raw data into meaningful insights and crafting elegant code to solve complex problems.  
+        Join me on this journey as I learn, create, and innovate in the world of technology.
+    </p>
+    <a href="#projects">My Projects</a>
+    <a href="#contact">Contact Me</a>
+
     <footer>
-        © 2024 Leeya. Crafted with creativity and a vaporwave vibe.
+        © 2024 Leeya | Made with ❤️ and code
     </footer>
 </body>
 </html>
