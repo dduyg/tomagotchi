@@ -4,85 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Leeya - Data/Coding</title>
+    <title>Leeya - Data & Coding</title>
     <style>
         body {
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #0f0f0f;
-            color: #00ff99;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff77ff, #00e0ff);
+            color: #fff;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-image: linear-gradient(45deg, #1f1f1f, #2e2e2e, #0a0a0a);
-            background-size: 400% 400%;
-            animation: gradientAnimation 10s ease infinite;
-        }
-
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .container {
             text-align: center;
-            width: 80%;
-            max-width: 800px;
-            padding: 30px;
-            border: 2px solid #00ff99;
-            border-radius: 15px;
-            background-color: rgba(0, 0, 0, 0.7);
         }
-
+        h1, h2 {
+            font-family: 'Helvetica', sans-serif;
+            letter-spacing: 1px;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            border-radius: 8px;
+        }
         h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #ff00d1;
+            font-size: 48px;
+            color: #ff66b2;
         }
-
         h2 {
-            font-size: 1.5em;
-            margin: 10px 0;
-            color: #ff6600;
+            color: #33e0ff;
         }
-
-        p {
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin: 20px 0;
-            color: #00b3b3;
+        .content {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            margin: 20px;
+            border-radius: 8px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
-
         .footer {
-            font-size: 0.9em;
-            color: #cccccc;
-            margin-top: 30px;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
         }
-
-        a {
-            color: #ff00d1;
+        .links a {
+            color: #ff66b2;
             text-decoration: none;
+            margin: 0 10px;
         }
-
-        a:hover {
+        .links a:hover {
             text-decoration: underline;
+        }
+        .glitch {
+            position: relative;
+            display: inline-block;
+            color: #ff66b2;
+            font-size: 4em;
+            letter-spacing: 1px;
+        }
+        .glitch::before {
+            content: attr(data-text);
+            position: absolute;
+            left: 2px;
+            text-shadow: -2px 0px 10px rgba(255, 0, 255, 0.7);
+            top: 0;
+            animation: glitch 1s infinite linear alternate-reverse;
+        }
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+            }
+            50% {
+                transform: translate(-5px, -5px);
+            }
+            100% {
+                transform: translate(5px, 5px);
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Leeya</h1>
-        <h2>Data & Coding Enthusiast</h2>
-        <p>Welcome to my personal page! I’m Leeya, a passionate data enthusiast and coder. I specialize in transforming complex datasets into meaningful insights, with a deep love for automation, coding, and problem-solving. My expertise includes programming languages like Python, data analysis, and machine learning.</p>
-        <p>As a cyberpunk aficionado, I combine my love for technology with creative thinking to build innovative solutions. If you share similar interests, feel free to get in touch!</p>
-        <div class="footer">
-            <p>Stay connected: <a href="mailto:leeya@coding.com">leeya@coding.com</a></p>
+    <header>
+        <h1 class="glitch" data-text="Leeya - Data & Coding">Leeya - Data & Coding</h1>
+    </header>
+
+    <div class="content">
+        <h2>About Me</h2>
+        <p>Hi! I'm Leeya, a passionate data enthusiast and coding lover. I enjoy solving problems through data analysis, coding, and automation. Currently, I am exploring various technologies and building projects that blend data science and coding.</p>
+        <p>I believe in the power of data to unlock insights and drive decisions. When I'm not coding, I spend time learning new tools, reading about tech trends, or experimenting with new ways to approach data challenges.</p>
+    </div>
+
+    <div class="footer">
+        <div class="links">
+            <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>|
+            <a href="https://github.com" target="_blank">GitHub</a>|
+            <a href="mailto:leeya@example.com">Email</a>
         </div>
+        <p>&copy; 2024 Leeya - All Rights Reserved</p>
     </div>
 </body>
 </html>
