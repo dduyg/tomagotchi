@@ -18,39 +18,128 @@
             overflow: hidden;
         }
 
-        main {
-            width: 80%;
-            max-width: 900px;
-            margin-top: 20px;
-        }
-        section {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-            height: 55vh;
-            overflow-y: auto;
-        }
-        section p {
-            font-size: 1.2em;
+        header {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 3em;
             color: #e0e0e0;
         }
+
+        main {
+            width: 85%;
+            max-width: 900px;
+            background: rgba(0, 0, 0, 0.4);
+            border-left: 6px solid;
+            padding: 0 5%;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            max-height: 55vh;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+        
+        section {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            padding: 1.25em 0;
+            overflow-x: scroll;
+            -ms-scroll-snap-type: x mandatory;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth; /* For smoother scrolling */
+            gap: 1em;
+        }
+        section::-webkit-scrollbar {
+            display: none;
+        }
+        .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 0 0 260px;
+            padding: 0.625em 1em;
+            border: 1px solid #333;
+            border-radius: 12px;
+            scroll-snap-align: start;
+            transition: all 0.4s;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover {
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        .shape {
+            position: absolute;
+            bottom: -3px;
+            left: -3px;
+            background: #7B7B7B;
+            width: 1.7em;
+            height: 1.7em;
+            border-radius: 100%;
+            border: 1px solid #333;
+        }
+        .card:hover .shape {
+            background: #333;
+        }
+        .card-title {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .card-content { 
+            margin: 0;
+            padding: 0;
+        }
+        
         footer {
             background-color: rgba(0, 0, 0, 0.8);
             padding: 10px;
             position: fixed;
             bottom: 0;
-            width: 100%;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 <main>
-    <h1>Data Coding</h1>
-    <section>
-        <h2>Exploring Data Structures</h2>
-        <p>In this post, I will explore the fundamentals of data structures, focusing on arrays, linked lists, and trees. Understanding these concepts is crucial for becoming a proficient coder.</p>
-    </section>
+    <header>AutoML</header>
+    <main>
+        <p>Automated Machine Learning (AutoML) refers to the process of automating the end-to-end process of applying machine learning to real-world problems. The goal of AutoML is to make machine learning accessible to non-experts and to improve the efficiency of experts by automating tasks that would traditionally require manual intervention.</p>
+        <h3>Key components of AutoML include:</h3>
+        <section>
+            <a href="#" class="card">
+                <div class="card-title">Data Preprocessing</div>
+                <span class="shape"></span>
+                <div class="card-content">Automatically cleaning, transforming, and structuring raw data into a suitable format for modeling.</div>
+            </a>
+            <a href="#" class="card">
+               <div class="card-title">Model Selection</div>
+               <span class="shape"></span>
+               <div class="card-content">AutoML systems automatically search for the most appropriate machine learning model for a given dataset and problem, often trying various algorithms and hyperparameters.</div> 
+            </a>
+            <a href="#" class="card">
+               <div class="card-title">Feature Engineering</div>
+               <span class="shape"></span>
+               <div class="card-content">Automatically selecting and creating the best features from raw data, which are essential for improving model performance.</div> 
+            </a>
+            <a href="#" class="card">
+               <div class="card-title">Hyperparameter Tuning</div>
+               <span class="shape"></span>
+               <div class="card-content">Optimizing the hyperparameters of machine learning models to improve their performance, usually through methods like grid search or Bayesian optimization.</div> 
+            </a>
+            <a href="#" class="card">
+               <div class="card-title">Model Training & Evaluation</div>
+               <span class="shape"></span>
+               <div class="card-content">AutoML platforms manage the process of training models, evaluating their performance, and selecting the best-performing models.</div> 
+            </a>
+            <a href="#" class="card">
+               <div class="card-title">Deployment</div>
+               <span class="shape"></span>
+               <div class="card-content">Some AutoML systems also help automate the deployment of models into production environments.</div> 
+            </a>
+        </section>
+        <p>AutoML simplifies and accelerates the process of building machine learning models, making it more efficient and accessible, even for those with limited expertise in data science or machine learning. Popular AutoML frameworks include Google Cloud AutoML, H2O.ai, and Microsoft Azure AutoML.</p>
+    </main>
     
     <footer>Ipsumdolorsitametligulanuncadipiscingmauris</footer>
 </main>
