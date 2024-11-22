@@ -41,19 +41,24 @@
             flex-direction: row;
             align-items: stretch;
             padding: 1.25em 0;
-            overflow-x: scroll;
+            overflow-x: auto;
             -ms-scroll-snap-type: x mandatory;
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth; /* For smoother scrolling */
             gap: 1em;
         }
         section::-webkit-scrollbar {
-            display: none;
-        }   
+            display: none; /* Hides the scrollbar in WebKit browsers */
+        }
+        section {
+            -ms-overflow-style: none; /* Hides scrollbar in IE and Edge */
+            scrollbar-width: none; /* Hides scrollbar in Firefox */
+        }
+        
         .card {
             display: flex;
             flex-direction: column;
-            flex: 0 0 260px;
+            flex: 0 0 200px;
             padding: 1em;
             border: 1px solid;
             border-radius: 12px;
