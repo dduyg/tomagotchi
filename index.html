@@ -3,121 +3,144 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Placeholder Page</title>
+  <title>LiminalLoop</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: black;
-      color: white;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .container {
-      display: flex;
-      flex-direction: row;
-      max-width: 1200px;
-      padding: 20px;
-    }
-    .left-section, .middle-section, .right-section {
-      flex: 1;
-      margin: 10px;
-    }
-    .left-section h1 {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-    .left-section p {
-      font-size: 16px;
-      line-height: 1.8;
-    }
-    .middle-section {
-      text-align: center;
-    }
-    .profile-photo {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      margin: 0 auto;
-      display: block;
-      object-fit: cover;
-    }
-    .design-element {
-      margin: 20px 0;
-      height: 50px;
-      width: 50px;
-    }
-    .right-section {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      justify-items: center;
-    }
-    .team-member img {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    .team-member p {
-      text-align: center;
-      font-size: 14px;
-      margin-top: 5px;
-    }
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  padding: 20px;
+}
+
+.intro-section {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.intro-section h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.intro-section p {
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.intro-section em {
+  font-style: italic;
+  color: #00f;
+}
+
+.founder-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.founder-content {
+  max-width: 50%;
+}
+
+.founder-content h2 {
+  font-size: 1.5rem;
+}
+
+.founder-content .highlight {
+  color: #00f;
+}
+
+.founder-content p {
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.founder-image img {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+}
+
+.team-section {
+  margin-top: 40px;
+}
+
+.team-section h2 {
+  text-align: center;
+}
+
+.team-grid {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.team-grid img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.team-section p {
+  text-align: center;
+  max-width: 800px;
+  margin: 20px auto;
+  line-height: 1.6;
+}
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Left Section -->
-    <div class="left-section">
-      <h1>Lorem Ipsum Dolor Sit Amet</h1>
+    <div class="intro-section">
+      <h1>There's nothing like <em>love at first sight</em>.</h1>
+      <p>We see, we feel, and we decide.</p>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse faucibus velit ac nulla consequat vehicula.
+        At Butter, we shape the way people see, the way they feel, and the
+        decisions they're making about your company.
       </p>
       <p>
-        Vivamus facilisis justo id lorem tincidunt, in laoreet ex tristique. Sed ut arcu ut eros fermentum suscipit.
+        Through visuals, language, and interfaces, we shape how your story
+        is perceived, whether you're a start-up, global brand or a game
+        changer in between.
       </p>
     </div>
-    <!-- Middle Section -->
-    <div class="middle-section">
-      <img src="profile.jpg" alt="Profile Photo" class="profile-photo">
-      <p>
-        Lorem ipsum dolor sit amet, <strong>consectetur adipiscing elit</strong>.
-      </p>
-      <p>
-        Curabitur eleifend metus at libero placerat, quis interdum purus malesuada.
-      </p>
-      <img src="design-element.png" alt="Design Element" class="design-element">
+
+    <div class="founder-section">
+      <div class="founder-content">
+        <h2>Butter is helmed by <span class="highlight">Cari</span></h2>
+        <p><strong>Sekendur.</strong> Combining creativity and analytical thinking, Cari takes companies to the next level of their brand expression and recognition.</p>
+        <p>Her creative approach is balanced by both a design and writing background as well as a tactical business sense, skills informed by her experience handling marketing and operations for fast-growing startups in <em>New York City</em>, <em>Chicago</em>, and <em>Berlin</em>.</p>
+        <p>She has developed campaigns in digital design, art direction, and brand identity for a wide range of companies, including <em>Nike</em>, <em>PUMA</em>, <em>Viacom</em>, and <em>Morgans Hotel Group</em>. Her work has been exhibited in galleries from Paris to Los Angeles and featured in <em>Hypebae</em>, <em>AIGA’s Eye on Design</em>, and <em>It’s Nice That</em>, among others.</p>
+      </div>
+      <div class="founder-image">
+        <img src="cari.jpg" alt="Portrait of Cari">
+      </div>
     </div>
-    <!-- Right Section -->
-    <div class="right-section">
-      <div class="team-member">
-        <img src="team1.jpg" alt="Team Member">
-        <p>Lorem Ipsum</p>
+
+    <div class="team-section">
+      <h2>Meet the Team</h2>
+      <div class="team-grid">
+        <img src="team1.jpg" alt="Team member">
+        <img src="team2.jpg" alt="Team member">
+        <img src="team3.jpg" alt="Team member">
+        <img src="team4.jpg" alt="Team member">
+        <img src="team5.jpg" alt="Team member">
+        <img src="team6.jpg" alt="Team member">
       </div>
-      <div class="team-member">
-        <img src="team2.jpg" alt="Team Member">
-        <p>Dolor Sit</p>
-      </div>
-      <div class="team-member">
-        <img src="team3.jpg" alt="Team Member">
-        <p>Amet Consectetur</p>
-      </div>
-      <div class="team-member">
-        <img src="team4.jpg" alt="Team Member">
-        <p>Adipiscing Elit</p>
-      </div>
-      <div class="team-member">
-        <img src="team5.jpg" alt="Team Member">
-        <p>Sed Vehicula</p>
-      </div>
-      <div class="team-member">
-        <img src="team6.jpg" alt="Team Member">
-        <p>Faucibus Eros</p>
-      </div>
+      <p>
+        Introducing Beatrice Sala and Sasha Danandeh, our master Designers,
+        Nayla Al-Mamlouk, our whipsmart Copywriter, Beth Carter, our incisive
+        Director of Brand Strategy, Izzy Clegg, our dynamic Marketing
+        Coordinator, and Jin Yoo and Amanda Sudnik, our brilliant Design and
+      </p>
     </div>
   </div>
 </body>
