@@ -12,29 +12,39 @@
             padding: 0;
             background: #bbbbbb;
             color: black;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensures full viewport height */
         }
         main {
+            flex: 1; /* Allows main content to expand while leaving space for the footer */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
             max-width: 800px;
             padding: 1.25em;
             margin: 0 auto;
-        }       
+            overflow: auto; /* Allows scrolling if content exceeds 100vh */
+        }
         header {
             margin-bottom: 40px;
         }
         .author {
             margin-right: -5px;
-            text-align: right;     
+            text-align: right;
             font-family: "Anonymous Pro", monospace;
             font-size: 11px;
             letter-spacing: .04em;
         }
         .description {
             font-size: 22px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #333;
+            color: #fff;
         }
     </style>
 </head>
@@ -47,5 +57,8 @@
     
     <p>Retro arcade, where memories fade, In a maze of dreams, where we once played. Pixelated skies, and endless quests, In the heart of the <a class="link" href="#">arcade</a>, we found our rest. In the neon glow of the midnight hour, Lost in the echoes of an old power, Tokens jingling, <a href="#" class="link">joystick</a> in hand, In a world of pixels, where we used to stand.</p>
 </main>
+<footer>
+    &copy; 2024 LiminalLoop. All rights reserved.
+</footer>
 </body>
 </html>
