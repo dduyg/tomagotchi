@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Blog Name</title>
+    <title>Your Personal Blog</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,60 +20,104 @@
         }
         header h1 {
             margin: 0;
-            font-size: 2.5em;
         }
-        main {
+        nav {
+            text-align: center;
+            margin-top: 10px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            background-color: #555;
+        }
+        nav a:hover {
+            background-color: #777;
+        }
+        section {
             padding: 20px;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        article {
+            margin: 20px;
             background-color: white;
-            margin-bottom: 20px;
-            padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        article h2 {
-            font-size: 1.8em;
-            margin-bottom: 10px;
+        h2 {
+            color: #333;
         }
-        article p {
-            font-size: 1.1em;
+        .post {
+            margin-bottom: 30px;
+        }
+        .post h3 {
+            margin: 0;
+            color: #222;
+        }
+        .post p {
             line-height: 1.6;
         }
         footer {
+            text-align: center;
+            padding: 20px;
             background-color: #333;
             color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+            margin-top: 30px;
+        }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Your Blog Name</h1>
-    </header>
 
-    <main>
-        <article>
-            <h2>Blog Post Title #1</h2>
-            <p>Welcome to my blog! This is where I share my thoughts and ideas. Stay tuned for more posts!</p>
-        </article>
+<header>
+    <h1>Your Personal Blog</h1>
+    <nav>
+        <a href="#about">About Me</a>
+        <a href="#blog">Blog Posts</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
 
-        <article>
-            <h2>Blog Post Title #2</h2>
-            <p>Today, I want to talk about something interesting. It’s all about modern web development and how exciting it is to create things!</p>
-        </article>
+<section id="about">
+    <h2>About Me</h2>
+    <p>Hello! I'm [Your Name], a passionate blogger sharing my thoughts on various topics including tech, lifestyle, and personal growth. I started this blog to connect with like-minded people and to share ideas. When I'm not writing, you can find me exploring new places, reading, or experimenting with new tech.</p>
+</section>
 
-        <!-- Add more blog posts as needed -->
-    </main>
+<section id="blog">
+    <h2>Blog Posts</h2>
 
-    <footer>
-        <p>© 2024 Your Blog Name | All rights reserved</p>
-    </footer>
+    <div class="post">
+        <h3>Post Title 1</h3>
+        <p>Published on: November 27, 2024</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero.</p>
+    </div>
+
+    <div class="post">
+        <h3>Post Title 2</h3>
+        <p>Published on: November 25, 2024</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus urna sed urna ultricies ac tempor dui sagittis. In condimentum facilisis porta. Sed nec diam eu diam mattis viverra. Nulla fringilla, orci ac euismod semper, magna diam porttitor mauris, quis sollicitudin sapien justo in libero.</p>
+    </div>
+
+    <!-- Add more posts as needed -->
+</section>
+
+<section id="contact">
+    <h2>Contact</h2>
+    <p>If you'd like to get in touch, feel free to reach out to me via email or through my social media profiles.</p>
+    <ul>
+        <li>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></li>
+        <li>Twitter: <a href="https://twitter.com/yourusername" target="_blank">@yourusername</a></li>
+        <li>Instagram: <a href="https://instagram.com/yourusername" target="_blank">@yourusername</a></li>
+    </ul>
+</section>
+
+<footer>
+    <p>© 2024 Your Personal Blog | <a href="#about">Back to Top</a></p>
+</footer>
+
 </body>
 </html>
