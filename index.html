@@ -3,73 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LiminalLoop</title>
+  <title>Animated Menu</title>
   <style>
+    /* General styles */
     body {
-      padding: 20%;
+      font-family: Arial, sans-serif;
+      background: #010111; /* Matches --black in your example */
+      color: #fff;
       margin: 0;
-      background-color: #e4e4e4;
-    }
-    
-    .menu ul {
-      list-style: none;
       padding: 0;
       display: flex;
-      flex-direction: column;
-      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
-    .menu-item {
-      text-decoration: none;
-      color: black;
+    /* Menu styles */
+    .menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 2rem;
+    }
+
+    .menu-link {
       position: relative;
-      font-size: 18px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
     }
 
-    /* Add the arrow with ::before */
-    .menu-item::before {
-      content: "→"; /* Arrow symbol */
+    .menu-link:hover {
+      color: #f27050; /* Matches --assertive */
+    }
+
+    /* Arrow animation */
+    .menu-link::before {
+      content: '➤'; /* Arrow symbol */
       position: absolute;
-      left: -20px; /* Position it to the left of the text */
-      opacity: 0; /* Initially hidden */
-      transform: translateX(-10px); /* Start slightly off */
-      transition: all 0.3s ease; /* Smooth animation */
+      left: -2rem; /* Positioning the arrow */
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: all 0.3s ease;
     }
 
-    /* On hover or click, reveal the arrow */
-    .menu-item:hover::before,
-    .menu-item:focus::before {
-      opacity: 1;
-      transform: translateX(0); /* Bring it into view */
-    }
-
-    /* Optional: Style the active link (clicked) */
-    .menu-item.active::before {
+    .menu-link:hover::before {
       opacity: 1;
       transform: translateX(0);
-      color: blue; /* Change color of the arrow when active */
     }
   </style>
 </head>
 <body>
-  <nav class="menu">
-    <ul>
-      <li><a href="#badass" class="menu-item">Badass</a></li>
-      <li><a href="#awesome" class="menu-item">Awesome</a></li>
-      <li><a href="#cool" class="menu-item">Cool</a></li>
-    </ul>
-  </nav>
-
-  <script>
-    // JavaScript for active state
-    document.querySelectorAll('.menu-item').forEach(item => {
-      item.addEventListener('click', (e) => {
-        // Remove active class from all items
-        document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
-        // Add active class to clicked item
-        e.target.classList.add('active');
-      });
-    });
-  </script>
+  <ul class="menu">
+    <li><a href="#badass" class="menu-link">Badass</a></li>
+    <li><a href="#cool" class="menu-link">Cool</a></li>
+    <li><a href="#awesome" class="menu-link">Awesome</a></li>
+  </ul>
 </body>
 </html>
