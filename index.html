@@ -1,80 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Arrow Effect</title>
-    <style>
-        :root {
-            --white: #ffffff;
-            --primary: #ff0; /* Highlight color */
-            --background: #010111;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Animation</title>
+  <style>
+    /* Basic menu styling */
+    .menu ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+    }
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: var(--background);
-            color: var(--white);
-        }
+    .menu-item {
+      text-decoration: none;
+      color: black;
+      position: relative;
+      font-size: 18px;
+    }
 
-        .menu {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin: 2rem;
-        }
+    /* Add the arrow with ::before */
+    .menu-item::before {
+      content: "→"; /* Arrow symbol */
+      position: absolute;
+      left: -30px; /* Position it to the left of the text */
+      opacity: 0; /* Initially hidden */
+      transform: translateX(-10px); /* Start slightly off */
+      transition: all 0.3s ease; /* Smooth animation */
+    }
 
-        .menu-item {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            text-decoration: none;
-            color: var(--white);
-            font-size: 1.25rem;
-            transition: color 0.3s ease;
-        }
+    /* On hover or click, reveal the arrow */
+    .menu-item:hover::before,
+    .menu-item:focus::before {
+      opacity: 1;
+      transform: translateX(0); /* Bring it into view */
+    }
 
-        .menu-item:hover,
-        .menu-item:focus {
-            color: var(--primary);
-        }
-
-        .arrow {
-            content: '';
-            display: inline-block;
-            position: absolute;
-            left: -20px;
-            width: 0;
-            height: 0;
-            border-top: 5px solid transparent;
-            border-bottom: 5px solid transparent;
-            border-left: 10px solid var(--primary);
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .menu-item:hover .arrow,
-        .menu-item:focus .arrow {
-            opacity: 1;
-            transform: translateX(-5px);
-        }
-    </style>
+    /* Optional: Style the active link (clicked) */
+    .menu-item.active::before {
+      opacity: 1;
+      transform: translateX(0);
+      color: blue; /* Change color of the arrow when active */
+    }
+  </style>
 </head>
 <body>
-    <nav class="menu">
-        <a href="#home" class="menu-item">
-            <span class="arrow"></span>Home
-        </a>
-        <a href="#about" class="menu-item">
-            <span class="arrow"></span>About
-        </a>
-        <a href="#services" class="menu-item">
-            <span class="arrow"></span>Services
-        </a>
-        <a href="#contact" class="menu-item">
-            <span class="arrow"></span>Contact
-        </a>
-    </nav>
+  <nav class="menu">
+    <ul>
+      <li><a href="#badass" class="menu-item">Badass</a></li>
+      <li><a href="#awesome" class="menu-item">Awesome</a></li>
+      <li><a href="#cool" class="menu-item">Cool</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    // JavaScript for active state
+    document.querySelectorAll('.menu-item').forEach(item => {
+      item.addEventListener('click', (e) => {
+        // Remove active class from all items
+        document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
+        // Add active class to clicked item
+        e.target.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
