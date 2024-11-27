@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animated Menu</title>
+  <title>Animated Menu with Arrow</title>
   <style>
     /* General styles */
     body {
@@ -24,7 +24,6 @@
       padding: 0;
       margin: 0;
       display: flex;
-      flex-direction: column;
       gap: 2rem;
     }
 
@@ -34,32 +33,29 @@
       color: #fff;
       font-size: 1.5rem;
       text-transform: uppercase;
-      transition: color 0.3s ease;
+      display: inline-flex;
+      align-items: center; /* Align text and arrow */
+      gap: 0.2rem; /* Small gap between arrow and text */
+      transition: transform 0.3s ease, color 0.3s ease;
     }
 
     .menu-link:hover {
       color: #f27050; /* Matches --assertive */
+      transform: translateX(10px); /* Moves the entire link (arrow + text) */
     }
 
     /* Arrow animation */
     .menu-link::before {
-      content: '→'; /* Arrow symbol */
-      position: absolute;
-      left: -2rem; /* Positioning the arrow */
+      content: '➤'; /* Arrow symbol */
       opacity: 0;
-      transform: translateX(-20px);
-      transition: all 0.3s ease;
+      transform: translateX(-10px); /* Initially offset to the left */
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
     .menu-link:hover::before {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateX(0); /* Moves into place */
     }
-.menu-link::before {
-  opacity: 0;
-  transform: translateX(-20px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
   </style>
 </head>
 <body>
