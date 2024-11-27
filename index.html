@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animated Menu with Arrow</title>
+  <title>Animated Menu with Arrow and Outline</title>
   <style>
     /* General styles */
     body {
@@ -38,11 +38,15 @@
       align-items: center; /* Align text and arrow */
       gap: 0.2rem; /* Small gap between arrow and text */
       transition: transform 0.3s ease, color 0.3s ease;
+      -webkit-text-stroke: 1px #f27050; /* Stroke color matches --assertive */
+      text-stroke: 1px #f27050; /* For non-webkit browsers */
     }
 
     .menu-link:hover {
       color: #f27050; /* Matches --assertive */
       transform: translateX(10px); /* Moves the entire link (arrow + text) */
+      -webkit-text-stroke: 0; /* Remove stroke on hover */
+      text-stroke: 0; /* For non-webkit browsers */
     }
 
     /* Arrow animation */
