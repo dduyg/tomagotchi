@@ -42,7 +42,7 @@
 
     /* Arrow animation */
     .menu-link::before {
-      content: '➤'; /* Arrow symbol */
+      content: '→'; /* Arrow symbol */
       position: absolute;
       left: -2rem; /* Positioning the arrow */
       opacity: 0;
@@ -54,6 +54,11 @@
       opacity: 1;
       transform: translateX(0);
     }
+.menu-link::before {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
   </style>
 </head>
 <body>
