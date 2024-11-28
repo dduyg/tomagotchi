@@ -20,7 +20,7 @@
             overflow: hidden;
         }
 
-        .button {
+        .btn {
             background-color: #ff00b3;
             color: #fff;
             padding: 15px 30px;
@@ -30,7 +30,7 @@
             margin-top: 30px;
             transition: all 0.3s ease;
         }
-        .button:hover {
+        .btn:hover {
             background-color: #ff33cc;
             transform: scale(1.1);
         }
@@ -42,7 +42,6 @@
             display: inline-block;
             font-weight: bold;
         }
-
         .glitch::before,
         .glitch::after {
             content: attr(data-text);
@@ -53,64 +52,29 @@
             z-index: -1;
             animation: glitch 2s infinite linear;
         }
-
         .glitch::after {
             left: 2px;
             text-shadow: -1px 0 red, 1px 0 blue;
             animation-delay: 1s;
         }
-
         @keyframes glitch {
-            0% {
-                clip: rect(42px, 9999px, 44px, 0);
-                transform: skew(0.02deg);
-            }
-            10% {
-                clip: rect(15px, 9999px, 45px, 0);
-                transform: skew(0.03deg);
-            }
-            20% {
-                clip: rect(70px, 9999px, 55px, 0);
-                transform: skew(0.01deg);
-            }
-            30% {
-                clip: rect(95px, 9999px, 90px, 0);
-                transform: skew(0.02deg);
-            }
-            40% {
-                clip: rect(60px, 9999px, 70px, 0);
-                transform: skew(0.03deg);
-            }
-            50% {
-                clip: rect(20px, 9999px, 10px, 0);
-                transform: skew(0.04deg);
-            }
-            60% {
-                clip: rect(15px, 9999px, 35px, 0);
-                transform: skew(0.02deg);
-            }
-            70% {
-                clip: rect(40px, 9999px, 100px, 0);
-                transform: skew(0.01deg);
-            }
-            80% {
-                clip: rect(10px, 9999px, 20px, 0);
-                transform: skew(0.02deg);
-            }
-            90% {
-                clip: rect(30px, 9999px, 50px, 0);
-                transform: skew(0.01deg);
-            }
-            100% {
-                clip: rect(42px, 9999px, 44px, 0);
-                transform: skew(0.02deg);
-            }
+            0% {clip: rect(42px, 9999px, 44px, 0); transform: skew(0.02deg);}
+            10% {clip: rect(15px, 9999px, 45px, 0); transform: skew(0.03deg);}
+            20% {clip: rect(70px, 9999px, 55px, 0); transform: skew(0.01deg);}
+            30% {clip: rect(95px, 9999px, 90px, 0); transform: skew(0.02deg);}
+            40% {clip: rect(60px, 9999px, 70px, 0); transform: skew(0.03deg);}
+            50% {clip: rect(20px, 9999px, 10px, 0); transform: skew(0.04deg);}
+            60% {clip: rect(15px, 9999px, 35px, 0); transform: skew(0.02deg);}
+            70% {clip: rect(40px, 9999px, 100px, 0); transform: skew(0.01deg);}
+            80% {clip: rect(10px, 9999px, 20px, 0); transform: skew(0.02deg);}
+            90% {clip: rect(30px, 9999px, 50px, 0); transform: skew(0.01deg);}
+            100% {clip: rect(42px, 9999px, 44px, 0); transform: skew(0.02deg);}
         }
     </style>
 </head>
 <body>
-    <h1>404</h1>
-    <p class="glitch" data-text="Oops! This page doesn't exist.">Oops! This page doesn't exist.</p>
-    <a href="/" class="button">Take Me Home</a>
+    <h1>Edge Computing:</h1>
+    <p class="glitch" data-text="Processing data locally on devices (i.e., at the &quot;edge&quot; of the network) rather than in centralized data centers is becoming crucial for real-time data analysis. This reduces latency and bandwidth costs, especially in applications like smart homes and factories.">Processing data locally on devices (i.e., at the "edge" of the network) rather than in centralized data centers is becoming crucial for real-time data analysis. This reduces latency and bandwidth costs, especially in applications like smart homes and factories.</p>
+    <a href="#" class="btn">Take Me Home</a>
 </body>
 </html>
