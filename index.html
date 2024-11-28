@@ -18,21 +18,17 @@
       height: 100vh;
     }
 
-    /* Menu styles */
-    .menu {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    nav {
       display: flex;
       flex-direction: column;
       gap: 2rem;
     }
 
-    .menu-link {
+    .item {
       position: relative;
+      color: inherit;
       text-decoration: none;
       font-size: 1.5rem;
-      color: #fff;
       text-transform: uppercase;
       display: inline-flex;
       align-items: center; /* Align text and arrow */
@@ -41,33 +37,29 @@
       -webkit-text-stroke: 0px transparent; /* No stroke by default */
       text-stroke: 0px transparent; /* Fallback for non-webkit browsers */
     }
-
-    .menu-link:hover {
+    .item:hover {
       color: #010111; 
       transform: translateX(10px); /* Moves the entire link (arrow + text) */  
       -webkit-text-stroke: 1px #c5c6f9;
       text-stroke: 1px #c5c6f9; /* Fallback for non-webkit browsers */
     }
-
-    /* Arrow animation */
-    .menu-link::before {
+    .item::before {
       content: '⌲';
       opacity: 0;
       transform: translateX(-10px); /* Initially offset to the left */
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
-
-    .menu-link:hover::before {
+    .item:hover::before {
       opacity: 1;
       transform: translateX(0); /* Moves into place */
     }
   </style>
 </head>
 <body>
-  <ul class="menu">
-    <li><a href="#badass" class="menu-link">Badass</a></li>
-    <li><a href="#cool" class="menu-link">Cool</a></li>
-    <li><a href="#awesome" class="menu-link">Awesome</a></li>
-  </ul>
+  <nav>
+    <a href="#badass" class="item">Badass</a>
+    <a href="#cool" class="item">Cool</a>
+    <a href="#awesome" class="item">Awesome</a>
+  </nav>
 </body>
 </html>
