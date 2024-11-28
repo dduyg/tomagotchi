@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <style>
+        /* General Reset */
+        body, html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+            font-family: 'Courier New', Courier, monospace;
+            background: linear-gradient(135deg, #ff6ec7, #736efe);
+            color: #ffffff;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Vaporwave styling */
+        .container {
+            position: relative;
+            max-width: 600px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid #ffffff;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px 3px #ff6ec7, 0px 0px 15px 3px #736efe inset;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-shadow: 0px 0px 10px #ff6ec7, 0px 0px 10px #736efe;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .neon-button {
+            font-size: 1rem;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            border-radius: 5px;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, #736efe, #ff6ec7);
+            box-shadow: 0px 0px 10px 3px #ff6ec7, 0px 0px 10px 3px #736efe;
+            transition: all 0.3s ease;
+        }
+
+        .neon-button:hover {
+            background: linear-gradient(90deg, #ff6ec7, #736efe);
+            box-shadow: 0px 0px 20px 5px #ff6ec7, 0px 0px 20px 5px #736efe;
+        }
+
+        /* Animation */
+        .glitch {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10rem;
+            text-shadow: 
+                2px 2px #ff6ec7, 
+                -2px -2px #736efe;
+            animation: glitch 1s infinite alternate;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(-50%, -50%) skew(2deg, -2deg); }
+            50% { transform: translate(-52%, -48%) skew(-2deg, 2deg); }
+            100% { transform: translate(-50%, -50%) skew(1deg, -1deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="glitch">404</div>
+    <div class="container">
+        <h1>404 - Lost in the Matrix</h1>
+        <p>You’ve reached a page that doesn’t exist. Maybe it got lost in cyberspace, or maybe it never existed at all.</p>
+        <a href="/" class="neon-button">Return to Reality</a>
+    </div>
+</body>
+</html>
