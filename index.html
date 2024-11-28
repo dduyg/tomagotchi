@@ -3,107 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 - Page Not Found</title>
+  <title>404 - Lost in the Code</title>
   <style>
     body {
       margin: 0;
+      padding: 0;
       font-family: 'Courier New', Courier, monospace;
-      background: linear-gradient(135deg, #ff9ff3, #feca57, #48dbfb, #1dd1a1);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      color: #ffffff;
-      text-align: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd);
+      background-size: 300% 300%;
+      animation: gradientShift 10s ease infinite;
+      color: #fff;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
+      text-align: center;
     }
 
-    @keyframes gradientBG {
+    @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
+    .container {
+      max-width: 600px;
+      padding: 20px;
+    }
+
     h1 {
-      font-size: 4rem;
-      text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      font-size: 5rem;
+      margin: 0;
+      text-shadow: 0 0 10px #ff6ec7, 0 0 20px #ff6ec7;
     }
 
     p {
       font-size: 1.5rem;
-      margin: 10px 0;
-      text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      line-height: 1.6;
+      text-shadow: 0 0 5px #ffffff;
     }
 
     a {
-      font-size: 1.2rem;
-      color: #ffffff;
-      background: rgba(0, 0, 0, 0.2);
-      padding: 10px 20px;
-      border-radius: 5px;
+      color: #00eaff;
       text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      font-weight: bold;
+      text-shadow: 0 0 5px #00eaff, 0 0 10px #00eaff;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
     }
 
     a:hover {
-      background: rgba(0, 0, 0, 0.4);
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      color: #ff6ec7;
+      text-shadow: 0 0 10px #ff6ec7, 0 0 20px #ff6ec7;
     }
 
     .glitch {
-      font-size: 2rem;
       position: relative;
-      color: #fff;
-    }
-
-    .glitch::before,
-    .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      overflow: hidden;
-      background: none;
-      clip: rect(0, 900px, 0, 0);
-    }
-
-    .glitch::before {
-      animation: glitch 3s infinite linear;
-      color: #ff6b6b;
-    }
-
-    .glitch::after {
-      animation: glitch 2.5s infinite linear reverse;
-      color: #1dd1a1;
+      display: inline-block;
+      animation: glitch 1s infinite;
     }
 
     @keyframes glitch {
-      0% {
-        clip: rect(0, 900px, 0, 0);
-      }
-      25% {
-        clip: rect(20px, 900px, 60px, 0);
-      }
-      50% {
-        clip: rect(40px, 900px, 80px, 0);
-      }
-      75% {
-        clip: rect(60px, 900px, 100px, 0);
-      }
-      100% {
-        clip: rect(0, 900px, 0, 0);
-      }
+      0% { text-shadow: 2px 2px #ff6ec7, -2px -2px #00eaff; }
+      50% { text-shadow: -2px -2px #ff6ec7, 2px 2px #00eaff; }
+      100% { text-shadow: 2px 2px #ff6ec7, -2px -2px #00eaff; }
     }
   </style>
 </head>
 <body>
-  <h1 class="glitch" data-text="404">404</h1>
-  <p>Oops, you took a wrong turn into the void.</p>
-  <p>The page you're looking for doesn't exist. Maybe it never did.</p>
-  <a href="/">Go Back Home</a>
+  <div class="container">
+    <h1 class="glitch">404</h1>
+    <p>Uh-oh! Looks like you're lost in the code.</p>
+    <p>But don't worry, every great coder has been here before.</p>
+    <a href="/">Take me home</a>
+  </div>
 </body>
 </html>
