@@ -3,146 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Portfolio</title>
+    <title>My Cyberpunk Portfolio</title>
     <style>
-        /* General styles */
+        /* General Styles */
         body {
             font-family: 'Courier New', Courier, monospace;
+            background: #0f0f0f;
+            color: #00ffcc;
             margin: 0;
-            color: #fff;
-            background: linear-gradient(135deg, #2b2b4f, #1b1b33);
+            padding: 0;
             overflow-x: hidden;
         }
+
         h1, h2, h3 {
-            font-family: 'Lucida Console', Courier, monospace;
-            text-transform: uppercase;
+            color: #ff00ff;
         }
+
         a {
+            color: #00ccff;
             text-decoration: none;
-            color: #ff79c6;
-            transition: color 0.3s ease;
         }
+
         a:hover {
-            color: #8be9fd;
+            color: #ff6600;
         }
-        /* Vaporwave Background */
-        .vaporwave-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: url('https://i.imgur.com/oSwXNxO.png') repeat;
-            opacity: 0.1;
-        }
-        /* Header */
+
+        /* Header Section */
         header {
-            text-align: center;
-            padding: 50px 10px;
-            background: rgba(0, 0, 0, 0.7);
-            border-bottom: 2px solid #ff79c6;
-        }
-        header h1 {
-            font-size: 2.5em;
-            color: #50fa7b;
-        }
-        header p {
-            font-size: 1.2em;
-            color: #8be9fd;
-        }
-        /* Sections */
-        section {
-            padding: 50px 10px;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        section h2 {
-            color: #ffb86c;
-            margin-bottom: 20px;
-            font-size: 2em;
-        }
-        section p {
-            font-size: 1.1em;
-            line-height: 1.6em;
-        }
-        /* Projects */
-        .projects {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-        .project-card {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid #ff79c6;
             padding: 20px;
-            border-radius: 8px;
-            width: 300px;
-            text-align: left;
+            text-align: center;
+            background: #1a1a1a;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        .project-card h3 {
-            margin-top: 0;
-            color: #50fa7b;
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            animation: neon-glow 2s infinite alternate;
         }
-        .project-card p {
-            color: #f8f8f2;
-            font-size: 0.9em;
+
+        /* Neon glow effect */
+        @keyframes neon-glow {
+            from {
+                text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 40px #00ffcc;
+            }
+            to {
+                text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff, 0 0 80px #ff00ff;
+            }
         }
-        .project-card a {
-            display: inline-block;
-            margin-top: 10px;
+
+        /* About Section */
+        section {
+            padding: 50px;
+            max-width: 1000px;
+            margin: 50px auto;
+            text-align: center;
         }
-        /* Footer */
+
+        .about-me {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid #00ffcc;
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        /* Showcase Section */
+        .showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #ff00ff;
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .showcase-item {
+            background: #1a1a1a;
+            border: 2px solid #00ccff;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .showcase-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #00ffcc, 0 0 30px #ff00ff;
+        }
+
         footer {
             text-align: center;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            border-top: 2px solid #ff79c6;
-            font-size: 0.9em;
+            margin-top: 30px;
+            background: #1a1a1a;
+            color: #999;
+        }
+
+        footer a {
+            color: #00ccff;
         }
     </style>
 </head>
 <body>
-    <div class="vaporwave-bg"></div>
     <header>
-        <h1>Your Name</h1>
-        <p>Retro Developer Extraordinaire | Dreamer in Code</p>
+        <h1>My Cyberpunk Portfolio</h1>
     </header>
-    <section id="about">
+    <section class="about-me">
         <h2>About Me</h2>
-        <p>
-            Hi! I'm a passionate coder with a love for all things retro and tech. 
-            I specialize in creating visually striking and efficient web solutions that 
-            blend creativity with functionality. When I'm not coding, you’ll find me 
-            immersed in retro synthwave tunes or exploring pixel art.
-        </p>
+        <p>Hello! I'm a coder with a passion for technology and futuristic design. I specialize in creating innovative solutions with a cyberpunk edge. Welcome to my portfolio!</p>
     </section>
-    <section id="portfolio">
-        <h2>My Projects</h2>
-        <div class="projects">
-            <div class="project-card">
-                <h3>Project 1</h3>
-                <p>A brief description of your first project. Mention the tech stack, functionality, and achievements.</p>
-                <a href="#" target="_blank">View Project</a>
-            </div>
-            <div class="project-card">
-                <h3>Project 2</h3>
-                <p>A brief description of your second project. Add some details about its impact or usage.</p>
-                <a href="#" target="_blank">View Project</a>
-            </div>
+    <section class="showcase">
+        <h2>Showcase</h2>
+        <div class="showcase-item">
+            <h3>Project 1</h3>
+            <p>Description of your project or work. Add links if needed.</p>
+        </div>
+        <div class="showcase-item">
+            <h3>Project 2</h3>
+            <p>Description of your project or work. Add links if needed.</p>
+        </div>
+        <div class="showcase-item">
+            <h3>Project 3</h3>
+            <p>Description of your project or work. Add links if needed.</p>
         </div>
     </section>
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Feel free to reach out for collaborations, opportunities, or just to say hi!</p>
-        <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
-        <p>GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
-        <p>Twitter: <a href="https://twitter.com/yourhandle" target="_blank">@yourhandle</a></p>
-    </section>
     <footer>
-        &copy; 2024 Your Name. All rights reserved. Built with ❤️ in the vaporwave zone.
+        <p>© 2024 Your Name | <a href="#">LinkedIn</a> | <a href="#">GitHub</a></p>
     </footer>
 </body>
 </html>
