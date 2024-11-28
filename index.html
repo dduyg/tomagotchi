@@ -23,6 +23,7 @@
             flex-direction: column;
             gap: 2rem;
             text-transform: uppercase;
+            text-align: right;
         }
         nav a {
             color: inherit;
@@ -33,15 +34,15 @@
         nav a::before {
             content: "→";
             position: absolute;
-            left: -20px; /* Position to the left of the text */
+            left: -1.5em; /* Position to the left of the text */
             opacity: 0; /* Initially hidden */
-            transform: translateX(-10px); /* Start slightly off */
+            transform: translateX(-5px); /* Start slightly offset */
             transition: all 0.3s ease;
         }
         nav a:hover::before,
         nav a:focus::before {
             opacity: 1;
-            transform: translateX(0); /* Bring it into view */
+            transform: translateX(0); /* Brings the arrow into view */
         }    
         nav a:hover {
             filter: url("#outlineFilter");
