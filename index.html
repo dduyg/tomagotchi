@@ -35,6 +35,7 @@
             content: "→";
             position: absolute;
             left: -1.5em; /* Position to the left of the text */
+            top: 0; /* Align vertically */
             opacity: 0; /* Initially hidden */
             transform: translateX(-5px); /* Start slightly offset */
             transition: all 0.3s ease;
@@ -43,7 +44,7 @@
         nav a:focus::before {
             opacity: 1;
             transform: translateX(0); /* Brings the arrow into view */
-        }    
+        }
         nav a:hover {
             filter: url("#outlineFilter");
         }
