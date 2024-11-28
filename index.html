@@ -14,12 +14,22 @@
             text-align: center;
             height: 100vh;
             margin: 0;
-            padding: 2em;
+            padding: 0 2em;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             overflow: hidden;
+        }
+
+        h1 {
+            font-size: 4rem;
+            animation: matrix 1s infinite alternate;
+        }
+        @keyframes matrix {
+            0% { transform: translate(-50%, -50%) skew(2deg, -2deg); }
+            50% { transform: translate(-52%, -48%) skew(-2deg, 2deg); }
+            100% { transform: translate(-50%, -50%) skew(1deg, -1deg); }
         }
 
         .btn {
