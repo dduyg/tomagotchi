@@ -3,129 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>404 - Page Not Found</title>
     <style>
-        body {
-            font-family: 'Courier New', monospace;
-            background: linear-gradient(135deg, #ff77ff, #00bcd4);
-            color: #fff;
-            text-align: center;
-            height: 100vh;
+        /* General Reset */
+        body, html {
             margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* Vaporwave Styling */
+        body {
+            background: linear-gradient(135deg, #ff71ce, #01cdfe, #05ffa1);
+            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
+            text-align: center;
             overflow: hidden;
         }
 
         h1 {
-            font-size: 120px;
-            margin: 0;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+            font-size: 5rem;
+            text-shadow: 0 0 10px #ff71ce, 0 0 20px #01cdfe;
         }
 
         p {
-            font-size: 24px;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
-            margin-top: 10px;
+            font-size: 1.5rem;
+            text-shadow: 0 0 5px #05ffa1;
         }
 
-        .button {
-            background-color: #ff00b3;
-            color: #fff;
-            padding: 15px 30px;
-            font-size: 18px;
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            color: #000;
+            background-color: #ffffff;
+            border-radius: 5px;
             text-decoration: none;
-            border-radius: 30px;
-            margin-top: 30px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 10px #ff71ce;
             transition: all 0.3s ease;
         }
 
-        .button:hover {
-            background-color: #ff33cc;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 1);
-            transform: scale(1.1);
+        a:hover {
+            color: #ffffff;
+            background-color: #ff71ce;
+            text-shadow: 0 0 10px #ffffff;
+            box-shadow: 0 0 20px #01cdfe;
         }
 
-        .glitch {
-            position: relative;
-            font-size: 1.5em;
-            color: #fff;
-            display: inline-block;
-            font-weight: bold;
-        }
-
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
+        .neon-grid {
             position: absolute;
-            top: 0;
-            left: 0;
-            color: #ff00b3;
-            z-index: -1;
-            animation: glitch 2s infinite linear;
+            bottom: 0;
+            width: 100%;
+            height: 200px;
+            background: repeating-linear-gradient(
+                #ffffff40 1px,
+                transparent 2px,
+                transparent 20px
+            );
+            transform: perspective(500px) rotateX(75deg);
+            transform-origin: center bottom;
+            animation: pulse 3s infinite;
         }
 
-        .glitch::after {
-            left: 2px;
-            text-shadow: -1px 0 red, 1px 0 blue;
-            animation-delay: 1s;
-        }
-
-        @keyframes glitch {
-            0% {
-                clip: rect(42px, 9999px, 44px, 0);
-                transform: skew(0.02deg);
-            }
-            10% {
-                clip: rect(15px, 9999px, 45px, 0);
-                transform: skew(0.03deg);
-            }
-            20% {
-                clip: rect(70px, 9999px, 55px, 0);
-                transform: skew(0.01deg);
-            }
-            30% {
-                clip: rect(95px, 9999px, 90px, 0);
-                transform: skew(0.02deg);
-            }
-            40% {
-                clip: rect(60px, 9999px, 70px, 0);
-                transform: skew(0.03deg);
+        @keyframes pulse {
+            0%, 100% {
+                background-position: 0 0;
             }
             50% {
-                clip: rect(20px, 9999px, 10px, 0);
-                transform: skew(0.04deg);
-            }
-            60% {
-                clip: rect(15px, 9999px, 35px, 0);
-                transform: skew(0.02deg);
-            }
-            70% {
-                clip: rect(40px, 9999px, 100px, 0);
-                transform: skew(0.01deg);
-            }
-            80% {
-                clip: rect(10px, 9999px, 20px, 0);
-                transform: skew(0.02deg);
-            }
-            90% {
-                clip: rect(30px, 9999px, 50px, 0);
-                transform: skew(0.01deg);
-            }
-            100% {
-                clip: rect(42px, 9999px, 44px, 0);
-                transform: skew(0.02deg);
+                background-position: 0 20px;
             }
         }
     </style>
 </head>
 <body>
-    <h1>404</h1>
-    <p class="glitch" data-text="Oops! This page doesn't exist.">Oops! This page doesn't exist.</p>
-    <a href="/" class="button">Take Me Home</a>
+    <div>
+        <h1>404</h1>
+        <p>Oops! It seems you've coded yourself into a corner.</p>
+        <p>The page you're looking for is either missing or trapped in a while loop.</p>
+        <a href="/">Return to Safety</a>
+    </div>
+    <div class="neon-grid"></div>
 </body>
 </html>
