@@ -19,15 +19,31 @@
             text-align: center;
         }
         nav {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
             text-transform: uppercase;
-            font-size: 1.6em;
             text-align: right;
         }
         nav a {
             color: inherit;
             text-decoration: none;
-            margin: 10px 20px;
+            position: relative;
+            font-size: 1.6em;
         }
+        nav a::before {
+            content: "→";
+            position: absolute;
+            left: -20px; /* Position to the left of the text */
+            opacity: 0; /* Initially hidden */
+            transform: translateX(-10px); /* Start slightly off */
+            transition: all 0.3s ease;
+        }
+        nav a:hover::before,
+        nav a:focus::before {
+            opacity: 1;
+            transform: translateX(0); /* Bring it into view */
+        }    
         nav a:hover {
             filter: url("#outlineFilter");
         }
