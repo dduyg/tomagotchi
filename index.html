@@ -3,179 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyberpunk Portfolio</title>
+    <title>Your Portfolio</title>
     <style>
-        /* General Reset */
-        body, h1, h2, p, a {
-            margin: 0;
-            padding: 0;
-            font-family: 'Courier New', Courier, monospace;
-        }
+        /* General styles */
         body {
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            color: #00ffe7;
-            line-height: 1.6;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            color: #fff;
+            background: linear-gradient(135deg, #2b2b4f, #1b1b33);
             overflow-x: hidden;
         }
-
-        /* Container */
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+        h1, h2, h3 {
+            font-family: 'Lucida Console', Courier, monospace;
+            text-transform: uppercase;
         }
-
+        a {
+            text-decoration: none;
+            color: #ff79c6;
+            transition: color 0.3s ease;
+        }
+        a:hover {
+            color: #8be9fd;
+        }
+        /* Vaporwave Background */
+        .vaporwave-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: url('https://i.imgur.com/oSwXNxO.png') repeat;
+            opacity: 0.1;
+        }
         /* Header */
         header {
             text-align: center;
-            padding: 50px 0;
+            padding: 50px 10px;
+            background: rgba(0, 0, 0, 0.7);
+            border-bottom: 2px solid #ff79c6;
         }
         header h1 {
-            font-size: 3rem;
-            color: #ff007c;
-            text-shadow: 0px 0px 20px #ff007c, 0px 0px 40px #00ffe7;
+            font-size: 2.5em;
+            color: #50fa7b;
         }
         header p {
-            font-size: 1.2rem;
-            color: #c2c2d1;
-            margin-top: 10px;
+            font-size: 1.2em;
+            color: #8be9fd;
         }
-
-        /* About Me Section */
-        #about {
-            margin: 50px 0;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
-        }
-        #about h2 {
-            font-size: 2rem;
-            color: #ff007c;
-            text-shadow: 0px 0px 15px #ff007c;
-        }
-        #about p {
-            margin: 10px 0;
-            font-size: 1rem;
-            color: #e1e1f2;
-        }
-
-        /* Portfolio Section */
-        #portfolio {
-            margin: 50px 0;
+        /* Sections */
+        section {
+            padding: 50px 10px;
+            max-width: 800px;
+            margin: 0 auto;
             text-align: center;
         }
-        #portfolio h2 {
-            font-size: 2rem;
-            color: #00ffe7;
-            text-shadow: 0px 0px 15px #00ffe7;
+        section h2 {
+            color: #ffb86c;
+            margin-bottom: 20px;
+            font-size: 2em;
         }
+        section p {
+            font-size: 1.1em;
+            line-height: 1.6em;
+        }
+        /* Projects */
         .projects {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
             gap: 20px;
-            margin-top: 20px;
+            justify-content: center;
         }
-        .project {
+        .project-card {
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            border: 1px solid #ff79c6;
             padding: 20px;
+            border-radius: 8px;
             width: 300px;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
+            text-align: left;
         }
-        .project h3 {
-            color: #ff007c;
+        .project-card h3 {
+            margin-top: 0;
+            color: #50fa7b;
         }
-        .project p {
-            font-size: 0.9rem;
-            color: #c2c2d1;
+        .project-card p {
+            color: #f8f8f2;
+            font-size: 0.9em;
         }
-
-        /* Contact Section */
-        #contact {
-            margin: 50px 0;
-            text-align: center;
-        }
-        #contact h2 {
-            font-size: 2rem;
-            color: #ff007c;
-            text-shadow: 0px 0px 15px #ff007c;
-        }
-        #contact a {
+        .project-card a {
             display: inline-block;
             margin-top: 10px;
-            padding: 10px 20px;
-            font-size: 1rem;
-            color: #0f0c29;
-            background: #00ffe7;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: transform 0.3s;
         }
-        #contact a:hover {
-            transform: scale(1.1);
-            background: #ff007c;
-            color: #fff;
-        }
-
-        /* Animation */
-        @keyframes glow {
-            0% {
-                text-shadow: 0 0 5px #ff007c, 0 0 10px #ff007c, 0 0 20px #00ffe7;
-            }
-            50% {
-                text-shadow: 0 0 10px #ff007c, 0 0 20px #00ffe7, 0 0 40px #00ffe7;
-            }
-            100% {
-                text-shadow: 0 0 5px #ff007c, 0 0 10px #ff007c, 0 0 20px #00ffe7;
-            }
-        }
-        header h1 {
-            animation: glow 2s infinite;
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-top: 2px solid #ff79c6;
+            font-size: 0.9em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <h1>Cyberpunk Coder</h1>
-            <p>Exploring the digital frontier, one line of code at a time.</p>
-        </header>
-
-        <!-- About Me -->
-        <section id="about">
-            <h2>About Me</h2>
-            <p>Hello! I'm a coder navigating the neon-lit world of programming, where innovation meets creativity. 
-               I specialize in creating futuristic designs and efficient code that resonates with modern themes.</p>
-        </section>
-
-        <!-- Portfolio -->
-        <section id="portfolio">
-            <h2>My Projects</h2>
-            <div class="projects">
-                <div class="project">
-                    <h3>Project Neon</h3>
-                    <p>A visually stunning website that blends neon aesthetics with functionality.</p>
-                </div>
-                <div class="project">
-                    <h3>CyberSecure</h3>
-                    <p>An advanced cybersecurity tool designed for the future.</p>
-                </div>
-                <div class="project">
-                    <h3>AI Symphony</h3>
-                    <p>A cutting-edge AI music generator that creates cyberpunk tracks.</p>
-                </div>
+    <div class="vaporwave-bg"></div>
+    <header>
+        <h1>Your Name</h1>
+        <p>Retro Developer Extraordinaire | Dreamer in Code</p>
+    </header>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>
+            Hi! I'm a passionate coder with a love for all things retro and tech. 
+            I specialize in creating visually striking and efficient web solutions that 
+            blend creativity with functionality. When I'm not coding, you’ll find me 
+            immersed in retro synthwave tunes or exploring pixel art.
+        </p>
+    </section>
+    <section id="portfolio">
+        <h2>My Projects</h2>
+        <div class="projects">
+            <div class="project-card">
+                <h3>Project 1</h3>
+                <p>A brief description of your first project. Mention the tech stack, functionality, and achievements.</p>
+                <a href="#" target="_blank">View Project</a>
             </div>
-        </section>
-
-        <!-- Contact -->
-        <section id="contact">
-            <h2>Get in Touch</h2>
-            <a href="mailto:your.email@example.com">Email Me</a>
-        </section>
-    </div>
+            <div class="project-card">
+                <h3>Project 2</h3>
+                <p>A brief description of your second project. Add some details about its impact or usage.</p>
+                <a href="#" target="_blank">View Project</a>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Feel free to reach out for collaborations, opportunities, or just to say hi!</p>
+        <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+        <p>GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
+        <p>Twitter: <a href="https://twitter.com/yourhandle" target="_blank">@yourhandle</a></p>
+    </section>
+    <footer>
+        &copy; 2024 Your Name. All rights reserved. Built with ❤️ in the vaporwave zone.
+    </footer>
 </body>
 </html>
