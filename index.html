@@ -1,31 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found</title>
-    <style>
-        /* General Reset */
-        body, html {
-            margin: 0;
-            padding: 59px;
-            font-family: 'Courier New', Courier, monospace;
-            background: #736efe;
-            color: #ffffff;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Courier New', Courier, monospace;
+      background: linear-gradient(135deg, #ff9ff3, #feca57, #48dbfb, #1dd1a1);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #ffffff;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-        .matrix {
-            font-size: 4rem;
-            animation: matrix 1s infinite alternate;
-        }
-        @keyframes matrix {
-            0% { transform: translate(-50%, -50%) skew(2deg, -2deg); }
-            50% { transform: translate(-52%, -48%) skew(-2deg, 2deg); }
-            100% { transform: translate(-50%, -50%) skew(1deg, -1deg); }
-        }
-    </style>
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-size: 4rem;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin: 10px 0;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+
+    a {
+      font-size: 1.2rem;
+      color: #ffffff;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    a:hover {
+      background: rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .glitch {
+      font-size: 2rem;
+      position: relative;
+      color: #fff;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      overflow: hidden;
+      background: none;
+      clip: rect(0, 900px, 0, 0);
+    }
+
+    .glitch::before {
+      animation: glitch 3s infinite linear;
+      color: #ff6b6b;
+    }
+
+    .glitch::after {
+      animation: glitch 2.5s infinite linear reverse;
+      color: #1dd1a1;
+    }
+
+    @keyframes glitch {
+      0% {
+        clip: rect(0, 900px, 0, 0);
+      }
+      25% {
+        clip: rect(20px, 900px, 60px, 0);
+      }
+      50% {
+        clip: rect(40px, 900px, 80px, 0);
+      }
+      75% {
+        clip: rect(60px, 900px, 100px, 0);
+      }
+      100% {
+        clip: rect(0, 900px, 0, 0);
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="matrix">404</div>
+  <h1 class="glitch" data-text="404">404</h1>
+  <p>Oops, you took a wrong turn into the void.</p>
+  <p>The page you're looking for doesn't exist. Maybe it never did.</p>
+  <a href="/">Go Back Home</a>
 </body>
 </html>
