@@ -3,136 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Cyberpunk Portfolio</title>
+    <title>Cyberpunk Portfolio</title>
     <style>
-        /* General Styles */
-        body {
-            font-family: 'Courier New', Courier, monospace;
-            background: #0f0f0f;
-            color: #00ffcc;
+        /* General Reset */
+        body, h1, h2, p, a {
             margin: 0;
             padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #00ffe7;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        h1, h2, h3 {
-            color: #ff00ff;
-        }
-
-        a {
-            color: #00ccff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            color: #ff6600;
-        }
-
-        /* Header Section */
-        header {
+        /* Container */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
-            text-align: center;
-            background: #1a1a1a;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
         }
 
+        /* Header */
+        header {
+            text-align: center;
+            padding: 50px 0;
+        }
         header h1 {
-            margin: 0;
-            font-size: 2.5em;
-            text-transform: uppercase;
-            animation: neon-glow 2s infinite alternate;
+            font-size: 3rem;
+            color: #ff007c;
+            text-shadow: 0px 0px 20px #ff007c, 0px 0px 40px #00ffe7;
+        }
+        header p {
+            font-size: 1.2rem;
+            color: #c2c2d1;
+            margin-top: 10px;
         }
 
-        /* Neon glow effect */
-        @keyframes neon-glow {
-            from {
-                text-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 40px #00ffcc;
-            }
-            to {
-                text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff, 0 0 80px #ff00ff;
-            }
+        /* About Me Section */
+        #about {
+            margin: 50px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
+        }
+        #about h2 {
+            font-size: 2rem;
+            color: #ff007c;
+            text-shadow: 0px 0px 15px #ff007c;
+        }
+        #about p {
+            margin: 10px 0;
+            font-size: 1rem;
+            color: #e1e1f2;
         }
 
-        /* About Section */
-        section {
-            padding: 50px;
-            max-width: 1000px;
-            margin: 50px auto;
+        /* Portfolio Section */
+        #portfolio {
+            margin: 50px 0;
             text-align: center;
         }
-
-        .about-me {
-            background: rgba(0, 0, 0, 0.6);
-            border: 2px solid #00ffcc;
-            border-radius: 15px;
-            padding: 30px;
+        #portfolio h2 {
+            font-size: 2rem;
+            color: #00ffe7;
+            text-shadow: 0px 0px 15px #00ffe7;
         }
-
-        /* Showcase Section */
-        .showcase {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            border: 2px solid #ff00ff;
-            padding: 30px;
-            border-radius: 15px;
+            margin-top: 20px;
         }
-
-        .showcase-item {
-            background: #1a1a1a;
-            border: 2px solid #00ccff;
+        .project {
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             padding: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 300px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
+        }
+        .project h3 {
+            color: #ff007c;
+        }
+        .project p {
+            font-size: 0.9rem;
+            color: #c2c2d1;
         }
 
-        .showcase-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px #00ffcc, 0 0 30px #ff00ff;
-        }
-
-        footer {
+        /* Contact Section */
+        #contact {
+            margin: 50px 0;
             text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-            background: #1a1a1a;
-            color: #999;
+        }
+        #contact h2 {
+            font-size: 2rem;
+            color: #ff007c;
+            text-shadow: 0px 0px 15px #ff007c;
+        }
+        #contact a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #0f0c29;
+            background: #00ffe7;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        #contact a:hover {
+            transform: scale(1.1);
+            background: #ff007c;
+            color: #fff;
         }
 
-        footer a {
-            color: #00ccff;
+        /* Animation */
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 5px #ff007c, 0 0 10px #ff007c, 0 0 20px #00ffe7;
+            }
+            50% {
+                text-shadow: 0 0 10px #ff007c, 0 0 20px #00ffe7, 0 0 40px #00ffe7;
+            }
+            100% {
+                text-shadow: 0 0 5px #ff007c, 0 0 10px #ff007c, 0 0 20px #00ffe7;
+            }
+        }
+        header h1 {
+            animation: glow 2s infinite;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>My Cyberpunk Portfolio</h1>
-    </header>
-    <section class="about-me">
-        <h2>About Me</h2>
-        <p>Hello! I'm a coder with a passion for technology and futuristic design. I specialize in creating innovative solutions with a cyberpunk edge. Welcome to my portfolio!</p>
-    </section>
-    <section class="showcase">
-        <h2>Showcase</h2>
-        <div class="showcase-item">
-            <h3>Project 1</h3>
-            <p>Description of your project or work. Add links if needed.</p>
-        </div>
-        <div class="showcase-item">
-            <h3>Project 2</h3>
-            <p>Description of your project or work. Add links if needed.</p>
-        </div>
-        <div class="showcase-item">
-            <h3>Project 3</h3>
-            <p>Description of your project or work. Add links if needed.</p>
-        </div>
-    </section>
-    <footer>
-        <p>© 2024 Your Name | <a href="#">LinkedIn</a> | <a href="#">GitHub</a></p>
-    </footer>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>Cyberpunk Coder</h1>
+            <p>Exploring the digital frontier, one line of code at a time.</p>
+        </header>
+
+        <!-- About Me -->
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Hello! I'm a coder navigating the neon-lit world of programming, where innovation meets creativity. 
+               I specialize in creating futuristic designs and efficient code that resonates with modern themes.</p>
+        </section>
+
+        <!-- Portfolio -->
+        <section id="portfolio">
+            <h2>My Projects</h2>
+            <div class="projects">
+                <div class="project">
+                    <h3>Project Neon</h3>
+                    <p>A visually stunning website that blends neon aesthetics with functionality.</p>
+                </div>
+                <div class="project">
+                    <h3>CyberSecure</h3>
+                    <p>An advanced cybersecurity tool designed for the future.</p>
+                </div>
+                <div class="project">
+                    <h3>AI Symphony</h3>
+                    <p>A cutting-edge AI music generator that creates cyberpunk tracks.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+            <h2>Get in Touch</h2>
+            <a href="mailto:your.email@example.com">Email Me</a>
+        </section>
+    </div>
 </body>
 </html>
