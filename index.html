@@ -9,84 +9,86 @@
         body, html {
             margin: 0;
             padding: 0;
-            width: 100%;
             height: 100%;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Courier New', monospace;
         }
 
-        /* Vaporwave Styling */
+        /* Background Gradient */
         body {
-            background: linear-gradient(135deg, #ff71ce, #01cdfe, #05ffa1);
-            color: #ffffff;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4 50%, #fbc2eb);
+            color: #fff;
             display: flex;
-            justify-content: center;
             align-items: center;
-            text-align: center;
+            justify-content: center;
             overflow: hidden;
+        }
+
+        /* Vaporwave Theme */
+        .container {
+            text-align: center;
+            padding: 20px;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
         h1 {
             font-size: 5rem;
-            text-shadow: 0 0 10px #ff71ce, 0 0 20px #01cdfe;
+            text-shadow: 3px 3px 0 #000, 6px 6px 0 #ff77e9, 9px 9px 0 #ffaaff;
         }
 
         p {
             font-size: 1.5rem;
-            text-shadow: 0 0 5px #05ffa1;
+            text-shadow: 2px 2px 0 #000;
         }
 
-        a {
+        .btn {
             display: inline-block;
             margin-top: 20px;
             padding: 10px 20px;
             font-size: 1.2rem;
-            color: #000;
-            background-color: #ffffff;
-            border-radius: 5px;
+            color: #fff;
             text-decoration: none;
-            box-shadow: 0 0 10px #ff71ce;
-            transition: all 0.3s ease;
+            background: #ff77e9;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            text-shadow: 1px 1px 0 #000;
+            transition: background 0.3s ease, transform 0.3s ease;
         }
 
-        a:hover {
-            color: #ffffff;
-            background-color: #ff71ce;
-            text-shadow: 0 0 10px #ffffff;
-            box-shadow: 0 0 20px #01cdfe;
+        .btn:hover {
+            background: #ffaaff;
+            transform: scale(1.1);
         }
 
-        .neon-grid {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 200px;
-            background: repeating-linear-gradient(
-                #ffffff40 1px,
-                transparent 2px,
-                transparent 20px
-            );
-            transform: perspective(500px) rotateX(75deg);
-            transform-origin: center bottom;
-            animation: pulse 3s infinite;
+        /* Witty ASCII Art */
+        .ascii {
+            font-family: monospace;
+            color: #ff77e9;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            text-shadow: 1px 1px 0 #000;
         }
 
-        @keyframes pulse {
-            0%, 100% {
-                background-position: 0 0;
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
             }
-            50% {
-                background-position: 0 20px;
+            to {
+                opacity: 1;
+                transform: scale(1);
             }
         }
     </style>
 </head>
 <body>
-    <div>
+    <div class="container">
         <h1>404</h1>
-        <p>Oops! It seems you've coded yourself into a corner.</p>
-        <p>The page you're looking for is either missing or trapped in a while loop.</p>
-        <a href="/">Return to Safety</a>
+        <p>Oops, you seem to have wandered into the void of cyberspace...</p>
+        <a href="/" class="btn">Return to Reality</a>
+        <div class="ascii">
+            { error: 404, message: "You're not supposed to see this." }
+        </div>
     </div>
-    <div class="neon-grid"></div>
 </body>
 </html>
