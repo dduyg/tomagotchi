@@ -3,98 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Page Not Found</title>
+    <title>404 Not Found</title>
     <style>
         body {
-            background: #2e1a47;
+            background: linear-gradient(135deg, #ff77ff, #00ffff);
             color: #fff;
             font-family: 'Courier New', Courier, monospace;
-            text-align: center;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            flex-direction: column;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
         }
 
         h1 {
-            font-size: 6rem;
-            letter-spacing: 5px;
+            font-size: 100px;
+            margin-bottom: 20px;
             color: #ff00ff;
-            text-shadow: 0 0 10px rgba(255, 0, 255, 0.7), 0 0 20px rgba(255, 0, 255, 0.5);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
         }
 
-        h2 {
-            font-size: 2rem;
-            margin-top: -20px;
-            color: #ffb6c1;
-            text-shadow: 0 0 8px rgba(255, 182, 193, 0.7);
-        }
-
-        .links {
-            margin-top: 50px;
-            display: flex;
-            gap: 30px;
-        }
-
-        .link {
-            font-size: 1.5rem;
+        p {
+            font-size: 24px;
+            margin-bottom: 40px;
             color: #00ffcc;
-            text-decoration: none;
-            transition: color 0.3s ease-in-out;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
         }
 
-        .link:hover {
-            color: #ff00ff;
-            text-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
+        .links a {
+            text-decoration: none;
+            color: #ffcc00;
+            font-size: 18px;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .links a:hover {
+            background-color: #ff00ff;
         }
 
         .logo {
             width: 150px;
-            margin-bottom: 40px;
-            fill: #ff00ff;
+            height: auto;
+            margin-bottom: 30px;
+        }
+
+        /* SVG styles for the logo */
+        svg path {
+            fill: #ffcc00;
             transition: fill 0.3s ease;
         }
 
-        .logo:hover {
-            fill: #00ffcc;
-        }
-
-        .footer {
-            position: fixed;
-            bottom: 10px;
-            font-size: 1rem;
-            color: #ffb6c1;
-            text-shadow: 0 0 5px rgba(255, 182, 193, 0.7);
+        svg path:hover {
+            fill: #ff00ff;
         }
 
     </style>
 </head>
 <body>
+    <div class="container">
+        <!-- SVG Logo -->
+        <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 10 L50 10 L50 50 L10 50 Z M50 10 L90 50 L50 90 Z" />
+        </svg>
 
-    <!-- Logo -->
-    <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-        <path d="M50 5C28.7 5 12 21.7 12 42C12 52.3 16.7 61.5 22.6 68.4C19.2 71.6 16.7 75.8 15 80.5C14.5 81.7 14 83 14 84.3C14 88.8 17.6 93 22.1 93.8C25.3 94.7 28.8 92.3 28.8 89.1C28.8 88.1 29.2 87.1 29.6 86.1C34.5 84.5 38.6 81.1 41.4 77.1C47.8 70.1 56.6 60.4 63.7 50.5C67.4 44.3 66.6 36.6 63.2 30.5C58.8 23.6 50 19.1 50 19.1C50 19.1 50 19.1 50 19.1C50 19.1 50 19.1 50 19.1C50 19.1 50 19.1 50 19.1"/>
-    </svg>
-
-    <!-- Heading -->
-    <h1>404</h1>
-    <h2>Page Not Found</h2>
-
-    <!-- Links -->
-    <div class="links">
-        <a href="/" class="link">Home</a>
-        <a href="/about" class="link">About</a>
-        <a href="/contact" class="link">Contact</a>
-        <a href="/services" class="link">Services</a>
+        <h1>404</h1>
+        <p>Oops! The page you're looking for doesn't exist.</p>
+        <div class="links">
+            <a href="/">Go Home</a>
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact</a>
+            <a href="/blog">Blog</a>
+        </div>
     </div>
-
-    <!-- Footer -->
-    <div class="footer">
-        <p>&copy; 2024 Your Website | All Rights Reserved</p>
-    </div>
-
 </body>
 </html>
