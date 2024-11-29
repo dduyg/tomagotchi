@@ -3,116 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>404 - Not Found</title>
+    <title>404 - Page Not Found</title>
     <style>
-        /* General Reset */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
+        /* General page styling */
         body {
-            font-family: 'Courier New', monospace;
+            font-family: 'Courier New', Courier, monospace;
             background-color: #0f0f0f;
-            color: #ff0080;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
-            text-align: center;
+            flex-direction: column;
         }
-
-        h1 {
-            font-size: 5rem;
-            text-transform: uppercase;
-            text-shadow: 0 0 5px rgba(255, 0, 128, 0.8), 0 0 10px rgba(255, 0, 128, 0.7);
-            margin-bottom: 1rem;
-        }
-
-        p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: #a8ff00;
-        }
-
-        .links {
-            display: flex;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .links a {
-            color: #00c8ff;
-            text-decoration: none;
-            font-size: 1.2rem;
-            text-shadow: 0 0 3px rgba(0, 200, 255, 0.7);
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-        }
-
-        .links a:hover {
-            color: #ff00c8;
-            text-shadow: 0 0 10px rgba(255, 0, 200, 0.8);
-        }
-
-        .logo {
-            width: 200px;
-            margin-bottom: 3rem;
-        }
-
-        .footer {
-            position: absolute;
-            bottom: 10px;
-            font-size: 1rem;
-            color: #ff0080;
-            opacity: 0.5;
-        }
-
-        /* Adding Vaporwave Style to the Background */
-        .background {
-            background: linear-gradient(45deg, #ff0080, #00c8ff, #a8ff00, #ff00c8);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+        /* Vaporwave theme with neon gradient */
+        .vaporwave-background {
+            background: linear-gradient(to top right, #ff00ff, #00ffff, #ff5dff, #5dfffd);
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
+            animation: gradientMotion 5s ease-in-out infinite;
+        }
+        @keyframes gradientMotion {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        h1 {
+            font-size: 4em;
+            text-align: center;
+            color: #ff5dff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6), 0 0 25px #ff00ff, 0 0 5px #ff00ff;
+            margin-bottom: 30px;
+        }
+
+        .menu {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            font-size: 1.5em;
+            color: #ffffff;
+            text-transform: uppercase;
+            transition: transform 0.3s ease;
+        }
+
+        .menu a:hover {
+            color: #ff00ff;
+            transform: scale(1.1);
+        }
+
+        /* SVG logo styling */
+        .logo {
+            width: 120px;
+            height: 120px;
+            fill: #ff5dff;
+            margin-bottom: 20px;
+            animation: rotateLogo 4s infinite linear;
+        }
+        @keyframes rotateLogo {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
+    <div class="vaporwave-background"></div>
 
-    <!-- Background Animation -->
-    <div class="background"></div>
-
-    <!-- Logo -->
-    <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="transparent"/>
-        <text x="50" y="55" font-size="12" text-anchor="middle" fill="#ff0080">404</text>
+    <!-- SVG Logo: Creative Letter D -->
+    <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20,10 C40,5, 60,5, 80,20 C70,40, 60,80, 40,90 C20,80, 15,60, 20,40 C25,30, 35,20, 20,10 Z"/>
     </svg>
 
-    <!-- Main Content -->
     <h1>404 - Page Not Found</h1>
-    <p>Oops, it seems like you have entered a dead-end.</p>
 
-    <!-- Links Menu -->
-    <div class="links">
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
-        <a href="/blog">Blog</a>
-    </div>
+    <p>Oops! Looks like you've landed on a page that doesn't exist. Here's some stuff you can do:</p>
 
-    <!-- Footer -->
-    <div class="footer">
-        <p>&copy; 2024 Vaporwave Web. All Rights Reserved.</p>
-    </div>
-
+    <ul class="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/blog">Blog</a></li>
+    </ul>
 </body>
 </html>
