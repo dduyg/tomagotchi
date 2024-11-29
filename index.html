@@ -3,127 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Cyberspace Coder</title>
+    <title>My Vaporwave Portfolio</title>
     <style>
-        body {
+        /* General Reset */
+        body, html {
             margin: 0;
-            font-family: 'Courier New', monospace;
-            background: linear-gradient(135deg, #1b1b1b, #3d3d5c);
-            color: #ffffff;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            background: linear-gradient(135deg, #1e1e2e, #312d52);
+            color: #f5f5f5;
             overflow-x: hidden;
         }
 
+        /* Vaporwave Styling */
         header {
-            background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
-            padding: 20px;
             text-align: center;
-            animation: neon 5s infinite alternate;
-        }
-
-        @keyframes neon {
-            0% { filter: drop-shadow(0 0 5px #ff00ff) drop-shadow(0 0 10px #ff00ff); }
-            100% { filter: drop-shadow(0 0 10px #00ffff) drop-shadow(0 0 20px #00ffff); }
+            padding: 5rem 1rem;
+            background: linear-gradient(90deg, #ff0080, #8000ff);
+            color: #f5f5f5;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
         }
 
         header h1 {
-            font-size: 3rem;
-            margin: 0;
+            font-size: 3.5rem;
+            text-shadow: 0px 0px 10px #ff0080, 0px 0px 20px #8000ff;
         }
 
         header p {
             font-size: 1.2rem;
-            margin: 5px 0 0 0;
+            margin-top: 1rem;
         }
 
-        main {
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .bio {
-            max-width: 800px;
+        section {
+            padding: 3rem 1rem;
+            max-width: 1200px;
             margin: 0 auto;
-            font-size: 1.2rem;
-            line-height: 1.8;
         }
 
-        .binary-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: repeating-linear-gradient(
-                90deg,
-                rgba(255, 255, 255, 0.1),
-                rgba(255, 255, 255, 0.1) 1px,
-                transparent 1px,
-                transparent 20px
-            ),
-            repeating-linear-gradient(
-                180deg,
-                rgba(255, 255, 255, 0.1),
-                rgba(255, 255, 255, 0.1) 1px,
-                transparent 1px,
-                transparent 20px
-            );
-        }
-
-        .links {
-            margin-top: 30px;
-        }
-
-        .links a {
-            text-decoration: none;
-            color: #00ffff;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin: 0 15px;
-            transition: color 0.3s;
-        }
-
-        .links a:hover {
-            color: #ff00ff;
-        }
-
-        footer {
-            background: #1b1b1b;
-            padding: 10px 20px;
+        .intro {
             text-align: center;
-            color: #888888;
+            margin-bottom: 3rem;
+        }
+
+        .intro h2 {
+            font-size: 2.5rem;
+            text-shadow: 0px 0px 8px #ff0080;
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            color: #d1d1e9;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(50, 50, 80, 0.8);
+            border: 1px solid #ff0080;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0px 0px 20px #8000ff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 0px 30px #ff0080;
+        }
+
+        .project-card h3 {
+            margin-top: 0;
+            color: #ff66cc;
+        }
+
+        .project-card p {
+            font-size: 0.9rem;
+            color: #d1d1e9;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: #1e1e2e;
+            color: #d1d1e9;
             font-size: 0.9rem;
         }
 
-        footer a {
-            color: #00ffff;
+        .footer a {
+            color: #ff66cc;
             text-decoration: none;
         }
 
-        footer a:hover {
-            color: #ff00ff;
+        .footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div class="binary-bg"></div>
     <header>
-        <h1>Cyberspace Coder</h1>
-        <p>Vaporwave Enthusiast | Binary Data Lover</p>
+        <h1>Your Name</h1>
+        <p>Vaporwave Cyberspace Coder | Data Lover</p>
     </header>
-    <main>
-        <section class="bio">
-            <p>Hello! I'm a passionate coder with a love for all things cyberspace. My interests lie in crafting clean code, experimenting with futuristic designs, and creating unique digital experiences. Whether it's developing software, building web apps, or exploring the depths of binary logic, I thrive in the digital realm.</p>
-            <p>This homepage is a glimpse into my coding portfolio. Stay tuned for more as I continue to expand and share my projects!</p>
-        </section>
-        <div class="links">
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-            <a href="#social">Social Media</a>
+
+    <section>
+        <div class="intro">
+            <h2>About Me</h2>
+            <p>Hi! I'm a coder passionate about creating innovative solutions in a digital cosmos. From crafting interactive websites to developing complex algorithms, I turn ideas into impactful applications.</p>
         </div>
-    </main>
-    <footer>
-        <p>Designed with <span style="color: #ff00ff;">❤</span> by Cyberspace Coder. Check out my <a href="#projects">projects</a> and <a href="#social">socials</a>.</p>
+
+        <div class="projects">
+            <div class="project-card">
+                <h3>Project One</h3>
+                <p>A web app that visualizes data trends in real-time using interactive charts and graphs.</p>
+            </div>
+            <div class="project-card">
+                <h3>Project Two</h3>
+                <p>A retro-themed game built in JavaScript, inspired by 80s arcade aesthetics.</p>
+            </div>
+            <div class="project-card">
+                <h3>Project Three</h3>
+                <p>An AI-powered chatbot designed to assist users with technical queries in coding.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2024 Your Name | <a href="mailto:youremail@example.com">youremail@example.com</a></p>
     </footer>
 </body>
 </html>
