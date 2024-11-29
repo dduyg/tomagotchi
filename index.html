@@ -43,22 +43,23 @@
             height: auto;
             margin-bottom: 20px;
             animation: rotateLogo 4s infinite linear;
+            fill: #ffcc00; /* Default fill color applied to the entire SVG */
+            transition: fill 0.3s ease; /* Smooth transition */
         }
+
+        .logo:hover {
+            fill: #ff00ff; /* Hover fill color applied to the entire SVG */
+        }
+
         @keyframes rotateLogo {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        svg path {
-            fill: #ffcc00;
-            transition: fill 0.3s ease;
-        }
-        svg path:hover {
-            fill: #ff00ff;
-        }
+
     </style>
 </head>
 <body>
-    <svg class="logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg class="logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <circle cx="12" cy="12" r="10"></circle>
         <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94"></path>
     </svg>
