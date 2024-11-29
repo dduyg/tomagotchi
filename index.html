@@ -39,12 +39,15 @@
         }
 
         .logo {
-            width: 150px;
+            width: 120px;
             height: auto;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+            animation: rotateLogo 4s infinite linear;
         }
-        
-        /* SVG styles for the logo */
+        @keyframes rotateLogo {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }   
         svg path {
             fill: #ffcc00;
             transition: fill 0.3s ease;
@@ -57,7 +60,7 @@
 </head>
 <body>
     <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <path d="M10 10 L50 10 L50 50 L10 50 Z M50 10 L90 50 L50 90 Z" />
+        <path d="M20,10 C40,5, 60,5, 80,20 C70,40, 60,80, 40,90 C20,80, 15,60, 20,40 C25,30, 35,20, 20,10 Z"/>
     </svg>
 
     <p>Oops! The page you're looking for doesn't exist.</p>
