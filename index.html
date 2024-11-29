@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Courier New", Courier, monospace;
+      color: #fff;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+    }
+
+    .message {
+      text-align: center;
+      animation: neon-glow 1.5s infinite alternate;
+    }
+
+    .message h1 {
+      font-size: 4rem;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .message p {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .menu {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid #fff;
+      border-radius: 8px;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .menu a:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: scale(1.1);
+    }
+
+    @keyframes neon-glow {
+      from {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fbc2eb, 0 0 20px #fad0c4;
+      }
+      to {
+        text-shadow: 0 0 10px #fff, 0 0 20px #ff9a9e, 0 0 40px #fad0c4;
+      }
+    }
+
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%'%3E%3Cdefs%3E%3Cpattern id='grid' width='20' height='20' patternUnits='userSpaceOnUse'%3E%3Cpath d='M20 0 H0 V20' fill='none' stroke='%23fad0c4' stroke-width='0.5' /%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%' height='100%' fill='url(%23grid)' /%3E%3C/svg%3E");
+      z-index: -1;
+      opacity: 0.4;
+    }
+  </style>
+</head>
+<body>
+  <div class="background"></div>
+  <div>
+    <!-- SVG Logo -->
+    <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="#fff">
+      <circle cx="50" cy="50" r="40" stroke="#fad0c4" stroke-width="5" fill="none" />
+      <path d="M30 50 L50 30 L70 50 L50 70 Z" fill="#fbc2eb" />
+    </svg>
+  </div>
+  <div class="message">
+    <h1>404</h1>
+    <p>Oops! This page doesn't exist.</p>
+  </div>
+  <nav class="menu">
+    <a href="/">Home</a>
+    <a href="/about">About Us</a>
+    <a href="/services">Services</a>
+    <a href="/contact">Contact</a>
+  </nav>
+</body>
+</html>
