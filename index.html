@@ -13,119 +13,74 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    nav {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-    .nav-list {
-      display: flex;
-      flex-direction: column;
-      margin: 0;
-      padding: 0;
-    }
+nav a {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  line-height: 1;
+  letter-spacing: -0.1em;
+  text-transform: uppercase;
+  margin: -0.24em 0;
+  padding-right: 1.1em;
+  overflow: hidden;
+  outline: 0;
+  text-decoration: none;
+  touch-action: manipulation;
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 1s cubic-bezier(0.165, 0.875, 0.02, 1);
+}
 
-    .nav-item {
-      display: block;
-      font-family: var(--font-serif);
-      font-size: 3.5rem;
-      line-height: 1;
-      letter-spacing: -0.1em;
-      text-transform: uppercase;
-      margin: -0.1em 0;
-      padding-right: 1.1em;
-      overflow: hidden;
-    }
+nav a svg {
+  position: absolute;
+  top: 20%;
+  left: 0;
+  height: 60%;
+  transform: translateX(-120%);
+  transition: transform 1s cubic-bezier(0.165, 0.875, 0.02, 1);
+}
 
-    .nav-link {
-      outline: 0;
-      text-decoration: none;
-      touch-action: manipulation;
-      display: block;
-      color: black; /* Ensures the text is always black */
-    }
+nav a:hover {
+  transform: translateX(1em);
+}
 
-    .nav-holder {
-      position: relative;
-      transform-origin: 0 0;
-    }
-
-    .nav-holder,
-    .nav-holder > svg {
-      transition: transform 1s cubic-bezier(0.165, 0.875, 0.02, 1);
-    }
-
-    .nav-holder > svg {
-      position: absolute;
-      top: 20%;
-      left: 0;
-      height: 60%;
-      transform: translateX(-120%);
-    }
-
-    .nav-link:hover > .nav-holder {
-      transform: translateX(1em);
-    }
-
-    .nav-link:hover > .nav-holder > svg {
-      transform: translateX(-100%);
-    }
+nav a:hover svg {
+  transform: translateX(-100%);
+}
   </style>
 </head>
 <body>
 <nav>
-  <div class="nav-list">
-    <div class="nav-item">
-      <a href="#home" class="nav-link">
-        <div class="nav-holder">
-          <svg viewBox="0 0 542 62"><path d="M510.2 61.1l-2.1-2.2 27.3-26.4H.7v-3h534.8L508.1 3.1l2.1-2.2L541.3 31l-31.1 30.1z"></path></svg>
-          Home
-        </div>
-      </a>
-    </div>
-    <div class="nav-item">
-      <a href="#badass" class="nav-link">
-        <div class="nav-holder">
-          <svg viewBox="0 0 542 62"><path d="M510.2 61.1l-2.1-2.2 27.3-26.4H.7v-3h534.8L508.1 3.1l2.1-2.2L541.3 31l-31.1 30.1z"></path></svg>
-          Badass
-        </div>
-      </a>
-    </div>
-    <div class="nav-item">
-      <a href="#photo" class="nav-link">
-        <div class="nav-holder">
-          <svg viewBox="0 0 542 62"><path d="M510.2 61.1l-2.1-2.2 27.3-26.4H.7v-3h534.8L508.1 3.1l2.1-2.2L541.3 31l-31.1 30.1z"></path></svg>
-          Photo
-        </div>
-      </a>
-    </div>
-    <div class="nav-item">
-      <a href="#film" class="nav-link">
-        <div class="nav-holder">
-          <svg viewBox="0 0 542 62"><path d="M510.2 61.1l-2.1-2.2 27.3-26.4H.7v-3h534.8L508.1 3.1l2.1-2.2L541.3 31l-31.1 30.1z"></path></svg>
-          Film
-        </div>
-      </a>
-    </div>
-    <div class="nav-item">
-      <a href="#blog" class="nav-link">
-        <div class="nav-holder">
-          <svg viewBox="0 0 542 62"><path d="M510.2 61.1l-2.1-2.2 27.3-26.4H.7v-3h534.8L508.1 3.1l2.1-2.2L541.3 31l-31.1 30.1z"></path></svg>
-          Blog
-        </div>
-      </a>
-    </div>
-    <div class="nav-item">
-      <a href="#contact" class="nav-link">
-        <div class="nav-holder">
-          <svg viewBox="0 0 542 62"><path d="M510.2 61.1l-2.1-2.2 27.3-26.4H.7v-3h534.8L508.1 3.1l2.1-2.2L541.3 31l-31.1 30.1z"></path></svg>
-          Contact
-        </div>
-      </a>
-    </div>
-  </div>
+  <a href="#home">
+    <svg viewBox="0 0 542 62"><path d="M510.2 61.1l-2.1-2.2 27.3-26.4H.7v-3h534.8L508.1 3.1l2.1-2.2L541.3 31l-31.1 30.1z"></path></svg>
+    Home
+  </a>
+  <a href="#badass">
+    <svg viewBox="0 0 542 62"><path d="M510.2 61.1l-2.1-2.2 27.3-26.4H.7v-3h534.8L508.1 3.1l2.1-2.2L541.3 31l-31.1 30.1z"></path></svg>
+    Badass
+  </a>
+  <a href="#photo">
+    <svg viewBox="0 0 542 62"><path d="M510.2 61.1l-2.1-2.2 27.3-26.4H.7v-3h534.8L508.1 3.1l2.1-2.2L541.3 31l-31.1 30.1z"></path></svg>
+    Photo
+  </a>
+  <a href="#film">
+    <svg viewBox="0 0 542 62"><path d="M510.2 61.1l-2.1-2.2 27.3-26.4H.7v-3h534.8L508.1 3.1l2.1-2.2L541.3 31l-31.1 30.1z"></path></svg>
+    Film
+  </a>
+  <a href="#blog">
+    <svg viewBox="0 0 542 62"><path d="M510.2 61.1l-2.1-2.2 27.3-26.4H.7v-3h534.8L508.1 3.1l2.1-2.2L541.3 31l-31.1 30.1z"></path></svg>
+    Blog
+  </a>
+  <a href="#contact">
+    <svg viewBox="0 0 542 62"><path d="M510.2 61.1l-2.1-2.2 27.3-26.4H.7v-3h534.8L508.1 3.1l2.1-2.2L541.3 31l-31.1 30.1z"></path></svg>
+    Contact
+  </a>
 </nav>
 </body>
-</html>
