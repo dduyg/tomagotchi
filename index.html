@@ -3,117 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>404 - Page Not Found</title>
+    <title>Liminal</title>
     <style>
-        /* Global Styles */
         body {
-            background: linear-gradient(45deg, #ff61a6, #4e00ff);
+            background: linear-gradient(135deg, #ff77ff, #00ffff);
+            color: #fff;
             font-family: 'Courier New', Courier, monospace;
-            color: white;
-            text-align: center;
             margin: 0;
-            height: 100vh;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            overflow: hidden;
+            height: 100vh;
+            text-align: center;
         }
 
-        h1 {
-            font-size: 4em;
-            letter-spacing: 10px;
-            margin-bottom: 20px;
-            color: #ff61a6;
-            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.2);
+        .container {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: #ffcc00;
+            font-size: 18px;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .links a:hover {
+            background-color: #ff00ff;
         }
 
         .logo {
-            width: 100px;
+            width: 150px;
+            height: auto;
             margin-bottom: 30px;
         }
 
-        /* SVG Logo (Creative Letter D) */
-        .logo svg {
-            fill: #4e00ff;
-            width: 100%;
-            height: auto;
+        /* SVG styles for the logo */
+        svg path {
+            fill: #ffcc00;
+            transition: fill 0.3s ease;
         }
 
-        .error-message {
-            font-size: 1.5em;
-            margin-bottom: 40px;
+        svg path:hover {
+            fill: #ff00ff;
         }
 
-        /* Links Menu */
-        .menu {
-            display: flex;
-            gap: 20px;
-            font-size: 1.2em;
-            text-transform: uppercase;
-        }
-
-        .menu a {
-            color: white;
-            text-decoration: none;
-            border: 2px solid #fff;
-            padding: 10px 20px;
-            transition: all 0.3s ease;
-        }
-
-        .menu a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-color: #ff61a6;
-        }
-
-        /* Animations */
-        @keyframes glitch {
-            0% {
-                text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5), -2px -2px 10px rgba(255, 255, 255, 0.5);
-                transform: translate(0);
-            }
-            25% {
-                text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.7), -2px -2px 10px rgba(255, 255, 255, 0.7);
-                transform: translate(-5px, -5px);
-            }
-            50% {
-                text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.9), -2px -2px 10px rgba(255, 255, 255, 0.9);
-                transform: translate(5px, 5px);
-            }
-            75% {
-                text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.7), -2px -2px 10px rgba(255, 255, 255, 0.7);
-                transform: translate(-5px, -5px);
-            }
-            100% {
-                text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5), -2px -2px 10px rgba(255, 255, 255, 0.5);
-                transform: translate(0);
-            }
-        }
-
-        h1 {
-            animation: glitch 1s infinite;
-        }
     </style>
 </head>
 <body>
-    <!-- Logo (Creative Letter D) -->
-    <div class="logo">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-            <path d="M20,10 C30,30 70,30 80,50 C70,70 30,70 20,90 C10,70 10,30 20,10 Z" />
+    <div class="container">
+        <!-- SVG Logo -->
+        <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 10 L50 10 L50 50 L10 50 Z M50 10 L90 50 L50 90 Z" />
         </svg>
-    </div>
-    
-    <!-- Main Error Message -->
-    <h1>404</h1>
-    <p class="error-message">Oops! The page you're looking for doesn't exist.</p>
 
-    <!-- Navigation Menu -->
-    <div class="menu">
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/services">Services</a>
-        <a href="/contact">Contact</a>
+        <h1>404</h1>
+        <p>Oops! The page you're looking for doesn't exist.</p>
+        <div class="links">
+            <a href="/">Go Home</a>
+            <a href="/about">About Us</a>
+            <a href="/contact">Contact</a>
+            <a href="/blog">Blog</a>
+        </div>
     </div>
 </body>
 </html>
