@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liminal Loop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap" rel="stylesheet">
     <style>
         body {
             background: linear-gradient(135deg, #1b1b1b, #3d3d5c);
             color: white;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: "Anonymous Pro", monospace;
             margin: 0;
             padding: 1rem;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            text-align: center;
             background-size: cover;
             flex-direction: column;
             line-height: 1.5;
@@ -23,19 +23,22 @@
         }
         a {
             color: #00ffff;
-            font-size: 1.2em;
+            font-size: 1.4em;
             text-decoration: none;
             text-transform: uppercase;
             transition: color 0.3s ease, transform 0.3s ease;
         }
         a:hover {
-            color: #ff00ff;
+            color: #39FF14;
             transform: scale(1.1);
         }
         .badge {
-            width: 120px;
+            position: fixed;
+            top: 2%;
+            right: 4%;
+            z-index: -1;
+            width: 100px;
             height: auto;
-            margin-bottom: 20px;
             animation: rotateBadge 4s infinite linear;
         }
         @keyframes rotateBadge {
@@ -51,7 +54,7 @@
     </svg>
 
     <section>
-        Diffusion models are a class of generative models that simulate the <a href="#">gradual</a>
+        ⚞Diffusion models are a class of generative models that simulate the <a href="#">gradual</a>
         process of adding noise to data and then learn to reverse this process to generate 
         new, high-quality data samples. During training, <a href="#">noise</a> is incrementally added to the 
         data over multiple steps until it resembles pure noise. The model then learns to denoise 
