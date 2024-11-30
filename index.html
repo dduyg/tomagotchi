@@ -46,8 +46,10 @@
   
   <filter id="outlineFilter" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
     <feMorphology operator="dilate" radius="1 1" in="SourceAlpha" result="morphology"/>
-    <feFlood flood-color="#333333" flood-opacity="1" result="flood"/> <!--Set your link colour here.-->
-    <feComposite in="flood" in2="morphology" operator="in" result="composite"/>
+    <!-- Add Gaussian Blur to soften the edges -->
+    <feGaussianBlur in="morphology" stdDeviation="0.5" result="blurred"/>
+    <feFlood flood-color="#333333" flood-opacity="1" result="flood"/>
+    <feComposite in="flood" in2="blurred" operator="in" result="composite"/>
     <feComposite in="composite" in2="SourceAlpha" operator="out" result="composite1"/>
   </filter>
 </svg>
