@@ -18,51 +18,47 @@
             text-align: center;
             background-size: cover;
             flex-direction: column;
+            line-height: 1.5;
         }
-        
-        .links {
-            display: flex;
-            gap: 20px;
-            margin-top: 30px;
-        }
-        .links a {
+        a {
             color: #00ffff;
             font-size: 1.2em;
             text-decoration: none;
             text-transform: uppercase;
-            letter-spacing: 2px;
             transition: color 0.3s ease, transform 0.3s ease;
         }
-        .links a:hover {
+        a:hover {
             color: #ff00ff;
             transform: scale(1.1);
         }
-
-        .logo {
+        .badge {
             width: 120px;
             height: auto;
             margin-bottom: 20px;
-            animation: rotateLogo 4s infinite linear;
+            animation: rotateBadge 4s infinite linear;
         }
-        @keyframes rotateLogo {
+        @keyframes rotateBadge {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <svg class="logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <svg class="badge" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="10"></circle>
         <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94"></path>
     </svg>
 
-    <p>Oops! The page you're looking for doesn't exist.</p>
-    
-    <div class="links">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-        <a href="#">Blog</a>
-    </div>
+    <section>
+        Diffusion models are a class of generative models that simulate the <a href="#">gradual</a>
+        process of adding noise to data and then learn to reverse this process to generate 
+        new, high-quality data samples. During training, <a href="#">noise</a> is incrementally added to the 
+        data over multiple steps until it resembles pure noise. The model then learns to denoise 
+        it step-by-step, effectively generating realistic <a href="#">data</a> samples from noise. These models 
+        have shown state-of-the-art performance in generating high-quality images, text, and other 
+        data types, <a href="#">rivaling</a> or surpassing previous techniques like Generative Adversarial Networks (GANs).
+        Beyond generation, <a href="#">diffusion</a> models are being explored for tasks such as data augmentation, anomaly detection, 
+        and predictive modeling, making them versatile tools in modern data science.
+    </section>
 </body>
 </html>
