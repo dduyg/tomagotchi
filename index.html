@@ -43,18 +43,13 @@
     <!-- SVG filter for outline effect -->
     <svg height="0" width="0" style="position: absolute;">
         <filter id="outlineFilter" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
-            <!-- Blur the original text to create a base for the outline -->
-            <feGaussianBlur in="SourceAlpha" stdDeviation="0.5" result="blur"/>
-            <!-- Offset the blurred text slightly to create uniformity -->
-            <feOffset in="blur" dx="0" dy="0" result="offsetBlur"/>
-            <!-- Fill the blurred outline with the desired color -->
+            <!-- Create a dilated version of the text to form the outline -->
+            <feMorphology operator="dilate" radius="0.5" in="SourceAlpha" result="morphology"/>
+            <!-- Color the dilated text -->
             <feFlood flood-color="#333" result="flood"/>
-            <feComposite in="flood" in2="offsetBlur" operator="in" result="coloredOutline"/>
-            <!-- Combine the original text with the outline -->
-            <feMerge>
-                <feMergeNode in="coloredOutline"/>
-                <feMergeNode in="SourceGraphic"/>
-            </feMerge>
+            <feComposite in="flood" in2="morphology" operator="in" result="outline"/>
+            <!-- Remove the original text (inner part) -->
+            <feComposite in="outline" in2="SourceAlpha" operator="out" result="finalOutline"/>
         </filter>
     </svg>
 </body>
