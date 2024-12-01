@@ -40,15 +40,13 @@
         <a href="#">data</a> types.
     </section>
 
-    <svg height="0" width="0" style="position: absolute;">
-      <filter id="outlineFilter" x="0" y="0" width="100%" height="100%" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-        <feMorphology operator="dilate" radius="1" in="SourceAlpha" result="dilated"/>
-        <feFlood flood-color="#333" result="colored"/>
-        <feComposite in="colored" in2="dilated" operator="in" result="outline"/>
-        <feComposite in="outline" in2="SourceAlpha" operator="out" result="stroked"/>
-        <feMerge>
-          <feMergeNode in="stroked"/>
-        </feMerge>
+    <!-- Updated SVG filter -->
+    <svg height="0" width="0" style="position: absolute;"> 
+      <filter id="outlineFilter" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
+        <feMorphology operator="dilate" radius="0.5" in="SourceAlpha" result="morphology"/> <!-- Reduced radius -->
+        <feFlood flood-color="#333333" flood-opacity="1" result="flood"/> <!-- Set your link color here -->
+        <feComposite in="flood" in2="morphology" operator="in" result="composite"/>
+        <feComposite in="composite" in2="SourceAlpha" operator="out" result="composite1"/>
       </filter>
     </svg>
 </body>
