@@ -41,15 +41,14 @@
     </section>
 
     <svg height="0" width="0" style="position: absolute;">
-      <filter id="outlineFilter" x="0" y="0" width="100%" height="100%" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
-        <!-- Create a stroke-like effect by blurring the edges -->
-        <feGaussianBlur stdDeviation="0.5" in="SourceAlpha" result="blurred"/>
-        <!-- Flood the blurred edges with color -->
-        <feFlood flood-color="#333" flood-opacity="1" result="flood"/>
-        <!-- Apply the color only to the blurred edges -->
-        <feComposite in="flood" in2="blurred" operator="in" result="stroke"/>
-        <!-- Combine the stroke with the original text -->
-        <feComposite in="stroke" in2="SourceAlpha" operator="over"/>
+      <filter id="outlineFilter" x="0" y="0" width="100%" height="100%" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+        <feMorphology operator="dilate" radius="1" in="SourceAlpha" result="dilated"/>
+        <feFlood flood-color="#333" result="colored"/>
+        <feComposite in="colored" in2="dilated" operator="in" result="outline"/>
+        <feComposite in="outline" in2="SourceAlpha" operator="out" result="stroked"/>
+        <feMerge>
+          <feMergeNode in="stroked"/>
+        </feMerge>
       </filter>
     </svg>
 </body>
