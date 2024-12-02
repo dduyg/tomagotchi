@@ -44,7 +44,7 @@
       <!-- Keep it visible for proper rendering on all browsers -->
       <filter id="outlineFilter" x="0" y="0" width="100%" height="100%" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
         <feMorphology operator="dilate" radius="0.5" in="SourceAlpha" result="morphology"/>
-        <feFlood flood-color="#010111" flood-opacity="1" result="flood"/>
+        <feFlood flood-color="#333" flood-opacity="1" result="flood"/>
         <feComposite in="flood" in2="morphology" operator="in" result="composite"/>
         <feComposite in="composite" in2="SourceAlpha" operator="out" result="outline"/>
       </filter>
