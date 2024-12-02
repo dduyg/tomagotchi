@@ -23,10 +23,9 @@
             text-decoration: none;
             text-transform: uppercase;
             transition: filter 0.3s ease;
-            filter: url("#outlineFilter"); /* Default filter applied */
         }
         a:hover {
-            filter: url("#outlineFilter"); /* Retain the effect on hover */
+            filter: url("#outlineFilter");
         }
     </style>
 </head>
@@ -41,20 +40,13 @@
         <a href="#">data</a> types.
     </section>
 
-    <!-- SVG filter for true outline effect -->
-    <svg height="0" width="0" style="position: absolute;">
+    <!-- Adjusted SVG filter for precise text-stroke mimic -->
+    <svg height="0" width="0" style="position: absolute;"> 
         <filter id="outlineFilter" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
-            <!-- Create a thick alpha outline -->
-            <feMorphology operator="dilate" radius="1" in="SourceAlpha" result="outline"/>
-            <!-- Fill the outline with a solid color -->
-            <feFlood flood-color="#333" result="flood"/>
-            <feComposite in="flood" in2="outline" operator="in" result="coloredOutline"/>
-            <!-- Exclude the original text fill -->
-            <feComposite in="coloredOutline" in2="SourceAlpha" operator="out" result="finalOutline"/>
-            <!-- Output only the outline -->
-            <feMerge>
-                <feMergeNode in="finalOutline"/>
-            </feMerge>
+            <feMorphology operator="dilate" radius="0.5" in="SourceAlpha" result="morphology"/>
+            <feFlood flood-color="#333333" flood-opacity="1" result="flood"/>
+            <feComposite in="flood" in2="morphology" operator="in" result="composite"/>
+            <feComposite in="composite" in2="SourceAlpha" operator="out" result="composite1"/>
         </filter>
     </svg>
 </body>
