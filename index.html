@@ -43,7 +43,7 @@
     <!-- Adjusted SVG filter for precise text-stroke mimic -->
     <svg height="0" width="0" style="position: absolute;"> 
         <filter id="outlineFilter" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
-            <feMorphology operator="dilate" radius="0.5" in="SourceAlpha" result="morphology"/>
+            <feMorphology operator="dilate" radius="0.6" in="SourceAlpha" result="morphology"/>
             <feFlood flood-color="#333333" flood-opacity="1" result="flood"/>
             <feComposite in="flood" in2="morphology" operator="in" result="composite"/>
             <feComposite in="composite" in2="SourceAlpha" operator="out" result="composite1"/>
