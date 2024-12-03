@@ -3,99 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My World</title>
+    <title>Welcome to My Homepage</title>
     <style>
-        body {
+        /* General Reset */
+        body, html {
             margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #ff6ec7, #313866, #42d392);
-            background-size: 400% 400%;
-            animation: gradientBackground 12s ease infinite;
-            color: white;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            color: #fff;
+            background: linear-gradient(135deg, #ff8ceb, #8b88ff);
+            overflow-x: hidden;
+        }
+
+        /* Vaporwave Grid Background */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 10%, transparent 70%), 
+                        repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0px, transparent 1px);
+            z-index: 0;
+        }
+
+        /* Main content wrapper */
+        .container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
             text-align: center;
         }
 
-        @keyframes gradientBackground {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        header {
-            padding: 30px 0;
-            background: rgba(0, 0, 0, 0.7);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        header h1 {
+        /* Welcome Section */
+        h1 {
             font-size: 3rem;
-            margin: 0;
-            font-family: 'Courier New', monospace;
-            color: #ff6ec7;
-            text-shadow: 0 0 10px #ff6ec7, 0 0 20px #ff6ec7, 0 0 40px #42d392;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 10px #000;
+            margin-bottom: 10px;
         }
 
-        header p {
+        p {
             font-size: 1.2rem;
-            margin: 10px 0 0;
-        }
-
-        .welcome-section {
-            padding: 80px 20px;
-        }
-
-        .welcome-section h2 {
-            font-size: 2.5rem;
-            text-shadow: 0 0 5px #ffffff, 0 0 10px #ff6ec7, 0 0 15px #42d392;
-        }
-
-        .welcome-section p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin: 20px auto;
             max-width: 600px;
+            line-height: 1.6;
+            text-shadow: 1px 1px 5px #000;
         }
 
+        /* Animated Pulsating Effect */
+        .welcome {
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                text-shadow: 0 0 10px #ff8ceb, 0 0 20px #8b88ff, 0 0 30px #ff8ceb;
+            }
+            50% {
+                text-shadow: 0 0 20px #ff8ceb, 0 0 40px #8b88ff, 0 0 60px #ff8ceb;
+            }
+        }
+
+        /* Footer */
         footer {
-            margin-top: 50px;
-            padding: 20px 0;
-            background: rgba(0, 0, 0, 0.8);
-        }
-
-        footer p {
+            position: relative;
+            z-index: 1;
+            margin-top: 20px;
             font-size: 0.9rem;
-            margin: 0;
-            color: #d0d0d0;
+            text-shadow: 1px 1px 5px #000;
         }
 
         footer a {
-            color: #42d392;
+            color: #8b88ff;
             text-decoration: none;
         }
 
         footer a:hover {
-            color: #ff6ec7;
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to My World</h1>
-        <p>A place where dreams meet neon lights</p>
-    </header>
-
-    <section class="welcome-section">
-        <h2>Hello There!</h2>
+    <div class="container">
+        <h1 class="welcome">Welcome to My Vaporwave World</h1>
         <p>
-            Welcome to my personal webpage. Here, you'll find a collection of my thoughts, projects, and everything
-            that makes life a vibrant journey. Dive into the vaporwave vibe, where retro meets the future, and let’s explore together!
+            Explore a blend of nostalgia and futurism. This is your digital sanctuary, 
+            where aesthetics meet simplicity. Enjoy the ride!
         </p>
-    </section>
-
+    </div>
     <footer>
-        <p>
-            Made with ❤️ in the vaporwave aesthetic. <a href="#">Contact Me</a>
-        </p>
+        Made with <span style="color: #ff8ceb;">❤</span> | <a href="#">Contact Me</a>
     </footer>
 </body>
 </html>
