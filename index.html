@@ -22,10 +22,24 @@
             font-size: 1.6em;
             text-decoration: none;
             text-transform: uppercase;
-            transition: filter 0.3s ease;
+            
+            position: relative;
+            display: inline-block;
         }
-        a:hover {
-            filter: url("#outlineFilter");
+        a:after {
+            content: "";
+            position: absolute;
+            left: -4px;
+            bottom: -4px;
+            width: calc(100% + 8px);
+            height: 0%;
+            background-color: OldLace;
+            transition: height 0.6s ease;
+            mix-blend-mode: multiply;
+        }
+        a:hover::after,
+        a:focus::after {
+            height: calc(100% + 8px);
         }
     </style>
 </head>
@@ -39,22 +53,5 @@
         have shown state-of-the-art performance in generating high-quality images, text, and other 
         <a href="#">data</a> types.
     </section>
-
-<!-- SVG Filter for Outline Effect -->
-<svg height="0" width="0" style="position: absolute;"> 
-  <!-- Ensure filter is rendered on all browsers -->
-  <filter id="outlineFilter" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-    <!-- Reduce the thickness of the outline -->
-    <feMorphology operator="dilate" radius="1" in="SourceAlpha" result="morphology"/>
-    <feFlood flood-color="#333333" flood-opacity="1" result="flood"/>
-    <feComposite in="flood" in2="morphology" operator="in" result="outline"/>
-    <feComposite in="outline" in2="SourceAlpha" operator="out" result="finalOutline"/>
-    <!-- Use the final outline -->
-    <feMerge>
-      <feMergeNode in="finalOutline"/>
-      <feMergeNode in="SourceGraphic"/>
-    </feMerge>
-  </filter>
-</svg>
 </body>
 </html>
