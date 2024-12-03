@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LiminalLoop</title>
-    <link href="https://fonts.googleapis.com/css2?family=Georama:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Danfo&display=swap" rel="stylesheet">
     <style>
         body {
             background: #E17EF0;
             color: blue;
-            font-family: "Georama", sans-serif;
+            font-family: "Raleway", sans-serif;
             margin: 0;
             padding: 5rem 1rem;
             line-height: 1.5;
@@ -20,13 +18,13 @@
         }
         a {
             color: inherit;
-            font-family: "Danfo", serif;
+            font-family: "Righteous", sans-serif;
             font-size: 1.6em;
             text-decoration: none;
             transition: filter 0.3s ease;
         }
         a:hover {
-            filter: url("#outlineFilter");
+            filter: url("#outlineFilter2");
         }
     </style>
 </head>
@@ -41,7 +39,7 @@
 
     <svg height="0" width="0" style="position: absolute;">
       <!-- Keep it visible for proper rendering on all browsers -->
-      <filter id="outlineFilter" x="0" y="0" width="100%" height="100%" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+      <filter id="outlineFilter2" x="0" y="0" width="100%" height="100%" filterUnits="objectBoundingBox" color-interpolation-filters="sRGB">
         <feMorphology operator="dilate" radius="0.5" in="SourceAlpha" result="morphology"/>
         <feFlood flood-color="#0000FF" flood-opacity="1" result="flood"/>
         <feComposite in="flood" in2="morphology" operator="in" result="composite"/>
