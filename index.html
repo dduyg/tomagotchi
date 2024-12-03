@@ -40,19 +40,21 @@
         <a href="#">data</a> types.
     </section>
 
-    <!-- Adjusted SVG for a thinner outline -->
-    <svg height="0" width="0" style="position: absolute;">
-        <filter id="outlineFilter" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
-            <!-- Smaller radius for thinner outline -->
-            <feMorphology operator="dilate" radius="0.5" in="SourceAlpha" result="morphology" />
-            <feFlood flood-color="#333333" flood-opacity="1" result="flood" />
-            <feComposite in="flood" in2="morphology" operator="in" result="composite" />
-            <feComposite in="composite" in2="SourceAlpha" operator="out" result="composite1" />
-            <feMerge>
-                <feMergeNode in="composite1" />
-                <feMergeNode in="SourceGraphic" />
-            </feMerge>
-        </filter>
-    </svg>
+<!-- SVG Filter for Outline Effect -->
+<svg height="0" width="0" style="position: absolute;"> 
+  <!-- Ensure filter is rendered on all browsers -->
+  <filter id="outlineFilter" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+    <!-- Reduce the thickness of the outline -->
+    <feMorphology operator="dilate" radius="1" in="SourceAlpha" result="morphology"/>
+    <feFlood flood-color="#333333" flood-opacity="1" result="flood"/>
+    <feComposite in="flood" in2="morphology" operator="in" result="outline"/>
+    <feComposite in="outline" in2="SourceAlpha" operator="out" result="finalOutline"/>
+    <!-- Use the final outline -->
+    <feMerge>
+      <feMergeNode in="finalOutline"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+</svg>
 </body>
 </html>
