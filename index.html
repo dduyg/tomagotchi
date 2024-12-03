@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiminalLoop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #999;
+            color: black;
+            font-family: "Anonymous Pro", monospace;
+            margin: 0;
+            padding: 5rem 1rem;
+            line-height: 1.5;
+            -webkit-tap-highlight-color: transparent;
+        }
+        a {
+            color: #666;
+            font-family: "Zen Dots", sans-serif;
+            font-size: 1.6em;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: filter 0.3s ease;
+        }
+        a:hover {
+            filter: url("#outlineFilter");
+        }
+    </style>
+</head>
+<body> 
+    <section>
+        <a href="#">⚞</a>Diffusion models are a class of generative models that simulate the <a href="#">gradual</a>
+        process of adding noise to data and then learn to reverse this process to generate 
+        new, high-quality data samples. During training, <a href="#">noise</a> is incrementally added to the 
+        data over multiple steps until it resembles <a href="#">pure</a> noise. The model then learns to denoise 
+        it step-by-step, effectively generating realistic data samples from noise. These models 
+        have shown state-of-the-art performance in generating high-quality images, text, and other 
+        <a href="#">data</a> types.
+    </section>
+
+    <!-- Adjusted SVG for a thinner outline -->
+    <svg height="0" width="0" style="position: absolute;">
+        <filter id="outlineFilter" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
+            <!-- Smaller radius for thinner outline -->
+            <feMorphology operator="dilate" radius="0.5" in="SourceAlpha" result="morphology" />
+            <feFlood flood-color="#333333" flood-opacity="1" result="flood" />
+            <feComposite in="flood" in2="morphology" operator="in" result="composite" />
+            <feComposite in="composite" in2="SourceAlpha" operator="out" result="composite1" />
+            <feMerge>
+                <feMergeNode in="composite1" />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter>
+    </svg>
+</body>
+</html>
