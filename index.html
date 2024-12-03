@@ -3,70 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My Vaporwave World</title>
+    <title>Welcome to My World</title>
     <style>
         body {
             margin: 0;
-            padding: 0;
-            font-family: 'Courier New', Courier, monospace;
-            color: #ffffff;
-            background: linear-gradient(135deg, #ff9e9e, #9e9eff);
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff6ec7, #313866, #42d392);
             background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+            animation: gradientBackground 12s ease infinite;
+            color: white;
             text-align: center;
         }
 
-        @keyframes gradient {
+        @keyframes gradientBackground {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        h1 {
-            font-size: 3rem;
-            margin-top: 20vh;
-            text-shadow: 2px 2px 5px #ff69b4;
+        header {
+            padding: 30px 0;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        p {
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            color: #ff6ec7;
+            text-shadow: 0 0 10px #ff6ec7, 0 0 20px #ff6ec7, 0 0 40px #42d392;
+        }
+
+        header p {
             font-size: 1.2rem;
+            margin: 10px 0 0;
+        }
+
+        .welcome-section {
+            padding: 80px 20px;
+        }
+
+        .welcome-section h2 {
+            font-size: 2.5rem;
+            text-shadow: 0 0 5px #ffffff, 0 0 10px #ff6ec7, 0 0 15px #42d392;
+        }
+
+        .welcome-section p {
+            font-size: 1.2rem;
+            line-height: 1.8;
             margin: 20px auto;
             max-width: 600px;
-            line-height: 1.5;
-            text-shadow: 1px 1px 3px #8a2be2;
         }
 
-        .neon-button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 15px 30px;
-            font-size: 1rem;
-            color: #fff;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid #fff;
-            border-radius: 30px;
+        footer {
+            margin-top: 50px;
+            padding: 20px 0;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            margin: 0;
+            color: #d0d0d0;
+        }
+
+        footer a {
+            color: #42d392;
             text-decoration: none;
-            text-transform: uppercase;
-            font-weight: bold;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-            text-shadow: 2px 2px 5px #000;
         }
 
-        .neon-button:hover {
-            background: #ff69b4;
-            border-color: #ff69b4;
-            color: #000;
-            box-shadow: 0 0 20px #ff69b4, 0 0 40px #ff69b4, 0 0 60px #ff69b4;
+        footer a:hover {
+            color: #ff6ec7;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to My Vaporwave World</h1>
-    <p>
-        Step into a dreamy, retro-futuristic world where the vibes are chill, the colors are neon, and everything feels like an 80s synthwave track. 
-        Explore and immerse yourself in this unique space I've created.
-    </p>
-    <a href="#explore" class="neon-button">Explore More</a>
+    <header>
+        <h1>Welcome to My World</h1>
+        <p>A place where dreams meet neon lights</p>
+    </header>
+
+    <section class="welcome-section">
+        <h2>Hello There!</h2>
+        <p>
+            Welcome to my personal webpage. Here, you'll find a collection of my thoughts, projects, and everything
+            that makes life a vibrant journey. Dive into the vaporwave vibe, where retro meets the future, and let’s explore together!
+        </p>
+    </section>
+
+    <footer>
+        <p>
+            Made with ❤️ in the vaporwave aesthetic. <a href="#">Contact Me</a>
+        </p>
+    </footer>
 </body>
 </html>
