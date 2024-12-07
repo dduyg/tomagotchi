@@ -29,15 +29,14 @@ header {
     justify-content: space-between;
     align-items: center;
 }
-
 .title {
     display: block;
     font-size: 1.6rem;
     letter-spacing: 2px;
-    /* Raised effect with precise text-shadow */
-    text-shadow: 
-        1px 1px 0px #fff,    /* Top left highlight */
-        -1px -1px 0px #555;  /* Bottom right shadow */
+
+    /* Hard-edged raised shadow */
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6),  /* Main shadow */
+                 4px 4px 0 rgba(0, 0, 0, 0.3); /* Slight outer layer */
 }
 
 .logo { 
@@ -57,10 +56,9 @@ header {
     transform: scaleY(0.5);
     transform-origin: center top;
 
-    /* Raised effect with precise box-shadow */
-    box-shadow: 
-        1px 1px 0px #fff,    /* Top left highlight */
-        -1px -1px 0px #555;  /* Bottom right shadow */
+    /* Hard-edged raised shadow for the rings */
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6),  /* Main shadow */
+                4px 4px 0 rgba(0, 0, 0, 0.3); /* Slight outer layer */
 }
 .ring.ring1 { top: 6px; }
 .ring.ring2 { top: 11px; }
