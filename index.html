@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LiminalLoop</title>
     <style>
-     body {
+        body {
     margin: 0;
     padding: 0;
     background-color: #999;
@@ -15,6 +15,8 @@
 main {
     width: 90%;
     max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
 }
 header {
     position: fixed;
@@ -32,8 +34,10 @@ header {
     display: block;
     font-size: 1.6rem;
     letter-spacing: 2px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 
-                 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* Raised effect with precise text-shadow */
+    text-shadow: 
+        1px 1px 0px #fff,    /* Top left highlight */
+        -1px -1px 0px #555;  /* Bottom right shadow */
 }
 
 .logo { 
@@ -53,9 +57,10 @@ header {
     transform: scaleY(0.5);
     transform-origin: center top;
 
-    /* Box shadow for the rings */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 
-                0 4px 8px rgba(0, 0, 0, 0.3);
+    /* Raised effect with precise box-shadow */
+    box-shadow: 
+        1px 1px 0px #fff,    /* Top left highlight */
+        -1px -1px 0px #555;  /* Bottom right shadow */
 }
 .ring.ring1 { top: 6px; }
 .ring.ring2 { top: 11px; }
