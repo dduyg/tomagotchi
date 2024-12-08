@@ -6,14 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Liminal Loop</title>
     <style>
-        @font-face {
-            font-family: 'Kola';
-            src: url('/fonts/Kola.woff2') format('woff2'),
-                 url('/fonts/Kola.woff') format('woff');
-            font-weight: 400;
-            font-display: swap;
-            font-style: normal;
-        }
+/**
+* Font Family: Bespoke Sans (Variable font)
+* You can control variable axes as shown below:
+* font-variation-settings: wght 800.0;
+*
+* available axes:
+'wght' (range from 300.0 to 800.0
+*/
+@font-face {
+  font-family: 'Bespoke Sans';
+  src: url('BespokeSans-Variable.woff2') format('woff2'),
+       url('BespokeSans-Variable.woff') format('woff');
+  font-weight: 300 800;
+  font-display: swap;
+  font-style: normal;
+}           
         :root {
             --base_fsize: clamp(1.125rem,4vw,1.4375rem);
             --small_fsize: clamp(1rem,3.25vw,1.125rem);
@@ -22,7 +30,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Kola', sans-serif;
+            font-family: 'Bespoke Sans', sans-serif;
             background: #8BA8A4;
             color: #1F208B;
         }
