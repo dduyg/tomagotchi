@@ -1,138 +1,131 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abbreviated Projects</title>
-    <style>
-        /* General styles */
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            color: #000;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abbreviated Projects</title>
+  <style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #000;
+}
 
-        .container {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 16px;
-            max-width: 1200px;
-            margin: auto;
-            padding: 16px;
-        }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-        /* Header section */
-        .header {
-            grid-column: span 12;
-            text-align: left;
-            line-height: 1.5;
-        }
+header {
+  text-align: left;
+  border-bottom: 1px solid #000;
+  margin-bottom: 20px;
+}
 
-        .header h1 {
-            font-size: 1.5rem;
-            margin: 0 0 1rem;
-        }
+header h1 {
+  font-size: 2em;
+  margin: 0;
+}
 
-        .header p {
-            margin: 0 0 2rem;
-        }
+header p {
+  font-size: 1em;
+  line-height: 1.5;
+}
 
-        .header a {
-            display: block;
-            margin-bottom: 8px;
-            text-decoration: none;
-            color: #000;
-        }
+.contact-info {
+  margin-top: 20px;
+}
 
-        /* Content Section */
-        .content {
-            grid-column: span 12;
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
+.contact-info a {
+  text-decoration: none;
+  color: #000;
+}
 
-        .project {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
+main {
+  margin-top: 20px;
+}
 
-        .project img {
-            width: 100%;
-            object-fit: cover;
-        }
+.recent-developments {
+  margin-top: 20px;
+}
 
-        .project .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-        }
+.recent-developments h2 {
+  font-size: 1.5em;
+  border-bottom: 1px solid #000;
+  padding-bottom: 10px;
+}
 
-        .project .label {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: #000;
-            color: #fff;
-            padding: 5px 10px;
-            font-size: 0.9rem;
-        }
+.projects {
+  display: flex;
+  gap: 20px;
+}
 
-        /* Mobile styles */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 1.25rem;
-            }
+.project {
+  text-align: center;
+  flex: 1;
+}
 
-            .project .overlay {
-                font-size: 1rem;
-            }
-        }
-    </style>
+.project img {
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  background: #000;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .projects {
+    flex-direction: column;
+  }
+
+  header {
+    text-align: center;
+  }
+
+  .contact-info {
+    text-align: center;
+  }
+}
+  </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header Section -->
-        <div class="header">
-            <h1>Abbreviated Projects</h1>
-            <p>
-                Abbreviated Projects is a strategic design studio helping brands and businesses evolve faster,
-                compete stronger, and survive longer. Our field-tested method yields identities and experiences
-                of the highest order. With every project, we aim to prove that creativity can make a more intelligent
-                species and beautiful world.
-            </p>
-            <a href="mailto:projects@abranowicz.com">EMAIL US: projects@abranowicz.com</a>
-            <a href="#">FOLLOW ALONG</a>
-            <a href="#">VISIT OUR TYPE FOUNDRY</a>
-        </div>
+  <div class="container">
+    <header>
+      <h1>Abbreviated Projects</h1>
+      <p>
+        Abbreviated Projects is a strategic design studio helping brands and businesses evolve faster, compete stronger, and survive longer. Our field-tested method yields identities and experiences of the highest order. With every project, we aim to prove that creativity can make a more intelligent species and beautiful world.
+      </p>
+      <div class="contact-info">
+        <p><strong>Email us:</strong> <a href="mailto:projects@abranowicz.com">projects@abranowicz.com</a></p>
+        <p><strong>Follow along</strong></p>
+        <p><strong><a href="#">Visit our type foundry</a></strong></p>
+      </div>
+    </header>
 
-        <!-- Content Section -->
-        <div class="content">
-            <!-- Project 1 -->
-            <div class="project">
-                <img src="project1.jpg" alt="Project 1">
-                <div class="label">NEW PROJECT</div>
-                <div class="overlay">Remedy Place</div>
-            </div>
-            <!-- Project 2 -->
-            <div class="project">
-                <img src="project2.jpg" alt="Project 2">
-                <div class="label">NEW PROJECT</div>
-                <div class="overlay">Studio Kër</div>
-            </div>
+    <main>
+      <section class="recent-developments">
+        <h2>Recent Developments</h2>
+        <div class="projects">
+          <div class="project">
+            <button>New Project</button>
+            <h3>Remedy Place</h3>
+            <img src="remedy.jpg" alt="Remedy Place project">
+          </div>
+          <div class="project">
+            <button>New Project</button>
+            <h3>Studio Kér</h3>
+            <img src="studio.jpg" alt="Studio Kér project">
+          </div>
         </div>
-    </div>
+      </section>
+    </main>
+  </div>
 </body>
 </html>
