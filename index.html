@@ -3,129 +3,157 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Abbreviated Projects</title>
+  <title>LiminalLoop</title>
   <style>
-body {
-  font-family: Arial, sans-serif;
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  padding: 20px;
+  background: #fff;
   color: #000;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
 header {
-  text-align: left;
-  border-bottom: 1px solid #000;
-  margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 header h1 {
-  font-size: 2em;
-  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 header p {
-  font-size: 1em;
-  line-height: 1.5;
+  max-width: 600px;
+  margin: 0 auto 20px auto;
+  font-size: 16px;
 }
 
 .contact-info {
-  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
 }
 
 .contact-info a {
   text-decoration: none;
+  font-size: 14px;
   color: #000;
+  border-bottom: 1px solid #000;
 }
 
 main {
-  margin-top: 20px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .recent-developments {
-  margin-top: 20px;
+  text-align: center;
 }
 
 .recent-developments h2 {
-  font-size: 1.5em;
-  border-bottom: 1px solid #000;
-  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .projects {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
 }
 
 .project {
-  text-align: center;
-  flex: 1;
+  position: relative;
+  text-align: left;
 }
 
 .project img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
+  display: block;
 }
 
-button {
+.project h3 {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.project .tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
   background: #000;
   color: #fff;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: bold;
 }
 
+/* Responsive Styles */
 @media (max-width: 768px) {
   .projects {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 
-  header {
-    text-align: center;
+  header p {
+    font-size: 14px;
   }
 
   .contact-info {
-    text-align: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .contact-info a {
+    font-size: 12px;
   }
 }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Abbreviated Projects</h1>
-      <p>
-        Abbreviated Projects is a strategic design studio helping brands and businesses evolve faster, compete stronger, and survive longer. Our field-tested method yields identities and experiences of the highest order. With every project, we aim to prove that creativity can make a more intelligent species and beautiful world.
-      </p>
-      <div class="contact-info">
-        <p><strong>Email us:</strong> <a href="mailto:projects@abranowicz.com">projects@abranowicz.com</a></p>
-        <p><strong>Follow along</strong></p>
-        <p><strong><a href="#">Visit our type foundry</a></strong></p>
-      </div>
-    </header>
-
-    <main>
-      <section class="recent-developments">
-        <h2>Recent Developments</h2>
-        <div class="projects">
-          <div class="project">
-            <button>New Project</button>
-            <h3>Remedy Place</h3>
-            <img src="remedy.jpg" alt="Remedy Place project">
-          </div>
-          <div class="project">
-            <button>New Project</button>
-            <h3>Studio Kér</h3>
-            <img src="studio.jpg" alt="Studio Kér project">
-          </div>
+  <header>
+    <h1>Abbreviated Projects</h1>
+    <p>
+      Abbreviated Projects is a strategic design studio helping brands and businesses evolve faster, compete stronger, and survive longer.
+      Our field-tested method yields identities and experiences of the highest order. With every project, we aim to prove that creativity
+      can make a more intelligent species and beautiful world.
+    </p>
+    <div class="contact-info">
+      <a href="mailto:projects@abranowicz.com">EMAIL US</a>
+      <a href="#">FOLLOW ALONG</a>
+      <a href="#">VISIT OUR TYPE FOUNDRY</a>
+    </div>
+  </header>
+  
+  <main>
+    <section class="recent-developments">
+      <h2>Recent developments</h2>
+      <div class="projects">
+        <div class="project">
+          <span class="tag">NEW PROJECT</span>
+          <h3>Remedy Place</h3>
+          <img src="placeholder1.jpg" alt="Remedy Place">
         </div>
-      </section>
-    </main>
-  </div>
+        <div class="project">
+          <h3>The Framework</h3>
+          <img src="placeholder2.jpg" alt="The Framework">
+        </div>
+        <div class="project">
+          <span class="tag">NEW PROJECT</span>
+          <h3>Studio Kër</h3>
+          <img src="placeholder3.jpg" alt="Studio Kër">
+        </div>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
