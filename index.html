@@ -1,119 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiminalLoop</title>
-    <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiminalLoop</title>
+  <style>
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    padding: 20px;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Section: Luminaries at Law */
-.intro {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 40px;
-}
-
-.text-column, .logo-column {
-    flex: 1 1 calc(50% - 20px);
-    min-width: 280px;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
 }
 
 h1, h2 {
-    font-size: 1.8rem;
-    margin-bottom: 15px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 p {
-    font-size: 1rem;
-    margin-bottom: 15px;
+  margin: 0;
+  padding: 10px;
 }
 
-/* Section: Stationery */
-.stationery {
-    margin-bottom: 40px;
+/* Header */
+.header {
+  background: #f8f8f8;
+  padding: 20px 10px;
+  border-bottom: 1px solid #ddd;
 }
 
-.stationery .images {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+/* Two-Column Layout */
+.section {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 20px;
 }
 
-.stationery img {
-    width: calc(50% - 10px);
-    min-width: 280px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+.column {
+  flex: 1;
 }
 
-/* Branding Section */
-.branding {
-    margin-bottom: 40px;
+/* Centered Sections */
+.logo-section, .stationery-section {
+  text-align: center;
+  padding: 20px;
 }
 
-.branding h2 {
-    margin-bottom: 15px;
+.image-grid {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.image {
+  width: 45%;
+  height: auto;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .intro {
-        flex-direction: column;
-    }
+  .section {
+    flex-direction: column;
+  }
+  
+  .image-grid {
+    flex-direction: column;
+  }
 
-    .text-column, .logo-column {
-        flex: 1 1 100%;
-    }
-
-    .stationery .images img {
-        width: 100%;
-    }
+  .image {
+    width: 100%;
+  }
 }
-    </style>
+  </style>
 </head>
 <body>
-    <div class="container">
-        <section class="intro">
-            <div class="text-column">
-                <h1>Luminaries at Law</h1>
-                <p>Roberta Kaplan and Timothy Martin are two of New York’s most respected legal minds. Martin is responsible for litigating what has been called “the most intensely contested contract in the history of litigation,” and is a trusted advisor to founders, CEOs, counsels, and others looking to him for the world’s most perplexing legal problems. Kaplan is a well-known advocate for liberal causes, from her efforts to win marriage equality in the United States, to her representation of E. Jean Carroll against Donald J. Trump. In 2024, Kaplan and Martin hired Abbreviated Projects to help launch their new firm, Kaplan Martin, with understated panache.</p>
-            </div>
-            <div class="logo-column">
-                <h2>KM</h2>
-                <p>Logo Animation</p>
-            </div>
-        </section>
-
-        <section class="stationery">
-            <h2>Stationery</h2>
-            <div class="images">
-                <img src="stationery1.jpg" alt="Stationery 1">
-                <img src="stationery2.jpg" alt="Stationery 2">
-            </div>
-        </section>
-
-        <section class="branding">
-            <h2>Justice Looks Good</h2>
-            <p>The new KM identity reflects the unparalleled pedigree of the people behind the practice. The logo system recalls early twentieth-century European graphic design, with a classic seal stripped of pretension, merging the initials of the firm’s founders. It’s accompanied by an eminently readable logotype using a timeless serif. To lend a learned air to the brand’s aesthetic, we curated a “tortoise shell” color palette that recalls the sophisticated eyewear worn by lawyers scrutinizing dense legal documents. Altogether, the identity projects the trust, expertise, and intelligence Kaplan Martin’s clients look for in a high-stakes partnership.</p>
-        </section>
+  <header class="header">
+    <h1>Visual Identity System</h1>
+  </header>
+  
+  <section class="section">
+    <div class="column">
+      <h2>Luminaries at Law</h2>
     </div>
+    <div class="column">
+      <p>
+        Roberta Kaplan and Timothy Martin are two of New York’s most respected legal minds. Martin is responsible for litigating what has been called “the most intensely contested contract in the history of litigation,” and is a trusted advisor to founders, CEOs, counselors, and others looking to him for the world’s most perplexing legal problems. Kaplan is a well-known advocate for liberal causes, from her efforts to win marriage equality in the United States, to her representation of E. Jean Carroll against Donald J. Trump. In 2024, Kaplan and Martin hired Abbreviated Projects to help launch their new firm, Kaplan Martin, with understated panache.
+      </p>
+    </div>
+  </section>
+  
+  <section class="logo-section">
+    <h2 class="center-text">KM</h2>
+    <p class="center-text">LOGO ANIMATION</p>
+  </section>
+  
+  <section class="stationery-section">
+    <div class="image-grid">
+      <img src="notebook.jpg" alt="Notebook design" class="image">
+      <img src="documents.jpg" alt="Documents design" class="image">
+    </div>
+    <p class="center-text">STATIONERY</p>
+  </section>
+  
+  <section class="section">
+    <div class="column">
+      <h2>Justice Looks Good</h2>
+    </div>
+    <div class="column">
+      <p>
+        The new KM identity reflects the unparalleled pedigree of the people behind the practice. The logo system recalls early twentieth-century European graphic design, with a classic seal stripped of pretension, merging the initials of the firm’s founders. It’s accompanied by an eminently readable logotype using a timeless serif. To lend a learned air to the brand’s aesthetic, we curated a “tortoise shell” color palette that recalls the sophisticated eyewear worn by lawyers scrutinizing dense legal documents. Altogether, the identity projects the trust, expertise, and intelligence Kaplan Martin’s clients look for in a high-stakes partnership.
+      </p>
+    </div>
+  </section>
 </body>
 </html>
