@@ -5,114 +5,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LiminalLoop</title>
   <style>
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  margin: 0;
-  padding: 0;
-}
-
-h1, h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-p {
-  margin: 0;
-  padding: 10px;
-}
-
-/* Header */
-.header {
-  background: #f8f8f8;
-  padding: 20px 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-/* Two-Column Layout */
-.section {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  gap: 20px;
-}
-
-.column {
-  flex: 1;
-}
-
-/* Centered Sections */
-.logo-section, .stationery-section {
-  text-align: center;
-  padding: 20px;
-}
-
-.image-grid {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin: 20px 0;
-}
-
-.image {
-  width: 45%;
-  height: auto;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .section {
-    flex-direction: column;
-  }
-  
-  .image-grid {
-    flex-direction: column;
-  }
-
-  .image {
-    width: 100%;
-  }
-}
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background: #f8f8f8;
+    }
+    
+    header {
+      text-align: center;
+      padding: 20px 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    section {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      gap: 20px;
+    }
+    .title, .content {
+      flex: 1;
+    }
+    
+    /* Centered Sections */
+    .logo-section, .stationery-section {
+      text-align: center;
+      padding: 20px;
+    }
+    .image-grid {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .image {
+      width: 45%;
+      height: auto;
+    }
+    
+    @media (max-width: 768px) {
+      section {flex-direction: column;}
+      .image-grid {flex-direction: column;}
+      .image {width: 100%;}
+    }
   </style>
 </head>
 <body>
-  <header class="header">
-    <h1>Visual Identity System</h1>
-  </header>
+  <header>Identity System</header>
   
-  <section class="section">
-    <div class="column">
+  <section>
+    <div class="title">
       <h2>Luminaries at Law</h2>
     </div>
-    <div class="column">
-      <p>
-        Roberta Kaplan and Timothy Martin are two of New York’s most respected legal minds. Martin is responsible for litigating what has been called “the most intensely contested contract in the history of litigation,” and is a trusted advisor to founders, CEOs, counselors, and others looking to him for the world’s most perplexing legal problems. Kaplan is a well-known advocate for liberal causes, from her efforts to win marriage equality in the United States, to her representation of E. Jean Carroll against Donald J. Trump. In 2024, Kaplan and Martin hired Abbreviated Projects to help launch their new firm, Kaplan Martin, with understated panache.
-      </p>
-    </div>
+    <div class="content">Roberta Kaplan and Timothy Martin are two of New York’s most respected legal minds. Martin is responsible for litigating what has been called “the most intensely contested contract in the history of litigation,” and is a trusted advisor to founders, CEOs, counselors, and others looking to him for the world’s most perplexing legal problems. Kaplan is a well-known advocate for liberal causes, from her efforts to win marriage equality in the United States, to her representation of E. Jean Carroll against Donald J. Trump. In 2024, Kaplan and Martin hired Abbreviated Projects to help launch their new firm, Kaplan Martin, with understated panache.</div>
   </section>
   
-  <section class="logo-section">
+  <div class="logo-section">
     <h2 class="center-text">KM</h2>
     <p class="center-text">LOGO ANIMATION</p>
-  </section>
-  
-  <section class="stationery-section">
+  </div>
+  <div class="stationery-section">
     <div class="image-grid">
-      <img src="notebook.jpg" alt="Notebook design" class="image">
-      <img src="documents.jpg" alt="Documents design" class="image">
+      <img src="notebook.jpg" class="image">
+      <img src="documents.jpg" class="image">
     </div>
     <p class="center-text">STATIONERY</p>
-  </section>
+  </div>
   
-  <section class="section">
-    <div class="column">
+  <section>
+    <div class="title">
       <h2>Justice Looks Good</h2>
     </div>
-    <div class="column">
-      <p>
-        The new KM identity reflects the unparalleled pedigree of the people behind the practice. The logo system recalls early twentieth-century European graphic design, with a classic seal stripped of pretension, merging the initials of the firm’s founders. It’s accompanied by an eminently readable logotype using a timeless serif. To lend a learned air to the brand’s aesthetic, we curated a “tortoise shell” color palette that recalls the sophisticated eyewear worn by lawyers scrutinizing dense legal documents. Altogether, the identity projects the trust, expertise, and intelligence Kaplan Martin’s clients look for in a high-stakes partnership.
-      </p>
-    </div>
+    <div class="content">The new KM identity reflects the unparalleled pedigree of the people behind the practice. The logo system recalls early twentieth-century European graphic design, with a classic seal stripped of pretension, merging the initials of the firm’s founders. It’s accompanied by an eminently readable logotype using a timeless serif. To lend a learned air to the brand’s aesthetic, we curated a “tortoise shell” color palette that recalls the sophisticated eyewear worn by lawyers scrutinizing dense legal documents. Altogether, the identity projects the trust, expertise, and intelligence Kaplan Martin’s clients look for in a high-stakes partnership.</div>
   </section>
 </body>
 </html>
