@@ -25,7 +25,8 @@
       margin: 30% auto auto 60px;
     }
 
-    footer {
+    
+    .footer {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -33,7 +34,36 @@
       border-top: 1px solid currentColor;
       margin-top: 100px;
       font-size: 12px;
-    }    
+    }
+
+    .kv_title .logo{
+      width: calc(var(--column)*10 + var(--gutter)*10)
+    }
+    @media(min-width: 800px){
+      .kv_title .logo{
+        width:calc(var(--column)*6 + var(--gutter)*6)
+      }
+    }
+    .kv_title .logo svg{
+      fill:var(--c-blue)
+    }
+    .kv_title .text {
+      display: flex;
+      flex-direction: column;
+      row-gap: 5px;
+    }
+    .kv_title .text { 
+      margin-top:var(--gutter);
+      padding-left:var(--gutter)
+    }
+    @media(min-width: 800px){
+      .kv_title .text{
+        padding-left: calc(var(--column)*1 + var(--gutter)*1);
+        transform:translateY(-15px)
+      }
+    }
+    .kv_title .text .t{height:16px}
+    .kv_title .text .t svg{width:auto;height:100%} 
   </style>
 </head>
 <body>
