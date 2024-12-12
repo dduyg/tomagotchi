@@ -18,7 +18,7 @@
       font-weight: bold;
     }   
 
-    /* 2. Distorted Vertical Wave */
+    /* 1. Distorted Vertical Wave */
     .wave {
       animation: wave 0.2s infinite ease-in-out;
     }
@@ -26,23 +26,9 @@
       0%, 100% { transform: scaleY(1); }
       25% { transform: scaleY(1.2); }
       50% { transform: scaleY(0.8); }
-    }
+    }    
 
-
-    
-
-    /* 3. Pixel Jitter */
-    .jitter {
-      animation: jitter 0.1s infinite;
-    }
-    @keyframes jitter {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-2px); }
-      50% { transform: translateX(2px); }
-      75% { transform: translateX(-1px); }
-    }
-
-    /* 4. Horizontal Scanlines */
+    /* 2. Horizontal Scanlines */
     .scanlines {
       position: relative;
       overflow: hidden;
@@ -54,7 +40,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: white;
+      background: pink;
       clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%);
       animation: scanline 0.2s infinite;
     }
@@ -115,5 +101,6 @@
 </head>
 <body>
   <h2 class="wave">/dygg</h2>
+  <h2 class="scanlines">/dygg</h2>
 </body>
 </html>
