@@ -3,64 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Glitch Effects</title>
+  <title>Glygg</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 1rem;
-      background-color: white;
+      background: white;
       color: black;
-    }
-
-    .container {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .glitch-box {
-      display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      width: 300px;
-      height: 150px;
-      border: 1px solid #000;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .glitch-box h2 {
-      font-size: 2rem;
-      font-weight: bold;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px;
+      min-height: 100vh;
       margin: 0;
+    }
+    .effect-container {
       text-align: center;
+    }
+    h2 {
+      font-size: 4rem;
+      font-weight: bold;
+      text-transform: uppercase;
     }
 
     /* 1. Text Flicker */
+    .flicker {
+      animation: flicker 0.15s infinite;
+    }
     @keyframes flicker {
       0%, 100% { opacity: 1; }
       20% { opacity: 0; }
       40%, 80% { opacity: 0.5; }
     }
 
-    .flicker {
-      animation: flicker 0.15s infinite;
-    }
-
     /* 2. Distorted Vertical Wave */
+    .wave {
+      animation: wave 0.2s infinite ease-in-out;
+    }
     @keyframes wave {
       0%, 100% { transform: scaleY(1); }
       25% { transform: scaleY(1.2); }
       50% { transform: scaleY(0.8); }
     }
 
-    .wave {
-      animation: wave 0.2s infinite ease-in-out;
-    }
-
     /* 3. Pixel Jitter */
+    .jitter {
+      animation: jitter 0.1s infinite;
+    }
     @keyframes jitter {
       0%, 100% { transform: translateX(0); }
       25% { transform: translateX(-2px); }
@@ -68,11 +58,11 @@
       75% { transform: translateX(-1px); }
     }
 
-    .jitter {
-      animation: jitter 0.1s infinite;
-    }
-
     /* 4. Horizontal Scanlines */
+    .scanlines {
+      position: relative;
+      overflow: hidden;
+    }
     .scanlines::before {
       content: '/dygg';
       position: absolute;
@@ -84,7 +74,6 @@
       clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%);
       animation: scanline 0.2s infinite;
     }
-
     @keyframes scanline {
       0%, 100% { clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%); }
       50% { clip-path: polygon(0 50%, 100% 50%, 100% 60%, 0 60%); }
@@ -95,34 +84,33 @@
       display: inline-block;
       animation: distort 0.3s infinite;
     }
-
     @keyframes distort {
       0%, 100% { transform: scale(1, 1); }
       50% { transform: scale(1.2, 0.8); }
     }
 
     /* 6. Split Displacement */
+    .split {
+      position: relative;
+      overflow: hidden;
+    }
     .split::before,
     .split::after {
       content: '/dygg';
       position: absolute;
       top: 0;
       left: 0;
-      color: black;
     }
-
     .split::before {
       clip-path: inset(0 0 50% 0);
       transform: translateX(-2px);
       animation: slice 0.3s infinite;
     }
-
     .split::after {
       clip-path: inset(50% 0 0 0);
       transform: translateX(2px);
       animation: slice 0.3s infinite reverse;
     }
-
     @keyframes slice {
       0%, 100% { transform: translateX(0); }
       50% { transform: translateX(5px); }
@@ -142,18 +130,35 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="glitch-box"><h2 class="flicker">/dygg</h2></div>
-    <div class="glitch-box"><h2 class="wave">/dygg</h2></div>
-    <div class="glitch-box"><h2 class="jitter">/dygg</h2></div>
-    <div class="glitch-box scanlines"><h2>/dygg</h2></div>
-    <div class="glitch-box distort">
-      <h2>
-        <span>d</span><span>y</span><span>g</span><span>g</span>
-      </h2>
-    </div>
-    <div class="glitch-box split"><h2>/dygg</h2></div>
-    <div class="glitch-box crt"><h2>/dygg</h2></div>
+  <div class="effect-container">
+    <h2 class="flicker">/dygg</h2>
+    <p>Text Flicker</p>
+  </div>
+  <div class="effect-container">
+    <h2 class="wave">/dygg</h2>
+    <p>Distorted Vertical Wave</p>
+  </div>
+  <div class="effect-container">
+    <h2 class="jitter">/dygg</h2>
+    <p>Pixel Jitter</p>
+  </div>
+  <div class="effect-container">
+    <h2 class="scanlines">/dygg</h2>
+    <p>Horizontal Scanlines</p>
+  </div>
+  <div class="effect-container distort">
+    <h2>
+      <span>d</span><span>y</span><span>g</span><span>g</span>
+    </h2>
+    <p>Text Distortion</p>
+  </div>
+  <div class="effect-container">
+    <h2 class="split">/dygg</h2>
+    <p>Split Displacement</p>
+  </div>
+  <div class="effect-container">
+    <h2 class="crt">/dygg</h2>
+    <p>CRT Style</p>
   </div>
 </body>
 </html>
