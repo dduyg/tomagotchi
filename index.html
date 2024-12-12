@@ -6,8 +6,6 @@
     <title>LiminalLoop</title>
     <style>
         body {
-            background: #000;
-            color: #fff;
             font-family: 'Arial', sans-serif;
             display: flex;
             justify-content: center;
@@ -16,11 +14,12 @@
             margin: 0;
             overflow: hidden;
         }
+
 .glitch {
   position: relative;
   font-size: 4rem;
   font-weight: bold;
-  color: white;
+  color: black;
   text-transform: uppercase;
   overflow: hidden;
 }
@@ -31,36 +30,42 @@
   position: absolute;
   top: 0;
   left: 0;
-  color: white;
+  color: black;
   background: transparent;
   clip-path: inset(0 0 50% 0);
 }
 
 .glitch::before {
-  color: cyan;
-  transform: translate(-2px, 2px);
+  z-index: -1;
+  transform: translate(2px, 0);
+  opacity: 0.8;
   animation: glitch 2s infinite;
 }
 
 .glitch::after {
-  color: magenta;
-  transform: translate(2px, -2px);
+  z-index: -1;
+  transform: translate(-2px, 0);
+  opacity: 0.5;
   animation: glitch 2s infinite reverse;
 }
 
 @keyframes glitch {
   0% {
     clip-path: inset(10% 0 50% 0);
-    transform: translate(2px, -2px);
+    transform: translate(2px, 0);
   }
   50% {
     clip-path: inset(30% 0 20% 0);
-    transform: translate(-2px, 2px);
+    transform: translate(-2px, 0);
   }
   100% {
     clip-path: inset(10% 0 50% 0);
-    transform: translate(2px, -2px);
+    transform: translate(2px, 0);
   }
+}
+
+.glitch::after:hover {
+    transition: opacity 0.3s linear;
 }
     </style>
 </head>
