@@ -1,75 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiminalLoop</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glitch Effects</title>
+  <style>
+    /* General Container Styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
 
-.glitch {
-  position: relative;
-  font-size: 4rem;
-  font-weight: bold;
-  color: black;
-  text-transform: uppercase;
-  overflow: hidden;
-}
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
 
-.glitch::before,
-.glitch::after {
-  content: '/dygg';
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: black;
-  background: transparent;
-  clip-path: inset(0 0 50% 0);
-}
+    .glitch-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 300px;
+      height: 150px;
+      border: 1px solid #000;
+      position: relative;
+      overflow: hidden;
+    }
 
-.glitch::before {
-  z-index: -1;
-  transform: translate(2px, 0);
-  opacity: 0.8;
-  animation: glitch 2s infinite;
-}
+    .glitch-box h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 0;
+      text-align: center;
+    }
 
-.glitch::after {
-  z-index: -1;
-  transform: translate(-2px, 0);
-  opacity: 0.5;
-  animation: glitch 2s infinite reverse;
-}
+    /* 1. Text Flicker */
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      20% { opacity: 0; }
+      40%, 80% { opacity: 0.5; }
+    }
 
-@keyframes glitch {
-  0% {
-    clip-path: inset(10% 0 50% 0);
-    transform: translate(2px, 0);
-  }
-  50% {
-    clip-path: inset(30% 0 20% 0);
-    transform: translate(-2px, 0);
-  }
-  100% {
-    clip-path: inset(10% 0 50% 0);
-    transform: translate(2px, 0);
-  }
-}
+    .flicker {
+      animation: flicker 0.15s infinite;
+    }
 
-.glitch::after:hover {
-    transition: opacity 0.3s linear;
-}
-    </style>
+    /* 2. Distorted Vertical Wave */
+    @keyframes wave {
+      0%, 100% { transform: scaleY(1); }
+      25% { transform: scaleY(1.2); }
+      50% { transform: scaleY(0.8); }
+    }
+
+    .wave {
+      animation: wave 0.2s infinite ease-in-out;
+    }
+
+    /* 3. Pixel Jitter */
+    @keyframes jitter {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-2px); }
+      50% { transform: translateX(2px); }
+      75% { transform: translateX(-1px); }
+    }
+
+    .jitter {
+      animation: jitter 0.1s infinite;
+    }
+
+    /* 4. Horizontal Scanlines */
+    .scanlines::before {
+      content: '/dygg';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%);
+      animation: scanline 0.2s infinite;
+    }
+
+    @keyframes scanline {
+      0%, 100% { clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%); }
+      50% { clip-path: polygon(0 50%, 100% 50%, 100% 60%, 0 60%); }
+    }
+
+    /* 5. Text Distortion */
+    .distort span {
+      display: inline-block;
+      animation: distort 0.3s infinite;
+    }
+
+    @keyframes distort {
+      0%, 100% { transform: scale(1, 1); }
+      50% { transform: scale(1.2, 0.8); }
+    }
+
+    /* 6. Split Displacement */
+    .split::before,
+    .split::after {
+      content: '/dygg';
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: black;
+    }
+
+    .split::before {
+      clip-path: inset(0 0 50% 0);
+      transform: translateX(-2px);
+      animation: slice 0.3s infinite;
+    }
+
+    .split::after {
+      clip-path: inset(50% 0 0 0);
+      transform: translateX(2px);
+      animation: slice 0.3s infinite reverse;
+    }
+
+    @keyframes slice {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(5px); }
+    }
+
+    /* 7. CRT Style */
+    .crt {
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 95%,
+        black 95%,
+        black 96%
+      );
+      animation: flicker 0.2s infinite;
+    }
+  </style>
 </head>
 <body>
-    <h2 class="glitch">/dygg</h2>
+  <div class="container">
+    <div class="glitch-box"><h2 class="flicker">/dygg</h2></div>
+    <div class="glitch-box"><h2 class="wave">/dygg</h2></div>
+    <div class="glitch-box"><h2 class="jitter">/dygg</h2></div>
+    <div class="glitch-box scanlines"><h2>/dygg</h2></div>
+    <div class="glitch-box distort">
+      <h2>
+        <span>d</span><span>y</span><span>g</span><span>g</span>
+      </h2>
+    </div>
+    <div class="glitch-box split"><h2>/dygg</h2></div>
+    <div class="glitch-box crt"><h2>/dygg</h2></div>
+  </div>
 </body>
 </html>
