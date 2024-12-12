@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Glygg</title>
+  <title>LiminalLoop</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -16,65 +16,82 @@
     h2 {
       font-size: 4rem;
       font-weight: bold;
-    }   
-
-    /* 1. Distorted Vertical Wave */
-    .wave {
-      animation: wave 0.2s infinite ease-in-out;
-    }
-    @keyframes wave {
-      0%, 100% { transform: scaleY(1); }
-      25% { transform: scaleY(1.2); }
-      50% { transform: scaleY(0.8); }
-    }
-    
-    /* 2. Text Distortion */
-    .distort span {
-      display: inline-block;
-      animation: distort 0.3s infinite;
-    }
-    @keyframes distort {
-      0%, 100% { transform: scale(1, 1); }
-      50% { transform: scale(1.2, 0.8); }
     }
 
-    /* 3. Split Displacement */
-    .split {
-      position: relative;
-      overflow: hidden;
+    /* 1. Text Shifting (Horizontal Distortion) */
+    .shift {
+      animation: shift 0.3s infinite ease-in-out;
     }
-    .split::before {
-      clip-path: inset(0 0 50% 0);
-      transform: translateX(-2px);
-      animation: slice 0.3s infinite;
-    }
-    .split::after {
-      clip-path: inset(50% 0 0 0);
-      transform: translateX(2px);
-      animation: slice 0.3s infinite reverse;
-    }
-    @keyframes slice {
+    @keyframes shift {
       0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
       50% { transform: translateX(5px); }
+      75% { transform: translateX(-3px); }
     }
 
-    /* 4. CRT Style */
-    .crt {
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 95%,
-        black 95%,
-        black 96%
-      );
-      animation: flicker 0.2s infinite;
+    /* 2. Text Blurring (Fuzzy Glitch) */
+    .blur {
+      animation: blur 0.3s infinite;
     }
+    @keyframes blur {
+      0%, 100% { filter: blur(0); }
+      50% { filter: blur(2px); }
+    }
+
+    /* 3. Reversed Letter Order (Mirror Glitch) */
+    .reverse span {
+      display: inline-block;
+      animation: reverse 0.5s infinite;
+    }
+    @keyframes reverse {
+      0%, 100% { transform: scaleX(1); }
+      50% { transform: scaleX(-1); }
+    }
+
+    /* 4. Text Pixelate */
+    .pixelate {
+      animation: pixelate 0.4s infinite;
+    }
+    @keyframes pixelate {
+      0%, 100% { transform: scale(1); filter: none; }
+      50% { transform: scale(1.1); filter: pixelate(4px); }
+    }
+
+    /* 5. Scrolling Digital Noise */
+    .noise {
+      position: relative;
+      display: inline-block;
+      animation: noise 1s linear infinite;
+      background-image: url('data:image/png;base64,...'); /* Add noise texture here */
+      background-size: 100% 100%;
+      color: black;
+    }
+    @keyframes noise {
+      0%, 100% { background-position: 0 0; }
+      50% { background-position: 100% 0; }
+    }
+
+    /* 6. Random Character Swap (Character Shuffle) */
+    .shuffle {
+      display: inline-block;
+      animation: shuffle 1s infinite;
+      font-family: monospace;
+    }
+    @keyframes shuffle {
+      0%, 100% { content: '/dygg'; }
+      25% { content: '/dyyg'; }
+      50% { content: '/dxyg'; }
+      75% { content: '/dyfg'; }
+    }
+
   </style>
 </head>
 <body>
-  <h2 class="wave">/dygg</h2>
-  <h2 class="distort"><span>d</span><span>y</span><span>g</span><span>g</span></h2>
-  <h2 class="split">/dygg</h2>
-  <h2 class="crt">/dygg</h2>
+    <h2 class="shift">/dygg</h2>
+    <h2 class="blur">/dygg</h2>
+    <h2 class="reverse"><span>d</span><span>y</span><span>g</span><span>g</span></h2>
+    <h2 class="pixelate">/dygg</h2>
+    <h2 class="noise">/dygg</h2>
+    <h2 class="shuffle">/dygg</h2>
 </body>
 </html>
