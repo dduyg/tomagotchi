@@ -15,27 +15,6 @@
             --border:2px;
             --border-radius-content:0;
         }
-        @media(min-width:62em)and (max-width:74.99em){
-            :root{
-                --left-right-margin:96px;
-            }
-        }
-        @media(min-width:36em)and (max-width:61.99em){
-            :root{
-                --left-right-margin:48px;
-                --top-margin:132px;
-                --border:1.5px;
-                --border-radius:24px;
-            }
-        }
-        @media(max-width:35.99em){
-            :root{
-                --left-right-margin:24px;
-                --top-margin:84px;
-                --border:1.5px;
-                --border-radius:24px;
-            }
-        }
 
         body {
             background-color: #f3f2f9;
@@ -93,126 +72,25 @@
             90%{transform:translate(-10%,10%)}
         }
         body.dark .noise {opacity:.2}
-
-        a { color: inherit; text-decoration: none;}
-        hr{border-style:none;border-bottom:0;border-top:var(--border) solid #606887}
-        ol,ul{margin:0;padding:0;list-style:none} 
         
-        ul {
-            overflow-y:auto;
-            height:100%;
-            scrollbar-width: none;
-        }
-        ul::-webkit-scrollbar {
-            display: none:
-        }
-        
-        ul li:last-child .projects-row{
-            border-bottom:none!important;
-        }
         ul .projects-row{
-            position:relative;
-            height:100%;
-            width:100%;
             display:flex;
             flex-direction:row;
             justify-content:space-between;
             align-items:center;
             padding:1.5rem 0;
-            border-bottom:var(--border) solid #606887;
-        }
-        ul .projects-row-left{
-            display:flex;
-            align-items:center;
-            width:100%;
-            text-overflow:ellipsis;
-        }
-        ul .projects-row-left .projects-selected-wrapper{
-            position:absolute;
-            overflow:hidden;
-        }
-        ul .projects-row-left .projects-selected-wrapper .projects-selected{
-            padding-right:12px;
-            position:relative;
-        }
-        ul .projects-row-left .projects-title{
-            margin-right:var(--left-right-internal-margin);
-            text-overflow:ellipsis;
-            white-space:nowrap;
-            overflow:hidden;
-        }
-        ul .projects-row-left .projects-is-new{
-            margin-right:var(--left-right-internal-margin);
-            padding:1.5px 6px 3px;
-            border:var(--border) solid #78ffd1;
-            border-radius:24px;
-            width:-webkit-fit-content;width:-moz-fit-content;
-            width:fit-content;font-size:12px;
             text-transform:lowercase;
-            font-variation-settings:"wght" 600,"wdth" 125;
-            color:#606887;
-            background-color:#78ffd1;
         }
-        ul .projects-row-right{
-            width:100%;
-            text-align:right;
-        }
-        ul .projects-row-right, ul .projects-row-right .projects-category{
-            text-overflow:ellipsis;
-            overflow:hidden;
-            white-space:nowrap;
-        }     
     </style>
 </head>
 <body>
-<main>    
-<ul>
-    <li>
-        <a href="#">
-            <div class="projects-row">
-                <div class="projects-row-left">
-                    <div class="projects-selected-wrapper">
-                        <h4 class="projects-selected" style="transform:translateX(-100%) translateZ(0)">→</h4>
-                    </div>
-                    <h4 class="projects-title" style="transform:none">ShaSyntheSyntheticsyntheticsSyntheticsyntheticsSyntheticsyntheticsticsyntheticsrlee</h4>
-                </div>
-                <div class="projects-row-right">
-                    <p class="projects-category">BrSyntheticsyntheticsSyntheticsyntheticsSyntheticsyntheticsSyntheticsyntheticsanding</p>
-                </div>
-            </div>
-        </a>
-    </li>
-    <li>
-        <a href="#">
-            <div class="projects-row">
+<main>
                 <div class="projects-row-left">
                     <div class="projects-selected-wrapper">
                         <h4 class="projects-selected" style="transform:translateX(-100%) translateZ(0)">→</h4>
                     </div>
                     <h4 class="projects-title" style="transform:none">ACT Responsable</h4>
                 </div>
-                <div class="projects-row-right">
-                    <p class="projects-category">Web Development</p>
-                </div>
-            </div>
-        </a>
-    </li>
-    <li>
-        <a href="#">
-            <div class="projects-row">
-                <div class="projects-row-left">
-                    <div class="projects-selected-wrapper">
-                        <h4 class="projects-selected" style="transform:translateX(-100%) translateZ(0)">→</h4>
-                    </div>
-                    <h4 class="projects-title" style="transform:none">Dua Lipa</h4>
-                </div>
-                <div class="projects-row-right">
-                    <p class="projects-category">Portrait</p>
-                </div>
-            </div>
-        </a>
-    </li>
-</ul>
 
 <div class="noise"></div>
 </main>
