@@ -5,18 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LiminalLoop</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #A9A9A9;
-            color: black;
-            font-family: Arial, sans-serif;
-        }     
-        main {
-            width: 90%;
-            max-width: 800px;
-            margin: 50% auto 0;
+        :root{
+            --left-right-margin:240px;
+            --left-right-internal-margin:24px;
+            --top-margin:240px;
+            --top-margin-mobile:40vh;
+            --top-internal-margin:24px;
+            --border-radius:48px;
+            --border:2px;
+            --border-radius-content:0;
         }
+        @media(min-width:62em)and (max-width:74.99em){:root{--left-right-margin:96px}}
+        @media(min-width:36em)and (max-width:61.99em){:root{--left-right-margin:48px;--top-margin:132px;--border:1.5px;--border-radius:24px}}
+        @media(max-width:35.99em){:root{--left-right-margin:24px;--top-margin:84px;--border:1.5px;--border-radius:24px}}
+        
+        body {
+            background-color:#f3f2f9;
+            width:100%;
+            height:auto;
+            font-family: sans-serif;
+            letter-spacing:-.015em;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            font-variation-settings:"wght" 500,"wdth" 100;
+            font-weight:unset;
+            font-size:1em;
+            transition:.25s;
+        }
+
+        hr{border-style:none;border-bottom:0;border-top:var(--border) solid #606887}
+        ol,ul{margin:0;padding:0;list-style:none} 
        
         .page-head{display:flex;align-items:baseline}
         .page-head .page-title{width:100%;text-align:left;margin:0;text-overflow:ellipsis;overflow-x:hidden}
@@ -48,23 +66,6 @@
         .projects-right ul .projects-row-right{width:100%;text-align:right}
         .projects-right ul .projects-row-right,.projects-right ul .projects-row-right .projects-category{text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
         
-        :root{
-            --left-right-margin:240px;
-            --left-right-internal-margin:24px;
-            --top-margin:240px;
-            --top-margin-mobile:40vh;
-            --top-internal-margin:24px;
-            --border-radius:48px;
-            --border:2px;
-            --border-radius-content:0;
-        }
-        @media(min-width:62em)and (max-width:74.99em){:root{--left-right-margin:96px}}
-        @media(min-width:36em)and (max-width:61.99em){:root{--left-right-margin:48px;--top-margin:132px;--border:1.5px;--border-radius:24px}}
-        @media(max-width:35.99em){:root{--left-right-margin:24px;--top-margin:84px;--border:1.5px;--border-radius:24px}}
-        
-        body,html{background-color:#f3f2f9;background-color:var(--background-color);color:var(--color);width:100%;height:auto;font-family:studiofeixen-variable,studiofeixen,Arial,Helvetica,sans-serif;letter-spacing:-.015em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-variation-settings:"wght" 500,"wdth" 100;font-weight:unset;font-size:1em;transition:.25s}
-        hr{border-style:none;border-bottom:0;border-top:var(--border) solid #606887}
-        ol,ul{margin:0;padding:0;list-style:none}
     </style>
 </head>
 <body>
