@@ -9,11 +9,11 @@
             margin: 0;
             padding: 0;
             font-family: "Arial", sans-serif;
-            background-color: #d5d500; /* Bright yellow background */
+            background-color: LemonChiffon;
             color: black;
             counter-reset: item-counter; /* Initialize counter */
         }
-        .container {
+        main {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             gap: 2rem;
@@ -25,15 +25,12 @@
 
         .item {
             counter-increment: item-counter; /* Increment counter for each item */
-            background: transparent;
             padding: 1rem;
-            border-top: 2px solid black;
+            border-top: 2px solid;
             display: flex;
-            flex-direction: column; /* Stack content vertically */
-            gap: 0.5rem; /* Space between elements */
+            flex-direction: column;
+            gap: 0.5rem;
         }
-
-        /* Automatic Numbering */
         .item::before {
             content: counter(item-counter, decimal-leading-zero); /* Auto-numbering with leading zeros */
             font-size: 3rem;
@@ -48,7 +45,6 @@
             font-weight: bold;
             margin: 0; /* Remove default margins */
         }
-
         .note, .author {
             font-size: 0.9rem;
             margin: 0; /* Remove default margins */
@@ -58,23 +54,20 @@
         .item.wide {
             grid-column: span 6; /* Full row width */
         }
-
         .item.half {
             grid-column: span 3; /* Half width */
         }
-
         .item.third {
             grid-column: span 2; /* One-third width */
         }
-
         .item.centered {
             grid-column: 2 / span 4; /* Centered in the middle */
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Row 1: 2 Items -->
+<main>
+    <!-- Row 1: 2 Items -->
         <div class="item half">
             <p class="title">墓と霊 / Grave and Anima</p>
             <p class="note">NOTE:<br>非道に多く残されている断片。オリジナルは判明。</p>
@@ -86,7 +79,7 @@
             <p class="author">AUTHOR:<br>.... A810 YXYX</p>
         </div>
 
-        <!-- Row 2: 3 Items -->
+    <!-- Row 2: 3 Items -->
         <div class="item third">
             <p class="title">乾杯 / Cheers!</p>
             <p class="author">AUTHOR:<br>JL17 KA34 SYFB</p>
@@ -100,7 +93,7 @@
             <p class="author">AUTHOR:<br>HN80 ZI42 XAYY</p>
         </div>
 
-        <!-- Row 3: 2 Items -->
+    <!-- Row 3: 2 Items -->
         <div class="item half">
             <p class="title">甘き死 / Sweet Death 2</p>
             <p class="author">AUTHOR:<br>HN80 ZI42 XAYY</p>
@@ -111,7 +104,7 @@
             <p class="author">AUTHOR:<br>HN80 ZI42 XAYY</p>
         </div>
 
-        <!-- Row 4: 3 Items -->
+    <!-- Row 4: 3 Items -->
         <div class="item third">
             <p class="title">入れ替わるもの / Replacement</p>
             <p class="note">NOTE:<br>[YVG4 VTF8 XYVX]に強く影響を受けた。</p>
@@ -125,7 +118,7 @@
             <p class="author">AUTHOR:<br>NC03 B274 XXAX</p>
         </div>
 
-        <!-- Row 5: 3 Items -->
+    <!-- Row 5: 3 Items -->
         <div class="item third">
             <p class="title">太陽三 / Sun 3</p>
             <p class="author">AUTHOR:<br>NC03 B274 XXAX</p>
@@ -139,7 +132,7 @@
             <p class="author">AUTHOR:<br>CW62 IM59 AYAX</p>
         </div>
 
-        <!-- Row 6: 2 Items -->
+    <!-- Row 6: 2 Items -->
         <div class="item half">
             <p class="title">不明 / Unknown</p>
             <p class="note">NOTE:<br>無作。</p>
@@ -148,13 +141,13 @@
             <p class="title">AUTHOR:<br>-67 BV99 CYYC</p>
         </div>
 
-        <!-- Row 7: 1 Centered Item -->
+    <!-- Row 7: 1 Centered Item -->
         <div class="item centered">
             <p class="title">テセウスの船 / Ship of Theseus</p>
             <p class="note">NOTE:<br>関連性はない。</p>
         </div>
 
-        <!-- Row 8: Full Width Item -->
+    <!-- Row 8: Full Width Item -->
         <div class="item wide">
             <p class="title">お知らせ: 新作準備中 / Notice: New Works Coming Soon</p>
             <p class="note">Stay tuned for updates.</p>
