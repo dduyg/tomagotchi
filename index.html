@@ -23,11 +23,10 @@
         .slide-in {
             opacity: 0;
             transform: translateY(-96px);
-            animation: slideIn 0.5s ease-in-out forwards; /* Slightly slower for smoother effect */
+            animation: slideIn 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; /* Smoother easing */
         }
         @keyframes slideIn {
             0% {opacity: 0; transform: translateY(-96px);}
-            50% {opacity: 0.5; transform: translateY(-30px);}
             100% {opacity: 1; transform: translateY(0);}
         }
 
