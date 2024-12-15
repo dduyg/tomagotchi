@@ -22,8 +22,10 @@
         /* Fade-in animation */
         .fade-in {
             opacity: 0;
-            aanimation: fadeIn 1s ease-in;
+            animation: fadeIn 1s ease-in forwards; /* Fade in over 1s, with ease-in */
         }
+
+        /* Keyframes for fade-in */
         @keyframes fadeIn { 
             from { opacity: 0; }
             to { opacity: 1; }
@@ -94,14 +96,14 @@
 
         <ul class="work-list">
             <!-- Work items with fade-in animation -->
-            <li class="work-item"> <span>sharlee</span> <span>Branding</span> </li>
-            <li class="work-item"> <span>dua lipa</span> <span>Portrait</span> </li>
-            <li class="work-item"> <span>cocolyze</span> <span>UX/UI Design</span> </li>
-            <li class="work-item"> <span>les indécis</span> <span>Branding</span> </li>
-            <li class="work-item"> <span>game of the goose</span> <span>Game Design</span> </li>
+            <li class="work-item fade-in"> <span>sharlee</span> <span>Branding</span> </li>
+            <li class="work-item fade-in"> <span>dua lipa</span> <span>Portrait</span> </li>
+            <li class="work-item fade-in"> <span>cocolyze</span> <span>UX/UI Design</span> </li>
+            <li class="work-item fade-in"> <span>les indécis</span> <span>Branding</span> </li>
+            <li class="work-item fade-in"> <span>game of the goose</span> <span>Game Design</span> </li>
         </ul>
 
-        <footer class="fade-in"> <!-- Footer with fade-in animation -->
+        <footer> <!-- Footer with fade-in animation -->
             <p>&copy; 2024 Synthwave Inc.</p>
         </footer>
     </main>
