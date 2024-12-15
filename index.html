@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiminalLoop</title>
+    <style>
+        /* Hide Scrollbars */
+        html {
+            scrollbar-width: none;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }     
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Slide-in animation */
+        .slide-in {
+            opacity: 0;
+            transform: translateY(-96px);
+            animation: slideIn 1s ease-out forwards;
+        }
+
+        /* Keyframes for slide-in */
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-96px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Body and Layout Styling */
+        body {
+            font-family: sans-serif;
+            background: #F8F8F8; /* Whitish background */
+            color: #888;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1000px;
+            height: 100%;
+            background: linear-gradient(to bottom, #F8F8F8 10%, #C7F6C2 30%, #F8F8F8 90%);
+            z-index: -1;
+        }
+        main {
+            max-width: 800px;
+            margin: 40% auto 0;
+            width: 90%;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .synth {
+            font-size: 1.2rem;
+        }
+
+        .work-list {
+            list-style: none;
+        }
+        .work-item {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid currentColor;
+            padding: 10px 0;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-overlay"></div>
+
+    <main>
+        <header class="slide-in"> <!-- Header with slide-in animation -->
+            <h1 class="title">Synthwave</h1>
+            <div class="synth">🩸🪝</div>
+        </header>
+
+        <ul class="work-list">
+            <!-- Work items with slide-in animation -->
+            <li class="work-item"> <span>sharlee</span> <span>Branding</span> </li>
+            <li class="work-item"> <span>dua lipa</span> <span>Portrait</span> </li>
+            <li class="work-item"> <span>cocolyze</span> <span>UX/UI Design</span> </li>
+            <li class="work-item"> <span>les indécis</span> <span>Branding</span> </li>
+            <li class="work-item"> <span>game of the goose</span> <span>Game Design</span> </li>
+        </ul>
+    </main>
+
+    <script>
+        // Select header and work items
+        const elements = [
+            document.querySelector('header'), // First, the header
+            ...document.querySelectorAll('.work-item') // Then, all the work items
+        ];
+
+        // Apply the slide-in animation with staggered delays
+        elements.forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.3}s`; // Add a delay based on the element's index
+            el.classList.add('slide-in'); // Apply the slide-in class
+        });
+    </script>
+</body>
+</html>
