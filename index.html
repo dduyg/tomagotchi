@@ -23,7 +23,7 @@
         .slide-in {
             opacity: 0;
             transform: translateY(-96px);
-            animation: slideIn 0.5s ease-out forwards; /* Faster duration */
+            animation: slideIn 0.3s ease-out forwards; /* Faster duration */
         }
 
         /* Keyframes for slide-in */
@@ -112,9 +112,9 @@
             ...document.querySelectorAll('.work-item') // Then, all the work items
         ];
 
-        // Apply the slide-in animation with faster and staggered delays
+        // Apply the slide-in animation with even faster staggered delays
         elements.forEach((el, index) => {
-            el.style.animationDelay = `${index * 0.2}s`; // Reduced delay between elements (0.2s)
+            el.style.animationDelay = `${index * 0.1}s`; // Reduced delay between elements (0.1s)
             el.classList.add('slide-in'); // Apply the slide-in class
         });
     </script>
