@@ -108,20 +108,20 @@
     <script>
         // Create an array with the elements to animate (header, work-item, footer, etc.)
         const elementsToAnimate = [
-            'header', // Select header
-            '.work-item', // Select all work items
-            'footer' // Select footer
+            'header',
+            '.work-item',
+            'footer'
         ];
 
         // Get all elements based on the selectors in the array
         const elements = elementsToAnimate.flatMap(selector => {
-            return Array.from(document.querySelectorAll(selector)); // Select all elements matching the selector
+            return Array.from(document.querySelectorAll(selector));
         });
 
         // Apply the slide-in animation with staggered delays
         elements.forEach((el, index) => {
-            el.style.animationDelay = `${index * 0.1}s`; // Adjust delay (0.1s)
-            el.classList.add('slide-in'); // Apply slide-in class for animation
+            el.style.animationDelay = `${index * 0.2}s`; // Adjust delay between elements (0.2s)
+            el.classList.add('slide-in');
         });
     </script>
 </body>
