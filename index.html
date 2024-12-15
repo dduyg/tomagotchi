@@ -3,30 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CSS Slide In Animation</title>
+  <title>Slide In Animation</title>
   <style>
-    /* Keyframes for the slide-in animation */
-    @keyframes slideIn {
-      0% {
-        opacity: 0;
-        transform: translateY(-96px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* The element to animate */
+    /* Starting invisible and above the view */
     .slide-in {
       opacity: 0;
       transform: translateY(-96px);
-      animation: slideIn 1s ease-out forwards; /* Apply animation */
+      transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    }
+
+    /* When the 'visible' class is added */
+    .slide-in.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
 <body>
-  <!-- Add the class to trigger the animation -->
-  <div class="slide-in">Hello, I will slide in!</div>
+  <div id="myDiv" class="slide-in">Hello, I will slide in!</div>
+
+  <script>
+    // Simulate a delay to trigger the slide-in
+    setTimeout(() => {
+      document.getElementById('myDiv').classList.add('visible');
+    }, 1000); // Trigger after 1 second
+  </script>
 </body>
 </html>
