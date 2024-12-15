@@ -3,192 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webpage Structure</title>
+    <title>Structured Webpage</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: "Arial", sans-serif;
             background-color: #d5d500; /* Bright yellow background */
             color: black;
         }
-
         .container {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: repeat(6, 1fr); /* Flexible 6-column grid */
             gap: 2rem;
             max-width: 1200px;
             margin: 2rem auto;
         }
-
         .item {
+            background: transparent;
+            padding: 1rem;
             border-top: 2px solid black;
-            padding-top: 0.5rem;
-            position: relative;
-            padding-left: 1rem;
         }
-
         .item-number {
-            position: absolute;
-            top: -1rem;
-            left: -1rem;
             font-size: 3rem;
             font-weight: bold;
-            color: black;
+            margin: 0;
         }
-
-        .item-content {
-            font-size: 0.9rem;
-        }
-
         .title {
             font-size: 1.5rem;
             font-weight: bold;
             margin: 0.5rem 0;
         }
-
         .note, .author {
             font-size: 0.9rem;
             margin: 0.25rem 0;
         }
-
-        /* Grid-specific layout based on row/column spanning */
-        .item:nth-child(1) { grid-column: span 3; } /* Row 1 */
-        .item:nth-child(2) { grid-column: span 3; }
-
-        .item:nth-child(3) { grid-column: span 2; } /* Row 2 */
-        .item:nth-child(4) { grid-column: span 2; }
-        .item:nth-child(5) { grid-column: span 2; }
-
-        .item:nth-child(6) { grid-column: span 3; } /* Row 3 */
-        .item:nth-child(7) { grid-column: span 3; }
-
-        .item:nth-child(8) { grid-column: span 2; } /* Row 4 */
-        .item:nth-child(9) { grid-column: span 2; }
-        .item:nth-child(10) { grid-column: span 2; }
-
-        .item:nth-child(11) { grid-column: span 2; } /* Row 5 */
-        .item:nth-child(12) { grid-column: span 2; }
-        .item:nth-child(13) { grid-column: span 2; }
-
-        .item:nth-child(14) { grid-column: span 4; justify-self: center; width: 60%; } /* Centered, shorter width */
-
-        .item:nth-child(15) { grid-column: span 6; } /* Full width */
+        /* Row-specific layout rules */
+        .item.wide {
+            grid-column: span 6; /* Full row width */
+        }
+        .item.half {
+            grid-column: span 3; /* Half width */
+        }
+        .item.third {
+            grid-column: span 2; /* One-third width */
+        }
+        .item.centered {
+            grid-column: 2 / span 4; /* Centered, smaller width */
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Row 1 -->
-        <div class="item">
-            <span class="item-number">01</span>
-            <div class="item-content">
-                <p class="title">墓と霊 / Grave and Anima</p>
-                <p class="note">NOTE:<br>非道に多く残されている断片。オリジナルは判明。</p>
-                <p class="author">AUTHOR: EB89 PW11 XXYY</p>
-                <p class="author">FORGER: V029 D036 XYAY</p>
-            </div>
+        <!-- Row 1: 2 Items -->
+        <div class="item half">
+            <p class="item-number">01</p>
+            <p class="title">墓と霊 / Grave and Anima</p>
+            <p class="note">NOTE:<br>非道に多く残されている断片。オリジナルは判明。</p>
+            <p class="author">AUTHOR:<br>EB89 PW11 XXYY</p>
         </div>
-        <div class="item">
-            <span class="item-number">02</span>
-            <div class="item-content">
-                <p class="title">復讐 / Vengeance</p>
-                <p class="note">NOTE:<br>必ず正面の眼鏡を完全にかける正しい呪い呪に。</p>
-                <p class="author">AUTHOR: .... A810 YXYX</p>
-            </div>
+        <div class="item half">
+            <p class="item-number">02</p>
+            <p class="title">復讐 / Vengeance</p>
+            <p class="note">NOTE:<br>必ず正面の眼鏡を完全にかける正しい呪い呪に。</p>
+            <p class="author">AUTHOR:<br>.... A810 YXYX</p>
         </div>
 
-        <!-- Row 2 -->
-        <div class="item">
-            <span class="item-number">03</span>
-            <div class="item-content">
-                <p class="title">乾杯 / Cheers!</p>
-                <p class="author">AUTHOR: JL17 KA34 SYFB</p>
-            </div>
+        <!-- Row 2: 3 Items -->
+        <div class="item third">
+            <p class="item-number">03</p>
+            <p class="title">乾杯 / Cheers!</p>
+            <p class="author">AUTHOR:<br>JL17 KA34 SYFB</p>
         </div>
-        <div class="item">
-            <span class="item-number">04</span>
-            <div class="item-content">
-                <p class="title">乾杯と埋もれない部屋 / Glass and Empty Room</p>
-            </div>
+        <div class="item third">
+            <p class="item-number">04</p>
+            <p class="title">乾杯と埋もれない部屋 / Glass and Empty Room</p>
+            <p class="author">AUTHOR:<br>JL17 KA34 SYFB</p>
         </div>
-        <div class="item">
-            <span class="item-number">05</span>
-            <div class="item-content">
-                <p class="title">甘き死 / Sweet Death 1</p>
-                <p class="author">AUTHOR: HN80 ZI42 XAYY</p>
-            </div>
+        <div class="item third">
+            <p class="item-number">05</p>
+            <p class="title">甘き死 / Sweet Death 1</p>
+            <p class="author">AUTHOR:<br>HN80 ZI42 XAYY</p>
         </div>
 
-        <!-- Row 3 -->
-        <div class="item">
-            <span class="item-number">06</span>
-            <div class="item-content">
-                <p class="title">甘き死 / Sweet Death 2</p>
-            </div>
+        <!-- Row 3: 2 Items -->
+        <div class="item half">
+            <p class="item-number">06</p>
+            <p class="title">甘き死 / Sweet Death 2</p>
+            <p class="author">AUTHOR:<br>HN80 ZI42 XAYY</p>
         </div>
-        <div class="item">
-            <span class="item-number">07</span>
-            <div class="item-content">
-                <p class="title">甘き死 / Sweet Death 3</p>
-                <p class="note">NOTE: 「アイスクリーム店&45特典収録している。」</p>
-            </div>
+        <div class="item half">
+            <p class="item-number">07</p>
+            <p class="title">甘き死 / Sweet Death 3</p>
+            <p class="note">NOTE:<br>「アイスクリーム店&45特典収録している。」</p>
+            <p class="author">AUTHOR:<br>HN80 ZI42 XAYY</p>
         </div>
 
-        <!-- Row 4 -->
-        <div class="item">
-            <span class="item-number">08</span>
-            <div class="item-content">
-                <p class="title">入れ替わるもの / Replacement</p>
-                <p class="note">NOTE:<br>[YVG4 VTF8 XYVX]に強く影響を受けた。</p>
-            </div>
+        <!-- Row 4: 3 Items -->
+        <div class="item third">
+            <p class="item-number">08</p>
+            <p class="title">入れ替わるもの / Replacement</p>
+            <p class="note">NOTE:<br>[YVG4 VTF8 XYVX]に強く影響を受けた。</p>
         </div>
-        <div class="item">
-            <span class="item-number">09</span>
-            <div class="item-content">
-                <p class="title">太陽一 / Sun 1</p>
-            </div>
+        <div class="item third">
+            <p class="item-number">09</p>
+            <p class="title">太陽一 / Sun 1</p>
+            <p class="author">AUTHOR:<br>NC03 B274 XXAX</p>
         </div>
-        <div class="item">
-            <span class="item-number">10</span>
-            <div class="item-content">
-                <p class="title">太陽二 / Sun 2</p>
-            </div>
+        <div class="item third">
+            <p class="item-number">10</p>
+            <p class="title">太陽二 / Sun 2</p>
+            <p class="author">AUTHOR:<br>NC03 B274 XXAX</p>
         </div>
 
-        <!-- Row 5 -->
-        <div class="item">
-            <span class="item-number">11</span>
-            <div class="item-content">
-                <p class="title">太陽三 / Sun 3</p>
-            </div>
+        <!-- Row 5: 3 Items -->
+        <div class="item third">
+            <p class="item-number">11</p>
+            <p class="title">太陽三 / Sun 3</p>
+            <p class="author">AUTHOR:<br>NC03 B274 XXAX</p>
         </div>
-        <div class="item">
-            <span class="item-number">12</span>
-            <div class="item-content">
-                <p class="title">太陽四 / Sun 4</p>
-            </div>
+        <div class="item third">
+            <p class="item-number">12</p>
+            <p class="title">太陽四 / Sun 4</p>
+            <p class="note">NOTE:<br>太陽は消えた。</p>
         </div>
-        <div class="item">
-            <span class="item-number">13</span>
-            <div class="item-content">
-                <p class="title">バベルの外 / Above Babel</p>
-            </div>
+        <div class="item third">
+            <p class="item-number">13</p>
+            <p class="title">バベルの上 / Above Babel</p>
+            <p class="author">AUTHOR:<br>CW62 IM59 AYAX</p>
         </div>
 
-        <!-- Row 6 -->
-        <div class="item">
-            <span class="item-number">14</span>
-            <div class="item-content">
-                <p class="title">不明 / Unknown</p>
-            </div>
+        <!-- Row 6: 2 Items -->
+        <div class="item half">
+            <p class="item-number">14</p>
+            <p class="title">不明 / Unknown</p>
+            <p class="note">NOTE:<br>無作。</p>
+        </div>
+        <div class="item half">
+            <p class="title">AUTHOR:<br>-67 BV99 CYYC</p>
         </div>
 
-        <!-- Row 7 -->
-        <div class="item">
-            <span class="item-number">15</span>
-            <div class="item-content">
-                <p class="title">テセウスの船 / Ship of Theseus</p>
-            </div>
+        <!-- Row 7: 1 Centered Item -->
+        <div class="item centered">
+            <p class="item-number">15</p>
+            <p class="title">テセウスの船 / Ship of Theseus</p>
+            <p class="note">NOTE:<br>関連性はない。</p>
+        </div>
+
+        <!-- Row 8: Full Width Item -->
+        <div class="item wide">
+            <p class="title">お知らせ: 新作準備中 / Notice: New Works Coming Soon</p>
+            <p class="note">Stay tuned for updates.</p>
         </div>
     </div>
 </body>
