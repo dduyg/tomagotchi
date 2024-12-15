@@ -5,12 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LiminalLoop</title>
     <style>
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards; /* Fade in over 1s, with ease-in */
+        }
+        @keyframes fadeIn { 
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
         body {
             margin: 0;
             padding: 0;
             font-family: "Arial", sans-serif;
             background-color: LemonChiffon;
-            color: black;
+            color: #2E7D32;
             counter-reset: item-counter; /* Initialize counter */
         }
         main {
@@ -153,5 +162,26 @@
             <p class="note">Stay tuned for updates.</p>
         </div>
     </div>
+    
+    <script>
+        // Create an array with the elements to animate
+        const elementsToAnimate = [
+            '.item.half',
+            '.item.third',
+            '.item.centered',
+            '.item.wide'
+        ];
+
+        // Get all elements based on the selectors in the array
+        const elements = elementsToAnimate.flatMap(selector => {
+            return Array.from(document.querySelectorAll(selector));
+        });
+
+        // Apply the fade-in animation with staggered delays
+        elements.forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.2}s`;
+            el.classList.add('fade-in');
+        });
+    </script>
 </body>
 </html>
