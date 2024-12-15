@@ -19,7 +19,7 @@
             box-sizing: border-box;
         }
 
-        /* Faster Slide-in animation */
+        /* Slide-in animation */
         .slide-in {
             opacity: 0;
             transform: translateY(-96px);
@@ -84,13 +84,19 @@
             padding: 10px 0;
             font-size: 1.2rem;
         }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.2rem;
+        }
     </style>
 </head>
 <body>
     <div class="gradient-overlay"></div>
 
     <main>
-        <header class="slide-in"> <!-- Header with slide-in animation -->
+        <header> <!-- Header with slide-in animation -->
             <h1 class="title">Synthwave</h1>
             <div class="synth">🩸🪝</div>
         </header>
@@ -103,19 +109,29 @@
             <li class="work-item"> <span>les indécis</span> <span>Branding</span> </li>
             <li class="work-item"> <span>game of the goose</span> <span>Game Design</span> </li>
         </ul>
+
+        <footer> <!-- Footer with slide-in animation -->
+            <p>&copy; 2024 Synthwave Inc.</p>
+        </footer>
     </main>
 
     <script>
-        // Select header and work items
-        const elements = [
-            document.querySelector('header'), // First, the header
-            ...document.querySelectorAll('.work-item') // Then, all the work items
+        // Create an array with the elements to animate (header, work-item, footer, etc.)
+        const elementsToAnimate = [
+            'header', // Select header
+            '.work-item', // Select all work items
+            'footer' // Select footer
         ];
 
-        // Apply the slide-in animation with even faster staggered delays
+        // Get all elements based on the selectors in the array
+        const elements = elementsToAnimate.flatMap(selector => {
+            return Array.from(document.querySelectorAll(selector)); // Select all elements matching the selector
+        });
+
+        // Apply the slide-in animation with staggered delays
         elements.forEach((el, index) => {
-            el.style.animationDelay = `${index * 0.1}s`; // Reduced delay between elements (0.1s)
-            el.classList.add('slide-in'); // Apply the slide-in class
+            el.style.animationDelay = `${index * 0.1}s`; // Adjust delay (0.1s)
+            el.classList.add('slide-in'); // Apply slide-in class for animation
         });
     </script>
 </body>
