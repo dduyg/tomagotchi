@@ -4,14 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LiminalLoop</title>
-    <style>
-        /* Hide Scrollbars */
-        html {
-            scrollbar-width: none;
-        }
-        ::-webkit-scrollbar {
-            display: none;
-        }     
+    <style>  
         /* General Reset */
         * {
             margin: 0;
@@ -24,14 +17,11 @@
             opacity: 0;
             animation: fadeIn 1s ease-in forwards; /* Fade in over 1s, with ease-in */
         }
-
-        /* Keyframes for fade-in */
         @keyframes fadeIn { 
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
-        /* Body and Layout Styling */
         body {
             font-family: sans-serif;
             background: #F8F8F8; /* Whitish background */
@@ -39,17 +29,6 @@
             line-height: 1.6;
             padding: 0;
             margin: 0;
-        }
-        .gradient-overlay {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 1000px;
-            height: 100%;
-            background: linear-gradient(to bottom, #F8F8F8 10%, #C7F6C2 30%, #F8F8F8 90%);
-            z-index: -1;
         }
         main {
             max-width: 800px;
@@ -62,9 +41,6 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 10px;
-        }
-        .synth {
-            font-size: 1.2rem;
         }
 
         .work-list {
@@ -86,16 +62,13 @@
     </style>
 </head>
 <body>
-    <div class="gradient-overlay"></div>
-
     <main>
-        <header> <!-- Header with fade-in animation -->
-            <h1 class="title">Synthwave</h1>
-            <div class="synth">🩸🪝</div>
+        <header>
+            <h1>Synthwave</h1>
+            <div>🩸🪝</div>
         </header>
 
         <ul class="work-list">
-            <!-- Work items with fade-in animation -->
             <li class="work-item fade-in"> <span>sharlee</span> <span>Branding</span> </li>
             <li class="work-item fade-in"> <span>dua lipa</span> <span>Portrait</span> </li>
             <li class="work-item fade-in"> <span>cocolyze</span> <span>UX/UI Design</span> </li>
@@ -103,28 +76,28 @@
             <li class="work-item fade-in"> <span>game of the goose</span> <span>Game Design</span> </li>
         </ul>
 
-        <footer> <!-- Footer with fade-in animation -->
-            <p>&copy; 2024 Synthwave Inc.</p>
+        <footer>
+            <p>&copy;Synthwave Inc.</p>
         </footer>
     </main>
 
     <script>
-        // Create an array with the elements to animate (header, work-item, footer, etc.)
+        // Create an array with the elements to animate
         const elementsToAnimate = [
-            'header', // Select header
-            '.work-item', // Select all work items
-            'footer' // Select footer
+            'header',
+            '.work-item',
+            'footer'
         ];
 
         // Get all elements based on the selectors in the array
         const elements = elementsToAnimate.flatMap(selector => {
-            return Array.from(document.querySelectorAll(selector)); // Select all elements matching the selector
+            return Array.from(document.querySelectorAll(selector));
         });
 
         // Apply the fade-in animation with staggered delays
         elements.forEach((el, index) => {
-            el.style.animationDelay = `${index * 0.1}s`; // Adjust delay (0.1s)
-            el.classList.add('fade-in'); // Apply fade-in class for animation
+            el.style.animationDelay = `${index * 0.3}s`;
+            el.classList.add('fade-in');
         });
     </script>
 </body>
