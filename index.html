@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Structured Webpage</title>
+    <title>Auto-Numbered Webpage</title>
     <style>
         body {
             margin: 0;
@@ -11,47 +11,65 @@
             font-family: "Arial", sans-serif;
             background-color: #d5d500; /* Bright yellow background */
             color: black;
+            counter-reset: item-counter; /* Initialize the counter */
         }
         .container {
             display: grid;
-            grid-template-columns: repeat(6, 1fr); /* Flexible 6-column grid */
+            grid-template-columns: repeat(6, 1fr);
             gap: 2rem;
             width: 95%;
             max-width: 1000px;
             margin: 2rem auto;
             box-sizing: border-box;
-        }      
+        }
+
         .item {
+            counter-increment: item-counter; /* Increment counter for each item */
             background: transparent;
             padding: 1rem;
             border-top: 2px solid black;
+            position: relative; /* For positioning the pseudo-element */
         }
-        .item-number {
+
+        /* Automatic Numbering */
+        .item::before {
+            content: counter(item-counter, decimal-leading-zero); /* Auto-numbering with leading zeros */
             font-size: 3rem;
             font-weight: bold;
-            margin: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: black;
         }
+
         .title {
             font-size: 1.5rem;
             font-weight: bold;
             margin: 0.5rem 0;
+            margin-left: 4rem; /* Ensure content avoids the number */
         }
+
         .note, .author {
             font-size: 0.9rem;
             margin: 0.25rem 0;
+            margin-left: 4rem; /* Avoid overlap with number */
         }
-        /* Row-specific layout rules */
+
+        /* Row-specific layout */
         .item.wide {
             grid-column: span 6; /* Full row width */
         }
+
         .item.half {
             grid-column: span 3; /* Half width */
         }
+
         .item.third {
             grid-column: span 2; /* One-third width */
         }
+
         .item.centered {
-            grid-column: 2 / span 4; /* Centered, smaller width */
+            grid-column: 2 / span 4; /* Centered item */
         }
     </style>
 </head>
@@ -59,13 +77,11 @@
     <div class="container">
         <!-- Row 1: 2 Items -->
         <div class="item half">
-            <p class="item-number">01</p>
             <p class="title">墓と霊 / Grave and Anima</p>
             <p class="note">NOTE:<br>非道に多く残されている断片。オリジナルは判明。</p>
             <p class="author">AUTHOR:<br>EB89 PW11 XXYY</p>
         </div>
         <div class="item half">
-            <p class="item-number">02</p>
             <p class="title">復讐 / Vengeance</p>
             <p class="note">NOTE:<br>必ず正面の眼鏡を完全にかける正しい呪い呪に。</p>
             <p class="author">AUTHOR:<br>.... A810 YXYX</p>
@@ -73,29 +89,24 @@
 
         <!-- Row 2: 3 Items -->
         <div class="item third">
-            <p class="item-number">03</p>
             <p class="title">乾杯 / Cheers!</p>
             <p class="author">AUTHOR:<br>JL17 KA34 SYFB</p>
         </div>
         <div class="item third">
-            <p class="item-number">04</p>
             <p class="title">乾杯と埋もれない部屋 / Glass and Empty Room</p>
             <p class="author">AUTHOR:<br>JL17 KA34 SYFB</p>
         </div>
         <div class="item third">
-            <p class="item-number">05</p>
             <p class="title">甘き死 / Sweet Death 1</p>
             <p class="author">AUTHOR:<br>HN80 ZI42 XAYY</p>
         </div>
 
         <!-- Row 3: 2 Items -->
         <div class="item half">
-            <p class="item-number">06</p>
             <p class="title">甘き死 / Sweet Death 2</p>
             <p class="author">AUTHOR:<br>HN80 ZI42 XAYY</p>
         </div>
         <div class="item half">
-            <p class="item-number">07</p>
             <p class="title">甘き死 / Sweet Death 3</p>
             <p class="note">NOTE:<br>「アイスクリーム店&45特典収録している。」</p>
             <p class="author">AUTHOR:<br>HN80 ZI42 XAYY</p>
@@ -103,41 +114,34 @@
 
         <!-- Row 4: 3 Items -->
         <div class="item third">
-            <p class="item-number">08</p>
             <p class="title">入れ替わるもの / Replacement</p>
             <p class="note">NOTE:<br>[YVG4 VTF8 XYVX]に強く影響を受けた。</p>
         </div>
         <div class="item third">
-            <p class="item-number">09</p>
             <p class="title">太陽一 / Sun 1</p>
             <p class="author">AUTHOR:<br>NC03 B274 XXAX</p>
         </div>
         <div class="item third">
-            <p class="item-number">10</p>
             <p class="title">太陽二 / Sun 2</p>
             <p class="author">AUTHOR:<br>NC03 B274 XXAX</p>
         </div>
 
         <!-- Row 5: 3 Items -->
         <div class="item third">
-            <p class="item-number">11</p>
             <p class="title">太陽三 / Sun 3</p>
             <p class="author">AUTHOR:<br>NC03 B274 XXAX</p>
         </div>
         <div class="item third">
-            <p class="item-number">12</p>
             <p class="title">太陽四 / Sun 4</p>
             <p class="note">NOTE:<br>太陽は消えた。</p>
         </div>
         <div class="item third">
-            <p class="item-number">13</p>
             <p class="title">バベルの上 / Above Babel</p>
             <p class="author">AUTHOR:<br>CW62 IM59 AYAX</p>
         </div>
 
         <!-- Row 6: 2 Items -->
         <div class="item half">
-            <p class="item-number">14</p>
             <p class="title">不明 / Unknown</p>
             <p class="note">NOTE:<br>無作。</p>
         </div>
@@ -147,7 +151,6 @@
 
         <!-- Row 7: 1 Centered Item -->
         <div class="item centered">
-            <p class="item-number">15</p>
             <p class="title">テセウスの船 / Ship of Theseus</p>
             <p class="note">NOTE:<br>関連性はない。</p>
         </div>
