@@ -24,7 +24,6 @@
 - Ruda
 - DM Sans
 - Warnes
-- Hubot Sans
 - Uncial Antiqua
 - Diplomata SC
 - Fascinate Inline
