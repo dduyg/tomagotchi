@@ -3,12 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiminalLoop</title>
+    <title>Liminal Loop</title>
     <style>
+      /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         /* Fade-in animation */
         .fade-in {
             opacity: 0;
-            animation: fadeIn 1s ease-in forwards; /* Fade in over 1s, with ease-in */
+            animation: fadeIn 1s ease-in forwards;
         }
         @keyframes fadeIn { 
             from { opacity: 0; }
@@ -26,10 +32,9 @@
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             gap: 2rem;
-            width: 95%;
+            width: 90%;
             max-width: 1000px;
             margin: 4rem auto;
-            box-sizing: border-box;
         }
 
         .item {
@@ -44,19 +49,16 @@
             content: counter(item-counter, decimal-leading-zero); /* Auto-numbering with leading zeros */
             font-size: 3rem;
             font-weight: bold;
-            color: black;
+            color: currentColor;
             line-height: 1; /* Ensure consistent spacing */
             margin-bottom: 0.5rem; /* Space below the number */
         }
-
         .title {
             font-size: 1.5rem;
             font-weight: bold;
-            margin: 0; /* Remove default margins */
         }
         .note, .author {
             font-size: 0.9rem;
-            margin: 0; /* Remove default margins */
         }
 
         /* Row-specific layout */
