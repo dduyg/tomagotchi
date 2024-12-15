@@ -14,18 +14,32 @@
 
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #E8E8E8, #C7F6C2, #E8E8E8); /* Gradient effect */
-            background-repeat: no-repeat;
+            background: #F8F8F8; /* Whitish background */
             color: #333;
-            min-height: 100vh;
             line-height: 1.6;
-            padding: 20px;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Center Gradient Overlay */
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1000px;
+            height: 100%;
+            background: linear-gradient(to bottom, #F8F8F8 10%, #C7F6C2 30%, #F8F8F8 90%);
+            z-index: -1;
         }
 
         /* Page Layout */
         .container {
             max-width: 800px;
             margin: 0 auto;
+            padding: 20px;
+            position: relative;
             text-align: left;
         }
 
@@ -89,6 +103,10 @@
     </style>
 </head>
 <body>
+    <!-- Centered Gradient Overlay -->
+    <div class="gradient-overlay"></div>
+
+    <!-- Content Container -->
     <div class="container">
         <!-- Header -->
         <div class="header">
