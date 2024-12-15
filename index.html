@@ -3,96 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiminalLoop</title>
-    <style>  
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Fade-in animation */
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 1s ease-in forwards; /* Fade in over 1s, with ease-in */
-        }
-        @keyframes fadeIn { 
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
+    <title>Webpage Structure</title>
+    <style>
         body {
-            font-family: sans-serif;
-            background: #F8F8F8;
-            color: #888;
-            line-height: 1.6;
+            margin: 0;
             padding: 0;
+            font-family: "Arial", sans-serif;
+            background-color: #d5d500; /* Bright yellow background */
+            color: black;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 2rem auto;
+        }
+        .item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            position: relative;
+        }
+        .item-number {
+            font-size: 3rem;
+            font-weight: bold;
+            line-height: 1;
             margin: 0;
         }
-        main {
-            max-width: 800px;
-            margin: 40% auto 0;
-            width: 90%;
+        .item-content {
+            border-top: 2px solid black;
+            margin-top: 1rem;
+            padding-top: 0.5rem;
+            width: 100%;
         }
-
-        header {
-            margin-bottom: 10px;
+        .title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
         }
-
-        .work-list {
-            list-style: none;
+        .note, .author {
+            font-size: 0.9rem;
+            margin: 0.25rem 0;
         }
-        .work-item {
-            display: flex;
-            justify-content: space-between;
-            border-top: 1px solid currentColor;
-            padding: 10px 0;
-            font-size: 1.2rem;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 1.2rem;
+        .bottom-line {
+            margin-top: 0.5rem;
+            border-top: 1px solid black;
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <main>
-        <header>When the Phone Rings</header>
-
-        <ul class="work-list">
-            <li class="work-item fade-in"> <span>sharlee</span> <span>Branding</span> </li>
-            <li class="work-item fade-in"> <span>dua lipa</span> <span>Portrait</span> </li>
-            <li class="work-item fade-in"> <span>cocolyze</span> <span>UX/UI Design</span> </li>
-            <li class="work-item fade-in"> <span>les indécis</span> <span>Branding</span> </li>
-            <li class="work-item fade-in"> <span>game of the goose</span> <span>Game Design</span> </li>
-        </ul>
-
-        <footer>
-            <p>&copy;Synthwave Inc.</p>
-        </footer>
-    </main>
-
-    <script>
-        // Create an array with the elements to animate
-        const elementsToAnimate = [
-            'header',
-            '.work-item',
-            'footer'
-        ];
-
-        // Get all elements based on the selectors in the array
-        const elements = elementsToAnimate.flatMap(selector => {
-            return Array.from(document.querySelectorAll(selector));
-        });
-
-        // Apply the fade-in animation with staggered delays
-        elements.forEach((el, index) => {
-            el.style.animationDelay = `${index * 0.2}s`;
-            el.classList.add('fade-in');
-        });
-    </script>
+    <div class="container">
+        <!-- Item 1 -->
+        <div class="item">
+            <p class="item-number">01</p>
+            <div class="item-content">
+                <p class="title">墓と霊 / Grave and Anima</p>
+                <p class="note">NOTE:<br>非道に多く残されている断片。オリジナルは判明。</p>
+                <p class="author">AUTHOR:<br>EB89 PW11 XXYY</p>
+                <p class="author">FORGER:<br>V029 D036 XYAY</p>
+            </div>
+        </div>
+        <!-- Item 2 -->
+        <div class="item">
+            <p class="item-number">02</p>
+            <div class="item-content">
+                <p class="title">復讐 / Vengeance</p>
+                <p class="note">NOTE:<br>必ず正面の眼鏡を完全にかける正しい呪い呪に。</p>
+                <p class="author">AUTHOR:<br>.... A810 YXYX</p>
+            </div>
+        </div>
+        <!-- Item 3 -->
+        <div class="item">
+            <p class="item-number">03</p>
+            <div class="item-content">
+                <p class="title">乾杯 / Cheers!</p>
+                <p class="note">NOTE:<br>前「復讐」に応える。</p>
+                <p class="author">AUTHOR:<br>JL17 KA34 SYFB</p>
+            </div>
+        </div>
+        <!-- Item 4 -->
+        <div class="item">
+            <p class="item-number">04</p>
+            <div class="item-content">
+                <p class="title">乾杯と埋もれない部屋 / Glass and Empty Room</p>
+                <p class="author">AUTHOR:<br>JL17 KA34 SYFB</p>
+            </div>
+        </div>
+        <!-- Item 5 -->
+        <div class="item">
+            <p class="item-number">05</p>
+            <div class="item-content">
+                <p class="title">甘き死 / Sweet Death 1</p>
+                <p class="author">AUTHOR:<br>HN80 ZI42 XAYY</p>
+            </div>
+        </div>
+        <!-- Item 6 -->
+        <div class="item">
+            <p class="item-number">06</p>
+            <div class="item-content">
+                <p class="title">甘き死 / Sweet Death 2</p>
+                <p class="author">AUTHOR:<br>HN80 ZI42 XAYY</p>
+            </div>
+        </div>
+        <!-- Item 7 -->
+        <div class="item">
+            <p class="item-number">07</p>
+            <div class="item-content">
+                <p class="title">甘き死 / Sweet Death 3</p>
+                <p class="note">NOTE:<br>「アイスクリーム店&45特典収録している。」</p>
+                <p class="author">AUTHOR:<br>HN80 ZI42 XAYY</p>
+            </div>
+        </div>
+        <!-- Item 8 -->
+        <div class="item">
+            <p class="item-number">08</p>
+            <div class="item-content">
+                <p class="title">入れ替わるもの / Replacement</p>
+                <p class="note">NOTE:<br>[YVG4 VTF8 XYVX]に強く影響を受けた。</p>
+                <p class="author">AUTHOR:<br>HN80 ZI42 XAYY</p>
+            </div>
+        </div>
+        <!-- Item 9 -->
+        <div class="item">
+            <p class="item-number">09</p>
+            <div class="item-content">
+                <p class="title">太陽一 / Sun 1</p>
+                <p class="author">AUTHOR:<br>NC03 B274 XXAX</p>
+            </div>
+        </div>
+        <!-- Item 10 -->
+        <div class="item">
+            <p class="item-number">10</p>
+            <div class="item-content">
+                <p class="title">太陽二 / Sun 2</p>
+                <p class="author">AUTHOR:<br>NC03 B274 XXAX</p>
+            </div>
+        </div>
+        <!-- Add More Items Similarly -->
+        <!-- Item 15 -->
+        <div class="item">
+            <p class="item-number">15</p>
+            <div class="item-content">
+                <p class="title">テセウスの船 / Ship of Theseus</p>
+                <p class="note">NOTE:<br>これを作った作品名のどれも関連性がない。</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
