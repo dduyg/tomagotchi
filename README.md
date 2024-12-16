@@ -1,12 +1,13 @@
 ### `⌬ ▆ ⛡ ♖ ▣ ⚞ ⏥` 
 
 ```markdown
+⭓⭔, ⬡⬢, ⬮⬯,
+⬬⬭⭖, ⬟⬠ — ⬣
+```
+
 - #DFE0DC
 - background-color: #cecece; color: #333;
 - box-shadow: 0 5px 15px rgba(0, 0, 0, 15%);
-```
-
-<br>
 
 - Righteous
 - Geostar
