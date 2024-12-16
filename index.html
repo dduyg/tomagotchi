@@ -24,7 +24,7 @@
         .slide-in {
             opacity: 0;
             transform: translateY(-96px);
-            animation: slideIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+            animation: slideIn 0.5s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
         }
         @keyframes slideIn {
             0% {opacity: 0; transform: translateY(-96px);}
@@ -154,7 +154,7 @@
 
         // Apply the slide-in animation with staggered delays
         elements.forEach((el, index) => {
-            el.style.animationDelay = `${index * 0.2}s`; // Adjust delay between elements (0.2s)
+            el.style.animationDelay = `${index * 0.1}s`; // Adjust delay between elements (0.1s)
             el.classList.add('slide-in');
         });
     </script>
