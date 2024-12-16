@@ -10,100 +10,80 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
 
-        /* Body Styling */
         body {
-            background-color: #1c1c1c; /* Dark background */
+            background-color: #1c1c1c; /* Dark gray background */
             color: #ffffff; /* White text */
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.6;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            padding: 20px;
         }
 
-        /* Container */
         .container {
             max-width: 800px;
             width: 100%;
-            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
 
-        /* Heading */
         h1 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: bold;
-            margin-bottom: 1.5rem;
             text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        /* Divider Line */
-        .divider {
-            width: 100%;
-            height: 1px;
-            background-color: #555555; /* Slightly lighter line color */
-            margin: 1rem 0;
-        }
-
-        /* Two Column Layout */
-        .contact-details {
+        .contact-info {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+            border-top: 1px solid #5a5a5a; /* Line separator */
+            padding-top: 20px;
         }
 
-        .contact-details h2 {
-            font-size: 0.9rem;
+        .label {
+            font-size: 1rem;
             text-transform: uppercase;
+            color: #d0d0d0; /* Light gray */
             font-weight: bold;
-            margin-bottom: 0.5rem;
         }
 
-        .contact-details a {
+        .details {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        a {
             color: #ffffff;
             text-decoration: none;
             font-size: 1rem;
-            font-weight: lighter;
-            transition: color 0.3s;
         }
 
-        .contact-details a:hover {
-            color: #cccccc; /* Lighter text on hover */
-        }
-
-        .contact-details .left {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .contact-details .right {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Contact Title -->
         <h1>Contact</h1>
-        <div class="divider"></div>
-
-        <!-- Two Column Layout -->
-        <div class="contact-details">
-            <!-- Left Column -->
-            <div class="left">
-                <h2>Mail</h2>
-                <a href="mailto:hello@itsshari.ee">↗ hello@itsshari.ee</a>
+        <div class="contact-info">
+            <div class="label">Mail</div>
+            <div class="details">
+                <a href="mailto:hello@itsshari.ee">hello@itsshari.ee</a>
             </div>
-
-            <!-- Right Column -->
-            <div class="right">
-                <h2>Social Medias</h2>
-                <a href="#" target="_blank">↗ Instagram</a>
-                <a href="#" target="_blank">↗ Behance</a>
+        </div>
+        <div class="contact-info">
+            <div class="label">Social Medias</div>
+            <div class="details">
+                <a href="https://www.instagram.com" target="_blank">instagram</a>
+                <a href="https://www.behance.net" target="_blank">behance</a>
             </div>
         </div>
     </div>
