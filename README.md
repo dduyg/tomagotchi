@@ -28,10 +28,9 @@
 - Diplomata SC
 - Fascinate Inline
 - Megrim
-- Rock Salt
 - Montserrat Alternates
 - Wire One
-- Offside
+- Offside ♡~
 - Overlock
 - Titillium Web
 - Nunito
