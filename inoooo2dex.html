@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Page</title>
+    <title>LiminalLoop</title>
     <style>
         /* General Reset */
         * {
@@ -11,7 +11,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             background-color: #1c1c1c; /* Dark gray background */
             color: #ffffff; /* White text */
@@ -37,16 +36,14 @@
             letter-spacing: 2px;
         }
 
-        .contact-info {
+        section {
             display: grid;
             grid-template-columns: 1fr 2fr;
             gap: 20px;
             padding-top: 20px;
         }
-
-        /* Add a border-top only to the first contact-info */
-        .contact-info:first-of-type {
-            border-top: 1px solid #5a5a5a; /* Line separator */
+        section:first-of-type {
+            border-top: 1px solid currentColor;
         }
 
         .label {
@@ -55,7 +52,6 @@
             color: #d0d0d0; /* Light gray */
             font-weight: bold;
         }
-
         .details {
             display: flex;
             flex-direction: column;
@@ -75,19 +71,19 @@
 <body>
     <main>
         <h1>Contact</h1>
-        <div class="contact-info">
+        <section>
             <div class="label">Mail</div>
             <div class="details">
                 <a href="#">hello@itsshari.ee</a>
             </div>
-        </div>
-        <div class="contact-info">
+        </section>
+        <section>
             <div class="label">Social Medias</div>
             <div class="details">
                 <a href="#">instagram</a>
                 <a href="#">behance</a>
             </div>
-        </div>
+        </section>
     </main>
 </body>
 </html>
