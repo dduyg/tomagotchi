@@ -11,8 +11,7 @@
             padding: 0;
             box-sizing: border-box;
         }
-
-        /* Slide and Fade-In Animation */
+        /* Slide + Fade-In Animation */
         .slide-and-fade {
             opacity: 0;
             transform: translateY(30px); /* Start below the normal position */
@@ -46,25 +45,17 @@
             margin: 40% auto 0;
             width: 90%;
         }
+        
         header {
             margin-bottom: 10px;
         }
-
-        .work-list {
+        .d-list {
             list-style: none;
         }
-        .work-item {
-            display: flex;
-            justify-content: space-between;
-            border-top: 1px solid currentColor;
+        .d-item {
+            border-top: 1px solid;
             padding: 10px 0;
-            font-size: 1.2rem;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 1.2rem;
+            font-size: 0.8rem;
         }
     </style>
 </head>
@@ -74,25 +65,29 @@
             <h1>Synthwave</h1>
         </header>
 
-        <ul class="work-list">
-            <li class="work-item"> <span>sharlee</span> <span>Branding</span> </li>
-            <li class="work-item"> <span>dua lipa</span> <span>Portrait</span> </li>
-            <li class="work-item"> <span>cocolyze</span> <span>UX/UI Design</span> </li>
-            <li class="work-item"> <span>les indécis</span> <span>Branding</span> </li>
-            <li class="work-item"> <span>game of the goose</span> <span>Game Design</span> </li>
+        <ul class="d-list">
+            <li class="d-item">
+                Autoencoders are neural networks used for
+                unsupervised learning, mainly for dimensionality 
+                reduction and feature extraction.
+             </li>
+            <li class="d-item">
+                They consist of an encoder that compresses 
+                data into a lower-dimensional form and a 
+                decoder that reconstructs it. 
+            </li>
+            <li class="d-item">
+                Autoencoders are useful for tasks like noise 
+                reduction, anomaly detection, and data compression. 
+            </li>
         </ul>
-
-        <footer>
-            <p>&copy;Synthwave Inc.</p>
-        </footer>
     </main>
 
     <script>
         // Create an array with the elements to animate (header, work-item, footer, etc.)
         const elementsToAnimate = [
             'header',
-            '.work-item',
-            'footer'
+            '.d-item'
         ];
 
         // Get all elements based on the selectors in the array
