@@ -4,38 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LiminalLoop</title>
-    <style>     
+    <style>
         /* General Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        /* Slide + Fade-In Animation */
-        .slide-and-fade {
+        /* Slide-in animation */
+        .slide-in {
             opacity: 0;
-            transform: translateY(30px); /* Start below the normal position */
-            animation: slideAndFade 1s ease-in-out forwards; /* Slide and fade in */
+            transform: translateY(-30px); /* Start above the normal position */
+            animation: slideIn 1s ease-in-out forwards; /* Slide in with ease-in-out */
         }
-        @keyframes slideAndFade { 
-            0% { 
-                transform: translateY(30px); /* Start below */
+        @keyframes slideIn { 
+            from { 
+                transform: translateY(-30px); /* Start slightly above */
                 opacity: 0; /* Fully transparent */
             }
-            50% { 
-                transform: translateY(15px); /* Midway position */
-                opacity: 0.5; /* Semi-transparent */
-            }
-            100% { 
-                transform: translateY(0); /* Final position */
+            to { 
+                transform: translateY(0); /* End at the normal position */
                 opacity: 1; /* Fully visible */
             }
         }
 
         body {
             font-family: sans-serif;
-            background: #F8F8F8; /* Whitish background */
-            color: black;
+            background: LemonChiffon;
+            color: #888;
             line-height: 1.6;
             padding: 0;
             margin: 0;
@@ -45,60 +41,64 @@
             margin: 40% auto 0;
             width: 90%;
         }
-        
         header {
             margin-bottom: 10px;
         }
-        .d-list {
+
+        .work-list {
             list-style: none;
         }
-        .d-item {
-            border-top: 1px solid;
+        .work-item {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid currentColor;
             padding: 10px 0;
-            font-size: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
     <main>
         <header>
-            <h1>Synthwave</h1>
+            <h1>Synthwave🩸🪝</h1>
         </header>
 
-        <ul class="d-list">
-            <li class="d-item">
-                Autoencoders are neural networks used for
-                unsupervised learning, mainly for dimensionality 
-                reduction and feature extraction.
-             </li>
-            <li class="d-item">
-                They consist of an encoder that compresses 
-                data into a lower-dimensional form and a 
-                decoder that reconstructs it. 
-            </li>
-            <li class="d-item">
-                Autoencoders are useful for tasks like noise 
-                reduction, anomaly detection, and data compression. 
-            </li>
+        <ul class="work-list">
+            <li class="work-item slide-in"> <span>sharlee</span> <span>Branding</span> </li>
+            <li class="work-item slide-in"> <span>dua lipa</span> <span>Portrait</span> </li>
+            <li class="work-item slide-in"> <span>cocolyze</span> <span>UX/UI Design</span> </li>
+            <li class="work-item slide-in"> <span>les indécis</span> <span>Branding</span> </li>
+            <li class="work-item slide-in"> <span>game of the goose</span> <span>Game Design</span> </li>
         </ul>
+
+        <footer>
+            <p>&copy;Synthwave Inc.</p>
+        </footer>
     </main>
 
     <script>
         // Create an array with the elements to animate (header, work-item, footer, etc.)
         const elementsToAnimate = [
             'header',
-            '.d-item'
+            '.work-item',
+            'footer'
         ];
 
         // Get all elements based on the selectors in the array
         const elements = elementsToAnimate.flatMap(selector => {
-            return Array.from(document.querySelectorAll(selector));
+            return Array.from(document.querySelectorAll(selector)); // Select all elements matching the selector
         });
 
-        // Apply the slide-and-fade animation with staggered delays
+        // Apply the slide-in animation with staggered delays
         elements.forEach((el, index) => {
-            el.style.animationDelay = `${index * 0.15}s`; // Adjust delay (0.15s per element)
-            el.classList.add('slide-and-fade');
+            el.style.animationDelay = `${index * 0.1}s`; // Adjust delay (0.1s)
+            el.classList.add('slide-in'); // Apply slide-in class for animation
         });
     </script>
 </body>
