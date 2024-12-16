@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LiminalLoop</title>
-    <style>     
+    <style>
+        /* Hide Scrollbars */
+        html {
+            scrollbar-width: none;
+        }
+        ::-webkit-scrollbar {
+            display: none;
+        }     
         /* General Reset */
         * {
             margin: 0;
@@ -18,6 +25,8 @@
             transform: translateY(30px); /* Start below the normal position */
             animation: slideAndFade 1s ease-in-out forwards; /* Slide and fade in */
         }
+
+        /* Keyframes for the slide-and-fade effect */
         @keyframes slideAndFade { 
             0% { 
                 transform: translateY(30px); /* Start below */
@@ -33,21 +42,40 @@
             }
         }
 
+        /* Body and Layout Styling */
         body {
             font-family: sans-serif;
             background: #F8F8F8; /* Whitish background */
-            color: black;
+            color: #888;
             line-height: 1.6;
             padding: 0;
             margin: 0;
+        }
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1000px;
+            height: 100%;
+            background: linear-gradient(to bottom, #F8F8F8 10%, #C7F6C2 30%, #F8F8F8 90%);
+            z-index: -1;
         }
         main {
             max-width: 800px;
             margin: 40% auto 0;
             width: 90%;
         }
+
         header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 10px;
+        }
+        .synth {
+            font-size: 1.2rem;
         }
 
         .work-list {
@@ -69,9 +97,12 @@
     </style>
 </head>
 <body>
+    <div class="gradient-overlay"></div>
+
     <main>
         <header>
-            <h1>Synthwave</h1>
+            <h1 class="title">Synthwave</h1>
+            <div class="synth">🩸🪝</div>
         </header>
 
         <ul class="work-list">
@@ -83,7 +114,7 @@
         </ul>
 
         <footer>
-            <p>&copy;Synthwave Inc.</p>
+            <p>&copy; 2024 Synthwave Inc.</p>
         </footer>
     </main>
 
@@ -103,7 +134,7 @@
         // Apply the slide-and-fade animation with staggered delays
         elements.forEach((el, index) => {
             el.style.animationDelay = `${index * 0.15}s`; // Adjust delay (0.15s per element)
-            el.classList.add('slide-and-fade'); // Apply slide-and-fade class for animation
+            el.classList.add('slide-and-fade'); // Dynamically add slide-and-fade class
         });
     </script>
 </body>
