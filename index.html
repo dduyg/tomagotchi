@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Page</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            background-color: #1c1c1c; /* Dark background */
+            color: #ffffff; /* White text */
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Container */
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 2rem;
+        }
+
+        /* Heading */
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        /* Divider Line */
+        .divider {
+            width: 100%;
+            height: 1px;
+            background-color: #555555; /* Slightly lighter line color */
+            margin: 1rem 0;
+        }
+
+        /* Two Column Layout */
+        .contact-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .contact-details h2 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-details a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: lighter;
+            transition: color 0.3s;
+        }
+
+        .contact-details a:hover {
+            color: #cccccc; /* Lighter text on hover */
+        }
+
+        .contact-details .left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-details .right {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .contact-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Contact Title -->
+        <h1>Contact</h1>
+        <div class="divider"></div>
+
+        <!-- Two Column Layout -->
+        <div class="contact-details">
+            <!-- Left Column -->
+            <div class="left">
+                <h2>Mail</h2>
+                <a href="mailto:hello@itsshari.ee">↗ hello@itsshari.ee</a>
+            </div>
+
+            <!-- Right Column -->
+            <div class="right">
+                <h2>Social Medias</h2>
+                <a href="#" target="_blank">↗ Instagram</a>
+                <a href="#" target="_blank">↗ Behance</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
