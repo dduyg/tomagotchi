@@ -35,6 +35,7 @@
 - Overlock
 - Titillium Web
 - Nunito
+- Glass Antiqua
 ```
 
 <br><br>
