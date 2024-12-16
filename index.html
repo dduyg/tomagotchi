@@ -4,34 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LiminalLoop</title>
-    <style>
+    <style>     
         /* General Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        /* Slide-in animation */
-        .slide-in {
+
+        /* Slide and Fade-In Animation */
+        .slide-and-fade {
             opacity: 0;
-            transform: translateY(-30px); /* Start above the normal position */
-            animation: slideIn 1s ease-in-out forwards; /* Slide in with ease-in-out */
+            transform: translateY(30px); /* Start below the normal position */
+            animation: slideAndFade 1s ease-in-out forwards; /* Slide and fade in */
         }
-        @keyframes slideIn { 
-            from { 
-                transform: translateY(-30px); /* Start slightly above */
+        @keyframes slideAndFade { 
+            0% { 
+                transform: translateY(30px); /* Start below */
                 opacity: 0; /* Fully transparent */
             }
-            to { 
-                transform: translateY(0); /* End at the normal position */
+            50% { 
+                transform: translateY(15px); /* Midway position */
+                opacity: 0.5; /* Semi-transparent */
+            }
+            100% { 
+                transform: translateY(0); /* Final position */
                 opacity: 1; /* Fully visible */
             }
         }
 
         body {
             font-family: sans-serif;
-            background: LemonChiffon;
-            color: #888;
+            background: #F8F8F8; /* Whitish background */
+            color: black;
             line-height: 1.6;
             padding: 0;
             margin: 0;
@@ -66,15 +71,15 @@
 <body>
     <main>
         <header>
-            <h1>Synthwave🩸🪝</h1>
+            <h1>Synthwave</h1>
         </header>
 
         <ul class="work-list">
-            <li class="work-item slide-in"> <span>sharlee</span> <span>Branding</span> </li>
-            <li class="work-item slide-in"> <span>dua lipa</span> <span>Portrait</span> </li>
-            <li class="work-item slide-in"> <span>cocolyze</span> <span>UX/UI Design</span> </li>
-            <li class="work-item slide-in"> <span>les indécis</span> <span>Branding</span> </li>
-            <li class="work-item slide-in"> <span>game of the goose</span> <span>Game Design</span> </li>
+            <li class="work-item"> <span>sharlee</span> <span>Branding</span> </li>
+            <li class="work-item"> <span>dua lipa</span> <span>Portrait</span> </li>
+            <li class="work-item"> <span>cocolyze</span> <span>UX/UI Design</span> </li>
+            <li class="work-item"> <span>les indécis</span> <span>Branding</span> </li>
+            <li class="work-item"> <span>game of the goose</span> <span>Game Design</span> </li>
         </ul>
 
         <footer>
@@ -85,9 +90,9 @@
     <script>
         // Create an array with the elements to animate (header, work-item, footer, etc.)
         const elementsToAnimate = [
-            'header',
-            '.work-item',
-            'footer'
+            'header', // Select header
+            '.work-item', // Select all work items
+            'footer' // Select footer
         ];
 
         // Get all elements based on the selectors in the array
@@ -95,10 +100,10 @@
             return Array.from(document.querySelectorAll(selector)); // Select all elements matching the selector
         });
 
-        // Apply the slide-in animation with staggered delays
+        // Apply the slide-and-fade animation with staggered delays
         elements.forEach((el, index) => {
-            el.style.animationDelay = `${index * 0.1}s`; // Adjust delay (0.1s)
-            el.classList.add('slide-in'); // Apply slide-in class for animation
+            el.style.animationDelay = `${index * 0.15}s`; // Adjust delay (0.15s per element)
+            el.classList.add('slide-and-fade'); // Apply slide-and-fade class for animation
         });
     </script>
 </body>
