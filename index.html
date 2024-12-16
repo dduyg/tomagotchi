@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liminal Loop</title>
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Georgia, serif;
+      background-color: #3A3A3C;
+      color: #B8B9BE;
+      padding-top: 40%; /* Adjust based on height of top asset  */
+    }
+    #fixed-corner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 35%;
+      max-width: 35vw;
+      z-index: -1;
+    }
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.9);}
+      to {opacity: 1; transform: scale(1);}
+    }
+    section { 
+      margin-top: 20px;
+      line-height: 1.6;
+    }
+    h1 {
+      font-family: 'VT323', monospace;
+      font-size: 2.7rem;
+    }
+    a {
+      color: #f0f0f0;
+      display: inline-block;
+      margin-top: 20%;
+      margin-left: 15%;
+      padding: 2px 20px 10px;
+      font-size: 2.5rem;
+      font-weight: bold;
+      font-family: 'VT323', monospace;
+      text-decoration: wavy underline;
+      background-color: transparent;
+      border-radius: 100%;
+      border: 1px solid #f0f0f0;
+      text-align: center;
+      transition: all 0.3s ease;
+      outline: none; /* Remove default outline */
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    a:hover {
+      background-color: #AC4E5E;
+      color: #3A3A3C;
+      border: none;
+    }
+    u {
+      text-decoration: none;
+      position: relative;
+    }
+    u::before {
+      content: '';
+      position: absolute;
+      top: -0.33em;
+      left: 0;
+      right: 0;
+      height: 0.06875em; /* Intermediate thickness */
+      background-color: currentColor;
+    }
+  </style>
+</head>
+<body>
+<img id="fixed-corner" src="liminal.png">
+<main>
+   <h1 onclick="window.location.href='https://glitch.com/@dduyg'">⎄Limin<u>alLo</u>op():</h1>
+   <section>Loops in programming allow you to repeat a set of instructions until a certain condition is met, making it easier to perform repetitive tasks and iterate through data. They come in different forms like "for" and "while" loops.</section>
+   <a href="02/">▸</a>
+</main>
+</body>
+</html>
