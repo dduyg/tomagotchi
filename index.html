@@ -38,7 +38,7 @@
             grid-template-columns: 1fr 1fr; /* Two equal columns */
             padding-top: 20px;
             gap: 20px 10px;
-     align-items: flex-start; /* Align both columns to the start */
+    align-items: start; /* Ensures proper alignment */
         }
         section:first-of-type {
             border-top: 2px solid currentColor;
@@ -54,13 +54,16 @@
             text-transform: uppercase;
             color: #d0d0d0; /* Light gray */
             font-weight: bold;
-    align-self: flex-start; /* Ensure labels are aligned at the top */
+    align-self: start; /* Ensures labels align at the top */
         }
         .details {
             display: flex;
             flex-direction: column;
             gap: 10px;
-    justify-content: flex-start; /* Ensure content in details starts from the top */
+    padding-left: 10px; /* Ensures details start from the same point horizontally */
+        }
+        section > .label {
+align-self: flex-start; /* Aligns labels at the top of their grid cell */
         }
 
         a {
