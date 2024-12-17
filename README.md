@@ -68,48 +68,33 @@
 ---
 
 1. Mail:
-Digital Post
-Retro Signal
 Pixel Message
+
 Echo Box
 
-2. Socials:
+3. Socials:
 Virtual Circles
+
 Social Stream
+
 Neon Networks
+
 Vibe Connections
 
-3. Account Name:
-Alias Code
-Persona ID
-Synth ID
-Echo Name
-
-4. Address:
+6. Address:
 Digital Coordinates
-Virtual Hub
-Nexus Location
 Data Grid
 
-5. Instagram:
+7. Instagram:
 PixelGram
-RetroLens
-Aesthetic Feed
 VaporShots
 
-6. Behance:
-DreamSpace
-Creative Archive
-Neon Portfolio
+8. Behance:
 Vision Vault
 
-7. GitHub:
-CodeCore
+9. GitHub:
 Data Repository
-DevSignal
 Byte Box
-
-
 
 - Cloud Connections
 - Cyber Envelope
@@ -123,22 +108,10 @@ Byte Box
 
 1. Mail → "E-Missive"
 2. Socials → "Digital Realms"
-3. Account Name → "Handle"
-4. Address → "Location Coordinates"
-5. Instagram → "Vaporgram"
-7. GitHub → "Code Nexus"
 8. Email → "Signal Transmission"
-9. Message → "Transmission"
-10. Phone → "Telecom Link"
-12. Profile → "Digital Persona"
-14. LinkedIn → "Connect Network"
 15. Snapchat → "Snapwaves"
-1. Mail → Postbox of Dreams
 2. Socials → Neon Connections
 4. Address → Pixel Coordinates
-5. Instagram → Dreamgram
-6. Behance → Visionary Vault
-7. GitHub → Codewave Repository
 8. Email → Electric Dispatch
 10. Twitter → Echo Stream
 12. Snapchat → VaporLens
