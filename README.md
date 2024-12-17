@@ -121,33 +121,25 @@ Byte Box
 - Send a Byte
 - Echo Point
 
-
 1. Mail → "E-Missive"
-
 2. Socials → "Digital Realms"
-
 3. Account Name → "Handle"
-
 4. Address → "Location Coordinates"
-
 5. Instagram → "Vaporgram"
-
-6. Behance → "Creative Vision"
-
 7. GitHub → "Code Nexus"
-
 8. Email → "Signal Transmission"
-
 9. Message → "Transmission"
-
 10. Phone → "Telecom Link"
-
-11. Website → "Neon Portal"
-
 12. Profile → "Digital Persona"
-
-13. Twitter → "Tweetstream"
-
 14. LinkedIn → "Connect Network"
-
 15. Snapchat → "Snapwaves"
+1. Mail → Postbox of Dreams
+2. Socials → Neon Connections
+4. Address → Pixel Coordinates
+5. Instagram → Dreamgram
+6. Behance → Visionary Vault
+7. GitHub → Codewave Repository
+8. Email → Electric Dispatch
+10. Twitter → Echo Stream
+12. Snapchat → VaporLens
+15. Discord → The Cyber Lounge
