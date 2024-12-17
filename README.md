@@ -39,6 +39,7 @@
 - Titillium Web
 - Nunito
 - Glass Antiqua
+- Genos
 
 <br><br>
 
