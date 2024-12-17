@@ -63,3 +63,60 @@
 
 > <img src="https://img.shields.io/badge/■888-888?style=for-the-badge"/><br>
 > <img src="https://img.shields.io/badge/■B2B2B2-B2B2B2?style=for-the-badge"/>
+
+
+---
+
+1. Mail:
+Digital Post
+Retro Signal
+Pixel Message
+Echo Box
+
+2. Socials:
+Virtual Circles
+Social Stream
+Neon Networks
+Vibe Connections
+
+3. Account Name:
+Alias Code
+Persona ID
+Synth ID
+Echo Name
+
+4. Address:
+Digital Coordinates
+Virtual Hub
+Nexus Location
+Data Grid
+
+5. Instagram:
+PixelGram
+RetroLens
+Aesthetic Feed
+VaporShots
+
+6. Behance:
+DreamSpace
+Creative Archive
+Neon Portfolio
+Vision Vault
+
+7. GitHub:
+CodeCore
+Data Repository
+DevSignal
+Byte Box
+
+
+
+- Cloud Connections
+- Cyber Envelope
+- Data Transmission
+- Cyber Touch
+- Data Touchpoint
+- Holo Reach
+- Data Bridge
+- Send a Byte
+- Echo Point
