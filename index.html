@@ -43,6 +43,9 @@
             border-top: 2px solid currentColor;
         }
         @media (max-width: 768px) {
+            section {
+                grid-template-columns: 1fr 2fr; /* second column takes up more space */
+            }
             section:first-of-type {
                 border-top: 1.5px solid currentColor;
             }
@@ -53,16 +56,14 @@
             text-transform: uppercase;
             color: #d0d0d0; /* Light gray */
             font-weight: bold;
-    align-self: start; /* Align the label to the top of its cell */
-    display: flex;
-    align-items: flex-start; /* Ensures the label stays at the top */
+    align-self: start; /* Ensures labels align at the top */
         }
         .details {
             display: flex;
             flex-direction: column;
             gap: 10px;
-    align-items: flex-start; /* Align the content to the start (left) */
-        }
+    align-items: flex-start; /* Aligns the details content to the left */
+   }
 
         a {
             color: inherit;
