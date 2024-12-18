@@ -161,11 +161,20 @@
             text-align: center;
             font-size: 32px;
             border-radius: 100%;
-            border: 2px solid;
+            display: inline-block;
+            position: relative;
             transition: background-color 0.3s, color 0.3s;  
         }
-        button:hover, button:focus {
-            background-color: currentColor;     
+        button:hover::before, button:focus::before {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 33px;
+            width: 33px;
+            background-color: currentColor;
+            border-radius: 100%;  
         }
 
         /* Dark mode */
