@@ -44,6 +44,7 @@
 - Capriola
 - Faculty Glyphic
 - Host Grotesk
+- Spinnaker
 
 <br><br>
 
