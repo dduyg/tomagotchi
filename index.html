@@ -220,6 +220,16 @@
             transition-delay: 0.3s;
         }
 
+        /* Active state for dark mode */
+        button.active .button__bg::before {
+            transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
+            transition: none;
+        }
+        button.active .button__bg::after {
+            opacity: 1;
+            transition: none;
+        }
+
         /* Dark mode */
         body.dark {
             background-color: #2b2b33;
@@ -257,6 +267,7 @@
 
         themeToggle.addEventListener('click', () => {
             body.classList.toggle('dark');
+            themeToggle.classList.toggle('active'); // Add or remove the 'active' class
         });
     </script>
 </body>
