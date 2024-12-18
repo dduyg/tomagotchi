@@ -102,7 +102,7 @@
             a::before {
                 height: 1.5px;
             }
-          }
+        }
 
         .noise {
             position: fixed;
@@ -144,7 +144,7 @@
             80%{transform:translate(3%,35%)}
             90%{transform:translate(-10%,10%)}
         }
-        
+
         aside {
             position: absolute;
             top: 5%;
@@ -220,14 +220,16 @@
             transition-delay: 0.3s;
         }
 
-        /* Active state for dark mode */
+        /* Styles for active dark mode */
+        button.active .button__bg {
+            background: currentColor;
+            transform: scale3d(1.2, 1.2, 1);
+        }
         button.active .button__bg::before {
             transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
-            transition: none;
         }
         button.active .button__bg::after {
             opacity: 1;
-            transition: none;
         }
 
         /* Dark mode */
@@ -241,34 +243,41 @@
     </style>
 </head>
 <body>
-<aside><button id="theme-toggle"><div class="button__bg"></div></button></aside>
-    <main>
-        <h1>Send a Byte</h1>
-        <section>
-            <div class="label">Envelope</div>
-            <div class="details">
-                <a href="#">wavelength@holo.meltdown</a>
-            </div>
-        </section>
-        <section>
-            <div class="label">Social Subspace</div>
-            <div class="details">
-                <a href="#"><span>↗</span> pixelmessage</a>
-                <a href="#"><span>↗</span> neongrid</a>
-                <a href="#"><span>↗</span> datarepository</a>
-            </div>
-        </section>
-    </main> 
-    <div class="noise"></div>
+<aside>
+    <button id="theme-toggle"><div class="button__bg"></div></button>
+</aside>
+<main>
+    <h1>Send a Byte</h1>
+    <section>
+        <div class="label">Envelope</div>
+        <div class="details">
+            <a href="#">wavelength@holo.meltdown</a>
+        </div>
+    </section>
+    <section>
+        <div class="label">Social Subspace</div>
+        <div class="details">
+            <a href="#"><span>↗</span> pixelmessage</a>
+            <a href="#"><span>↗</span> neongrid</a>
+            <a href="#"><span>↗</span> datarepository</a>
+        </div>
+    </section>
+</main> 
+<div class="noise"></div>
 
-    <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
 
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark');
-            themeToggle.classList.toggle('active'); // Add or remove the 'active' class
-        });
-    </script>
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark');
+
+        if (body.classList.contains('dark')) {
+            themeToggle.classList.add('active');
+        } else {
+            themeToggle.classList.remove('active');
+        }
+    });
+</script>
 </body>
 </html>
