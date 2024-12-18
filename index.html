@@ -17,6 +17,7 @@
             background-color: #1c1c1c;
             color: #ffffff;
             font-family: "Dosis", sans-serif;
+            line-height: 1.6;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -45,27 +46,16 @@
         section:first-of-type {
             border-top: 2px solid currentColor;
         }
-        @media (max-width: 768px) {
-            section {
-                grid-template-columns: 1fr 2fr; /* second column takes up more space */
-            }
-            section:first-of-type {
-                border-top: 1.5px solid currentColor;
-            }
-        }
-
         .label {
-            font-size: 1rem;
             text-transform: uppercase;
             font-family: "Megrim", sans-serif;
-            color: #d0d0d0; /* Light gray */
             font-weight: bold;
     align-self: start; /* Ensures labels align at the top */
         }
         .details {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 10px 0;
     align-items: flex-start; /* Aligns the details content to the left */
    }
 
@@ -87,14 +77,20 @@
             transform: scaleX(0);
             transition: transform 0.6s;
         }
-        @media (max-width: 768px) {
-            a::before {
-                height: 1.5px;
-            }
-         }
         a:hover::before {
             transform: scaleX(1);
         }
+        @media (max-width: 768px) {
+            section {
+                grid-template-columns: 1fr 2fr; /* second column takes up more space */
+            }
+            section:first-of-type {
+                border-top: 1.5px solid currentColor;
+            }
+            a::before {
+                height: 1.5px;
+            }
+          }
     </style>
 </head>
 <body>
