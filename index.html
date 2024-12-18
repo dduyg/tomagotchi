@@ -182,28 +182,27 @@
             overflow: hidden;
             transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
         }
-        button:hover .button__bg {
-            transform: scale3d(1.2,1.2,1);
+        button:hover .button__bg, button:focus .button__bg, button.active .button__bg {
+            transform: scale3d(1.2, 1.2, 1);
         }
-        button .button__bg::before, button .button__bg::after {
+        button .button__bg::before, button:focus .button__bg::before, button.active .button__bg::before {
             content: '';
             position: absolute;
-            background: currentColor;
-        }
-        button .button__bg::before {
             width: 110%;
             height: 0;
             padding-bottom: 110%;
             top: 50%;
             left: 50%;
             border-radius: 50%;
-            transform: translate3d(-50%,-50%,0) scale3d(0,0,1);
+            transform: translate3d(-50%, -50%, 0) scale3d(0, 0, 1);
         }
-        button:hover .button__bg::before {
+        button:hover .button__bg::before, button:focus .button__bg::before, button.active .button__bg::before {
             transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
-            transform: translate3d(-50%,-50%,0) scale3d(1,1,1);
+            transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
         }
-        button .button__bg::after {
+        button .button__bg::after, button.active .button__bg::after {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -211,7 +210,7 @@
             opacity: 0;
             transition: opacity 0.3s;
         }
-        button:hover .button__bg::after {
+        button:hover .button__bg::after, button:focus .button__bg::after, button.active .button__bg::after {
             opacity: 1;
             transition-duration: 0.01s;
             transition-delay: 0.3s;
@@ -254,6 +253,7 @@
 
         themeToggle.addEventListener('click', () => {
             body.classList.toggle('dark');
+            themeToggle.classList.toggle('active');
         });
     </script>
 </body>
