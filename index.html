@@ -88,6 +88,46 @@
             margin-top: 110px;
             font-size: 0.7rem;
         }
+     
+        .noise {
+            position: fixed;
+            z-index: 9999;
+            top: -300%;
+            left: -150%;
+            height: 600%;
+            width: 600%;
+            -webkit-animation: grain 7s steps(10) infinite;
+            animation: grain 7s steps(10) infinite;
+            background-image: url('noise.png');
+            background-size: 200px;
+            background-repeat: repeat;
+            opacity: .25;
+            pointer-events: none;
+        }
+        @-webkit-keyframes grain {
+            0%,to{transform:translate(0)}
+            10%{transform:translate(-5%,-10%)}
+            20%{transform:translate(-15%,5%)}
+            30%{transform:translate(7%,-25%)}
+            40%{transform:translate(-5%,25%)}
+            50%{transform:translate(-15%,10%)}
+            60%{transform:translate(15%)}
+            70%{transform:translateY(15%)}
+            80%{transform:translate(3%,35%)}
+            90%{transform:translate(-10%,10%)}
+        }
+        @keyframes grain {
+            0%,to{transform:translate(0)}
+            10%{transform:translate(-5%,-10%)}
+            20%{transform:translate(-15%,5%)}
+            30%{transform:translate(7%,-25%)}
+            40%{transform:translate(-5%,25%)}
+            50%{transform:translate(-15%,10%)}
+            60%{transform:translate(15%)}
+            70%{transform:translateY(15%)}
+            80%{transform:translate(3%,35%)}
+            90%{transform:translate(-10%,10%)}
+        }
     </style>
 </head>
 <body>
@@ -130,6 +170,7 @@
             <p><b>⛜⛠&nbsp;&nbsp;</b> Oceanic Modem Waves</p>
         </footer>
     </main>
+    <div class="noise"></div>
 
     <script>
         // Create an array with the elements to animate
