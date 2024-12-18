@@ -43,6 +43,7 @@
 - Unbounded
 - Capriola
 - Faculty Glyphic
+- Host Grotesk
 
 <br><br>
 
