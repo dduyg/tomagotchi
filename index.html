@@ -6,7 +6,7 @@
     <title>LiminalLoop</title>
     <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
     <style>
-        * {  /* General Reset */
+        * {  
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -55,14 +55,14 @@
         .label {
             text-transform: uppercase;
             letter-spacing: 1px;
-            align-self: start; /* Aligns labels at the top */
+            align-self: start;
         }
         .details {
             font-family: "Didact Gothic", sans-serif;
             display: flex;
             flex-direction: column;
             gap: 10px 0;
-            align-items: flex-start; /* Aligns details content to the left */
+            align-items: flex-start;
         }
         .details span {
             font-family: 'Yarikha', sans-serif;
@@ -94,7 +94,7 @@
                 font-size: 2rem;
             }
             section {
-                grid-template-columns: 1fr 2fr; /* second column takes up more space */
+                grid-template-columns: 1fr 2fr; 
             }
             section:first-of-type {
                 border-top: 1.5px solid currentColor;
@@ -118,20 +118,9 @@
             background-repeat: repeat;
             opacity: 0.25;
             pointer-events: none;
-            transition: opacity 0.3s; /* Smooth transition */
+            transition: opacity 0.3s;
         }
-        @-webkit-keyframes grain {
-            0%,to{transform:translate(0)}
-            10%{transform:translate(-5%,-10%)}
-            20%{transform:translate(-15%,5%)}
-            30%{transform:translate(7%,-25%)}
-            40%{transform:translate(-5%,25%)}
-            50%{transform:translate(-15%,10%)}
-            60%{transform:translate(15%)}
-            70%{transform:translateY(15%)}
-            80%{transform:translate(3%,35%)}
-            90%{transform:translate(-10%,10%)}
-        }
+
         @keyframes grain {
             0%,to{transform:translate(0)}
             10%{transform:translate(-5%,-10%)}
@@ -151,7 +140,7 @@
             right: 6%;
         }
         button {
-            all: unset; /* Resets all inherited and default styles */
+            all: unset;
             color: inherit;
             font: inherit;
             cursor: pointer;
@@ -162,8 +151,10 @@
             height: 32px;
             border-radius: 50%;
             border: 3px solid;
-            box-shadow: 2px 0 0 2px currentColor; /* Simulates thicker right border */
+            box-shadow: 2px 0 0 2px currentColor;
+            transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
         }
+
         button::before, button::after {
             position: absolute;
             top: 0;
@@ -186,6 +177,12 @@
         button:focus .button__bg {
             transform: scale3d(1.2, 1.2, 1);
         }
+
+        button.active .button__bg {
+            transform: scale3d(1.2, 1.2, 1);
+            transition: none; /* Prevent the transformation from resetting on hover/focus */
+        }
+
         button .button__bg::before, button .button__bg::after {
             content: '';
             position: absolute;
@@ -220,19 +217,6 @@
             transition-delay: 0.3s;
         }
 
-        /* Styles for active dark mode */
-        button.active .button__bg {
-            background: currentColor;
-            transform: scale3d(1.2, 1.2, 1);
-        }
-        button.active .button__bg::before {
-            transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
-        }
-        button.active .button__bg::after {
-            opacity: 1;
-        }
-
-        /* Dark mode */
         body.dark {
             background-color: #2b2b33;
             color: #f3f2f9;
@@ -240,44 +224,43 @@
         .dark .noise {
             opacity: 0.2;
         }
+        /* Hide hover/focus effects when dark mode is active */
+        body.dark button:hover .button__bg,
+        body.dark button:focus .button__bg {
+            transform: scale3d(1.2, 1.2, 1);
+        }
     </style>
 </head>
 <body>
-<aside>
-    <button id="theme-toggle"><div class="button__bg"></div></button>
-</aside>
-<main>
-    <h1>Send a Byte</h1>
-    <section>
-        <div class="label">Envelope</div>
-        <div class="details">
-            <a href="#">wavelength@holo.meltdown</a>
-        </div>
-    </section>
-    <section>
-        <div class="label">Social Subspace</div>
-        <div class="details">
-            <a href="#"><span>↗</span> pixelmessage</a>
-            <a href="#"><span>↗</span> neongrid</a>
-            <a href="#"><span>↗</span> datarepository</a>
-        </div>
-    </section>
-</main> 
-<div class="noise"></div>
+<aside><button id="theme-toggle"><div class="button__bg"></div></button></aside>
+    <main>
+        <h1>Send a Byte</h1>
+        <section>
+            <div class="label">Envelope</div>
+            <div class="details">
+                <a href="#">wavelength@holo.meltdown</a>
+            </div>
+        </section>
+        <section>
+            <div class="label">Social Subspace</div>
+            <div class="details">
+                <a href="#"><span>↗</span> pixelmessage</a>
+                <a href="#"><span>↗</span> neongrid</a>
+                <a href="#"><span>↗</span> datarepository</a>
+            </div>
+        </section>
+    </main> 
+    <div class="noise"></div>
 
-<script>
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const button = themeToggle;
 
-    themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark');
-
-        if (body.classList.contains('dark')) {
-            themeToggle.classList.add('active');
-        } else {
-            themeToggle.classList.remove('active');
-        }
-    });
-</script>
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            button.classList.toggle('active'); // Add active class to button
+        });
+    </script>
 </body>
 </html>
