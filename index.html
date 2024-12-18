@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liminal Loop</title>
+    <title>LiminalLoop</title>
     <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
     <style>
         * {  /* General Reset */
@@ -180,7 +180,7 @@
             background: transparent;
             border-radius: 50%;
             overflow: hidden;
-            transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1);
+            transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1), opacity 0.3s;
         }
         button.active .button__bg {
             transform: scale3d(1.2, 1.2, 1);
@@ -248,19 +248,20 @@
     </main> 
     <div class="noise"></div>
 
-<script>
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
 
-    themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark');
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');  // Toggle dark mode
 
-        if (body.classList.contains('dark')) {
-            themeToggle.classList.add('active');
-        } else {
-            themeToggle.classList.remove('active');
-        }
-    });
-</script>
+            // Toggle the active state on the button
+            if (body.classList.contains('dark')) {
+                themeToggle.classList.add('active');  // Dark mode is on, apply active class
+            } else {
+                themeToggle.classList.remove('active');  // Dark mode is off, remove active class
+            }
+        });
+    </script>
 </body>
 </html>
