@@ -40,6 +40,9 @@
 - Nunito
 - Glass Antiqua
 - Genos
+- Unbounded
+- Capriola
+- Faculty Glyphic
 
 <br><br>
 
