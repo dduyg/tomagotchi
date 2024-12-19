@@ -24,15 +24,24 @@
       margin: 0 auto;
       padding: 20px;
     }
-    /* Apply animation to all elements */
-    * {
+    .container div, h1, footer {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Initial animation state */
+    .animate-in {
       opacity: 0;
       transform: translateY(-96px);
       transition: opacity 0.5s ease, transform 0.5s ease; /* Shortened duration */
     }
 
     /* Final animation state */
-    *._active {
+    .animate-in.active {
       opacity: 1;
       transform: translateY(0);
     }
@@ -48,26 +57,36 @@
     <div>Elementum</div>
   </div>
 
+  <footer>Footer Element</footer>
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const allElements = document.querySelectorAll('*');  // Target all elements
+      const allElements = document.querySelectorAll('body *'); // Select all elements in the body
+
+      // Add the `animate-in` class to all elements (except for the ones that should not be animated)
+      allElements.forEach((el) => {
+        if (!el.classList.contains('no-animate')) { // Add a class check if needed
+          el.classList.add('animate-in');
+        }
+      });
 
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              // Add the `_active` class with a staggered delay (reverse order)
+              // Add the `active` class with a staggered delay (reverse order)
               setTimeout(() => {
-                entry.target.classList.add('_active');
-              }, (allElements.length - Array.from(allElements).indexOf(entry.target)) * 100); // Reduced stagger delay
+                entry.target.classList.add('active');
+              }, (allElements.length - entry.target.dataset.index) * 100); // Reduced stagger delay
             }
           });
         },
         { threshold: 0.1 }
       );
 
-      // Observe all elements on the page
-      allElements.forEach((el) => {
+      // Assign a unique index to each element for reverse staggering
+      allElements.forEach((el, index) => {
+        el.dataset.index = index;
         observer.observe(el);
       });
     });
