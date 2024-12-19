@@ -38,7 +38,7 @@
     .visible {
       opacity: 1;
       transform: translateY(0);
-    }
+    }   
   </style>
 </head>
 <body>
@@ -67,7 +67,7 @@
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               // Calculate delay in reverse order
-              const delay = (mainElements.length - mainElements.indexOf(entry.target)) * 200; //  Adjust stagger delay (original 100)
+              const delay = (mainElements.length - mainElements.indexOf(entry.target)) * 100; // Adjusting stagger delay between elements (100ms)
               setTimeout(() => {
                 entry.target.classList.add('visible');
               }, delay);
