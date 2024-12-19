@@ -45,6 +45,7 @@
 - Faculty Glyphic
 - Host Grotesk
 - Spinnaker
+- Karla
 
 <br><br>
 
