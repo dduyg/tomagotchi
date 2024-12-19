@@ -24,37 +24,17 @@
       align-items: center;
       width: 250px;
       height: 125px;
-      border: 1px ridge #000;
+      border: 3px ridge #000;
     }
 
     /* 1. Distorted Vertical Wave */
     .wave {
-      animation: wave 0.2s infinite ease-in-out;
+      animation: wave 1s infinite ease-in-out;
     }
     @keyframes wave {
       0%, 100% { transform: scaleY(1); }
       25% { transform: scaleY(1.2); }
       50% { transform: scaleY(0.8); }
-    }
-
-    /* 2. Horizontal Scanlines */
-    .scanlines {
-      position: relative;
-    }
-    .scanlines::before {
-      content: 'hypnagogic';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #DFE0DC;
-      clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%);
-      animation: scanline 0.2s infinite;
-    }
-    @keyframes scanline {
-      0%, 100% { clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%); }
-      50% { clip-path: polygon(0 50%, 100% 50%, 100% 60%, 0 60%); }
     }    
 
     /* 3. Text Distortion */
@@ -189,9 +169,6 @@
   <main>
     <section>
       <h2 class="wave">echochamber</h2>
-    </section>
-    <section>
-      <h2 class="scanlines">hypnagogic</h2>
     </section>
     <section>
       <h2 class="distort"><span>o</span><span>b</span><span>s</span><span>i</span><span>d</span><span>i</span><span>a</span><span>n</span></h2>
