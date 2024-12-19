@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reverse Order Animation</title>
+  <title>Stacked Animation</title>
   <style>
     /* Base styles */
     body {
@@ -15,17 +15,20 @@
       text-align: center;
       line-height: 1.8;
     }
-    h1 {
-      margin: 20px 0;
-    }
     main {
       max-width: 800px;
       margin: 0 auto;
       padding: 20px;
     }
-    footer {
-      margin-top: 20px;
+    div, h1, footer {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
+
 
     /* Initial animation state */
     .hidden {
@@ -43,7 +46,7 @@
 </head>
 <body>
 <main>
-  <h1>Reverse Order Animation</h1>   
+  <h1>Elementum Animation</h1>   
   <div>Content Box 1</div>
   <div>Content Box 2</div>
   <div>Content Box 3</div>
@@ -54,7 +57,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Select all child elements of <main>
+      // Select all elements within <main>
       const mainElements = Array.from(document.querySelectorAll('main *'));
 
       // Add the "hidden" class to all elements
@@ -67,7 +70,7 @@
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               // Calculate delay in reverse order
-              const delay = (mainElements.length - mainElements.indexOf(entry.target)) * 100; // Adjusting stagger delay between elements (100ms)
+              const delay = (mainElements.length - mainElements.indexOf(entry.target)) * 100; // Adjust stagger delay between elements (100ms)
               setTimeout(() => {
                 entry.target.classList.add('visible');
               }, delay);
