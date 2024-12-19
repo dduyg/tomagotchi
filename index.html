@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reverse Stacked Animation</title>
+  <title>Reverse Stacked Animation (Faster)</title>
   <style>
     /* Base styles */
     body {
@@ -29,7 +29,7 @@
     .animate-in {
       opacity: 0;
       transform: translateY(-96px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transition: opacity 0.5s ease, transform 0.5s ease; /* Shortened duration */
     }
 
     /* Final animation state */
@@ -40,7 +40,7 @@
   </style>
 </head>
 <body>
-  <h1>Reverse Stacked Animation</h1>
+  <h1>Reverse Stacked Animation (Faster)</h1>
   <div class="container">
     <div class="box animate-in">Content Box 1</div>
     <div class="box animate-in">Content Box 2</div>
@@ -60,84 +60,7 @@
               // Add the `active` class with a staggered delay (reverse order)
               setTimeout(() => {
                 entry.target.classList.add('active');
-              }, (animatedElements.length - entry.target.dataset.index) * 200); // Reverse delay
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      // Assign a unique index to each element for reverse staggering
-      animatedElements.forEach((el, index) => {
-        el.dataset.index = index;
-        observer.observe(el);
-      });
-    });
-  </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reverse Stacked Animation</title>
-  <style>
-    /* Base styles */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-      color: #333;
-    }
-
-    h1 {
-      text-align: center;
-      margin: 20px 0;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    /* Initial animation state */
-    .animate-in {
-      opacity: 0;
-      transform: translateY(-96px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    /* Final animation state */
-    .animate-in.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
-</head>
-<body>
-  <h1>Reverse Stacked Animation</h1>
-  <div class="container">
-    <div class="box animate-in">Content Box 1</div>
-    <div class="box animate-in">Content Box 2</div>
-    <div class="box animate-in">Content Box 3</div>
-    <div class="box animate-in">Content Box 4</div>
-    <div class="box animate-in">Content Box 5</div>
-  </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const animatedElements = document.querySelectorAll('.animate-in');
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              // Add the `active` class with a staggered delay (reverse order)
-              setTimeout(() => {
-                entry.target.classList.add('active');
-              }, (animatedElements.length - entry.target.dataset.index) * 200); // Reverse delay
+              }, (animatedElements.length - entry.target.dataset.index) * 100); // Reduced stagger delay
             }
           });
         },
