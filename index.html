@@ -64,12 +64,12 @@
     .split::before {
       clip-path: inset(0 0 50% 0);
       transform: translateX(-2px);
-      animation: slice 0.5s infinite;
+      animation: slice 1s infinite;
     }
     .split::after {
       clip-path: inset(50% 0 0 0);
       transform: translateX(2px);
-      animation: slice 0.5s infinite reverse;
+      animation: slice 1s infinite reverse;
     }
     @keyframes slice {
       0%, 100% { transform: translateX(0); }
@@ -78,7 +78,7 @@
     
     /* 5. Static Interference */
     .static {
-      animation: static 0.5s infinite;
+      animation: static 1s infinite;
     }
     @keyframes static {
       0%, 100% { filter: none; }
@@ -90,7 +90,7 @@
     /* 7. Data Corruption */
     .corruption {
       position: relative;
-      animation: corruption 0.4s infinite;
+      animation: corruption 1s infinite;
     }
     @keyframes corruption {
       0%, 100% { clip-path: inset(0 0 0 0); }
@@ -99,7 +99,7 @@
 
     /* 8. Glitch Flash */
     .glitch-flash {
-      animation: glitch-flash 0.4s infinite;
+      animation: glitch-flash 1s infinite;
     }
     @keyframes glitch-flash {
       0%, 100% { transform: scale(1, 1); opacity: 1; }
@@ -110,7 +110,7 @@
 
     /* 10. Vertical Distortion */
     .vertical-distort {
-      animation: vertical-distort 0.4s infinite ease-in-out;
+      animation: vertical-distort 1s infinite ease-in-out;
     }
     @keyframes vertical-distort {
       0%, 100% { transform: scaleY(1); }
