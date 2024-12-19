@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automatic Animation for <main> Elements</title>
+  <style>
+    /* Base styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #ddd;
+    }
+
+    /* Initial animation state */
+    .hidden {
+      opacity: 0;
+      transform: translateY(-96px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    /* Final animation state */
+    .visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <h1>Automatic Animation for <main> Elements</h1>
+  <main>
+    <div>Content Box 1</div>
+    <div>Content Box 2</div>
+    <div>Content Box 3</div>
+    <div>Content Box 4</div>
+    <div>Content Box 5</div>
+  </main>
+  <footer>Footer Section</footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Select all child elements of <main>
+      const mainElements = document.querySelectorAll('main *');
+
+      // Add the "hidden" class to all elements
+      mainElements.forEach((el) => {
+        el.classList.add('hidden');
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Add the `visible` class with a staggered delay
+              setTimeout(() => {
+                entry.target.classList.add('visible');
+              }, (Array.from(mainElements).indexOf(entry.target) + 1) * 100); // Stagger delay
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      // Observe all elements in <main>
+      mainElements.forEach((el) => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>
