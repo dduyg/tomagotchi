@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sliding Animation Demo</title>
+  <title>Staggered Sliding Animation</title>
   <style>
     /* Base styles */
     body {
@@ -25,34 +25,28 @@
       padding: 20px;
     }
 
+    /* Initial animation state */
     .animate-in {
       opacity: 0;
       transform: translateY(-96px);
       transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
+    /* Final state */
     .animate-in.active {
       opacity: 1;
       transform: translateY(0);
     }
-
-    .box {
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 20px;
-      margin: 20px 0;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
   </style>
 </head>
 <body>
-  <h1>Sliding Animation Demo</h1>
+  <h1>Staggered Sliding Animation</h1>
   <div class="container">
     <div class="box animate-in">Content Box 1</div>
     <div class="box animate-in">Content Box 2</div>
     <div class="box animate-in">Content Box 3</div>
     <div class="box animate-in">Content Box 4</div>
+    <div class="box animate-in">Content Box 5</div>
   </div>
 
   <script>
@@ -63,14 +57,21 @@
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              entry.target.classList.add('active');
+              // Add the `active` class with a staggered delay
+              setTimeout(() => {
+                entry.target.classList.add('active');
+              }, entry.target.dataset.index * 200); // 200ms delay per index
             }
           });
         },
-        { threshold: 0.1 } // Adjust for earlier or later triggering
+        { threshold: 0.1 }
       );
 
-      animatedElements.forEach((el) => observer.observe(el));
+      // Assign a unique index to each element for staggering
+      animatedElements.forEach((el, index) => {
+        el.dataset.index = index;
+        observer.observe(el);
+      });
     });
   </script>
 </body>
