@@ -108,29 +108,6 @@
       75% { transform: scale(1, 1); opacity: 1; }
     }
 
-    /* 9. Scanline Interference */
-    .scanline-interference {
-      display: inline-block;
-      position: relative;
-      color: #DFE3DC;
-    }
-    .scanline-interference::after {
-      content: 'halcyon';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: black;
-      animation: scanline-interference 0.5s infinite;
-    }
-    @keyframes scanline-interference {
-      0%, 100% { clip-path: inset(0 0 100% 0); }
-      25% { clip-path: inset(0 0 10% 0); }
-      50% { clip-path: inset(0 0 50% 0); }
-      75% { clip-path: inset(0 0 30% 0); }
-    }
-
     /* 10. Vertical Distortion */
     .vertical-distort {
       animation: vertical-distort 0.4s infinite ease-in-out;
@@ -162,9 +139,6 @@
     </section>
     <section>
       <h2 class="glitch-flash">kaleidoscope</h2>
-    </section>
-    <section>
-      <h2 class="scanline-interference">halcyon</h2>
     </section>
     <section>
       <h2 class="vertical-distort">iridescent</h2>
