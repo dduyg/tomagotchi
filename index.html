@@ -9,15 +9,28 @@
     body {
       font-family: "Host Grotesk", sans-serif;
       margin: 0;
-      padding: 30% 5% 40%;
+      padding: 0;
       background-color: LemonChiffon;
       color: black;
     }
+    
     main {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      justify-content: space-between;
+      gap: 20px; /* Optional space between columns */
     }
+    section {
+      flex: 1; /* Ensures columns are evenly spaced */
+      padding: 20px;
+      border: 1px solid;
+    }
+    @media (max-width: 768px) {
+      main {
+        flex-direction: column; /* Stack columns on mobile */
+      }
+    }
+
+    
     h2 { font-weight: normal; }
 
     .split {
@@ -42,6 +55,9 @@
   <main>
     <section>
       <h2 class="split">monochrome</h2>
+    </section>
+    <section>
+      🪅❤️❤️
     </section>
   </main>
 </body>
