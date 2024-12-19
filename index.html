@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Automatic Animation for <main> Elements</title>
+  <title>Reverse Order Animation for <main> Elements</title>
   <style>
     /* Base styles */
     body {
@@ -47,7 +47,7 @@
   </style>
 </head>
 <body>
-  <h1>Automatic Animation for <main> Elements</h1>
+  <h1>Reverse Order Animation for <main> Elements</h1>
   <main>
     <div>Content Box 1</div>
     <div>Content Box 2</div>
@@ -60,7 +60,7 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Select all child elements of <main>
-      const mainElements = document.querySelectorAll('main *');
+      const mainElements = Array.from(document.querySelectorAll('main *'));
 
       // Add the "hidden" class to all elements
       mainElements.forEach((el) => {
@@ -71,10 +71,11 @@
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              // Add the `visible` class with a staggered delay
+              // Calculate delay in reverse order
+              const delay = (mainElements.length - mainElements.indexOf(entry.target)) * 100;
               setTimeout(() => {
                 entry.target.classList.add('visible');
-              }, (Array.from(mainElements).indexOf(entry.target) + 1) * 100); // Stagger delay
+              }, delay); // Staggered delay in reverse
             }
           });
         },
