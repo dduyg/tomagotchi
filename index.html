@@ -11,8 +11,7 @@
       padding: 0;
       overflow-x: hidden;
     }
-
-    .container {
+    main {
       max-width: 800px;
       margin: 50px auto;
       padding: 20px;
@@ -23,13 +22,12 @@
       transform: translateY(50px);
       transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
-
     .visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    .section {
+    section {
       margin: 50px 0;
       padding: 20px;
       background-color: #f4f4f4;
@@ -39,12 +37,12 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="section hidden">Welcome to the sliding animation demo!</div>
-    <div class="section hidden">Scroll down to see elements slide in.</div>
-    <div class="section hidden">This effect is created with CSS and JavaScript.</div>
-    <div class="section hidden">You can easily customize this for your site.</div>
-  </div>
+  <main>
+    <section class="hidden">Welcome to the sliding animation demo!</section>
+    <section class="hidden">Scroll down to see elements slide in.</section>
+    <section class="hidden">This effect is created with CSS and JavaScript.</section>
+    <section class="hidden">You can easily customize this for your site.</section>
+  </main>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
