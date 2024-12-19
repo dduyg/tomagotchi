@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liminal Loop</title>
+  <style>
+    body {
+      font-family: "Quicksand", sans-serif;
+      margin: 0;
+      padding: 30% 5% 40%;
+      background-color: LemonChiffon;
+      color: black;
+    }
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+    }
+    section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 250px;
+      height: 125px;
+      border: 1px ridge #000;
+    }
+
+    /* 1. Distorted Vertical Wave */
+    .wave {
+      animation: wave 0.2s infinite ease-in-out;
+    }
+    @keyframes wave {
+      0%, 100% { transform: scaleY(1); }
+      25% { transform: scaleY(1.2); }
+      50% { transform: scaleY(0.8); }
+    }
+
+    /* 2. Horizontal Scanlines */
+    .scanlines {
+      position: relative;
+    }
+    .scanlines::before {
+      content: 'hypnagogic';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #DFE0DC;
+      clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%);
+      animation: scanline 0.2s infinite;
+    }
+    @keyframes scanline {
+      0%, 100% { clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%); }
+      50% { clip-path: polygon(0 50%, 100% 50%, 100% 60%, 0 60%); }
+    }    
+
+    /* 3. Text Distortion */
+    .distort span {
+      display: inline-block;
+      animation: distort 0.3s infinite;
+    }
+    @keyframes distort {
+      0%, 100% { transform: scale(1, 1); }
+      50% { transform: scale(1.2, 0.8); }
+    }
+
+    /* 4. Split Displacement */
+    .split {
+      position: relative;
+      overflow: hidden;
+      color: #E9EDE6;
+    }
+    .split::before,
+    .split::after {
+      content: 'monochrome';
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: black;
+    }
+    .split::before {
+      clip-path: inset(0 0 50% 0);
+      transform: translateX(-2px);
+      animation: slice 0.3s infinite;
+    }
+    .split::after {
+      clip-path: inset(50% 0 0 0);
+      transform: translateX(2px);
+      animation: slice 0.3s infinite reverse;
+    }
+    @keyframes slice {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(5px); }
+    }
+    
+    /* 5. Static Interference */
+    .static {
+      animation: static 0.2s infinite;
+    }
+    @keyframes static {
+      0%, 100% { filter: none; }
+      25% { filter: blur(1px) contrast(150%); }
+      50% { filter: brightness(150%) contrast(200%); }
+      75% { filter: blur(0.5px) brightness(100%) contrast(100%); }
+    }
+
+    /* 6. Randomized Vertical Glitch */
+    .vertical-glitch {
+      display: inline-block;
+      animation: verticalGlitch 0.3s infinite;
+    }
+    @keyframes verticalGlitch {
+      0%, 100% { transform: translateY(0); }
+      20% { transform: translateY(-5px); }
+      40% { transform: translateY(5px); }
+      60% { transform: translateY(-3px); }
+      80% { transform: translateY(3px); }
+    }
+
+    /* 7. Data Corruption */
+    .corruption {
+      position: relative;
+      animation: corruption 0.4s infinite;
+    }
+    @keyframes corruption {
+      0%, 100% { clip-path: inset(0 0 0 0); }
+      50% { clip-path: inset(0 0 0 50%); }
+    }
+
+    /* 8. Glitch Flash */
+    .glitch-flash {
+      animation: glitch-flash 0.4s infinite;
+    }
+    @keyframes glitch-flash {
+      0%, 100% { transform: scale(1, 1); opacity: 1; }
+      25% { transform: scale(1.2, 0.8); opacity: 0.5; }
+      50% { transform: scale(0.8, 1.2); opacity: 0.2; }
+      75% { transform: scale(1, 1); opacity: 1; }
+    }
+
+    /* 9. Scanline Interference */
+    .scanline-interference {
+      display: inline-block;
+      position: relative;
+      color: #DFE3DC;
+    }
+    .scanline-interference::after {
+      content: 'halcyon';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      animation: scanline-interference 0.5s infinite;
+    }
+    @keyframes scanline-interference {
+      0%, 100% { clip-path: inset(0 0 100% 0); }
+      25% { clip-path: inset(0 0 10% 0); }
+      50% { clip-path: inset(0 0 50% 0); }
+      75% { clip-path: inset(0 0 30% 0); }
+    }
+
+    /* 10. Vertical Distortion */
+    .vertical-distort {
+      animation: vertical-distort 0.4s infinite ease-in-out;
+    }
+    @keyframes vertical-distort {
+      0%, 100% { transform: scaleY(1); }
+      25% { transform: scaleY(1.5); }
+      50% { transform: scaleY(0.5); }
+      75% { transform: scaleY(1.2); }
+    }
+
+    /* 11. Digital Stretch */
+    .stretch {
+      animation: stretch 0.5s infinite alternate;
+    }
+    @keyframes stretch {
+      0%, 100% { transform: none; }
+      50% { transform: scale(1.1) skew(5deg, 5deg); }
+    } 
+  </style>
+</head>
+<body>
+  <main>
+    <section>
+      <h2 class="wave">echochamber</h2>
+    </section>
+    <section>
+      <h2 class="scanlines">hypnagogic</h2>
+    </section>
+    <section>
+      <h2 class="distort"><span>o</span><span>b</span><span>s</span><span>i</span><span>d</span><span>i</span><span>a</span><span>n</span></h2>
+    </section>
+    <section>
+      <h2 class="split">monochrome</h2>
+    </section>
+    <section>
+      <h2 class="static">oscillation</h2>
+    </section>
+    <section>
+       <h2 class="vertical-glitch">fragmented</h2>
+    </section>
+    <section>
+      <h2 class="corruption">paradigm</h2>
+    </section>
+    <section>
+      <h2 class="glitch-flash">kaleidoscope</h2>
+    </section>
+    <section>
+      <h2 class="scanline-interference">halcyon</h2>
+    </section>
+    <section>
+      <h2 class="vertical-distort">iridescent</h2>
+    </section>
+    <section>
+      <h2 class="stretch">resonance</h2>
+    </section>
+  </main>
+</body>
+</html>
