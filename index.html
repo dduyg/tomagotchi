@@ -3,45 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Slide In Animation</title>
+  <title>LiminalLoop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300..800&display=swap" rel="stylesheet">
   <style>
+    .hidden {
+      opacity: 0; transform: translateY(50px); transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .visible {
+      opacity: 1; transform: translateY(0);
+    }   
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
+      font-family: "Host Grotesk", sans-serif;
       background-color: #282c34;
       color: #f4f4f4;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
     }
     main {
       max-width: 800px;
       margin: 50px auto;
-      padding: 20px;
     }
-
-    .hidden {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-    .visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     section {
-      margin: 50px 0;
-      padding: 20px;
-      border: 1px solid;
-      border-radius: 8px;
+      padding: 50px 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .birinci {
+      flex: 0 0 60%;
+    }
+    .ikinci {
+      flex: 0 0 40%;
+    }
+    @media (max-width: 768px) {
+      section {
+        flex-direction: column;
+      }
+      .birinci,
+      .ikinci {
+        flex: 0 0 100%;
+      }
     }
   </style>
 </head>
 <body>
   <main>
-    <section>Welcome to the sliding animation demo!</section>
-    <section>Scroll down to see elements slide in.</section>
-    <section>This effect is created with CSS and JavaScript.</section>
-    <section>You can easily customize this for your site.</section>
+      <section>
+        <div class="birinci">
+           <!-- the empty one -->
+        </div>
+        <div class="ikinci">
+          <p style="text-align: justify; font-size: 0.778rem;">transform the few locations</p>    
+        </div>
+      </section>
+
+      <section>
+        <div class="birinci">
+           <p>emptying the first confrontation</p>
+        </div>
+        <div class="ikinci">
+          <p>ensuring that no individual needs are being tailored</p>    
+        </div>
+      </section>
   </main>
 
   <script>
