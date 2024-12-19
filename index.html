@@ -48,20 +48,23 @@
   </style>
 </head>
 <body>
-  <h1>Stacked Animation</h1>
-  <div class="container">
-    <div>Elementum</div>
-    <div>Elementum</div>
-    <div>Elementum</div>
-    <div>Elementum</div>
-    <div>Elementum</div>
-  </div>
+  <main>
+    <h1>Stacked Animation</h1>
+    <div class="container">
+      <div>Elementum</div>
+      <div>Elementum</div>
+      <div>Elementum</div>
+      <div>Elementum</div>
+      <div>Elementum</div>
+    </div>
 
-  <footer>Footer Element</footer>
+    <footer>Footer Element</footer>
+  </main>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const allElements = document.querySelectorAll('body *'); // Select all elements in the body
+      // Select all elements within <main>
+      const allElements = document.querySelectorAll('main *'); // Select all elements inside the <main> tag
 
       // Add the `animate-in` class to all elements (except for the ones that should not be animated)
       allElements.forEach((el) => {
