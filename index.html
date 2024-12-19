@@ -31,7 +31,7 @@
     .hidden {
       opacity: 0;
       transform: translateY(-96px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transition: opacity 1s ease, transform 1s ease;
     }
 
     /* Final animation state */
@@ -67,7 +67,7 @@
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
               // Calculate delay in reverse order
-              const delay = (mainElements.length - mainElements.indexOf(entry.target)) * 150; // Increased stagger delay
+              const delay = (mainElements.length - mainElements.indexOf(entry.target)) * 200; //  Adjust stagger delay (original 100)
               setTimeout(() => {
                 entry.target.classList.add('visible');
               }, delay);
