@@ -21,6 +21,32 @@
       flex-direction: column;
       color: black;
     }
+    main::-webkit-scrollbar {
+      width: 1.3em;
+    }
+    main::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    main::-webkit-scrollbar-thumb,
+    main::-webkit-scrollbar-thumb:hover {
+      background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20fill%3D%22currentColor%22%20version%3D%221.1%22%20id%3D%22Capa_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20viewBox%3D%220%200%20108.04%20108.04%22%20xml%3Aspace%3D%22preserve%22%20transform%3D%22matrix%28-1%2C%200%2C%200%2C%201%2C%200%2C%200%29%22%3E%3Cg%20id%3D%22SVGRepo_bgCarrier%22%20stroke-width%3D%220%22%3E%3C%2Fg%3E%3Cg%20id%3D%22SVGRepo_tracerCarrier%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3C%2Fg%3E%3Cg%20id%3D%22SVGRepo_iconCarrier%22%3E%3Cg%3E%3Cpath%20d%3D%22M108.04%2C5.493v29h-29v-29H108.04z%20M15.125%2C72.297C6.785%2C72.297%2C0%2C79.082%2C0%2C87.422c0%2C8.341%2C6.785%2C15.125%2C15.125%2C15.125%20S30.25%2C95.763%2C30.25%2C87.422C30.25%2C79.082%2C23.465%2C72.297%2C15.125%2C72.297z%20M91.038%2C50.777H81.54h-4.06H12.677v2.347h-0.052V68.29h5%20V55.776H77.48h4.06h14.483V54.61h0.015V39.445h-5V50.777z%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+    @-moz-document url-prefix() { /* Firefox scrollbar */
+      main {
+        scrollbar-color: #FFCC00 transparent; 
+        scrollbar-width: thin;
+      }
+      main::-webkit-scrollbar-thumb {
+        background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20fill%3D%22currentColor%22%20version%3D%221.1%22%20id%3D%22Capa_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20viewBox%3D%220%200%20108.04%20108.04%22%20xml%3Aspace%3D%22preserve%22%20transform%3D%22matrix%28-1%2C%200%2C%200%2C%201%2C%200%2C%200%29%22%3E%3Cg%20id%3D%22SVGRepo_bgCarrier%22%20stroke-width%3D%220%22%3E%3C%2Fg%3E%3Cg%20id%3D%22SVGRepo_tracerCarrier%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3C%2Fg%3E%3Cg%20id%3D%22SVGRepo_iconCarrier%22%3E%3Cg%3E%3Cpath%20d%3D%22M108.04%2C5.493v29h-29v-29H108.04z%20M15.125%2C72.297C6.785%2C72.297%2C0%2C79.082%2C0%2C87.422c0%2C8.341%2C6.785%2C15.125%2C15.125%2C15.125%20S30.25%2C95.763%2C30.25%2C87.422C30.25%2C79.082%2C23.465%2C72.297%2C15.125%2C72.297z%20M91.038%2C50.777H81.54h-4.06H12.677v2.347h-0.052V68.29h5%20V55.776H77.48h4.06h14.483V54.61h0.015V39.445h-5V50.777z%22%3E%3C%2Fpath%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+      }
+    }
+    
     header {
       position: sticky;
       top: 0;
@@ -46,14 +72,7 @@
       text-decoration: underline;
     }
     section {
-      padding: 2rem 1.5rem 1rem;
-      border-bottom: 2px solid;
-    }
-    section h2 {
-      margin: 0 0 1rem;
-      font-weight: 700;
-    }
-    section p {
+      padding: 4rem 1.5rem 0;
       line-height: 1.6;
     }
   </style>
@@ -61,27 +80,29 @@
 <body>
   <main>
     <header>
-      <h1>Page Title</h1>
+      <h1>Data Partitioning</h1>
       <nav>
-          <a href="#section1">Section 1</a>
-          <a href="#section2">Section 2</a>
-          <a href="#section3">Section 3</a>
+          <a href="#section1">1</a>
+          <a href="#section2">2</a>
+          <a href="#section3">3</a>
+          <a href="#section4">4</a>
       </nav>
     </header>
 
     <section id="section1">
-      <h2>Section 1</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque, nulla vel vehicula dapibus, augue enim blandit augue, sed feugiat ligula sapien nec turpis. Vivamus sollicitudin, nulla in auctor luctus, mauris ipsum interdum eros, vitae malesuada sem est in orci. In hac habitasse platea dictumst. Morbi ac orci sit amet orci efficitur malesuada. Cras dignissim libero non arcu condimentum vehicula. Phasellus vitae nibh ac ligula iaculis ullamcorper sed a lorem. Sed eu feugiat arcu. Vestibulum tincidunt libero vel nibh venenatis, vel fermentum mauris vehicula. Praesent cursus, elit sed vehicula gravida, felis orci suscipit nulla, vel dapibus justo eros non sem. Suspendisse potenti. Integer vehicula, justo sit amet varius egestas, nunc nisi sollicitudin quam, in feugiat libero felis in arcu. Fusce eget orci sit amet magna bibendum pellentesque. Donec dignissim fringilla lorem, sed ultrices ipsum fermentum sed. Nulla varius justo et nulla vehicula, vitae tempor augue gravida.</p>
+      Data partitioning is a concept in data engineering that involves dividing a dataset into smaller, more manageable pieces based on specific criteria. This technique is widely used in big data systems to optimize storage, processing, and querying. Partitioning enables distributed systems like Hadoop, Apache Spark, and cloud storage solutions to handle massive datasets efficiently. By organizing data into partitions, engineers can ensure that operations like filtering, aggregation, and joins are performed more quickly and cost-effectively, as only the relevant partitions need to be accessed.
     </section>
 
     <section id="section2">
-      <h2>Section 2</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque, nulla vel vehicula dapibus, augue enim blandit augue, sed feugiat ligula sapien nec turpis. Vivamus sollicitudin, nulla in auctor luctus, mauris ipsum interdum eros, vitae malesuada sem est in orci. In hac habitasse platea dictumst. Morbi ac orci sit amet orci efficitur malesuada. Cras dignissim libero non arcu condimentum vehicula. Phasellus vitae nibh ac ligula iaculis ullamcorper sed a lorem. Sed eu feugiat arcu. Vestibulum tincidunt libero vel nibh venenatis, vel fermentum mauris vehicula. Praesent cursus, elit sed vehicula gravida, felis orci suscipit nulla, vel dapibus justo eros non sem. Suspendisse potenti. Integer vehicula, justo sit amet varius egestas, nunc nisi sollicitudin quam, in feugiat libero felis in arcu. Fusce eget orci sit amet magna bibendum pellentesque. Donec dignissim fringilla lorem, sed ultrices ipsum fermentum sed. Nulla varius justo et nulla vehicula, vitae tempor augue gravida.</p>
+      One of the most common forms of partitioning is <strong>range-based partitioning</strong>, where data is divided based on a key's range. For example, if a dataset contains transaction records, it can be partitioned by date, creating separate partitions for each month or year. This approach makes time-based queries much faster. Another popular method is <strong>hash-based partitioning</strong>, which assigns data to partitions based on the hash value of a key, ensuring a more uniform distribution. For instance, customer data might be partitioned by customer ID using a hashing function, enabling balanced workloads across nodes in a distributed system.
     </section>
 
     <section id="section3">
-      <h2>Section 3</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque, nulla vel vehicula dapibus, augue enim blandit augue, sed feugiat ligula sapien nec turpis. Vivamus sollicitudin, nulla in auctor luctus, mauris ipsum interdum eros, vitae malesuada sem est in orci. In hac habitasse platea dictumst. Morbi ac orci sit amet orci efficitur malesuada. Cras dignissim libero non arcu condimentum vehicula. Phasellus vitae nibh ac ligula iaculis ullamcorper sed a lorem. Sed eu feugiat arcu. Vestibulum tincidunt libero vel nibh venenatis, vel fermentum mauris vehicula. Praesent cursus, elit sed vehicula gravida, felis orci suscipit nulla, vel dapibus justo eros non sem. Suspendisse potenti. Integer vehicula, justo sit amet varius egestas, nunc nisi sollicitudin quam, in feugiat libero felis in arcu. Fusce eget orci sit amet magna bibendum pellentesque. Donec dignissim fringilla lorem, sed ultrices ipsum fermentum sed. Nulla varius justo et nulla vehicula, vitae tempor augue gravida.</p>
+      Partitioning is critical for scalability and performance in data engineering pipelines. In distributed systems, it minimizes network overhead by ensuring that computation is performed locally on the partition containing the data. This is particularly useful for parallel processing frameworks like Spark, where tasks can be distributed across multiple nodes. Without partitioning, large datasets would require significant memory and processing power to handle, often resulting in bottlenecks and increased costs. Partitioning also helps reduce input/output (I/O) operations, as only the relevant partitions are read during a query.
+    </section>
+
+    <section id="section4">
+      Despite its advantages, partitioning introduces complexity in design and management. Engineers must carefully choose partitioning keys and strategies to avoid issues like data skew, where some partitions are significantly larger than others, leading to unbalanced workloads. Additionally, frequent re-partitioning or poorly chosen partitioning schemes can degrade performance and increase costs. To address these challenges, modern data engineering tools and cloud platforms often provide automated partitioning features, allowing engineers to focus on higher-level system design while benefiting from optimized storage and processing.
     </section>
   </main> 
 </body>
