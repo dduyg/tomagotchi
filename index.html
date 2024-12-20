@@ -5,74 +5,126 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Full Height Layout</title>
   <style>
-    /* Reset some basic styles */
-* {
+    /* General Reset */
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  overflow: hidden; /* Prevent scrolling on body */
 }
 
-/* Body setup */
-body {
-  overflow: hidden; /* Prevents scrolling on the body */
-  font-family: Arial, sans-serif;
+main {
+  height: 100vh; /* Full viewport height */
+  overflow-y: auto; /* Vertical scrolling */
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Ensures the body takes up full viewport height */
+  background: #f9f9f9;
+  color: #333;
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #FFCC00 transparent; /* For Firefox */
 }
 
-/* Header styling */
-header {
-  background-color: #333;
-  color: white;
-  padding: 20px;
+main::-webkit-scrollbar {
+  width: 10px; /* Adjust scrollbar width */
+}
+
+main::-webkit-scrollbar-thumb {
+  background-color: #FFCC00; /* Custom thumb color */
+  border-radius: 5px;
+}
+
+main::-webkit-scrollbar-track {
+  background-color: transparent; /* Transparent track */
+}
+
+/* Header Styling */
+.main-header {
+  position: sticky;
+  top: 0;
+  background: #333;
+  color: #fff;
+  padding: 1rem;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.main-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.main-header nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: flex;
+  gap: 1rem;
+}
+
+.main-header nav ul li a {
+  color: #FFCC00;
+  text-decoration: none;
+}
+
+.main-header nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Section Styling */
+.main-section {
+  padding: 2rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.main-section h2 {
+  margin: 0 0 1rem;
+}
+
+.main-section p {
+  line-height: 1.6;
+}
+
+/* Footer Styling */
+.main-footer {
+  background: #333;
+  color: #fff;
   text-align: center;
-  flex-shrink: 0; /* Prevents header from shrinking */
-}
-
-/* Footer styling */
-footer {
-  background-color: #333;
-  color: white;
-  padding: 10px;
-  text-align: center;
-  flex-shrink: 0; /* Prevents footer from shrinking */
-}
-
-/* Main container styling */
-main {
-  flex-grow: 1; /* Allows main to take up remaining space */
-  overflow-y: auto; /* Scrollbar will appear if content exceeds the viewport height */
-  background-color: #f4f4f4; /* Light background for the main content */
-  padding: 20px;
-}
-
-/* Content section inside main */
-.content {
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 1rem;
+  margin-top: auto;
 }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Website Header</h1>
-  </header>
-
   <main>
-    <section class="content">
-      <p>Lots of content goes here. Scroll down to see the effect.</p>
-      <!-- Add enough content here to make the main overflow -->
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <!-- More content to make it scrollable -->
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-    </section>
-  </main>
+    <header class="main-header">
+      <h1>Page Title</h1>
+      <nav>
+        <ul>
+          <li><a href="#section1">Section 1</a></li>
+          <li><a href="#section2">Section 2</a></li>
+          <li><a href="#section3">Section 3</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <footer>
-    <p>Website Footer</p>
-  </footer>
+    <section id="section1" class="main-section">
+      <h2>Section 1</h2>
+      <p>Content for Section 1 goes here.</p>
+    </section>
+
+    <section id="section2" class="main-section">
+      <h2>Section 2</h2>
+      <p>Content for Section 2 goes here.</p>
+    </section>
+
+    <section id="section3" class="main-section">
+      <h2>Section 3</h2>
+      <p>Content for Section 3 goes here.</p>
+    </section>
+
+    <footer class="main-footer">
+      <p>Footer Content</p>
+    </footer>
+  </main> 
 </body>
 </html>
