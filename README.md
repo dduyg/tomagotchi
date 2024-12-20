@@ -16,7 +16,6 @@
 - Oxanium
 - Special Elite
 - Jacquard 12
-- Jacquard 24
 - Micro 5
 - Jersey 10
 - Kode Mono
