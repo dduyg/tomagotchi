@@ -58,7 +58,17 @@
       margin: 0;
       font-size: 1.4rem;
       font-weight: 700;
+      animation: glitch 1s linear infinite;
     }
+    @keyframes glitch {
+      0% { transform: translateX(0); }
+      20% { transform: translateX(-5px); }
+      40% { transform: translateX(5px); }
+      60% { transform: translateX(-5px); }
+      80% { transform: translateX(5px); }
+      100% { transform: translateX(0); }
+    }
+  
     nav {
       margin: 1rem 0 0;
       display: flex;
@@ -82,10 +92,10 @@
     <header>
       <h1>Data Partitioning</h1>
       <nav>
-          <a href="#section1">1</a>
-          <a href="#section2">2</a>
-          <a href="#section3">3</a>
-          <a href="#section4">4</a>
+          <a href="#section1">⬬</a>
+          <a href="#section2">⬭</a>
+          <a href="#section3">⭖</a>
+          <a href="#section4">❍</a>
       </nav>
     </header>
 
