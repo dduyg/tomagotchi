@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liminal Loop</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ddd;
+      color: black;
+    }
+
+    header {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }    
+    main {
+      padding: 30% 1rem 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 5%;
+    }
+    section {
+      flex: 1; /* Ensures evenly spaced columns */
+      border: 1px solid;
+    }
+    @media (max-width: 768px) {
+      main {
+        flex-direction: column; /* Stack columns on mobile */
+      }
+    }
+
+.split {
+  position: relative;
+  width: max-content; /* Adjust to your preference */
+  height: 1em; /* Matches the height of your text */
+}
+
+.split::before,
+.split::after {
+  content: 'monochrome'; /* Add the text here */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.split::before {
+  clip-path: inset(0 0 50% 0); /* Top half */
+  transform: translateX(-2px);
+  animation: slice 1.2s infinite;
+}
+
+.split::after {
+  clip-path: inset(50% 0 0 0); /* Bottom half */
+  transform: translateX(2px);
+  animation: slice 1.2s infinite reverse;
+}
+
+@keyframes slice {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+}
+</head>
+<body>
+<main>  
+    <h2 class="split"></h2>
+</main>      
+</body>
+</html>
