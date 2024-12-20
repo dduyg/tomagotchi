@@ -39,44 +39,39 @@
 .split {
   position: relative;
   overflow: hidden;
-  font-size: 50px; /* Adjust the font size as needed */
-  color: transparent; /* Hide the text within <h2> */
+  font-size: 50px; /* Adjust as needed */
+  color: transparent; /* Makes the text inside <h2> invisible */
 }
 
-.split span {
+.split::before,
+.split::after {
+  content: attr(data-text); /* Use the text from the data attribute */
   position: absolute;
   top: 0;
   left: 0;
   color: black; /* Color for the split effect text */
 }
 
-.left {
-  clip-path: inset(0 0 50% 0);
-  transform: translateX(-2px);
+.split::before { 
+  clip-path: inset(0 0 50% 0); 
+  transform: translateX(-2px); 
   animation: slice 1.2s infinite;
 }
 
-.right {
-  clip-path: inset(50% 0 0 0);
-  transform: translateX(2px);
+.split::after { 
+  clip-path: inset(50% 0 0 0); 
+  transform: translateX(2px); 
   animation: slice 1.2s infinite reverse;
 }
 
-@keyframes slice {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(5px);
-  }
+@keyframes slice {  
+  0%, 100% { transform: translateX(0); }  
+  50% { transform: translateX(5px); } 
 }
 </head>
 <body>
-<main>  
-    <h2 class="split">
-    <span class="left">mon</span>
-  <span class="right">ochrome</span>
-  </h2>
+<main>
+    <h2 class="split" data-text="monochrome"></h2>
 </main>      
 </body>
 </html>
