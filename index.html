@@ -3,110 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Not Found</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>404 - Page Not Found</title>
     <style>
         body {
-            background: linear-gradient(135deg, #ff77ff, #00ffff);
-            font-family: 'Courier New', Courier, monospace;
-            color: white;
-            text-align: center;
+            font-family: 'Arial', sans-serif;
+            background-color: #2f1c53;
+            color: #f8f8f8;
             margin: 0;
             padding: 0;
-            height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-size: cover;
+            height: 100vh;
+            text-align: center;
+            flex-direction: column;
+            overflow: hidden;
         }
 
         h1 {
-            font-size: 80px;
+            font-size: 100px;
             font-weight: bold;
-            text-transform: uppercase;
-            color: #ff00ff;
-            letter-spacing: 5px;
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
-            animation: neonGlow 1.5s ease-in-out infinite alternate;
+            color: #ff33cc;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+            margin: 0;
         }
 
         p {
-            font-size: 20px;
-            color: #00ffff;
-            margin-top: -20px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-        }
-
-        a {
-            color: #ff00ff;
-            font-size: 18px;
-            text-decoration: none;
+            font-size: 24px;
+            color: #b3b3b3;
+            margin-top: 10px;
             letter-spacing: 2px;
+        }
+
+        .vaporwave {
+            font-size: 30px;
             margin-top: 20px;
-            display: inline-block;
-            border: 2px solid #ff00ff;
-            padding: 10px 20px;
-            transition: all 0.3s ease;
+            font-style: italic;
+            color: #33ffcc;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.7);
         }
 
-        a:hover {
-            background-color: #ff00ff;
-            color: black;
+        .btn {
+            margin-top: 30px;
+            padding: 10px 30px;
+            background-color: #ff33cc;
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            transition: 0.3s ease;
         }
 
-        .glitch {
-            position: relative;
-            display: inline-block;
-            color: #ff00ff;
+        .btn:hover {
+            background-color: #33ffcc;
+            color: #2f1c53;
         }
 
-        .glitch:before {
-            content: "404";
+        .background {
             position: absolute;
             top: 0;
             left: 0;
-            background: rgba(255, 255, 255, 0.1);
-            color: #00ffff;
+            width: 100%;
+            height: 100%;
+            background: url('https://media0.giphy.com/media/OK9XMbfB91bfa/giphy.gif?cid=6c09b952m7u8wwlmtwocsblma7s4rg1e8h6jf5e6hizriym6&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g') no-repeat center center fixed;
+            background-size: cover;
+            filter: blur(5px);
             z-index: -1;
-            animation: glitch-anim 1.5s infinite;
         }
 
-        @keyframes neonGlow {
-            0% {
-                text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff, 0 0 20px #ff00ff, 0 0 25px #ff00ff;
-            }
-            100% {
-                text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff;
-            }
-        }
-
-        @keyframes glitch-anim {
-            0% {
-                transform: translate(2px, 2px);
-            }
-            20% {
-                transform: translate(-2px, -2px);
-            }
-            40% {
-                transform: translate(2px, -2px);
-            }
-            60% {
-                transform: translate(-2px, 2px);
-            }
-            80% {
-                transform: translate(2px, 2px);
-            }
-            100% {
-                transform: translate(0, 0);
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="content">
-        <h1 class="glitch">404</h1>
-        <p>Oops! It looks like this page doesn't exist.</p>
-        <a href="/">Back to Home</a>
-    </div>
+    <div class="background"></div>
+    <h1>404</h1>
+    <p>Oops! Page not found.</p>
+    <p class="vaporwave">Welcome to the Digital Abyss</p>
+    <a href="/" class="btn">Go Home</a>
 </body>
 </html>
