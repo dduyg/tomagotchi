@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Height Layout</title>
+  <style>
+    /* Reset some basic styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body setup */
+body {
+  overflow: hidden; /* Prevents scrolling on the body */
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Ensures the body takes up full viewport height */
+}
+
+/* Header styling */
+header {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  flex-shrink: 0; /* Prevents header from shrinking */
+}
+
+/* Footer styling */
+footer {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  flex-shrink: 0; /* Prevents footer from shrinking */
+}
+
+/* Main container styling */
+main {
+  flex-grow: 1; /* Allows main to take up remaining space */
+  overflow-y: auto; /* Scrollbar will appear if content exceeds the viewport height */
+  background-color: #f4f4f4; /* Light background for the main content */
+  padding: 20px;
+}
+
+/* Content section inside main */
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Website Header</h1>
+  </header>
+
+  <main>
+    <section class="content">
+      <p>Lots of content goes here. Scroll down to see the effect.</p>
+      <!-- Add enough content here to make the main overflow -->
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <!-- More content to make it scrollable -->
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Website Footer</p>
+  </footer>
+</body>
+</html>
