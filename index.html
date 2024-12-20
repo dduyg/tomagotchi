@@ -3,113 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Full Height Layout</title>
+  <title>LiminalLoop</title>
   <style>
-    /* General Reset */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background: #f9f9f9;
-  color: black;
-  overflow: hidden; /* Prevent scrolling on body */
-}
-
-main {
-  height: 100vh; /* Full viewport height */
-  overflow-y: auto; /* Vertical scrolling */
-  display: flex;
-  flex-direction: column;
-}
-
-/* Header Styling */
-.main-header {
-  position: sticky;
-  top: 0;
-  background: #333;
-  color: #fff;
-  padding: 1rem;
-  z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.main-header h1 {
-  margin: 0;
-  font-size: 1.5rem;
-}
-
-.main-header nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 1rem 0 0;
-  display: flex;
-  gap: 1rem;
-}
-
-.main-header nav ul li a {
-  color: #FFCC00;
-  text-decoration: none;
-}
-
-.main-header nav ul li a:hover {
-  text-decoration: underline;
-}
-
-/* Section Styling */
-.main-section {
-  padding: 2rem;
-  border-bottom: 1px solid #ddd;
-}
-
-.main-section h2 {
-  margin: 0 0 1rem;
-}
-
-.main-section p {
-  line-height: 1.6;
-}
-
-/* Footer Styling */
-.main-footer {
-  background: #333;
-  color: #fff;
-  text-align: center;
-  padding: 1rem;
-  margin-top: auto;
-}
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      color: black;
+      overflow: hidden; /* Prevent scrolling on body */
+    }
+    main {
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      padding: 1rem;
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+    nav {
+      margin: 1rem 0 0;
+      display: flex;
+      gap: 1rem;
+    }
+    nav a {
+      color: #FFCC00;
+      text-decoration: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    section {
+      padding: 2rem 1.5rem 1rem;
+      border-bottom: 2px solid;
+    }
+    section h2 {
+      margin: 0 0 1rem;
+    }
+    section p {
+      line-height: 1.6;
+    }
   </style>
 </head>
 <body>
   <main>
-    <header class="main-header">
+    <header>
       <h1>Page Title</h1>
       <nav>
-        <ul>
-          <li><a href="#section1">Section 1</a></li>
-          <li><a href="#section2">Section 2</a></li>
-          <li><a href="#section3">Section 3</a></li>
-        </ul>
+          <a href="#section1">Section 1</a>
+          <a href="#section2">Section 2</a>
+          <a href="#section3">Section 3</a>
       </nav>
     </header>
 
-    <section id="section1" class="main-section">
+    <section id="section1">
       <h2>Section 1</h2>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque, nulla vel vehicula dapibus, augue enim blandit augue, sed feugiat ligula sapien nec turpis. Vivamus sollicitudin, nulla in auctor luctus, mauris ipsum interdum eros, vitae malesuada sem est in orci. In hac habitasse platea dictumst. Morbi ac orci sit amet orci efficitur malesuada. Cras dignissim libero non arcu condimentum vehicula. Phasellus vitae nibh ac ligula iaculis ullamcorper sed a lorem. Sed eu feugiat arcu. Vestibulum tincidunt libero vel nibh venenatis, vel fermentum mauris vehicula. Praesent cursus, elit sed vehicula gravida, felis orci suscipit nulla, vel dapibus justo eros non sem. Suspendisse potenti. Integer vehicula, justo sit amet varius egestas, nunc nisi sollicitudin quam, in feugiat libero felis in arcu. Fusce eget orci sit amet magna bibendum pellentesque. Donec dignissim fringilla lorem, sed ultrices ipsum fermentum sed. Nulla varius justo et nulla vehicula, vitae tempor augue gravida.</p>
     </section>
 
-    <section id="section2" class="main-section">
+    <section id="section2">
       <h2>Section 2</h2>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque, nulla vel vehicula dapibus, augue enim blandit augue, sed feugiat ligula sapien nec turpis. Vivamus sollicitudin, nulla in auctor luctus, mauris ipsum interdum eros, vitae malesuada sem est in orci. In hac habitasse platea dictumst. Morbi ac orci sit amet orci efficitur malesuada. Cras dignissim libero non arcu condimentum vehicula. Phasellus vitae nibh ac ligula iaculis ullamcorper sed a lorem. Sed eu feugiat arcu. Vestibulum tincidunt libero vel nibh venenatis, vel fermentum mauris vehicula. Praesent cursus, elit sed vehicula gravida, felis orci suscipit nulla, vel dapibus justo eros non sem. Suspendisse potenti. Integer vehicula, justo sit amet varius egestas, nunc nisi sollicitudin quam, in feugiat libero felis in arcu. Fusce eget orci sit amet magna bibendum pellentesque. Donec dignissim fringilla lorem, sed ultrices ipsum fermentum sed. Nulla varius justo et nulla vehicula, vitae tempor augue gravida.</p>
     </section>
 
-    <section id="section3" class="main-section">
+    <section id="section3">
       <h2>Section 3</h2>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque, nulla vel vehicula dapibus, augue enim blandit augue, sed feugiat ligula sapien nec turpis. Vivamus sollicitudin, nulla in auctor luctus, mauris ipsum interdum eros, vitae malesuada sem est in orci. In hac habitasse platea dictumst. Morbi ac orci sit amet orci efficitur malesuada. Cras dignissim libero non arcu condimentum vehicula. Phasellus vitae nibh ac ligula iaculis ullamcorper sed a lorem. Sed eu feugiat arcu. Vestibulum tincidunt libero vel nibh venenatis, vel fermentum mauris vehicula. Praesent cursus, elit sed vehicula gravida, felis orci suscipit nulla, vel dapibus justo eros non sem. Suspendisse potenti. Integer vehicula, justo sit amet varius egestas, nunc nisi sollicitudin quam, in feugiat libero felis in arcu. Fusce eget orci sit amet magna bibendum pellentesque. Donec dignissim fringilla lorem, sed ultrices ipsum fermentum sed. Nulla varius justo et nulla vehicula, vitae tempor augue gravida.</p>
     </section>
-
-    <footer class="main-footer">
-      <p>Footer Content</p>
-    </footer>
   </main> 
 </body>
 </html>
