@@ -39,8 +39,10 @@
 .split {
   position: relative;
   overflow: hidden;
-  width: fit-content; /* Adjust width as needed */
+  width: fit-content; /* Adjust to fit text */
   height: 1em; /* Match font size */
+  font-size: 2rem; /* Set font size */
+  text-transform: uppercase;
 }
 
 .split::before,
@@ -49,6 +51,9 @@
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%; /* Ensure it spans the full width */
+  height: 100%; /* Ensure it spans the full height */
+  color: black; /* Text color */
 }
 
 .split::before {
