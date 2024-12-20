@@ -3,58 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>404 - Page Not Found</title>
     <style>
         body {
-            margin: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #222;
-            color: #fff;
+            background-color: #2f1c53;
+            color: #f8f8f8;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            overflow: hidden;
-            flex-direction: column;
             text-align: center;
+            flex-direction: column;
+            overflow: hidden;
         }
 
-        .vaporwave-text {
-            font-size: 1.5rem;
-            animation: glitch 1s linear infinite;
-        }
-        @keyframes glitch {
-            0% { transform: translateX(0); opacity: 1; }
-            20% { transform: translateX(-5px); opacity: 0.7; }
-            40% { transform: translateX(5px); opacity: 0.7; }
-            60% { transform: translateX(-5px); opacity: 0.7; }
-            80% { transform: translateX(5px); opacity: 0.7; }
-            100% { transform: translateX(0); opacity: 1; }
+        h1 {
+            font-size: 100px;
+            font-weight: bold;
+            color: #ff33cc;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+            margin: 0;
         }
 
-        .glitch-art {
-            position: relative;
+        p {
+            font-size: 24px;
+            color: #b3b3b3;
+            margin-top: 10px;
+            letter-spacing: 2px;
+        }
+
+        .vaporwave {
+            font-size: 30px;
+            margin-top: 20px;
+            font-style: italic;
+            color: #33ffcc;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        .btn {
             margin-top: 30px;
-            animation: glitch 1.5s infinite;
+            padding: 10px 30px;
+            background-color: #ff33cc;
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 20px;
+            text-decoration: none;
+            transition: 0.3s ease;
         }
-        .glitch-art:before,
-        .glitch-art:after {
-            content: '404';
+
+        .btn:hover {
+            background-color: #33ffcc;
+            color: #2f1c53;
+        }
+
+        .background {
             position: absolute;
             top: 0;
             left: 0;
-            color: #ff00f6;
+            width: 100%;
+            height: 100%;
+            background: url('https://media0.giphy.com/media/OK9XMbfB91bfa/giphy.gif?cid=6c09b952m7u8wwlmtwocsblma7s4rg1e8h6jf5e6hizriym6&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g') no-repeat center center fixed;
+            background-size: cover;
+            filter: blur(5px);
             z-index: -1;
         }
-        .glitch-art:after {
-            left: 2px;
-            top: 2px;
-            animation: glitch 2s infinite;
-        }
+
     </style>
 </head>
 <body>
-    <div class="vaporwave-text">Welcome to the Void</div>
-    <div class="glitch-art">404</div>
+    <div class="background"></div>
+    <h1>404</h1>
+    <p>Oops! Page not found.</p>
+    <p class="vaporwave">Welcome to the Digital Abyss</p>
+    <a href="/" class="btn">Go Home</a>
 </body>
 </html>
