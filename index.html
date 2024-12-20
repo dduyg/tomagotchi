@@ -87,6 +87,31 @@
       padding: 4rem 1.5rem 2rem;
       line-height: 1.6;
     }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      padding: 1rem 1.5rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 20px;
+      margin-top: 30px;
+      padding: 0 30px;
+      max-width: 1200px;
+      width: 100%;
+    }
+    .grid div {
+      background-color: rgba(255, 255, 255, 0.2);
+      height: 100px;
+      border-radius: 15px;
+      animation: fadeIn 3s infinite alternate;
+    }
+    @keyframes fadeIn {
+      0% {opacity: 0.1; transform: scale(0.95);}
+      100% {opacity: 1; transform: scale(1);}
+    }
   </style>
 </head>
 <body>
@@ -116,6 +141,12 @@
     <section id="section4">
       Despite its advantages, partitioning introduces complexity in design and management. Engineers must carefully choose partitioning keys and strategies to avoid issues like data skew, where some partitions are significantly larger than others, leading to unbalanced workloads. Additionally, frequent re-partitioning or poorly chosen partitioning schemes can degrade performance and increase costs. To address these challenges, modern data engineering tools and cloud platforms often provide automated partitioning features, allowing engineers to focus on higher-level system design while benefiting from optimized storage and processing.
     </section>
-  </main> 
+  </main>
+  <footer class="grid">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </footer>
 </body>
 </html>
