@@ -17,42 +17,19 @@
             overflow: hidden;
             flex-direction: column;
             text-align: center;
-            background-image: linear-gradient(to right, #ff5f6d, #ffc3a0);
         }
 
         .vaporwave-text {
             font-size: 1.5rem;
-            letter-spacing: 2px;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
             animation: glitch 1s linear infinite;
         }
-        .vaporwave-text span {
-            color: #ff00f6;
-            font-weight: bold;
-        }
-
         @keyframes glitch {
             0% { transform: translateX(0); opacity: 1; }
-            20% {
-                transform: translateX(-5px);
-                opacity: 0.7;
-            }
-            40% {
-                transform: translateX(5px);
-                opacity: 0.7;
-            }
-            60% {
-                transform: translateX(-5px);
-                opacity: 0.7;
-            }
-            80% {
-                transform: translateX(5px);
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
+            20% { transform: translateX(-5px); opacity: 0.7; }
+            40% { transform: translateX(5px); opacity: 0.7; }
+            60% { transform: translateX(-5px); opacity: 0.7; }
+            80% { transform: translateX(5px); opacity: 0.7; }
+            100% { transform: translateX(0); opacity: 1; }
         }
 
         .glitch-art {
@@ -78,36 +55,10 @@
             top: 2px;
             animation: glitch 2s infinite;
         }
-
-        .button {
-            margin-top: 40px;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            background-color: #ff80ab;
-            border: none;
-            border-radius: 30px;
-            color: #fff;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .button:hover {
-            background-color: #ff00f6;
-            transform: scale(1.1);
-        }
-        .button:focus {
-            outline: none;
-        }
     </style>
 </head>
 <body>
-    <div class="vaporwave-text">
-        <span>Welcome to the Void</span>
-    </div>
+    <div class="vaporwave-text">Welcome to the Void</div>
     <div class="glitch-art">404</div>
-    <a href="/" class="button">Back to Home</a>
 </body>
 </html>
