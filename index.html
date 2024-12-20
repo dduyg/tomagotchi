@@ -61,6 +61,7 @@
     header h1 {
       margin: 20px 0 0;
       font-size: 1.5rem;
+      text-transform: uppercase;
       font-weight: 700;
       animation: glitch 2s linear infinite;
     }
@@ -84,7 +85,12 @@
       text-decoration: none;
     }
     nav a:hover {
-      text-decoration: underline;
+      text-shadow: 0 0 10px #ff00cc, 0 0 20px #ff00cc, 0 0 30px #ff0066;
+      animation: rotateIcon 6s linear infinite;
+    }
+    @keyframes rotateIcon {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
     section {
       padding: 4rem 1.5rem 2rem;
