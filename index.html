@@ -38,45 +38,47 @@
 
 .split {
   position: relative;
-  display: inline-block; /* Ensure size adjusts to content */
   overflow: hidden;
-  font-size: 2rem; /* Adjust font size */
-  font-family: Arial, sans-serif; /* Choose a font */
-  line-height: 1; /* Prevent extra spacing */
-  height: 1em; /* Match the height to font size */
+  color: black; /* Text color */
 }
 
 .split::before,
 .split::after {
-  content: 'monochrome'; /* The animated text */
+  content: ''; /* No content needed in pseudo-elements */
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%; /* Full width for text */
-  height: 100%; /* Full height for text */
-  color: black; /* Text color */
+  width: 50%;
+  height: 100%;
+  background-color: white; /* Or the background color to hide parts of the text */
+  transform: translateX(100%);
+  animation: slice 1.2s infinite;
 }
 
 .split::before {
-  clip-path: inset(0 0 50% 0); /* Show the top half */
-  transform: translateX(-2px); /* Offset */
-  animation: slice 1.2s infinite; /* Animation */
+  left: 0;
+  clip-path: inset(0 50% 0 0);
+  animation: slice 1.2s infinite;
 }
 
 .split::after {
-  clip-path: inset(50% 0 0 0); /* Show the bottom half */
-  transform: translateX(2px); /* Offset */
-  animation: slice 1.2s infinite reverse; /* Reverse animation */
+  left: 50%;
+  clip-path: inset(0 0 0 50%);
+  animation: slice 1.2s infinite reverse;
 }
 
 @keyframes slice {
-  0%, 100% { transform: translateX(0); }
-  50% { transform: translateX(5px); }
+  0%, 100% { 
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(5px);
+  }
 }
 </head>
 <body>
 <main>  
-    <h2 class="split"></h2>
+    <h2 class="split">monochrome</h2>
 </main>      
 </body>
 </html>
