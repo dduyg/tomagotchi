@@ -112,6 +112,22 @@
       0% {opacity: 0.1; transform: scale(0.95);}
       100% {opacity: 1; transform: scale(1);}
     }
+
+    .vaporwave {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 200px;
+      color: rgba(255, 255, 255, 0.1);
+      font-family: 'Courier New', monospace;
+      z-index: -1;
+      animation: move 10s linear infinite;
+    }
+    @keyframes move {
+      0% {transform: translate(-50%, -50%) rotate(0deg);}
+      100% {transform: translate(-50%, -50%) rotate(360deg);}
+    }
   </style>
 </head>
 <body>
@@ -125,6 +141,8 @@
           <a href="#section4">⬣</a>
       </nav>
     </header>
+
+    <div class="vaporwave">🌀</div>
 
     <section id="section1">
       Data partitioning is a concept in data engineering that involves dividing a dataset into smaller, more manageable pieces based on specific criteria. This technique is widely used in big data systems to optimize storage, processing, and querying. Partitioning enables distributed systems like Hadoop, Apache Spark, and cloud storage solutions to handle massive datasets efficiently. By organizing data into partitions, engineers can ensure that operations like filtering, aggregation, and joins are performed more quickly and cost-effectively, as only the relevant partitions need to be accessed.
