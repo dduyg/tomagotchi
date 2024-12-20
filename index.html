@@ -61,7 +61,7 @@
     }
     header h1 {
       margin: 20px 0 0;
-      font-size: 1.7rem;
+      font-size: 2.1rem
       font-weight: normal;
       font-style: italic;
       font-family: "Jacquard 24", serif;
@@ -79,7 +79,7 @@
     nav {
       margin: 10px 0 0;
       display: flex;
-      gap: 2rem;
+      gap: 2.5rem;
       font-size: 1.35em;
     }
     nav a {
@@ -159,18 +159,10 @@
 
     <div class="vaporwave">🌀</div>
 
-    <section id="section1">
-      Data partitioning is a concept in data engineering that involves dividing a dataset into smaller, more manageable pieces based on specific criteria. This technique is widely used in big data systems to optimize storage, processing, and querying. Partitioning enables distributed systems like Hadoop, Apache Spark, and cloud storage solutions to handle massive datasets efficiently. By organizing data into partitions, engineers can ensure that operations like filtering, aggregation, and joins are performed more quickly and cost-effectively, as only the relevant partitions need to be accessed.
-    </section>
-    <section id="section2">
-      One of the most common forms of partitioning is <strong>range-based partitioning</strong>, where data is divided based on a key's range. For example, if a dataset contains transaction records, it can be partitioned by date, creating separate partitions for each month or year. This approach makes time-based queries much faster. Another popular method is <strong>hash-based partitioning</strong>, which assigns data to partitions based on the hash value of a key, ensuring a more uniform distribution. For instance, customer data might be partitioned by customer ID using a hashing function, enabling balanced workloads across nodes in a distributed system.
-    </section>
-    <section id="section3">
-      Partitioning is critical for scalability and performance in data engineering pipelines. In distributed systems, it minimizes network overhead by ensuring that computation is performed locally on the partition containing the data. This is particularly useful for parallel processing frameworks like Spark, where tasks can be distributed across multiple nodes. Without partitioning, large datasets would require significant memory and processing power to handle, often resulting in bottlenecks and increased costs. Partitioning also helps reduce input/output (I/O) operations, as only the relevant partitions are read during a query.
-    </section>
-    <section id="section4">
-      Despite its advantages, partitioning introduces complexity in design and management. Engineers must carefully choose partitioning keys and strategies to avoid issues like data skew, where some partitions are significantly larger than others, leading to unbalanced workloads. Additionally, frequent re-partitioning or poorly chosen partitioning schemes can degrade performance and increase costs. To address these challenges, modern data engineering tools and cloud platforms often provide automated partitioning features, allowing engineers to focus on higher-level system design while benefiting from optimized storage and processing.
-    </section>
+    <section id="section1">Data partitioning is a concept in data engineering that involves dividing a dataset into smaller, more manageable pieces based on specific criteria. This technique is widely used in big data systems to optimize storage, processing, and querying. Partitioning enables distributed systems like Hadoop, Apache Spark, and cloud storage solutions to handle massive datasets efficiently. By organizing data into partitions, engineers can ensure that operations like filtering, aggregation, and joins are performed more quickly and cost-effectively, as only the relevant partitions need to be accessed.</section>
+    <section id="section2">One of the most common forms of partitioning is <strong>range-based partitioning</strong>, where data is divided based on a key's range. For example, if a dataset contains transaction records, it can be partitioned by date, creating separate partitions for each month or year. This approach makes time-based queries much faster. Another popular method is <strong>hash-based partitioning</strong>, which assigns data to partitions based on the hash value of a key, ensuring a more uniform distribution. For instance, customer data might be partitioned by customer ID using a hashing function, enabling balanced workloads across nodes in a distributed system.</section>
+    <section id="section3">Partitioning is critical for scalability and performance in data engineering pipelines. In distributed systems, it minimizes network overhead by ensuring that computation is performed locally on the partition containing the data. This is particularly useful for parallel processing frameworks like Spark, where tasks can be distributed across multiple nodes. Without partitioning, large datasets would require significant memory and processing power to handle, often resulting in bottlenecks and increased costs. Partitioning also helps reduce input/output (I/O) operations, as only the relevant partitions are read during a query.</section>
+    <section id="section4">Despite its advantages, partitioning introduces complexity in design and management. Engineers must carefully choose partitioning keys and strategies to avoid issues like data skew, where some partitions are significantly larger than others, leading to unbalanced workloads. Additionally, frequent re-partitioning or poorly chosen partitioning schemes can degrade performance and increase costs. To address these challenges, modern data engineering tools and cloud platforms often provide automated partitioning features, allowing engineers to focus on higher-level system design while benefiting from optimized storage and processing.</section>
   </main>
 
   <footer class="grid">
