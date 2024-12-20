@@ -10,8 +10,9 @@
             font-family: 'Arial', sans-serif;
             background-color: #2f1c53;
             color: #f8f8f8;
+            font-size: 14px;
             margin: 0;
-            padding: 1rem;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -21,17 +22,42 @@
             overflow: hidden;
         }
 
-        h1 {
+        .glitch {
             font-size: 2rem;
             font-weight: bold;
             text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
             margin: 0;
+            position: relative;
+            display: inline-block;
+            color: #fff;
         }
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #ff0055;
+            z-index: -1;
+            animation: glitch-animation 1s infinite;
+        }
+        .glitch::after {
+            left: 2px;
+            top: 2px;
+            color: #00ffcc;
+            animation: glitch-animation 2s infinite;
+        }
+        @keyframes glitch-animation {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(-10px, -10px); }
+            50% { transform: translate(10px, 10px); }
+            75% { transform: translate(-5px, 5px); }
+            100% { transform: translate(5px, -5px); }
+        }
+        
         p {
-            font-size: 24px;
             color: #b3b3b3;
-            margin-top: 10px;
-            letter-spacing: 2px;
+            margin: 0;
+            padding: 0;
             text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.7);
         }
 
@@ -50,7 +76,7 @@
 </head>
 <body>
     <div class="background"></div>
-    <h1>Morphology</h1>
+    <div class="glitch" data-text="Morphology">Morphology</div>
     <p>—the study of the internal structure of words and forms a core part of linguistic study today. The term morphology is Greek and is a makeup of morph- meaning 'shape, form', and -ology which means 'the study of something'.</p>
 </body>
 </html>
