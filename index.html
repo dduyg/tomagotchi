@@ -38,37 +38,34 @@
 
 .split {
   position: relative;
-  width: max-content; /* Adjust to your preference */
-  height: 1em; /* Matches the height of your text */
+  overflow: hidden;
+  width: fit-content; /* Adjust width as needed */
+  height: 1em; /* Match font size */
 }
 
 .split::before,
 .split::after {
-  content: 'monochrome'; /* Add the text here */
+  content: 'monochrome'; /* The text to animate */
   position: absolute;
   top: 0;
   left: 0;
 }
 
 .split::before {
-  clip-path: inset(0 0 50% 0); /* Top half */
-  transform: translateX(-2px);
-  animation: slice 1.2s infinite;
+  clip-path: inset(0 0 50% 0); /* Show the top half */
+  transform: translateX(-2px); /* Initial offset */
+  animation: slice 1.2s infinite; /* Animate offset */
 }
 
 .split::after {
-  clip-path: inset(50% 0 0 0); /* Bottom half */
-  transform: translateX(2px);
-  animation: slice 1.2s infinite reverse;
+  clip-path: inset(50% 0 0 0); /* Show the bottom half */
+  transform: translateX(2px); /* Initial offset */
+  animation: slice 1.2s infinite reverse; /* Animate offset */
 }
 
 @keyframes slice {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(5px);
-  }
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
 }
 </head>
 <body>
