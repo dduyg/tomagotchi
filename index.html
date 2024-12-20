@@ -3,105 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Not Found</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Error 404 - Page Not Found</title>
     <style>
-        /* Background and overall styling */
         body {
-            margin: 0;
-            padding: 0;
+            background-color: #2b003d;
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to right, #ff0066, #ff00cc, #6600cc, #0099ff);
-            background-size: 400% 400%;
-            animation: gradientAnimation 10s ease infinite;
-            color: #fff;
+            color: white;
             text-align: center;
-            overflow: hidden;
+            margin: 0;
             height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-image: url('https://i.imgur.com/PFJ3jIo.jpg');
+            background-size: cover;
+            background-position: center;
         }
-
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
+        
         h1 {
-            font-size: 80px;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            color: #ff99cc;
-            text-shadow: 0 0 10px #ff66cc, 0 0 20px #ff66cc, 0 0 30px #ff99cc, 0 0 40px #ff66cc;
-            margin-top: 100px;
-            animation: glitch 1s infinite;
+            font-size: 120px;
+            margin: 0;
+            color: #ff66b2;
+            text-shadow: 0px 0px 20px #ff66b2, 0px 0px 40px #ff66b2;
         }
 
         h2 {
             font-size: 40px;
-            color: #ffccff;
-            margin-top: -20px;
-            text-shadow: 0 0 10px #ffccff, 0 0 20px #ff66cc, 0 0 30px #ff99cc;
+            margin-top: 20px;
+            font-weight: lighter;
+            text-shadow: 0px 0px 10px #ff66b2;
         }
 
-        .glitch {
-            position: relative;
-            display: inline-block;
-        }
-
-        .glitch:after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            color: #ff66cc;
-            background: rgba(0,0,0,0.7);
-            clip: rect(0, 900px, 0, 0);
-            animation: glitch-animation 1s infinite;
-        }
-
-        @keyframes glitch-animation {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(-5px, -5px); }
-            50% { transform: translate(5px, 5px); }
-            75% { transform: translate(-5px, -5px); }
-            100% { transform: translate(0, 0); }
-        }
-
-        .vaporwave-icon {
-            font-size: 150px;
-            margin-top: 50px;
-            text-shadow: 0 0 10px #ff00cc, 0 0 20px #ff00cc, 0 0 30px #ff0066;
-            animation: rotateIcon 6s linear infinite;
-        }
-
-        @keyframes rotateIcon {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .home-link {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 15px 30px;
-            background-color: #ff66cc;
-            color: white;
+        p {
             font-size: 18px;
+            font-style: italic;
+            margin-top: 10px;
+            text-shadow: 0px 0px 10px #ff66b2;
+        }
+
+        .neon {
+            font-size: 30px;
+            color: #00ffcc;
+            text-shadow: 0px 0px 10px #00ffcc, 0px 0px 20px #00ffcc;
+        }
+
+        a {
             text-decoration: none;
-            border-radius: 50px;
-            box-shadow: 0 0 10px #ff66cc;
+            color: #ff66b2;
+            font-size: 18px;
+            margin-top: 30px;
+            border: 2px solid #ff66b2;
+            padding: 10px 20px;
+            border-radius: 30px;
             transition: all 0.3s ease;
         }
 
-        .home-link:hover {
-            background-color: #ff00cc;
-            box-shadow: 0 0 20px #ff00cc;
+        a:hover {
+            background-color: #ff66b2;
+            color: white;
+            transform: scale(1.1);
         }
-
     </style>
 </head>
 <body>
-    <h1 class="glitch" data-text="404">404</h1>
-    <h2>Oops, Page Not Found</h2>
-    <div class="vaporwave-icon">🌴</div>
-    <a href="/" class="home-link">Go Back Home</a>
+    <div>
+        <h1>Error 404</h1>
+        <h2>Page Not Found</h2>
+        <p>It seems like you're lost in the void...</p>
+        <p class="neon">Don't worry, we'll take you back!</p>
+        <a href="/">Go to Home</a>
+    </div>
 </body>
 </html>
