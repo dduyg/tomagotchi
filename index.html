@@ -3,87 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Not Found</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>404 Not Found</title>
     <style>
         body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff6cc9, #01aaff);
+            color: #fff;
+            text-align: center;
             margin: 0;
             padding: 0;
-            background: linear-gradient(45deg, #ff77ff, #00bfff);
-            font-family: 'Arial', sans-serif;
-            color: white;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            text-align: center;
             overflow: hidden;
-            flex-direction: column;
-            background-size: 400% 400%;
-            animation: gradientAnimation 10s ease infinite;
-        }
-
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            animation: glitch 3s infinite;
         }
 
         h1 {
-            font-size: 10em;
+            font-size: 7em;
             letter-spacing: 5px;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.8);
-            animation: glow 1.5s ease-in-out infinite alternate;
+            text-shadow: 0 0 5px rgba(0,0,0,0.3), 0 0 10px rgba(0,0,0,0.3), 0 0 15px rgba(0,0,0,0.3);
+            margin: 0;
+            position: relative;
         }
 
-        h2 {
-            font-size: 2em;
-            font-weight: 300;
-            color: #e0e0e0;
+        h1:before, h1:after {
+            content: "404";
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 7em;
+            color: #00ffcc;
+            z-index: -1;
+            animation: glitch-effect 2s infinite linear;
+        }
+
+        h1:after {
+            left: 5px;
+            text-shadow: -2px 0px 3px rgba(0,0,0,0.2);
+        }
+
+        p {
+            font-size: 1.5em;
+            color: #f0f0f0;
             margin-top: 20px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+            animation: neon 1.5s ease-in-out infinite;
         }
 
-        .vaporwave-icon {
-            margin-top: 40px;
-            font-size: 3em;
-            color: #ff77ff;
-        }
-
-        .button {
-            margin-top: 50px;
-            padding: 15px 30px;
+        a {
+            color: #ff00ff;
             font-size: 1.2em;
-            background-color: #00bfff;
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             text-decoration: none;
-            transition: transform 0.2s;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-top: 30px;
+            animation: neon 1.5s ease-in-out infinite;
         }
 
-        .button:hover {
-            transform: scale(1.1);
+        a:hover {
+            color: #fff;
+            text-decoration: underline;
         }
 
-        @keyframes glow {
+        @keyframes glitch {
             0% {
-                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.8);
+                transform: translateX(2px) translateY(1px);
+            }
+            25% {
+                transform: translateX(-2px) translateY(-2px);
+            }
+            50% {
+                transform: translateX(2px) translateY(1px);
+            }
+            75% {
+                transform: translateX(-2px) translateY(-1px);
             }
             100% {
-                text-shadow: 0 0 30px rgba(255, 255, 255, 1), 0 0 40px rgba(255, 255, 255, 1);
+                transform: translateX(2px) translateY(1px);
+            }
+        }
+
+        @keyframes glitch-effect {
+            0% {
+                clip-path: inset(0 0 0 0);
+            }
+            50% {
+                clip-path: inset(0 0 0 50%);
+            }
+            100% {
+                clip-path: inset(0 0 0 0);
+            }
+        }
+
+        @keyframes neon {
+            0%, 100% {
+                text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff, 0 0 20px #ff00ff;
+            }
+            50% {
+                text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 15px #00ffcc, 0 0 20px #00ffcc;
             }
         }
     </style>
 </head>
 <body>
-
-    <h1>404</h1>
-    <h2>Page Not Found</h2>
-    <p class="vaporwave-icon">🌴</p>
-    <a href="/" class="button">Take Me Home</a>
-
+    <div>
+        <h1>404</h1>
+        <p>Page Not Found</p>
+        <a href="/">Go back to Home</a>
+    </div>
 </body>
 </html>
