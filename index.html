@@ -1,100 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Error 404 - Page Not Found</title>
-  <style>
-    body {
-      background: linear-gradient(135deg, #ff77ff, #00c8ff, #ffccff);
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: #fff;
-      text-align: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Not Found</title>
+    <style>
+        /* Background and overall styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ff0066, #ff00cc, #6600cc, #0099ff);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+            height: 100vh;
+        }
 
-    h1 {
-      font-size: 6rem;
-      margin: 0;
-      color: #fff;
-      text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.6), 0px 0px 10px rgba(255, 255, 255, 0.6);
-    }
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-    p {
-      font-size: 1.5rem;
-      margin-top: 1rem;
-      text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.4), 0px 0px 10px rgba(255, 255, 255, 0.4);
-    }
+        h1 {
+            font-size: 80px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #ff99cc;
+            text-shadow: 0 0 10px #ff66cc, 0 0 20px #ff66cc, 0 0 30px #ff99cc, 0 0 40px #ff66cc;
+            margin-top: 100px;
+            animation: glitch 1s infinite;
+        }
 
-    .vaporwave-icons {
-      font-size: 3rem;
-      margin-top: 20px;
-    }
+        h2 {
+            font-size: 40px;
+            color: #ffccff;
+            margin-top: -20px;
+            text-shadow: 0 0 10px #ffccff, 0 0 20px #ff66cc, 0 0 30px #ff99cc;
+        }
 
-    .vaporwave-icons i {
-      margin: 0 10px;
-      animation: blink 1s infinite alternate;
-    }
+        .glitch {
+            position: relative;
+            display: inline-block;
+        }
 
-    @keyframes blink {
-      0% { opacity: 0.5; }
-      100% { opacity: 1; }
-    }
+        .glitch:after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #ff66cc;
+            background: rgba(0,0,0,0.7);
+            clip: rect(0, 900px, 0, 0);
+            animation: glitch-animation 1s infinite;
+        }
 
-    .back-button {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 30px;
-      background-color: #ff77ff;
-      border: none;
-      color: #fff;
-      font-size: 1.2rem;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
+        @keyframes glitch-animation {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(-5px, -5px); }
+            50% { transform: translate(5px, 5px); }
+            75% { transform: translate(-5px, -5px); }
+            100% { transform: translate(0, 0); }
+        }
 
-    .back-button:hover {
-      background-color: #ff3399;
-    }
+        .vaporwave-icon {
+            font-size: 150px;
+            margin-top: 50px;
+            text-shadow: 0 0 10px #ff00cc, 0 0 20px #ff00cc, 0 0 30px #ff0066;
+            animation: rotateIcon 6s linear infinite;
+        }
 
-    .glitch {
-      color: #00c8ff;
-      font-size: 2rem;
-      text-shadow: 2px 2px 5px #ff77ff, -2px -2px 5px #00c8ff;
-      animation: glitch 1s infinite alternate;
-    }
+        @keyframes rotateIcon {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
 
-    @keyframes glitch {
-      0% {
-        text-shadow: 2px 2px 5px #ff77ff, -2px -2px 5px #00c8ff;
-      }
-      100% {
-        text-shadow: -2px -2px 5px #ff77ff, 2px 2px 5px #00c8ff;
-      }
-    }
+        .home-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+            background-color: #ff66cc;
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 0 10px #ff66cc;
+            transition: all 0.3s ease;
+        }
 
-  </style>
+        .home-link:hover {
+            background-color: #ff00cc;
+            box-shadow: 0 0 20px #ff00cc;
+        }
+
+    </style>
 </head>
 <body>
-  <div>
-    <h1>404</h1>
-    <p>Oops! Looks like this page is lost in cyberspace...</p>
-    <div class="vaporwave-icons">
-      <i class="fas fa-cassette-tape"></i>
-      <i class="fas fa-robot"></i>
-      <i class="fas fa-disco-ball"></i>
-    </div>
-    <p class="glitch">Error 404 - Page Not Found</p>
-    <a href="/" class="back-button">Take Me Home</a>
-  </div>
-
-  <!-- Load Font Awesome for icons -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <h1 class="glitch" data-text="404">404</h1>
+    <h2>Oops, Page Not Found</h2>
+    <div class="vaporwave-icon">🌴</div>
+    <a href="/" class="home-link">Go Back Home</a>
 </body>
 </html>
