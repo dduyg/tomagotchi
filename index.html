@@ -16,7 +16,7 @@
       flex-direction: column; /* Stack rows vertically */
     }
 
-    .image-container {
+    .section {
       width: 80%; /* Adjust as needed */
       overflow: hidden;
       position: relative;
@@ -24,20 +24,20 @@
       margin-bottom: 20px; /* Space between rows */
     }
 
-    .image-row {
+    .marqueeRow {
       display: flex;
-      animation: scroll-row 16s linear infinite;
+      animation: marquee-loop 16s linear infinite;
     }
 
-    .image-container:hover .image-row {
+    .section:hover .marqueeRow {
       animation-play-state: paused; /* Pause animation on hover */
     }
 
-    .image-row a {
+    .marqueeRow a {
       display: block; /* Make links clickable */
     }
 
-    .image-row img {
+    .marqueeRow img {
       height: 200px; /* Set consistent height for images */
       width: auto; /* Maintain aspect ratio */
       margin-right: 10px; /* Spacing between images */
@@ -47,15 +47,15 @@
     }
 
     /* Hover Effects */
-    .image-container:hover img {
+    .section:hover img {
       opacity: 0.5; /* Dim all images when container is hovered */
     }
 
-    .image-row img:hover {
+    .marqueeRow img:hover {
       opacity: 1; /* Highlight image on individual hover */
     }
 
-    @keyframes scroll-row {
+    @keyframes marquee-loop {
       0% {
         transform: translateX(0);
       }
@@ -66,8 +66,8 @@
   </style>
 </head>
 <body>
-  <div class="image-container">
-    <div class="image-row">
+  <div class="section">
+    <div class="marqueeRow">
       <a href="#">
         <img src="https://media0.giphy.com/media/l0O9xVx5v3YHYjGgM/giphy.gif?cid=6c09b95259qmwm2h16lqxtkw6ij63l8tz2okpwd99n0skxzi&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■1">
       </a>
@@ -92,8 +92,8 @@
     </div>
   </div>
 
-  <div class="image-container">
-    <div class="image-row">
+  <div class="section">
+    <div class="marqueeRow">
       <a href="#">
         <img src="https://media3.giphy.com/media/9J7gOQ0z5w6YfgWdzV/giphy.gif?cid=6c09b952p3sfo2ybq3f4y8zdtj9lggpyx7bdm3d4yo87scgx&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■8">
       </a>
@@ -119,11 +119,11 @@
   </div>
   
   <script>
-    const imageRows = document.querySelectorAll('.image-row');
+    const marqueeRows = document.querySelectorAll('.marqueeRow');
 
-    imageRows.forEach((imageRow) => {
-      // Clone each image row to create a seamless loop
-      imageRow.innerHTML += imageRow.innerHTML;
+    marqueeRows.forEach((marqueeRow) => {
+      // Clone each marqueeRow to create a seamless loop
+      marqueeRow.innerHTML += marqueeRow.innerHTML;
     });
   </script>
 </body>
