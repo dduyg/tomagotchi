@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stacked Animation</title>
+  <style>
+    /* Base styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+      text-align: center;
+      line-height: 1.8;
+    }
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    div, h1, footer {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    footer {
+         background-color: #ddd;
+    }
+
+
+    .hidden { /* Initial animation state */
+      opacity: 0;
+      transform: translateY(-96px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }  
+    .visible { /* Final animation state */
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .no-animate { /* Add this to exclude elements→ class="no-animate" */
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Elementum ○</h1>   
+  <div>Content Box 1</div>
+  <div>Content Box 2</div>
+  <div>Content Box 3</div>  
+  <footer class="no-animate">FooterSection</footer>
+</main>  
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Select all elements within <main>, excluding those with the "no-animate" class
+      const mainElements = Array.from(document.querySelectorAll('main *'))
+        .filter(el => !el.classList.contains('no-animate'));
+
+      // Add the "hidden" class to elements
+      mainElements.forEach((el) => {
+        el.classList.add('hidden');
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Calculate delay in reverse order
+              const delay = (mainElements.length - mainElements.indexOf(entry.target)) * 100; // Adjust stagger delay between elements (100ms)
+              setTimeout(() => {
+                entry.target.classList.add('visible');
+              }, delay);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      // Observe all animatable elements
+      mainElements.forEach((el) => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>
