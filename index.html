@@ -2,80 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Scrolling Images Animation Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scrolling Image Row</title>
   <style>
-body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-}
-main {
-  display: flex;
-  overflow: hidden;
-  height: 90vw;
-  background: #333;
-}
-main img {
-  max-width: 100%;
-  vertical-align: middle;
-  border: 2px solid white;
-  box-sizing: border-box;
-  transition: opacity 0.2s;
-}
-main:hover img {
-  opacity: 0.5;
-}
-main img:hover {
-  opacity: 1;
-}
-main .single-column {
-  animation: var(--animation, none) 16s infinite linear;
-}
-main .single-column:hover {
-  animation-play-state: paused;
-}
-main .single-column:nth-of-type(odd) {
-  align-self: flex-end;
-  --direction: 50%;
-}
-@-webkit-keyframes slide {
-  to {
-    -webkit-transform: translateY(var(--direction, -50%));
-    transform: translateY(var(--direction, -50%));
-  }
-}
-@keyframes slide {
-  to {
-    -webkit-transform: translateY(var(--direction, -50%));
-    transform: translateY(var(--direction, -50%));
-  }
-}
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    .image-container {
+      width: 100%;
+      overflow: hidden;
+      background: #333;
+    }
+
+    .image-row {
+      display: flex;
+      animation: scroll-horizontal 16s linear infinite;
+    }
+
+    .image-row img {
+      height: 200px; /* Fixed height for all images */
+      width: auto; /* Maintain aspect ratio */
+      border: 2px solid white;
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    .image-row:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes scroll-horizontal {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
   </style>
 </head>
 <body>
-  <main>
-    <div class="single-column">
-      <a href="#"><img src="https://picsum.photos/300/300?random=1" alt="image"></a>
-      <a href="#"><img src="https://picsum.photos/300/300?random=2" alt="image"></a>
-      <a href="#"><img src="https://picsum.photos/300/300?random=3" alt="image"></a>
-      <a href="#"><img src="https://picsum.photos/300/300?random=4" alt="image"></a>
+  <div class="image-container">
+    <div class="image-row">
+      <img src="https://picsum.photos/300/200?random=1" alt="Image 1">
+      <img src="https://picsum.photos/300/200?random=2" alt="Image 2">
+      <img src="https://picsum.photos/300/200?random=3" alt="Image 3">
+      <img src="https://picsum.photos/300/200?random=4" alt="Image 4">
+      <img src="https://picsum.photos/300/200?random=5" alt="Image 5">
     </div>
-    <div class="single-column">
-      <a href="#"><img src="https://picsum.photos/300/300?random=5" alt="image"></a>
-      <a href="#"><img src="https://picsum.photos/300/300?random=6" alt="image"></a>
-      <a href="#"><img src="https://picsum.photos/300/300?random=7" alt="image"></a>
-      <a href="#"><img src="https://picsum.photos/300/300?random=8" alt="image"></a>
-    </div>
-  </main> 
-  
+  </div>
+
   <script>
-    [...document.querySelectorAll(".single-column")].map(column => {
-      column.style.setProperty("--animation", "slide");
-      column.style.setProperty("height", "200%");
-      column.innerHTML = column.innerHTML + column.innerHTML;
-    });
+    // JavaScript to duplicate the image-row for seamless looping
+    const imageRow = document.querySelector('.image-row');
+    imageRow.innerHTML += imageRow.innerHTML; // Duplicate images for seamless scroll
   </script>
 </body>
 </html>
