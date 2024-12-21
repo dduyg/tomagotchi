@@ -27,35 +27,30 @@
       display: flex;
       animation: marquee-loop 16s linear infinite;
     }
-
-    section:hover .marqueeRow {
-      animation-play-state: paused; /* Pause animation on hover */
+    @keyframes marquee-loop {
+      0% {transform: translateX(0);}
+      100% {transform: translateX(-50%);}
     }
-
-    .marqueeRow a {
-      display: block; /* Make links clickable */
-    }
-
     .marqueeRow img {
       height: 200px; /* Set consistent height for images */
       width: auto; /* Maintain aspect ratio */
       margin-right: 10px; /* Spacing between images */
       border: 1px solid black;
       box-sizing: border-box;
-      transition: opacity 0.3s; /* Smooth hover transition */
+      transition: opacity 0.3s;
     }
 
-    /* Hover Effects */
+    .marqueeRow a {
+      display: block; /* Make links clickable */
+    }
+    section:hover .marqueeRow {
+      animation-play-state: paused; /* Pause animation on hover */
+    }
     section:hover img {
       opacity: 0.5; /* Dim all images when container is hovered */
     }
     .marqueeRow img:hover {
       opacity: 1; /* Highlight image on individual hover */
-    }
-
-    @keyframes marquee-loop {
-      0% {transform: translateX(0);}
-      100% {transform: translateX(-50%);}
     }
   </style>
 </head>
