@@ -7,11 +7,6 @@
 
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<div class="text">
-  <h1>Our Best Clients 💫</h1>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus corporis beatae dignissimos eum optio voluptas totam hic! Minus quae similique, atque at possimus voluptate maxime eum nostrum deserunt excepturi eaque!</p>
-</div>
 <div class="marquee" data-reversed="false">
   <div class="marquee-item">
     <img width="176" height="40" src="https://assets.codepen.io/162656/marquee-logo1.svg" alt="client logo" />
@@ -56,6 +51,7 @@
     <img width="170" height="41" src="https://assets.codepen.io/162656/marquee-logo14.svg" alt="client logo">
   </div>
 </div>
+
 <div class="marquee" data-reversed="true">
   <div class="marquee-item">
     <img width="138" height="36" src="https://assets.codepen.io/162656/marquee-logo3.svg" alt="client logo" />
@@ -101,14 +97,135 @@
   </div>
 </div>
 
-<footer class="page-footer">
-  <span>made by </span>
-  <a href="https://georgemartsoukos.com/" target="_blank">
-    <img width="24" height="24" src="https://assets.codepen.io/162656/george-martsoukos-small-logo.svg" alt="George Martsoukos logo">
-  </a>
-</footer>
-<!-- partial -->
-  <script src='https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js'></script><script  src="./script.js"></script>
+  <script src='https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js'></script>
+  <script>
+    const marquees = document.querySelectorAll(".marquee");
+    const mm = gsap.matchMedia();
 
+    window.addEventListener("load", function () {
+      mm.add(
+        {
+          isMobile: "(max-width: 699px)",
+          isDesktop: "(min-width: 700px)"
+        },
+        (context) => {
+          const { isMobile, isDesktop } = context.conditions;
+
+          marquees.forEach((marquee) => {
+            const marqueeItems = marquee.querySelectorAll(".marquee-item");
+            const reversed =
+              marquee.getAttribute("data-reversed") === "true" ? true : false;
+
+            horizontalLoop(marqueeItems, {
+              repeat: -1,
+              paddingRight: isDesktop ? 40 : 20,
+              speed: isDesktop ? 0.5 : 0.25,
+              reversed
+            });
+          });
+        }
+      );
+    });
+
+    function horizontalLoop(items, config) {
+      items = gsap.utils.toArray(items);
+      config = config || {};
+      let tl = gsap.timeline({
+          repeat: config.repeat,
+          paused: config.paused,
+          defaults: { ease: "none" },
+          onReverseComplete: () => tl.totalTime(tl.rawTime() + tl.duration() * 100)
+        }),
+        length = items.length,
+        startX = items[0].offsetLeft,
+        times = [],
+        widths = [],
+        xPercents = [],
+        curIndex = 0,
+        pixelsPerSecond = (config.speed || 1) * 100,
+        snap = config.snap === false ? (v) => v : gsap.utils.snap(config.snap || 1),
+        totalWidth,
+        curX,
+        distanceToStart,
+        distanceToLoop,
+        item,
+        i;
+      gsap.set(items, {
+        xPercent: (i, el) => {
+          let w = (widths[i] = parseFloat(gsap.getProperty(el, "width", "px")));
+          xPercents[i] = snap(
+            (parseFloat(gsap.getProperty(el, "x", "px")) / w) * 100 +
+              gsap.getProperty(el, "xPercent")
+          );
+          return xPercents[i];
+        }
+      });
+      gsap.set(items, { x: 0 });
+      totalWidth =
+        items[length - 1].offsetLeft +
+        (xPercents[length - 1] / 100) * widths[length - 1] -
+        startX +
+        items[length - 1].offsetWidth *
+          gsap.getProperty(items[length - 1], "scaleX") +
+        (parseFloat(config.paddingRight) || 0);
+      for (i = 0; i < length; i++) {
+        item = items[i];
+        curX = (xPercents[i] / 100) * widths[i];
+        distanceToStart = item.offsetLeft + curX - startX;
+        distanceToLoop =
+          distanceToStart + widths[i] * gsap.getProperty(item, "scaleX");
+        tl.to(
+          item,
+          {
+            xPercent: snap(((curX - distanceToLoop) / widths[i]) * 100),
+            duration: distanceToLoop / pixelsPerSecond
+          },
+          0
+        )
+          .fromTo(
+            item,
+            {
+              xPercent: snap(
+                ((curX - distanceToLoop + totalWidth) / widths[i]) * 100
+              )
+            },
+            {
+              xPercent: xPercents[i],
+              duration:
+                (curX - distanceToLoop + totalWidth - curX) / pixelsPerSecond,
+              immediateRender: false
+            },
+            distanceToLoop / pixelsPerSecond
+          )
+          .add("label" + i, distanceToStart / pixelsPerSecond);
+        times[i] = distanceToStart / pixelsPerSecond;
+      }
+      function toIndex(index, vars) {
+        vars = vars || {};
+        Math.abs(index - curIndex) > length / 2 &&
+          (index += index > curIndex ? -length : length);
+        let newIndex = gsap.utils.wrap(0, length, index),
+          time = times[newIndex];
+        if (time > tl.time() !== index > curIndex) {
+          vars.modifiers = { time: gsap.utils.wrap(0, tl.duration()) };
+          time += tl.duration() * (index > curIndex ? 1 : -1);
+        }
+        curIndex = newIndex;
+        vars.overwrite = true;
+        return tl.tweenTo(time, vars);
+      }
+      tl.next = (vars) => toIndex(curIndex + 1, vars);
+      tl.previous = (vars) => toIndex(curIndex - 1, vars);
+      tl.current = () => curIndex;
+      tl.toIndex = (index, vars) => toIndex(index, vars);
+      tl.times = times;
+      tl.progress(1, true).progress(0, true);
+      if (config.reversed) {
+        tl.vars.onReverseComplete();
+        tl.reverse();
+      }
+      return tl;
+    }
+  </script>
 </body>
 </html>
