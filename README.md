@@ -18,7 +18,6 @@
 - Jacquard 12
 - Micro 5
 - Jersey 10
-- Kode Mono
 - Danfo
 - Raleway ♡
 - Dosis
@@ -31,7 +30,6 @@
 - Fascinate Inline
 - Megrim
 - Montserrat Alternates
-- Wire One
 - Offside ♡~
 - Overlock
 - Titillium Web
@@ -41,8 +39,9 @@
 - Unbounded
 - Capriola
 - Faculty Glyphic
-- Host Grotesk
 - Karla
+
+- Host Grotesk
 
 <br><br>
 
