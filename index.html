@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seamless Scrolling Image Row</title>
+  <title>Animated Image Grid</title>
   <style>
     body {
       margin: 0;
@@ -16,60 +16,50 @@
     }
 
     .image-container {
-      width: 100%; /* Full width */
-      overflow: hidden; /* Hide overflow */
-      background: #333;
+      width: 80%;
+      overflow: hidden;
       position: relative;
     }
 
     .image-row {
       display: flex;
-      animation: scroll-horizontal 20s linear infinite; /* Infinite scrolling */
+      gap: 0; /* No gap between images */
+      animation: scroll-images 10s linear infinite;
     }
 
     .image-row img {
-      height: 200px; /* Fixed height */
-      width: auto; /* Maintain aspect ratio */
-      border: 2px solid white;
-      box-sizing: border-box;
+      height: 200px; /* Set a fixed height for all images */
+      width: auto; /* Let the width adjust to maintain the aspect ratio */
+      object-fit: cover; /* Ensure the image fills the area proportionally */
     }
 
-    /* Keyframes for smooth horizontal scrolling */
-    @keyframes scroll-horizontal {
-      from {
+    /* Animation Keyframes */
+    @keyframes scroll-images {
+      0% {
         transform: translateX(0);
       }
-      to {
+      100% {
         transform: translateX(-100%);
       }
-    }
-
-    .image-row:hover {
-      animation-play-state: paused; /* Pause animation on hover */
     }
   </style>
 </head>
 <body>
   <div class="image-container">
     <div class="image-row">
-      <img src="https://picsum.photos/300/200?random=1" alt="Image 1">
-      <img src="https://picsum.photos/300/200?random=2" alt="Image 2">
-      <img src="https://picsum.photos/300/200?random=3" alt="Image 3">
-      <img src="https://picsum.photos/300/200?random=4" alt="Image 4">
-      <img src="https://picsum.photos/300/200?random=5" alt="Image 5">
+      <img src="image1.jpg" alt="Image 1">
+      <img src="image2.jpg" alt="Image 2">
+      <img src="image3.jpg" alt="Image 3">
+      <img src="image4.jpg" alt="Image 4">
+      <img src="image5.jpg" alt="Image 5">
     </div>
   </div>
-
   <script>
     const imageRow = document.querySelector('.image-row');
-    
-    // Duplicate the image row for seamless looping
-    imageRow.innerHTML += imageRow.innerHTML;
 
-    // Adjust the width of the row dynamically to fit all images
-    const images = document.querySelectorAll('.image-row img');
-    const totalWidth = Array.from(images).reduce((sum, img) => sum + img.offsetWidth, 0);
-    imageRow.style.width = `${totalWidth}px`;
+    // Clone the image row to create a seamless loop
+    const clone = imageRow.cloneNode(true);
+    imageRow.parentNode.appendChild(clone);
   </script>
 </body>
 </html>
