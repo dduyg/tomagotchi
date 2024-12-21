@@ -2,183 +2,111 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Marquees With Reversed Directions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiminalLoop</title>
   <style>
-* {
-  box-sizing: border-box;
-}
-body {
-  padding: 0;
-  margin: 70px 0;
-  background: #f0f0f0;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-.marquee {
-  position: relative;
-  display: flex;
-  gap: 10px;
-  overflow: hidden;
-}
-.marquee + .marquee {
-  margin-top: 25px;
-}
-.marquee-item {
-  height: 150px;
-  width: auto;
-  border: 1px solid black;
-}
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+
+    .marquee-container {
+      width: 80%;
+      overflow: hidden;
+      border: 2px solid #ddd;
+      background-color: #fff;
+      position: relative;
+      height: 150px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .marquee {
+      display: flex;
+      position: absolute;
+      animation: marquee-scroll linear infinite;
+      gap: 20px;
+    }
+
+    .marquee img {
+      height: 100%;
+      width: auto;
+      flex-shrink: 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    @keyframes marquee-scroll {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
   </style>
 </head>
 <body>
-<section class="marquee" data-reversed="false">
-  <img class="marquee-item" src="https://media0.giphy.com/media/l0O9xVx5v3YHYjGgM/giphy.gif" alt="■1">
-  <img class="marquee-item" src="https://media1.giphy.com/media/cpO6VvIo0mW9q/giphy.gif" alt="■2">
-  <img class="marquee-item" src="https://media3.giphy.com/media/3o6EhE8pukIRNaPyOQ/giphy.gif" alt="■3">
-  <img class="marquee-item" src="https://media3.giphy.com/media/ldKjshoVdTNgblMuLs/giphy.gif" alt="■4">
-  <img class="marquee-item" src="https://media0.giphy.com/media/LpBKayD38zvwKx1qz8/giphy.gif" alt="■5">
-  <img class="marquee-item" src="https://media0.giphy.com/media/5UB6zSb0ez6ru3pOhb/giphy.gif" alt="■6">
-  <img class="marquee-item" src="https://media2.giphy.com/media/uTmqqFKOMIP57Nr3gz/giphy.gif" alt="■7">
-</section>
+  <div class="marquee-container" data-direction="left">
+    <div class="marquee">
+      <img src="https://media0.giphy.com/media/l0O9xVx5v3YHYjGgM/giphy.gif" alt="Image 1">
+      <img src="https://media1.giphy.com/media/cpO6VvIo0mW9q/giphy.gif" alt="Image 2">
+      <img src="https://media3.giphy.com/media/3o6EhE8pukIRNaPyOQ/giphy.gif" alt="Image 3">
+      <img src="https://media3.giphy.com/media/ldKjshoVdTNgblMuLs/giphy.gif" alt="Image 4">
+      <img src="https://media0.giphy.com/media/LpBKayD38zvwKx1qz8/giphy.gif" alt="Image 5">
+    </div>
+  </div>
 
-<section class="marquee" data-reversed="true">
-  <img class="marquee-item" src="https://media2.giphy.com/media/JDXuoS4eWlYAEHyL7G/giphy.gif" alt="■1">
-  <img class="marquee-item" src="https://media4.giphy.com/media/a2vstZP9SvLA4/giphy.gif" alt="■2">
-  <img class="marquee-item" src="https://media3.giphy.com/media/kesNMJU1kLFJdc7FcB/giphy.gif" alt="■3">
-  <img class="marquee-item" src="https://media1.giphy.com/media/VoVQ6zWVMjUuGUz8bu/giphy.gif" alt="■4">
-  <img class="marquee-item" src="https://media3.giphy.com/media/d3JtHt5NsKmvqcJa/giphy.gif" alt="■5">
-  <img class="marquee-item" src="https://media1.giphy.com/media/l0MYGUj44SjMKnurm/giphy.gif" alt="■6">
-  <img class="marquee-item" src="https://media3.giphy.com/media/lQO6mff5fnwzK/giphy.gif" alt="■7">
-</section>
+  <div class="marquee-container" data-direction="right">
+    <div class="marquee">
+      <img src="https://media2.giphy.com/media/JDXuoS4eWlYAEHyL7G/giphy.gif" alt="Image 1">
+      <img src="https://media4.giphy.com/media/a2vstZP9SvLA4/giphy.gif" alt="Image 2">
+      <img src="https://media3.giphy.com/media/kesNMJU1kLFJdc7FcB/giphy.gif" alt="Image 3">
+      <img src="https://media1.giphy.com/media/VoVQ6zWVMjUuGUz8bu/giphy.gif" alt="Image 4">
+      <img src="https://media3.giphy.com/media/d3JtHt5NsKmvqcJa/giphy.gif" alt="Image 5">
+    </div>
+  </div>
 
-<script src='https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js'></script>
   <script>
-    const marquees = document.querySelectorAll(".marquee");
-    const mm = gsap.matchMedia();
+    document.addEventListener('DOMContentLoaded', () => {
+      const marquees = document.querySelectorAll('.marquee-container');
 
-    window.addEventListener("load", function () {
-      mm.add(
-        {
-          isMobile: "(max-width: 699px)",
-          isDesktop: "(min-width: 700px)"
-        },
-        (context) => {
-          const { isMobile, isDesktop } = context.conditions;
+      marquees.forEach(container => {
+        const marquee = container.querySelector('.marquee');
+        const direction = container.getAttribute('data-direction');
 
-          marquees.forEach((marquee) => {
-            const marqueeItems = marquee.querySelectorAll(".marquee-item");
-            const reversed =
-              marquee.getAttribute("data-reversed") === "true" ? true : false;
+        // Clone the marquee content to create an infinite loop
+        const clone = marquee.cloneNode(true);
+        marquee.parentElement.appendChild(clone);
 
-            horizontalLoop(marqueeItems, {
-              repeat: -1,
-              paddingRight: isDesktop ? 40 : 20,
-              speed: isDesktop ? 0.5 : 0.25,
-              reversed
-            });
-          });
-        }
-      );
-    });
+        // Determine the direction
+        const isRightToLeft = direction === 'left';
 
-    function horizontalLoop(items, config) {
-      items = gsap.utils.toArray(items);
-      config = config || {};
-      let tl = gsap.timeline({
-          repeat: config.repeat,
-          paused: config.paused,
-          defaults: { ease: "none" },
-          onReverseComplete: () => tl.totalTime(tl.rawTime() + tl.duration() * 100)
-        }),
-        length = items.length,
-        startX = items[0].offsetLeft,
-        times = [],
-        widths = [],
-        xPercents = [],
-        curIndex = 0,
-        pixelsPerSecond = (config.speed || 1) * 100,
-        snap = config.snap === false ? (v) => v : gsap.utils.snap(config.snap || 1),
-        totalWidth,
-        curX,
-        distanceToStart,
-        distanceToLoop,
-        item,
-        i;
-      gsap.set(items, {
-        xPercent: (i, el) => {
-          let w = (widths[i] = parseFloat(gsap.getProperty(el, "width", "px")));
-          xPercents[i] = snap(
-            (parseFloat(gsap.getProperty(el, "x", "px")) / w) * 100 +
-              gsap.getProperty(el, "xPercent")
-          );
-          return xPercents[i];
-        }
+        // Adjust animation based on direction
+        marquee.style.animationDirection = isRightToLeft ? 'normal' : 'reverse';
+        clone.style.animationDirection = isRightToLeft ? 'normal' : 'reverse';
+
+        // Sync animations for seamless looping
+        const duration = 10; // Adjust speed by changing this value
+        const totalWidth = marquee.scrollWidth;
+
+        marquee.style.animationDuration = `${duration}s`;
+        clone.style.animationDuration = `${duration}s`;
+
+        // Ensure cloned element starts from the correct position
+        clone.style.left = `${totalWidth}px`;
       });
-      gsap.set(items, { x: 0 });
-      totalWidth =
-        items[length - 1].offsetLeft +
-        (xPercents[length - 1] / 100) * widths[length - 1] -
-        startX +
-        items[length - 1].offsetWidth *
-          gsap.getProperty(items[length - 1], "scaleX") +
-        (parseFloat(config.paddingRight) || 0);
-      for (i = 0; i < length; i++) {
-        item = items[i];
-        curX = (xPercents[i] / 100) * widths[i];
-        distanceToStart = item.offsetLeft + curX - startX;
-        distanceToLoop =
-          distanceToStart + widths[i] * gsap.getProperty(item, "scaleX");
-        tl.to(
-          item,
-          {
-            xPercent: snap(((curX - distanceToLoop) / widths[i]) * 100),
-            duration: distanceToLoop / pixelsPerSecond
-          },
-          0
-        )
-          .fromTo(
-            item,
-            {
-              xPercent: snap(
-                ((curX - distanceToLoop + totalWidth) / widths[i]) * 100
-              )
-            },
-            {
-              xPercent: xPercents[i],
-              duration:
-                (curX - distanceToLoop + totalWidth - curX) / pixelsPerSecond,
-              immediateRender: false
-            },
-            distanceToLoop / pixelsPerSecond
-          )
-          .add("label" + i, distanceToStart / pixelsPerSecond);
-        times[i] = distanceToStart / pixelsPerSecond;
-      }
-      function toIndex(index, vars) {
-        vars = vars || {};
-        Math.abs(index - curIndex) > length / 2 &&
-          (index += index > curIndex ? -length : length);
-        let newIndex = gsap.utils.wrap(0, length, index),
-          time = times[newIndex];
-        if (time > tl.time() !== index > curIndex) {
-          vars.modifiers = { time: gsap.utils.wrap(0, tl.duration()) };
-          time += tl.duration() * (index > curIndex ? 1 : -1);
-        }
-        curIndex = newIndex;
-        vars.overwrite = true;
-        return tl.tweenTo(time, vars);
-      }
-      tl.next = (vars) => toIndex(curIndex + 1, vars);
-      tl.previous = (vars) => toIndex(curIndex - 1, vars);
-      tl.current = () => curIndex;
-      tl.toIndex = (index, vars) => toIndex(index, vars);
-      tl.times = times;
-      tl.progress(1, true).progress(0, true);
-      if (config.reversed) {
-        tl.vars.onReverseComplete();
-        tl.reverse();
-      }
-      return tl;
-    }
+    });
   </script>
 </body>
 </html>
