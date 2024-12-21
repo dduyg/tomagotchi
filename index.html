@@ -23,20 +23,14 @@
       display: flex;
       margin: 20px 0; /* Space between marqueeRow */
     }
+    
     .marqueeRow {
       display: flex;
       animation: marquee-loop 16s linear infinite;
     }
-
-    /* First row animation */
     @keyframes marquee-loop {
       0% {transform: translateX(0);}
       100% {transform: translateX(-50%);}
-    }
-    /* Second row animation (scrolls in the opposite direction) */
-    @keyframes reverse-marquee-loop {
-      0% {transform: translateX(0);}
-      100% {transform: translateX(50%);}
     }
 
     .image-container:hover .marqueeRow {
@@ -80,7 +74,7 @@
 
   <!-- Second Scrolling Image Row -->
   <div class="image-container">
-    <div class="marqueeRow" style="animation: reverse-marquee-loop 12s linear infinite;">
+    <div class="marqueeRow" style="animation: marquee-loop 12s linear infinite;">
       <a href="#"><img src="https://picsum.photos/300/200?random=6" alt="Image 6"></a>
       <a href="#"><img src="https://picsum.photos/300/200?random=7" alt="Image 7"></a>
       <a href="#"><img src="https://picsum.photos/300/200?random=8" alt="Image 8"></a>
