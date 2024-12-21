@@ -2,37 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animated Image Grid</title>
+  <title>Scrolling Images Animation Example</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       min-height: 100vh;
+      display: grid;
+      place-items: center;
       background-color: #f0f0f0;
     }
-
-    .image-container {
-      width: 100%;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .image-row {
+    main {
       display: flex;
-      gap: 10px; /* No gap between images */
-      animation: scroll-images 10s linear infinite;
+      overflow: hidden;
+      width: 80vw; /* Adjust the width of the container */
+      height: 300px; /* Fixed height for the images */
+      background: #333;
     }
-
-    .image-row img {
-      height: 200px; /* Set a fixed height for all images */
-      width: auto; /* Let the width adjust to maintain the aspect ratio */
+    main img {
+      height: 100%;
+      object-fit: cover;
+      border: 2px solid white;
+      box-sizing: border-box;
+      transition: opacity 0.2s;
     }
-
-    /* Animation Keyframes */
+    main:hover img {
+      opacity: 0.5;
+    }
+    main img:hover {
+      opacity: 1;
+    }
+    main .single-row {
+      animation: scroll-images 20s infinite linear; /* Set the scrolling animation */
+      display: flex;
+      gap: 0;
+    }
+    main .single-row:hover {
+      animation-play-state: paused; /* Pause the animation on hover */
+    }
+    /* Animation Keyframes for horizontal scrolling */
     @keyframes scroll-images {
       0% {
         transform: translateX(0);
@@ -44,23 +52,23 @@
   </style>
 </head>
 <body>
-  <div class="image-container">
-    <div class="image-row">
-      <img src="https://media0.giphy.com/media/l0O9xVx5v3YHYjGgM/giphy.gif?cid=6c09b95259qmwm2h16lqxtkw6ij63l8tz2okpwd99n0skxzi&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■1">
-      <img src="https://media1.giphy.com/media/cpO6VvIo0mW9q/giphy.gif?cid=6c09b95286oxtxj57s4ow6lly7n1t02itkc2hhf22lv7rl60&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■2">
-      <img src="https://media3.giphy.com/media/3o6EhE8pukIRNaPyOQ/giphy.gif?cid=6c09b952mqf2hor3oy2kvjyr828kgajq93j5avu6b7adp7bg&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■3">
-      <img src="https://media3.giphy.com/media/ldKjshoVdTNgblMuLs/giphy.gif?cid=6c09b952y6d2tskemo4o42hn1s33ia3omz5sah23yyc2vir4&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■4">
-      <img src="https://media0.giphy.com/media/LpBKayD38zvwKx1qz8/giphy.gif?cid=6c09b952id4zj1ktkq86i4jl7f7smjuk7bqnkhdhmz4p8app&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■5">
-      <img src="https://media0.giphy.com/media/5UB6zSb0ez6ru3pOhb/giphy.gif?cid=6c09b952rie1o9ot95434cqsrlw81g3o0vyo8lfdi73km5x8&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■6">
-      <img src="https://media2.giphy.com/media/uTmqqFKOMIP57Nr3gz/giphy.gif?cid=6c09b952o7jamvxzg3n1xnua98ekx49ph11e4m8us9j6whvb&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■7">
+  <main>
+    <div class="single-row">
+      <a href="#"><img src="https://picsum.photos/300/300?random=1" alt="Image 1"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=2" alt="Image 2"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=3" alt="Image 3"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=4" alt="Image 4"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=5" alt="Image 5"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=6" alt="Image 6"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=7" alt="Image 7"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=8" alt="Image 8"></a>
     </div>
-  </div>
-  <script>
-    const imageRow = document.querySelector('.image-row');
+  </main>
 
-    // Clone the image row to create a seamless loop
-    const clone = imageRow.cloneNode(true);
-    imageRow.parentNode.appendChild(clone);
+  <script>
+    // Clone the row to create the seamless scrolling effect
+    const row = document.querySelector(".single-row");
+    row.innerHTML = row.innerHTML + row.innerHTML; // Duplicate the images in the row
   </script>
 </body>
 </html>
