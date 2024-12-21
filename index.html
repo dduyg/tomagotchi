@@ -105,9 +105,14 @@ body {
       <a href="#"><img src="https://picsum.photos/300/300?random=31" alt="image"></a>
       <a href="#"><img src="https://picsum.photos/300/300?random=32" alt="image"></a>
     </div>
-  </div>
-
-  <script  src="./script.js"></script>
-
+  </div>  
+  
+  <script>
+    [...document.querySelectorAll(".single-column")].map(column => {
+      column.style.setProperty("--animation", "slide");
+      column.style.setProperty("height", "200%");
+      column.innerHTML = column.innerHTML + column.innerHTML;
+    });
+  </script>
 </body>
 </html>
