@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Image Grid</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    .image-container {
+      width: 80%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .image-row {
+      display: flex;
+      gap: 0; /* No gap between images */
+      animation: scroll-images 10s linear infinite;
+    }
+
+    .image-row img {
+      height: 200px; /* Set a fixed height for all images */
+      width: auto; /* Let the width adjust to maintain the aspect ratio */
+      object-fit: cover; /* Ensure the image fills the area proportionally */
+    }
+
+    /* Animation Keyframes */
+    @keyframes scroll-images {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="image-container">
+    <div class="image-row">
+      <img src="image1.jpg" alt="Image 1">
+      <img src="image2.jpg" alt="Image 2">
+      <img src="image3.jpg" alt="Image 3">
+      <img src="image4.jpg" alt="Image 4">
+      <img src="image5.jpg" alt="Image 5">
+    </div>
+  </div>
+  <script>
+    const imageRow = document.querySelector('.image-row');
+
+    // Clone the image row to create a seamless loop
+    const clone = imageRow.cloneNode(true);
+    imageRow.parentNode.appendChild(clone);
+  </script>
+</body>
+</html>
