@@ -3,46 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LiminalLoop</title>
+  <title>Scrolling Image Row</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
     }
 
-    .image-container {
-      width: 80%;
-      overflow: hidden;
+    .marquee-container {
       position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 200px; /* Adjust based on your image height */
+      background-color: #fff;
     }
 
-    .image-row {
+    .marquee-track {
       display: flex;
-      gap: 0; /* No gap between images */
-      animation: scroll-images 10s linear infinite;
+      gap: 20px; /* Space between images */
+      position: absolute;
+      white-space: nowrap;
+      animation: marquee 15s linear infinite;
     }
 
-    .image-row img {
-      height: 200px; /* Set a fixed height for all images */
-      width: auto; /* Let the width adjust to maintain the aspect ratio */
-      object-fit: cover; /* Ensure the image fills the area proportionally */
+    .marquee-track img {
+      height: 100%; /* Ensures images fit within the container */
+      max-width: none;
     }
 
-    /* Animation Keyframes */
-    @keyframes scroll-images {
-      0% {transform: translateX(0);}
-      100% {transform: translateX(-100%);}
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* Duplicate track for smooth infinite scrolling */
+    .marquee-track.duplicate {
+      animation-delay: 7.5s; /* Half of the primary track animation */
     }
   </style>
 </head>
 <body>
-  <div class="image-container">
-    <div class="image-row">
+
+  <section class="marquee-container">
+    <div class="marquee-track">
       <img src="https://media0.giphy.com/media/l0O9xVx5v3YHYjGgM/giphy.gif?cid=6c09b95259qmwm2h16lqxtkw6ij63l8tz2okpwd99n0skxzi&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■1">
       <img src="https://media1.giphy.com/media/cpO6VvIo0mW9q/giphy.gif?cid=6c09b95286oxtxj57s4ow6lly7n1t02itkc2hhf22lv7rl60&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■2">
       <img src="https://media3.giphy.com/media/3o6EhE8pukIRNaPyOQ/giphy.gif?cid=6c09b952mqf2hor3oy2kvjyr828kgajq93j5avu6b7adp7bg&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■3">
@@ -51,13 +60,31 @@
       <img src="https://media0.giphy.com/media/5UB6zSb0ez6ru3pOhb/giphy.gif?cid=6c09b952rie1o9ot95434cqsrlw81g3o0vyo8lfdi73km5x8&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■6">
       <img src="https://media2.giphy.com/media/uTmqqFKOMIP57Nr3gz/giphy.gif?cid=6c09b952o7jamvxzg3n1xnua98ekx49ph11e4m8us9j6whvb&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■7">
     </div>
-  </div>
-  <script>
-    const imageRow = document.querySelector('.image-row');
+    <div class="marquee-track duplicate">
+      <img src="https://media0.giphy.com/media/l0O9xVx5v3YHYjGgM/giphy.gif?cid=6c09b95259qmwm2h16lqxtkw6ij63l8tz2okpwd99n0skxzi&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■1">
+      <img src="https://media1.giphy.com/media/cpO6VvIo0mW9q/giphy.gif?cid=6c09b95286oxtxj57s4ow6lly7n1t02itkc2hhf22lv7rl60&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■2">
+      <img src="https://media3.giphy.com/media/3o6EhE8pukIRNaPyOQ/giphy.gif?cid=6c09b952mqf2hor3oy2kvjyr828kgajq93j5avu6b7adp7bg&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■3">
+      <img src="https://media3.giphy.com/media/ldKjshoVdTNgblMuLs/giphy.gif?cid=6c09b952y6d2tskemo4o42hn1s33ia3omz5sah23yyc2vir4&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■4">
+      <img src="https://media0.giphy.com/media/LpBKayD38zvwKx1qz8/giphy.gif?cid=6c09b952id4zj1ktkq86i4jl7f7smjuk7bqnkhdhmz4p8app&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■5">
+      <img src="https://media0.giphy.com/media/5UB6zSb0ez6ru3pOhb/giphy.gif?cid=6c09b952rie1o9ot95434cqsrlw81g3o0vyo8lfdi73km5x8&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■6">
+      <img src="https://media2.giphy.com/media/uTmqqFKOMIP57Nr3gz/giphy.gif?cid=6c09b952o7jamvxzg3n1xnua98ekx49ph11e4m8us9j6whvb&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■7">
+    </div>
+  </section>
 
-    // Clone the image row to create a seamless loop
-    const clone = imageRow.cloneNode(true);
-    imageRow.parentNode.appendChild(clone);
+  <script>
+    // JavaScript to adjust marquee speed on different screen sizes
+    document.addEventListener('DOMContentLoaded', () => {
+      const track = document.querySelectorAll('.marquee-track');
+      const containerWidth = document.querySelector('.marquee-container').offsetWidth;
+
+      // Update animation duration dynamically based on the total width of images
+      track.forEach(el => {
+        const totalWidth = Array.from(el.children).reduce((acc, img) => acc + img.offsetWidth, 0);
+        const speed = totalWidth / containerWidth * 15; // Adjust this multiplier for speed
+        el.style.animationDuration = `${speed}s`;
+      });
+    });
   </script>
+
 </body>
 </html>
