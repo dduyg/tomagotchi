@@ -1,25 +1,60 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>crolling Images Animation by webdevtrick</title>
-  <link rel="stylesheet" href="./style.css">
-
+  <title>Scrolling Images Animation Example</title>
+  <style>
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+.main {
+  display: flex;
+  overflow: hidden;
+  height: 50vw;
+  background: #333;
+}
+.main img {
+  max-width: 100%;
+  vertical-align: middle;
+  border: 2px solid white;
+  box-sizing: border-box;
+  transition: opacity 0.2s;
+}
+.main:hover img {
+  opacity: 0.5;
+}
+.main img:hover {
+  opacity: 1;
+}
+.main .single-column {
+  animation: var(--animation, none) 16s infinite linear;
+}
+.main .single-column:hover {
+  animation-play-state: paused;
+}
+.main .single-column:nth-of-type(odd) {
+  align-self: flex-end;
+  --direction: 50%;
+}
+@-webkit-keyframes slide {
+  to {
+    -webkit-transform: translateY(var(--direction, -50%));
+    transform: translateY(var(--direction, -50%));
+  }
+}
+@keyframes slide {
+  to {
+    -webkit-transform: translateY(var(--direction, -50%));
+    transform: translateY(var(--direction, -50%));
+  }
+}
+  </style>
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<!DOCTYPE html>
-<!-- code by webdevtrick ( https://webdevtrick.com ) -->
-<html>
-
-<head>
-  <meta charset="UTF-8">
-  <title>Animated Scrolling Images | Webdevtrick.com</title>
-
-</head>
-
-<body>
-
   <div class="main">
 
     <div class="single-column">
@@ -71,10 +106,7 @@
       <a href="#"><img src="https://picsum.photos/300/300?random=32" alt="image"></a>
     </div>
   </div>
-</body>
 
-</html>
-<!-- partial -->
   <script  src="./script.js"></script>
 
 </body>
