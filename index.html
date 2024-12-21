@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Horizontal Scrolling Images Animation</title>
+  <title>Infinite Horizontal Scrolling Images</title>
   <style>
     body {
       margin: 0;
@@ -16,7 +16,7 @@
     }
 
     .image-container {
-      width: 80%;
+      width: 80%; /* Adjust this as needed */
       overflow: hidden;
       position: relative;
       display: flex;
@@ -26,7 +26,7 @@
 
     .image-row {
       display: flex;
-      animation: scroll-row 16s linear infinite;
+      animation: scroll-row 10s linear infinite;
     }
 
     .image-row img {
@@ -35,15 +35,6 @@
       margin-right: 10px; /* Optional spacing between images */
       border: 2px solid white;
       box-sizing: border-box;
-      transition: opacity 0.2s;
-    }
-
-    .image-row:hover img {
-      opacity: 0.5;
-    }
-
-    .image-row img:hover {
-      opacity: 1;
     }
 
     @keyframes scroll-row {
@@ -51,7 +42,7 @@
         transform: translateX(0);
       }
       100% {
-        transform: translateX(-100%);
+        transform: translateX(-50%);
       }
     }
   </style>
@@ -68,8 +59,9 @@
   </div>
   
   <script>
-    // Duplicate the image row to create a seamless loop
     const imageRow = document.querySelector('.image-row');
+
+    // Clone the image row to create a seamless loop
     imageRow.innerHTML += imageRow.innerHTML;
   </script>
 </body>
