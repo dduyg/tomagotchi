@@ -1,10 +1,54 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Marquees With GSAP - Reversed Directions</title>
-  <link rel="stylesheet" href="./style.css">
+  <title>Marquees With Reversed Directions</title>
+  <style>
+* {
+  box-sizing: border-box;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+body {
+  font-family: "DM Sans", sans-serif;
+  margin: 50px 0;
+  background: whitesmoke;
+}
 
+.marquee {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+}
+.marquee + .marquee {
+  margin-top: 20px;
+}
+.marquee-item {
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  flex-shrink: 0;
+  background: white;
+  border-radius: 10px;
+}
+@media (min-width: 700px) {
+  .marquee {
+    gap: 40px;
+  }
+  .marquee + .marquee {
+    margin-top: 40px;
+  }
+  .marquee-item {
+    width: 250px;
+    padding: 30px;
+  }
+}  
+  </style>
 </head>
 <body>
 <div class="marquee" data-reversed="false">
