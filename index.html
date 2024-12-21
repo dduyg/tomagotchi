@@ -20,6 +20,8 @@
       overflow: hidden;
       position: relative;
       display: flex;
+      flex-direction: column; /* Stack rows vertically */
+      gap: 20px; /* Space between rows */
     }
 
     .image-row {
@@ -65,36 +67,52 @@
 </head>
 <body>
   <div class="image-container">
+    <!-- First Image Row -->
     <div class="image-row">
       <a href="#">
-        <img src="https://media0.giphy.com/media/l0O9xVx5v3YHYjGgM/giphy.gif?cid=6c09b95259qmwm2h16lqxtkw6ij63l8tz2okpwd99n0skxzi&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■1">
+        <img src="https://media0.giphy.com/media/l0O9xVx5v3YHYjGgM/giphy.gif" alt="■1">
       </a>
       <a href="#">
-        <img src="https://media1.giphy.com/media/cpO6VvIo0mW9q/giphy.gif?cid=6c09b95286oxtxj57s4ow6lly7n1t02itkc2hhf22lv7rl60&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■2">
+        <img src="https://media1.giphy.com/media/cpO6VvIo0mW9q/giphy.gif" alt="■2">
       </a>
       <a href="#">
-        <img src="https://media3.giphy.com/media/3o6EhE8pukIRNaPyOQ/giphy.gif?cid=6c09b952mqf2hor3oy2kvjyr828kgajq93j5avu6b7adp7bg&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■3">
+        <img src="https://media3.giphy.com/media/3o6EhE8pukIRNaPyOQ/giphy.gif" alt="■3">
       </a>
       <a href="#">
-        <img src="https://media3.giphy.com/media/ldKjshoVdTNgblMuLs/giphy.gif?cid=6c09b952y6d2tskemo4o42hn1s33ia3omz5sah23yyc2vir4&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■4">
+        <img src="https://media3.giphy.com/media/ldKjshoVdTNgblMuLs/giphy.gif" alt="■4">
       </a>
       <a href="#">
-        <img src="https://media0.giphy.com/media/LpBKayD38zvwKx1qz8/giphy.gif?cid=6c09b952id4zj1ktkq86i4jl7f7smjuk7bqnkhdhmz4p8app&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■5">
+        <img src="https://media0.giphy.com/media/LpBKayD38zvwKx1qz8/giphy.gif" alt="■5">
+      </a>
+    </div>
+
+    <!-- Second Image Row -->
+    <div class="image-row">
+      <a href="#">
+        <img src="https://media3.giphy.com/media/WNViO9zKMeOBG2pkW4/giphy.gif" alt="▲1">
       </a>
       <a href="#">
-        <img src="https://media0.giphy.com/media/5UB6zSb0ez6ru3pOhb/giphy.gif?cid=6c09b952rie1o9ot95434cqsrlw81g3o0vyo8lfdi73km5x8&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■6">
+        <img src="https://media4.giphy.com/media/l41JU9pUyosHzWyuA/giphy.gif" alt="▲2">
       </a>
       <a href="#">
-        <img src="https://media2.giphy.com/media/uTmqqFKOMIP57Nr3gz/giphy.gif?cid=6c09b952o7jamvxzg3n1xnua98ekx49ph11e4m8us9j6whvb&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■7">
+        <img src="https://media3.giphy.com/media/xT9IgIc0lryrxvqVGM/giphy.gif" alt="▲3">
+      </a>
+      <a href="#">
+        <img src="https://media2.giphy.com/media/xT9IgMuvj2A0EvxEGY/giphy.gif" alt="▲4">
+      </a>
+      <a href="#">
+        <img src="https://media4.giphy.com/media/l0HlQrS3UPsDXCHok/giphy.gif" alt="▲5">
       </a>
     </div>
   </div>
   
   <script>
-    const imageRow = document.querySelector('.image-row');
+    const imageRows = document.querySelectorAll('.image-row');
 
-    // Clone the image row to create a seamless loop
-    imageRow.innerHTML += imageRow.innerHTML;
+    // Clone each image row to create seamless loops
+    imageRows.forEach(imageRow => {
+      imageRow.innerHTML += imageRow.innerHTML;
+    });
   </script>
 </body>
 </html>
