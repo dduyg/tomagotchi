@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Continuous Scrolling Image Row</title>
+  <title>Seamless Scrolling Image Row</title>
   <style>
     body {
       margin: 0;
@@ -19,11 +19,12 @@
       width: 100%; /* Full width */
       overflow: hidden; /* Hide overflow */
       background: #333;
+      position: relative;
     }
 
     .image-row {
       display: flex;
-      animation: scroll-horizontal 6s linear infinite;
+      animation: scroll-horizontal 20s linear infinite; /* Infinite scrolling */
     }
 
     .image-row img {
@@ -31,21 +32,20 @@
       width: auto; /* Maintain aspect ratio */
       border: 2px solid white;
       box-sizing: border-box;
-      margin: 0;
     }
 
-    /* Keyframes for horizontal scrolling */
+    /* Keyframes for smooth horizontal scrolling */
     @keyframes scroll-horizontal {
-      0% {
+      from {
         transform: translateX(0);
       }
-      100% {
+      to {
         transform: translateX(-100%);
       }
     }
 
     .image-row:hover {
-      animation-play-state: paused; /* Pause on hover */
+      animation-play-state: paused; /* Pause animation on hover */
     }
   </style>
 </head>
@@ -62,9 +62,14 @@
 
   <script>
     const imageRow = document.querySelector('.image-row');
-
-    // Duplicate the row for a seamless scrolling effect
+    
+    // Duplicate the image row for seamless looping
     imageRow.innerHTML += imageRow.innerHTML;
+
+    // Adjust the width of the row dynamically to fit all images
+    const images = document.querySelectorAll('.image-row img');
+    const totalWidth = Array.from(images).reduce((sum, img) => sum + img.offsetWidth, 0);
+    imageRow.style.width = `${totalWidth}px`;
   </script>
 </body>
 </html>
