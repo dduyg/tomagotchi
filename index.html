@@ -1,90 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scrolling Image Row</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-    }
+  <title>crolling Images Animation by webdevtrick</title>
+  <link rel="stylesheet" href="./style.css">
 
-    .marquee-container {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      height: 200px; /* Adjust based on your image height */
-      background-color: #fff;
-    }
-
-    .marquee-track {
-      display: flex;
-      gap: 20px; /* Space between images */
-      position: absolute;
-      white-space: nowrap;
-      animation: marquee 15s linear infinite;
-    }
-
-    .marquee-track img {
-      height: 100%; /* Ensures images fit within the container */
-      max-width: none;
-    }
-
-    @keyframes marquee {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
-
-    /* Duplicate track for smooth infinite scrolling */
-    .marquee-track.duplicate {
-      animation-delay: 7.5s; /* Half of the primary track animation */
-    }
-  </style>
 </head>
 <body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<!-- code by webdevtrick ( https://webdevtrick.com ) -->
+<html>
 
-  <section class="marquee-container">
-    <div class="marquee-track">
-      <img src="https://media0.giphy.com/media/l0O9xVx5v3YHYjGgM/giphy.gif?cid=6c09b95259qmwm2h16lqxtkw6ij63l8tz2okpwd99n0skxzi&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■1">
-      <img src="https://media1.giphy.com/media/cpO6VvIo0mW9q/giphy.gif?cid=6c09b95286oxtxj57s4ow6lly7n1t02itkc2hhf22lv7rl60&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■2">
-      <img src="https://media3.giphy.com/media/3o6EhE8pukIRNaPyOQ/giphy.gif?cid=6c09b952mqf2hor3oy2kvjyr828kgajq93j5avu6b7adp7bg&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■3">
-      <img src="https://media3.giphy.com/media/ldKjshoVdTNgblMuLs/giphy.gif?cid=6c09b952y6d2tskemo4o42hn1s33ia3omz5sah23yyc2vir4&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■4">
-      <img src="https://media0.giphy.com/media/LpBKayD38zvwKx1qz8/giphy.gif?cid=6c09b952id4zj1ktkq86i4jl7f7smjuk7bqnkhdhmz4p8app&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■5">
-      <img src="https://media0.giphy.com/media/5UB6zSb0ez6ru3pOhb/giphy.gif?cid=6c09b952rie1o9ot95434cqsrlw81g3o0vyo8lfdi73km5x8&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■6">
-      <img src="https://media2.giphy.com/media/uTmqqFKOMIP57Nr3gz/giphy.gif?cid=6c09b952o7jamvxzg3n1xnua98ekx49ph11e4m8us9j6whvb&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■7">
+<head>
+  <meta charset="UTF-8">
+  <title>Animated Scrolling Images | Webdevtrick.com</title>
+
+</head>
+
+<body>
+
+  <div class="main">
+
+    <div class="single-column">
+      <a href="#"><img src="https://picsum.photos/300/300?random=1" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=2" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=3" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=4" alt="image"></a>
     </div>
-    <div class="marquee-track duplicate">
-      <img src="https://media2.giphy.com/media/JDXuoS4eWlYAEHyL7G/giphy.gif?cid=6c09b9521gpczxl5dxvkbynyux5iij991cvx3rc9cux2of4l&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■1">
-      <img src="https://media4.giphy.com/media/a2vstZP9SvLA4/giphy.gif?cid=6c09b95246xibinsr727fgkg18fjkezpc1rc9847dp40cmn0&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■2">
-      <img src="https://media3.giphy.com/media/kesNMJU1kLFJdc7FcB/giphy.gif?cid=6c09b952103249g727b2uhcaczgotec8sb1a29ds0y36jrm5&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■3">
-      <img src="https://media1.giphy.com/media/VoVQ6zWVMjUuGUz8bu/giphy.gif?cid=6c09b952amdyvd0dtlgxc0di0ezm8cmfyglbs8p25my43l34&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■4">
-      <img src="https://media3.giphy.com/media/d3JtHt5NsKmvqcJa/giphy.gif?cid=6c09b9523rfgwfg782kwmqutjcn1s8tteaknmbnxib22wl98&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■5">
-      <img src="https://media1.giphy.com/media/l0MYGUj44SjMKnurm/giphy.gif?cid=6c09b952hipiyb4056xjt3mmz8lur87jy9ptf5gatt6x9ejz&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■6">
-      <img src="https://media3.giphy.com/media/lQO6mff5fnwzK/giphy.gif?cid=6c09b9522dgfx6huk59tkyy0jv8crauj943xbscy0p5v536z&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■7">
+    <div class="single-column">
+      <a href="#"><img src="https://picsum.photos/300/300?random=5" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=6" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=7" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=8" alt="image"></a>
     </div>
-  </section>
+    <div class="single-column">
+      <a href="#"><img src="https://picsum.photos/300/300?random=9" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=10" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=11" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=12" alt="image"></a>
+    </div>
+    <div class="single-column">
+      <a href="#"><img src="https://picsum.photos/300/300?random=13" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=14" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=15" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=16" alt="image"></a>
+    </div>
+    <div class="single-column">
+      <a href="#"><img src="https://picsum.photos/300/300?random=17" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=18" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=19" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=20" alt="image"></a>
+    </div>
+    <div class="single-column">
+      <a href="#"><img src="https://picsum.photos/300/300?random=21" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=22" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=23" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=24" alt="image"></a>
+    </div>
+    <div class="single-column">
+      <a href="#"><img src="https://picsum.photos/300/300?random=25" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=26" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=27" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=28" alt="image"></a>
+    </div>
+    <div class="single-column">
+      <a href="#"><img src="https://picsum.photos/300/300?random=29" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=30" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=31" alt="image"></a>
+      <a href="#"><img src="https://picsum.photos/300/300?random=32" alt="image"></a>
+    </div>
+  </div>
+</body>
 
-  <script>
-    // JavaScript to adjust marquee speed on different screen sizes
-    document.addEventListener('DOMContentLoaded', () => {
-      const track = document.querySelectorAll('.marquee-track');
-      const containerWidth = document.querySelector('.marquee-container').offsetWidth;
-
-      // Update animation duration dynamically based on the total width of images
-      track.forEach(el => {
-        const totalWidth = Array.from(el.children).reduce((acc, img) => acc + img.offsetWidth, 0);
-        const speed = totalWidth / containerWidth * 15; // Adjust this multiplier for speed
-        el.style.animationDuration = `${speed}s`;
-      });
-    });
-  </script>
+</html>
+<!-- partial -->
+  <script  src="./script.js"></script>
 
 </body>
 </html>
