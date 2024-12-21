@@ -10,38 +10,34 @@
       padding: 0;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       background-color: #333;
+      flex-direction: column; /* Stack rows vertically */
     }
 
     .image-container {
-      width: 100%;
+      width: 80%; /* Adjust as needed */
       overflow: hidden;
       position: relative;
       display: flex;
-      margin: 20px 0; /* Space between marqueeRow */
-    }
-    
-    .marqueeRow {
-      display: flex;
-      animation: marquee-loop 16s linear infinite;
-    }
-    @keyframes marquee-loop {
-      0% {transform: translateX(0);}
-      100% {transform: translateX(-50%);}
+      margin-bottom: 20px; /* Space between rows */
     }
 
-    .image-container:hover .marqueeRow {
+    .image-row {
+      display: flex;
+      animation: scroll-row 16s linear infinite;
+    }
+
+    .image-container:hover .image-row {
       animation-play-state: paused; /* Pause animation on hover */
     }
 
-    .marqueeRow a {
+    .image-row a {
       display: block; /* Make links clickable */
     }
 
-    .marqueeRow img {
+    .image-row img {
       height: 200px; /* Set consistent height for images */
       width: auto; /* Maintain aspect ratio */
       margin-right: 10px; /* Spacing between images */
@@ -55,34 +51,79 @@
       opacity: 0.5; /* Dim all images when container is hovered */
     }
 
-    .marqueeRow img:hover {
+    .image-row img:hover {
       opacity: 1; /* Highlight image on individual hover */
+    }
+
+    @keyframes scroll-row {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
     }
   </style>
 </head>
 <body>
-  <!-- First Scrolling Image Row -->
   <div class="image-container">
-    <div class="marqueeRow">
-      <a href="#"><img src="https://picsum.photos/300/200?random=1" alt="Image 1"></a>
-      <a href="#"><img src="https://picsum.photos/300/200?random=2" alt="Image 2"></a>
-      <a href="#"><img src="https://picsum.photos/300/200?random=3" alt="Image 3"></a>
-      <a href="#"><img src="https://picsum.photos/300/200?random=4" alt="Image 4"></a>
-      <a href="#"><img src="https://picsum.photos/300/200?random=5" alt="Image 5"></a>
-      <a href="#"><img src="https://picsum.photos/300/200?random=6" alt="Image 6"></a>
-      <a href="#"><img src="https://picsum.photos/300/200?random=7" alt="Image 7"></a>
-      <a href="#"><img src="https://picsum.photos/300/200?random=8" alt="Image 8"></a>
-      <a href="#"><img src="https://picsum.photos/300/200?random=9" alt="Image 9"></a>
-      <a href="#"><img src="https://picsum.photos/300/200?random=10" alt="Image 10"></a>
+    <div class="image-row">
+      <a href="#">
+        <img src="https://media0.giphy.com/media/l0O9xVx5v3YHYjGgM/giphy.gif?cid=6c09b95259qmwm2h16lqxtkw6ij63l8tz2okpwd99n0skxzi&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■1">
+      </a>
+      <a href="#">
+        <img src="https://media1.giphy.com/media/cpO6VvIo0mW9q/giphy.gif?cid=6c09b95286oxtxj57s4ow6lly7n1t02itkc2hhf22lv7rl60&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■2">
+      </a>
+      <a href="#">
+        <img src="https://media3.giphy.com/media/3o6EhE8pukIRNaPyOQ/giphy.gif?cid=6c09b952mqf2hor3oy2kvjyr828kgajq93j5avu6b7adp7bg&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■3">
+      </a>
+      <a href="#">
+        <img src="https://media3.giphy.com/media/ldKjshoVdTNgblMuLs/giphy.gif?cid=6c09b952y6d2tskemo4o42hn1s33ia3omz5sah23yyc2vir4&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■4">
+      </a>
+      <a href="#">
+        <img src="https://media0.giphy.com/media/LpBKayD38zvwKx1qz8/giphy.gif?cid=6c09b952id4zj1ktkq86i4jl7f7smjuk7bqnkhdhmz4p8app&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■5">
+      </a>
+      <a href="#">
+        <img src="https://media0.giphy.com/media/5UB6zSb0ez6ru3pOhb/giphy.gif?cid=6c09b952rie1o9ot95434cqsrlw81g3o0vyo8lfdi73km5x8&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■6">
+      </a>
+      <a href="#">
+        <img src="https://media2.giphy.com/media/uTmqqFKOMIP57Nr3gz/giphy.gif?cid=6c09b952o7jamvxzg3n1xnua98ekx49ph11e4m8us9j6whvb&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■7">
+      </a>
+    </div>
+  </div>
+
+  <div class="image-container">
+    <div class="image-row">
+      <a href="#">
+        <img src="https://media3.giphy.com/media/9J7gOQ0z5w6YfgWdzV/giphy.gif?cid=6c09b952p3sfo2ybq3f4y8zdtj9lggpyx7bdm3d4yo87scgx&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■8">
+      </a>
+      <a href="#">
+        <img src="https://media1.giphy.com/media/ZkZDLfpXxe4JnoMz7I/giphy.gif?cid=6c09b952ni2v54lqg6l3phf9hj7b6gnatpl0txkzqntww4i7&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■9">
+      </a>
+      <a href="#">
+        <img src="https://media2.giphy.com/media/3oEjI1pQkJluwv3hw4/giphy.gif?cid=6c09b9526ro9m7jl6wjvj32bggboqnntffwdrp8js5o9z1g&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■10">
+      </a>
+      <a href="#">
+        <img src="https://media0.giphy.com/media/26gJbuR5xB7rFJhe4/giphy.gif?cid=6c09b9523jpd5gslx1qlz1dxlklwmh6h7f7c5sozkf6eqjlw&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■11">
+      </a>
+      <a href="#">
+        <img src="https://media1.giphy.com/media/J0zQxfvVe4klg/giphy.gif?cid=6c09b952x9g7y97f7xzqxrbq43otv7jw2m5k9v9u6atnt4nk&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■12">
+      </a>
+      <a href="#">
+        <img src="https://media2.giphy.com/media/3o7qE9SpRzkY1hLVRi/giphy.gif?cid=6c09b9528au8h8j9tr1y0x7sdpjkwcdndb85zh41l3jzzpdm&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■13">
+      </a>
+      <a href="#">
+        <img src="https://media0.giphy.com/media/4uYz8sB34MzsY/giphy.gif?cid=6c09b952s7xxuxuzwbhqvyyu1ok7f8hkp8g3ptc03g4ojkc&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="■14">
+      </a>
     </div>
   </div>
   
   <script>
-    const marqueeRows = document.querySelectorAll('.marqueeRow');
+    const imageRows = document.querySelectorAll('.image-row');
 
-    // Clone each marqueeRow to create seamless loops
-    marqueeRows.forEach(row => {
-      row.innerHTML += row.innerHTML;
+    imageRows.forEach((imageRow) => {
+      // Clone each image row to create a seamless loop
+      imageRow.innerHTML += imageRow.innerHTML;
     });
   </script>
 </body>
