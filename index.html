@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scrolling Image Row</title>
+  <title>Continuous Scrolling Image Row</title>
   <style>
     body {
       margin: 0;
@@ -16,28 +16,25 @@
     }
 
     .image-container {
-      width: 100%;
-      overflow: hidden;
+      width: 100%; /* Full width */
+      overflow: hidden; /* Hide overflow */
       background: #333;
     }
 
     .image-row {
       display: flex;
-      animation: scroll-horizontal 16s linear infinite;
+      animation: scroll-horizontal 6s linear infinite;
     }
 
     .image-row img {
-      height: 200px; /* Fixed height for all images */
+      height: 200px; /* Fixed height */
       width: auto; /* Maintain aspect ratio */
       border: 2px solid white;
       box-sizing: border-box;
       margin: 0;
     }
 
-    .image-row:hover {
-      animation-play-state: paused;
-    }
-
+    /* Keyframes for horizontal scrolling */
     @keyframes scroll-horizontal {
       0% {
         transform: translateX(0);
@@ -45,6 +42,10 @@
       100% {
         transform: translateX(-100%);
       }
+    }
+
+    .image-row:hover {
+      animation-play-state: paused; /* Pause on hover */
     }
   </style>
 </head>
@@ -60,9 +61,10 @@
   </div>
 
   <script>
-    // JavaScript to duplicate the image-row for seamless looping
     const imageRow = document.querySelector('.image-row');
-    imageRow.innerHTML += imageRow.innerHTML; // Duplicate images for seamless scroll
+
+    // Duplicate the row for a seamless scrolling effect
+    imageRow.innerHTML += imageRow.innerHTML;
   </script>
 </body>
 </html>
