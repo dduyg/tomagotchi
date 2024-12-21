@@ -24,20 +24,20 @@
       gap: 20px; /* Space between rows */
     }
 
-    .image-row {
+    .marqueeRow {
       display: flex;
       animation: scroll-row 16s linear infinite;
     }
 
-    .image-container:hover .image-row {
+    .image-container:hover .marqueeRow {
       animation-play-state: paused; /* Pause animation on hover */
     }
 
-    .image-row a {
+    .marqueeRow a {
       display: block; /* Make links clickable */
     }
 
-    .image-row img {
+    .marqueeRow img {
       height: 200px; /* Set consistent height for images */
       width: auto; /* Maintain aspect ratio */
       margin-right: 10px; /* Spacing between images */
@@ -51,7 +51,7 @@
       opacity: 0.5; /* Dim all images when container is hovered */
     }
 
-    .image-row img:hover {
+    .marqueeRow img:hover {
       opacity: 1; /* Highlight image on individual hover */
     }
 
@@ -67,8 +67,8 @@
 </head>
 <body>
   <div class="image-container">
-    <!-- First Image Row -->
-    <div class="image-row">
+    <!-- First Marquee Row -->
+    <div class="marqueeRow">
       <a href="#">
         <img src="https://media0.giphy.com/media/l0O9xVx5v3YHYjGgM/giphy.gif" alt="■1">
       </a>
@@ -86,8 +86,8 @@
       </a>
     </div>
 
-    <!-- Second Image Row -->
-    <div class="image-row">
+    <!-- Second Marquee Row -->
+    <div class="marqueeRow">
       <a href="#">
         <img src="https://media3.giphy.com/media/WNViO9zKMeOBG2pkW4/giphy.gif" alt="▲1">
       </a>
@@ -107,11 +107,11 @@
   </div>
   
   <script>
-    const imageRows = document.querySelectorAll('.image-row');
+    const marqueeRows = document.querySelectorAll('.marqueeRow');
 
-    // Clone each image row to create seamless loops
-    imageRows.forEach(imageRow => {
-      imageRow.innerHTML += imageRow.innerHTML;
+    // Clone each marquee row to create seamless loops
+    marqueeRows.forEach(marqueeRow => {
+      marqueeRow.innerHTML += marqueeRow.innerHTML;
     });
   </script>
 </body>
