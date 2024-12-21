@@ -1,99 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Liminal Loop</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #333;
-      flex-direction: column;
-      overflow-y: hidden;
-    }
+  <title>Marquees With GSAP - Reversed Directions</title>
+  <link rel="stylesheet" href="./style.css">
 
-    section {
-      width: 100%;
-      overflow: hidden;
-      position: relative;
-      display: flex;
-      margin-bottom: 20px; /* Space between marqueeRows */
-    }
-    .marqueeRow {
-      display: flex;
-      animation: marquee-loop 18s linear infinite;
-    }
-    @keyframes marquee-loop {
-      0% {transform: translateX(0);}
-      100% {transform: translateX(-50%);}
-    }
-    .marqueeRow img {
-      height: 200px; /* Set consistent height for images */
-      width: auto; /* Maintain aspect ratio */
-      margin-right: 10px; /* Spacing between images */
-      border: 1px solid black;
-      box-sizing: border-box;
-      transition: opacity 0.3s, border-color 0.3s;
-    }
-
-    .marqueeRow a {
-      display: block; /* Make links clickable */
-    }
-    section:hover .marqueeRow {
-      animation-play-state: paused; /* Pause animation on hover */
-    }
-    section:hover img {
-      opacity: 0.5; /* Dim all images when container is hovered */
-    }
-    .marqueeRow img:hover {
-      opacity: 1; /* Highlight image on individual hover */
-      border-color: white;
-    }
-  </style>
 </head>
 <body>
-  <section>
-    <div class="marqueeRow">
-      <a href="#"><img src="https://media4.giphy.com/media/5wWf7GTnrJzCgDCuykg/giphy.gif" alt="■1"></a>
-      <a href="#"><img src="https://media0.giphy.com/media/4NcX1auv4Ygxf84oN0/giphy.gif" alt="■2"></a>
-      <a href="#"><img src="https://media3.giphy.com/media/63LSrvmDRZ2e1R0Dd4/giphy.gif" alt="■3"></a>
-      <a href="#"><img src="https://media2.giphy.com/media/YHc0ao3KN9acE/giphy.gif" alt="■4"></a>
-      <a href="#"><img src="https://media3.giphy.com/media/NsIBu59UayE8l3ozGN/giphy.gif" alt="■5"></a>
-      <a href="#"><img src="https://media2.giphy.com/media/3oEdv5o1Vf0cfDbNsY/giphy.gif" alt="■6"></a>
-      <a href="#"><img src="https://media0.giphy.com/media/HVdvU0U6VqdjO/giphy.gif" alt="■7"></a>
-      <a href="#"><img src="https://media4.giphy.com/media/3oEdv6s0cZk5hSo2C4/giphy.gif" alt="■8"></a>
-      <a href="#"><img src="https://media2.giphy.com/media/26gsruFdEtuDzrEZy/giphy.gif" alt="■9"></a>
-      <a href="#"><img src="https://media3.giphy.com/media/kyUZLwiq8v1pC/giphy.gif" alt="■10"></a>
-    </div>
-  </section>
+<!-- partial:index.partial.html -->
+<div class="text">
+  <h1>Our Best Clients 💫</h1>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus corporis beatae dignissimos eum optio voluptas totam hic! Minus quae similique, atque at possimus voluptate maxime eum nostrum deserunt excepturi eaque!</p>
+</div>
+<div class="marquee" data-reversed="false">
+  <div class="marquee-item">
+    <img width="176" height="40" src="https://assets.codepen.io/162656/marquee-logo1.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="186" height="41" src="https://assets.codepen.io/162656/marquee-logo2.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="138" height="36" src="https://assets.codepen.io/162656/marquee-logo3.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="138" height="30" src="https://assets.codepen.io/162656/marquee-logo4.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="169" height="40" src="https://assets.codepen.io/162656/marquee-logo5.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="109" height="43" src="https://assets.codepen.io/162656/marquee-logo6.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="73" height="49" src="https://assets.codepen.io/162656/marquee-logo7.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="127" height="39" src="https://assets.codepen.io/162656/marquee-logo8.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="49" height="48" src="https://assets.codepen.io/162656/marquee-logo9.svg" alt="" />
+  </div>
+  <div class="marquee-item">
+    <img width="161" height="44" src="https://assets.codepen.io/162656/marquee-logo10.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="160" height="46" src="https://assets.codepen.io/162656/marquee-logo11.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="167" height="41" src="https://assets.codepen.io/162656/marquee-logo12.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="125" height="40" src="https://assets.codepen.io/162656/marquee-logo13.svg" alt="" />
+  </div>
+  <div class="marquee-item">
+    <img width="170" height="41" src="https://assets.codepen.io/162656/marquee-logo14.svg" alt="client logo">
+  </div>
+</div>
+<div class="marquee" data-reversed="true">
+  <div class="marquee-item">
+    <img width="138" height="36" src="https://assets.codepen.io/162656/marquee-logo3.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="49" height="48" src="https://assets.codepen.io/162656/marquee-logo9.svg" alt="" />
+  </div>
+  <div class="marquee-item">
+    <img width="138" height="30" src="https://assets.codepen.io/162656/marquee-logo4.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="138" height="30" src="https://assets.codepen.io/162656/marquee-logo12.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="109" height="43" src="https://assets.codepen.io/162656/marquee-logo6.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="169" height="40" src="https://assets.codepen.io/162656/marquee-logo5.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="160" height="46" src="https://assets.codepen.io/162656/marquee-logo11.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="127" height="39" src="https://assets.codepen.io/162656/marquee-logo8.svg" alt="" />
+  </div>
+  <div class="marquee-item">
+    <img width="73" height="49" src="https://assets.codepen.io/162656/marquee-logo7.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="125" height="40" src="https://assets.codepen.io/162656/marquee-logo13.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="170" height="41" src="https://assets.codepen.io/162656/marquee-logo14.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="161" height="44" src="https://assets.codepen.io/162656/marquee-logo10.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="176" height="40" src="https://assets.codepen.io/162656/marquee-logo1.svg" alt="client logo" />
+  </div>
+  <div class="marquee-item">
+    <img width="186" height="41" src="https://assets.codepen.io/162656/marquee-logo2.svg" alt="client logo">
+  </div>
+</div>
 
-  <section>
-    <div class="marqueeRow">
-      <a href="#"><img src="https://media1.giphy.com/media/iIkZ9Wr3Nmoso/giphy.gif" alt="▲1"></a>
-      <a href="#"><img src="https://media0.giphy.com/media/26DOsHq2SO4Q6EZ5S/giphy.gif" alt="▲2"></a>
-      <a href="#"><img src="https://media1.giphy.com/media/Wt7eEwHMyIqv41xYOT/giphy.gif" alt="▲3"></a>
-      <a href="#"><img src="https://media2.giphy.com/media/3oEduRTc9kTSXqAONW/giphy.gif" alt="▲4"></a>
-      <a href="#"><img src="https://media1.giphy.com/media/l0HeeoqBiadJAhG00/giphy.gif" alt="▲5"></a>
-      <a href="#"><img src="https://media2.giphy.com/media/vRmHkwT4MTrBm/giphy.gif" alt="▲6"></a>
-      <a href="#"><img src="https://media4.giphy.com/media/xTiTnE66Hxlhdxbfkk/giphy.gif" alt="▲7"></a>
-      <a href="#"><img src="https://media4.giphy.com/media/l0HlFI7bgkQSAfq2k/giphy.gif" alt="▲8"></a>
-      <a href="#"><img src="https://media3.giphy.com/media/26gs8tpXJEJHGQxYk/giphy.gif" alt="▲9"></a>
-      <a href="#"><img src="https://media3.giphy.com/media/3o72F2Dqixj9MT79AI/giphy.gif" alt="▲10"></a>
-    </div>
-  </section>
-  
-  <script>
-    const marqueeRows = document.querySelectorAll('.marqueeRow');
+<footer class="page-footer">
+  <span>made by </span>
+  <a href="https://georgemartsoukos.com/" target="_blank">
+    <img width="24" height="24" src="https://assets.codepen.io/162656/george-martsoukos-small-logo.svg" alt="George Martsoukos logo">
+  </a>
+</footer>
+<!-- partial -->
+  <script src='https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js'></script><script  src="./script.js"></script>
 
-    marqueeRows.forEach((marqueeRow) => {
-      // Clone each marqueeRow to create a seamless loop
-      marqueeRow.innerHTML += marqueeRow.innerHTML;
-    });
-  </script>
 </body>
 </html>
