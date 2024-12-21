@@ -3,36 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stacked Animation</title>
+  <title>🫧Liminal Loop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Wire+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300..800&display=swap" rel="stylesheet">
   <style>
-    /* Base styles */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-      color: #333;
-      text-align: center;
-      line-height: 1.8;
-    }
-    main {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    div, h1, footer {
-      background-color: #fff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 20px;
-      margin: 20px 0;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    footer {
-         background-color: #ddd;
-    }
-
-
     .hidden { /* Initial animation state */
       opacity: 0;
       transform: translateY(-96px);
@@ -46,16 +21,102 @@
       opacity: 1;
       transform: none;
     }
+    * {  /* General Reset */
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Host Grotesk", sans-serif;
+      background: #f9f9f9;
+      color: #282c34;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+    main {
+      width: 95%;
+      margin: 0 auto;
+      padding: 30% 5% 1rem;
+    }
+    header {
+      font-family: "Wire One", serif;
+    }
+    
+    section {
+      padding-top: 50px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .birinci {
+      flex: 0 0 60%;
+    }
+    .ikinci {
+      flex: 0 0 40%;
+    }
+    @media (max-width: 768px) {
+      section {
+        flex-direction: column;
+        gap: 20px 0;
+      }
+      .birinci,
+      .ikinci {
+        flex: 0 0 100%;
+      }
+    }
+    section h3 {
+      font-size: 2.111rem;
+      line-height: 2.111rem;
+      font-family: "Kode Mono", monospace;
+    }
+    section p {
+      border-top: 2px solid;
+      text-align: justify;
+      font-size: 0.778rem;
+    }
+    section p:last-child {
+      border-bottom: 2px solid;
+    }
+    .start p {
+      display: flex;
+      justify-content: space-between; 
+    }
   </style>
 </head>
 <body>
-<main>
-  <h1>Elementum ○</h1>   
-  <div>Content Box 1</div>
-  <div>Content Box 2</div>
-  <div>Content Box 3</div>  
-  <footer class="no-animate">FooterSection</footer>
-</main>  
+  <main>
+      <section>
+        <div class="birinci">
+           <!-- the empty one -->
+        </div>
+        <div class="ikinci start">
+            <p><span>aquatic networks</span> <span>streaming light</span></p>
+            <p><span>digital shadows</span> <span>hackers pierce virtual veils</span></p>
+            <p><span>coral circuits</span> <span>code flows like waves</span></p>
+        </div>
+      </section>
+
+      <section>
+        <div class="birinci">
+          <h3>▇▇ aqua mainframe |</h3>
+          <p>writing data in currents</p>
+          <p>debugging the ocean's logic</p>
+          <p>hackers thrive in shadows</p>
+          <p>oceanic data streams ripple through the system</p>
+          <p>programming in the sea of infinite possibilities and data</p>         
+        </div>
+        <div class="ikinci">
+          <h3>▇▇ databanks | a few of many</h3>
+          <p>Quantum Cipher* ▪ Neural Echoes ▪ Data Splice ▪ 7C3</p>
+          <p>Pixeltides ▪  Datadiver ▪ CircuitVeil ▪ binary.seas*</p>
+          <p>Bitstream* ▪ ZERO ▪  Waveform Algorithm ▪  byte.tides</p>
+          <p>Seapunk encryptions ▪  seashell.syntax ▪ Wave Prediction ▪ Coral Codebase</p>
+          <p>* submerged in data</p>  
+        </div>
+      </section>
+    
+      <footer class="no-animate">FooterSection</footer>
+  </main>  
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
