@@ -70,10 +70,13 @@
       font-size: 11px;
       font-family: monospace;
       cursor: pointer;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
     }
     summary {
-      list-style: none;
-      appearance: none;
+      list-style: none; /* Remove the default arrow */
+      appearance: none; /* Ensure removing the default arrow cross browsers */
+      -webkit-appearance: none;   
     }
     summary::before { /* add custom symbol before summary */
       content: "►";
@@ -89,6 +92,9 @@
     details[open] summary {
       color: red;
     }
+    details p {
+      padding: 5% 10%;
+    }
   </style>
 </head>
 <body>
@@ -103,7 +109,7 @@
     
       <footer class="no-animate">
         <details><summary>bytecode battles</summary>
-          <p>Here is some additional content styled with CSS.</p>
+          <p>—original -96px animation, with same movement direction as replica</p>
         </details>
       </footer>
   </main>  
