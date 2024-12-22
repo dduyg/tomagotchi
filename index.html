@@ -93,23 +93,21 @@
             appearance: none; /* Ensure removing the default arrow cross browsers */
             -webkit-appearance: none;
             cursor: pointer;
-            padding-left: 20px; /* Space for the image */
             position: relative;
         }
         summary::before {
             content: "";
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 1em;
-            height: 1em;
+            display: inline-block;
+            width: 1.3em;
+            height: 1.3em;
             background: url('https://media1.giphy.com/media/afgh9T8k8tVqU/giphy.gif') no-repeat center;
             background-size: contain;
+            margin-right: 10px; /* Space between image and text */
+            vertical-align: middle; /* Align the image with the text vertically */
             transition: transform 0.3s ease;
         }
         details[open] summary::before {
-            transform: rotate(90deg) translateY(-50%); /* Ensure consistent vertical centering */
+            transform: rotate(90deg);
         }
         details p {
             padding: 5% 10%;
