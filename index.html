@@ -6,18 +6,11 @@
     <title>Liminal Loop</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap" rel="stylesheet">
     <style>
-        .hidden { /* Initial animation state */
-            opacity: 0;
-            transform: translateY(-96px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }  
-        .visible { /* Final animation state */
-            opacity: 1;
-            transform: translateY(0);
+        .hidden {
+            opacity: 0; transform: translateY(50px); transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-        .no-animate { /* Add this to exclude elements→ class="no-animate" */
-            opacity: 1;
-            transform: none;
+        .visible {
+            opacity: 1; transform: translateY(0);
         }
 
         body {
@@ -153,35 +146,22 @@
   </main>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Select all elements within <main>, excluding those with the "no-animate" class
-      const mainElements = Array.from(document.querySelectorAll('main *'))
-        .filter(el => !el.classList.contains('no-animate'));
+    document.addEventListener("DOMContentLoaded", () => {
+      const elements = document.querySelectorAll('main > *'); // Select all direct children of <main>
 
-      // Add the "hidden" class to elements
-      mainElements.forEach((el) => {
-        el.classList.add('hidden');
-      });
+      // Add the hidden class to all elements
+      elements.forEach(element => element.classList.add('hidden'));
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              // Calculate delay in reverse order
-              const delay = (mainElements.length - mainElements.indexOf(entry.target)) * 100; // Adjust stagger delay between elements (100ms)
-              setTimeout(() => {
-                entry.target.classList.add('visible');
-              }, delay);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
 
-      // Observe all animatable elements
-      mainElements.forEach((el) => {
-        observer.observe(el);
-      });
+      elements.forEach(element => observer.observe(element));
     });
   </script>
 </body>
