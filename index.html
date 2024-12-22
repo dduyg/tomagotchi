@@ -3,90 +3,106 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Custom Marquee</title>
+  <title>Pure Marquee Animation</title>
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-
     body {
-      font-family: Arial, sans-serif;
-      background: #f0f0f0;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      height: 100vh;
+      gap: 20px;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+      padding: 20px;
     }
-
-    .marquee-container {
-      width: 80%;
-      overflow: hidden;
-      border: 2px solid #ddd;
-      background: #fff;
+    .marquee {
       position: relative;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      overflow: hidden;
+      width: 100%;
+      max-width: 800px;
       height: 150px;
+      border: 1px solid #ddd;
+      background: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-
     .marquee-track {
       display: flex;
-      gap: 20px;
-      position: absolute;
-      white-space: nowrap;
-      animation: marquee-animation linear infinite;
+      gap: 10px;
+      animation: scroll-left linear infinite;
+      will-change: transform;
     }
-
+    .marquee[data-reversed="true"] .marquee-track {
+      animation: scroll-right linear infinite;
+    }
     .marquee-item {
       flex-shrink: 0;
       height: 100%;
       width: auto;
     }
-
-    /* Animation Keyframes */
-    @keyframes marquee-animation {
+    @keyframes scroll-left {
       from {
-        transform: translateX(0%);
+        transform: translateX(0);
       }
       to {
         transform: translateX(-100%);
       }
     }
+    @keyframes scroll-right {
+      from {
+        transform: translateX(-100%);
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Marquee Container -->
-  <div class="marquee-container" data-speed="10">
+  <section class="marquee" data-reversed="false">
     <div class="marquee-track">
-      <img class="marquee-item" src="https://via.placeholder.com/150/FF0000/FFFFFF" alt="Item 1">
-      <img class="marquee-item" src="https://via.placeholder.com/150/00FF00/FFFFFF" alt="Item 2">
-      <img class="marquee-item" src="https://via.placeholder.com/150/0000FF/FFFFFF" alt="Item 3">
-      <img class="marquee-item" src="https://via.placeholder.com/150/FFFF00/FFFFFF" alt="Item 4">
+      <img class="marquee-item" src="https://media0.giphy.com/media/l0O9xVx5v3YHYjGgM/giphy.gif" alt="Image 1">
+      <img class="marquee-item" src="https://media1.giphy.com/media/cpO6VvIo0mW9q/giphy.gif" alt="Image 2">
+      <img class="marquee-item" src="https://media3.giphy.com/media/3o6EhE8pukIRNaPyOQ/giphy.gif" alt="Image 3">
+      <img class="marquee-item" src="https://media3.giphy.com/media/ldKjshoVdTNgblMuLs/giphy.gif" alt="Image 4">
     </div>
-  </div>
+  </section>
+
+  <section class="marquee" data-reversed="true">
+    <div class="marquee-track">
+      <img class="marquee-item" src="https://media2.giphy.com/media/JDXuoS4eWlYAEHyL7G/giphy.gif" alt="Image 5">
+      <img class="marquee-item" src="https://media4.giphy.com/media/a2vstZP9SvLA4/giphy.gif" alt="Image 6">
+      <img class="marquee-item" src="https://media3.giphy.com/media/kesNMJU1kLFJdc7FcB/giphy.gif" alt="Image 7">
+      <img class="marquee-item" src="https://media1.giphy.com/media/VoVQ6zWVMjUuGUz8bu/giphy.gif" alt="Image 8">
+    </div>
+  </section>
 
   <script>
-    // Custom Marquee Implementation
-    document.addEventListener('DOMContentLoaded', () => {
-      const marqueeContainer = document.querySelector('.marquee-container');
-      const marqueeTrack = document.querySelector('.marquee-track');
-      const speed = parseInt(marqueeContainer.dataset.speed, 10) || 10; // Speed in seconds
+    document.addEventListener("DOMContentLoaded", () => {
+      const marquees = document.querySelectorAll('.marquee');
 
-      // Clone the marquee content to create a seamless loop
-      marqueeTrack.innerHTML += marqueeTrack.innerHTML;
+      marquees.forEach(marquee => {
+        const track = marquee.querySelector('.marquee-track');
+        const items = Array.from(track.children);
+        const itemWidth = items[0].offsetWidth + 10; // Account for gap
+        const trackWidth = itemWidth * items.length;
 
-      // Calculate the width of the track and apply animation
-      const trackWidth = marqueeTrack.scrollWidth / 2; // Only the original width matters
-      marqueeTrack.style.animationDuration = `${trackWidth / speed}s`;
+        // Duplicate items to fill the marquee for smooth scrolling
+        while (track.offsetWidth < marquee.offsetWidth * 2) {
+          items.forEach(item => {
+            const clone = item.cloneNode(true);
+            track.appendChild(clone);
+          });
+        }
 
-      // Reverse direction if needed
-      const reversed = marqueeContainer.dataset.reversed === 'true';
-      if (reversed) {
-        marqueeTrack.style.animationDirection = 'reverse';
-      }
+        // Set animation duration based on the track width
+        const duration = trackWidth / 100; // Speed adjustment factor
+        track.style.animationDuration = `${duration}s`;
+      });
     });
   </script>
 </body>
