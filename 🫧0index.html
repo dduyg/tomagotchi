@@ -8,12 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300..800&display=swap" rel="stylesheet">
   <style>
-    .hidden {
-      opacity: 0; transform: translateY(50px); transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-    .visible {
-      opacity: 1; transform: translateY(0);
-    }
     * {  /* General Reset */
       margin: 0;
       padding: 0;
@@ -140,24 +134,5 @@
       </footer>
   </main>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const elements = document.querySelectorAll('main > *'); // Select all direct children of <main>
-
-      // Add the hidden class to all elements
-      elements.forEach(element => element.classList.add('hidden'));
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-
-      elements.forEach(element => observer.observe(element));
-    });
-  </script>
 </body>
 </html>
