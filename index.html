@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marquee Rows</title>
+  <title>Seamless Marquee</title>
   <style>
     * {
       box-sizing: border-box;
@@ -25,8 +25,8 @@
     .marquee {
       width: 100%;
       overflow: hidden;
-      white-space: nowrap;
       position: relative;
+      white-space: nowrap;
     }
 
     .marquee-content {
@@ -47,22 +47,22 @@
       border-radius: 8px;
     }
 
-    /* Animation for left-scrolling marquee */
+    /* Left-scroll animation */
     @keyframes scroll-left {
-      0% {
-        transform: translateX(100%);
+      from {
+        transform: translateX(0);
       }
-      100% {
+      to {
         transform: translateX(-100%);
       }
     }
 
-    /* Animation for right-scrolling marquee */
+    /* Right-scroll animation */
     @keyframes scroll-right {
-      0% {
-        transform: translateX(-100%);
+      from {
+        transform: translateX(0);
       }
-      100% {
+      to {
         transform: translateX(100%);
       }
     }
@@ -90,10 +90,16 @@
   </section>
 
   <script>
-    document.querySelectorAll('.marquee').forEach((marquee) => {
+    document.querySelectorAll('.marquee').forEach(marquee => {
       const content = marquee.querySelector('.marquee-content');
-      const clonedContent = content.cloneNode(true);
-      content.parentElement.appendChild(clonedContent);
+      const contentWidth = content.scrollWidth;
+      const containerWidth = marquee.offsetWidth;
+
+      // Duplicate content enough times to fill the marquee without gaps
+      while (content.scrollWidth < containerWidth * 2) {
+        const clonedContent = content.cloneNode(true);
+        content.parentElement.appendChild(clonedContent);
+      }
     });
   </script>
 </body>
