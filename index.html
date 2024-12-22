@@ -14,21 +14,17 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 20px;
+      justify-content: center;
+      min-height: 100vh;
       background-color: #f0f0f0;
-      font-family: Arial, sans-serif;
-      padding: 20px;
     }
+
     .marquee {
-      position: relative;
-      display: flex;
-      overflow: hidden;
       width: 100%;
-      max-width: 800px;
-      height: 150px;
-      border: 1px solid #ddd;
-      background: #fff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 900px;
+      overflow: hidden;
+      position: relative;
+      margin: 20px 0;
     }
     .marquee-track {
       display: flex;
@@ -39,26 +35,19 @@
     .marquee[data-reversed="true"] .marquee-track {
       animation: scroll-right linear infinite;
     }
-    .marquee-item {
-      flex-shrink: 0;
-      height: 100%;
-      width: auto;
-    }
     @keyframes scroll-left {
-      from {
-        transform: translateX(0);
-      }
-      to {
-        transform: translateX(-100%);
-      }
+      from {transform: translateX(0);}
+      to {transform: translateX(-100%);}
     }
     @keyframes scroll-right {
-      from {
-        transform: translateX(-100%);
-      }
-      to {
-        transform: translateX(0);
-      }
+      from {transform: translateX(-100%);}
+      to {transform: translateX(0);}
+    }
+
+    .marquee-item {
+      height: 150px;
+      width: auto;
+      border: 1px solid black;
     }
   </style>
 </head>
