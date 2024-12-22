@@ -70,6 +70,41 @@
       bottom: 3vh:
       right: 10%;
     }
+
+.loading {
+  text-transform: uppercase;
+  font-family: 'Lexend Deca', sans-serif;
+  font-weight: bold;
+  font-size: 50pt;
+  height: 120px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100px;
+  bottom: 0;
+  display: block;
+}
+.wave {
+  background-image: url("https://webdevtrick.com/wp-content/uploads/water-wave-blue.png");
+  -moz-background-clip: text;
+  -o-background-clip: text;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0px 0px rgba(255, 255, 255, 0.06);
+  animation: wave-animation 1s infinite linear, loading-animation 10s infinite linear alternate;
+  background-size: 200px 100px;
+  background-repeat: repeat-x;
+  opacity: 1;
+}
+@keyframes wave-animation {
+  0% {background-position: 0 bottom;}
+  100% {background-position: 200px bottom;}
+}
+@keyframes loading-animation {
+  0% {background-size: 200px 0px;}
+  100% {background-size: 200px 200px;}
+}
   </style>
 </head>
 <body>
@@ -82,7 +117,9 @@
         ● elementi (n class, plural elementi) element (simplest or essential part or principle of anything)
       </section>
     
-      <footer class="no-animate">Bytecode Battles</footer>
+      <footer class="no-animate">
+        <div class="loading wave">Bytecode Battles</div>
+      </footer>
   </main>  
 
   <script>
