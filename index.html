@@ -100,8 +100,8 @@
             content: "";
             position: absolute;
             left: 0;
-            top: 0;
-            bottom: 0;
+            top: 50%;
+            transform: translateY(-50%);
             width: 1em;
             height: 1em;
             background: url('https://media1.giphy.com/media/afgh9T8k8tVqU/giphy.gif') no-repeat center;
@@ -109,7 +109,7 @@
             transition: transform 0.3s ease;
         }
         details[open] summary::before {
-            transform: rotate(90deg);
+            transform: rotate(90deg) translateY(-50%); /* Ensure consistent vertical centering */
         }
         details p {
             padding: 5% 10%;
