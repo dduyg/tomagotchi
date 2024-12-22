@@ -49,14 +49,17 @@
     }
 
     h1 {
-      background: url("https://media.giphy.com/media/4H3Ii5eLChYul9p7NL/giphy.gif");
-      background-size: cover;
-      background-position: center;
-      -webkit-background-clip: text;
-      text-transform: uppercase;
-      font-size: 3rem;
-      letter-spacing: 1px;
+      background: url("https://media.giphy.com/media/4H3Ii5eLChYul9p7NL/giphy.gif");
+      background-size: cover;
+      background-position: center;
+      -webkit-background-clip: text;
+      color: transparent; /* Required for background-clip to work */
+      text-transform: uppercase;
+      font-size: 4rem;
+      letter-spacing: 1px;
       user-select: none;
+      -webkit-text-stroke: 2px red; /* Adds stroke for better readability */
+      text-stroke: 2px red; /* Non-prefixed version for wider support */
     }
   </style>
 </head>
