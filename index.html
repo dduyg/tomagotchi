@@ -11,20 +11,18 @@
       padding: 0;
     }
     body {
-      font-family: Arial, sans-serif;
       background: #f0f0f0;
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       height: 100vh;
     }
     .marquee-container {
-      width: 80%;
+      width: 100%;
       overflow: hidden;
-      border: 1px solid #ccc;
-      background: #fff;
       position: relative;
-      height: 150px;
+      margin: 20px 0;
     }
     .marquee {
       display: flex;
@@ -36,22 +34,18 @@
       animation-direction: reverse;
     }
     .marquee-item {
-      flex-shrink: 0;
-      height: 100%;
+      height: 150px;
+      width: auto;
       margin-right: 10px;
     }
     @keyframes scroll {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
+      0% {transform: translateX(0);}
+      100% {transform: translateX(-100%);}
     }
   </style>
 </head>
 <body>
-  <div class="marquee-container">
+  <section class="marquee-container">
     <div class="marquee">
       <img class="marquee-item" src="https://media0.giphy.com/media/l0O9xVx5v3YHYjGgM/giphy.gif" alt="■1">
       <img class="marquee-item" src="https://media1.giphy.com/media/cpO6VvIo0mW9q/giphy.gif" alt="■2">
@@ -61,9 +55,9 @@
       <img class="marquee-item" src="https://media0.giphy.com/media/5UB6zSb0ez6ru3pOhb/giphy.gif" alt="■6">
       <img class="marquee-item" src="https://media2.giphy.com/media/uTmqqFKOMIP57Nr3gz/giphy.gif" alt="■7">
     </div>
-  </div>
+  </section>
 
-  <div class="marquee-container">
+  <section class="marquee-container">
     <div class="marquee reverse">
       <img class="marquee-item" src="https://media2.giphy.com/media/JDXuoS4eWlYAEHyL7G/giphy.gif" alt="■1">
       <img class="marquee-item" src="https://media4.giphy.com/media/a2vstZP9SvLA4/giphy.gif" alt="■2">
@@ -73,7 +67,7 @@
       <img class="marquee-item" src="https://media1.giphy.com/media/l0MYGUj44SjMKnurm/giphy.gif" alt="■6">
       <img class="marquee-item" src="https://media3.giphy.com/media/lQO6mff5fnwzK/giphy.gif" alt="■7">
     </div>
-  </div>
+  </section>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
