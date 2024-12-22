@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Seamless Marquee</title>
+  <title>Seamless Marquee Rows</title>
   <style>
     * {
       box-sizing: border-box;
@@ -18,20 +18,20 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 30px;
       min-height: 100vh;
     }
 
     .marquee {
       width: 100%;
       overflow: hidden;
-      position: relative;
       white-space: nowrap;
+      position: relative;
+      margin: 30px 0;
     }
 
     .marquee-content {
       display: inline-flex;
-      gap: 20px;
+      gap: 10px;
       animation: scroll-left 10s linear infinite;
     }
 
@@ -40,30 +40,28 @@
     }
 
     .marquee-item {
-      width: 150px;
       height: 150px;
-      object-fit: cover;
-      border: 1px solid #ddd;
-      border-radius: 8px;
+      width: auto;
+      border: 1px solid black;
     }
 
-    /* Left-scroll animation */
+    /* Animation for left-scrolling marquee */
     @keyframes scroll-left {
-      from {
+      0% {
         transform: translateX(0);
       }
-      to {
+      100% {
         transform: translateX(-100%);
       }
     }
 
-    /* Right-scroll animation */
+    /* Animation for right-scrolling marquee */
     @keyframes scroll-right {
-      from {
-        transform: translateX(0);
+      0% {
+        transform: translateX(-100%);
       }
-      to {
-        transform: translateX(100%);
+      100% {
+        transform: translateX(0);
       }
     }
   </style>
@@ -90,16 +88,10 @@
   </section>
 
   <script>
-    document.querySelectorAll('.marquee').forEach(marquee => {
+    document.querySelectorAll('.marquee').forEach((marquee) => {
       const content = marquee.querySelector('.marquee-content');
-      const contentWidth = content.scrollWidth;
-      const containerWidth = marquee.offsetWidth;
-
-      // Duplicate content enough times to fill the marquee without gaps
-      while (content.scrollWidth < containerWidth * 2) {
-        const clonedContent = content.cloneNode(true);
-        content.parentElement.appendChild(clonedContent);
-      }
+      const clonedContent = content.cloneNode(true);
+      content.parentElement.appendChild(clonedContent);
     });
   </script>
 </body>
