@@ -3,47 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Custom Marquee</title>
+  <title>Marquee Rows</title>
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      background-color: #f0f0f0;
       display: flex;
       flex-direction: column;
-      gap: 20px;
-      padding: 20px;
-    }
-
-    .marquee-container {
-      width: 100%;
-      max-width: 900px;
-      overflow: hidden;
-      position: relative;
-      margin: 20px 0;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      min-height: 100vh;
     }
 
     .marquee {
-      display: flex;
-      gap: 10px;
-      animation-timing-function: linear;
-      will-change: transform;
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
     }
 
-    .marquee img {
+    .marquee-content {
+      display: inline-flex;
+      gap: 20px;
+      animation: scroll-left 10s linear infinite;
+    }
+
+    .marquee[data-direction="right"] .marquee-content {
+      animation: scroll-right 10s linear infinite;
+    }
+
+    .marquee-item {
+      width: 150px;
       height: 150px;
-      width: auto;
-      margin-right: 10px;
-      border: 1px solid black;
+      object-fit: cover;
+      border: 1px solid #ddd;
+      border-radius: 8px;
     }
 
-    /* Animations */
-    @keyframes marquee-left {
+    /* Animation for left-scrolling marquee */
+    @keyframes scroll-left {
       0% {
         transform: translateX(100%);
       }
@@ -52,7 +57,8 @@
       }
     }
 
-    @keyframes marquee-right {
+    /* Animation for right-scrolling marquee */
+    @keyframes scroll-right {
       0% {
         transform: translateX(-100%);
       }
@@ -63,40 +69,31 @@
   </style>
 </head>
 <body>
-
-  <!-- Marquee moving left -->
-  <div class="marquee-container">
-    <div class="marquee marquee-left">
-      <img src="https://media0.giphy.com/media/l0O9xVx5v3YHYjGgM/giphy.gif" alt="1">
-      <img src="https://media1.giphy.com/media/cpO6VvIo0mW9q/giphy.gif" alt="2">
-      <img src="https://media3.giphy.com/media/3o6EhE8pukIRNaPyOQ/giphy.gif" alt="3">
-      <img src="https://media3.giphy.com/media/ldKjshoVdTNgblMuLs/giphy.gif" alt="4">
+  <section class="marquee" data-direction="left">
+    <div class="marquee-content">
+      <img class="marquee-item" src="https://media0.giphy.com/media/l0O9xVx5v3YHYjGgM/giphy.gif" alt="■1">
+      <img class="marquee-item" src="https://media1.giphy.com/media/cpO6VvIo0mW9q/giphy.gif" alt="■2">
+      <img class="marquee-item" src="https://media3.giphy.com/media/3o6EhE8pukIRNaPyOQ/giphy.gif" alt="■3">
+      <img class="marquee-item" src="https://media3.giphy.com/media/ldKjshoVdTNgblMuLs/giphy.gif" alt="■4">
+      <img class="marquee-item" src="https://media0.giphy.com/media/LpBKayD38zvwKx1qz8/giphy.gif" alt="■5">
     </div>
-  </div>
+  </section>
 
-  <!-- Marquee moving right -->
-  <div class="marquee-container">
-    <div class="marquee marquee-right">
-      <img src="https://media2.giphy.com/media/JDXuoS4eWlYAEHyL7G/giphy.gif" alt="1">
-      <img src="https://media4.giphy.com/media/a2vstZP9SvLA4/giphy.gif" alt="2">
-      <img src="https://media3.giphy.com/media/kesNMJU1kLFJdc7FcB/giphy.gif" alt="3">
-      <img src="https://media1.giphy.com/media/VoVQ6zWVMjUuGUz8bu/giphy.gif" alt="4">
+  <section class="marquee" data-direction="right">
+    <div class="marquee-content">
+      <img class="marquee-item" src="https://media2.giphy.com/media/JDXuoS4eWlYAEHyL7G/giphy.gif" alt="■1">
+      <img class="marquee-item" src="https://media4.giphy.com/media/a2vstZP9SvLA4/giphy.gif" alt="■2">
+      <img class="marquee-item" src="https://media3.giphy.com/media/kesNMJU1kLFJdc7FcB/giphy.gif" alt="■3">
+      <img class="marquee-item" src="https://media1.giphy.com/media/VoVQ6zWVMjUuGUz8bu/giphy.gif" alt="■4">
+      <img class="marquee-item" src="https://media3.giphy.com/media/d3JtHt5NsKmvqcJa/giphy.gif" alt="■5">
     </div>
-  </div>
+  </section>
 
   <script>
-    // Configure marquee speed and direction
     document.querySelectorAll('.marquee').forEach((marquee) => {
-      const container = marquee.parentElement;
-      const clonedMarquee = marquee.cloneNode(true);
-      container.appendChild(clonedMarquee);
-
-      const direction = marquee.classList.contains('marquee-left') ? 'marquee-left' : 'marquee-right';
-      const duration = 10; // Adjust duration for speed (lower = faster)
-
-      marquee.style.animation = `${direction} ${duration}s infinite`;
-      clonedMarquee.style.animation = `${direction} ${duration}s infinite`;
-      clonedMarquee.style.animationDelay = `${duration / 2}s`;
+      const content = marquee.querySelector('.marquee-content');
+      const clonedContent = content.cloneNode(true);
+      content.parentElement.appendChild(clonedContent);
     });
   </script>
 </body>
