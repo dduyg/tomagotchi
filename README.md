@@ -34,7 +34,6 @@
 - Overlock
 - Titillium Web
 - Nunito
-- Glass Antiqua
 - Genos
 - Unbounded
 - Capriola
