@@ -23,6 +23,7 @@
 
     .marquee {
       width: 100%;
+      max-width: 1000px; /* Adjust max width as needed */
       overflow: hidden;
       white-space: nowrap;
       position: relative;
@@ -31,18 +32,19 @@
 
     .marquee-content {
       display: inline-flex;
-      animation: scroll-left 10s linear infinite;
+      gap: 0;
+      animation: scroll-left 20s linear infinite;
     }
 
     .marquee[data-direction="right"] .marquee-content {
-      animation: scroll-right 10s linear infinite;
+      animation: scroll-right 20s linear infinite;
     }
 
     .marquee-item {
       height: 150px;
       width: auto;
-      margin-right: 10px;
       border: 1px solid black;
+      margin-right: 10px;
     }
 
     /* Animation for left-scrolling marquee */
@@ -51,14 +53,14 @@
         transform: translateX(0);
       }
       100% {
-        transform: translateX(-50%);
+        transform: translateX(-100%);
       }
     }
 
     /* Animation for right-scrolling marquee */
     @keyframes scroll-right {
       0% {
-        transform: translateX(50%);
+        transform: translateX(100%);
       }
       100% {
         transform: translateX(0);
