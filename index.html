@@ -71,6 +71,21 @@
       font-family: monospace;
       cursor: pointer;
     }
+    summary {
+      list-style: none;
+      appearance: none;
+    }
+    summary::before { /* add custom symbol before summary */
+      content: "►";
+      display: inline-block;
+      margin-right: 10px;
+      color: red;
+      transform: rotate(0deg);
+      transition: transform 0.3s ease;
+    }
+    details[open] summary::before {
+      transform: rotate(90deg);
+    }
     details[open] summary {
       color: red;
     }
