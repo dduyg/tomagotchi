@@ -69,27 +69,29 @@
       margin-top: 80px;
     }
 
-.loadingWave {
-  display: block;
-  background-image: url("https://webdevtrick.com/wp-content/uploads/water-wave-blue.png");
-  -moz-background-clip: text;
-  -o-background-clip: text;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: 0px 0px rgba(255, 255, 255, 0.06);
-  animation: wave-animation 1s infinite linear, loading-animation 10s infinite linear alternate;
-  background-size: 200px 100px;
-  background-repeat: repeat-x;
-  opacity: 1;
+.loading {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 32px;
+  display: block;
+}
+.wave {
+  background-image: url("https://webdevtrick.com/wp-content/uploads/water-wave-blue.png");
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0px 0px rgba(255, 255, 255, 0.06);
+  animation: wave-animation 1s infinite linear, loading-animation 10s infinite alternate;
+  background-size: 200px 200px; /* Ensure size matches keyframe */
+  background-repeat: repeat-x;
 }
 @keyframes wave-animation {
-  0% {background-position: 0 bottom;}
-  100% {background-position: 200px bottom;}
+  0% { background-position: 0 bottom; }
+  100% { background-position: 200px bottom; }
 }
 @keyframes loading-animation {
-  0% {background-size: 200px 0px;}
-  100% {background-size: 200px 200px;}
+  0% { background-size: 200px 50px; } /* Adjust range */
+  100% { background-size: 200px 200px; }
 }
   </style>
 </head>
@@ -104,7 +106,7 @@
       </section>
     
       <footer class="no-animate">
-        <h3 class="loadingWave">Bytecode Battles</h3>
+        <h3 class="loading wave">Bytecode Battles</h3>
       </footer>
   </main>  
 
