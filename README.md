@@ -103,10 +103,8 @@
 22. Virtual Tides
 1. Codebreaker Chronicles
 3. Zeroes and Ones: The Digital Realm
-4. Hacker’s Matrix
 5. Encryption Odyssey
 6. Cyber Surge
-7. Bytecode Battles
 8. Neural Network Nexus
 9. Firewall Guardians
 14. Virtual Interface
