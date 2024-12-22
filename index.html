@@ -84,6 +84,35 @@
             text-align: center;
             margin-top: 110px;
             font-size: 0.7rem;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;      
+        }
+        summary {
+            list-style: none; /* Remove the default arrow */
+            appearance: none; /* Ensure removing the default arrow cross browsers */
+            -webkit-appearance: none;
+            cursor: pointer;
+            padding-left: 20px; /* Space for the image */
+            position: relative;
+        }
+        summary::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1em;
+            height: 1em;
+            background: url('arrow.png') no-repeat center;
+            background-size: contain;
+            transition: transform 0.3s ease;
+        }
+        details[open] summary::before {
+            transform: rotate(90deg);
+        }
+        details p {
+            padding: 5% 10%;
+            font-size: 32px;
         }
      
         .noise {  /* Original unchanged noise code */
@@ -164,7 +193,9 @@
         </ul>    
 
         <footer>
-            <p><b>⛜⛠&nbsp;&nbsp;</b> Oceanic Modem Waves</p>
+            <details><summary>Oceanic Modem Waves</summary>
+                <p>⛜⛠</p>
+            </details>
         </footer>
     </main>
     <div class="noise"></div>
