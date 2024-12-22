@@ -3,75 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marquee Animation</title>
+  <title>Custom Marquee</title>
   <style>
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
+
     body {
-      padding: 0;
-      margin: 0;
-      background: #f0f0f0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
       display: flex;
       flex-direction: column;
-      align-items: center;
       gap: 20px;
-      font-family: Arial, sans-serif;
+      padding: 20px;
     }
-    .marquee {
-      position: relative;
-      display: flex;
-      gap: 10px;
+
+    .marquee-container {
       overflow: hidden;
+      position: relative;
       width: 100%;
-      max-width: 800px;
       height: 150px;
       background: #fff;
       border: 1px solid #ddd;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-    .marquee-item {
-      width: auto;
-      height: 100%;
+
+    .marquee {
+      display: flex;
+      position: absolute;
+      animation-timing-function: linear;
+      will-change: transform;
+    }
+
+    .marquee img {
+      height: 150px;
+      margin-right: 10px;
       flex-shrink: 0;
+    }
+
+    /* Animations */
+    @keyframes marquee-left {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+
+    @keyframes marquee-right {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(100%);
+      }
     }
   </style>
 </head>
 <body>
-  <section class="marquee" data-reversed="false">
-    <img class="marquee-item" src="https://media0.giphy.com/media/l0O9xVx5v3YHYjGgM/giphy.gif" alt="Image 1">
-    <img class="marquee-item" src="https://media1.giphy.com/media/cpO6VvIo0mW9q/giphy.gif" alt="Image 2">
-    <img class="marquee-item" src="https://media3.giphy.com/media/3o6EhE8pukIRNaPyOQ/giphy.gif" alt="Image 3">
-    <img class="marquee-item" src="https://media3.giphy.com/media/ldKjshoVdTNgblMuLs/giphy.gif" alt="Image 4">
-  </section>
 
-  <section class="marquee" data-reversed="true">
-    <img class="marquee-item" src="https://media2.giphy.com/media/JDXuoS4eWlYAEHyL7G/giphy.gif" alt="Image 5">
-    <img class="marquee-item" src="https://media4.giphy.com/media/a2vstZP9SvLA4/giphy.gif" alt="Image 6">
-    <img class="marquee-item" src="https://media3.giphy.com/media/kesNMJU1kLFJdc7FcB/giphy.gif" alt="Image 7">
-    <img class="marquee-item" src="https://media1.giphy.com/media/VoVQ6zWVMjUuGUz8bu/giphy.gif" alt="Image 8">
-  </section>
+  <!-- Marquee moving left -->
+  <div class="marquee-container">
+    <div class="marquee marquee-left">
+      <img src="https://media0.giphy.com/media/l0O9xVx5v3YHYjGgM/giphy.gif" alt="1">
+      <img src="https://media1.giphy.com/media/cpO6VvIo0mW9q/giphy.gif" alt="2">
+      <img src="https://media3.giphy.com/media/3o6EhE8pukIRNaPyOQ/giphy.gif" alt="3">
+      <img src="https://media3.giphy.com/media/ldKjshoVdTNgblMuLs/giphy.gif" alt="4">
+    </div>
+  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <!-- Marquee moving right -->
+  <div class="marquee-container">
+    <div class="marquee marquee-right">
+      <img src="https://media2.giphy.com/media/JDXuoS4eWlYAEHyL7G/giphy.gif" alt="1">
+      <img src="https://media4.giphy.com/media/a2vstZP9SvLA4/giphy.gif" alt="2">
+      <img src="https://media3.giphy.com/media/kesNMJU1kLFJdc7FcB/giphy.gif" alt="3">
+      <img src="https://media1.giphy.com/media/VoVQ6zWVMjUuGUz8bu/giphy.gif" alt="4">
+    </div>
+  </div>
+
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const marquees = document.querySelectorAll(".marquee");
+    // Configure marquee speed and direction
+    document.querySelectorAll('.marquee').forEach((marquee) => {
+      const container = marquee.parentElement;
+      const clonedMarquee = marquee.cloneNode(true);
+      container.appendChild(clonedMarquee);
 
-      marquees.forEach((marquee) => {
-        const items = gsap.utils.toArray(marquee.querySelectorAll(".marquee-item"));
-        const reversed = marquee.getAttribute("data-reversed") === "true";
-        
-        gsap.timeline({ repeat: -1, defaults: { ease: "none" } })
-          .to(items, {
-            xPercent: -100 * (items.length - 1),
-            duration: items.length * 2,
-            repeat: -1,
-            modifiers: {
-              xPercent: gsap.utils.wrap(-100, 0)
-            }
-          })
-          .set(items, { xPercent: reversed ? 100 : 0 });
-      });
+      const direction = marquee.classList.contains('marquee-left') ? 'marquee-left' : 'marquee-right';
+      const duration = 10; // Adjust duration for speed (lower = faster)
+
+      marquee.style.animation = `${direction} ${duration}s infinite`;
+      clonedMarquee.style.animation = `${direction} ${duration}s infinite`;
+      clonedMarquee.style.animationDelay = `${duration / 2}s`;
     });
   </script>
 </body>
