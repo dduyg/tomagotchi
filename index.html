@@ -6,6 +6,20 @@
     <title>Liminal Loop</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap" rel="stylesheet">
     <style>
+        .hidden { /* Initial animation state */
+            opacity: 0;
+            transform: translateY(-96px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }  
+        .visible { /* Final animation state */
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .no-animate { /* Add this to exclude elements→ class="no-animate" */
+            opacity: 1;
+            transform: none;
+        }
+
         body {
             margin: 0;
             padding: 0;
@@ -15,7 +29,7 @@
             background-color: #222;
             color: #f5f5f5;
         }
-        .container {
+        main {
             display: flex;
             flex-direction: row;
             max-width: 1200px;
@@ -81,7 +95,7 @@
         }
         
         @media (max-width: 768px) {
-            .container {
+            main {
                 flex-direction: column;
                 padding: 100px 10px 10px;
             }
@@ -103,7 +117,7 @@
     </style>
 </head>
 <body>
-  <div class="container">
+  <main>
         <aside class="sidebar">
             <ul>
                 <li>All</li>
@@ -116,7 +130,7 @@
                 <li>劇伴</li>
             </ul>
         </aside>
-        <main class="content">
+        <div class="content">
             <!-- Each entry in the list -->
             <div class="item">
                 <div class="date">2024.08</div>
@@ -135,8 +149,41 @@
             </div>
             <!-- Add additional entries as needed -->
             <!-- ... -->
-        </main>
-    </div>
+        </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Select all elements within <main>, excluding those with the "no-animate" class
+      const mainElements = Array.from(document.querySelectorAll('main *'))
+        .filter(el => !el.classList.contains('no-animate'));
+
+      // Add the "hidden" class to elements
+      mainElements.forEach((el) => {
+        el.classList.add('hidden');
+      });
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // Calculate delay in reverse order
+              const delay = (mainElements.length - mainElements.indexOf(entry.target)) * 100; // Adjust stagger delay between elements (100ms)
+              setTimeout(() => {
+                entry.target.classList.add('visible');
+              }, delay);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      // Observe all animatable elements
+      mainElements.forEach((el) => {
+        observer.observe(el);
+      });
+    });
+  </script>
 </body>
 </html>
 
