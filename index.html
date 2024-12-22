@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liminal Loop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&display=swap" rel="stylesheet">
+    <style>      
+        .slide-in { /* Slide-in animation */
+            opacity: 0;
+            transform: translateY(-30px); /* Start above the normal position */
+            animation: slideIn 1s ease-in-out forwards; /* Slide in with ease-in-out */
+        }
+        @keyframes slideIn { 
+            from { 
+                transform: translateY(-30px); /* Start slightly above */
+                opacity: 0; /* Fully transparent */
+            }
+            to { 
+                transform: translateY(0); /* End at the normal position */
+                opacity: 1; /* Fully visible */
+            }
+        }    
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Open Sans", sans-serif;
+            font-weight: 400;
+            font-variation-settings: 'wght' 400;
+            background-color: #222;
+            color: #f5f5f5;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            max-width: 1200px;
+            margin: auto;
+            padding: 150px 20px 20px;
+        }
+ 
+        .sidebar {
+            flex: 1;
+            max-width: 200px;
+            margin-right: 20px;
+            padding: 10px;
+        }
+        .sidebar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .sidebar li {
+            cursor: pointer;
+            opacity: 0.85;
+        }
+        .sidebar li:hover {
+            font-weight: 700;
+            font-variation-settings: 'wght' 700;
+            color: RosyBrown;
+        }
+  
+        /* Works List */
+        .content {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+        }
+        .item {
+            display: flex;
+            align-items: baseline;  /* removable if you want original state */
+            padding: 15px 0;
+            border-top: 1px solid;
+        }
+        .item:last-child {
+            border-bottom: 1px solid;
+        }  
+        .date {
+            width: 80px;
+            opacity: 0.7;
+            font-size: 0.8em;
+        }
+        .title {
+            flex: 2;
+            font-size: 1.1em;
+            font-weight: 500;
+            font-variation-settings: 'wght' 500;
+        }
+        .details {
+            flex: 3;
+            opacity: 0.3;
+            font-size: 0.9em;
+            text-align: right;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 100px 10px 10px;
+            }
+            .sidebar {
+                max-width: 100%;
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            .sidebar ul {
+                flex-direction: row;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            .content {
+                padding-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+  <div class="container">
+        <aside class="sidebar">
+            <ul>
+                <li>All</li>
+                <li>作詞</li>
+                <li>作曲</li>
+                <li>編曲</li>
+                <li>プロデュース</li>
+                <li>ボーカルディレ
+                <li>クション</li>
+                <li>劇伴</li>
+            </ul>
+        </aside>
+        <main class="content">
+            <!-- Each entry in the list -->
+            <div class="item">
+                <div class="date">2024.08</div>
+                <div class="title">僕の惑星/ bªg.</div>
+                <div class="details">作詞 作曲 / ボーカルディレク</div>
+            </div>
+            <div class="item">
+                <div class="date">2024.06</div>
+                <div class="title">WaMi - ANGELiC GiRL</div>
+                <div class="details">編曲 / ヘヴンズヘイヴン</div>
+            </div>
+            <div class="item">
+                <div class="date">2024.04</div>
+                <div class="title">ツキナミMELTDOWN</div>
+                <div class="details">かわいいね僕の惑星</div>
+            </div>
+            <!-- Add additional entries as needed -->
+            <!-- ... -->
+        </main>
+    </div>
+  
+  <script>
+        // Create an array with the elements to animate
+        const elementsToAnimate = [
+            '.sidebar',
+            '.item'
+        ];
+
+        // Get all elements based on the selectors in the array
+        const elements = elementsToAnimate.flatMap(selector => {
+            return Array.from(document.querySelectorAll(selector));
+        });
+
+        // Apply the slide-in animation with staggered delays
+        elements.forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.1}s`; // Adjust delay between elements (0.1s)
+            el.classList.add('slide-in'); // Dynamically add the slide-in class
+        });
+    </script>
+</body>
+</html>
+
+
+<!--------- N O T E:
+    .work-entry {
+       display: flex;
+       align-items: baseline;
+       padding: 15px 0;
+       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .date {
+       min-width: 80px;
+       font-weight: bold;
+       color: #e3e3e3;
+    }
+    .title {
+      font-size: 1.1em;
+      font-weight: bold;
+      margin-right: auto;
+    }
+    .details {
+      font-size: 0.9em;
+      color: #b0c4de;
+    } 
+
+    ■ Adding JavaScript could further enhance
+    ■ the functionality, such as making the
+    ■ tags filter the works dynamically.
+------------>
