@@ -30,7 +30,8 @@
     .marquee-content {
       display: inline-flex;
       animation: scroll-left 10s linear infinite;
-    }
+      will-change: transform; /* Performance optimization */
+    }   
     .marquee[data-direction="right"] .marquee-content {
       animation: scroll-right 10s linear infinite;
     }
@@ -81,7 +82,7 @@
       const clonedContent = content.cloneNode(true);
       content.parentElement.appendChild(clonedContent);
 
-      // Ensure seamless loop with cloning content
+      // Ensure seamless loop by appending cloned content
       content.style.animationPlayState = 'running';
       clonedContent.style.animationPlayState = 'running';
     });
