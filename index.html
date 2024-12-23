@@ -71,10 +71,54 @@
       border-top: 2px solid currentColor; 
       padding-bottom: 20px;
     }
-
     footer {
       margin-top: 50px;
     }
+
+    .marquee {
+      width: 100%;
+      max-width: 1000px;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+      padding: 0.15em 0;
+    }
+    .marqueeTrack {
+      display: inline-flex;
+      animation: loop-left 20s linear infinite;
+      will-change: transform; /* Performance optimization */
+    }
+    .marquee[data-direction="right"] .marqueeTrack {
+      animation: loop-right 20s linear infinite;
+    }
+    @keyframes loop-left {
+      0% {transform: translateX(0);}
+      100% {transform: translateX(-100%);}
+    }
+    @keyframes loop-right {
+      0% {transform: translateX(-100%);}
+      100% {transform: translateX(0);}
+    }
+    .marqueeItem {
+      height: 150px;
+      width: auto;
+      border: 1px solid black;
+      margin-right: 10px;
+      transition: border 0.3s, opacity 0.3s;
+    }
+    .marqueeItem:hover,
+    .marqueeItem:focus {
+      border: 2px dashed black;
+      opacity: 0.8;
+    }
+    .marqueeTrack a {
+      display: inline-block;
+      text-decoration: none;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      cursor: pointer;
+    } 
 
     @media (max-width: 768px) {
       header {
@@ -141,9 +185,53 @@
           <span style="letter-spacing: 0.022rem; class="arraySlice"><span style="background-color: #282c34; color: #f0f0f0; font-weight: bold;">&nbsp;↓&nbsp;</span> BYTE-SURFING</span>
           <span class="arraySlice">web3﻿</span>
           <span class="arraySlice">﻿firewall guardians ▪  aquatic debugger ▪  algorithmic revolution</span>
-        </p>  
+        </p>
+        <aside class="marquee" data-direction="left">
+          <div class="marqueeTrack">
+            <a href="#"><img class="marqueeItem" src="https://media0.giphy.com/media/l0O9xVx5v3YHYjGgM/giphy.gif" alt="🟪1"></a>
+            <a href="#"><img class="marqueeItem" src="https://media1.giphy.com/media/cpO6VvIo0mW9q/giphy.gif" alt="🟪2"></a>
+            <a href="#"><img class="marqueeItem" src="https://media3.giphy.com/media/3o6EhE8pukIRNaPyOQ/giphy.gif" alt="🟪3"></a>
+            <a href="#"><img class="marqueeItem" src="https://media3.giphy.com/media/ldKjshoVdTNgblMuLs/giphy.gif" alt="🟪4"></a>
+            <a href="#"><img class="marqueeItem" src="https://media0.giphy.com/media/LpBKayD38zvwKx1qz8/giphy.gif" alt="🟪5"></a>
+            <a href="#"><img class="marqueeItem" src="https://media0.giphy.com/media/5UB6zSb0ez6ru3pOhb/giphy.gif" alt="🟪6"></a>
+            <a href="#"><img class="marqueeItem" src="https://media2.giphy.com/media/uTmqqFKOMIP57Nr3gz/giphy.gif" alt="🟪7"></a>
+          </div>
+        </aside>
       </footer>
   </main>
 
+  <script>
+    document.querySelectorAll('.marquee').forEach((marquee) => {
+      const track = marquee.querySelector('.marqueeTrack');
+      const clonedTrack = track.cloneNode(true);
+      track.parentElement.appendChild(clonedTrack);
+
+      // Pause marquee animation on hover
+      marquee.addEventListener('mouseover', () => {
+        track.style.animationPlayState = 'paused';
+        clonedTrack.style.animationPlayState = 'paused';
+      });
+      marquee.addEventListener('mouseout', () => {
+        track.style.animationPlayState = 'running';
+        clonedTrack.style.animationPlayState = 'running';
+      });
+    });
+
+    document.querySelectorAll('.marqueeItem').forEach((item) => {
+      // Pause animation on focus
+      item.addEventListener('focus', () => {
+        const marquee = item.closest('.marquee');
+        const track = marquee.querySelector('.marqueeTrack');
+        track.style.animationPlayState = 'paused';
+      });
+
+      // Resume animation on blur
+      item.addEventListener('blur', () => {
+        const marquee = item.closest('.marquee');
+        const track = marquee.querySelector('.marqueeTrack');
+        track.style.animationPlayState = 'running';
+      });
+    });
+  </script>
 </body>
 </html>
