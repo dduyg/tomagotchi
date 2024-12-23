@@ -73,8 +73,7 @@
 5. Aquatic algorithms rule here
 6. "Syncing data under coral-coded skies.
 7. "Waves of code crash on digital shores."
-9. "Sailing through algorithms, navigating currents of code. 
-3. Oceanic Data Flow
+9. "Sailing through algorithms, navigating currents of code.
 7. Code Currents
 9. Aquatic Arrays
 13. Aquatic Algorithms
