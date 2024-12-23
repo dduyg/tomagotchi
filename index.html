@@ -10,7 +10,6 @@
       margin: 0;
       padding: 0;
     }
-
     body {
       font-family: Arial, sans-serif;
       background-color: #f0f0f0;
@@ -29,42 +28,26 @@
       position: relative;
       margin: 30px 0;
     }
-
     .marquee-content {
       display: inline-flex;
-      gap: 0;
       animation: scroll-left 10s linear infinite;
     }
-
     .marquee[data-direction="right"] .marquee-content {
       animation: scroll-right 10s linear infinite;
     }
-
+    @keyframes scroll-left {
+      0% {transform: translateX(0);}
+      100% {transform: translateX(-100%);}
+    }
+    @keyframes scroll-right {
+      0% {transform: translateX(-100%);}
+      100% {transform: translateX(0);}
+    }
     .marquee-item {
       height: 150px;
       width: auto;
       border: 1px solid black;
       margin-right: 10px;
-    }
-
-    /* Animation for left-scrolling marquee */
-    @keyframes scroll-left {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
-
-    /* Animation for right-scrolling marquee */
-    @keyframes scroll-right {
-      0% {
-        transform: translateX(-100%);
-      }
-      100% {
-        transform: translateX(0);
-      }
     }
   </style>
 </head>
@@ -76,6 +59,8 @@
       <img class="marquee-item" src="https://media3.giphy.com/media/3o6EhE8pukIRNaPyOQ/giphy.gif" alt="■3">
       <img class="marquee-item" src="https://media3.giphy.com/media/ldKjshoVdTNgblMuLs/giphy.gif" alt="■4">
       <img class="marquee-item" src="https://media0.giphy.com/media/LpBKayD38zvwKx1qz8/giphy.gif" alt="■5">
+      <img class="marquee-item" src="https://media0.giphy.com/media/5UB6zSb0ez6ru3pOhb/giphy.gif" alt="■6">
+      <img class="marquee-item" src="https://media2.giphy.com/media/uTmqqFKOMIP57Nr3gz/giphy.gif" alt="■7">
     </div>
   </section>
 
@@ -86,6 +71,8 @@
       <img class="marquee-item" src="https://media3.giphy.com/media/kesNMJU1kLFJdc7FcB/giphy.gif" alt="■3">
       <img class="marquee-item" src="https://media1.giphy.com/media/VoVQ6zWVMjUuGUz8bu/giphy.gif" alt="■4">
       <img class="marquee-item" src="https://media3.giphy.com/media/d3JtHt5NsKmvqcJa/giphy.gif" alt="■5">
+      <img class="marquee-item" src="https://media1.giphy.com/media/l0MYGUj44SjMKnurm/giphy.gif" alt="■6">
+      <img class="marquee-item" src="https://media3.giphy.com/media/lQO6mff5fnwzK/giphy.gif" alt="■7">
     </div>
   </section>
 
