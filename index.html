@@ -81,7 +81,7 @@
       const clonedContent = content.cloneNode(true);
       content.parentElement.appendChild(clonedContent);
 
-      // The key trick to fix the jankiness
+      // Ensure seamless loop with cloning content
       content.style.animationPlayState = 'running';
       clonedContent.style.animationPlayState = 'running';
     });
