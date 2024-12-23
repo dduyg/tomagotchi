@@ -49,10 +49,12 @@
       border: 1px solid black;
       margin-right: 10px;
       transition: border 0.3s, opacity 0.3s;
+      outline: none;
     }
-    .marqueeItem:hover {
+    .marqueeItem:hover,
+    .marqueeItem:focus {
       border: 2px dashed black;
-      opacity: 0.6;
+      opacity: 0.8;
     }
     .marqueeTrack a {
       display: inline-block;
@@ -99,6 +101,22 @@
       marquee.addEventListener('mouseout', () => {
         track.style.animationPlayState = 'running';
         clonedTrack.style.animationPlayState = 'running';
+      });
+    });
+
+    document.querySelectorAll('.marqueeItem').forEach((item) => {
+      // Pause animation on focus
+      item.addEventListener('focus', () => {
+        const marquee = item.closest('.marquee');
+        const track = marquee.querySelector('.marqueeTrack');
+        track.style.animationPlayState = 'paused';
+      });
+
+      // Resume animation on blur
+      item.addEventListener('blur', () => {
+        const marquee = item.closest('.marquee');
+        const track = marquee.querySelector('.marqueeTrack');
+        track.style.animationPlayState = 'running';
       });
     });
   </script>
