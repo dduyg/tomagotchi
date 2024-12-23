@@ -66,6 +66,7 @@
         transform: translateX(0);
       }
     }
+
   </style>
 </head>
 <body>
@@ -90,15 +91,14 @@
   </section>
 
   <script>
-    // Clone the content for seamless loop
     document.querySelectorAll('.marquee').forEach((marquee) => {
       const content = marquee.querySelector('.marquee-content');
       const clonedContent = content.cloneNode(true);
       content.parentElement.appendChild(clonedContent);
-      
-      // Force the cloned content to start immediately after the original set
-      // This ensures seamless looping.
-      clonedContent.style.marginLeft = "0";
+
+      // The key trick to fix the jankiness
+      content.style.animationPlayState = 'running';
+      clonedContent.style.animationPlayState = 'running';
     });
   </script>
 </body>
