@@ -27,23 +27,23 @@
       position: relative;
       margin: 30px 0;
     }
-    .marquee-content {
+    .marqueeTrack {
       display: inline-flex;
-      animation: scroll-left 20s linear infinite;
+      animation: loop-left 20s linear infinite;
       will-change: transform; /* Performance optimization */
     }
-    .marquee[data-direction="right"] .marquee-content {
-      animation: scroll-right 20s linear infinite;
+    .marquee[data-direction="right"] .marqueeTrack {
+      animation: loop-right 20s linear infinite;
     }
-    @keyframes scroll-left {
+    @keyframes loop-left {
       0% {transform: translateX(0);}
       100% {transform: translateX(-100%);}
     }
-    @keyframes scroll-right {
+    @keyframes loop-right {
       0% {transform: translateX(-100%);}
       100% {transform: translateX(0);}
     }
-    .marquee-item {
+    .marqueeItem {
       height: 150px;
       width: auto;
       border: 1px solid black;
@@ -53,32 +53,32 @@
 </head>
 <body>
   <section class="marquee" data-direction="left">
-    <div class="marquee-content">
-      <img class="marquee-item" src="https://media0.giphy.com/media/l0O9xVx5v3YHYjGgM/giphy.gif" alt="🟪1">
-      <img class="marquee-item" src="https://media1.giphy.com/media/cpO6VvIo0mW9q/giphy.gif" alt="🟪2">
-      <img class="marquee-item" src="https://media3.giphy.com/media/3o6EhE8pukIRNaPyOQ/giphy.gif" alt="🟪3">
-      <img class="marquee-item" src="https://media3.giphy.com/media/ldKjshoVdTNgblMuLs/giphy.gif" alt="🟪4">
-      <img class="marquee-item" src="https://media0.giphy.com/media/LpBKayD38zvwKx1qz8/giphy.gif" alt="🟪5">
-      <img class="marquee-item" src="https://media0.giphy.com/media/5UB6zSb0ez6ru3pOhb/giphy.gif" alt="🟪6">
-      <img class="marquee-item" src="https://media2.giphy.com/media/uTmqqFKOMIP57Nr3gz/giphy.gif" alt="🟪7">
+    <div class="marqueeTrack">
+      <img class="marqueeItem" src="https://media0.giphy.com/media/l0O9xVx5v3YHYjGgM/giphy.gif" alt="🟪1">
+      <img class="marqueeItem" src="https://media1.giphy.com/media/cpO6VvIo0mW9q/giphy.gif" alt="🟪2">
+      <img class="marqueeItem" src="https://media3.giphy.com/media/3o6EhE8pukIRNaPyOQ/giphy.gif" alt="🟪3">
+      <img class="marqueeItem" src="https://media3.giphy.com/media/ldKjshoVdTNgblMuLs/giphy.gif" alt="🟪4">
+      <img class="marqueeItem" src="https://media0.giphy.com/media/LpBKayD38zvwKx1qz8/giphy.gif" alt="🟪5">
+      <img class="marqueeItem" src="https://media0.giphy.com/media/5UB6zSb0ez6ru3pOhb/giphy.gif" alt="🟪6">
+      <img class="marqueeItem" src="https://media2.giphy.com/media/uTmqqFKOMIP57Nr3gz/giphy.gif" alt="🟪7">
     </div>
   </section>
 
   <section class="marquee" data-direction="right">
-    <div class="marquee-content">
-      <img class="marquee-item" src="https://media2.giphy.com/media/JDXuoS4eWlYAEHyL7G/giphy.gif" alt="🔲1">
-      <img class="marquee-item" src="https://media4.giphy.com/media/a2vstZP9SvLA4/giphy.gif" alt="🔲2">
-      <img class="marquee-item" src="https://media3.giphy.com/media/kesNMJU1kLFJdc7FcB/giphy.gif" alt="🔲3">
-      <img class="marquee-item" src="https://media1.giphy.com/media/VoVQ6zWVMjUuGUz8bu/giphy.gif" alt="🔲4">
-      <img class="marquee-item" src="https://media3.giphy.com/media/d3JtHt5NsKmvqcJa/giphy.gif" alt="🔲5">
-      <img class="marquee-item" src="https://media1.giphy.com/media/l0MYGUj44SjMKnurm/giphy.gif" alt="🔲6">
-      <img class="marquee-item" src="https://media3.giphy.com/media/lQO6mff5fnwzK/giphy.gif" alt="🔲7">
+    <div class="marqueeTrack">
+      <img class="marqueeItem" src="https://media2.giphy.com/media/JDXuoS4eWlYAEHyL7G/giphy.gif" alt="🔲1">
+      <img class="marqueeItem" src="https://media4.giphy.com/media/a2vstZP9SvLA4/giphy.gif" alt="🔲2">
+      <img class="marqueeItem" src="https://media3.giphy.com/media/kesNMJU1kLFJdc7FcB/giphy.gif" alt="🔲3">
+      <img class="marqueeItem" src="https://media1.giphy.com/media/VoVQ6zWVMjUuGUz8bu/giphy.gif" alt="🔲4">
+      <img class="marqueeItem" src="https://media3.giphy.com/media/d3JtHt5NsKmvqcJa/giphy.gif" alt="🔲5">
+      <img class="marqueeItem" src="https://media1.giphy.com/media/l0MYGUj44SjMKnurm/giphy.gif" alt="🔲6">
+      <img class="marqueeItem" src="https://media3.giphy.com/media/lQO6mff5fnwzK/giphy.gif" alt="🔲7">
     </div>
   </section>
 
   <script>
     document.querySelectorAll('.marquee').forEach((marquee) => {
-      const content = marquee.querySelector('.marquee-content');
+      const content = marquee.querySelector('.marqueeTrack');
       const clonedContent = content.cloneNode(true);
       content.parentElement.appendChild(clonedContent);
 
