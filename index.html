@@ -148,28 +148,16 @@
       color: inherit;
       text-decoration: none;
       font-weight: bold;
-      display: inline-block;
-      position: relative;
-      transition: color 0.6s;
-    }
-    .link::before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #E0DBDF;
-      clip-path: polygon(0% 0%, 60% 0%, 60% 0%, 100% 0%, 100% 100%, 60% 100%, 60% 100%, 0% 100%);
-      transition: clip-path 0.6s;
-    }
-    .link:hover::before {
-      clip-path: polygon(10% 30%, 60% 30%, 60% 5%, 90% 50%, 90% 50%, 60% 95%, 60% 70%, 10% 70%);
+      background-position-y: calc(1em + 16px);
+      transition: background-position-y 0.6s ease-out, color 0.6s ease-out;
+      background-repeat: repeat-x;
+      background-image: url("https://media4.giphy.com/media/ldKjshoVdTNgblMuLs/giphy.gif"), linear-gradient(rgba(0, 0, 0, 0.7), black);
+      background-size: contain;
+      padding: 4px;
     }
     .link:hover {
-      color: black;
+      background-position-y: 0;
+      color: white;
     }
   </style>
 </head>
