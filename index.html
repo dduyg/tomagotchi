@@ -34,7 +34,6 @@
       display: inline-flex;
       gap: 0;
       animation: scroll-left 10s linear infinite;
-      will-change: transform; /* Optimize performance */
     }
 
     .marquee[data-direction="right"] .marquee-content {
@@ -96,6 +95,10 @@
       const content = marquee.querySelector('.marquee-content');
       const clonedContent = content.cloneNode(true);
       content.parentElement.appendChild(clonedContent);
+      
+      // Force the cloned content to start immediately after the original set
+      // This ensures seamless looping.
+      clonedContent.style.marginLeft = "0";
     });
   </script>
 </body>
