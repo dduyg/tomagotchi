@@ -92,7 +92,7 @@
 8. Data Depths
 9. Coded Seafoam
 11. Neptune’s Network
-13. Aquatic Debugger
+13. Riptide __Renderer__
 16. Coral Code Crusaders
 19. Seas of Syntax
 22. Bluebyte Odyssey
