@@ -60,12 +60,13 @@
     /* Animation for right-scrolling marquee */
     @keyframes scroll-right {
       0% {
-        transform: translateX(-100%);
+        transform: translateX(100%);
       }
       100% {
         transform: translateX(0);
       }
     }
+
   </style>
 </head>
 <body>
@@ -93,11 +94,19 @@
     document.querySelectorAll('.marquee').forEach((marquee) => {
       const content = marquee.querySelector('.marquee-content');
       const clonedContent = content.cloneNode(true);
+      content.parentElement.appendChild(clonedContent);
+
+      // Ensure that both the original and the cloned content are seamlessly visible
+      content.style.animationDuration = "10s";
+      clonedContent.style.animationDuration = "10s";
       
-      // Clone content for seamless loop
-      window.addEventListener('load', () => {
-        content.parentElement.appendChild(clonedContent);
-      });
+      // Ensure both contents are identical and ready to scroll together
+      content.style.position = "absolute";
+      clonedContent.style.position = "absolute";
+
+      // Ensure content is positioned to avoid overlap glitches
+      content.style.left = "0";
+      clonedContent.style.left = "100%";
     });
   </script>
 </body>
