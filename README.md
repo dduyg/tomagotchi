@@ -77,12 +77,9 @@
 3. Oceanic Data Flow
 7. Code Currents
 9. Aquatic Arrays
-11. Neon Ocean Protocol
 13. Aquatic Algorithms
-17. Oceanic Overclock
 19. Binary Tsunami
-21. Digital Sea Breeze
-1. Waveform Syntax 
+21. Digital Sea Breeze 
 2. Digital Tidebreaker
 3. Neon Code Reef
 4. Oceanic Algorithms
@@ -110,6 +107,5 @@
 2. Oceanic Algorithm Architect
 4. Aquatic Data Wrangler
 6. Coral Reef Data Miner
-9. Data Wave Analyst
 11. Subaquatic Data Explorer
 12. Hydrostatistical Seer
