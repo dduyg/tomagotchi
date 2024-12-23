@@ -77,7 +77,6 @@
 3. Oceanic Data Flow
 7. Code Currents
 9. Aquatic Arrays
-10. Byte-Surfing the Deep Web
 11. Neon Ocean Protocol
 13. Aquatic Algorithms
 17. Oceanic Overclock
@@ -94,24 +93,18 @@
 9. Coded Seafoam
 11. Neptune’s Network
 13. Aquatic Debugger
-15. Riptide Renderer
 16. Coral Code Crusaders
 19. Seas of Syntax
-20. Cryptic Coastlines
-21. Bluebyte Odyssey
-22. Virtual Tides
+22. Bluebyte Odyssey
+23. Virtual Tides
 1. Codebreaker Chronicles
-3. Zeroes and Ones: The Digital Realm
-5. Encryption Odyssey
+3. Zeroes and Ones: Encryption Odyssey
 6. Cyber Surge
-8. Neural Network Nexus
-9. Firewall Guardians
 14. Virtual Interface
 15. The Cyberspace Cipher
 17. Digital Architects
 18. Synthetic Logic
 19. Ghost in the Network
-20. Algorithmic Revolution
 22. Matrix of the Machine
 1. The Data Abyss Navigator
 2. Oceanic Algorithm Architect
