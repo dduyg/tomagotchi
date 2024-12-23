@@ -23,7 +23,7 @@
 
     .marquee {
       width: 100%;
-      max-width: 1000px; /* Adjust max width as needed */
+      max-width: 1000px;
       overflow: hidden;
       white-space: nowrap;
       position: relative;
@@ -33,11 +33,11 @@
     .marquee-content {
       display: inline-flex;
       gap: 0;
-      animation: scroll-left 20s linear infinite;
+      animation: scroll-left 10s linear infinite;
     }
 
     .marquee[data-direction="right"] .marquee-content {
-      animation: scroll-right 20s linear infinite;
+      animation: scroll-right 10s linear infinite;
     }
 
     .marquee-item {
@@ -60,7 +60,7 @@
     /* Animation for right-scrolling marquee */
     @keyframes scroll-right {
       0% {
-        transform: translateX(100%);
+        transform: translateX(-100%);
       }
       100% {
         transform: translateX(0);
@@ -94,12 +94,6 @@
       const content = marquee.querySelector('.marquee-content');
       const clonedContent = content.cloneNode(true);
       content.parentElement.appendChild(clonedContent);
-    });
-
-    // Ensure the right-direction marquee starts at the right point
-    document.querySelectorAll('.marquee[data-direction="right"]').forEach((marquee) => {
-      const content = marquee.querySelector('.marquee-content');
-      content.style.transform = "translateX(100%)"; // Start off-screen on the right
     });
   </script>
 </body>
