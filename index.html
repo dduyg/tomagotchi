@@ -52,6 +52,9 @@
       0% {
         transform: translateX(0);
       }
+      50% {
+        transform: translateX(-50%);
+      }
       100% {
         transform: translateX(-100%);
       }
@@ -60,7 +63,10 @@
     /* Animation for right-scrolling marquee */
     @keyframes scroll-right {
       0% {
-        transform: translateX(-100%);
+        transform: translateX(100%);
+      }
+      50% {
+        transform: translateX(50%);
       }
       100% {
         transform: translateX(0);
@@ -90,6 +96,7 @@
   </section>
 
   <script>
+    // Clone the content for seamless loop
     document.querySelectorAll('.marquee').forEach((marquee) => {
       const content = marquee.querySelector('.marquee-content');
       const clonedContent = content.cloneNode(true);
