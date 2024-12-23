@@ -143,6 +143,33 @@
         border-top: 2px solid;
       }
     }
+
+    .link {
+      color: #f0f0f0;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      position: relative;
+      transition: color 0.6s;
+    }
+    .link::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: -3px;
+      top: -3px;
+      width: calc(100% + 6px);
+      height: calc(100% + 6px);
+      background-color: blue;
+      clip-path: polygon(0% 0%, 60% 0%, 60% 0%, 100% 0%, 100% 100%, 60% 100%, 60% 100%, 0% 100%);
+      transition: clip-path 0.6s;
+    }
+    .link:hover::before {
+      clip-path: polygon(10% 30%, 60% 30%, 60% 5%, 90% 50%, 90% 50%, 60% 95%, 60% 70%, 10% 70%);
+    }
+    .link:hover {
+      color: black;
+    }
   </style>
 </head>
 <body>
@@ -203,7 +230,7 @@
         <p class="arrayed">
           <span style="letter-spacing: 0.022rem; class="arraySlice"><span style="background-color: #282c34; color: #f0f0f0; font-weight: bold;">&nbsp;↓&nbsp;</span> DATA WAVE ANALYST</span>
           <span class="arraySlice">culture</span>
-          <span class="arraySlice">﻿waveform syntax ▪ oceanic overclock</span>
+          <span class="arraySlice">﻿waveform syntax ▪ oceanic <a href="../05/marqueeItem" class="link">data</a> flow</span>
         </p>
         <hr>
         <aside class="marquee" data-direction="right">
