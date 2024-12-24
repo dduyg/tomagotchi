@@ -180,5 +180,45 @@ header {
     </div>
   </section>
   </main>
+
+<script>
+  const sections = document.querySelectorAll('section');
+  const panelLinks = document.querySelectorAll('.panel-link');
+
+  sections.forEach((section) => {
+    section.addEventListener('click', activatePanel);  
+  });
+
+  panelLinks.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      event.preventDefault(); // Prevent default link behavior
+      const targetId = link.getAttribute('href').substring(1);
+      const targetSection = document.getElementById(targetId);
+      if (targetSection) {
+        deactivatePanels();
+        targetSection.classList.remove('panel-inactive');
+        targetSection.classList.add('panel-active');
+        targetSection.querySelector('.content').style.display = 'block';
+      }
+    });
+  });
+
+  function deactivatePanels() {
+    sections.forEach((section) => {
+      section.classList.add('panel-inactive');
+      section.classList.remove('panel-active');
+      section.querySelector('.content').style.display = 'none'; // Hide panel content
+    });
+  }
+
+  function activatePanel(event) {
+    if (!event.target.closest('.panel-link')) {
+      deactivatePanels();
+      this.classList.remove('panel-inactive');
+      this.classList.add('panel-active');
+      this.querySelector('.content').style.display = 'block'; // Show panel content
+    }
+  }
+</script>
 </body>
 </html>
