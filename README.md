@@ -5,7 +5,8 @@
 ```markdown
 ⭓⭔,  ⬡⬢,  ⬮⬯
 ```
-
+- background: #DFE0DC LiminalLoop
+- background: #EDE8EC  LiminalLoop 
 - Righteous
 - Geostar
 - Geostar Fill
