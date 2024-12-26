@@ -1,6 +1,5 @@
 ### `⌬ ▆ ⛡ ♖ ▣ ⚞ ⏥`
 
-- #DFE0DC
 - background-color: #cecece; color: #333;
 
 ```markdown
