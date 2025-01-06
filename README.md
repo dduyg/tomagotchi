@@ -57,7 +57,6 @@
 | <img src="https://img.shields.io/badge/■D3D3D3-D3D3D3?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■1E1E1E-1E1E1E?style=for-the-badge"/> |
 | <img src="https://img.shields.io/badge/■696969-696969?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■E8E8E8-E8E8E8?style=for-the-badge"/> |
 | <img src="https://img.shields.io/badge/■383838-383838?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■C0C0C0-C0C0C0?style=for-the-badge"/> |
-| <img src="https://img.shields.io/badge/■E8E8E8-E8E8E8?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■3A3A3A-3A3A3A?style=for-the-badge"/> |
 
 > <img src="https://img.shields.io/badge/■888-888?style=for-the-badge"/><br>
 > <img src="https://img.shields.io/badge/■B2B2B2-B2B2B2?style=for-the-badge"/>
