@@ -4,6 +4,7 @@
 - [ ] <img src="https://img.shields.io/badge/■383838-383838?style=for-the-badge"/> <img src="https://img.shields.io/badge/■C0C0C0-C0C0C0?style=for-the-badge"/>
 - [ ] <img src="https://img.shields.io/badge/■888-888?style=for-the-badge"/>
 - [ ] <img src="https://img.shields.io/badge/■E8E8E8-E8E8E8?style=for-the-badge"/>
+- [ ] <img src="https://img.shields.io/badge/■cecece-cecece?style=for-the-badge"/> <img src="https://img.shields.io/badge/■333-333?style=for-the-badge"/>
 
 ```markdown
 ⭓⭔,  ⬡⬢,  ⬮⬯
