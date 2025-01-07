@@ -41,6 +41,7 @@
 - [ ]  Capriola
 - [ ]  Faculty Glyphic
 - [ ]  Karla
+- [ ]  SUSE
 
 <br>
 
