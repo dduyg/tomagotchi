@@ -14,7 +14,6 @@
 - [ ] Geostar
 - [ ] Geostar Fill
 - [ ] Georama
-- [ ] Roboto Mono
 - [ ] Oxanium
 - [ ] Special Elite
 - [ ]  Jacquard 12
