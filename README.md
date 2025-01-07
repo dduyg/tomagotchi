@@ -44,10 +44,6 @@
 
 <br>
 
-- [ ]  Host Grotesk
-
-<br>
-
 | `BG` | `TXT` |
 |----|-----|
 | <img src="https://img.shields.io/badge/■FFD3B6-FFD3B6?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■393E46-393E46?style=for-the-badge"/> |
