@@ -88,12 +88,27 @@
       color: #FBDFD4;
       transform: scale(1.1);
     }
+
+    .typewriter {
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 4px solid white;
+      animation: typing 2s steps(10, end), blink 0.5s step-end infinite alternate;
+    }
+    @keyframes typing {
+      from {width: 0;}
+      to {width: 100%;}
+    }
+    @keyframes blink {
+      from {border-color: transparent;}
+      to {border-color: white;}
+    }
   </style>
 </head>
 <body>
 <main>
   <h1>404</h1>
-  <p>Waves of code crash on digital shores. Digital currents flow, coding in the sea. Neon code streams ignite. Aquatic algorithms rule here. Oceanic data, digital depths. Sailing through algorithms, navigating currents of code.</p>
+  <p>Waves of code crash on digital shores. Digital currents flow, coding in the sea. Neon code streams ignite. Aquatic algorithms rule here. Oceanic data, digital <span class="typewriter">depths</span>. Sailing through algorithms, navigating currents of code.</p>
   <a href="#">⌬Digital Architects</a>
 </main>
 </body>
