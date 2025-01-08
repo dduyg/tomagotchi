@@ -40,6 +40,8 @@
 - [ ]  Faculty Glyphic
 - [ ]  Karla
 - [ ]  SUSE
+- [ ]  Stalinist One
+- [ ]  IBM Plex Mono ■●
 
 <br>
 
