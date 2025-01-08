@@ -21,26 +21,14 @@
 h1 {
   font-size: 8rem;
   margin: 0;
-  overflow: hidden;
-  border-right: 2px solid white;
-  white-space: nowrap;
-  width: 0;
-  animation: typing 3s steps(10) forwards, blink 0.5s step-end infinite;
+  animation: float 3s ease-in-out infinite;
 }
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 7ch; /* Adjust based on text length */
-  }
-}
-@keyframes blink {
-  from, to {
-    border-color: transparent;
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
   }
   50% {
-    border-color: white;
+    transform: translateY(-20px);
   }
 }
 
