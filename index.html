@@ -21,24 +21,16 @@
 h1 {
   font-size: 8rem;
   margin: 0;
-  position: relative;
-  animation: glitch 2s infinite;
+  color: #fff;
+  text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+  animation: neon 1.5s ease-in-out infinite;
 }
-@keyframes glitch {
-  0% {
-    text-shadow: 2px 2px red, -2px -2px blue;
-  }
-  25% {
-    text-shadow: -2px 2px red, 2px -2px blue;
+@keyframes neon {
+  0%, 100% {
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
   }
   50% {
-    text-shadow: 4px -4px red, -4px 4px blue;
-  }
-  75% {
-    text-shadow: -4px -4px red, 4px 4px blue;
-  }
-  100% {
-    text-shadow: 2px 2px red, -2px -2px blue;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
   }
 }
 
