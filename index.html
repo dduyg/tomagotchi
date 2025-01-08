@@ -21,14 +21,20 @@
 h1 {
   font-size: 8rem;
   margin: 0;
-  animation: float 3s ease-in-out infinite;
+  background: linear-gradient(45deg, #ff0000, #ff7300, #ffe700, #00ff6e, #006eff, #d500ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: colorShift 5s infinite;
 }
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
+@keyframes colorShift {
+  0% {
+    background-position: 0% 50%;
   }
   50% {
-    transform: translateY(-20px);
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
