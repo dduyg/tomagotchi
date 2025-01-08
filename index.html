@@ -21,15 +21,21 @@
 h1 {
   font-size: 8rem;
   margin: 0;
-  display: inline-block;
-  animation: wave 2s infinite;
+  position: relative;
+  animation: fall 3s infinite ease-in-out;
 }
-@keyframes wave {
-  0%, 100% {
+@keyframes fall {
+  0% {
+    opacity: 1;
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-20px);
+    opacity: 0.5;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(50px);
   }
 }
 
