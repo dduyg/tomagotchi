@@ -1,4 +1,4 @@
-### `⛡ ▆ ♖ ▣ ⚞ ⏥`
+### `⛡ ▆  ▣ ⚞ ⏥`
 
 - [x] <img src="https://img.shields.io/badge/■D3D3D3-D3D3D3?style=for-the-badge"/> <img src="https://img.shields.io/badge/■1E1E1E-1E1E1E?style=for-the-badge"/>
 - [ ] <img src="https://img.shields.io/badge/■383838-383838?style=for-the-badge"/> <img src="https://img.shields.io/badge/■C0C0C0-C0C0C0?style=for-the-badge"/>
