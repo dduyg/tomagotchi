@@ -28,62 +28,42 @@
       max-width: 600px;
       padding: 0 20px;
     }
-
-h1 {
-  font-size: 8rem;
-  margin: 0;
-  position: relative;
-  animation: glitch 2s infinite;
-}
-
-@keyframes glitch {
-  0% {
-    transform: translate(0);
-  }
-  20% {
-    transform: translate(-2px, -2px);
-  }
-  40% {
-    transform: translate(2px, 2px);
-  }
-  60% {
-    transform: translate(-2px, 2px);
-  }
-  80% {
-    transform: translate(2px, -2px);
-  }
-  100% {
-    transform: translate(0);
-  }
-}
-
-h1::before,
-h1::after {
-  content: "404";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: inherit;
-  overflow: hidden;
-  clip-path: inset(0 0 50% 0);
-  animation: glitch-lines 2s infinite;
-}
-
-h1::after {
-  clip-path: inset(50% 0 0 0);
-  animation-delay: 1s;
-}
-
-@keyframes glitch-lines {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  50% {
-    transform: translateX(-10px);
-  }
-}
+    
+    h1 {
+      font-size: 8rem;
+      margin: 0;
+      position: relative;
+      animation: glitch 2s infinite;
+    }
+    @keyframes glitch {
+      0% {transform: translate(0);}
+      20% {transform: translate(-2px, -2px);}
+      40% {transform: translate(2px, 2px);}
+      60% {transform: translate(-2px, 2px);}
+      80% {transform: translate(2px, -2px);}
+      100% {transform: translate(0);}
+    }
+    h1::before,
+    h1::after {
+      content: "404";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: inherit;
+      overflow: hidden;
+      clip-path: inset(0 0 50% 0);
+      animation: glitch-lines 2s infinite;
+    }
+    h1::after {
+      clip-path: inset(50% 0 0 0);
+      animation-delay: 1s;
+    }
+    @keyframes glitch-lines {
+      0%, 100% {transform: translateX(0);}
+      50% {transform: translateX(-10px);}
+    }
 
     p {
       font-size: 1.5rem;
