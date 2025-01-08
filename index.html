@@ -69,7 +69,7 @@
 
     p {
       font-size: 1.4rem;
-      margin: 0 0 20px;
+      margin: 0 0 50px;
       line-height: 1.6;
     }
 
@@ -82,6 +82,11 @@
       color: #B17E6D;
       border-radius: 25px;
       transition: 0.3s ease;
+      animation: bounce 1.5s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% {transform: translateY(0);}
+      50% {transform: translateY(-30px);}
     }
     a:hover {
       background: #B17E6D;
@@ -104,16 +109,6 @@
     @keyframes blink {
       from {border-color: transparent;}
       to {border-color: white;}
-    }
-
-    .bouncing {
-      font-size: 15px;
-      margin: 0;
-      animation: bounce 1.5s infinite;
-    }
-    @keyframes bounce {
-      0%, 100% {transform: translateY(0);}
-      50% {transform: translateY(-30px);}
     }
   </style>
 </head>
