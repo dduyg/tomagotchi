@@ -89,7 +89,20 @@
       transform: scale(1.1);
     }
 
+    header {
+      position: absolute;
+      top: 0
+      left: 0;
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
     .typewriter {
+      display: block;
+      font-size: 15px;
+      margin: 0;
       overflow: hidden;
       white-space: nowrap;
       border-right: 4px solid white;
@@ -102,6 +115,17 @@
     @keyframes blink {
       from {border-color: transparent;}
       to {border-color: white;}
+    }
+
+    .bouncing {
+      display: block;
+      font-size: 15px;
+      margin: 0;
+      animation: bounce 1.5s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% {transform: translateY(0);}
+      50% {transform: translateY(-30px);}
     }
   </style>
 </head>
