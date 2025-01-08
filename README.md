@@ -56,7 +56,6 @@
 - [x] Syncing data under coral-coded skies.
 - [ ] Code Currents
 - [ ] Aquatic Arrays
-- [ ] Aquatic Algorithms
 - [ ] Binary Tsunami
 - [ ] Digital Sea Breeze
 - [ ] Digital Tidebreaker
@@ -80,7 +79,6 @@
 - [ ] The Cyberspace Cipher
 - [ ] Synthetic Logic
 - [ ] Ghost in the Network
-- [ ] Matrix of the Machine
 - [ ] The Data Abyss Navigator
 - [ ] Oceanic Algorithm Architect
 - [ ] Aquatic Data Wrangler
