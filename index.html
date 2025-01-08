@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiminalLoop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap" rel="stylesheet">
+  <style>
+    @font-face {
+      font-family: 'SuisseIntl';
+      src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/SuisseIntl-Regular-WebXL.woff2') format('woff2');
+      font-weight: 400;
+      font-display: swap;
+    }
+    body {
+      font-family: 'SuisseIntl', sans-serif;
+      background: #E5C7BC;
+      color: #1E1E1E;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+    main {
+      max-width: 600px;
+      padding: 0 20px;
+    }
+    
+    h1 {
+      font-size: 9rem;
+      margin: 0;
+      position: relative;
+      animation: glitch 2s infinite;
+    }
+    @keyframes glitch {
+      0% {transform: translate(0);}
+      20% {transform: translate(-2px, -2px);}
+      40% {transform: translate(2px, 2px);}
+      60% {transform: translate(-2px, 2px);}
+      80% {transform: translate(2px, -2px);}
+      100% {transform: translate(0);}
+    }
+    h1::before,
+    h1::after {
+      content: "404";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: inherit;
+      overflow: hidden;
+      clip-path: inset(0 0 50% 0);
+      animation: glitch-lines 2s infinite;
+    }
+    h1::after {
+      clip-path: inset(50% 0 0 0);
+      animation-delay: 1s;
+    }
+    @keyframes glitch-lines {
+      0%, 100% {transform: translateX(0);}
+      50% {transform: translateX(-10px);}
+    }
+
+    p {
+      font-size: 1.4rem;
+      margin: 0;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <h1>404</h1>
+  <p>Waves of code crash on digital shores. Digital currents flow, coding in the sea. Neon code streams ignite. <b>Aquatic algorithms</b> rule here. Oceanic data, digital depths, matrix of the machine. Sailing through algorithms, navigating currents of code.</p>
+</main>
+</body>
+</html>
