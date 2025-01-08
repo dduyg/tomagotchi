@@ -55,10 +55,8 @@
 
 - [x] Neon code streams ignite.
 - [ ] "Oceanic data, digital depths.
-- [ ] "Digital currents flow, coding in the sea."
 - [ ] Aquatic algorithms rule here
 - [ ] "Syncing data under coral-coded skies.
-- [ ] "Waves of code crash on digital shores."
 - [ ] "Sailing through algorithms, navigating currents of code.
 - [ ] Code Currents
 - [ ] Aquatic Arrays
