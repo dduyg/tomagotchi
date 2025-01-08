@@ -53,9 +53,7 @@
 | <img src="https://img.shields.io/badge/■DFE0DC-DFE0DC?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■333333-333333?style=for-the-badge"/> |
 | <img src="https://img.shields.io/badge/■EDE8EC-EDE8EC?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■262626-262626?style=for-the-badge"/> |
 
-- [x] Oceanic data, digital depths.
-- [ ] "Syncing data under coral-coded skies.
-- [ ] "Sailing through algorithms, navigating currents of code.
+- [x] Syncing data under coral-coded skies.
 - [ ] Code Currents
 - [ ] Aquatic Arrays
 - [ ] Aquatic Algorithms
