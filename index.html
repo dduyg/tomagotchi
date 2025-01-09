@@ -80,11 +80,11 @@
       transition: 0.2s opacity cubic-bezier(0.33, 1, 0.68, 1), 0.2s transform cubic-bezier(0.33, 1, 0.68, 1);
     }
     a.popup::before {
-      content: "Click";
+      content: attr(data-before);
       transform: translate(-65%, 20%) rotateZ(-1deg);
     }
     a.popup::after {
-      content: "me!";
+      content: attr(data-after);
       transform: translate(45%, 20%) rotateZ(1deg);
     }
     a.popup:hover::before, a.popup:hover::after {
@@ -101,16 +101,16 @@
 </head>
 <body>
   <main>
-    <a href="#link1" class="linkBtn popup">웃</a>
-    <a href="#link2" class="linkBtn popup">유</a>
-    <a href="#link3" class="linkBtn popup">♅</a>
-    <a href="#link4" class="linkBtn popup">♄</a>
-    <a href="#link5" class="linkBtn popup">♃</a>
-    <a href="#link6" class="linkBtn popup">웃</a>
-    <a href="#link7" class="linkBtn popup">유</a>
-    <a href="#link8" class="linkBtn popup">♅</a>
-    <a href="#link4" class="linkBtn popup">♄</a>
-    <a href="#link5" class="linkBtn popup">♃</a>
+    <a href="#link1" class="linkBtn popup" data-before="Link 1" data-after="Description 1">웃</a>
+    <a href="#link2" class="linkBtn popup" data-before="Link 2" data-after="Description 2">유</a>
+    <a href="#link3" class="linkBtn popup" data-before="Link 3" data-after="Description 3">♅</a>
+    <a href="#link4" class="linkBtn popup" data-before="Link 4" data-after="Description 4">♄</a>
+    <a href="#link5" class="linkBtn popup" data-before="Link 5" data-after="Description 5">♃</a>
+    <a href="#link6" class="linkBtn popup" data-before="Link 6" data-after="Description 6">웃</a>
+    <a href="#link7" class="linkBtn popup" data-before="Link 7" data-after="Description 7">유</a>
+    <a href="#link8" class="linkBtn popup" data-before="Link 8" data-after="Description 8">♅</a>
+    <a href="#link9" class="linkBtn popup" data-before="Link 9" data-after="Description 9">♄</a>
+    <a href="#link10" class="linkBtn popup" data-before="Link 10" data-after="Description 10">♃</a>
   </main>
 
   <img src="https://media3.giphy.com/media/P6vaRcD14JUzK/giphy.gif" class="badge">
