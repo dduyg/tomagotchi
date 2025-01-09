@@ -30,7 +30,7 @@
       gap: 20px;
     }
 
-    .link-button {
+    .linkBtn {
       text-decoration: none;
       color: #fbfbfb;
       font-size: 1.4rem;
@@ -45,12 +45,12 @@
       outline: none;
       -webkit-tap-highlight-color: transparent;
     }
-    .link-button:hover {
+    .linkBtn:hover {
       background: rgba(255, 255, 255, 0.3);
       transform: translateY(-5px);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     }
-    .link-button:active {
+    .linkBtn:active {
       transform: translateY(2px);
     }
 
@@ -62,20 +62,55 @@
       height: auto;
       opacity: 0.2;
     }
+
+    a.popup {
+      position: relative;
+    }
+    a.popup::before, a.popup::after {
+      font-size: 0.9em;
+      background: #C8C7BE;
+      color: black;
+      line-height: 1em;
+      padding: 0.2em 0.15em 0.2em;
+      border-radius: 0.2em;
+      position: absolute;
+      top: -1em;
+      left: 50%;
+      opacity: 0;
+      transition: 0.2s opacity cubic-bezier(0.33, 1, 0.68, 1), 0.2s transform cubic-bezier(0.33, 1, 0.68, 1);
+    }
+    a.popup::before {
+      content: "Click";
+      transform: translate(-65%, 20%) rotateZ(-1deg);
+    }
+    a.popup::after {
+      content: "me!";
+      transform: translate(45%, 20%) rotateZ(1deg);
+    }
+    a.popup:hover::before, a.popup:hover::after {
+      transition: 0.4s opacity cubic-bezier(0.33, 1, 0.68, 1), 0.4s transform cubic-bezier(0.33, 1, 0.68, 1);
+      opacity: 1;
+    }
+    a.popup:hover::before {
+      transform: translatex(-75%) rotateZ(-3deg);
+    }
+    a.popup:hover::after {
+      transform: translatex(45%) rotateZ(3deg);
+    }
   </style>
 </head>
 <body>
   <main>
-    <a href="#link1" class="link-button">웃</a>
-    <a href="#link2" class="link-button">유</a>
-    <a href="#link3" class="link-button">♅</a>
-    <a href="#link4" class="link-button">♄</a>
-    <a href="#link5" class="link-button">♃</a>
-    <a href="#link6" class="link-button">웃</a>
-    <a href="#link7" class="link-button">유</a>
-    <a href="#link8" class="link-button">♅</a>
-    <a href="#link4" class="link-button">♄</a>
-    <a href="#link5" class="link-button">♃</a>
+    <a href="#link1" class="linkBtn popup">웃</a>
+    <a href="#link2" class="linkBtn popup">유</a>
+    <a href="#link3" class="linkBtn popup">♅</a>
+    <a href="#link4" class="linkBtn popup">♄</a>
+    <a href="#link5" class="linkBtn popup">♃</a>
+    <a href="#link6" class="linkBtn popup">웃</a>
+    <a href="#link7" class="linkBtn popup">유</a>
+    <a href="#link8" class="linkBtn popup">♅</a>
+    <a href="#link4" class="linkBtn popup">♄</a>
+    <a href="#link5" class="linkBtn popup">♃</a>
   </main>
 
   <img src="https://media3.giphy.com/media/P6vaRcD14JUzK/giphy.gif" class="badge">
