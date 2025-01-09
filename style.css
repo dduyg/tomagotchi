@@ -1,0 +1,19 @@
+body {
+  min-height: 100vh;
+  display: flex;
+}
+
+svg {
+  display: block;
+  height: calc(100vh - 4rem);
+  width: 25.75rem;
+  margin: 2rem auto;
+  animation: shrink 2s cubic-bezier(0.65, 0, 0.35, 1) alternate infinite;
+  animation-delay: -1.3s;
+}
+
+@keyframes shrink {
+  70%, 100% {
+    height: calc(60vh - 4rem);
+  }
+}
