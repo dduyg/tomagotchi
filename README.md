@@ -42,6 +42,11 @@
 - [ ]  SUSE
 - [ ]  Stalinist One
 - [ ]  IBM Plex Mono ■●
+- [ ]  Baumans
+- [ ]  Turret Road
+- [ ]  Geo
+- [ ]  Workbench
+- [ ]  Syne Mono
 
 <br>
 
