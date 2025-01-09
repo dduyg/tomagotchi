@@ -44,7 +44,6 @@
       transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
       outline: none;
       -webkit-tap-highlight-color: transparent;
-      position: relative;
     }
     .linkBtn:hover {
       background: rgba(255, 255, 255, 0.3);
@@ -55,8 +54,19 @@
       transform: translateY(2px);
     }
 
-    .linkBtn::before,
-    .linkBtn::after {
+    .badge {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 250px;
+      height: auto;
+      opacity: 0.2;
+    }
+
+    a.popup {
+      position: relative;
+    }
+    a.popup::before, a.popup::after {
       font-size: 0.9em;
       background: #C8C7BE;
       color: black;
@@ -68,47 +78,39 @@
       left: 50%;
       opacity: 0;
       transition: 0.2s opacity cubic-bezier(0.33, 1, 0.68, 1), 0.2s transform cubic-bezier(0.33, 1, 0.68, 1);
-      pointer-events: none;
-      content: attr(data-before);
     }
-    .linkBtn::after {
-      content: attr(data-after);
-      top: -2em;
+    a.popup::before {
+      content: "Click";
+      transform: translate(-65%, 20%) rotateZ(-1deg);
     }
-    .linkBtn:hover::before,
-    .linkBtn:hover::after {
+    a.popup::after {
+      content: "me!";
+      transform: translate(45%, 20%) rotateZ(1deg);
+    }
+    a.popup:hover::before, a.popup:hover::after {
       transition: 0.4s opacity cubic-bezier(0.33, 1, 0.68, 1), 0.4s transform cubic-bezier(0.33, 1, 0.68, 1);
       opacity: 1;
     }
-    .linkBtn:hover::before {
-      transform: translate(-65%, -10%);
+    a.popup:hover::before {
+      transform: translatex(-75%) rotateZ(-3deg);
     }
-    .linkBtn:hover::after {
-      transform: translate(-45%, -10%);
-    }
-
-    .badge {
-      position: fixed;
-      bottom: 0;
-      right: 0;
-      width: 250px;
-      height: auto;
-      opacity: 0.2;
+    a.popup:hover::after {
+      transform: translatex(45%) rotateZ(3deg);
     }
   </style>
 </head>
 <body>
   <main>
-    <a href="#link1" class="linkBtn popup" data-before="Click" data-after="Link">웃</a>
-    <a href="#link2" class="linkBtn popup" data-before="Hello" data-after="Link">유</a>
-    <a href="#link3" class="linkBtn popup" data-before="Try" data-after="Link">♅</a>
-    <a href="#link4" class="linkBtn popup" data-before="Explore" data-after="Link">♄</a>
-    <a href="#link5" class="linkBtn popup" data-before="Check" data-after="Link">♃</a>
-    <a href="#link6" class="linkBtn popup" data-before="Check" data-after="Link">웃</a>
-    <a href="#link7" class="linkBtn popup" data-before="Check" data-after="Link">유</a>
-    <a href="#link8" class="linkBtn popup" data-before="Check" data-after="Link">♅</a>
-    <a href="#link4" class="linkBtn popup" data-before="Check" data-after="Link">♄</a>
-    <a href="#link5" class="linkBtn popup" data-before="Check" data-after="Link">♃</a>
+    <a href="#link1" class="linkBtn popup">웃</a>
+    <a href="#link2" class="linkBtn popup">유</a>
+    <a href="#link3" class="linkBtn popup">♅</a>
+    <a href="#link4" class="linkBtn popup">♄</a>
+    <a href="#link5" class="linkBtn popup">♃</a>
+    <a href="#link6" class="linkBtn popup">웃</a>
+    <a href="#link7" class="linkBtn popup">유</a>
+    <a href="#link8" class="linkBtn popup">♅</a>
+    <a href="#link4" class="linkBtn popup">♄</a>
+    <a href="#link5" class="linkBtn popup">♃</a>
   </main>
 
   <img src="https://media3.giphy.com/media/P6vaRcD14JUzK/giphy.gif" class="badge">
