@@ -1,95 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vaporwave Grid</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Courier New', Courier, monospace;
-      background: linear-gradient(to bottom, #1e1e2f, #3b3b58);
-      color: #fff;
-      overflow: hidden;
-    }
-
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 20px;
-      padding: 50px;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .button {
-      text-decoration: none;
-      color: white;
-      padding: 15px 25px;
-      text-align: center;
-      font-size: 1rem;
-      font-weight: bold;
-      background: linear-gradient(45deg, #ff4dff, #8dffdd, #4f6eff);
-      border-radius: 8px;
-      box-shadow: 0px 8px 20px rgba(255, 255, 255, 0.2);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .button:hover {
-      transform: scale(1.1);
-      box-shadow: 0px 10px 25px rgba(255, 255, 255, 0.4);
-    }
-
-    .header {
-      text-align: center;
-      margin-top: 30px;
-      font-size: 2.5rem;
-      text-shadow: 0px 5px 10px #ff4dff, 0px 8px 20px #4f6eff;
-    }
-
-    .footer {
-      position: absolute;
-      bottom: 10px;
-      width: 100%;
-      text-align: center;
-      font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    .background-grid {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/8/8c/Vaporwave_grid.png') center/cover no-repeat;
-      opacity: 0.2;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaporwave Link Grid</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            color: #ff6ec7;
+            text-shadow: 2px 2px 5px #ff6ec7, 4px 4px 10px #ff9d9d;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            width: 90%;
+            max-width: 800px;
+        }
+        .button {
+            text-decoration: none;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #ff6ec7, #ffc93c);
+            box-shadow: 0 5px 15px rgba(255, 110, 199, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(255, 110, 199, 0.8);
+        }
+        .footer {
+            position: absolute;
+            bottom: 10px;
+            font-size: 0.9rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+        }
+    </style>
 </head>
 <body>
-  <div class="background-grid"></div>
-
-  <div class="header">
-    Welcome to the Vaporwave Grid
-  </div>
-
-  <div class="grid-container">
-    <a href="#" class="button">Link 1</a>
-    <a href="#" class="button">Link 2</a>
-    <a href="#" class="button">Link 3</a>
-    <a href="#" class="button">Link 4</a>
-    <a href="#" class="button">Link 5</a>
-    <a href="#" class="button">Link 6</a>
-    <a href="#" class="button">Link 7</a>
-    <a href="#" class="button">Link 8</a>
-    <a href="#" class="button">Link 9</a>
-  </div>
-
-  <div class="footer">
-    © 2025 Vaporwave Aesthetics
-  </div>
+    <div>
+        <h1>Vaporwave Links</h1>
+        <div class="grid">
+            <a href="https://example.com" class="button">Link 1</a>
+            <a href="https://example.com" class="button">Link 2</a>
+            <a href="https://example.com" class="button">Link 3</a>
+            <a href="https://example.com" class="button">Link 4</a>
+            <a href="https://example.com" class="button">Link 5</a>
+            <a href="https://example.com" class="button">Link 6</a>
+        </div>
+        <div class="footer">Inspired by Vaporwave Aesthetics</div>
+    </div>
 </body>
 </html>
