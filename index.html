@@ -7,63 +7,63 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Courier New', Courier, monospace;
-      background: linear-gradient(135deg, #ff71ce, #01cdfe, #05ffa1, #b967ff, #fffb96);
-      color: #fff;
-      min-height: 100vh;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb, #a18cd1, #fbc2eb);
+      animation: gradient 10s infinite alternate;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
     }
 
     .container {
       width: 80%;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       gap: 20px;
-      text-align: center;
     }
 
-    .button {
-      padding: 20px;
-      font-size: 16px;
-      font-weight: bold;
-      color: #fff;
-      background: rgba(255, 255, 255, 0.2);
-      border: 2px solid #fff;
-      border-radius: 10px;
+    .link-button {
       text-decoration: none;
-      text-transform: uppercase;
-      transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
-      backdrop-filter: blur(5px);
-    }
-
-    .button:hover {
-      transform: scale(1.1);
-      background: rgba(255, 255, 255, 0.4);
-      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.6);
-    }
-
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 40px;
-      text-align: center;
       color: #fff;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      font-size: 1.2rem;
+      padding: 15px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+    }
+
+    .link-button:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .link-button:active {
+      transform: translateY(2px);
     }
   </style>
 </head>
 <body>
-  <div>
-    <h1>Vaporwave Grid</h1>
-    <div class="container">
-      <a href="https://example1.com" class="button">Link 1</a>
-      <a href="https://example2.com" class="button">Link 2</a>
-      <a href="https://example3.com" class="button">Link 3</a>
-      <a href="https://example4.com" class="button">Link 4</a>
-      <a href="https://example5.com" class="button">Link 5</a>
-      <a href="https://example6.com" class="button">Link 6</a>
-    </div>
+  <div class="container">
+    <a href="#link1" class="link-button">Link 1</a>
+    <a href="#link2" class="link-button">Link 2</a>
+    <a href="#link3" class="link-button">Link 3</a>
+    <a href="#link4" class="link-button">Link 4</a>
+    <a href="#link5" class="link-button">Link 5</a>
+    <a href="#link6" class="link-button">Link 6</a>
+    <a href="#link7" class="link-button">Link 7</a>
+    <a href="#link8" class="link-button">Link 8</a>
   </div>
 </body>
 </html>
