@@ -1,32 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Breathe animation – Variable Font, HTML</title>
-  
-
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<head>
-
-<!-- Code snippet to create a "breathe" animation effect with a variable font -->
+  <title>Breathe animation with Variable Font</title>
   <style> 
     /* The @font-face rule is used to define a custom font that you want to use on your webpage. Here 'TheFont' is a name we give to reference the font later in CSS. The 'src' property specifies the path to the font file, and 'format' specifies the font format. */
     @font-face {
-    font-family: 'TheFont';
-    
-    /* Variable fonts like the one linked below allow for fine-tuned control over various font properties dynamically via CSS, such as weight ('wght'), width ('wdth'), etc. This link is where your web browser will download the font from. */
-    /* Insert the link to your custom variable font */
-    src: url("https://garet.typeforward.com/assets/fonts/shared/TFMixVF.woff2")
-      format('woff2'); }
-
+      font-family: 'TheFont';    
+      /* Variable fonts like the one linked below allow for fine-tuned control over various font properties dynamically via CSS, such as weight ('wght'), width ('wdth'), etc. This link is where your web browser will download the font from. */
+      /* Insert the link to your custom variable font */
+      src: url("https://garet.typeforward.com/assets/fonts/shared/TFMixVF.woff2") format('woff2');
+    }
 
   body.breathe-animation {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Change the Background color of the entire screen */
     background-color: black;
     /* 'vw' is a viewport-width unit, 'vh' is a viewport-height unit. 1vw equals 1% of the width of the viewport, and 1vh equals 1% of the height of the viewport. This allows the font size to scale dynamically with the window size. */
     height: 100vh;
@@ -68,12 +57,9 @@
   }
   </style>
 </head>
-
 <body class="breathe-animation">
   <!-- Change this letter to test a different one -->
   <span>mix</span>
-</body>
-<!-- partial -->
-  
+</body> 
 </body>
 </html>
