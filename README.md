@@ -85,3 +85,14 @@
 - [ ] Coral Reef Data Miner
 - [ ] Subaquatic Data Explorer
 - [ ] Hydrostatistical Seer
+- [ ] Neon Dust Sync
+- [ ] Byte Loop Void
+- [ ] Dark Glow Core
+- [ ] Code Warp Grid
+- [ ] Hack Flux Rise
+- [ ] Dark Sync Void
+- [ ] Tech Punk Rise
+- [ ] Data Core Flux
+- [ ] Glow Hack Zone
+- [ ] Code Wire Loop
+- [ ] Grid Fire Edge
