@@ -1,0 +1,288 @@
+@import url("https://fonts.googleapis.com/css2?family=Courgette&display=swap");
+*, *::before, *::after {
+  padding: 0;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-size: 32px;
+}
+
+body {
+  font-family: "Courgette", cursive;
+  background-color: #000;
+  background-image: radial-gradient(circle, #012, #000 15em);
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 75em;
+  perspective-origin: 50% calc(50% - 5em);
+  transform-style: preserve-3d;
+}
+
+.platform {
+  position: relative;
+  transform-style: preserve-3d;
+  -webkit-animation: platform 8s infinite ease-in-out;
+          animation: platform 8s infinite ease-in-out;
+}
+@-webkit-keyframes platform {
+  0%, 100% {
+    transform: translateY(-0.5em);
+  }
+  50% {
+    transform: translateY(0.5em);
+  }
+}
+@keyframes platform {
+  0%, 100% {
+    transform: translateY(-0.5em);
+  }
+  50% {
+    transform: translateY(0.5em);
+  }
+}
+
+.plate {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+}
+.plate:nth-child(1) {
+  width: 16em;
+  height: 16em;
+  background-image: radial-gradient(#444, #111);
+  transform: translate(-50%, -50%) rotateX(90deg) translateZ(2em);
+}
+.plate:nth-child(2) {
+  width: 14em;
+  height: 14em;
+  background-image: radial-gradient(#000, #222);
+  transform: translate(-50%, -50%) rotateX(90deg) translateZ(-2em);
+}
+.plate::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 0.5em;
+  background-image: linear-gradient(90deg, #222, #333, #111, #222);
+  transform: translateX(-50%) rotateX(-90deg) translateZ(0.5em);
+  transform-origin: top;
+}
+.plate::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(90deg, #222, #333, #111, #222);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) translateZ(-0.5em);
+}
+
+.panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3em;
+  height: 3em;
+  -webkit-clip-path: polygon(0 0, 100% 0, 93.25% 100%, 6.75% 100%);
+          clip-path: polygon(0 0, 100% 0, 93.25% 100%, 6.75% 100%);
+  background-color: #0005;
+  overflow: hidden;
+  -webkit-animation: panalRotate 60s infinite linear;
+          animation: panalRotate 60s infinite linear;
+}
+@-webkit-keyframes panalRotate {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  from {
+    transform: translate(-50%, calc(-50% + 0.25em)) rotateY(0) translateZ(7em) rotateX(-15deg);
+  }
+  to {
+    transform: translate(-50%, calc(-50% + 0.25em)) rotateY(360deg) translateZ(7em) rotateX(-15deg);
+  }
+}
+@keyframes panalRotate {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.1;
+  }
+  from {
+    transform: translate(-50%, calc(-50% + 0.25em)) rotateY(0) translateZ(7em) rotateX(-15deg);
+  }
+  to {
+    transform: translate(-50%, calc(-50% + 0.25em)) rotateY(360deg) translateZ(7em) rotateX(-15deg);
+  }
+}
+.panel:nth-child(1) {
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+}
+.panel:nth-child(1)::after {
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+}
+.panel:nth-child(2) {
+  -webkit-animation-delay: -3.75s;
+          animation-delay: -3.75s;
+}
+.panel:nth-child(2)::after {
+  -webkit-animation-delay: -1.25s;
+          animation-delay: -1.25s;
+}
+.panel:nth-child(3) {
+  -webkit-animation-delay: -7.5s;
+          animation-delay: -7.5s;
+}
+.panel:nth-child(3)::after {
+  -webkit-animation-delay: -2.5s;
+          animation-delay: -2.5s;
+}
+.panel:nth-child(4) {
+  -webkit-animation-delay: -11.25s;
+          animation-delay: -11.25s;
+}
+.panel:nth-child(4)::after {
+  -webkit-animation-delay: -3.75s;
+          animation-delay: -3.75s;
+}
+.panel:nth-child(5) {
+  -webkit-animation-delay: -15s;
+          animation-delay: -15s;
+}
+.panel:nth-child(5)::after {
+  -webkit-animation-delay: -5s;
+          animation-delay: -5s;
+}
+.panel:nth-child(6) {
+  -webkit-animation-delay: -18.75s;
+          animation-delay: -18.75s;
+}
+.panel:nth-child(6)::after {
+  -webkit-animation-delay: -6.25s;
+          animation-delay: -6.25s;
+}
+.panel:nth-child(7) {
+  -webkit-animation-delay: -22.5s;
+          animation-delay: -22.5s;
+}
+.panel:nth-child(7)::after {
+  -webkit-animation-delay: -7.5s;
+          animation-delay: -7.5s;
+}
+.panel:nth-child(8) {
+  -webkit-animation-delay: -26.25s;
+          animation-delay: -26.25s;
+}
+.panel:nth-child(8)::after {
+  -webkit-animation-delay: -8.75s;
+          animation-delay: -8.75s;
+}
+.panel:nth-child(9) {
+  -webkit-animation-delay: -30s;
+          animation-delay: -30s;
+}
+.panel:nth-child(9)::after {
+  -webkit-animation-delay: -10s;
+          animation-delay: -10s;
+}
+.panel:nth-child(10) {
+  -webkit-animation-delay: -33.75s;
+          animation-delay: -33.75s;
+}
+.panel:nth-child(10)::after {
+  -webkit-animation-delay: -11.25s;
+          animation-delay: -11.25s;
+}
+.panel:nth-child(11) {
+  -webkit-animation-delay: -37.5s;
+          animation-delay: -37.5s;
+}
+.panel:nth-child(11)::after {
+  -webkit-animation-delay: -12.5s;
+          animation-delay: -12.5s;
+}
+.panel:nth-child(12) {
+  -webkit-animation-delay: -41.25s;
+          animation-delay: -41.25s;
+}
+.panel:nth-child(12)::after {
+  -webkit-animation-delay: -13.75s;
+          animation-delay: -13.75s;
+}
+.panel:nth-child(13) {
+  -webkit-animation-delay: -45s;
+          animation-delay: -45s;
+}
+.panel:nth-child(13)::after {
+  -webkit-animation-delay: -15s;
+          animation-delay: -15s;
+}
+.panel:nth-child(14) {
+  -webkit-animation-delay: -48.75s;
+          animation-delay: -48.75s;
+}
+.panel:nth-child(14)::after {
+  -webkit-animation-delay: -16.25s;
+          animation-delay: -16.25s;
+}
+.panel:nth-child(15) {
+  -webkit-animation-delay: -52.5s;
+          animation-delay: -52.5s;
+}
+.panel:nth-child(15)::after {
+  -webkit-animation-delay: -17.5s;
+          animation-delay: -17.5s;
+}
+.panel:nth-child(16) {
+  -webkit-animation-delay: -56.25s;
+          animation-delay: -56.25s;
+}
+.panel:nth-child(16)::after {
+  -webkit-animation-delay: -18.75s;
+          animation-delay: -18.75s;
+}
+.panel::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: "I'm a slow walker but I never walk backwards";
+  font-weight: 700;
+  font-size: 2em;
+  white-space: nowrap;
+  color: #0009;
+  text-shadow: 0 0 5px #0af, 0 0 15px #0af, 0 0 30px #0af;
+  -webkit-animation: textMove 20s infinite linear;
+          animation: textMove 20s infinite linear;
+}
+@-webkit-keyframes textMove {
+  from {
+    transform: translate(2rem, -50%);
+  }
+  to {
+    transform: translate(-42.64rem, -50%);
+  }
+}
+@keyframes textMove {
+  from {
+    transform: translate(2rem, -50%);
+  }
+  to {
+    transform: translate(-42.64rem, -50%);
+  }
+}
