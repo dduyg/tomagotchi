@@ -1,102 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>404 - Page Not Found</title>
-    <style>
-        body {
-            font-family: 'Courier New', Courier, monospace;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            background: linear-gradient(135deg, #ff6b6b, #d1a8e7);
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-        .container {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-        .glitch {
-            font-size: 5rem;
-            position: relative;
-            display: inline-block;
-            color: #fff;
-            text-transform: uppercase;
-        }
-        .glitch::before, .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            color: #00ffcc;
-            text-shadow: 2px 2px 5px rgba(0, 255, 204, 0.7);
-            animation: glitch 1s infinite;
-        }
-        .glitch::after {
-            color: #ff00ff;
-            animation: glitch2 1s infinite;
-        }
-        @keyframes glitch {
-            0% { transform: translate(-2px, 0); }
-            25% { transform: translate(2px, -2px); }
-            50% { transform: translate(-2px, 2px); }
-            75% { transform: translate(2px, 2px); }
-            100% { transform: translate(0, 0); }
-        }
-        @keyframes glitch2 {
-            0% { transform: translate(2px, 2px); }
-            25% { transform: translate(-2px, -2px); }
-            50% { transform: translate(2px, 2px); }
-            75% { transform: translate(-2px, -2px); }
-            100% { transform: translate(0, 0); }
-        }
-        p {
-            font-size: 1.5rem;
-            margin-top: 20px;
-        }
-        a {
-            font-size: 1.25rem;
-            color: #00ffcc;
-            text-decoration: none;
-            text-transform: uppercase;
-            margin-top: 20px;
-            display: inline-block;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-        }
-        a:hover {
-            color: #ff00ff;
-            text-decoration: underline;
-        }
-        .background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 1;
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/72/Computer_Art_Grids.jpg');
-            background-size: cover;
-            filter: blur(8px);
-        }
-        .neon-text {
-            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 Not Found - Data Science Business</title>
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background: linear-gradient(135deg, #ff7e5f, #feb47b);
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-size: cover;
+    }
+
+    .container {
+      border: 5px solid #00eaff;
+      padding: 50px;
+      border-radius: 15px;
+      background-color: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    }
+
+    h1 {
+      font-size: 6rem;
+      margin: 0;
+      color: #ff61a6;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-top: 20px;
+      color: #ff00b3;
+      text-transform: capitalize;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin: 20px 0;
+      color: #a2e4ff;
+    }
+
+    a {
+      text-decoration: none;
+      font-size: 1.5rem;
+      color: #ff00b3;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      color: #fff;
+      background-color: #00eaff;
+    }
+
+    .glitch {
+      position: relative;
+      display: inline-block;
+      color: #ff00b3;
+      font-size: 6rem;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 5px;
+    }
+
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #00eaff;
+      animation: glitch-animation 1s infinite;
+      clip-path: inset(0 0 0 0);
+    }
+
+    @keyframes glitch-animation {
+      0% { clip-path: inset(0 0 0 0); transform: translate(1px, 1px); }
+      10% { clip-path: inset(1px 0 0 0); transform: translate(-2px, -2px); }
+      20% { clip-path: inset(0 1px 0 0); transform: translate(3px, 2px); }
+      30% { clip-path: inset(0 0 0 1px); transform: translate(-4px, -3px); }
+      40% { clip-path: inset(1px 0 0 0); transform: translate(1px, -4px); }
+      50% { clip-path: inset(0 0 0 0); transform: translate(-1px, 4px); }
+      60% { clip-path: inset(1px 0 0 0); transform: translate(2px, -1px); }
+      70% { clip-path: inset(0 1px 0 0); transform: translate(-3px, 2px); }
+      80% { clip-path: inset(0 0 0 1px); transform: translate(4px, -2px); }
+      90% { clip-path: inset(1px 0 0 0); transform: translate(-2px, 1px); }
+      100% { clip-path: inset(0 0 0 0); transform: translate(3px, -1px); }
+    }
+  </style>
 </head>
 <body>
-    <div class="background"></div>
-    <div class="container">
-        <div class="glitch" data-text="404 Not Found">404 Not Found</div>
-        <p class="neon-text">We couldn't find the page you were looking for...</p>
-        <a href="/">Go back to the homepage</a>
-    </div>
+  <div class="container">
+    <h1 class="glitch" data-text="404">404</h1>
+    <h2>Oops! Page Not Found</h2>
+    <p>It seems like you've reached the void. Don't worry, we can get you back to safety.</p>
+    <a href="/">Back to Home</a>
+  </div>
 </body>
 </html>
