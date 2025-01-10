@@ -6,7 +6,6 @@
   <title>LiminalLoop</title>
   <link href="https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Offside&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
   <style>
     * {   /* Reset to ensure a clean slate */
       margin: 0;
@@ -40,6 +39,12 @@
       font-weight: bold;
       color: #7A7A7A;
       cursor: pointer;
+      animation: floatText 4s infinite ease-in-out;
+    }
+    @keyframes floatText { 
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
     }
     @media only screen and (max-width: 768px) { 
       #dduyg {font-size: 1em;}
@@ -51,7 +56,6 @@
  
     h1 {
       font-size: 8rem;
-      font-family: "Zen Dots", monospace;
       background: url("https://media3.giphy.com/media/wsLkjgj5Rsehq/giphy.gif");
       background-size: cover;
       background-position: center;
@@ -100,16 +104,9 @@
       font-size: 1.2rem;
       line-height: 1.5;
       margin-bottom: 20px;
-      animation: floatText 4s infinite ease-in-out;
-    }
-    @keyframes floatText { 
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
     }
 
      .glitch {
-            font-size: 2rem;
             color: #7F7F7F;
             letter-spacing: 4px;
             position: relative;
