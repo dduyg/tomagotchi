@@ -4,55 +4,149 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>404 Not Found</title>
+    <title>404 Not Found - Data Science</title>
     <style>
-        /* Global reset */
-        * {
+        body {
+            background-color: #2a2a2a;
+            font-family: 'Courier New', Courier, monospace;
+            color: #ffffff;
+            text-align: center;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            background: #F598FF;
-            font-family: monospace;
-            color: #a8a8a8;
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
             overflow: hidden;
-            font-size: 1.4rem;
-            line-height: 1.5;
-        }       
-        main {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 120px 0 20px;
         }
 
-        .matrix-effect {
-            margin-top: 50px;
-            letter-spacing: 3px;
-            font-weight: bold;
-            animation: matrix 5s infinite linear;
+        h1 {
+            font-size: 5rem;
+            color: #ff6ec7;
+            text-shadow: 0 0 5px #ff6ec7, 0 0 10px #ff6ec7, 0 0 15px #ff6ec7;
         }
-        @keyframes matrix {
+
+        h2 {
+            font-size: 2.5rem;
+            color: #50e3c2;
+            text-shadow: 0 0 5px #50e3c2, 0 0 10px #50e3c2, 0 0 15px #50e3c2;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: #f9a825;
+            margin-top: 10px;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/dirty-paper.png');
+            background-size: cover;
+            z-index: -1;
+        }
+
+        .neon {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            color: #d3cce3;
+            text-shadow: 0 0 5px #d3cce3, 0 0 10px #d3cce3, 0 0 15px #d3cce3;
+        }
+
+        .button {
+            padding: 15px 30px;
+            background-color: #ff6ec7;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            color: #ffffff;
+            text-decoration: none;
+            margin-top: 30px;
+            transition: 0.3s;
+            box-shadow: 0 0 10px #ff6ec7, 0 0 15px #ff6ec7;
+        }
+
+        .button:hover {
+            background-color: #ff3b6d;
+            box-shadow: 0 0 20px #ff3b6d, 0 0 30px #ff3b6d;
+        }
+
+        .glitch {
+            position: relative;
+            color: #ff6ec7;
+            font-size: 6rem;
+            font-weight: bold;
+        }
+
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #50e3c2;
+            color: #50e3c2;
+            z-index: -1;
+            animation: glitch 1s infinite;
+        }
+
+        .glitch::after {
+            left: 2px;
+            text-shadow: -1px 0 red, 1px 0 cyan, 0 -1px green, 0 1px blue;
+        }
+
+        @keyframes glitch {
             0% {
-                opacity: 0.1;
-                transform: translateY(-20px);
+                transform: translateX(2px) translateY(-2px);
             }
-            50% {
-                opacity: 1;
-                transform: translateY(0);
+
+            20% {
+                transform: translateX(-2px) translateY(2px);
             }
+
+            40% {
+                transform: translateX(4px) translateY(-4px);
+            }
+
+            60% {
+                transform: translateX(-4px) translateY(4px);
+            }
+
+            80% {
+                transform: translateX(2px) translateY(-2px);
+            }
+
             100% {
-                opacity: 0.1;
-                transform: translateY(20px);
+                transform: translateX(0) translateY(0);
             }
         }
     </style>
 </head>
 <body>
-<main>
-    <h1>404</h1>
-    <div class="matrix-effect">System Error. Rebooting...</div>
-</main>
+
+    <div class="background"></div>
+    
+    <div class="glitch" data-text="404">
+        404
+    </div>
+    
+    <h2>Oops! Page Not Found.</h2>
+    
+    <p>We couldn't find the page you're looking for. It might have been moved, deleted, or never existed.</p>
+    
+    <a href="/" class="button">Go Home</a>
+
+    <div class="neon">
+        Powered by Data Science | Vaporwave Coder
+    </div>
+
 </body>
 </html>
