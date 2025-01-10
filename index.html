@@ -7,85 +7,87 @@
     <style>
         body {
             margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #000428, #004e92);
-            color: white;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            background: linear-gradient(120deg, #ff8fb1, #6b00b6, #00ffe1);
+            color: #ffffff;
+            height: 100vh;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        .container {
             text-align: center;
         }
 
-        .error-title {
-            font-size: 5rem;
-            font-weight: bold;
-            margin: 0;
-        }
-
-        .error-message {
-            font-size: 1.5rem;
-            margin: 20px 0;
-        }
-
-        .animation {
+        .container {
             position: relative;
-            width: 300px;
-            height: 300px;
-            margin: 0 auto 20px;
+            padding: 20px;
         }
 
-        .animation img {
-            width: 100%;
-            animation: float 3s ease-in-out infinite;
+        .title {
+            font-size: 8vw;
+            font-weight: bold;
+            text-shadow: 0 0 10px #ffffff, 0 0 20px #ff00ff, 0 0 30px #00ffff;
         }
 
-        @keyframes float {
+        .subtitle {
+            font-size: 2vw;
+            margin-top: 10px;
+            text-shadow: 0 0 5px #ffffff, 0 0 10px #ff8fb1, 0 0 15px #00ffe1;
+        }
+
+        .grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(90deg, #ffffff33 0, #ffffff33 1px, transparent 1px, transparent 20px),
+                        repeating-linear-gradient(#ffffff33 0, #ffffff33 1px, transparent 1px, transparent 20px);
+            z-index: -1;
+        }
+
+        .neon-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            font-size: 1.5vw;
+            color: #ffffff;
+            text-decoration: none;
+            background: #6b00b6;
+            border: 2px solid #00ffe1;
+            border-radius: 50px;
+            text-shadow: 0 0 5px #ffffff, 0 0 10px #ff00ff;
+            box-shadow: 0 0 20px #ff00ff, 0 0 30px #00ffff;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .neon-button:hover {
+            background: #00ffe1;
+            color: #6b00b6;
+            box-shadow: 0 0 30px #00ffe1, 0 0 50px #ff8fb1;
+        }
+
+        @keyframes floating {
             0%, 100% {
                 transform: translateY(0);
             }
             50% {
-                transform: translateY(-20px);
+                transform: translateY(-10px);
             }
         }
 
-        .back-home {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 1rem;
-            color: white;
-            text-decoration: none;
-            background: #ff6b6b;
-            border-radius: 50px;
-            transition: background 0.3s ease;
-        }
-
-        .back-home:hover {
-            background: #d9534f;
-        }
-
-        footer {
-            margin-top: 50px;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.6);
+        .floating-effect {
+            animation: floating 3s infinite;
         }
     </style>
 </head>
 <body>
+    <div class="grid"></div>
     <div class="container">
-        <div class="animation">
-            <img src="https://via.placeholder.com/300" alt="Astronaut Illustration">
-        </div>
-        <h1 class="error-title">404</h1>
-        <p class="error-message">Oops! The page you're looking for can't be found.</p>
-        <a href="/" class="back-home">Go Back Home</a>
-        <footer>
-            © 2025 YourWebsiteName. All rights reserved.
-        </footer>
+        <div class="title floating-effect">404</div>
+        <div class="subtitle floating-effect">Oops! The page you were looking for doesn't exist.</div>
+        <a href="/" class="neon-button floating-effect">Go Back to Home</a>
     </div>
 </body>
 </html>
