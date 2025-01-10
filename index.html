@@ -7,109 +7,96 @@
     <title>404 - Page Not Found</title>
     <style>
         body {
+            font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #ff00f7, #00ff99);
-            font-family: 'Courier New', Courier, monospace;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff6b6b, #d1a8e7);
             color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            text-align: center;
-            flex-direction: column;
             overflow: hidden;
         }
-
         .container {
-            transform: scale(1.2);
-            animation: fadeIn 2s ease-in-out;
+            text-align: center;
+            position: relative;
+            z-index: 2;
         }
-
-        h1 {
-            font-size: 100px;
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.7);
-            margin-bottom: 20px;
+        .glitch {
+            font-size: 5rem;
+            position: relative;
+            display: inline-block;
+            color: #fff;
+            text-transform: uppercase;
         }
-
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #00ffcc;
+            text-shadow: 2px 2px 5px rgba(0, 255, 204, 0.7);
+            animation: glitch 1s infinite;
+        }
+        .glitch::after {
+            color: #ff00ff;
+            animation: glitch2 1s infinite;
+        }
+        @keyframes glitch {
+            0% { transform: translate(-2px, 0); }
+            25% { transform: translate(2px, -2px); }
+            50% { transform: translate(-2px, 2px); }
+            75% { transform: translate(2px, 2px); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes glitch2 {
+            0% { transform: translate(2px, 2px); }
+            25% { transform: translate(-2px, -2px); }
+            50% { transform: translate(2px, 2px); }
+            75% { transform: translate(-2px, -2px); }
+            100% { transform: translate(0, 0); }
+        }
         p {
-            font-size: 24px;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.7), 0 0 10px rgba(255, 255, 255, 0.7);
-            margin-bottom: 40px;
+            font-size: 1.5rem;
+            margin-top: 20px;
         }
-
-        .back-link {
-            color: #ff00f7;
+        a {
+            font-size: 1.25rem;
+            color: #00ffcc;
             text-decoration: none;
-            font-size: 18px;
-            border: 1px solid #ff00f7;
-            padding: 10px 20px;
-            border-radius: 10px;
+            text-transform: uppercase;
+            margin-top: 20px;
+            display: inline-block;
+            letter-spacing: 2px;
             transition: all 0.3s ease;
         }
-
-        .back-link:hover {
-            background-color: #ff00f7;
-            color: #fff;
-            box-shadow: 0 0 10px #ff00f7, 0 0 20px #ff00f7;
+        a:hover {
+            color: #ff00ff;
+            text-decoration: underline;
         }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .neon-effect {
-            font-size: 30px;
-            color: #00ff99;
-            text-shadow: 0 0 10px rgba(0, 255, 153, 0.8), 0 0 20px rgba(0, 255, 153, 0.8), 0 0 30px rgba(0, 255, 153, 0.8);
-        }
-
-        .vaporwave-bg {
+        .background {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300px;
-            height: 300px;
-            background-image: url('https://cdn.pixabay.com/photo/2020/09/19/19/43/vaporwave-5588683_960_720.jpg');
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/72/Computer_Art_Grids.jpg');
             background-size: cover;
-            background-position: center;
-            border-radius: 50%;
-            opacity: 0.3;
-            transform: translate(-50%, -50%);
-            animation: pulse 5s infinite ease-in-out;
+            filter: blur(8px);
         }
-
-        @keyframes pulse {
-            0% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.3;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.2);
-                opacity: 0.5;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.3;
-            }
+        .neon-text {
+            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
         }
     </style>
 </head>
 <body>
-    <div class="vaporwave-bg"></div>
+    <div class="background"></div>
     <div class="container">
-        <h1>404</h1>
-        <p class="neon-effect">Page Not Found</p>
-        <p>Looks like the page you're looking for doesn't exist.</p>
-        <a href="/" class="back-link">Back to Home</a>
+        <div class="glitch" data-text="404 Not Found">404 Not Found</div>
+        <p class="neon-text">We couldn't find the page you were looking for...</p>
+        <a href="/">Go back to the homepage</a>
     </div>
 </body>
 </html>
