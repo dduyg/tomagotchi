@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>404 Not Found</title>
+    <style>
+        body {
+            background-color: #2a2a2a;
+            font-family: monospace;
+            color: #f9a825;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 5rem;
+            color: #ff3b6d;
+        }
+        p {
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+        .glitch {
+            position: relative;
+            color: #ff6ec7;
+            font-size: 6rem;
+            font-weight: bold;
+        }
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #50e3c2;
+            color: #50e3c2;
+            z-index: -1;
+            animation: glitch 1s infinite;
+        }
+        .glitch::after {
+            left: 2px;
+            text-shadow: -1px 0 red, 1px 0 cyan, 0 -1px green, 0 1px blue;
+        }
+        @keyframes glitch {
+            0% {transform: translateX(2px) translateY(-2px);}
+            20% {transform: translateX(-2px) translateY(2px);}
+            40% {transform: translateX(4px) translateY(-4px);}
+            60% {transform: translateX(-4px) translateY(4px);}
+            80% {transform: translateX(2px) translateY(-2px);}
+            100% {transform: translateX(0) translateY(0);}
+        }
+    </style>
+</head>
+<body>    
+    <div class="glitch" data-text="404">404</div>
+    <p>We couldn't find the page you're looking for. It might have been moved, deleted, or never existed.</p>
+</body>
+</html>
