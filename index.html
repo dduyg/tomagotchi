@@ -51,23 +51,22 @@
             100% {opacity: 0.1; transform: translateY(20px);}
         }
 
-.digital-corruption {
-  font-size: 1.5rem;
-  animation: digital-corruption 1s infinite;
-  transition: all 0.2s ease-in-out;
+.wave-text {
+    font-size: 3em;
+    background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: wave-animation 3s linear infinite;
 }
-@keyframes digital-corruption {
-  0% { opacity: 1; transform: scale(1); }
-  30% { opacity: 0.5; transform: scale(1.1); }
-  60% { opacity: 0.3; transform: scale(1.2); }
-  100% { opacity: 1; transform: scale(1); }
+@keyframes wave-animation {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
 }
         
 .text-glitch {
   font-size: 1.5rem;
   display: inline-block;
   animation: text-break 2s infinite;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }     
 @keyframes text-break {
   0% { transform: translateX(0); }
@@ -80,7 +79,7 @@
 </head>
 <body>    
     <h1>404</h1>
-    <div class="digital-corruption">Not Found</div>
+    <div class="wave-text">Not Found</div>
     <div class="text-glitch">Not Found</div>
     <p>System Error. Rebooting...</p>
 </body>
