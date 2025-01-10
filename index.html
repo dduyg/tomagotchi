@@ -24,15 +24,19 @@
 
         h1 {
             font-size: 6rem;
-  animation: color-shift 0.5s infinite linear;
-  text-shadow: 2px 0px #ff00ff, -2px 0px #00ff7f;
+            position: relative;
+            animation: static-noise 0.3s infinite;
         }
-        @keyframes color-shift {
-  0%, 100% { transform: translateX(0); color: #ff77ff; }
-  25% { transform: translateX(-5px); color: #ff007f; }
-  50% { transform: translateX(5px); color: #7f00ff; }
-  75% { transform: translateX(-5px); color: #00ff7f; }
-}
+        @keyframes static-noise {
+  0%, 100% { opacity: 1; }
+  10% { opacity: 0.6; }
+  20% { opacity: 1.2; }
+  30% { opacity: 0.8; }
+  40% { opacity: 1.1; }
+  50% { opacity: 0.7; }
+  60% { opacity: 1.3; }
+  70% { opacity: 0.5; }
+} 
 
         p {
             font-size: 1.4rem;
