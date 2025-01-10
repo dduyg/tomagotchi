@@ -30,6 +30,25 @@
       max-width: 600px;
       padding: 0 20px;
     }
+
+    #dduyg { 
+      position: absolute;
+      top: 4%;
+      left: 5%;
+      letter-spacing: .1em;
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #7A7A7A;
+      cursor: pointer;
+      font-family: "Fira Code", monospace;
+    }
+    @media only screen and (max-width: 768px) { 
+      #dduyg {font-size: 1em;}
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
  
     h1 {
       font-size: 7rem;
@@ -80,33 +99,79 @@
     }
     p {
       font-size: 1.2rem;
-      line-height: 1.6;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      animation: floatText 4s infinite ease-in-out;
+    }
+    @keyframes floatText { 
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
     }
 
-    a {
-      text-decoration: none;
-      font-size: 1.2rem;
-      padding: 10px 20px;
-      background: #FBDFD4;
-      color: #B17E6D;
-      border-radius: 25px;
-      transition: 0.3s ease;
-      outline: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-    a:hover {
-      background: #B17E6D;
-      color: #FBDFD4;
-      transform: scale(1.1);
-    }
+     .glitch {
+            font-size: 2rem;
+            color: #7F7F7F;
+            letter-spacing: 4px;
+            font-family: "Fira Code", monospace;
+            position: relative;
+            display: inline-block;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            padding-top: 0;
+            animation: glitch 1s infinite;
+        }
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        @keyframes glitch {
+            2%, 64% {transform: translate(2px,0) skew(0deg);}
+            4%, 60% {transform: translate(-2px,0) skew(0deg);}
+            62% {transform: translate(0,0) skew(5deg);}
+        }
+        .btn {
+            display: inline-block;
+            font-size: .875rem;
+            -moz-osx-font-smoothing: grayscale;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            transition: transform .25s ease-out;
+            text-decoration: none;
+            border-radius: 9999px;
+            border: 1px solid;
+            border-width: .125rem;  
+            padding: .5rem 1.25rem;
+            margin-top: .5rem;
+            color: #111;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-family: "Fira Code", monospace;
+        }
+        .btn:hover, .btn:focus {
+            transform: scale(1.05);
+        }
+        .btn:active {
+            transform: scale(.9);
+        }
+        #dduyg, .btn {
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
   </style>
 </head>
 <body>
+<div id="dduyg"><a href="/">/dduyg</a></div>
 <main>
   <h1>404</h1>
-  <h3>Page Not Found</h3>
-  <p>Waves of code crash on digital shores. Digital currents flow, coding in the sea. Neon code streams ignite. <b>Aquatic algorithms</b> rule here. Oceanic data, digital depths, matrix of the machine. Sailing through algorithms, navigating currents of code.</p>
-  <a href="#">Architects</a>
+  <h3 class="glitch" data-text="Page Not Found">Page Not Found</h3>
+  <p><em>Whoops!</em>&nbsp; Looks like this page has vanished into the cyber void. But don't worry, every glitch is just a feature waiting to be found.</p>
+  <a href="{{ site.baseurl }}/" class="btn">Return To Home</a>
 </main>
 </body>
 </html>
