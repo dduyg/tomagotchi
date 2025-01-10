@@ -52,6 +52,7 @@
         }
 
 .scanline-glitch {
+  font-size: 4rem;
   background: repeating-linear-gradient(transparent, transparent 1px, rgba(255, 255, 255, 0.05) 1px, rgba(255, 255, 255, 0.1) 2px);
   animation: scanline-glitch 0.05s linear infinite;
   background-size: 100% 2px;
@@ -60,11 +61,22 @@
   0% { background-position: 100% 0; }
   100% { background-position: 0 100%; }
 }
+
+     
+.flicker-glitch {
+  animation: flicker 0.2s infinite ease-in-out;
+}
+           @keyframes flicker {
+  0%, 100% { opacity: 1; }
+  10%, 30%, 50%, 70%, 90% { opacity: 0.5; }
+  20%, 40%, 60%, 80% { opacity: 0.8; }
+}
     </style>
 </head>
 <body>    
     <h1>404</h1>
     <div class="scanline-glitch">Not Found</div>
+    <div class="flicker-glitch">Not Found</div>
     <p>System Error. Rebooting...</p>
 </body>
 </html>
