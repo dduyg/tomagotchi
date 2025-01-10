@@ -31,32 +31,33 @@
         }
         .glitch {
             position: relative;
-            color: #ff6ec7;
+            display: inline-block;
+            color: #ff0066;
             font-size: 6rem;
             font-weight: bold;
         }
-        .glitch::before,
-        .glitch::after {
+        .glitch:after {
             content: attr(data-text);
             position: absolute;
             top: 0;
             left: 0;
-            background: #50e3c2;
-            color: #50e3c2;
-            z-index: -1;
-            animation: glitch 1s infinite;
+            background: #fff;
+            color: #ff0066;
+            clip: rect(0, 900px, 0, 0);
+            animation: glitch-animation 1s infinite;
         }
-        .glitch::after {
-            left: 2px;
-            text-shadow: -1px 0 red, 1px 0 cyan, 0 -1px green, 0 1px blue;
-        }
-        @keyframes glitch {
-            0% {transform: translateX(2px) translateY(-2px);}
-            20% {transform: translateX(-2px) translateY(2px);}
-            40% {transform: translateX(4px) translateY(-4px);}
-            60% {transform: translateX(-4px) translateY(4px);}
-            80% {transform: translateX(2px) translateY(-2px);}
-            100% {transform: translateX(0) translateY(0);}
+        @keyframes glitch-animation {
+            0% {clip: rect(45px, 9999px, 44px, 0); transform: skew(0.39deg);}
+            10% {clip: rect(85px, 9999px, 87px, 0); transform: skew(0.44deg);}
+            20% {clip: rect(35px, 9999px, 28px, 0); transform: skew(0.41deg);}
+            30% {clip: rect(48px, 9999px, 48px, 0); transform: skew(0.42deg);}
+            40% {clip: rect(12px, 9999px, 60px, 0); transform: skew(0.48deg);}
+            50% {clip: rect(55px, 9999px, 68px, 0); transform: skew(0.39deg);}
+            60% {clip: rect(23px, 9999px, 43px, 0); transform: skew(0.43deg);}
+            70% {clip: rect(75px, 9999px, 36px, 0); transform: skew(0.40deg);}
+            80% {clip: rect(32px, 9999px, 39px, 0); transform: skew(0.46deg);}
+            90% {clip: rect(41px, 9999px, 77px, 0); transform: skew(0.45deg);}
+            100% {clip: rect(80px, 9999px, 64px, 0); transform: skew(0.47deg);}
         }
     </style>
 </head>
