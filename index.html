@@ -1,108 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 Not Found - Data Science Business</title>
-  <style>
-    body {
-      font-family: 'Courier New', Courier, monospace;
-      background: linear-gradient(135deg, #ff7e5f, #feb47b);
-      color: #fff;
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background-size: cover;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>404 Not Found</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
 
-    .container {
-      border: 5px solid #00eaff;
-      padding: 50px;
-      border-radius: 15px;
-      background-color: rgba(0, 0, 0, 0.6);
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-    }
+        h1 {
+            font-size: 6rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #ff00ff;
+            text-shadow: 0 0 15px rgba(255, 0, 255, 0.8), 0 0 30px rgba(255, 0, 255, 0.6);
+            margin: 0;
+        }
 
-    h1 {
-      font-size: 6rem;
-      margin: 0;
-      color: #ff61a6;
-      text-transform: uppercase;
-      letter-spacing: 5px;
-    }
+        p {
+            font-size: 2rem;
+            margin-top: 20px;
+            color: #00ffcc;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.8), 0 0 20px rgba(0, 255, 204, 0.6);
+        }
 
-    h2 {
-      font-size: 2rem;
-      margin-top: 20px;
-      color: #ff00b3;
-      text-transform: capitalize;
-    }
+        .message {
+            font-size: 2rem;
+            color: #ff0099;
+            margin-top: 40px;
+            text-shadow: 0 0 10px rgba(255, 0, 153, 0.6), 0 0 20px rgba(255, 0, 153, 0.4);
+        }
 
-    p {
-      font-size: 1.2rem;
-      margin: 20px 0;
-      color: #a2e4ff;
-    }
+        .home-link {
+            font-size: 1.5rem;
+            color: #00ccff;
+            text-decoration: none;
+            border: 2px solid #00ccff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+        }
 
-    a {
-      text-decoration: none;
-      font-size: 1.5rem;
-      color: #ff00b3;
-      background-color: rgba(0, 0, 0, 0.5);
-      padding: 10px 20px;
-      border-radius: 10px;
-      transition: all 0.3s ease;
-    }
+        .home-link:hover {
+            background-color: #00ccff;
+            color: #2c3e50;
+            box-shadow: 0 0 15px rgba(0, 204, 255, 0.8);
+        }
 
-    a:hover {
-      color: #fff;
-      background-color: #00eaff;
-    }
+        .glitch {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 8rem;
+            font-family: 'Courier New', Courier, monospace;
+            color: rgba(255, 0, 255, 0.8);
+            z-index: -1;
+            animation: glitch 1s infinite linear alternate-reverse;
+        }
 
-    .glitch {
-      position: relative;
-      display: inline-block;
-      color: #ff00b3;
-      font-size: 6rem;
-      font-family: 'Courier New', monospace;
-      letter-spacing: 5px;
-    }
-
-    .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      color: #00eaff;
-      animation: glitch-animation 1s infinite;
-      clip-path: inset(0 0 0 0);
-    }
-
-    @keyframes glitch-animation {
-      0% { clip-path: inset(0 0 0 0); transform: translate(1px, 1px); }
-      10% { clip-path: inset(1px 0 0 0); transform: translate(-2px, -2px); }
-      20% { clip-path: inset(0 1px 0 0); transform: translate(3px, 2px); }
-      30% { clip-path: inset(0 0 0 1px); transform: translate(-4px, -3px); }
-      40% { clip-path: inset(1px 0 0 0); transform: translate(1px, -4px); }
-      50% { clip-path: inset(0 0 0 0); transform: translate(-1px, 4px); }
-      60% { clip-path: inset(1px 0 0 0); transform: translate(2px, -1px); }
-      70% { clip-path: inset(0 1px 0 0); transform: translate(-3px, 2px); }
-      80% { clip-path: inset(0 0 0 1px); transform: translate(4px, -2px); }
-      90% { clip-path: inset(1px 0 0 0); transform: translate(-2px, 1px); }
-      100% { clip-path: inset(0 0 0 0); transform: translate(3px, -1px); }
-    }
-  </style>
+        @keyframes glitch {
+            0% {
+                transform: translate(-50%, -50%) skew(0.1deg);
+            }
+            25% {
+                transform: translate(-50%, -50%) skew(0.3deg);
+            }
+            50% {
+                transform: translate(-50%, -50%) skew(-0.3deg);
+            }
+            75% {
+                transform: translate(-50%, -50%) skew(0.2deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) skew(-0.1deg);
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1 class="glitch" data-text="404">404</h1>
-    <h2>Oops! Page Not Found</h2>
-    <p>It seems like you've reached the void. Don't worry, we can get you back to safety.</p>
-    <a href="/">Back to Home</a>
-  </div>
+    <div class="glitch">404</div>
+    <h1>Page Not Found</h1>
+    <p>Oops, something went wrong!</p>
+    <div class="message">
+        This page doesn't exist, but our data science team can still help!
+    </div>
+    <a href="/" class="home-link">Go Back Home</a>
 </body>
 </html>
