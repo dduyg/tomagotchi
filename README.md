@@ -47,6 +47,9 @@
 - [ ]  Geo
 - [ ]  Workbench
 - [ ]  Syne Mono
+- [ ]  Kanit
+- [ ]  Revalia
+- [ ]  Sixtyfour
 
 <br>
 
