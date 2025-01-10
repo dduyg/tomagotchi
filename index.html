@@ -7,12 +7,13 @@
     <title>404 Not Found</title>
     <style>
         body {
-            background-color: #2a2a2a;
+            background-color: #F598FF;
             font-family: monospace;
-            color: #f9a825;
+            color: #a8a8a8;
             text-align: center;
+            line-height: 1.5;
             margin: 0;
-            padding: 0;
+            padding: 0 20px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -35,13 +36,13 @@
             background: #50e3c2;
             color: #50e3c2;
             z-index: -1;
-            animation: glitch 1s infinite;
+            animation: shift-glitch 1s infinite;
         }
         h1::after {
             left: 2px;
             text-shadow: -1px 0 red, 1px 0 cyan, 0 -1px green, 0 1px blue;
         }
-        @keyframes glitch {
+        @keyframes shift-glitch {
             0% {transform: translateX(2px) translateY(-2px);}
             20% {transform: translateX(-2px) translateY(2px);}
             40% {transform: translateX(4px) translateY(-4px);}
@@ -51,7 +52,7 @@
         }
 
         p {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-top: 10px;
         }
     </style>
