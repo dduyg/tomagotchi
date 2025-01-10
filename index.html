@@ -1,93 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 Not Found</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Courier New', Courier, monospace;
-            background: linear-gradient(120deg, #ff8fb1, #6b00b6, #00ffe1);
-            color: #ffffff;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .container {
-            position: relative;
-            padding: 20px;
-        }
-
-        .title {
-            font-size: 8vw;
-            font-weight: bold;
-            text-shadow: 0 0 10px #ffffff, 0 0 20px #ff00ff, 0 0 30px #00ffff;
-        }
-
-        .subtitle {
-            font-size: 2vw;
-            margin-top: 10px;
-            text-shadow: 0 0 5px #ffffff, 0 0 10px #ff8fb1, 0 0 15px #00ffe1;
-        }
-
-        .grid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: repeating-linear-gradient(90deg, #ffffff33 0, #ffffff33 1px, transparent 1px, transparent 20px),
-                        repeating-linear-gradient(#ffffff33 0, #ffffff33 1px, transparent 1px, transparent 20px);
-            z-index: -1;
-        }
-
-        .neon-button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 15px 30px;
-            font-size: 1.5vw;
-            color: #ffffff;
-            text-decoration: none;
-            background: #6b00b6;
-            border: 2px solid #00ffe1;
-            border-radius: 50px;
-            text-shadow: 0 0 5px #ffffff, 0 0 10px #ff00ff;
-            box-shadow: 0 0 20px #ff00ff, 0 0 30px #00ffff;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .neon-button:hover {
-            background: #00ffe1;
-            color: #6b00b6;
-            box-shadow: 0 0 30px #00ffe1, 0 0 50px #ff8fb1;
-        }
-
-        @keyframes floating {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .floating-effect {
-            animation: floating 3s infinite;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 Not Found</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Courier New', Courier, monospace;
+      background: linear-gradient(135deg, #ff6ec7, #6e45e2);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .container {
+      text-align: center;
+      animation: glitch-animation 1s infinite alternate;
+    }
+    .title {
+      font-size: 6rem;
+      font-weight: bold;
+      text-shadow: 
+        0 0 5px #ff6ec7, 
+        0 0 10px #ff6ec7, 
+        0 0 15px #6e45e2, 
+        0 0 20px #6e45e2;
+    }
+    .subtitle {
+      font-size: 1.5rem;
+      margin-top: 10px;
+      opacity: 0.8;
+    }
+    .link {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      text-decoration: none;
+      color: #fff;
+      border: 2px solid #ff6ec7;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.1);
+      transition: 0.3s;
+    }
+    .link:hover {
+      background: #ff6ec7;
+      color: #000;
+      border: 2px solid #fff;
+    }
+    .glitch {
+      position: relative;
+      display: inline-block;
+    }
+    .glitch:before,
+    .glitch:after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      right: 0;
+      opacity: 0.8;
+      clip: rect(0, 900px, 0, 0);
+    }
+    .glitch:before {
+      top: -2px;
+      text-shadow: -2px 0 #00ffea;
+      animation: glitch-top 2s infinite linear;
+    }
+    .glitch:after {
+      bottom: -2px;
+      text-shadow: -2px 0 #ff00ff;
+      animation: glitch-bottom 2s infinite linear;
+    }
+    @keyframes glitch-animation {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(-2px); }
+    }
+    @keyframes glitch-top {
+      0%, 100% { clip: rect(0, 900px, 0, 0); }
+      50% { clip: rect(30px, 900px, 60px, 0); }
+    }
+    @keyframes glitch-bottom {
+      0%, 100% { clip: rect(0, 900px, 0, 0); }
+      50% { clip: rect(70px, 900px, 100px, 0); }
+    }
+  </style>
 </head>
 <body>
-    <div class="grid"></div>
-    <div class="container">
-        <div class="title floating-effect">404</div>
-        <div class="subtitle floating-effect">Oops! The page you were looking for doesn't exist.</div>
-        <a href="/" class="neon-button floating-effect">Go Back to Home</a>
-    </div>
+  <div class="container">
+    <h1 class="title glitch" data-text="404">404</h1>
+    <p class="subtitle glitch" data-text="Page Not Found">Page Not Found</p>
+    <a href="/" class="link">Go Back to Homepage</a>
+  </div>
 </body>
 </html>
