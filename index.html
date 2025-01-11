@@ -112,13 +112,24 @@
       background: #101010;
     }
     #flickerGlitch h1 {
-      font-size: 3rem;
+      font-size: 4rem;
       animation: flicker 1.5s infinite alternate;
       color: #ff00ff;
     }
     @keyframes flicker {
       0%, 100% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; }
       50% { text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff; }
+    }
+    #flickerGlitch h2 {
+      font-size: 2rem;
+      color: #fff;
+      text-transform: uppercase;
+      text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 80px #00ffff, 0 0 90px #00ffff;
+      animation: neon-flicker 2s infinite alternate;
+    }
+    @keyframes neon-flicker {
+      0%, 100% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff; }
+      50% { text-shadow: 0 0 30px #ff00ff, 0 0 60px #00ffff; }
     }
     
     #staticNoise {
@@ -195,19 +206,29 @@
       50% { transform: translate(-2px, 2px); }
     }
 
-    #neonFlicker {
-      background: black;
-    }
-    #neonFlicker h1 {
+    #RGBGlitch h1 {
       font-size: 5rem;
+      position: relative;
       color: #fff;
       text-transform: uppercase;
-      text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 80px #00ffff, 0 0 90px #00ffff;
-      animation: neon-flicker 2s infinite alternate;
     }
-    @keyframes neon-flicker {
-      0%, 100% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff; }
-      50% { text-shadow: 0 0 30px #ff00ff, 0 0 60px #00ffff; }
+    #RGBGlitch h1::before,
+    #RGBGlitch h1::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      color: #ff0000;
+      z-index: -1;
+    }
+    #RGBGlitch h1::after {
+      color: #00ffea;
+      transform: translate(4px, -4px);
+    }
+    #RGBGlitch h1::before {
+      transform: translate(-4px, 4px);
     }
 
     #blurGlitch {
@@ -266,15 +287,15 @@
 <body>
 <header>
   <nav>
-    <a href="#scanGlitch">⊖</a>
-    <a href="#pixelGlitch">⊙</a>
-    <a href="#flickerGlitch">⊕</a>
-    <a href="#staticNoise">⊘</a>
-    <a href="#shadowTrail">⊚</a>
-    <a href="#doubleLayer">⊜</a>
-    <a href="#neonFlicker">⊛</a>
-    <a href="#blurGlitch">⊝</a>
-    <a href="#staggerGlitch">⊚</a>
+    <a href="#scanGlitch">◧</a>
+    <a href="#pixelGlitch">◳</a>
+    <a href="#flickerGlitch">▩</a>
+    <a href="#staticNoise">◩</a>
+    <a href="#shadowTrail">▦</a>
+    <a href="#doubleLayer">▣</a>
+    <a href="#RGBGlitch">▥</a>
+    <a href="#blurGlitch">▧</a>
+    <a href="#staggerGlitch">◱</a>
   </nav>
 </header>
 
@@ -290,6 +311,7 @@
 </section>
 <section id="flickerGlitch">
   <h1>Stimulation</h1>
+  <h2>Sea of Envy</h2>
 </section>
 <section id="staticNoise">
   <h1>Sclitch</h1>
@@ -300,8 +322,8 @@
 <section id="doubleLayer">
   <h1 data-text="Layer">Layer</h1>
 </section>
-<section id="neonFlicker">
-  <h1>Kanit</h1>
+<section id="RGBGlitch">
+  <h1 data-text="Glitch">Glitch</h1>
 </section>
 <section id="blurGlitch">
   <h1 class="blur-glitch" data-text="Chemicals">Chemicals</h1>
