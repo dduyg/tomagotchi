@@ -30,34 +30,43 @@
             margin-top: 10px;
         }
         .glitch {
-            position: relative;
-            color: #ff6ec7;
-            font-size: 6rem;
-            font-weight: bold;
-        }
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            background: #50e3c2;
-            color: #50e3c2;
-            z-index: -1;
-            animation: glitch 1s infinite;
-        }
-        .glitch::after {
-            left: 2px;
-            text-shadow: -1px 0 red, 1px 0 cyan, 0 -1px green, 0 1px blue;
-        }
-        @keyframes glitch {
-            0% {transform: translateX(2px) translateY(-2px);}
-            20% {transform: translateX(-2px) translateY(2px);}
-            40% {transform: translateX(4px) translateY(-4px);}
-            60% {transform: translateX(-4px) translateY(4px);}
-            80% {transform: translateX(2px) translateY(-2px);}
-            100% {transform: translateX(0) translateY(0);}
-        }
+    position: relative;
+    font-size: 6rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ff8a80, #ff80ab, #b388ff, #8c9eff, #80d8ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 3s ease infinite;
+}
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    color: #ff4081;
+    opacity: 0.8;
+    animation: glitchEffect 1s infinite;
+}
+.glitch::after {
+    color: #40c4ff;
+    animation-delay: 0.2s;
+}
+
+@keyframes gradientShift {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+@keyframes glitchEffect {
+    0% {transform: translate(1px, -1px);}
+    20% {transform: translate(-1px, 1px);}
+    40% {transform: translate(-3px, 3px);}
+    60% {transform: translate(3px, -3px);}
+    80% {transform: translate(-1px, 1px);}
+    100% {transform: translate(0, 0);}
+}
     </style>
 </head>
 <body>    
