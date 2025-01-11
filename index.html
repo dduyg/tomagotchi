@@ -50,32 +50,6 @@
             50% {opacity: 1; transform: translateY(0);}
             100% {opacity: 0.1; transform: translateY(20px);}
         }
-
-.crt-screen {
-    background: #000;
-    position: relative;
-    overflow: hidden;
-}
-.crt-screen::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0.1),
-        rgba(255, 255, 255, 0.1) 1px,
-        transparent 1px,
-        transparent 3px
-    );
-    animation: scanlines 0.1s infinite;
-}
-@keyframes scanlines {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(1px); }
-}
         
 .text-glitch {
   font-size: 1.5rem;
@@ -89,11 +63,23 @@
   75% { transform: translateX(-5px); }
   100% { transform: translateX(0); }
 }
+
+.glitch-bg {
+    background: linear-gradient(45deg, #ff00ff, #00ffff);
+    animation: glitch-bg-animation 2s infinite alternate;
+}
+@keyframes glitch-bg-animation {
+    0% { background-position: 0% 0%; }
+    25% { background-position: 10% 10%; }
+    50% { background-position: -10% 5%; }
+    75% { background-position: 5% -5%; }
+    100% { background-position: 0% 0%; }
+}
     </style>
 </head>
 <body>    
     <h1>404</h1>
-    <div class="crt-screen">ggggggg</div>
+    <div class="glitch-bg"></div>
     <div class="text-glitch">Not Found</div>
     <p>System Error. Rebooting...</p>
 </body>
