@@ -204,6 +204,38 @@
       0%, 100% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff; }
       50% { text-shadow: 0 0 30px #ff00ff, 0 0 60px #00ffff; }
     }
+
+    #blurGlitch {
+      background: #101010;
+    }
+    .blur-glitch {
+      font-size: 5rem;
+      position: relative;
+      text-transform: uppercase;
+      animation: blur-glitch 2s infinite;
+    }
+    .blur-glitch::before, .blur-glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    .blur-glitch::before {
+      color: #ff00ff;
+      clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+      animation: blur-glitch 2s infinite;
+    }
+    .blur-glitch::after {
+      color: #00ffff;
+      clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+      animation: blur-glitch 2s infinite reverse;
+    }
+    @keyframes blur-glitch {
+      0% { transform: translate(0); filter: blur(0); }
+      50% { transform: translate(5px); filter: blur(3px); }
+      100% { transform: translate(-5px); filter: blur(0); }
+    }
   </style>
 </head>
 <body>
@@ -216,6 +248,7 @@
     <a href="#shadowTrail">S4</a>
     <a href="#doubleLayer">S4</a>
     <a href="#neonFlicker">S4</a>
+    <a href="#blurGlitch">S4</a>
   </nav>
 </header>
 
@@ -243,6 +276,9 @@
 </section>
 <section id="neonFlicker">
   <h1>Kanit</h1>
+</section>
+<section id="blurGlitch">
+  <h1 class="blur-glitch" data-text="Blur">Blur</h1>
 </section>
 </body>
 </html>
