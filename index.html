@@ -189,6 +189,21 @@
       0%, 100% { transform: translate(0, 0); }
       50% { transform: translate(-2px, 2px); }
     }
+
+    #neonFlicker {
+      background: #000000;
+    }
+    #neonFlicker h1 {
+      font-size: 5rem;
+      color: #fff;
+      text-transform: uppercase;
+      text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 40px #00ffff, 0 0 80px #00ffff, 0 0 90px #00ffff;
+      animation: neon-flicker 2s infinite alternate;
+    }
+    @keyframes neon-flicker {
+      0%, 100% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff; }
+      50% { text-shadow: 0 0 30px #ff00ff, 0 0 60px #00ffff; }
+    }
   </style>
 </head>
 <body>
@@ -200,6 +215,7 @@
     <a href="#staticNoise">S4</a>
     <a href="#shadowTrail">S4</a>
     <a href="#doubleLayer">S4</a>
+    <a href="#neonFlicker">S4</a>
   </nav>
 </header>
 
@@ -224,6 +240,9 @@
 </section>
 <section id="doubleLayer">
   <h1 data-text="Layer">Layer</h1>
+</section>
+<section id="neonFlicker">
+  <h1>Kanit</h1>
 </section>
 </body>
 </html>
