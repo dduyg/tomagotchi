@@ -14,7 +14,6 @@
 - [ ] Geostar Fill
 - [ ] Georama
 - [ ] Oxanium
-- [ ] Special Elite
 - [ ]  Jacquard 12
 - [ ]  Micro 5
 - [ ]  Jersey 10
@@ -34,7 +33,6 @@
 - [ ]  Overlock
 - [ ]  Titillium Web
 - [ ]  Nunito
-- [ ]  Genos
 - [ ]  Unbounded
 - [ ]  Capriola
 - [ ]  Faculty Glyphic
