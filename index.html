@@ -33,9 +33,10 @@
     position: relative;
     font-size: 6rem;
     font-weight: bold;
-    color: #f50057;
-    text-shadow: 0px 0px 10px #6200ea, 0px 0px 20px #2962ff;
-    animation: neonGlow 1.5s ease-in-out infinite;
+    background: linear-gradient(to right, #4caf50, #8e44ad, #3498db, #e91e63, #ffeb3b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: pixelate 1s infinite;
 }
 .glitch::before,
 .glitch::after {
@@ -44,23 +45,25 @@
     top: 0;
     left: 0;
     z-index: -1;
-    color: #00bfa5;
-    opacity: 0.8;
-    animation: gridShift 1s infinite;
+    color: #f44336;
+    opacity: 0.7;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
+    animation: vhsShift 0.5s infinite;
 }
 .glitch::after {
-    color: #ff6f00;
+    color: #03a9f4;
+    clip-path: polygon(0% 50%, 100% 50%, 100% 100%, 0% 100%);
     animation-delay: 0.2s;
 }
 
-@keyframes neonGlow {
-    0%, 100% {text-shadow: 0px 0px 10px #6200ea, 0px 0px 20px #2962ff;}
-    50% {text-shadow: 0px 0px 15px #ff4081, 0px 0px 30px #ffab40;}
+@keyframes pixelate {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.05);}
+    100% {transform: scale(1);}
 }
-@keyframes gridShift {
-    0% {transform: translate(-2px, -2px);}
-    50% {transform: translate(2px, 2px);}
-    100% {transform: translate(0, 0);}
+@keyframes vhsShift {
+    0%, 100% {transform: translate(1px, -1px);}
+    50% {transform: translate(-1px, 1px);}
 }
     </style>
 </head>
