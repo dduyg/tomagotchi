@@ -99,9 +99,19 @@
       75% { transform: translate(3px, -3px); }
     }
     
-    #section3 {
-      background: #e74c3c;
+    #flickerGlitch {
+      background: #101010;
     }
+    #flickerGlitch h1 {
+      font-size: 4rem;
+      animation: flicker 1.5s infinite alternate;
+      color: #ff00ff;
+    }
+    @keyframes flicker {
+      0%, 100% { text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff; }
+      50% { text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff; }
+    }
+    
     #section4 {
       background: #9b59b6;
     }
@@ -112,7 +122,7 @@
   <nav>
     <a href="#scanGlitch">■</a>
     <a href="#pixelGlitch">Se2</a>
-    <a href="#section3">Se3</a>
+    <a href="#flickerGlitch">Se3</a>
     <a href="#section4">Se4</a>
   </nav>
 </header>
@@ -127,8 +137,8 @@
     <span>AMETHYST</span>
   </h1>
 </section>
-<section id="section3">
-  Section 3
+<section id="flickerGlitch">
+  <h1>Stimulation</h1>
 </section>
 <section id="section4">
   Section 4
