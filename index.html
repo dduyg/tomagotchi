@@ -209,7 +209,7 @@
       background: #101010;
     }
     .blur-glitch {
-      font-size: 5rem;
+      font-size: 3rem;
       position: relative;
       text-transform: uppercase;
       animation: blur-glitch 2s infinite;
@@ -236,6 +236,26 @@
       50% { transform: translate(5px); filter: blur(3px); }
       100% { transform: translate(-5px); filter: blur(0); }
     }
+
+    #staggerGlitch {
+      background: #000;
+    }
+    .stagger-glitch {
+      font-size: 6rem;
+      color: #2962ff;
+      position: relative;
+      text-transform: uppercase;
+    }
+    .stagger-glitch span {
+      display: inline-block;
+      animation: stagger-glitch 2s infinite;
+    }
+    .stagger-glitch span:nth-child(2) { color: #f50057; animation-delay: 0.2s; }
+    .stagger-glitch span:nth-child(3) { color: #6200ea; animation-delay: 0.4s; }
+    @keyframes stagger-glitch {
+      0%, 100% { transform: translate(0); }
+      50% { transform: translate(10px, -10px); }
+    }
   </style>
 </head>
 <body>
@@ -249,6 +269,7 @@
     <a href="#doubleLayer">S4</a>
     <a href="#neonFlicker">S4</a>
     <a href="#blurGlitch">S4</a>
+    <a href="#staggerGlitch">S4</a>
   </nav>
 </header>
 
@@ -278,7 +299,14 @@
   <h1>Kanit</h1>
 </section>
 <section id="blurGlitch">
-  <h1 class="blur-glitch" data-text="Blur">Blur</h1>
+  <h1 class="blur-glitch" data-text="Chemicals">Chemicals</h1>
+</section>
+<section id="staggerGlitch">
+  <h1 class="stagger-glitch">
+    <span>Stagger</span>
+    <span>Stagger</span>
+    <span>Stagger</span>
+  </h1>
 </section>
 </body>
 </html>
