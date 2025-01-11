@@ -3,68 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glitch Image Effect</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>404 Not Found</title>
     <style>
-        /* Basic styles for the page */
         body {
-            background: #1a1a1a;
-            color: #fff;
-            font-family: Arial, sans-serif;
+            background-color: #F598FF;
+            font-family: monospace;
+            color: #a8a8a8;
+            text-align: center;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0 20px;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-        }
-
-        /* Glitch image container */
-        .glitch-img {
-            position: relative;
-            display: inline-block;
+            flex-direction: column;
             overflow: hidden;
         }
 
-        /* Base image styles */
-        .glitch-img img {
-            width: 300px;
-            height: auto;
-            position: absolute;
-            top: 0;
-            left: 0;
-            animation: glitch-shift 0.8s infinite;
+        h1 {
+            font-size: 6rem;
+            position: relative;
+            animation: static-noise 0.3s infinite;
         }
+        @keyframes static-noise {
+            0%, 100% { opacity: 1; }
+            10% { opacity: 0.6; }
+            20% { opacity: 1.2; }
+            30% { opacity: 0.8; }
+            40% { opacity: 1.1; }
+            50% { opacity: 0.7; }
+            60% { opacity: 1.3; }
+            70% { opacity: 0.5; }
+        } 
 
-        /* Second layer (Red) */
-        .glitch-img img:nth-child(2) {
-            filter: hue-rotate(90deg);
-            clip-path: inset(0 15px 0 0);
+        p {
+            font-size: 1.4rem;
+            margin-top: 50px;
+            letter-spacing: 3px;
+            font-weight: bold;
+            animation: matrix 3s infinite linear;
         }
-
-        /* Third layer (Blue) */
-        .glitch-img img:nth-child(3) {
-            filter: hue-rotate(180deg);
-            clip-path: inset(15px 0 0 0);
+        @keyframes matrix {
+            0% {opacity: 0.1; transform: translateY(-20px);}
+            50% {opacity: 1; transform: translateY(0);}
+            100% {opacity: 0.1; transform: translateY(20px);}
         }
-
-        /* Glitch animation */
-        @keyframes glitch-shift {
-            0% {
-                transform: translate(0, 0);
-            }
-            50% {
-                transform: translate(-5px, 5px);
-            }
-            100% {
-                transform: translate(5px, -5px);
-            }
-        }
+        
+.text-glitch {
+  font-size: 1.5rem;
+  display: inline-block;
+  animation: text-break 2s infinite;
+}     
+@keyframes text-break {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
     </style>
 </head>
-<body>
-    <div class="glitch-img">
-        <img src="https://media4.giphy.com/media/xULW8t4niLpdPz9GRW/giphy.gif" alt="Glitch Layer 1">
-        <img src="https://media4.giphy.com/media/xULW8t4niLpdPz9GRW/giphy.gif" alt="Glitch Layer 2">
-        <img src="https://media4.giphy.com/media/xULW8t4niLpdPz9GRW/giphy.gif" alt="Glitch Layer 3">
-    </div>
+<body>    
+    <h1>404</h1>  
+    <div class="text-glitch">Not Found</div>
+    <p>System Error. Rebooting...</p>
 </body>
 </html>
