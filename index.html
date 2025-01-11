@@ -7,7 +7,8 @@
     <title>404 Not Found</title>
     <style>
         body {
-            background-color: #F598FF;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            animation: glitch-bg-animation 2s infinite alternate;       
             font-family: monospace;
             color: #a8a8a8;
             text-align: center;
@@ -21,6 +22,13 @@
             flex-direction: column;
             overflow: hidden;
         }
+@keyframes glitch-bg-animation {
+    0% { background-position: 0% 0%; }
+    25% { background-position: 10% 10%; }
+    50% { background-position: -10% 5%; }
+    75% { background-position: 5% -5%; }
+    100% { background-position: 0% 0%; }
+}
 
         h1 {
             font-size: 6rem;
@@ -63,23 +71,10 @@
   75% { transform: translateX(-5px); }
   100% { transform: translateX(0); }
 }
-
-.glitch-bg {
-    background: linear-gradient(45deg, #ff00ff, #00ffff);
-    animation: glitch-bg-animation 2s infinite alternate;
-}
-@keyframes glitch-bg-animation {
-    0% { background-position: 0% 0%; }
-    25% { background-position: 10% 10%; }
-    50% { background-position: -10% 5%; }
-    75% { background-position: 5% -5%; }
-    100% { background-position: 0% 0%; }
-}
     </style>
 </head>
 <body>    
     <h1>404</h1>
-    <div class="glitch-bg"></div>
     <div class="text-glitch">Not Found</div>
     <p>System Error. Rebooting...</p>
 </body>
