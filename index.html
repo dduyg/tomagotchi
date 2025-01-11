@@ -130,15 +130,44 @@
       80% { clip-path: polygon(0 80%, 100% 80%, 100% 90%, 0 90%); }
       100% { clip-path: polygon(0 90%, 100% 90%, 100% 100%, 0 100%); }
     }
+
+    #shadowTrail {
+      background: #1a1a1a;
+    }
+    .shadow-trail {
+      font-size: 5rem;
+      text-transform: uppercase;
+      position: relative;
+      animation: shadow-trail 1.5s infinite;
+    }
+    .shadow-trail::before, .shadow-trail::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #ff00ff;
+      z-index: -1;
+      transform: translate(-5px, -5px);
+      animation: shadow-trail 1.5s infinite;
+    }
+    .shadow-trail::after {
+      color: #00ffff;
+      transform: translate(5px, 5px);
+    }
+    @keyframes shadow-trail {
+      0%, 100% { opacity: 0.5; transform: translate(0, 0); }
+      50% { opacity: 1; transform: translate(10px, -10px); }
+    }
   </style>
 </head>
 <body>
 <header>
   <nav>
     <a href="#scanGlitch">■</a>
-    <a href="#pixelGlitch">Se2</a>
-    <a href="#flickerGlitch">Se3</a>
-    <a href="#staticNoise">Se4</a>
+    <a href="#pixelGlitch">S6</a>
+    <a href="#flickerGlitch">S3</a>
+    <a href="#staticNoise">S4</a>
+    <a href="#shadowTrail">S4</a>
   </nav>
 </header>
 
@@ -157,6 +186,9 @@
 </section>
 <section id="staticNoise">
   <h1>Sclitch</h1>
+</section>
+<section id="shadowTrail">
+  <h1 class="shadow-trail" data-text="Trail">Trail</h1>
 </section>
 </body>
 </html>
