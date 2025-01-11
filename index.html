@@ -111,6 +111,7 @@
     #flickerGlitch {
       background: #101010;
       flex-direction: column;
+      gap: 40px;
     }
     #flickerGlitch h1 {
       font-size: 4rem;
@@ -266,6 +267,7 @@
 
     #staggerGlitch {
       background: #000;
+      padding: 0 20px;
     }
     .stagger-glitch {
       font-size: 4rem;
@@ -283,6 +285,40 @@
       0%, 100% { transform: translate(0); }
       50% { transform: translate(10px, -10px); }
     }
+
+    #fillGlitch {
+      background: linear-gradient(to right, #2a2a72, #009ffd);
+    }
+    .fill-glitch {       
+      position: relative;
+      display: inline-block;
+      color: #ff0066;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.7), 0 0 15px rgba(255, 255, 255, 0.5);
+      font-size: 2rem;
+    }
+    .fill-glitch:after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #fff;   
+      color: #ff0066;
+      clip: rect(0, 900px, 0, 0);
+      animation: fill-glitch 1s infinite;
+    }
+    @keyframes fill-glitch {
+      0% {clip: rect(45px, 9999px, 44px, 0); transform: skew(0.39deg);}
+      10% {clip: rect(85px, 9999px, 87px, 0); transform: skew(0.44deg);}
+      20% {clip: rect(35px, 9999px, 28px, 0); transform: skew(0.41deg);}
+      30% {clip: rect(48px, 9999px, 48px, 0); transform: skew(0.42deg);}
+      40% {clip: rect(12px, 9999px, 60px, 0); transform: skew(0.48deg);}
+      50% {clip: rect(55px, 9999px, 68px, 0); transform: skew(0.39deg);}
+      60% {clip: rect(23px, 9999px, 43px, 0); transform: skew(0.43deg);}
+      70% {clip: rect(75px, 9999px, 36px, 0); transform: skew(0.40deg);}
+      80% {clip: rect(32px, 9999px, 39px, 0); transform: skew(0.46deg);}
+      90% {clip: rect(41px, 9999px, 77px, 0); transform: skew(0.45deg);}
+      100% {clip: rect(80px, 9999px, 64px, 0); transform: skew(0.47deg);}
+    } 
   </style>
 </head>
 <body>
@@ -297,6 +333,7 @@
     <a href="#RGBGlitch">▥</a>
     <a href="#blurGlitch">▧</a>
     <a href="#staggerGlitch">◱</a>
+    <a href="#fillGlitch">◫</a>
   </nav>
 </header>
 
@@ -335,6 +372,9 @@
     <span>Stagger</span>
     <span>Stagger</span>
   </h1>
+</section>
+<section id="fillGlitch">
+  <p class="fill-glitch" data-text="Coded Seafoam">Coded Seafoam</p>
 </section>
 </body>
 </html>
