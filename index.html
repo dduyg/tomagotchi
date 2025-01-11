@@ -46,29 +46,29 @@
     #RGBsplit {
       background: #000;
     }
-   .rgb-split {
-     font-size: 5rem;
-     position: relative;
-     color: #fff;
-     text-transform: uppercase;
-   }
-   .rgb-split::before, .rgb-split::after {
-     content: attr(data-text);
-     position: absolute;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     color: #ff0000;
-     z-index: -1;
-   }
-   .rgb-split::after {
-     color: #00ffea;
-     transform: translate(4px, -4px);
-   }
-   .rgb-split::before {
-     transform: translate(-4px, 4px);
-   }
+  #RGBsplit h1 {
+    font-size: 5rem;
+    position: relative;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  #RGBsplit h1::before, #RGBsplit h1::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #ff0000; /* Red */
+    z-index: -1;
+  }
+  #RGBsplit h1::after {
+    color: #00ffea; /* Cyan */
+    transform: translate(4px, -4px);
+  }
+  #RGBsplit h1::before {
+    transform: translate(-4px, 4px);
+  }
     
     #section2 {
       background: #3498db;
@@ -92,7 +92,7 @@
 </header>
 
 <section id="RGBsplit">
-  <h1 class="rgb-split" data-text="Glitch">Glitch</h1>
+    <h1 data-text="Glitch">Glitch</h1>
 </section>
 <section id="section2">
   Section 2
