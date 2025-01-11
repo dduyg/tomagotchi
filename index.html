@@ -43,9 +43,39 @@
       font-size: 2em;
     }
 
-    #RGBsplit {
-      background: #000;
-    }    
+    #scanGlitch {
+      background: #0f0f0f;
+    }
+    .scan-glitch {
+  font-size: 5rem;
+    text-transform: uppercase;
+    position: relative;
+    color: #fff;
+  }
+  .scan-glitch:before, .scan-glitch:after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #ff0055;
+    overflow: hidden;
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+    animation: scan-glitch 2s infinite;
+  }
+  .scan-glitch:after {
+    color: #00ffff;
+    clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+    animation: scan-glitch 2s infinite reverse;
+  }
+  @keyframes scan-glitch {
+    0% { transform: translate(0, 0); }
+    20% { transform: translate(-5px, -5px); }
+    40% { transform: translate(5px, -5px); }
+    60% { transform: translate(-5px, 5px); }
+    80% { transform: translate(5px, 5px); }
+    100% { transform: translate(0, 0); }
+  }
+  
     #section2 {
       background: #3498db;
     }
@@ -55,44 +85,20 @@
     #section4 {
       background: #9b59b6;
     }
-
-    .rgb-split {
-      font-size: 5rem;
-      position: relative;
-      text-transform: uppercase;
-      color: white;
-    }
-    .rgb-split::before, .rgb-split::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      color: #ff0000;
-      overflow: hidden;
-      clip-path: inset(0); /* Ensures proper rendering */
-    }
-    .rgb-split::before {
-      transform: translate(-4px, 4px);
-      color: #ff0000;
-    }
-    .rgb-split::after {
-      transform: translate(4px, -4px);
-      color: #00ffea;
-    }
   </style>
 </head>
 <body>
 <header>
   <nav>
-    <a href="#RGBsplit">■</a>
+    <a href="#scanGlitch">■</a>
     <a href="#section2">Se2</a>
     <a href="#section3">Se3</a>
     <a href="#section4">Se4</a>
   </nav>
 </header>
 
-<section id="RGBsplit">
-  <h1 class="rgb-split" data-text="Glitch">Glitch</h1>
+<section id="scanGlitch">
+  <h1 class="scan-glitch" data-text="Glitch">Glitch</h1>
 </section>
 <section id="section2">
   Section 2
