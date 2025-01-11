@@ -76,9 +76,28 @@
       100% { transform: translate(0, 0); }
     }
   
-    #section2 {
-      background: #3498db;
+    #pixelGlitch {
+      background: #222;
     }
+    .glitch-pixels {
+      font-size: 5rem;
+      position: relative;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .glitch-pixels span {
+      display: inline-block;
+      animation: glitch-pixels 1s infinite steps(2, start);
+    }
+    .glitch-pixels span:nth-child(2) { color: #ff22ff; animation-delay: 0.2s; }
+    .glitch-pixels span:nth-child(3) { color: #22ffcc; animation-delay: 0.4s; }
+    @keyframes glitch-pixels {
+      0%, 100% { transform: translate(0); }
+      25% { transform: translate(5px, -5px); }
+      50% { transform: translate(-5px, 5px); }
+      75% { transform: translate(3px, -3px); }
+    }
+    
     #section3 {
       background: #e74c3c;
     }
@@ -91,7 +110,7 @@
 <header>
   <nav>
     <a href="#scanGlitch">■</a>
-    <a href="#section2">Se2</a>
+    <a href="#pixelGlitch">Se2</a>
     <a href="#section3">Se3</a>
     <a href="#section4">Se4</a>
   </nav>
@@ -100,8 +119,12 @@
 <section id="scanGlitch">
   <h1 class="scan-glitch" data-text="Arrays">Arrays</h1>
 </section>
-<section id="section2">
-  Section 2
+<section id="pixelGlitch">
+  <h1 class="glitch-pixels">
+    <span>PIXEL</span>
+    <span>PIXEL</span>
+    <span>PIXEL</span>
+  </h1>
 </section>
 <section id="section3">
   Section 3
