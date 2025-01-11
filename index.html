@@ -3,50 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scanline Effect</title>
+<title>Pixel Glitch</title>
 <style>
   body {
-    background: #0f0f0f;
+    background: #222;
     color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    overflow: hidden;
+    font-family: monospace;
   }
   h1 {
     font-size: 5rem;
-    text-transform: uppercase;
     position: relative;
+    text-transform: uppercase;
     color: #fff;
   }
-  h1:before, h1:after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    color: #ff0055;
-    overflow: hidden;
-    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
-    animation: glitch 2s infinite;
+  h1 span {
+    display: inline-block;
+    animation: glitch-pixels 1s infinite steps(2, start);
   }
-  h1:after {
-    color: #00ffff;
-    clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
-    animation: glitch 2s infinite reverse;
-  }
-  @keyframes glitch {
-    0% { transform: translate(0, 0); }
-    20% { transform: translate(-5px, -5px); }
-    40% { transform: translate(5px, -5px); }
-    60% { transform: translate(-5px, 5px); }
-    80% { transform: translate(5px, 5px); }
-    100% { transform: translate(0, 0); }
+  h1 span:nth-child(2) { color: #ff22ff; animation-delay: 0.2s; }
+  h1 span:nth-child(3) { color: #22ffcc; animation-delay: 0.4s; }
+
+  @keyframes glitch-pixels {
+    0%, 100% { transform: translate(0); }
+    25% { transform: translate(5px, -5px); }
+    50% { transform: translate(-5px, 5px); }
+    75% { transform: translate(3px, -3px); }
   }
 </style>
 </head>
 <body>
-  <h1 data-text="Vaporwave">Vaporwave</h1>
+  <h1>
+    <span>PIXEL</span>
+    <span>PIXEL</span>
+    <span>PIXEL</span>
+  </h1>
 </body>
 </html>
