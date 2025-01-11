@@ -158,6 +158,37 @@
       0%, 100% { opacity: 0.5; transform: translate(0, 0); }
       50% { opacity: 1; transform: translate(10px, -10px); }
     }
+
+    #doubleLayer {
+      background: #0d0d0d;
+    }
+    #doubleLayer h1 {
+      font-size: 6rem;
+      text-transform: uppercase;
+      position: relative;
+    }
+    #doubleLayer h1::before {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 2px;
+      color: #ff00ff;
+      z-index: -1;
+      animation: layer-glitch 1s infinite;
+    }
+    #doubleLayer h1::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 2px;
+      left: -2px;
+      color: #00ffff;
+      z-index: -1;
+      animation: layer-glitch 1s infinite reverse;
+    }
+    @keyframes layer-glitch {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-2px, 2px); }
+    }
   </style>
 </head>
 <body>
@@ -168,6 +199,7 @@
     <a href="#flickerGlitch">S3</a>
     <a href="#staticNoise">S4</a>
     <a href="#shadowTrail">S4</a>
+    <a href="#doubleLayer">S4</a>
   </nav>
 </header>
 
@@ -189,6 +221,9 @@
 </section>
 <section id="shadowTrail">
   <h1 class="shadow-trail" data-text="Trail">Trail</h1>
+</section>
+<section id="doubleLayer">
+  <h1 data-text="Layer">Layer</h1>
 </section>
 </body>
 </html>
