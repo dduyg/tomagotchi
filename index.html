@@ -63,11 +63,39 @@
   75% { transform: translateX(-5px); }
   100% { transform: translateX(0); }
 }
+
+.glitch-img {
+    position: relative;
+    display: inline-block;
+}
+.glitch-img img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    animation: glitch-shift 0.8s infinite;
+}
+.glitch-img img:nth-child(2) {
+    filter: hue-rotate(90deg);
+    clip-path: inset(0 10px 0 0);
+}
+.glitch-img img:nth-child(3) {
+    filter: hue-rotate(180deg);
+    clip-path: inset(10px 0 0 0);
+}
+@keyframes glitch-shift {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(-5px, 5px); }
+    100% { transform: translate(5px, -5px); }
+}
     </style>
 </head>
 <body>    
     <h1>404</h1>
-    <div class="glitch-bg"></div>
+    <div class="glitch-img">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Vaporwave_%28art_style%29_logo.png" alt="Vaporwave Logo">
+    </div>
+    
     <div class="text-glitch">Not Found</div>
     <p>System Error. Rebooting...</p>
 </body>
