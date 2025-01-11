@@ -113,8 +113,22 @@
       50% { text-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff; }
     }
     
-    #section4 {
-      background: #9b59b6;
+    #staticNoise {
+      background: black;
+    }
+    #staticNoise h1 {
+      font-size: 5rem;
+      position: relative;
+      text-transform: uppercase;
+      animation: static-noise 1s infinite;
+    }
+    @keyframes static-noise {
+      0% { clip-path: polygon(0 0, 100% 0, 100% 10%, 0 10%); }
+      20% { clip-path: polygon(0 20%, 100% 20%, 100% 30%, 0 30%); }
+      40% { clip-path: polygon(0 40%, 100% 40%, 100% 50%, 0 50%); }
+      60% { clip-path: polygon(0 60%, 100% 60%, 100% 70%, 0 70%); }
+      80% { clip-path: polygon(0 80%, 100% 80%, 100% 90%, 0 90%); }
+      100% { clip-path: polygon(0 90%, 100% 90%, 100% 100%, 0 100%); }
     }
   </style>
 </head>
@@ -124,7 +138,7 @@
     <a href="#scanGlitch">■</a>
     <a href="#pixelGlitch">Se2</a>
     <a href="#flickerGlitch">Se3</a>
-    <a href="#section4">Se4</a>
+    <a href="#staticNoise">Se4</a>
   </nav>
 </header>
 
@@ -141,8 +155,8 @@
 <section id="flickerGlitch">
   <h1>Stimulation</h1>
 </section>
-<section id="section4">
-  Section 4
+<section id="staticNoise">
+  <h1>Sclitch</h1>
 </section>
 </body>
 </html>
