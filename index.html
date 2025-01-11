@@ -33,9 +33,9 @@
     position: relative;
     font-size: 6rem;
     font-weight: bold;
-    color: #e1bee7;
-    text-shadow: 1px 1px #80cbc4, -1px -1px #f48fb1;
-    animation: flicker 1.5s infinite;
+    color: #f50057;
+    text-shadow: 0px 0px 10px #6200ea, 0px 0px 20px #2962ff;
+    animation: neonGlow 1.5s ease-in-out infinite;
 }
 .glitch::before,
 .glitch::after {
@@ -44,24 +44,22 @@
     top: 0;
     left: 0;
     z-index: -1;
-    color: #ffcc80;
-    opacity: 0.9;
-    animation: holographicShift 2s infinite;
+    color: #00bfa5;
+    opacity: 0.8;
+    animation: gridShift 1s infinite;
 }
 .glitch::after {
-    color: #81d4fa;
-    animation-delay: 0.3s;
+    color: #ff6f00;
+    animation-delay: 0.2s;
 }
 
-@keyframes flicker {
-    0%, 100% {opacity: 1;}
-    50% {opacity: 0.6;}
+@keyframes neonGlow {
+    0%, 100% {text-shadow: 0px 0px 10px #6200ea, 0px 0px 20px #2962ff;}
+    50% {text-shadow: 0px 0px 15px #ff4081, 0px 0px 30px #ffab40;}
 }
-@keyframes holographicShift {
-    0% {transform: translate(-1px, 1px);}
-    25% {transform: translate(1px, -1px);}
-    50% {transform: translate(-3px, 3px);}
-    75% {transform: translate(3px, -3px);}
+@keyframes gridShift {
+    0% {transform: translate(-2px, -2px);}
+    50% {transform: translate(2px, 2px);}
     100% {transform: translate(0, 0);}
 }
     </style>
