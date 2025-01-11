@@ -1,465 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../fonts.css">
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin&display=swap" rel="stylesheet">
-    <title>Liminal Loop</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Anybody&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Carme&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Gotu&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: "Alegreya Sans", sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #1a1a1a;
-            line-height: 1.5;
-        }
-        nav {
-            position: fixed;
-            top: 50vh;
-            right: 1rem;
-            transform: translateY(-50%);
-            z-index: 999;
-            outline: none; /* Remove default outline */
-            -webkit-tap-highlight-color: transparent;
-            -webkit-user-select: none;
-               -moz-user-select: none;
-                -ms-user-select: none;
-                    user-select: none;
-        }
-        nav:focus, nav:active {
-            outline: none;
-            -webkit-tap-highlight-color: transparent;        
-        }
-        a {
-          color: inherit;
-          cursor: pointer;
-        }
-        nav a {
-            display: block;
-            margin: 10px 0;
-            color: #1a1a1a;
-            text-decoration: none;
-            font-size: 1.35em;
-            transition: transform 0.3s ease;
-        }
-        nav a:active {
-            transform: translateY(5px);
-        }
-        nav a.active {
-            color: #87FF65;
-            font-weight: bold;
-        }     
-        section {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center; 
-            align-items: center;
-            box-sizing: border-box;
-        }  
-        .content {
-            max-width: 800px;
-            padding: 3rem;
-        }
-        @media screen and (min-width: 769px) {
-            .content {
-                max-width: 70%; /* Set a maximum width for the content on larger screens */
-            }
-        }       
-        h1 {
-            font-family: "Roboto Mono", monospace;
-        }
-        #x2 {
-            background: #2b2e3b;
-            color: #F9FCF1; /* F9FCF1♥️, great as background-color */
-        }
-        #x3 {
-            background-color: floralwhite;
-            font-family: "Libre Franklin", sans-serif;
-        }
-        #x4 {
-            background-color: beige;
-            font-family: "Orbitron", sans-serif;
-        }
-        #x5 {
-            background-color: #F5EDEA;
-            font-family: "Maven Pro", sans-serif;
-        }
-        #x7 {
-            font-family: "Anybody", sans-serif;
-        }
-        #x8 {
-            font-family: "Carme", sans-serif;
-        }
-        #x9 {
-            font-family: 'Helvetica Neue', sans-serif;
-            background-color: #6B5B95;
-            color: #F7E7CE;    
-        }
-        #x10 {
-            font-family: "Lato", sans-serif;
-            background: rgb(238, 174, 202);
-            background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
-        }
-        #x11 {
-            font-family: "Schibsted Grotesk", sans-serif;
-            background-color: #f0f0f0;
-            color: #666;
-        }
-        #x12 {
-            font-family: "Gotu", sans-serif;
-        }
-        #x13 {
-            background: #0E103D;
-            color: #d0d0d0;
-            font-family: "Audiowide", sans-serif;
-        }
-        #x13 h1 {
-            color: #ff6ac1;
-        }
-        #x14 {
-            background: #1a1a2e;
-            color: #c7c7e2;
-            font-family: 'Ribes Black', serif;
-        }
-        #x14 h1 {
-            color: #bb86fc;
-            font-family: "Monoton", sans-serif;
-        }
-        #x15 {
-            font-family: 'Fantasque Sans Mono', monospace;
-            background-color: #800080;
-            color: #00FF00;
-        }
-        #x15 a:hover {
-            color: white;
-            font-weight: bold;
-        }
-        #x17 {
-            font-family: 'Space Grotesk', sans-serif;
-            background-color: #cecece;
-            color: #333;
-        }
-        .marked {
-            font-weight: bold;
-            color: inherit;
-            border-bottom: 3px solid #FE1483;
-            text-decoration: none;
-        }
-        .wave {
-            max-width: 80%;
-            height: auto;
-            animation: wave 2s infinite alternate;
-        }
-        @keyframes wave {
-            0% {
-                transform: rotate(-5deg);
-            }
-            100% {
-                transform: rotate(5deg);
-            }
-        }
-
-        .title {
-            animation: glitch-animation 2s infinite;
-        }
-        @keyframes glitch-animation {
-            0% {
-                transform: translate(0);
-            }
-            25% {
-                transform: translate(2px, -2px);
-            }
-            50% {
-                transform: translate(-2px, 2px);
-            }
-            75% {
-                transform: translate(2px, -2px);
-            }
-            100% {
-                transform: translate(0);
-            }
-        }
-        
-        .glitch {
-            color: #333;
-            font-size: 3rem;
-            letter-spacing: 2px;
-            position: relative;
-            display: inline-block;
-            animation: glitch 1s infinite;
-        }
-        .glitch::before, .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-        .glitch::before {
-            animation: glitch-anim 2s infinite linear alternate-reverse;
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            background: #00FF00;
-        }
-        .glitch::after {
-            animation: glitch-anim2 2s infinite linear alternate-reverse;
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            background: #f0f0f0;
-        }
-        @keyframes glitch {
-            2%,64% {
-                transform: translate(2px,0) skew(0deg);
-            }
-            4%,60% {
-                transform: translate(-2px,0) skew(0deg);
-            }
-            62% {
-                transform: translate(0,0) skew(5deg);
-            } 
-        }
-        @keyframes glitch-anim {
-            2%,64% {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            }
-            4%,60% {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            }
-            62% {
-                clip-path: polygon(0 0, 90% 0, 85% 100%, 0 100%);
-            }
-        }
-        @keyframes glitch-anim2 {
-            2%,64% {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            }
-            4%,60% {
-                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            }
-            62% {
-                clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
-            }
-        }
-
-        .echo {
-            animation: glitch-effect 1s linear infinite alternate-reverse;
-        }
-        @keyframes glitch-effect {
-            0% {
-                transform: translate(0);
-            }
-            25% {
-                transform: translate(-2px, 2px);
-            }
-            50% {
-                transform: translate(2px, -2px);
-            }
-            75% {
-                transform: translate(2px, 2px);
-            }
-            100% {
-                transform: translate(-2px, -2px);
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🩻LiminalLoop</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      scroll-behavior: smooth;
+      font-family: Arial, sans-serif;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 10px 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 12px;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+      font-size: 2rem;
+    } 
+    #section1 {
+      background-color: #1abc9c;
+    }
+    #section2 {
+      background-color: #3498db;
+    }
+    #section3 {
+      background-color: #9b59b6;
+    }
+    #section4 {
+      background-color: #e74c3c;
+    }
+  </style>
 </head>
 <body>
-    <nav>
-        <a href="#x5">❍</a>
-        <a href="#x8">❍</a>
-        <a href="#x11">❍</a>
-        <a href="#x14">❍</a>
-        <a href="#x17">❍</a>
-    </nav>
-    
-    <section id="x1" style="background: radial-gradient(circle, rgb(230, 146, 146) 0%, rgb(184, 189, 189) 100%);">    
-        <div class="content">
-            <h1>ByteStairway💗🐙</h1>
-            <p>
-                In lines of code, we dance and sway,<br>
-                A melody of ones and zeros we play.<br>
-                With keystrokes soft, we paint the <a href="../12/" class="marked">scene</a>,<br>
-                In the digital world, where bytes convene.
-            </p>
-            <p>
-                In the tapestry of time, data threads endure,<br>
-                Outlasting the systems that once did ensure.<br>
-                Precious whispers of truths, they silently dwell,<br>
-                In the eternal dance, their stories they tell.
-            </p>
-        </div>
-    </section>
-    <section id="x2">   
-        <div class="content">
-            <h1>Wavelength👊🐳</h1>
-            <p>
-                Compile the rhythms, let algorithms flow,<br>
-                A symphony of data, let the music grow.<br>
-                From if-else branches to loops that spin,<br>
-                In every loop, a new beginning.
-            </p>
-            <h2>⭖ ⬮⬯   ⬰</h2>
-        </div>
-    </section>
-    <section id="x3">   
-        <div class="content">
-            <h1>optimizeLegibility📿💤</h1>
-            <p>
-                Through loops and functions, we find our way,<br>
-                In the binary night, where dreams hold sway.<br>
-                Errors are like dissonant chords we mend,<br>
-                With debugging hands, we make amends.
-            </p>
-        </div>
-    </section>
-    <section id="x4">
-        <div class="content">
-            <h1>geometricPrecision💣🐨</h1>
-            <p>
-                Strings of text become lyrical lines,<br>
-                As we craft our song in digital shrines.<br>
-                Variables dance, their values collide,<br>
-                In this symphony of code, we take pride.
-            </p>
-        </div>
-    </section>
-    <section id="x5">   
-        <div class="content">
-            <h1 class="echo">Feature selection💥🐚</h1>
-            <p>
-                So let the compilers sing, let the processors hum,<br>
-                In the realm of code, our song is never done.<br>
-                For in every line, in every function call,<br>
-                We find the music of the digital sprawl.
-            </p>
-        </div>
-    </section>
-    <section id="x6" style="background-color: #e0b8b8; color: #ffff00; font-family: Arial, sans-serif;">
-        <div class="content">    
-            <h1>○ Deepest Shadows</h1>
-            <p>In the end, it is not the strength of their weapons or the power of their magic that saves the world, but the purity of their hearts and the depth of their love. For in the face of darkness, love is the greatest weapon of all, capable of <span style="color: #ff4500;">shining a light</span> that can pierce even the deepest shadows. And so, as the sun sets on the horizon and the echoes of destiny fade into the night, Ji-Yoon and Min-Joon stand together, hand in hand, ready to face whatever the future may hold. For as long as they have each other, they know that they can overcome any obstacle and conquer any challenge that comes their way.</p>
-        </div>
-    </section>
-    <section id="x7" style="background-color: #0e5d6f; color: #fff;">
-        <div class="content">
-            <h1>Flatland ⛡</h1>
-            <p>In the neon streets, where the future's sold, We'll rise up from the ashes, bold and cold. In the cyberpunk city, we'll make our stand, For a world where freedom's more than just a brand.</p>
-            <p>In this cyberpunk dystopia we roam, Searching for a place to call our own. Through the chaos, we'll find our way, In the neon-lit night, we'll stay.</p>
-        </div>
-    </section>
-    <section id="x8" style="background-color: #EADCD7;">
-        <div class="content">
-            <h1>DEFAULT_TIMEOUT ⬬⬭</h1>
-            <p>Augmented eyes, digital skies, In a landscape where truth lies. Corporate towers scrape the sky, As we fight to break free, never asking why.</p>
-            <p style="font-size: 0.7rem; background-color: aquamarine;">--en sevdiğim renk bg of section</p>
-        </div>
-    </section>
-    <section id="x9">  
-        <div class="content">
-            <h1>Programming Lyrics ⭔⭓</h1>
-            <p>In the glow of neon screens,<br>
-            Digits dance in cyber dreams.<br>
-            Code cascades in pixel streams,<br>
-            Lost in circuits, virtual schemes.</p>
-        </div>        
-    </section>
-    <section id="x10">    
-        <div class="content">
-            <h1 class="title">Sea of Recursion😈🍓</h1>
-            <p>Recursion is a programming concept where a function calls itself in order to solve a problem. It's like a function that contains a smaller version of itself within it. This process continues until a base case is reached, which is a condition where the function stops calling itself and returns a value. Recursion is commonly used to solve problems that can be broken down into smaller, similar sub-problems, such as traversing tree structures or searching through lists. It's a powerful technique but requires careful consideration of base cases and termination conditions to avoid infinite loops.</p>
-        </div>
-    </section>
-    <section id="x11">
-        <div class="content">    
-            <h1 class="glitch" data-text="404">404</h1>
-            <p>Looks like you've ventured into the digital abyss. But don't worry, we're on it! Our cybernetic minions are scavenging through the data tunnels to retrieve what you seek. In the meantime, why not <a href="#">return to safety</a>?</p>
-            <img class="wave" src="wave.png">
-        </div>
-    </section>
-    <section id="x12" style="background-color: #800080; color: white;">
-        <div class="content">    
-            <h1>Feature Engineering</h1>
-            <p>In data science, feature engineering refers to the process of selecting, creating, or transforming input variables (features) to improve the performance of machine learning models. This involves tasks such as selecting the most relevant features, creating new features through mathematical transformations or combinations of existing features, and scaling or normalizing features to ensure they have similar ranges. Effective feature engineering can significantly impact the accuracy and robustness of machine learning models by providing them with the most informative and discriminative input data.</p>
-        </div>
-    </section>
-    <section id="x13">
-        <div class="content">    
-            <h1>Shape Recognition</h1>
-            <p>Through the trials and the battles, they will find their way. Guided by the stars above, night will turn to day. In the heart of every legend, truth and love will stay. Heroes rise, their fate embraced, in the light of gray..</p>
-        </div>
-    </section>
-    <section id="x14">
-        <div class="content">    
-            <h1>lost in the virtual ætherwaves</h1>
-            <p>Sacred scrolls and hidden scrolls, wisdom of the past. Echoes of the ancients calling, shadows that are cast. Guardians of forgotten ages, spirits pure and true. Weaving dreams in midnight gardens, stories old and new.</p>
-        </div>
-    </section>
-    <section id="x15">
-        <div class="content">    
-            <h1>TVVIN_PINEZ_<a href="#">M4LL</a></h1>
-            <p>Oops! It seems you've stumbled into the glitched corridors of the internet. Don't worry, you're not alone.</p>
-        </div>
-    </section>
-    <section id="x16" style="background-color: #B0B2C7; color: #0123DA;">
-        <div class="content">    
-            <h1>Whichever</h1>
-            <p>In information theory, entropy is a measure of uncertainty or randomness in a set of data. It quantifies the average amount of information needed to describe an event or the uncertainty associated with a random variable. Higher entropy implies greater disorder and unpredictability, while lower entropy indicates a more ordered and predictable system.</p>
-        </div>
-    </section>
-    <section id="x17">
-        <div class="content">    
-            <h1>Full of Coins</h1>
-            <p>In a neon-lit city, a vaporwave superboss ruled. She danced through pixels, blending nostalgia with ambition, redefining success in style.</p>
-        </div>
-    </section>
-   
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-    $('a[href^="#"]').click(function(event) {
-        var id = $(this).attr("href");
-        var target = $(id).offset().top;
-        $('html, body').animate({scrollTop: target}, 500);
-        event.preventDefault();
-    });
-
-    function getTargetTop(elem) {
-        var id = elem.attr("href");
-        var offset = 60;
-        return $(id).offset().top - offset;
-    }
-
-    var $window = $(window);
-    var sections = $('a[href^="#"]');
-
-    $window.scroll(function(e) {
-        isSelected($window.scrollTop());
-    });
-
-    function isSelected(scrolledTo) {
-        var threshold = 100;
-
-        sections.each(function() {
-            var section = $(this);
-            var target = getTargetTop(section);
-
-            if (scrolledTo > target - threshold && scrolledTo < target + threshold) {
-                sections.removeClass("active");
-                section.addClass("active");
-            }
-        });
-    }
-});
-</script>
+  <nav>
+    <a href="#section1">S1</a>
+    <a href="#section2">S2</a>
+    <a href="#section3">S3</a>    
+    <a href="#section4">S4</a>
+  </nav>
+  
+  <section id="section1">
+    Welcome to Section 1
+  </section>
+  <section id="section2">
+    Welcome to Section 2
+  </section>
+  <section id="section3">
+    Welcome to Section 3
+  </section>
+  <section id="section4">
+    Welcome to Section 4
+  </section>
 </body>
 </html>
