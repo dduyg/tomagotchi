@@ -639,6 +639,39 @@
       50% { clip-path: inset(70% 0 20% 0); }
       100% { clip-path: inset(0 0 90% 0); }
     }
+
+    /* 39. Letter Flip Glitch */
+    .letter-flip {
+      display: inline-block;
+      animation: letter-flip 1s infinite;
+    }
+    @keyframes letter-flip {
+      0%, 100% { transform: rotateX(0); }
+      50% { transform: rotateX(180deg); }
+    }
+
+    /* 40. Matrix Code Rain */
+    .matrix-rain {
+      position: relative;
+      overflow: hidden;
+      color: #00ff00;
+    }
+    .matrix-rain::before {
+      content: "█ █ █ █ █ █ █ █ █ █ █ █";
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      color: #00ff00;
+      font-size: 1.2em;
+      line-height: 1.2em;
+      animation: matrix-rain 3s infinite linear;
+      white-space: nowrap;
+    }
+    @keyframes matrix-rain {
+      0% { top: -100%; }
+      100% { top: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -757,6 +790,12 @@
     </section>
     <section>
       <h2 class="line-distortion" data-text="line distortion">line distortion</h2>
+    </section>
+    <section>
+      <h2><span class="letter-flip">Letter Flip</span> Glitch</h2>
+    </section>
+    <section>
+      <h2 class="matrix-rain">Matrix Code Rain</h2>
     </section>
   </main>
 </body>
