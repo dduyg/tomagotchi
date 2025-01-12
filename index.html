@@ -374,6 +374,8 @@
 
     #textWarp {
       padding-left: 30px;
+      flex-direction: column;
+      gap: 60px;
     }
     .warping {
       display: inline-block;
@@ -399,6 +401,34 @@
       0% { transform: translate(-2px, -2px); }
       50% { transform: translate(2px, 2px); }
       100% { transform: translate(-2px, -2px); }
+    }
+    /* Holographic Split Effect */
+    .holographic {
+      position: relative;
+      color: #00ffcc;
+      font-size: 2em;
+    }
+    .holographic::before,
+    .holographic::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    .holographic::before {
+      color: #ff00ff;
+      transform: translate(2px, 0);
+      animation: holographic 0.8s infinite;
+    }
+    .holographic::after {
+      color: #00ffff;
+      transform: translate(-2px, 0);
+      animation: holographic 0.8s infinite reverse;
+    }
+    @keyframes holographic {
+      0%, 100% { transform: translate(2px, 0); }
+      50% { transform: translate(-2px, 0); }
     }
 
     #circuitBoardlines {
@@ -494,6 +524,7 @@
 </section>
 <section id="textWarp">
   <h1 class="warping" data-text="Synthwave Shadows">Synthwave Shadows</h1>
+  <h1 class="holographic" data-text="Holographic Split">Holographic Split</h1>
 </section>
 <section id="circuitBoardlines">
   <h1 class="circuit-board">Circuit Board</h1>
