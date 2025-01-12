@@ -557,6 +557,46 @@
       75% { filter: blur(3px); }
       100% { filter: blur(0px); }
     }
+
+    /* 33. Subtle Static Glitch */
+    .subtle-static {
+      position: relative;
+      overflow: hidden;
+    }
+    .subtle-static::before {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) 1px, transparent 2px);
+      mix-blend-mode: overlay;
+      animation: subtle-static 1s infinite linear;
+    }
+    @keyframes subtle-static {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10%); }
+    }
+
+    /* 34. Letter Fade-In Glitch */
+    .fade-glitch {
+      animation: fade-in-out 2s infinite;
+    }
+    @keyframes fade-in-out {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    /* 35. Vertical Stretch Glitch */
+    .vertical-stretch {
+      animation: vertical-stretch 1s infinite alternate;
+    }
+    @keyframes vertical-stretch {
+      0% { transform: scaleY(1); }
+      50% { transform: scaleY(1.2); }
+      100% { transform: scaleY(1); }
+    }
   </style>
 </head>
 <body>
@@ -657,6 +697,15 @@
     </section>
     <section>
       <h2 class="depixelate">pixelate/depixelate</h2>
+    </section>
+    <section>
+      <h2 class="subtle-static" data-text="subtle static">subtle static</h2>
+    </section>
+    <section>
+      <h2 class="fade-glitch">letter Fade-In</h2>
+    </section>
+    <section>
+      <h2 class="vertical-stretch">vertical stretch</h2>
     </section>
   </main>
 </body>
