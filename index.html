@@ -455,7 +455,6 @@
     .scanline-overlay {
       position: relative;
       overflow: hidden;
-      color: black;
     }
     .scanline-overlay::before {
       content: "";
@@ -474,7 +473,6 @@
 
     /* 28. Pixel Shift Jitter */
     .pixel-shift-jitter {
-      color: black;
       animation: pixel-shift-jitter 0.1s infinite;
     }
     @keyframes pixel-shift-jitter {
@@ -488,7 +486,6 @@
     /* 29. Horizontal Scan Glitch */
     .scan-move {
       position: relative;
-      color: black;
       overflow: hidden;
     }
     .scan-move::after {
@@ -505,6 +502,63 @@
       0% { left: -100%; }
       50% { left: 50%; }
       100% { left: 100%; }
+    }
+
+    /* 30. Vertical Glitch Bars */
+    .vertical-bars {
+      color: black;
+      position: relative;
+      overflow: hidden;
+    }
+    .vertical-bars::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(to right, #80ffea 0%, #ff80ab 10%, transparent 20%);
+      clip-path: polygon(10% 0, 20% 100%, 30% 100%, 40% 0, 60% 0, 50% 100%, 70% 100%, 80% 0);
+      animation: bar-flicker 0.5s infinite alternate;
+    }
+    @keyframes bar-flicker {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 0.4; }
+    }
+
+    /* 31. Noise Grain Overlay */
+    .noise-grain {
+      position: relative;
+      color: black;
+    }
+    .noise-grain::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" /></filter><rect width="100%" height="100%" filter="url(%23noise)" /></svg>') repeat;
+      opacity: 0.3;
+      animation: grain-move 0.3s infinite;
+    }
+    @keyframes grain-move {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-5px, 5px); }
+    }
+
+    /* 32. Pixelate/Depixelate */
+    .pixelate {
+      position: relative;
+      color: black;
+      animation: pixelate 2s infinite;
+    }
+    @keyframes pixelate {
+      0% { filter: blur(0px); }
+      25% { filter: blur(3px); }
+      50% { filter: blur(0px); }
+      75% { filter: blur(3px); }
+      100% { filter: blur(0px); }
     }
   </style>
 </head>
@@ -597,6 +651,15 @@
     </section>
     <section>
       <h2 class="scan-move">horizontal scan</h2>
+    </section>
+    <section>
+      <h2 class="vertical-bars">vertical bars</h2>
+    </section>
+    <section>
+      <h2 class="noise-grain">noise grain</h2>
+    </section>
+    <section>
+      <h2 class="pixelate">pixelate/depixelate</h2>
     </section>
   </main>
 </body>
