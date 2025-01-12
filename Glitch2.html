@@ -8,51 +8,6 @@
       position: relative;
    }
 
-    /* 12. Soft Shadow Jitter */
-    .shadow-jitter {
-      color: black;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-      animation: shadow 0.2s infinite;
-    }
-    @keyframes shadow {
-      0% { text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); }
-      50% { text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3); }
-      100% { text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); }
-    }
-
-    /* 13. Static Noise Glitch */
-    .static-noise {
-      color: black;
-      animation: static-effect 0.5s steps(5) infinite;
-    }
-    @keyframes static-effect {
-      0% { text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5); }
-      50% { text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.5); }
-      100% { text-shadow: 1px -1px 0 rgba(0, 0, 0, 0.5); }
-    }
-  
-    /* 14. Horizontal Line Distortion */
-    .line-distortion {
-      position: relative;
-      color: black;
-    }
-    .line-distortion::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      color: gray;
-      clip-path: inset(50% 0 0 0);
-      animation: line-distortion 1s infinite;
-    }
-    @keyframes line-distortion {
-      0% { clip-path: inset(0 0 90% 0); }
-      50% { clip-path: inset(70% 0 20% 0); }
-      100% { clip-path: inset(0 0 90% 0); }
-    }
-
     /* 15. Letter Flip Glitch */
     .letter-flip {
       display: inline-block;
@@ -123,9 +78,6 @@
 </head>
 <body>
   
-  <h1 class="shadow-jitter">Soft Shadow Jitter</h1>
-  <h1 class="static-noise">Static Noise Glitch</h1>
-  <h1 class="line-distortion" data-text="Horizontal Line Distortion">Horizontal Line Distortion</h1>
   <h1><span class="letter-flip">Letter Flip</span> Glitch</h1>
   <h1 class="matrix">Matrix Code Rain</h1>
   <h1 class="data-stream">Data Stream</h1>
