@@ -65,26 +65,6 @@
       100% { text-shadow: 1px 1px 0 #ff00ff, -1px -1px 0 #0f0; }
     }
 
-    /* 3. Matrix-like Falling Code */
-    .matrix-fall {
-      color: #00ff00;
-      display: inline-block;
-      position: relative;
-      animation: fall 3s infinite linear;
-    }
-    .matrix-fall::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      color: #00ff00;
-      animation: fall 5s infinite linear;
-    }
-    @keyframes fall {
-      0% { transform: translateY(-100%); opacity: 0.5; }
-      100% { transform: translateY(100%); opacity: 1; }
-    }
-
     /* 4. Circuit Board Lines Animation */
     .circuit-board {
       position: relative;
@@ -383,7 +363,6 @@
 
   <h1 class="vertical-line-glitch">Vertical Line Glitch</h1>
   <h1 class="pixel-flicker">Pixelated Flicker</h1>  
-  <h1 class="matrix-fall" data-text="Matrix Falling Code">Matrix Falling Code</h1>
   <h1 class="circuit-board">Circuit Board Lines</h1>
   <h1 class="pixel-breakdown">Pixelated Breakdown</h1>
   <h1 class="pixel-corruption">Pixel Data Corruption</h1>
