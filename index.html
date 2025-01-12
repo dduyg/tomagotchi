@@ -453,6 +453,62 @@
       50% { width: 50%; }
       100% { width: 100%; }
     }
+
+    #dataStream {
+      background: #1e1e1e;
+      flex-direction: column;
+      gap: 60px;
+    }
+    .data-scan {
+      position: relative;
+      overflow: hidden;
+    }
+    .data-scan::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 255, 204, 0.3);
+      animation: data-scan 2s infinite;
+    }
+    @keyframes data-scan {
+      0% { left: -100%; }
+      50% { left: 100%; }
+      100% { left: 100%; }
+    }
+    /* Pixelated Block Glitch */
+    .block-glitch {
+      position: relative;
+      overflow: hidden;
+    }
+    .block-glitch::before {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 20%, 0% 20%);
+      color: #ff80ab;
+      animation: block-glitch 0.5s infinite steps(5);
+    }
+    .block-glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      clip-path: polygon(0% 80%, 100% 80%, 100% 100%, 0% 100%);
+      color: #80ffea;
+      animation: block-glitch 0.5s infinite steps(5) reverse;
+    }
+    @keyframes block-glitch {
+      0%, 100% { clip-path: polygon(0% 0%, 100% 0%, 100% 20%, 0% 20%); }
+      50% { clip-path: polygon(0% 20%, 100% 20%, 100% 40%, 0% 40%); }
+    }
   </style>
 </head>
 <body>
@@ -472,6 +528,7 @@
     <a href="#impulseNoise">◪</a>
     <a href="#textWarp">▨</a>
     <a href="#circuitBoardlines">▣</a>
+    <a href="#dataStream">▦</a>
   </nav>
 </header>
 
@@ -526,6 +583,10 @@
 </section>
 <section id="circuitBoardlines">
   <h1 class="circuit-board">Circuit Board</h1>
+</section>
+<section id="dataStream">
+  <h1 class="data-scan">Data Stream</h1>
+  <h1 class="block-glitch" data-text="Pixelated Block">Pixelated Block</h1>
 </section>
 </body>
 </html>
