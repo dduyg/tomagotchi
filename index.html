@@ -475,6 +475,83 @@
        font-size: 0.9em;
        color: rgba(255, 255, 255, 0.7);
     }
+
+    #searchBar2 {
+      background: linear-gradient(135deg, #ffb6c1, #add8e6, #9370db);
+      color: #fff;
+      font-family: 'Courier New', Courier, monospace;
+      text-align: center;
+    }
+    #searchBar2 main {
+      max-width: 800px;
+      padding: 1em;
+      margin: 0 auto;
+    }
+    #searchBar2 h1 {
+      font-size: 6rem;
+      margin: 0;
+      text-shadow: 2px 2px #000;
+      position: relative;     
+      color: #ff00ff;
+      animation: searchbar2-glitch 1s infinite;
+    }
+    @keyframes searchbar2-glitch {
+      0% {transform: translate(0);}
+      20% {transform: translate(-2px, 2px);}
+      40% {transform: translate(2px, -2px);}
+      60% {transform: translate(-2px, -2px);}
+      80% {transform: translate(2px, 2px);}
+      100% {transform: translate(0);}
+    }
+    #searchBar2 h2 {
+      font-size: 2rem;
+      text-shadow: 1px 1px #000;
+    }
+    #searchBar2 .search-box {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }     
+    #searchBar2 input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      font-size: 1.2em;
+      border: none;
+      outline: none;
+      border-radius: 25px;
+      background-color: rgba(255, 255, 255, 0.3);
+      color: white;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+    #searchBar2 input[type="text"]::placeholder {
+      color: #fff;
+      opacity: 0.7;
+    }
+    #searchBar2 input[type="submit"] {
+      margin-left: 10px;
+      margin-top: 20px;
+      margin-bottom: 30px;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 25px;
+      background-color: #9370db;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    }
+    #searchBar2 .home-link {
+      color: #00ffff;
+      text-decoration: none;
+    }
+    #searchBar2 .home-link:hover {
+      color: #ff00ff;
+    }
+    #searchBar2 footer {
+      margin-top: 60px;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.9em;
+    }
   </style>
 </head>
 <body>
@@ -486,7 +563,7 @@
     <a href="#gaussian">◉</a>
     <a href="#displays">◑</a>
     <a href="#searchBar">◌</a>
-    <a href="#sec">◐</a>
+    <a href="#searchBar2">◐</a>
     <a href="#sec">◎</a>
     <a href="#sec">●</a>
     <a href="#sec">◒</a>
@@ -561,5 +638,21 @@
       <footer>@dduyg | Stay Rad.</footer>
     </main>
   </section>
+
+  <section id="searchBar2">
+    <main>
+      <h1>404</h1>
+      <h2>Oops! Looks like you wandered off into the void...</h2>
+
+      <!-- Search Bar -->
+      <div class="search-box">
+        <form action="/search" method="get">
+          <input type="text" name="query" placeholder="Search for something else...">
+          <input type="submit" value="Search">
+        </form>
+      </div>
+      <footer>@dduyg | <a href="./" class="home-link">Back to Home</a></footer>
+    </main>
+  </section>  
 </body>
 </html>
