@@ -672,6 +672,39 @@
       0% { top: -100%; }
       100% { top: 100%; }
     }
+    
+    /* 41. Data Stream Effect */
+    .data-stream {
+      position: relative;
+      overflow: hidden;
+    }
+    .data-stream::before {
+      content: "|| || || || ||";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      animation: data-stream 0.7s infinite linear;
+      color: #00ff00;
+      opacity: 0.8;
+    }
+    @keyframes data-stream {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
+    }
+
+    /* 42. Static Noise Glitch */
+    .static-shake {
+      color: #00ff00;
+      animation: static-shake 0.2s infinite alternate;
+    }
+    @keyframes static-shake {
+      0% { transform: skew(2deg); }
+      25% { transform: skew(-2deg); }
+      50% { transform: skew(1deg); }
+      75% { transform: skew(-1deg); }
+      100% { transform: skew(0deg); }
+    }
   </style>
 </head>
 <body>
@@ -796,6 +829,12 @@
     </section>
     <section>
       <h2 class="matrix-rain">Matrix Code Rain</h2>
+    </section>
+    <section>
+      <h2 class="data-stream">data stream</h2>
+    </section>
+    <section>
+      <h2 class="static-shake">static shake</h2>
     </section>
   </main>
 </body>
