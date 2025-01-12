@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🔦LiminalLoop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Elsie&display=swap" rel="stylesheet">
@@ -551,7 +553,44 @@
       margin-top: 60px;
       color: rgba(255, 255, 255, 0.8);
       font-size: 0.9em;
-    } 
+    }
+
+    #gradual {
+      background: linear-gradient(135deg, #1b1b1b, #3d3d5c);
+      color: white;
+      font-family: "Anonymous Pro", monospace;
+      padding: 1rem;
+      background-size: cover;
+      line-height: 1.5;
+      font-size: 0.8rem;
+      overflow: hidden;
+    }
+    #gradual a {
+      color: OldLace;
+      font-family: "Zen Dots", sans-serif;
+      font-size: 1.6em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    #gradual a:hover {
+      color: #CD9489;
+      transform: scale(1.1);
+    }
+    #gradual .badge {
+      position: fixed;
+      top: 2%;
+      right: 4%;
+      z-index: -1;
+      width: 5em;
+      height: auto;
+      color: OldLace;
+      animation: rotateBadge 4s infinite linear;
+    }
+    @keyframes rotateBadge {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
@@ -564,7 +603,7 @@
     <a href="#displays">◑</a>
     <a href="#searchBar">◌</a>
     <a href="#searchBar2">◐</a>
-    <a href="#wes">◎</a>
+    <a href="#gradual">◎</a>
     <a href="#sec">●</a>
     <a href="#sec">◒</a>
     <a href="#sec">◖</a>
@@ -655,8 +694,22 @@
     </main>
   </section>
 
-  <section id="wes">
-    
+  <section id="gradual">
+    <svg class="badge" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94"></path>
+    </svg>
+    <main>
+        <a href="#">⚞</a>Diffusion models are a class of generative models that simulate the <a href="#">gradual</a>
+        process of adding noise to data and then learn to reverse this process to generate 
+        new, high-quality data samples. During training, <a href="#">noise</a> is incrementally added to the 
+        data over multiple steps until it resembles pure noise. The model then learns to denoise 
+        it step-by-step, effectively generating realistic <a href="#">data</a> samples from noise. These models 
+        have shown state-of-the-art performance in generating high-quality images, text, and other 
+        data types, <a href="#">rivaling</a> or surpassing previous techniques like Generative Adversarial Networks (GANs).
+        Beyond generation, <a href="#">diffusion</a> models are being explored for tasks such as data augmentation, anomaly detection, 
+        and predictive modeling, making them versatile tools in modern data science.
+    </main>    
   </section>
 </body>
 </html>
