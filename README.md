@@ -71,7 +71,6 @@
 - [ ] Bytewave Symphony
 - [ ] Pixelated Abyss
 - [ ] Data Depths
-- [ ] Coded Seafoam
 - [ ] Neptune’s Network
 - [ ] Riptide __Renderer__
 - [ ] Coral Code Crusaders
