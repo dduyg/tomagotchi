@@ -37,6 +37,67 @@
       flex-direction: column;
       height: 100vh;
     }
+
+    #void404 {
+      font-family: "Alegreya Sans", sans-serif;
+      background-color: darkgray;
+      color: #353839;
+      font-size: 1.4rem;
+      line-height: 1.5;
+      overflow: hidden;
+    }
+    #void404 main {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 2em;
+      text-align: center;
+    }
+    #void404 h1 {
+      font-size: 5rem;
+      color: #7F7F7F;
+      letter-spacing: 4px;
+      font-family: "Fira Code", monospace;
+      position: relative;
+      display: inline-block;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      padding-top: 0;
+      animation: glitch 1s infinite;
+    }
+    #void404 h1::before, #void404 h1::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    @keyframes glitch {
+      2%, 64% {transform: translate(2px,0) skew(0deg);}
+      4%, 60% {transform: translate(-2px,0) skew(0deg);}
+      62% {transform: translate(0,0) skew(5deg);}
+    }
+    .vaporwave {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .vaporwave img {
+      display: block;
+      width: 10rem;
+      margin: 0 auto;
+      padding: 0;
+      opacity: 0.4;
+    }
+    #void404 p {
+      letter-spacing: 0.02em;
+      margin-bottom: 20px;
+      animation: floatText 4s infinite ease-in-out;
+    }
+    @keyframes floatText { 
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
       
     #glitching {
       background-color: #6a6468;
@@ -160,73 +221,12 @@
       90% {clip: rect(36px, 9999px, 57px, 0); transform: skew(0.6deg);}
       100% {clip: rect(89px, 9999px, 100px, 0); transform: skew(0.4deg);}
     }
-
-    #void404 {
-      font-family: "Alegreya Sans", sans-serif;
-      background-color: darkgray;
-      color: #353839;
-      font-size: 1.4rem;
-      line-height: 1.5;
-      overflow: hidden;
-    }
-    #void404 main {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 0 2em;
-      text-align: center;
-    }
-    #void404 h1 {
-      font-size: 5rem;
-      color: #7F7F7F;
-      letter-spacing: 4px;
-      font-family: "Fira Code", monospace;
-      position: relative;
-      display: inline-block;
-      margin-top: 0;
-      margin-bottom: 1rem;
-      padding-top: 0;
-      animation: glitch 1s infinite;
-    }
-    #void404 h1::before, #void404 h1::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    @keyframes glitch {
-      2%, 64% {transform: translate(2px,0) skew(0deg);}
-      4%, 60% {transform: translate(-2px,0) skew(0deg);}
-      62% {transform: translate(0,0) skew(5deg);}
-    }
-    .vaporwave {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    .vaporwave img {
-      display: block;
-      width: 10rem;
-      margin: 0 auto;
-      padding: 0;
-      opacity: 0.4;
-    }
-    #void404 p {
-      letter-spacing: 0.02em;
-      margin-bottom: 20px;
-      animation: floatText 4s infinite ease-in-out;
-    }
-    @keyframes floatText { 
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
-    }
   </style>
 </head>
 <body>
   <nav>
-    <a href="#glitching">◔</a>
-    <a href="#void404">◓</a>
+    <a href="#void404">◔</a>
+    <a href="#glitching">◓</a>
     <a href="#sec3">◍</a>    
     <a href="#sec4">◗</a>
     <a href="#sec">◉</a>
@@ -240,12 +240,6 @@
     <a href="#sec">○</a>
     <a href="#sec">◕</a>
   </nav>
-  
-  <section id="glitching">
-       <div class="code-fill" data-text="Glitching Code">Glitching Code</div>
-       <h1 data-text="404">404</h1>
-       <p>The matrix cannot locate the requested page. But hey, let's embrace the glitch and keep coding!</p>
-  </section>
 
   <section id="void404">
     <main>
@@ -253,6 +247,12 @@
       <h1 class="glitch" data-text="404">404</h1>
       <p class="message">Looks like you've stumbled upon a void in the digital matrix.</p>
     </main>
+  </section>
+
+  <section id="glitching">
+       <div class="code-fill" data-text="Glitching Code">Glitching Code</div>
+       <h1 data-text="404">404</h1>
+       <p>The matrix cannot locate the requested page. But hey, let's embrace the glitch and keep coding!</p>
   </section>
 </body>
 </html>
