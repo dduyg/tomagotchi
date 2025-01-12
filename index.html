@@ -400,6 +400,31 @@
       50% { transform: translate(2px, 2px); }
       100% { transform: translate(-2px, -2px); }
     }
+
+    #circuitBoardlines {
+      background: #4B1219;
+      color: #A8D3DA;
+    }
+    .circuit-board {
+      position: relative;
+      font-size: 2.5em;
+      color: #00ffcc;
+    }
+    .circuit-board::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: #00ffcc;
+      animation: circuit-board 2s infinite alternate;
+    }
+    @keyframes circuit-board {
+      0% { width: 10%; }
+      50% { width: 50%; }
+      100% { width: 100%; }
+    }
   </style>
 </head>
 <body>
@@ -418,6 +443,7 @@
     <a href="#shiftGlitch">▤</a>
     <a href="#impulseNoise">◪</a>
     <a href="#textWarp">▨</a>
+    <a href="#circuitBoardlines">▣</a>
   </nav>
 </header>
 
@@ -468,6 +494,9 @@
 </section>
 <section id="textWarp">
   <h1 class="warping" data-text="Synthwave Shadows">Synthwave Shadows</h1>
+</section>
+<section id="circuitBoardlines">
+  <h1 class="circuit-board">Circuit Board</h1>
 </section>
 </body>
 </html>
