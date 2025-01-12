@@ -353,6 +353,45 @@
       75% { transform: translateY(5px); opacity: 0.5; }
       100% { transform: translateY(0); opacity: 1; }
     }
+
+    /* 22. Broken Signal Bar Glitch */
+    .signal-broken {
+      color: white;
+      position: relative;
+      font-weight: bold;
+    }
+    .signal-broken::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      animation: signal-broken 0.8s infinite steps(5);
+    }
+    @keyframes signal-broken {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+    
+    /* 23. Barcode Glitch */
+    .barcode-scroll::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 5px;
+      background: repeating-linear-gradient(90deg, #00ff99, #00ff99 10px, transparent 10px, transparent 20px);
+      animation: barcode-scroll 1s infinite linear;
+    }
+    @keyframes barcode-scroll {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(10px); }
+    }
   </style>
 </head>
 <body>
@@ -420,6 +459,12 @@
     </section>
     <section>
       <h2 class="matrix-stream" data-text="matrix stream">matrix stream</h2>
+    </section>
+    <section>
+      <h2 class="signal-broken" data-text="broken signal bar">broken signal bar</h2>
+    </section>
+    <section>
+      <h2 class="barcode-scroll" data-text="barcode scroll">barcode scroll</h2>
     </section>
   </main>
 </body>
