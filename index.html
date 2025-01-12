@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🔦LiminalLoop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz@8..144&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
   <style>
@@ -221,13 +222,59 @@
       90% {clip: rect(36px, 9999px, 57px, 0); transform: skew(0.6deg);}
       100% {clip: rect(89px, 9999px, 100px, 0); transform: skew(0.4deg);}
     }
+    
+    #takeMe {  
+      background: linear-gradient(135deg, #ff77ff, #4b0082);
+      color: #fff;
+      font-family: "Nanum Gothic Coding", monospace;
+      text-align: center;
+      padding: 1em;
+      overflow: hidden;
+    }
+    #takeMe h1 {     
+      font-size: 4em;
+      margin: 0;
+      animation: neon 1.5s infinite alternate;
+    }
+    #takeMe p {
+      font-size: 1.5em;
+      margin: 20px 0;
+    }
+    #takeMe a {
+      text-decoration: none;
+      color: #ffcc00;
+      background-color: #1a1a1a;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    #takeMe a:hover {
+      background-color: #ffcc00;
+      color: #1a1a1a;
+    }
+    @keyframes neon {
+      0% { text-shadow: 0 0 5px #ffcc00, 0 0 10px #ffcc00; }
+      100% { text-shadow: 0 0 10px #ff77ff, 0 0 20px #ff77ff; }
+    }
+    #takeMe .palms {
+      position: relative;
+      font-size: 0.8em;
+      margin-top: 40px;
+      color: #00ffff;
+    }
+    #takeMe .palms:before {
+      content: '🌴 404 - The Page is Gone, Like My Hopes and Dreams 🌴';
+      display: block;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }   
   </style>
 </head>
 <body>
   <nav>
     <a href="#void404">◔</a>
     <a href="#glitching">◓</a>
-    <a href="#sec3">◍</a>    
+    <a href="#takeMe">◍</a>    
     <a href="#sec4">◗</a>
     <a href="#sec">◉</a>
     <a href="#sec">◑</a>
@@ -253,6 +300,13 @@
        <div class="code-fill" data-text="Glitching Code">Glitching Code</div>
        <h1 data-text="404">404</h1>
        <p>The matrix cannot locate the requested page. But hey, let's embrace the glitch and keep coding!</p>
+  </section>
+
+  <section id="takeMe">
+    <h1>404</h1>
+    <p>Oops! Looks like you’ve taken a wrong turn into the void.</p>
+    <p class="palms">Don't worry; it happens to the best of us!</p>
+    <a href="./">take me back</a>
   </section>
 </body>
 </html>
