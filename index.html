@@ -597,6 +597,48 @@
       50% { transform: scaleY(1.2); }
       100% { transform: scaleY(1); }
     }
+
+    /* 36. Soft Shadow Jitter */
+    .shadow-jitter {
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      animation: shadow-jitter 0.2s infinite;
+    }
+    @keyframes shadow-jitter {
+      0% { text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); }
+      50% { text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3); }
+      100% { text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); }
+    }
+
+    /* 37. Static Noise Glitch */
+    .static-noise {
+      animation: static-noise 0.5s steps(5) infinite;
+    }
+    @keyframes static-noise {
+      0% { text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5); }
+      50% { text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.5); }
+      100% { text-shadow: 1px -1px 0 rgba(0, 0, 0, 0.5); }
+    }
+  
+    /* 38. Horizontal Line Distortion */
+    .line-distortion {
+      position: relative;
+    }
+    .line-distortion::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      color: gray;
+      clip-path: inset(50% 0 0 0);
+      animation: line-distortion 1s infinite;
+    }
+    @keyframes line-distortion {
+      0% { clip-path: inset(0 0 90% 0); }
+      50% { clip-path: inset(70% 0 20% 0); }
+      100% { clip-path: inset(0 0 90% 0); }
+    }
   </style>
 </head>
 <body>
@@ -706,6 +748,15 @@
     </section>
     <section>
       <h2 class="vertical-stretch">vertical stretch</h2>
+    </section>
+    <section>
+       <h2 class="shadow-jitter">shadow jitter</h2>
+    </section>
+    <section>
+      <h2 class="static-noise">static noise</h2>
+    </section>
+    <section>
+      <h2 class="line-distortion" data-text="line distortion">line distortion</h2>
     </section>
   </main>
 </body>
