@@ -2,74 +2,11 @@
       background-color: #9e9e9e;
       color: black;
       font-family: "Ubuntu Mono", monospace;
-   }
-  
+   }  
     h1 {
       font-size: 2em;
       position: relative;
-    }
-
-    /* 6. Vertical Glitch Bars */
-    .vertical-bars {
-      color: black;
-      position: relative;
-      overflow: hidden;
-    }
-    .vertical-bars::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: repeating-linear-gradient(
-        to right,
-        #80ffea 0%,
-        #ff80ab 10%,
-        transparent 20%
-      );
-      clip-path: polygon(10% 0, 20% 100%, 30% 100%, 40% 0, 60% 0, 50% 100%, 70% 100%, 80% 0);
-      animation: bar-flicker 0.5s infinite alternate;
-    }
-    @keyframes bar-flicker {
-      0%, 100% { opacity: 0.8; }
-      50% { opacity: 0.4; }
-    }
-
-    /* 7. Noise Grain Overlay */
-    .noise-grain {
-      position: relative;
-      color: black;
-    }
-    .noise-grain::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" /></filter><rect width="100%" height="100%" filter="url(%23noise)" /></svg>') repeat;
-      opacity: 0.3;
-      animation: grain-move 0.3s infinite;
-    }
-    @keyframes grain-move {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(-5px, 5px); }
-    }
-
-    /* 8. Pixelate/Depixelate */
-    .pixelate {
-      position: relative;
-      color: black;
-      animation: pixelate 2s infinite;
-    }
-    @keyframes pixelate {
-      0% { filter: blur(0px); }
-      25% { filter: blur(3px); }
-      50% { filter: blur(0px); }
-      75% { filter: blur(3px); }
-      100% { filter: blur(0px); }
-    }
+   }
 
     /* 9. Subtle Static Glitch */
     .static-glitch {
@@ -233,10 +170,7 @@
   </style>
 </head>
 <body>
-
-  <h1 class="vertical-bars">Vertical Glitch Bars</h1>
-  <h1 class="noise-grain">Noise Grain Overlay</h1>
-  <h1 class="pixelate">Pixelate/Depixelate</h1>
+  
   <h1 class="static-glitch" data-text="Static Glitch">Static Glitch</h1>
   <h1 class="fade-glitch">Letter Fade-In Glitch</h1>
   <h1 class="vertical-stretch">Vertical Stretch Glitch</h1>
