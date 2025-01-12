@@ -22,24 +22,35 @@
             flex-direction: column;
             overflow: hidden;
         }
+        main {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 2em;
+            text-align: center;
+        }
 
         h1 {
-            font-size: 8rem;
-            font-weight: bold;
-            color: #ff00ff;
-            text-shadow: 0px 0px 20px rgba(255, 0, 255, 0.7), 0px 0px 30px rgba(255, 0, 255, 0.6), 0px 0px 40px rgba(255, 0, 255, 0.5);
+            font-size: 2.5rem;
+            color: #7F7F7F;
+            letter-spacing: 4px;
+            font-family: "Fira Code", monospace;
+            position: relative;
+            display: inline-block;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            padding-top: 0;
+            animation: glitch 1s infinite;
         }
-
-        .message {
-            font-size: 1.2rem;
-            color: #ffffff;
-            margin-top: 30px;
-            animation: fadeIn 3s ease-in-out infinite;
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
         }
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            50% { opacity: 1; }
-            100% { opacity: 0; }
+        @keyframes glitch {
+            2%, 64% {transform: translate(2px,0) skew(0deg);}
+            4%, 60% {transform: translate(-2px,0) skew(0deg);}
+            62% {transform: translate(0,0) skew(5deg);}
         }
 
         .vaporwave {
@@ -47,22 +58,35 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            opacity: 0.15;
+        }
+        .vaporwave img {
+            display: block;
+            width: 10rem;
+            margin: 0 auto;
+            padding: 0;
+            opacity: 0.5;
         }
 
-        .vaporwave img {
-            width: 150px;
-            height: auto;
-            filter: hue-rotate(180deg) brightness(1.5);
+        p {
+            letter-spacing: 0.02em;
+            margin-bottom: 20px;
+            animation: floatText 4s infinite ease-in-out;
+        }
+        @keyframes floatText { 
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
         }
     </style>
 </head>
 <body>
+<main>
     <div class="vaporwave">
-        <img src="https://media4.giphy.com/media/xULW8t4niLpdPz9GRW/giphy.gif" alt="Vaporwave Logo">
+        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/aquaticSculpt.gif" alt="Vaporwave Logo">
     </div>
-
-    <h1>404</h1>
+    
+    <h1 class="glitch" data-text="404">404</div>
     <p class="message">Looks like you've stumbled upon a void in the digital matrix.</p>
+</main>
 </body>
 </html>
