@@ -258,6 +258,34 @@
       50% { text-shadow: 1px -1px 0 #ff00ff, -1px 1px 0 #0f0; }
       100% { text-shadow: 1px 1px 0 #ff00ff, -1px -1px 0 #0f0; }
     }
+
+    /* 16. Pixelated Breakdown */
+    .pixel-breakdown {
+      color: white;
+      font-size: 3em;
+      position: relative;
+      display: inline-block;
+      animation: pixelBreak 1.5s infinite;
+    }
+    @keyframes pixelBreak {
+      0% { letter-spacing: normal; }
+      25% { letter-spacing: 5px; }
+      50% { letter-spacing: 10px; }
+      75% { letter-spacing: 5px; }
+      100% { letter-spacing: normal; }
+    }
+
+    /* 17. Pixel Data Corruption */
+    .pixel-corruption {
+      position: relative;
+      color: #ff0080;
+      animation: pixelGlitch 1s infinite alternate;
+    }
+    @keyframes pixelGlitch {
+      0% { letter-spacing: 0; }
+      50% { letter-spacing: 10px; transform: scale(1.1); }
+      100% { letter-spacing: 0; transform: scale(1); }
+    }
   </style>
 </head>
 <body>
@@ -307,6 +335,12 @@
     </section>
     <section>
       <h2 class="pixel-flicker">Pixelated Flicker</h2>
+    </section>
+    <section>
+      <h2 class="pixel-breakdown">Pixelated Breakdown</h2>
+    </section>
+    <section>
+      <h2 class="pixel-corruption">Pixel Data Corruption</h2>
     </section>
   </main>
 </body>
