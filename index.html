@@ -309,6 +309,52 @@
       70% { transform: translateY(10px) rotate(-15deg); }
       100% { transform: scale(1); }
     }
+
+    /* 20. Terminal Glitch */
+    .terminal-glitch {
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .terminal-glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 0.6em;
+      color: rgba(255, 255, 255, 0.3);
+      animation: terminal-glitch 0.15s infinite alternate;
+    }
+    @keyframes terminal-glitch {
+      0% { opacity: 0; }
+      25% { opacity: 1; }
+      50% { opacity: 0; }
+      75% { opacity: 0.5; }
+      100% { opacity: 0; }
+    }
+
+    /* 21. Matrix Stream Glitch */
+    .matrix-stream {
+      color: #0f0;
+      position: relative;
+      overflow: hidden;
+    }
+    .matrix-stream::before {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      animation: matrix-stream 1s infinite;
+    }
+    @keyframes matrix-stream {
+      0% { transform: translateY(0); opacity: 1; }
+      25% { transform: translateY(5px); opacity: 0.5; }
+      50% { transform: translateY(-5px); opacity: 0.2; }
+      75% { transform: translateY(5px); opacity: 0.5; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
   </style>
 </head>
 <body>
@@ -370,6 +416,12 @@
     </section>
     <section>
       <h2 class="digital-scramble">Digital Scramble</h2>
+    </section>
+    <section>
+      <h2 class="terminal-glitch" data-text="Loading... | Error: 404 | Connection Lost">Terminal Glitch</h2>
+    </section>
+    <section>
+      <h2 class="matrix-stream" data-text="Matrix Stream Glitch">Matrix Stream Glitch</h2>
     </section>
   </main>
 </body>
