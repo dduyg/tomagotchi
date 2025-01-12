@@ -483,7 +483,7 @@
       100% { transform: translate(0px, 0px); }
     }
 
-    /* 29. Horizontal Scan Glitch */
+    /* 29. Horizontal Scan */
     .scan-move {
       position: relative;
       overflow: hidden;
@@ -506,7 +506,6 @@
 
     /* 30. Vertical Glitch Bars */
     .vertical-bars {
-      color: black;
       position: relative;
       overflow: hidden;
     }
@@ -519,9 +518,9 @@
       height: 100%;
       background: repeating-linear-gradient(to right, #80ffea 0%, #ff80ab 10%, transparent 20%);
       clip-path: polygon(10% 0, 20% 100%, 30% 100%, 40% 0, 60% 0, 50% 100%, 70% 100%, 80% 0);
-      animation: bar-flicker 0.5s infinite alternate;
+      animation: vertical-bars 0.5s infinite alternate;
     }
-    @keyframes bar-flicker {
+    @keyframes vertical-bars {
       0%, 100% { opacity: 0.8; }
       50% { opacity: 0.4; }
     }
@@ -529,7 +528,6 @@
     /* 31. Noise Grain Overlay */
     .noise-grain {
       position: relative;
-      color: black;
     }
     .noise-grain::before {
       content: '';
@@ -540,20 +538,19 @@
       height: 100%;
       background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" /></filter><rect width="100%" height="100%" filter="url(%23noise)" /></svg>') repeat;
       opacity: 0.3;
-      animation: grain-move 0.3s infinite;
+      animation: noise-grain 0.3s infinite;
     }
-    @keyframes grain-move {
+    @keyframes noise-grain {
       0%, 100% { transform: translate(0, 0); }
       50% { transform: translate(-5px, 5px); }
     }
 
     /* 32. Pixelate/Depixelate */
-    .pixelate {
+    .depixelate {
       position: relative;
-      color: black;
-      animation: pixelate 2s infinite;
+      animation: depixelate 2s infinite;
     }
-    @keyframes pixelate {
+    @keyframes depixelate {
       0% { filter: blur(0px); }
       25% { filter: blur(3px); }
       50% { filter: blur(0px); }
@@ -659,7 +656,7 @@
       <h2 class="noise-grain">noise grain</h2>
     </section>
     <section>
-      <h2 class="pixelate">pixelate/depixelate</h2>
+      <h2 class="depixelate">pixelate/depixelate</h2>
     </section>
   </main>
 </body>
