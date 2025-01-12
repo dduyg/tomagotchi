@@ -393,6 +393,31 @@
       0% { transform: translateY(0); }
       100% { transform: translateY(10px); }
     }
+
+    /* 24. Vertical Scan */
+    .vertical-scanner {
+      position: relative;
+    }
+    .vertical-scanner::before {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #66ff99;
+      animation: scanner 0.8s infinite alternate;
+    }
+    .vertical-scanner::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #ff9933;
+      animation: vertical-scanner 0.8s infinite alternate-reverse;
+    }
+    @keyframes vertical-scanner {
+      0% { clip-path: inset(0% 0% 90% 0%); }
+      100% { clip-path: inset(90% 0% 0% 0%); }
+    }
   </style>
 </head>
 <body>
@@ -466,6 +491,9 @@
     </section>
     <section>
       <h2 class="barcode-scroll" data-text="barcode scroll">barcode scroll</h2>
+    </section>
+    <section>
+      <h2 class="vertical-scanner" data-text="Vertical Scan">Vertical Scan</h2>
     </section>
   </main>
 </body>
