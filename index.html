@@ -223,7 +223,6 @@
     .vertical-line-glitch {
       position: relative;
       display: inline-block;
-      color: white;
       animation: vertical-glitch 1s infinite alternate;
     }
     .vertical-line-glitch::before {
@@ -248,12 +247,11 @@
     }
 
     /* 15. Pixelated Text Flicker */
-    .pixel-flicker {
-      color: white;
-      font-family: 'Courier New', Courier, monospace;
-      animation: pixel-flicker-animation 0.1s infinite;
+    .pixel-flicker {  
+      color: #E1D9D1;
+      animation: pixelFlicker 0.1s infinite;
     }
-    @keyframes pixel-flicker-animation {
+    @keyframes pixelFlicker {
       0% { text-shadow: 1px 1px 0 #0f0, -1px -1px 0 #ff00ff; }
       50% { text-shadow: 1px -1px 0 #ff00ff, -1px 1px 0 #0f0; }
       100% { text-shadow: 1px 1px 0 #ff00ff, -1px -1px 0 #0f0; }
@@ -261,13 +259,11 @@
 
     /* 16. Pixelated Breakdown */
     .pixel-breakdown {
-      color: white;
-      font-size: 3em;
       position: relative;
       display: inline-block;
-      animation: pixelBreak 1.5s infinite;
+      animation: pixelBreakdown 1.5s infinite;
     }
-    @keyframes pixelBreak {
+    @keyframes pixelBreakdown {
       0% { letter-spacing: normal; }
       25% { letter-spacing: 5px; }
       50% { letter-spacing: 10px; }
@@ -278,10 +274,9 @@
     /* 17. Pixel Data Corruption */
     .pixel-corruption {
       position: relative;
-      color: #ff0080;
-      animation: pixelGlitch 1s infinite alternate;
+      animation: pixelCorruption 1s infinite alternate;
     }
-    @keyframes pixelGlitch {
+    @keyframes pixelCorruption {
       0% { letter-spacing: 0; }
       50% { letter-spacing: 10px; transform: scale(1.1); }
       100% { letter-spacing: 0; transform: scale(1); }
@@ -334,13 +329,13 @@
       <h2 class="vertical-line-glitch">Vertical Line</h2>
     </section>
     <section>
-      <h2 class="pixel-flicker">Pixelated Flicker</h2>
+      <h2 class="pixel-flicker">gradual</h2>
     </section>
     <section>
       <h2 class="pixel-breakdown">Pixelated Breakdown</h2>
     </section>
     <section>
-      <h2 class="pixel-corruption">Pixel Data Corruption</h2>
+      <h2 class="pixel-corruption">Pixel Corruption</h2>
     </section>
   </main>
 </body>
