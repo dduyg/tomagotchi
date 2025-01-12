@@ -55,7 +55,7 @@
     }
     .code-fill:before,
     .code-fill:after {
-      content: 'Glitching Code';
+      content: attr(data-text);
       position: absolute;
       top: 0;
       left: 0;
@@ -127,7 +127,7 @@
       animation: glitch 1s infinite;
     }
     #glitching h1::before, #glitching h1::after {
-      content: '404';
+      content: attr(data-text);
       position: absolute;
       left: 0;
       top: 0;
@@ -275,8 +275,8 @@
   </nav>
   
   <section id="glitching">
-       <div class="code-fill">Glitching Code</div>
-       <h1>404</h1>
+       <div class="code-fill" data-text="Glitching Code">Glitching Code</div>
+       <h1 data-text="404">404</h1>
        <p>The matrix cannot locate the requested page. But hey, let's embrace the glitch and keep coding!</p>
   </section>
 
