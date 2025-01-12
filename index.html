@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🔦LiminalLoop</title>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Elsie&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz@8..144&display=swap" rel="stylesheet">
@@ -355,6 +356,49 @@
       border-radius: 0.3em;
       font-weight: bold;
     }
+
+    #displays {
+      background-color: #CBC9D4;
+      color: #000;
+    }
+    #displays main {
+      padding: 0 3em;
+      font-family: "PT Mono", monospace;
+    }
+    #displays h1 {
+      font-size: 7rem;
+      margin-bottom: 0;
+      background: url('temperature.gif'); 
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+        ol {
+            padding-left: 3.125em;
+        }
+        ol li {
+            display: flex;
+            align-items: center;
+            padding-left: 1em;
+            margin-top: 1.5em;
+            position: relative;
+            font-size: 1em;
+            list-style: none;
+            counter-increment: item;
+        }
+        ol li:before {
+            content: counter(item);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 2.625em;
+            width: 2.625em;
+            border-radius: 50%;
+            border: 0.125em solid #000;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: -3.5em;
+        }  
   </style>
 </head>
 <body>
@@ -364,7 +408,7 @@
     <a href="#takeMe">◍</a>    
     <a href="#lime">◗</a>
     <a href="#gaussian">◉</a>
-    <a href="#hhh">◑</a>
+    <a href="#displays">◑</a>
     <a href="#sec">◌</a>
     <a href="#sec">◐</a>
     <a href="#sec">◎</a>
@@ -413,7 +457,17 @@
     </main>
   </section>
 
-  <section id="oion">
+  <section id="displays">
+    <main>
+      <h1>■●</h1>       
+      <ol>
+        <li>When the night is dark and cold, and the shadows grow so bold, feel the tremor in your soul, but don't let fear take control.</li>
+        <li>Take the leap, don't question why, let your courage touch the sky. Stand up tall, don't hide, let your spirit be your guide.</li>
+        <li>There's a fire deep inside, where your true strength resides. Through the storm and the fire, you're the hero you desire.</li>
+        <li>Face the world with fearless eyes, every battle, every fight, you are shining in the light.</li>
+        <li>Heart of a lion, hear it beat, in every triumph, in defeat. Stand your ground, don't retreat. Courage makes your life complete.</li>   
+      </ol>
+    </main>
   </section>  
 </body>
 </html>
