@@ -418,6 +418,38 @@
       0% { clip-path: inset(0% 0% 90% 0%); }
       100% { clip-path: inset(90% 0% 0% 0%); }
     }
+
+    /* 25. Noise Flicker Overlay */
+    .noise-flicker {
+      position: relative;
+      color: black;
+    }
+    .noise-flicker::before {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.1);
+      background-blend-mode: overlay;
+      opacity: 0.3;
+      animation: noise-flicker 0.1s infinite;
+    }
+    @keyframes noise-flicker {
+      0% { opacity: 0.2; transform: translate(0px, 0px); }
+      50% { opacity: 0.4; transform: translate(-1px, 1px); }
+      100% { opacity: 0.2; transform: translate(1px, -1px); }
+    }
+
+    /* 26. Text Blur Pulse */
+    .blur-pulse {
+      animation: blur-pulse 0.5s infinite;
+    }
+    @keyframes blur-pulse {
+      0%, 100% { filter: blur(0); }
+      50% { filter: blur(2px); }
+    }
   </style>
 </head>
 <body>
@@ -494,6 +526,12 @@
     </section>
     <section>
       <h2 class="vertical-scanner" data-text="vertical scan">vertical scan</h2>
+    </section>
+    <section>
+      <h2 class="noise-flicker" data-text="noise flicker">noise flicker</h2>
+    </section>
+    <section>
+      <h2 class="blur-pulse">blur pulse</h2>
     </section>
   </main>
 </body>
