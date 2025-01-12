@@ -218,6 +218,34 @@
       50% {opacity: 1; transform: translateY(0);}
       100% {opacity: 0.1; transform: translateY(20px);}
     }
+
+    /* 14. Vertical Line Glitch */
+    .vertical-line-glitch {
+      position: relative;
+      display: inline-block;
+      color: white;
+      animation: vertical-glitch 1s infinite alternate;
+    }
+    .vertical-line-glitch::before {
+      content: '|';
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: #00ff00;
+      animation: vertical-line-animation 0.2s infinite;
+    }
+    @keyframes vertical-glitch {
+      0% { transform: skewY(0deg); }
+      50% { transform: skewY(10deg); }
+      100% { transform: skewY(-10deg); }
+    }
+    @keyframes vertical-line-animation {
+      0% { top: 0; left: 0; }
+      25% { top: -10px; left: 5px; }
+      50% { top: 10px; left: -5px; }
+      75% { top: 0; left: 5px; }
+      100% { top: -5px; left: -5px; }
+    }
   </style>
 </head>
 <body>
@@ -261,6 +289,9 @@
     </section>
     <section>
       <h2 class="matrix-fall">System Error.<br>Rebooting...</h2>
+    </section>
+    <section>
+      <h2 class="vertical-line-glitch">Vertical Line</h2>
     </section>
   </main>
 </body>
