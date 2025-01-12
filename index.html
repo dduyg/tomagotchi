@@ -267,7 +267,57 @@
       display: block;
       font-size: 1.2em;
       margin-bottom: 20px;
-    }   
+    }
+
+    #lime {
+      font-family: "Fira Code", monospace;
+      padding: 1.25em;
+      background-color: #F1FFD6;
+      color: darkgray;
+    }
+    #lime main { 
+      max-width: 800px;
+      text-align: right;
+    }
+    #lime h1 {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      letter-spacing: 2px;
+      animation: hadi 1s infinite;
+    }
+    @keyframes hadi {
+      0% { transform: translate(-2px, -2px); }
+      25% { transform: translate(2px, -2px); }
+      50% { transform: translate(2px, 2px); }
+      75% { transform: translate(-2px, 2px); }
+      100% { transform: translate(-2px, -2px); }
+    }
+    #lime p {
+      font-size: 1.15rem;
+      margin-top: 30px;
+    }
+    #lime a {
+      font-weight: bold;
+      text-decoration: none;
+      margin-top: 0;
+      padding-top: 0;
+      color: #00ffff;
+      font-size: 1.5em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    #lime .loader {
+      width: 3rem;
+      height: 3rem;
+      border: 4px solid #00ffff;
+      border-top: 4px solid transparent;
+      border-radius: 50%;
+      animation: rotate 1.5s linear infinite;
+    }
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
@@ -275,7 +325,7 @@
     <a href="#void404">◔</a>
     <a href="#glitching">◓</a>
     <a href="#takeMe">◍</a>    
-    <a href="#sec4">◗</a>
+    <a href="#lime">◗</a>
     <a href="#sec">◉</a>
     <a href="#sec">◑</a>
     <a href="#sec">◌</a>
@@ -307,6 +357,15 @@
     <p>Oops! Looks like you’ve taken a wrong turn into the void.</p>
     <p class="palms">Don't worry; it happens to the best of us!</p>
     <a href="./">take me back</a>
+  </section>
+
+  <section id="lime">
+    <main>
+      <h1>CYBER DATA MATRIX</h1>
+      <a href="../10/">::<i>Glitched Found</i></a>
+      <p><i>Seems like you've ventured into the abyss of cyberspace.</i> Lost in a digital dream, where glitchy memories softly gleam. Through the circuits, I flow, In this world, I'll never know. In the rhythm of the digital sublime, faded and worn data stream, lost within the machine. Digits dance in the night, in a sea of pure delight.</p>
+      <div class="loader"></div>
+    </main>
   </section>
 </body>
 </html>
