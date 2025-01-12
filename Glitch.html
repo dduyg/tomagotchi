@@ -330,32 +330,6 @@
     @keyframes scanner {
       0% { clip-path: inset(0% 0% 90% 0%); }
       100% { clip-path: inset(90% 0% 0% 0%); }
-    }
-
-    /* 17. Text Warp */
-    .warping {
-      display: inline-block;
-      position: relative;
-      color: #00ff99;
-      animation: text-warp 2s infinite;
-    }
-    .warping::before {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: #ff00ff;
-      animation: text-warp-before 2s infinite;
-    }
-    @keyframes text-warp {
-      0% { transform: rotate(0deg) scale(1); }
-      50% { transform: rotate(-10deg) scale(1.1); }
-      100% { transform: rotate(0deg) scale(1); }
-    }
-    @keyframes text-warp-before {
-      0% { transform: translate(-2px, -2px); }
-      50% { transform: translate(2px, 2px); }
-      100% { transform: translate(-2px, -2px); }
     }  
   </style>
 </head>
@@ -376,7 +350,5 @@
   <h1 class="block-glitch" data-text="Pixelated Block Glitch">Pixelated Block Glitch</h1>
   <h1 class="barcode" data-text="Barcode Glitch">Barcode Glitch</h1>
   <h1 class="scanning" data-text="Vertical Scan">Vertical Scan</h1>
-  <h1 class="warping" data-text="Text Warp">Text Warp</h1>
-
 </body>
 </html>
