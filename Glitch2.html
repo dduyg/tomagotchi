@@ -8,54 +8,6 @@
       position: relative;
    }
 
-    /* 9. Subtle Static Glitch */
-    .static-glitch {
-      position: relative;
-      overflow: hidden;
-      color: black;
-    }
-    .static-glitch::before {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: repeating-linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.1),
-        rgba(0, 0, 0, 0.1) 1px,
-        transparent 2px
-      );
-      mix-blend-mode: overlay;
-      animation: static-glitch 1s infinite linear;
-    }
-    @keyframes static-glitch {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-10%); }
-    }
-
-    /* 10. Letter Fade-In Glitch */
-    .fade-glitch {
-      color: black;
-      animation: fade-in-out 2s infinite;
-    }
-    @keyframes fade-in-out {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-
-    /* 11. Vertical Stretch Glitch */
-    .vertical-stretch {
-      color: black;
-      animation: stretch 1s infinite alternate;
-    }
-    @keyframes stretch {
-      0% { transform: scaleY(1); }
-      50% { transform: scaleY(1.2); }
-      100% { transform: scaleY(1); }
-    }
-
     /* 12. Soft Shadow Jitter */
     .shadow-jitter {
       color: black;
@@ -171,9 +123,6 @@
 </head>
 <body>
   
-  <h1 class="static-glitch" data-text="Static Glitch">Static Glitch</h1>
-  <h1 class="fade-glitch">Letter Fade-In Glitch</h1>
-  <h1 class="vertical-stretch">Vertical Stretch Glitch</h1>
   <h1 class="shadow-jitter">Soft Shadow Jitter</h1>
   <h1 class="static-noise">Static Noise Glitch</h1>
   <h1 class="line-distortion" data-text="Horizontal Line Distortion">Horizontal Line Distortion</h1>
