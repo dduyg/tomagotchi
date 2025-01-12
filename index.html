@@ -39,10 +39,10 @@
     }
 
     /* 1. Distorted Vertical Wave */
-    .wave {
+    .distorted-verticalwave {
       animation: wave 0.2s infinite ease-in-out;
     }
-    @keyframes wave {
+    @keyframes distorted-verticalwave {
       0%, 100% { transform: scaleY(1); }
       25% { transform: scaleY(1.2); }
       50% { transform: scaleY(0.8); }
@@ -79,30 +79,30 @@
     }
 
     /* 4. Split Displacement */
-    .split {
+    .split-displacement {
       position: relative;
       overflow: hidden;
       color: #E9EDE6;
     }
-    .split::before,
-    .split::after {
+    .split-displacement::before,
+    .split-displacement::after {
       content: attr(data-text);
       position: absolute;
       top: 0;
       left: 0;
       color: black;
     }
-    .split::before {
+    .split-displacement::before {
       clip-path: inset(0 0 50% 0);
       transform: translateX(-2px);
-      animation: slice 0.9s infinite;
+      animation: split-displacement 0.9s infinite;
     }
-    .split::after {
+    .split-displacement::after {
       clip-path: inset(50% 0 0 0);
       transform: translateX(2px);
-      animation: slice 0.9s infinite reverse;
+      animation: split-displacement 0.9s infinite reverse;
     }
-    @keyframes slice {
+    @keyframes split-displacement {
       0%, 100% { transform: translateX(0); }
       50% { transform: translateX(5px); }
     }
@@ -359,7 +359,7 @@
   <header>🩹🎱🎣🎮🏮</header>
   <main>
     <section>
-      <h2 class="wave">echochamber</h2>
+      <h2 class="distorted-verticalwave">echochamber</h2>
     </section>
     <section>
       <h2 class="scanlines" data-text="hypnagogic">hypnagogic</h2>
@@ -368,7 +368,7 @@
       <h2 class="distort"><span>o</span><span>b</span><span>s</span><span>i</span><span>d</span><span>i</span><span>a</span><span>n</span></h2>
     </section>
     <section>
-      <h2 class="split" data-text="monochrome">monochrome</h2>
+      <h2 class="split-displacement" data-text="monochrome">monochrome</h2>
     </section>
     <section>
       <h2 class="static">oscillation</h2>
