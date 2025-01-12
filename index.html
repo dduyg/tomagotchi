@@ -132,11 +132,11 @@
     }
 
     /* 7. Data Corruption */
-    .corruption {
+    .data-corruption {
       position: relative;
-      animation: corruption 0.4s infinite;
+      animation: data-corruption 0.4s infinite;
     }
-    @keyframes corruption {
+    @keyframes data-corruption {
       0%, 100% { clip-path: inset(0 0 0 0); }
       50% { clip-path: inset(0 0 0 50%); }
     }
@@ -223,7 +223,7 @@
     .vertical-line-glitch {
       position: relative;
       display: inline-block;
-      animation: vertical-glitch 1s infinite alternate;
+      animation: vertical-line-glitch 1s infinite alternate;
     }
     .vertical-line-glitch::before {
       content: '|';
@@ -233,7 +233,7 @@
       color: #00ff00;
       animation: vertical-line-animation 0.2s infinite;
     }
-    @keyframes vertical-glitch {
+    @keyframes vertical-line-glitch {
       0% { transform: skewY(0deg); }
       50% { transform: skewY(10deg); }
       100% { transform: skewY(-10deg); }
@@ -377,7 +377,7 @@
        <h2 class="vertical-glitch">fragmented</h2>
     </section>
     <section>
-      <h2 class="corruption">paradigm</h2>
+      <h2 class="data-corruption">paradigm</h2>
     </section>
     <section>
       <h2 class="glitch-flash">kaleidoscope</h2>
