@@ -320,7 +320,40 @@
       80% {clip: rect(32px, 9999px, 39px, 0); transform: skew(0.46deg);}
       90% {clip: rect(41px, 9999px, 77px, 0); transform: skew(0.45deg);}
       100% {clip: rect(80px, 9999px, 64px, 0); transform: skew(0.47deg);}
-    } 
+    }
+
+    #shiftGlitch {
+      background: #2a2a2a;
+    }
+    .shift-glitch {
+      position: relative;
+      color: #ff6ec7;        
+      font-size: 6rem;
+      font-weight: bold;
+    }     
+    .shift-glitch::before,   
+    .shift-glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #50e3c2;
+      color: #50e3c2;
+      z-index: -1;       
+      animation: shift-glitch 1s infinite;      
+    }
+    .shift-glitch::after {
+      left: 2px;
+      text-shadow: -1px 0 red, 1px 0 cyan, 0 -1px green, 0 1px blue;
+    }
+    @keyframes shift-glitch {
+      0% {transform: translateX(2px) translateY(-2px);}
+      20% {transform: translateX(-2px) translateY(2px);}
+      40% {transform: translateX(4px) translateY(-4px);}
+      60% {transform: translateX(-4px) translateY(4px);}
+      80% {transform: translateX(2px) translateY(-2px);}
+      100% {transform: translateX(0) translateY(0);}
+    }
   </style>
 </head>
 <body>
@@ -336,6 +369,7 @@
     <a href="#blurGlitch">▧</a>
     <a href="#staggerGlitch">◱</a>
     <a href="#fillGlitch">◫</a>
+    <a href="#shiftGlitch">▤</a>  
   </nav>
 </header>
 
@@ -377,6 +411,9 @@
 </section>
 <section id="fillGlitch">
   <p class="fill-glitch" data-text="Coded Seafoam">Coded Seafoam</p>
+</section>
+<section id="shiftGlitch">
+  <div class="shift-glitch" data-text="404">404</div>
 </section>
 </body>
 </html>
