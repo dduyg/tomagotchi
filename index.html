@@ -3,69 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Decorators</title>
-    <link href="https://fonts.googleapis.com/css2?family=ABeeZee&display=swap" rel="stylesheet">
+    <title>Python Decorators Explained</title>
     <style>
-        body {
-            font-family: "ABeeZee", sans-serif;
-            background-color: #2a2a3d; /* Dark purple background */
-            color: #f0e5e5; /* Light purple text */
+        /* General Reset */
+        body, h1, h2, h3, p, pre, code {
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            box-sizing: border-box;
         }
-        main {
+        
+        /* Body Styling */
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            color: #fff;
+            background: linear-gradient(135deg, #240090, #8d1eb2, #ff67ff);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Container */
+        .content {
+            width: 90%;
             max-width: 800px;
-            margin: 0 auto;
-            padding: 1em;
+            background: rgba(0, 0, 0, 0.6);
+            border: 3px solid #ff67ff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 0 20px #ff67ff, 0 0 10px #8d1eb2 inset;
         }
+        
+        /* Headers */
         h1, h2, h3 {
-            color: #6b1c4c; /* Magenta headers */
+            color: #ff67ff;
+            text-shadow: 0 0 5px #fff, 0 0 10px #ff67ff;
         }
+
         h1 {
+            font-size: 2rem;
             text-align: center;
-            font-size: 2.5em;
             margin-bottom: 20px;
         }
+
+        h2, h3 {
+            margin: 20px 0 10px;
+        }
+
+        /* Paragraphs */
+        p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* Code Blocks */
         pre {
-            background-color: #442244; /* Dark purple code blocks */
-            padding: 10px;
-            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #ff67ff;
+            border-radius: 8px;
+            padding: 15px;
             overflow-x: auto;
+            font-size: 0.9rem;
+            box-shadow: 0 0 10px #8d1eb2 inset;
         }
+
         code {
-            color: #ff3cff; /* Bright pink code text */
-            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+            color: #ff67ff;
         }
-        ul {
-            list-style: none;
-            padding: 0;
+
+        /* Links */
+        a {
+            color: #ff67ff;
+            text-decoration: none;
+            border-bottom: 1px dotted #ff67ff;
+            transition: color 0.3s;
         }
-        ul li {
-            background: #5f5c87; /* Light purple list background */
-            margin: 5px 0;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
+
+        a:hover {
+            color: #fff;
         }
     </style>
 </head>
 <body>
-<main>
-    <h1>Understanding Python Decorators</h1>
-    <p>A decorator is a function that takes another function as an argument and returns a new function that usually extends the behavior of the original function. Decorators are often used for logging, access control, instrumentation, caching, and more.</p>
+    <div class="content">
+        <h1>Understanding Python Decorators</h1>
+        <p>A decorator is a function that takes another function as an argument and returns a new function that usually extends the behavior of the original function. Decorators are often used for logging, access control, instrumentation, caching, and more.</p>
 
-    <h2>Basic Decorator Example</h2>
-    <p>Let's start with a simple example of a decorator that prints a message before and after calling the original function:</p>
-    <pre><code class="language-python">
-def my_decorator(func):
+        <h2>Basic Decorator Example</h2>
+        <p>Let's start with a simple example of a decorator that prints a message before and after calling the original function.</p>
+        <pre><code>def my_decorator(func):
     def wrapper():
         print("Something is happening before the function is called.")
         func()
@@ -76,22 +104,20 @@ def my_decorator(func):
 def say_hello():
     print("Hello!")
 
-say_hello()
-    </code></pre>
+say_hello()</code></pre>
 
-    <h3>Explanation:</h3>
-    <ul>
-        <li><code>my_decorator</code> is a decorator function that takes <code>func</code> as an argument.</li>
-        <li>Inside <code>my_decorator</code>, we define a nested function <code>wrapper</code> that prints a message, calls the original function <code>func</code>, and then prints another message.</li>
-        <li>The <code>my_decorator</code> function returns the <code>wrapper</code> function.</li>
-        <li>The <code>@my_decorator</code> syntax is a shorthand for <code>say_hello = my_decorator(say_hello)</code>.</li>
-        <li>When <code>say_hello()</code> is called, the <code>wrapper</code> function is executed, which includes the additional print statements.</li>
-    </ul>
+        <h3>Explanation:</h3>
+        <ul>
+            <li><code>my_decorator</code> is a decorator function that takes <code>func</code> as an argument.</li>
+            <li>Inside <code>my_decorator</code>, we define a nested function <code>wrapper</code> that prints a message, calls the original function <code>func</code>, and then prints another message.</li>
+            <li>The <code>my_decorator</code> function returns the <code>wrapper</code> function.</li>
+            <li>The <code>@my_decorator</code> syntax is a shorthand for <code>say_hello = my_decorator(say_hello)</code>.</li>
+            <li>When <code>say_hello()</code> is called, the <code>wrapper</code> function is executed, which includes the additional print statements.</li>
+        </ul>
 
-    <h2>Decorators with Arguments</h2>
-    <p>Decorators can also accept arguments. Here’s an example of a decorator that takes an argument:</p>
-    <pre><code class="language-python">
-def repeat(num_times):
+        <h2>Decorators with Arguments</h2>
+        <p>Decorators can also accept arguments. Here’s an example of a decorator that takes an argument:</p>
+        <pre><code>def repeat(num_times):
     def decorator_repeat(func):
         def wrapper(*args, **kwargs):
             for _ in range(num_times):
@@ -103,22 +129,20 @@ def repeat(num_times):
 def greet(name):
     print(f"Hello, {name}!")
 
-greet("Alice")
-    </code></pre>
+greet("Alice")</code></pre>
 
-    <h3>Explanation:</h3>
-    <ul>
-        <li><code>repeat</code> is a decorator factory that takes an argument <code>num_times</code>.</li>
-        <li><code>repeat</code> returns the actual decorator <code>decorator_repeat</code>.</li>
-        <li><code>decorator_repeat</code> takes the function <code>func</code> to be decorated.</li>
-        <li>Inside <code>decorator_repeat</code>, we define <code>wrapper</code> that calls <code>func</code> <code>num_times</code> times.</li>
-        <li>The <code>@repeat(num_times=3)</code> syntax applies the decorator to <code>greet</code>, so calling <code>greet("Alice")</code> will print the greeting three times.</li>
-    </ul>
+        <h3>Explanation:</h3>
+        <ul>
+            <li><code>repeat</code> is a decorator factory that takes an argument <code>num_times</code>.</li>
+            <li><code>repeat</code> returns the actual decorator <code>decorator_repeat</code>.</li>
+            <li><code>decorator_repeat</code> takes the function <code>func</code> to be decorated.</li>
+            <li>Inside <code>decorator_repeat</code>, we define <code>wrapper</code> that calls <code>func</code> <code>num_times</code> times.</li>
+            <li>The <code>@repeat(num_times=3)</code> syntax applies the decorator to <code>greet</code>, so calling <code>greet("Alice")</code> will print the greeting three times.</li>
+        </ul>
 
-    <h2>Using <code>functools.wraps</code></h2>
-    <p>When you use decorators, the metadata of the original function (such as its name, docstring) can be lost. To preserve this metadata, you can use <code>functools.wraps</code>:</p>
-    <pre><code class="language-python">
-import functools
+        <h2>Using <code>functools.wraps</code></h2>
+        <p>When you use decorators, the metadata of the original function (such as its name, docstring) can be lost. To preserve this metadata, you can use <code>functools.wraps</code>.</p>
+        <pre><code>import functools
 
 def my_decorator(func):
     @functools.wraps(func)
@@ -135,16 +159,15 @@ def say_hello():
     print("Hello!")
 
 print(say_hello.__name__)  # Output: say_hello
-print(say_hello.__doc__)   # Output: This is the say_hello function.
-    </code></pre>
+print(say_hello.__doc__)   # Output: This is the say_hello function.</code></pre>
 
-    <h3>Explanation:</h3>
-    <ul>
-        <li><code>functools.wraps(func)</code> is a decorator that updates the <code>wrapper</code> function to look like <code>func</code> by copying attributes such as the name and docstring.</li>
-        <li>This ensures that the decorated function retains the metadata of the original function.</li>
-    </ul>
+        <h3>Explanation:</h3>
+        <ul>
+            <li><code>functools.wraps(func)</code> is a decorator that updates the <code>wrapper</code> function to look like <code>func</code> by copying attributes such as the name and docstring.</li>
+            <li>This ensures that the decorated function retains the metadata of the original function.</li>
+        </ul>
 
-    <p>Decorators are a versatile feature in Python that can significantly enhance the readability and maintainability of your code by separating concerns and reducing boilerplate.</p>
-</main>
+        <p>Decorators are a versatile feature in Python that can significantly enhance the readability and maintainability of your code by separating concerns and reducing boilerplate.</p>
+    </div>
 </body>
 </html>
