@@ -54,13 +54,28 @@
             text-decoration: underline;
         }
         ol {
+            counter-reset: my-counter;
+            list-style: none;
             padding: 0;
         }
-        ol li {
-            background: #5f5c87;
-            margin: 20px 0;
-            padding: 10px;
-            border-radius: 5px;
+        li {
+            margin-bottom: 10px;
+            padding-left: 30px;
+            position: relative;
+        }
+        li:before {
+            content: counter(my-counter);
+            counter-increment: my-counter;
+            background-color: #bada55;
+            color: #222;
+            display: block;
+            float: left;
+            line-height: 22px;
+            margin-left: -30px;
+            text-align: center;
+            height: 22px;
+            width: 22px;
+            border-radius: 50%;
         }  
         footer {
             position: fixed;
