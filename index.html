@@ -20,13 +20,11 @@
             max-width: 800px;
             margin: 40px auto;
             padding: 20px;
-            position: relative;
         }
         img {
-            width: 100vw; /* Full width of the viewport */
-            margin-left: calc(-1 * (100vw - 100%)); /* Negative margin to override container's padding */
-            position: relative; /* Keeps the image flowing with content */
-            margin: 20px 0;     
+            width: calc(100% + 40px); /* Add the padding back */
+            margin-left: -20px; /* Counter left padding */
+            margin-right: -20px; /* Counter right padding */     
         }
         p {
             margin: 15px 0;
