@@ -48,25 +48,26 @@
             scrollbar-width: thin;
             scrollbar-color: #ff77e9 transparent;
         }
-        pre::-webkit-scrollbar {
-            height: 10px;
-        }
+
+pre::-webkit-scrollbar {
+    width: 8px; /* Thin scrollbar */
+    height: 8px; /* For horizontal scrolling */
+}
 
 pre::-webkit-scrollbar-track {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.6), #1C082D);
-    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent track */
+    border-radius: 4px;
 }
 
 pre::-webkit-scrollbar-thumb {
-    background: rgba(255, 119, 233, 0.8); /* Semi-transparent pink */
-    border-radius: 5px;
-    box-shadow: 0 0 4px rgba(255, 119, 233, 0.6); /* Subtle glow */
+    background: linear-gradient(180deg, #ff0080, #00ffee);
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(255, 0, 128, 0.75); /* Glowing effect */
 }
 
 pre::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 255, 238, 0.9); /* Brightens on hover */
-    box-shadow: 0 0 6px rgba(0, 255, 238, 0.8); /* Glow intensifies */
-}    
+    background: linear-gradient(180deg, #00ffee, #ff77e9); /* Brighten on hover */
+} 
 
         a {
             color: #ff77e9;
