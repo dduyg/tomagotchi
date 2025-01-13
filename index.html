@@ -23,10 +23,9 @@
             position: relative;
         }
         img {
-            width: 100%;
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
+            width: 100vw; /* Full width of the viewport */
+            margin-left: calc(-1 * (100vw - 100%)); /* Negative margin to override container's padding */
+            position: relative; /* Keeps the image flowing with content */
             margin: 20px 0;     
         }
         p {
