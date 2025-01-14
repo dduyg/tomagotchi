@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Offside&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
   <style>
     * {  /* Global reset */
       margin: 0;
@@ -15,7 +15,7 @@
       box-sizing: border-box;
     }
     body {
-      font-family: "IBM Plex Mono", sans-serif;
+      font-family: "Fira Code", monospace;
       background: #696969;
       color: #1E1E1E;
       text-align: center;
@@ -41,12 +41,6 @@
       font-weight: bold;
       color: #7A7A7A;
       cursor: pointer;
-      animation: floatText 4s infinite ease-in-out;
-    }
-    @keyframes floatText { 
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
     }
     a {
       color: inherit;
@@ -103,28 +97,20 @@
       margin-bottom: 25px;
     }
 
-     .glitch {
-            font-size: 0.9rem;
-            color: #7F7F7F;
-            letter-spacing: 4px;
-            position: relative;
-            display: inline-block;
-            margin-top: 0;
-            margin-bottom: 1rem;
-            padding-top: 0;
-            animation: glitch 1s infinite;
-        }
-        .glitch::before, .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-        @keyframes glitch {
-            2%, 64% {transform: translate(2px,0) skew(0deg);}
-            4%, 60% {transform: translate(-2px,0) skew(0deg);}
-            62% {transform: translate(0,0) skew(5deg);}
-        }
+    .data-corruption {
+      font-size: 0.9rem;
+      color: #7F7F7F;  
+      letter-spacing: 4px; 
+      position: relative;
+      margin-top: 0;   
+      margin-bottom: 1rem;
+      padding-top: 0;
+      animation: data-corruption 0.4s infinite;
+     }
+     @keyframes data-corruption {
+       0%, 100% { clip-path: inset(0 0 0 0); }
+       50% { clip-path: inset(0 0 0 50%); }
+     }
         .btn {
             display: inline-block;
             font-size: .875rem;
@@ -161,7 +147,7 @@
 <div id="dduyg"><a href="/">/dduyg</a></div>
 <main>
   <h1>404</h1>
-  <h3 class="glitch" data-text="404_NOT_FOUND">404_NOT_FOUND</h3>
+  <h3 class="data-corruption">404_NOT_FOUND</h3>
   <p><em>Whoops!</em>&nbsp; Looks like this page has vanished into the cyber void. But don't worry, every glitch is just a feature waiting to be found.</p>
   <a href="{{ site.baseurl }}/" class="btn">Back to Home</a>
 </main>
