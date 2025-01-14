@@ -21,6 +21,7 @@
         main {
             margin: 40px auto;
             padding: 20px;
+            font-size: 12px;
         }
         img {
             width: calc(100% + 40px); /* Add the padding back */
@@ -132,7 +133,7 @@ def say_hello():
 
 say_hello()</code></pre>
         
-        <p><strong>Explanation:</strong></p>
+        <p><strong><u>Explanation:</u></strong></p>
         <ol>
             <li><code>my_decorator</code> is a decorator function that takes <code>func</code> as an argument.</li>
             <li>Inside <code>my_decorator</code>, we define a nested function <code>wrapper</code> that prints a message, calls the original function <code>func</code>, and then prints another message.</li>
@@ -158,7 +159,7 @@ def greet(name):
 
 greet("Alice")</code></pre>
         
-        <p><strong>Explanation:</strong></p>
+        <p><strong><u>Explanation:</u></strong></p>
         <ol>
             <li><code>repeat</code> is a decorator factory that takes an argument <code>num_times</code>.</li>
             <li><code>repeat</code> returns the actual decorator <code>decorator_repeat</code>.</li>
@@ -189,7 +190,7 @@ def say_hello():
 print(say_hello.__name__)  # Output: say_hello
 print(say_hello.__doc__)   # Output: This is the say_hello function.</code></pre>
         
-        <p><strong>Explanation:</strong></p>
+        <p><strong><u>Explanation:</u></strong></p>
         <ol>
             <li><code>functools.wraps(func)</code> is a decorator that updates the <code>wrapper</code> function to look like <code>func</code> by copying attributes such as the name and docstring.</li>
             <li>This ensures that the decorated function retains the metadata of the original function.</li>
