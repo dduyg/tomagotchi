@@ -52,6 +52,8 @@
 - [ ]  Kanit
 - [ ]  Revalia
 - [ ]  Sixtyfour
+- [ ]  Michroma
+- [ ]  Nova Round
 
 <br>
 
