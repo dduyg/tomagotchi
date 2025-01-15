@@ -11,7 +11,6 @@
       padding: 0;
       box-sizing: border-box;
     }
-
     body {
       font-family: "SUSE", sans-serif;
       background: #ADA8AC;
@@ -25,11 +24,10 @@
       margin: 0;
       overflow: hidden;
     }
-
     main {
-      max-width: 600px;
-      width: 100%; /* Ensure that main takes up the full width of the screen */
-      padding: 0 20px;
+      max-width: 90vw;
+      padding: 0 5vw;
+      width: 100%;
     }
 
     #dduyg { 
@@ -42,14 +40,13 @@
       color: #7A7A7A;
       cursor: pointer;
     }
-
     a {
       color: inherit;
       text-decoration: none;
     }
 
     h1 {
-      font-size: 20vw; /* Adjust the font size based on the viewport width */
+      font-size: 20vw;
       line-height: 0.75;
       font-family: "Tiny5", monospace;
       background: url("https://raw.githubusercontent.com/dduyg/dduyg.github.io/refs/heads/main/assets/images/sculpt-404.gif");
@@ -63,7 +60,6 @@
       position: relative;
       animation: glitch 2s infinite;
     }
-
     @keyframes glitch {
       0% {transform: translate(0);}
       20% {transform: translate(-2px, -2px);}
@@ -72,7 +68,6 @@
       80% {transform: translate(2px, -2px);}
       100% {transform: translate(0);}
     }
-
     h1::before,
     h1::after {
       content: "404";
@@ -86,33 +81,29 @@
       clip-path: inset(0 0 50% 0);
       animation: glitch-lines 2s infinite;
     }
-
     h1::after {
       clip-path: inset(50% 0 0 0);
       animation-delay: 1s;
     }
-
     @keyframes glitch-lines {
       0%, 100% {transform: translateX(0);}
       50% {transform: translateX(-10px);}
     }
 
     p {
-      font-size: 3vw; /* Adjust font size based on viewport width */
+      font-size: 3vw;
       line-height: 1.5;
-      margin: 30px 0;
+      margin: 4vw 0;
     }
-
     .data-corruption {
-      font-size: 2vw; /* Adjust font size based on viewport width */
+      font-size: 1.5vw;
       color: #7F7F7F;  
-      letter-spacing: 3px;
+      letter-spacing: 0.5vw;
       user-select: none;
       font-family: "Anonymous Pro", monospace;
       position: relative;
       animation: data-corruption 0.5s infinite;
     }
-
     @keyframes data-corruption {
       0%, 100% {clip-path: inset(0 0 0 0);}
       50% {clip-path: inset(0 0 0 50%);}
@@ -120,7 +111,8 @@
 
     .btn {
       display: inline-block;   
-      font-size: 2vw; /* Adjust font size based on viewport width */
+      font-size: 2vw;
+      -moz-osx-font-smoothing: grayscale;
       backface-visibility: hidden; 
       transform: translateZ(0);  
       transition: transform .25s ease-out;
@@ -134,15 +126,12 @@
       font-family: "Anonymous Pro", monospace;
       font-weight: bold;
     }   
-
     .btn:hover, .btn:focus {    
       transform: scale(1.05);
     }
-
     .btn:active {   
       transform: scale(.9);    
     }
-
     #dduyg, .btn {
       outline: none;
       -webkit-tap-highlight-color: transparent;
@@ -151,12 +140,12 @@
   </style>
 </head>
 <body>
-  <div id="dduyg"><a href="/">/dduyg</a></div>
-  <main>
-    <h1>404</h1>
-    <h3 class="data-corruption">404_NOT_FOUND</h3>
-    <p><em>Whoops!</em>&nbsp; Looks like this page has vanished into the cyber void. But don't worry, every glitch is just a feature waiting to be found.</p>
-    <a href="{{ site.baseurl }}/" class="btn">Back to Home</a>
-  </main>
+<div id="dduyg"><a href="/">/dduyg</a></div>
+<main>
+  <h1>404</h1>
+  <h3 class="data-corruption">404_NOT_FOUND</h3>
+  <p><em>Whoops!</em>&nbsp; Looks like this page has vanished into the cyber void. But don't worry, every glitch is just a feature waiting to be found.</p>
+  <a href="{{ site.baseurl }}/" class="btn">Back to Home</a>
+</main>
 </body>
 </html>
