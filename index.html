@@ -94,7 +94,7 @@
       line-height: 1.5;
       margin: 30px 0;
     }
-    .vertical-scanner {
+    .line-distortion {
       font-size: 1rem;
       color: #7F7F7F;  
       letter-spacing: 3px;
@@ -102,26 +102,22 @@
       font-family: "Anonymous Pro", monospace;
       position: relative;
     }
-    .vertical-scanner::before {
+    .line-distortion::after {
       content: attr(data-text);
       position: absolute;
-      left: 0;
       top: 0;
-      color: black;
-      animation: vertical-scanner 0.8s infinite alternate;
-    }
-    .vertical-scanner::after {
-      content: attr(data-text);
-      position: absolute;
       left: 0;
-      top: 0;
+      width: 100%;
+      height: 100%;
       color: #CACACA;
-      animation: vertical-scanner 0.8s infinite alternate-reverse;
+      clip-path: inset(50% 0 0 0);
+      animation: line-distortion 1s infinite;
     }
-    @keyframes vertical-scanner {
-      0% { clip-path: inset(0% 0% 90% 0%); }
-      100% { clip-path: inset(90% 0% 0% 0%); }
-    }    
+    @keyframes line-distortion {
+      0% { clip-path: inset(0 0 90% 0); }
+      50% { clip-path: inset(70% 0 20% 0); }
+      100% { clip-path: inset(0 0 90% 0); }
+    }      
     .btn {
       display: inline-block;   
       font-size: 1.25rem;
@@ -156,7 +152,7 @@
 <div id="dduyg"><a href="/">/dduyg</a></div>
 <main>
   <h1>404</h1>
-  <h3 class="vertical-scanner" data-text="404_NOT_FOUND">404_NOT_FOUND</h3>
+  <h3 class="line-distortion" data-text="404_NOT_FOUND">404_NOT_FOUND</h3>
   <p><em>Whoops!</em>&nbsp; Looks like this page has vanished into the cyber void. But don't worry, every glitch is just a feature waiting to be found.</p>
   <a href="{{ site.baseurl }}/" class="btn">Back to Home</a>
 </main>
