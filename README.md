@@ -55,6 +55,8 @@
 - [ ]  Sixtyfour
 - [ ]  Michroma
 - [ ]  Nova Round
+- [ ]  Nova Oval
+- [ ]  Nova Cut
 - [ ]  Pixelify Sans
 
 <br>
