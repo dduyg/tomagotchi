@@ -60,6 +60,8 @@
 - [ ]  Pixelify Sans
 - [ ]  Notable
 - [ ]  Limelight
+- [ ]  Plaster
+- [ ]  Smokum
 
 <br>
 
