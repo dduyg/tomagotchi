@@ -100,11 +100,15 @@
       letter-spacing: 3px;
       font-family: "Anonymous Pro", monospace;
       position: relative;
-      animation: data-corruption 1s infinite;
-     }
-     @keyframes data-corruption {
-       0%, 100% { clip-path: inset(0 0 0 0); }
-       50% { clip-path: inset(0 0 0 50%); }
+      animation: static-noise 1s infinite;
+    }
+    @keyframes static-noise {
+      0% { clip-path: polygon(0 0, 100% 0, 100% 10%, 0 10%); }
+      20% { clip-path: polygon(0 20%, 100% 20%, 100% 30%, 0 30%); }
+      40% { clip-path: polygon(0 40%, 100% 40%, 100% 50%, 0 50%); }
+      60% { clip-path: polygon(0 60%, 100% 60%, 100% 70%, 0 70%); }
+      80% { clip-path: polygon(0 80%, 100% 80%, 100% 90%, 0 90%); }
+      100% { clip-path: polygon(0 90%, 100% 90%, 100% 100%, 0 100%); }
      }      
     .btn {
       display: inline-block;   
