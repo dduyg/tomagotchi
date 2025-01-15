@@ -58,6 +58,8 @@
 - [ ]  Nova Oval
 - [ ]  Nova Cut
 - [ ]  Pixelify Sans
+- [ ]  Notable
+- [ ]  Limelight
 
 <br>
 
