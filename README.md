@@ -26,7 +26,7 @@
 - [ ]  Raleway ♡
 - [ ]  Dosis
 - [ ]  Chivo
-- [ ]  Ruda
+- [ ]  Ruda ■●
 - [ ]  DM Sans
 - [ ]  Warnes
 - [ ]  Uncial Antiqua
