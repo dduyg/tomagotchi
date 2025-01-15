@@ -94,30 +94,19 @@
       line-height: 1.5;
       margin: 30px 0;
     }
-    .line-distortion {
+    .data-corruption {
       font-size: 1rem;
       color: #7F7F7F;  
       letter-spacing: 3px;
       user-select: none;
       font-family: "Anonymous Pro", monospace;
       position: relative;
-    }
-    .line-distortion::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      color: #2a2a2a;
-      clip-path: inset(50% 0 0 0);
-      animation: line-distortion 2s infinite;
-    }
-    @keyframes line-distortion {
-      0% { clip-path: inset(0 0 90% 0); }
-      50% { clip-path: inset(70% 0 20% 0); }
-      100% { clip-path: inset(0 0 90% 0); }
-    }      
+      animation: data-corruption 1s infinite;
+     }
+     @keyframes data-corruption {
+       0%, 100% { clip-path: inset(0 0 0 0); }
+       50% { clip-path: inset(0 0 0 50%); }
+     }
     .btn {
       display: inline-block;   
       font-size: 1.25rem;
@@ -152,7 +141,7 @@
 <div id="dduyg"><a href="/">/dduyg</a></div>
 <main>
   <h1>404</h1>
-  <h3 class="line-distortion" data-text="404_NOT_FOUND">404_NOT_FOUND</h3>
+  <h3 class="data-corruption">404_NOT_FOUND</h3>
   <p><em>Whoops!</em>&nbsp; Looks like this page has vanished into the cyber void. But don't worry, every glitch is just a feature waiting to be found.</p>
   <a href="{{ site.baseurl }}/" class="btn">Back to Home</a>
 </main>
