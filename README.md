@@ -21,6 +21,7 @@
 - [ ]  Jacquard 12
 - [ ]  Micro 5
 - [ ]  Jersey 10
+- [ ]  Handjet
 - [ ]  Danfo
 - [ ]  Raleway ♡
 - [ ]  Dosis
