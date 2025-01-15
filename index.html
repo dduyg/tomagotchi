@@ -35,7 +35,7 @@
       top: 4%;
       left: 5%;
       letter-spacing: .1em;
-      font-size: 1.2em;
+      font-size: clamp(1.2rem, 2vw, 2.5rem); /* Minimum 1.2rem, preferred based on vw, max 2.5rem */
       font-weight: bold;
       color: #7A7A7A;
       cursor: pointer;
@@ -46,7 +46,7 @@
     }
 
     h1 {
-      font-size: 20vw;
+      font-size: clamp(8rem, 20vw, 14rem); /* Minimum 8rem, preferred based on vw, max 14rem */
       line-height: 0.75;
       font-family: "Tiny5", monospace;
       background: url("https://raw.githubusercontent.com/dduyg/dduyg.github.io/refs/heads/main/assets/images/sculpt-404.gif");
@@ -91,12 +91,12 @@
     }
 
     p {
-      font-size: 3vw;
+      font-size: clamp(1.2rem, 3vw, 2.5rem); /* Minimum 1.2rem, preferred based on vw, max 2.5rem */
       line-height: 1.5;
       margin: 4vw 0;
     }
     .data-corruption {
-      font-size: 1.5vw;
+      font-size: clamp(1rem, 1.5vw, 1.5rem); /* Minimum 1rem, preferred based on vw, max 1.5rem */
       color: #7F7F7F;  
       letter-spacing: 0.5vw;
       user-select: none;
@@ -111,7 +111,7 @@
 
     .btn {
       display: inline-block;   
-      font-size: 2vw;
+      font-size: clamp(1rem, 2vw, 2rem); /* Minimum 1rem, preferred based on vw, max 2rem */
       -moz-osx-font-smoothing: grayscale;
       backface-visibility: hidden; 
       transform: translateZ(0);  
