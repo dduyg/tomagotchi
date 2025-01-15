@@ -73,6 +73,9 @@
 | <img src="https://img.shields.io/badge/■E6E6FA-E6E6FA?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■2C3E50-2C3E50?style=for-the-badge"/> |
 | <img src="https://img.shields.io/badge/■DFE0DC-DFE0DC?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■333333-333333?style=for-the-badge"/> |
 | <img src="https://img.shields.io/badge/■EDE8EC-EDE8EC?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■262626-262626?style=for-the-badge"/> |
+| <img src="https://img.shields.io/badge/■696969-696969?style=for-the-badge"/> |  |
+| <img src="https://img.shields.io/badge/■5C6C78-5C6C78?style=for-the-badge"/> |  |
+| <img src="https://img.shields.io/badge/■330867-330867?style=for-the-badge"/> |  |
 
 - [x] Syncing data under coral-coded skies.
 - [ ] Code Currents
