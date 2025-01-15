@@ -63,6 +63,7 @@
 - [ ]  Plaster
 - [ ]  Smokum
 - [ ]  Mohave
+- [ ]  Fira Sans
 
 <br>
 
