@@ -26,7 +26,7 @@
 - [ ]  Raleway ♡
 - [ ]  Dosis
 - [ ]  Chivo
-- [ ]  Ruda ■●
+- [ ]  Ruda
 - [ ]  DM Sans
 - [ ]  Warnes
 - [ ]  Uncial Antiqua
@@ -44,7 +44,7 @@
 - [ ]  Karla
 - [ ]  SUSE
 - [ ]  Stalinist One
-- [ ]  IBM Plex Mono ■●
+- [ ]  IBM Plex Mono
 - [ ]  Baumans
 - [ ]  Turret Road
 - [ ]  Geo
