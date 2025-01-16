@@ -64,6 +64,7 @@
 - [ ]  Smokum
 - [ ]  Mohave
 - [ ]  Fira Sans
+- [ ]  Ubuntu Mono
 
 <br>
 
