@@ -1,417 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Side By Side</title>
+  <style>
+    /* Basic Styles */
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      color: #242E2C;
+    }
+    a {
+      text-decoration: none;
+      color: currentColor;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
 
-<!DOCTYPE html><html><head><!-- built with presta https://npm.im/presta --><title>Side By Side</title><meta charset="UTF-8" /><meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1" /><meta name="description" content="A shared workspace in North Center, Chicago." /><meta property="og:title" content="Side By Side" /><meta property="og:description" content="A shared workspace in North Center, Chicago." /><meta property="og:image" content="https://sideby.space/og.png" /><meta name="twitter:title" content="Side By Side" /><meta name="twitter:description" content="A shared workspace in North Center, Chicago." /><meta name="twitter:image" content="https://sideby.space/og.png" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:image:src" content="https://sideby.space/og.png" /><link href="/favicon.png" rel="icon" type="image/png" /><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;800&family=Manrope:wght@700&display=swap" rel="stylesheet"><link href="/style.css" rel="stylesheet" /><style>
-html, body {
-    padding-top:0px;
-    padding-bottom:0px;
-    padding-left:0px;
-    padding-right:0px;
-    margin-top:0px;
-    margin-bottom:0px;
-    margin-left:0px;
-    margin-right:0px;
-    font-family:'Inter', sans-serif;
-    color:#242E2C;
-}
+    /* Header Bar */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #588467;
+      color: #E2EFF3;
+      height: 30px;
+      padding: 0 8px;
+      border-bottom: 1px solid currentColor;
+    }
+    .contact {
+      display: none;
+    }
+    @media (min-width: 400px) {
+      .contact {
+        display: block;
+      }
+    }
 
-h1, h2, h3, h4, h5, h6, p {
-    margin-top:0px;
-    margin-bottom:0px;
-    margin-left:0px;
-    margin-right:0px;
-}
+    /* Centered Section */
+    .center {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 16px;
+    }
 
-a {
-    text-decoration:none;
-    color:currentColor;
-}
+    .links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+    }
 
-a:hover {
-    text-decoration:underline;
-}
+    .button {
+      display: block;
+      text-transform: uppercase;
+      background: #588467;
+      color: #E2EFF3;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+    .button:hover {
+      background: #456956;
+    }
 
-.__uhlm2 {
-    display:block;
-}
+    /* Footer */
+    .footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: #588467;
+      color: #E2EFF3;
+      text-align: center;
+      padding: 10px 0;
+      border-top: 1px solid currentColor;
+    }
 
-.__uhlm2 {
-    display:block;
-}
+    /* Placeholder for SVG or other visuals */
+    .visual {
+      width: 200px;
+      height: 200px;
+      background: #0D4C6D;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a href="https://goo.gl/maps/wz9djpb8TZW4rEor9" target="_blank">3701 N Ravenswood Ave, Chicago</a>
+    <a href="mailto:hi@sideby.space?subject=Hey%20hello%20hi" class="contact">hi@sideby.space</a>
+  </header>
 
-.__3sxrbm {
-    display:none;
-}
-@media (min-width: 400px){
-.__3sxrbm {
-    display:block;
-}
-}
-.__c4cxtx {
-    display:flex;
-    justify-content:space-between;
-    position:absolute;
-    left:0px;
-    top:0px;
-    right:0px;
-    background:#588467;
-    color:#E2EFF3;
-    height:30px;
-    line-height:30px;
-    padding-left:8px;
-    padding-right:8px;
-    border-bottom:1px solid;
-    border-color:currentColor;
-}
+  <main class="center">
+    <div class="visual"></div>
+    <div class="links">
+      <a href="mailto:hi@sideby.space?subject=Hey%20hello%20hi" class="button">Stop by for a beer</a>
+      <a href="https://front-of-house.notion.site/Side-By-Side-26ca3618b5784272b7dfe3517c4fc0fd" class="button">Learn more about us</a>
+      <a href="https://www.instagram.com/sideby.space/" class="button">Check out the Instagram</a>
+    </div>
+  </main>
 
-.__p00i2d {
-    width:175px;
-    position:relative;
-    z-index:1;
-}
-@media (min-width: 400px){
-.__p00i2d {
-    width:200px;
-}
-}@media (min-width: 800px){
-.__p00i2d {
-    width:250px;
-}
-}
-.__1na8ioz {
-    width:20px;
-    display:inline;
-    fill:none;
-}
-
-.__pt07h0 {
-    display:block;
-    text-transform:uppercase;
-    position:absolute;
-    top:10%;
-    left:15%;
-    width:120px;
-}
-@media (min-width: 400px){
-.__pt07h0 {
-    top:10%;
-}
-}@media (min-width: 800px){
-.__pt07h0 {
-    top:15%;
-}
-}
-.__1na8ioz {
-    width:20px;
-    display:inline;
-    fill:none;
-}
-
-.__o7lh5n {
-    display:block;
-    text-transform:uppercase;
-    position:absolute;
-    top:80%;
-    left:45%;
-    width:120px;
-}
-@media (min-width: 400px){
-.__o7lh5n {
-    left:45%;
-}
-}@media (min-width: 800px){
-.__o7lh5n {
-    left:25%;
-}
-}
-.__1na8ioz {
-    width:20px;
-    display:inline;
-    fill:none;
-}
-
-.__w3i1zo {
-    display:block;
-    text-transform:uppercase;
-    position:absolute;
-    top:20%;
-    left:55%;
-    width:140px;
-}
-@media (min-width: 400px){
-.__w3i1zo {
-    top:20%;
-    left:55%;
-}
-}@media (min-width: 800px){
-.__w3i1zo {
-    top:40%;
-    left:75%;
-}
-}
-.__e9h5tg {
-    padding-left:32px;
-    padding-right:32px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1l357hr {
-    position:relative;
-    padding-left:2px;
-    padding-right:2px;
-}
-
-.__1lhujw7 {
-    position:absolute;
-    left:0px;
-    bottom:0px;
-    right:0px;
-    background:#588467;
-    color:#E2EFF3;
-    height:30px;
-    line-height:30px;
-    white-space:nowrap;
-    overflow:hidden;
-    border-top:1px solid;
-    border-color:currentColor;
-}
-
-.__11buacq {
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#588467;
-    color:#E2EFF3;
-}
-</style></head><body><div style="height:100vh;"class="__11buacq"><div class="__c4cxtx"><div class><a href="https://goo.gl/maps/wz9djpb8TZW4rEor9"target="_blank"class="__uhlm2">3701 N Ravenswood Ave, Chicago</a></div><div class="__3sxrbm"><a href="mailto:hi@sideby.space?subject=Hey%20hello%20hi"target="_blank"class="__uhlm2">hi@sideby.space</a></div></div><div class="__e9h5tg"><svg counter="#0D4C6D"viewBox="0 0 396.1 524.4"class="__p00i2d"><style>.st0{fill:#0D4C6D}.st6{fill:currentColor}</style><path class="st0"d="M223.3 191.4c-15.7 0-25.5-23.7-25.5-61.8 0-33.8 11.2-45.8 20.7-45.8 9.4 0 19.4 9 19.4 34.2v66.2l-.1.1c-4.3 4.6-9.3 7.1-14.5 7.1zM71 354.9c-12.5 0-19.4-12.1-19.4-34.2v-65.9l.1-.1c4.4-4.9 9.4-7.4 14.9-7.4 15.6 0 25.2 23.7 25.2 61.8-.1 33.8-10.8 45.8-20.8 45.8zM337.1 84c-8.7 0-14.2 18.2-14.2 44.5v4.7l27.9-11.1c-.2-22-6.3-38.1-13.7-38.1zM223.3 494.4c-15.7 0-25.5-23.7-25.5-61.8 0-33.8 11.2-45.8 20.7-45.8 9.4 0 19.4 9 19.4 34.2v66.2l-.1.1c-4.3 4.6-9.3 7.1-14.5 7.1zM322.7 431.5c0-27.2 5.7-44.7 14.4-44.7 7.7 0 13.6 16.5 13.9 38.4v.1l-28.3 11.2v-5z"></path><g><path class="st6"d="M128.5 57.6c13.2 0 22.1-10.3 22.1-22.4s-9-22.1-22.1-22.1c-13.2 0-22.1 10-22.1 22.1s8.9 22.4 22.1 22.4zM105.6 209.1h47.7c-4.2-4.5-6.6-11.3-6.6-19.8V75l-41.1 7.6c4.2 4 6.8 12.1 6.8 21.3v85.3c0 8.6-2.6 15.7-6.8 19.9zM272.1 190.1V9.7L231 17.3c4.5 4 6.8 12.1 6.8 21.3v41.1c-4.7-3.7-10.3-6.1-19-6.1-31.6 0-56.4 30.6-56.4 72.4 0 40.8 19 65.1 43.7 65.1 14.8 0 26.1-8.7 33.2-21.1l.3 19h39.2c-4.4-3.6-6.7-10.4-6.7-18.9zm-34.3-6c-4.5 4.7-9.5 7.1-14.5 7.1-15.3 0-25.3-22.9-25.3-61.6 0-30.3 9.5-45.6 20.5-45.6 13.2 0 19.2 15.8 19.2 34v66.1zM340.3 211.7c28.4 0 46.4-18.7 48.5-52.9h-1.1c-5 19.5-16.3 30-30.6 30-18.7 0-30.6-16.6-33.5-45.6l62.2-22.7c-4.2-30-20.8-47.4-45.6-47.4-29.8 0-52.7 30.8-52.7 71.9.1 40.1 21.7 66.7 52.8 66.7zm-17.4-83.2c0-26.3 5.5-44.5 14.2-44.5 7.4 0 13.4 16.1 13.7 38.2l-27.9 11.1v-4.8zM17.5 342.1c0 7.9-1.6 13.7-5.5 20.3l.5.5c6.3-2.4 14.5-3.7 22.4-3.7 8.7 0 15.3 1.8 24.2 4.2 4 1.1 7.4 1.6 12.4 1.6 31.9 0 55.6-31.3 55.6-71.6 0-41.1-18.7-65.8-42.9-65.8-14.2 0-25 7.4-32.4 18.7v-68.9l-.7.1-38.7 7.2-1.7.3c4.5 4 6.8 11.3 6.8 21.3V342.1zm34.2-87.2c4.5-5 9.5-7.4 14.8-7.4 14.8 0 25 22.1 25 61.6 0 31.1-9.5 45.6-20.5 45.6-12.9 0-19.2-12.6-19.2-34v-65.8zM272.1 493.1V312.7l-41.1 7.6c4.5 4 6.8 12.1 6.8 21.3v41.1c-4.7-3.7-10.3-6.1-19-6.1-31.6 0-56.4 30.6-56.4 72.4 0 40.8 19 65.1 43.7 65.1 14.8 0 26.1-8.7 33.2-21.1l.3 19h39.2c-4.4-3.6-6.7-10.5-6.7-18.9zm-34.3-6.1c-4.5 4.7-9.5 7.1-14.5 7.1-15.3 0-25.3-22.9-25.3-61.6 0-30.3 9.5-45.6 20.5-45.6 13.2 0 19.2 15.8 19.2 34V487zM357.2 491.8c-18.7 0-30.6-16.6-33.5-45.6l62.2-22.7c-4.2-30-20.8-47.4-45.6-47.4-29.8 0-52.7 30.8-52.7 71.9 0 40 21.6 66.6 52.7 66.6 28.4 0 46.4-18.7 48.5-52.9h-1.1c-5 19.5-16.3 30.1-30.5 30.1zm-34.3-60.3c0-26.3 5.5-44.5 14.2-44.5 7.4 0 13.4 16.1 13.7 38.2l-27.9 11.1v-4.8z"></path><path class="st6"d="M186.2 357.7 224.7 242c2.1-7.1 4.7-12.6 9.2-17.4h-29.5c6.1 6.3 6.3 13.4 4 20.8L187.2 320l-24-74.7c-3.2-8.4-2.6-15 3.7-20.5h-50.6c4.7 5 8.2 10.5 10.3 16.6l43.7 120.4c-6.1 16.9-12.4 25.1-24.8 25.1-10.3 0-19.9-8.4-24.9-18.7 0 0-6.8 12.1-18.1 22.7 0 0 12 21 38 21 21.9 0 35.1-29.1 40-39.8l5.7-14.4zM69.8 430.7l-11.6-6.3C39.5 414.7 35 409.4 35 401c0-7.6 6.1-14 15.8-14 11.9 0 24.2 6.8 39.8 36.6h.5L89 377.7 79 384c-7.1-4.2-15.3-7.9-27.4-7.9-25.6 0-42.9 16.6-42.9 40.3 0 16.1 7.4 28.4 25.8 37.9l12.4 6.6c17.6 9.5 22.1 15.8 22.1 25.6 0 10-6.3 17.1-18.4 17.1-14.5 0-28.7-10-42.9-43.5h-.4L9.9 513l10-7.1c7.9 4.7 17.6 8.7 29.8 8.7 28.4 0 45.8-17.9 45.8-42.4.1-18.9-7-31.5-25.7-41.5zM34.5 151.4l12.4 6.6c1.5.8 2.9 1.6 4.2 2.4.2.1.5.3.7.4 13.6 8 17.2 14 17.2 22.8 0 7.8-3.8 13.8-11.2 16.1v11.6c23.7-3.1 37.8-19.8 37.8-41.9 0-19-7.1-31.6-25.8-41.6l-11.6-6.3c-18.7-9.7-23.2-15-23.2-23.4 0-7.6 6.1-14 15.8-14 11.9 0 24.2 6.8 39.8 36.6h.5L89 74.8l-10 6.3c-7.1-4.2-15.3-7.9-27.4-7.9-25.6 0-42.9 16.6-42.9 40.3 0 16.1 7.3 28.4 25.8 37.9zM146.7 417.1c-1.9.4-4 .6-6.1.6-12 0-21.3-3.9-28.2-8.6v83.1c0 8.4-2.6 15.5-6.8 19.8h47.7c-4.2-4.5-6.6-11.3-6.6-19.8v-75.1z"></path></g></svg><a href="mailto:hi@sideby.space?subject=Hey%20hello%20hi"target="_blank"class="__pt07h0">Stop by for a beer<svg viewBox="0 0 15 15"xmlns="http://www.w3.org/2000/svg"class="__1na8ioz"><path d="M3.64645 11.3536C3.45118 11.1583 3.45118 10.8417 3.64645 10.6465L10.2929 4L6 4C5.72386 4 5.5 3.77614 5.5 3.5C5.5 3.22386 5.72386 3 6 3L11.5 3C11.6326 3 11.7598 3.05268 11.8536 3.14645C11.9473 3.24022 12 3.36739 12 3.5L12 9.00001C12 9.27615 11.7761 9.50001 11.5 9.50001C11.2239 9.50001 11 9.27615 11 9.00001V4.70711L4.35355 11.3536C4.15829 11.5488 3.84171 11.5488 3.64645 11.3536Z"fill="currentColor"fill-rule="evenodd"clip-rule="evenodd"></path></svg></a><a href="https://front-of-house.notion.site/Side-By-Side-26ca3618b5784272b7dfe3517c4fc0fd"target="_blank"class="__o7lh5n">Learn more about us<svg viewBox="0 0 15 15"xmlns="http://www.w3.org/2000/svg"class="__1na8ioz"><path d="M3.64645 11.3536C3.45118 11.1583 3.45118 10.8417 3.64645 10.6465L10.2929 4L6 4C5.72386 4 5.5 3.77614 5.5 3.5C5.5 3.22386 5.72386 3 6 3L11.5 3C11.6326 3 11.7598 3.05268 11.8536 3.14645C11.9473 3.24022 12 3.36739 12 3.5L12 9.00001C12 9.27615 11.7761 9.50001 11.5 9.50001C11.2239 9.50001 11 9.27615 11 9.00001V4.70711L4.35355 11.3536C4.15829 11.5488 3.84171 11.5488 3.64645 11.3536Z"fill="currentColor"fill-rule="evenodd"clip-rule="evenodd"></path></svg></a><a href="https://www.instagram.com/sideby.space/"target="_blank"class="__w3i1zo">Check out the Instagram<svg viewBox="0 0 15 15"xmlns="http://www.w3.org/2000/svg"class="__1na8ioz"><path d="M3.64645 11.3536C3.45118 11.1583 3.45118 10.8417 3.64645 10.6465L10.2929 4L6 4C5.72386 4 5.5 3.77614 5.5 3.5C5.5 3.22386 5.72386 3 6 3L11.5 3C11.6326 3 11.7598 3.05268 11.8536 3.14645C11.9473 3.24022 12 3.36739 12 3.5L12 9.00001C12 9.27615 11.7761 9.50001 11.5 9.50001C11.2239 9.50001 11 9.27615 11 9.00001V4.70711L4.35355 11.3536C4.15829 11.5488 3.84171 11.5488 3.64645 11.3536Z"fill="currentColor"fill-rule="evenodd"clip-rule="evenodd"></path></svg></a></div><div class="__1lhujw7"><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span><span class="__1l357hr">SIDE BY</span></div></div><script src="/index.js"></script></body></html>
+  <footer class="footer">
+    <span>SIDE BY SIDE</span>
+  </footer>
+</body>
+</html>
