@@ -65,6 +65,8 @@
 - [ ]  Mohave
 - [ ]  Fira Sans
 - [ ]  Ubuntu Mono
+- [ ]  Rethink Sans
+- [ ]  Funnel Display
 
 <br>
 
