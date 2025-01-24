@@ -17,21 +17,17 @@
             justify-content: center;
             overflow: hidden;
         }
-        .container {
+        main {
             text-align: center;
             animation: fadeIn 3s ease-in-out;
         }
         h1 {
             font-size: 10vw;
             text-transform: uppercase;
-            color: #FF69B4;
-            text-shadow: 0 0 20px #FF69B4, 0 0 30px #FF69B4, 0 0 40px #FF69B4;
         }
         p {
             font-size: 1.5em;
-            color: #87CEFA;
             margin-top: -10px;
-            text-shadow: 0 0 5px #87CEFA;
         }
         a {
             display: inline-block;
@@ -42,28 +38,13 @@
             background-color: rgba(255, 255, 255, 0.1);
             padding: 10px 20px;
             border: 1px solid #32CD32;
-            border-radius: 5px;
+            border-radius: 50px;
             transition: all 0.3s ease-in-out;
         }
         a:hover {
             color: #000;
             background-color: #32CD32;
             text-shadow: 0 0 10px #fff;
-        }
-        .grid {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, transparent 20%, #191970 20%) 0 0 / 5% 5%;
-            transform: translate(-50%, -50%) rotateX(75deg);
-            animation: gridMove 15s linear infinite;
-            opacity: 0.5;
-        }
-        @keyframes gridMove {
-            from {background-position: 0 0;}
-            to {background-position: 100% 100%;}
         }
         @keyframes fadeIn {
             from {opacity: 0;}
@@ -72,11 +53,10 @@
     </style>
 </head>
 <body>
-    <div class="grid"></div>
-    <div class="container">
-        <h1>404</h1>
-        <p>Lost in the void of cyberspace</p>
-        <a href="/">Return to Home</a>
-    </div>
+<main>
+    <h1>404</h1>
+    <p>Lost in the void of cyberspace</p>
+    <a href="#">Return to Home</a>
+</main>
 </body>
 </html>
