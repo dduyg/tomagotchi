@@ -12,10 +12,74 @@
             color: black;
             background: darkgray;
         }
+        nav {
+            position: fixed;
+            top: 50px;
+            right: 20px;
+            background: white;
+            border: 1px solid black;
+            border-radius: 8px;
+            padding: 10px;
+            display: none; /* Hidden by default */
+            z-index: 1000;
+        }
+        nav a {
+            display: block;
+            text-decoration: none;
+            color: black;
+            margin: 5px 0;
+        }
+        #toggleNav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: black;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+            z-index: 1001;
+        }
     </style>
 </head>
 <body>
+    <button id="toggleNav">☰</button>
+    <nav id="navMenu">
+        <a href="#void404">◔</a>
+        <a href="#glitching">◓</a>
+        <a href="#takeMe">◍</a>    
+        <a href="#lime">◗</a>
+        <a href="#gaussian">◉</a>
+        <a href="#displays">◑</a>
+        <a href="#searchBar">◌</a>
+        <a href="#searchBar2">◐</a>
+        <a href="#gradual">◎</a>
+        <a href="#seahorse">●</a>
+        <a href="#corridors">◒</a>
+        <a href="#sys">◖</a>
+        <a href="#">○</a>
+        <a href="#">◕</a>
+    </nav>
+    
     <h1>Episode 11</h1>
     <p>Their blossoming romance is tested when Min-ho discovers a painful secret from Eun-ji's past: her family’s bankruptcy was partially caused by a deal his company made years ago. Feeling betrayed, Eun-ji pushes Min-ho away, and he begins to question everything he thought he knew about success and morality.</p>
+
+    <script>
+        const toggleNav = document.getElementById('toggleNav');
+        const navMenu = document.getElementById('navMenu');
+
+        toggleNav.addEventListener('click', () => {
+            if (navMenu.style.display === 'none' || navMenu.style.display === '') {
+                navMenu.style.display = 'block'; // Show the nav
+            } else {
+                navMenu.style.display = 'none'; // Hide the nav
+            }
+        });
+    </script>
 </body>
 </html>
