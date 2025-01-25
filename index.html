@@ -80,13 +80,31 @@
     <script>
         const navToggle = document.getElementById('navToggle');
         const nav = document.querySelector('nav');
+        const body = document.body;
 
-        navToggle.addEventListener('click', () => {
+        // Toggle navigation visibility
+        navToggle.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent click from propagating to the body
+            nav.style.display = nav.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Close navigation when clicking on a link inside it
+        nav.addEventListener('click', (e) => {
+            if (e.target.tagName === 'A') {
+                nav.style.display = 'none';
+            }
+        });
+
+        // Close navigation when clicking outside of it
+        body.addEventListener('click', () => {
             if (nav.style.display === 'block') {
                 nav.style.display = 'none';
-            } else {
-                nav.style.display = 'block';
             }
+        });
+
+        // Prevent closing the nav when clicking inside the nav
+        nav.addEventListener('click', (e) => {
+            e.stopPropagation();
         });
     </script>
 </body>
