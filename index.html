@@ -199,36 +199,19 @@
             .mobile-section {
                 margin-bottom: 3rem;
             }
-.mobile-section h2 {
-    mar
-
-
-            h2 {
+            .mobile-section h2 {
                 margin: 0 0 1rem;
                 font-weight: 400;
                 opacity: .5;
             }
-            p {
+            .mobile-section p {
                 margin: .5rem 0;
             }
         }
 
-
-555555555
-@media (max-width: 750px) {
-
-  .mobile-section[data-astro-cid-j7pv25f6] p {
-    margin: .5rem 0;
-  }
-}
-
-client-text[data-astro-cid-j7pv25f6],
-adjective-text[data-astro-cid-j7pv25f6] {
-  display: inline-block;
-}        
-5555555
-
-
+        client-text, adjective-text {
+            display: inline-block;
+        }
         footer {
             display: flex;
             justify-content: flex-end;
@@ -251,12 +234,12 @@ adjective-text[data-astro-cid-j7pv25f6] {
                 align-items: flex-start;
                 gap: 2rem;
             }
-        }
+        }      
 
         strong {
             opacity: .5;
             font-weight: 400;
-        }
+        }    
     </style>
     <script type="module">
         let r = window.innerWidth <= 750;
@@ -325,33 +308,7 @@ adjective-text[data-astro-cid-j7pv25f6] {
 
 
 
-4556666677777: swap;
-
-footer[data-astro-cid-j7pv25f6] {
-  display:flex;
-  justify-content:flex-end;
-  align-items:stretch;
-  flex-direction:column;
-  gap:1rem;
-  min-height:60vh;
-  max-height:60vh
-}
-socials[data-astro-cid-j7pv25f6] {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  @media (max-width: 750px) {
-  display:flex;
-  flex-direction:row;
-  justify-content:flex-start;
-  align-items:flex-start;
-  gap:2rem
-}
-
-}
-strong[data-astro-cid-j7pv25f6] {
-  opacity:.5;
-  font-weight:400
-}
+6666
     </style>
     <script type="module">let r=window.innerWidth<=750;const t=document.getElementById("services-list");let a=null;function p(){a||(a=t.innerHTML);const n=Array.from(t.querySelectorAll("li:not(.header)")),c=t.querySelector(".header"),s=Array.from(c.querySelectorAll("p")),i=[[],[],[]];n.forEach(o=>{o.querySelectorAll("p").forEach((e,l)=>{e.textContent.trim()&&i[l].push(e.textContent)})}),t.innerHTML="",i.forEach((o,d)=>{const e=document.createElement("div");e.className="mobile-section";const l=document.createElement("p"),u=document.createElement("strong");u.textContent=s[d].textContent,l.appendChild(u),e.appendChild(l),o.forEach(h=>{const m=document.createElement("p");m.textContent=h,e.appendChild(m)}),t.appendChild(e)})}function f(){a&&(t.innerHTML=a)}window.addEventListener("resize",()=>{const n=!r;r=window.innerWidth<=750,n!==!r&&(r?p():f())});r&&p();document.addEventListener("DOMContentLoaded",()=>{const n=c=>{const s=document.querySelector(".custom-cursor");if(s){const i=c.clientX,o=c.clientY;s.style.transform=`translate3d(${i-20}px, ${o-20}px, 0)`}};document.body.addEventListener("mousemove",n)});</script>
 </head>
