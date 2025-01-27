@@ -169,6 +169,9 @@ If the image is used as a background:
 - [ ]  Fira Sans
 - [ ]  Ubuntu Mono
 - [ ]  Rethink Sans
+- [ ]  Inconsolata
+- [ ]  Cousine
+- [ ]  Anonymous Pro
 
 <br>
 
