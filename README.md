@@ -172,6 +172,7 @@ If the image is used as a background:
 - [ ]  Inconsolata
 - [ ]  Cousine
 - [ ]  Anonymous Pro
+- [ ]  Smooch Sans
 
 <br>
 
