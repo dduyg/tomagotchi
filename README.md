@@ -175,6 +175,7 @@ If the image is used as a background:
 - [ ]  Smooch Sans
 - [ ]  Ropa Sans
 - [ ]  Inria Sans
+- [ ]  Share
 
 <br>
 
