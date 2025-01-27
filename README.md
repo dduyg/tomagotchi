@@ -176,6 +176,9 @@ If the image is used as a background:
 - [ ]  Ropa Sans
 - [ ]  Inria Sans
 - [ ]  Share
+- [ ]  Tenor Sans
+- [ ]  Kodchasan
+- [ ]  Abel
 
 <br>
 
