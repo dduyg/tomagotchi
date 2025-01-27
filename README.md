@@ -173,6 +173,8 @@ If the image is used as a background:
 - [ ]  Cousine
 - [ ]  Anonymous Pro
 - [ ]  Smooch Sans
+- [ ]  Ropa Sans
+- [ ]  Inria Sans
 
 <br>
 
