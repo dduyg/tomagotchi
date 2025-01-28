@@ -179,6 +179,7 @@ If the image is used as a background:
 - [ ]  Tenor Sans
 - [ ]  Kodchasan
 - [ ]  Abel
+- [ ]  Reddit Mono
 
 <br>
 
