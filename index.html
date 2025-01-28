@@ -19,17 +19,23 @@
             margin-top: 20px;
         }
 
+        /* Full-width, metallic effect for "Studio" */
         .main-title {
-            font-size: 100px;
+            font-size: clamp(80px, 20vw, 200px);
             font-weight: bold;
             font-family: sans-serif;
-            background: linear-gradient(to right, silver, gray);
+            text-transform: uppercase;
+            background: linear-gradient(120deg, #c0c0c0, #e0e0e0, #888, #fff, #777);
             -webkit-background-clip: text;
             color: transparent;
-            display: inline-block;
-            margin-top: 10px;
+            display: block;
+            width: 100%;
+            text-align: center;
+            letter-spacing: 5px;
+            margin: 20px 0;
         }
 
+        /* Responsive 3-column content layout */
         .content-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -45,6 +51,7 @@
             line-height: 1.6;
         }
 
+        /* Buttons */
         .buttons {
             display: flex;
             flex-wrap: wrap;
@@ -68,6 +75,7 @@
             color: white;
         }
 
+        /* Mobile-friendly adjustments */
         @media (max-width: 800px) {
             .content-container {
                 grid-template-columns: 1fr;
@@ -75,7 +83,7 @@
             }
 
             .main-title {
-                font-size: 60px;
+                font-size: clamp(60px, 18vw, 150px);
             }
         }
     </style>
