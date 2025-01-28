@@ -4,91 +4,95 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LiminalLoop</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            color: #333;
             text-align: center;
+            background-color: #fff;
         }
-
-        header {
-            margin-top: 40px;
-            font-size: 18px;
-            font-weight: 400;
-        }
-
-        header strong {
-            font-style: italic;
-        }
-
-        .studio-logo {
-            font-size: 120px;
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            text-align: center;
-            margin-top: 20px;
-            color: silver;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-        }
-
-        .content {
-            width: 80%;
-            max-width: 800px;
+        .container {
+            max-width: 1000px;
             margin: 0 auto;
-            font-size: 16px;
-            line-height: 1.6;
+            padding: 20px;
         }
-
-        .buttons {
+        .header {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        .title {
+            font-size: 100px;
+            font-weight: bold;
+            font-family: sans-serif;
+            color: #999;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .content {
             display: flex;
-            justify-content: center;
+            gap: 20px;
+            text-align: left;
+        }
+        .column {
+            flex: 1;
+        }
+        .footer {
+            margin-top: 20px;
+            display: flex;
             flex-wrap: wrap;
-            margin-top: 30px;
+            justify-content: center;
+            gap: 10px;
         }
-
-        .buttons button {
-            background: white;
-            border: 1px solid black;
+        .footer button {
+            border: 1px solid #999;
+            background: none;
             padding: 10px 15px;
-            margin: 10px;
-            font-size: 14px;
             cursor: pointer;
-            transition: all 0.3s ease-in-out;
+            font-size: 14px;
         }
-
-        .buttons button:hover {
-            background: black;
-            color: white;
+        @media (max-width: 768px) {
+            .title {
+                font-size: 60px;
+            }
+            .content {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
 
-<header>
-    WE'RE YOUR <strong>friendly design studio</strong><br>
-    HERE TO BRING YOUR BRAND TO LIFE.
-</header>
+    <div class="container">
+        <div class="header">
+            WE'RE YOUR <i>friendly design studio</i> <br>
+            HERE TO BRING YOUR BRAND TO LIFE.
+        </div>
 
-<div class="studio-logo">Studio</div>
+        <div class="title">Studio</div>
 
-<div class="content">
-    <p><strong>ilovecreatives Studio</strong> is your friendly design studio known for experimental, but approachable and <em>functional</em> design. Folks come to us because they feel like our designs are fresh and interesting, but not so design-y that we alienate or so predictable that people glaze over. We want to make the thing that’s in your head look better and grow bigger than you thought it could.</p>
+        <div class="content">
+            <div class="column">
+                <p><strong>ilovecreatives Studio</strong> is your friendly design studio known for experimental, but approachable and fun-ctional design. Folks come to us because they feel like our designs are fresh and interesting, but not so design-y that we alienate or so predictable that people glaze over. We want to make the thing that’s in your head look better and grow bigger than you thought it could.</p>
+            </div>
+            <div class="column">
+                <p>Our approachable design comes from our education background at ilovecreatives (our parent company). Brands these days have a lot of reasons why they’re worth paying attention to and we’ve mastered the art of taking a lot of information and packaging it into simple executions. We want people to feel seen when they see your brand and say, “Finally! I’ve been looking for you! Now let me text all my friends about you.”</p>
+            </div>
+            <div class="column">
+                <p>What’s it like working with us? Welp, let’s just say we’re the star employee you brag about to your friends. We are easy and chill to work with, but organized and pro-active. More importantly, we think about the bottom line. And at the end of the day, we’re gonna have a good time! So let’s chat about your dreams and figure out how to execute on them. We got you at Studio.</p>
+            </div>
+        </div>
 
-    <p>Our approachable design comes from our education background at ilovecreatives (our parent company). Brands these days have a lot of reasons why they’re worth paying attention to and we’ve mastered the art of taking a lot of information and packaging it into simple executions. We want people to feel seen when they see your brand and say, “Finally! I’ve been looking for you! Now let me text all my friends about you.”</p>
-
-    <p>What’s it like working with us? Well, let’s just say we’re the star employee you brag about to your friends. We are easy and chill to work with, but organized and proactive. More importantly, we think about the bottom line. And at the end of the day, we’re gonna have a good time! So let’s chat about your dreams and figure out how to execute on them. We got you at Studio.</p>
-</div>
-
-<div class="buttons">
-    <button>ART DIRECTION</button>
-    <button>BRAND IDENTITY</button>
-    <button>SOCIAL STRATEGY</button>
-    <button>WEB DESIGN & DEVELOPMENT</button>
-    <button>ART DIRECTION</button>
-</div>
+        <div class="footer">
+            <button>ART DIRECTION</button>
+            <button>BRAND IDENTITY</button>
+            <button>SOCIAL STRATEGY</button>
+            <button>Your friendly design studio</button>
+            <button>WEB DESIGN & DEVELOPMENT</button>
+            <button>ART DIRECTION</button>
+        </div>
+    </div>
 
 </body>
 </html>
