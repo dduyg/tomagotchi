@@ -3,79 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creative Services</title>
+    <title>Webpage Replica</title>
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Playfair Display', serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: white;
-    text-align: left;
-    padding: 5vw;
-    overflow: hidden;
-}
-
-.container {
-    width: 100%;
-    max-width: 900px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-h1, h2 {
-    font-size: clamp(2rem, 4vw, 4rem);
-    font-weight: normal;
-    line-height: 1.2;
-}
-
-i {
-    font-style: italic;
-}
-
-.note {
-    background-color: yellow;
-    padding: 10px;
-    margin-top: 10px;
-    font-size: clamp(1rem, 2vw, 1.5rem);
-}
-
-.values {
-    font-size: clamp(1rem, 2vw, 1.5rem);
-    font-style: italic;
-    margin-top: 20px;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        .container {
+            width: 90vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .content {
+            font-size: calc(2vw + 1vh);
+            line-height: 1.3;
+            max-height: 100vh;
+            overflow: hidden;
+        }
+        .content span {
+            font-style: italic;
+        }
+        .emoji {
+            font-size: 1.5em;
+        }
+        .note {
+            background: yellow;
+            padding: 5px;
+            display: inline-block;
+            font-size: calc(1vw + 0.5vh);
+        }
+        .image {
+            display: block;
+            width: 5vw;
+            height: auto;
+            margin: 5px auto;
+        }
+        @media (max-width: 600px) {
+            .content {
+                font-size: calc(4vw + 1vh);
+            }
+            .note {
+                font-size: calc(2vw + 1vh);
+            }
+            .image {
+                width: 10vw;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>360 Art and <i>Creative</i></h1>
-        <h2>Direction,</h2>
-        <h2><i>Packaging</i>, Web</h2>
-        <h2>Design and</h2>
-        <h2>Development,</h2>
-        <h2>🎨 Visual</h2>
-        <h2>and Brand Identity,</h2>
-        <h2>🖨️ Printed Collateral,</h2>
-        <h2>Motion, 3D,</h2>
-        <h2>Photography,</h2>
-        <h2>Videography, Paid</h2>
-        <h2>Ads, Social Design,</h2>
-        <h2>Email Design,</h2>
-        <h2>UI/UX, Copywriting</h2>
-        <div class="note">
-            <p>We've learned that every brand is as unique as the people behind it. When we bring diverse minds together to collaborate, it results in deeper storytelling that's truly bespoke to the brand's story.</p>
+        <div class="content">
+            360 Art and <span>Creative</span> Direction, <br>
+            <span>Packaging</span>, Web Design and <br>
+            Development <span class="emoji">🟣</span>, Visual and Brand Identity, <br>
+            Printed Collateral <span class="emoji">🥐</span>, Motion, 3D, <br>
+            Photography, Videography, Paid Ads, <br>
+            Social Design, Email Design, UI/UX, Copywriting
+            <br><br>
+            <div class="note">
+                We've learned that every brand is as unique as the people behind it. When we bring diverse minds together 
+                to collaborate, it results in deeper storytelling that's truly bespoke to the brand’s story.
+            </div>
+            <br>
+            <img src="https://via.placeholder.com/50" class="image">
+            <img src="https://via.placeholder.com/50" class="image">
         </div>
-        <p class="values">Our Values</p>
     </div>
 </body>
 </html>
