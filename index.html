@@ -91,7 +91,7 @@
             top: 5%;
             right: 5%;
             max-width: 230px;
-            animation: pulseBadgeOpacity 4s ease-in-out infinite;
+            animation: image-enter-from-right 0.5s ease-in-out both;
         }
         img {
             width: 60px;
@@ -103,7 +103,7 @@
         .image-3 { top: 40%; left: 15%; }
         .image-4 { top: 50%; left: 60%; }
         .image-5 { top: 55%; left: 5%; }
-        
+
         .image-1:active {animation: shiver 0.2s cubic-bezier(.175,.885,.32,1.275) 2;}
 
         @keyframes image-enter-from-right {from {transform:translatex(101%)} to {transform:translatex(0)} }
@@ -118,8 +118,6 @@
         @keyframes shake {0% {transform: translate(1px, 1px) rotate(0deg);} 10% {transform: translate(-1px, -2px) rotate(-1deg);} 20% {transform: translate(-3px, 0px) rotate(1deg);} 30% {transform: translate(3px, 2px) rotate(0deg);} 40% {transform: translate(1px, -1px) rotate(1deg);} 50% {transform: translate(-1px, 2px) rotate(-1deg);} 60% {transform: translate(-3px, 1px) rotate(0deg);} 70% {transform: translate(3px, 1px) rotate(-1deg);} 80% {transform: translate(-1px, -1px) rotate(1deg);} 90% {transform: translate(1px, 2px) rotate(0deg);} 100% {transform: translate(1px, -2px) rotate(-1deg);} }
    @keyframes shiver {0%{transform:translateX(0)}25%{transform:translateX(11px)}75%{transform:translateX(-11px)}to{transform:translateX(0)}}
    @keyframes shimmy {0%{transform:translateX(0)}50%{transform:translateX(-33px)}to{transform:translateX(0)}}@keyframes spin{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}
-        @keyframes pulseBadgeOpacity {0%{opacity:1}85%{opacity:.6}to{opacity:1}}
-        @keyframes fadeout {0%{opacity:1}to{opacity:0}}
         @keyframes riseandfadein {0%{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
         
         @media (max-width: 768px) {
