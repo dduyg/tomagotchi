@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>360 Creative Services</title>
+    <title>Creative Services</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;600&display=swap');
-
         * {
             margin: 0;
             padding: 0;
@@ -14,111 +12,76 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-            background-color: white;
-            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: white;
+            text-align: center;
+            padding: 2vw;
         }
 
         .container {
-            max-width: 1200px;
-            margin: auto;
-            font-size: 5vw;
+            max-width: 80vw;
+            font-family: serif;
+            font-size: 3vw;
             line-height: 1.2;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .container h1 {
-            font-weight: 700;
+            font-weight: normal;
         }
 
         .italic {
             font-style: italic;
         }
 
-        .text {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .highlight {
-            background-color: yellow;
-            padding: 10px;
-            font-size: 1rem;
-            position: absolute;
-            top: 20%;
-            left: 30%;
-            max-width: 250px;
-        }
-
         .emoji {
-            font-size: 2rem;
-            position: absolute;
+            font-size: 3vw;
         }
 
-        .emoji-1 { top: 30%; left: 10%; }
-        .emoji-2 { top: 40%; left: 15%; }
-        .emoji-3 { top: 55%; left: 5%; }
+        .note {
+            font-size: 1vw;
+            background: yellow;
+            padding: 0.5vw;
+            display: inline-block;
+            margin: 1vw 0;
+        }
 
-        .floating-image {
-            width: 60px;
+        img {
+            max-width: 5vw;
             height: auto;
-            position: absolute;
+            vertical-align: middle;
         }
 
-        .image-1 { top: 35%; left: 50%; }
-        .image-2 { top: 50%; left: 60%; }
-
-        .footer {
-            margin-top: 40px;
-            font-style: italic;
-            font-size: 1rem;
-        }
-
-        /* Responsive adjustments */
         @media (max-width: 768px) {
             .container {
-                font-size: 7vw;
+                font-size: 5vw;
             }
-            .highlight {
-                left: 10%;
-                top: 25%;
-                font-size: 0.8rem;
+
+            .note {
+                font-size: 2vw;
+                padding: 1vw;
             }
-            .emoji, .floating-image {
-                display: none; /* Hide on smaller screens */
+
+            img {
+                max-width: 10vw;
             }
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <h1>360 Art and <span class="italic">Creative</span> Direction,</h1>
-        <h1><span class="italic">Packaging,</span> Web Design and Development,</h1>
-        <h1>Visual and Brand Identity,</h1>
-        <h1><span class="italic">Printed Collateral,</span></h1>
-        <h1>Motion, 3D,</h1>
-        <h1>Photography, Videography,</h1>
-        <h1>Paid Ads, Social Design,</h1>
-        <h1>Email Design,</h1>
-        <h1>UI/UX, Copywriting</h1>
+        <p>360 Art and <span class="italic">Creative</span> Direction,</p>
+        <p><span class="italic">Packaging</span>, Web Design and Development <span class="emoji">🟣</span></p>
+        <p>Visual and Brand Identity,</p>
+        <p>Printed Collateral <span class="emoji">🥐</span></p>
+        <p>Motion, 3D, Photography,</p>
+        <p>Videography, Paid Ads,</p>
+        <p>Social Design, Email Design,</p>
+        <p>UI/UX, Copywriting</p>
+        <p class="note">
+            We've learned that every brand is as unique as the people behind it. When we bring diverse minds together 
+            to collaborate, it results in deeper storytelling that’s truly bespoke to the brand’s story.
+        </p>
+        <p><img src="https://via.placeholder.com/50" alt="Visual Element"> <img src="https://via.placeholder.com/50" alt="Branding"></p>
     </div>
-
-    <!-- Floating elements -->
-    <div class="highlight">
-        We’ve learned that every brand is as unique as the people behind it. When we bring diverse minds together to collaborate, it results in deeper storytelling that’s truly bespoke to the brand’s story.
-    </div>
-
-    <div class="emoji emoji-1">🟣</div>
-    <div class="emoji emoji-2">🥚</div>
-    <div class="emoji emoji-3">🥐</div>
-
-    <img src="https://via.placeholder.com/60" class="floating-image image-1" alt="Floating Image 1">
-    <img src="https://via.placeholder.com/60" class="floating-image image-2" alt="Floating Image 2">
-
-    <div class="footer">Our Values</div>
-
 </body>
 </html>
