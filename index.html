@@ -40,29 +40,6 @@
             max-width: 230px;
             animation: image-enter-from-right 1s ease-out;
         }
-        @keyframes show-confirmation {from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
-        @keyframes show-confirmation-mobile {from{transform:translatey(-50%)}to{transform:translatey(0)}}
-        @keyframes plyr-popup {0%{opacity:.5;transform:translatey(10px)}100%{opacity:1;transform:translatey(0)}}
-        @keyframes bounceIn {0%{opacity:0;transform:scale(.3)}50%{opacity:1;transform:scale(1.05)}70%{transform:scale(.9)}100%{transform:scale(1)}}
-        @keyframes bounceOut {0%{transform:scale(1)}25%{transform:scale(.95)}50%{opacity:1;transform:scale(1.1)}100%{opacity:0;transform:scale(.3)}}
-        @keyframes image-enter-from-right {from{transform:translatex(101%)}to{transform:translatex(0)}}
-        @keyframes image-exit-to-left {from{transform:translatex(0)}to{transform:translatex(-101%)}}
-        @keyframes image-enter-from-left {from{transform:translatex(-101%)}to{transform:translatex(0)}}
-        @keyframes image-exit-to-right {from{transform:translatex(0)}to{transform:translatex(101%)}}
-@keyframes shake {
-  0% { transform: translate(1px, 1px) rotate(0deg); }
-  10% { transform: translate(-1px, -2px) rotate(-1deg); }
-  20% { transform: translate(-3px, 0px) rotate(1deg); }
-  30% { transform: translate(3px, 2px) rotate(0deg); }
-  40% { transform: translate(1px, -1px) rotate(1deg); }
-  50% { transform: translate(-1px, 2px) rotate(-1deg); }
-  60% { transform: translate(-3px, 1px) rotate(0deg); }
-  70% { transform: translate(3px, 1px) rotate(-1deg); }
-  80% { transform: translate(-1px, -1px) rotate(1deg); }
-  90% { transform: translate(1px, 2px) rotate(0deg); }
-  100% { transform: translate(1px, -2px) rotate(-1deg); }
-}
-
         img {
             width: 60px;
             height: auto;
@@ -74,12 +51,34 @@
         .image-4 { top: 50%; left: 60%; }
         .image-5 { top: 55%; left: 5%; }
 
+        @keyframes show-confirmation {from {opacity:0;transform:scale(.96)} to {opacity:1;transform:scale(1)} }
+        @keyframes show-confirmation-mobile {from {transform:translatey(-50%)} to {transform:translatey(0)} }
+        @keyframes plyr-popup {0% {opacity:.5;transform:translatey(10px)} 100% {opacity:1;transform:translatey(0)} }
+        @keyframes bounceIn {0% {opacity:0;transform:scale(.3)} 50% {opacity:1;transform:scale(1.05)} 70% {transform:scale(.9)} 100% {transform:scale(1)} }
+        @keyframes bounceOut {0% {transform:scale(1)} 25% {transform:scale(.95)} 50% {opacity:1;transform:scale(1.1)} 100% {opacity:0;transform:scale(.3)} }
+        @keyframes image-enter-from-right {from {transform:translatex(101%)} to {transform:translatex(0)} }
+        @keyframes image-exit-to-left {from {transform:translatex(0)} to {transform:translatex(-101%)} }
+        @keyframes image-enter-from-left {from {transform:translatex(-101%)} to {transform:translatex(0)} }
+        @keyframes image-exit-to-right {from {transform:translatex(0)} to {transform:translatex(101%)} }
+        @keyframes shake {
+            0% {transform: translate(1px, 1px) rotate(0deg);}
+            10% {transform: translate(-1px, -2px) rotate(-1deg);}
+            20% {transform: translate(-3px, 0px) rotate(1deg);}
+            30% {transform: translate(3px, 2px) rotate(0deg);}
+            40% {transform: translate(1px, -1px) rotate(1deg);}
+            50% {transform: translate(-1px, 2px) rotate(-1deg);}
+            60% {transform: translate(-3px, 1px) rotate(0deg);}
+            70% {transform: translate(3px, 1px) rotate(-1deg);}
+            80% {transform: translate(-1px, -1px) rotate(1deg);}
+            90% {transform: translate(1px, 2px) rotate(0deg);}
+            100% {transform: translate(1px, -2px) rotate(-1deg);}
+        }
+        
         footer {
             margin-top: 50px;
             font-style: italic;
             font-size: 1rem;
         }
-
         @media (max-width: 768px) {
             h1 {
                 font-size: 32px;
