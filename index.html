@@ -97,7 +97,13 @@
             width: 60px;
             height: auto;
             position: absolute;
+            cursor: pointer;
+            display: inline-block;
+            transition: opacity 0.3s;
         }
+        .exit-left {animation: image-exit-to-left 1s ease-out forwards;}
+        .exit-right {animation: image-exit-to-right 1s ease-out forwards;}
+ 
         .image-1 { top: 30%; left: 10%; }
         .image-2 { top: 35%; left: 50%; }
         .image-3 { top: 40%; left: 15%; }
@@ -107,8 +113,8 @@
         .image-1:active {animation: shiver 0.2s cubic-bezier(.175,.885,.32,1.275) 2;}
 
         @keyframes image-enter-from-right {from {transform:translatex(101%)} to {transform:translatex(0)} }
-        @keyframes image-exit-to-left {from {transform:translatex(0)} to {transform:translatex(-101%)} }
         @keyframes image-enter-from-left {from {transform:translatex(-101%)} to {transform:translatex(0)} }
+        @keyframes image-exit-to-left {from {transform:translatex(0)} to {transform:translatex(-101%)} }
         @keyframes image-exit-to-right {from {transform:translatex(0)} to {transform:translatex(101%)} }
         @keyframes bounceIn {0% {opacity:0;transform:scale(.3)} 50% {opacity:1;transform:scale(1.05)} 70% {transform:scale(.9)} 100% {transform:scale(1)} }
         @keyframes bounceOut {0% {transform:scale(1)} 25% {transform:scale(.95)} 50% {opacity:1;transform:scale(1.1)} 100% {opacity:0;transform:scale(.3)} }  
@@ -148,12 +154,33 @@
         <div class="highlight">
             We’ve learned that every brand is as unique as the people behind it. When we bring diverse minds together to collaborate, it results in deeper storytelling that’s truly bespoke to the brand’s story.
         </div>
-        <img src="https://media2.giphy.com/media/xbadrwYTEefn2/giphy.gif" class="image-1" alt="🏮">
+        <img src="https://media2.giphy.com/media/xbadrwYTEefn2/giphy.gif" data-exit="left" class="image-1" alt="🏮">
         <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/sakuma-drops.gif" class="image-2" alt="🥚">
         <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/choosePURPLE.png" class="image-3" alt="🟣">
         <img src="https://vaporscape-gallery.glitch.me/local/76.png" class="image-4" alt="🌉">
         <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/choose-fighter.gif" class="image-5" alt="🩱🥊">
     </main>
 <footer>✹</footer>
+
+  <script>
+    document.querySelectorAll("img").forEach(image => {
+      image.addEventListener("click", function () {
+        // Get the exit direction from the data-exit attribute
+        const exitDirection = this.getAttribute("data-exit");
+
+        // Apply the corresponding exit animation class
+        if (exitDirection === "left") {
+          this.classList.add("exit-left");
+        } else if (exitDirection === "right") {
+          this.classList.add("exit-right");
+        }
+
+        // Wait for the animation to complete, then hide the element
+        setTimeout(() => {
+          this.style.display = "none";
+        }, 1000);  // Matches the animation duration (1s)
+      });
+    });
+  </script>
 </body>
 </html>
