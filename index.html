@@ -3,98 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiminalLoop</title>
+    <title>360 Creative Services</title>
     <style>
-body {
-    font-family: 'Times New Roman', serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: white;
-    text-align: left;
-}
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;600&display=swap');
 
-/* Main Container */
-.container {
-    max-width: 90%;
-    padding: 20px;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* Typography */
-h1 {
-    font-size: 3rem;
-    font-weight: normal;
-    line-height: 1.2;
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            background-color: white;
+            padding: 20px;
+        }
 
-.large-text {
-    font-size: 4rem;
-}
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            font-size: 5vw;
+            line-height: 1.2;
+            font-family: 'Playfair Display', serif;
+        }
 
-.italic-text {
-    font-style: italic;
-}
+        .container h1 {
+            font-weight: 700;
+        }
 
-.emoji {
-    font-size: 2rem;
-}
+        .italic {
+            font-style: italic;
+        }
 
-/* Sticky Note */
-.sticky-note {
-    background-color: yellow;
-    padding: 10px;
-    font-size: 1rem;
-    max-width: 300px;
-    margin: 20px 0;
-}
+        .text {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-/* Image Styling */
-.image-container {
-    display: flex;
-    gap: 10px;
-    margin: 20px 0;
-}
+        .highlight {
+            background-color: yellow;
+            padding: 10px;
+            font-size: 1rem;
+            position: absolute;
+            top: 20%;
+            left: 30%;
+            max-width: 250px;
+        }
 
-.image-container img {
-    width: 100px;
-    height: auto;
-}
+        .emoji {
+            font-size: 2rem;
+            position: absolute;
+        }
 
-/* Footer */
-.footer-text {
-    font-style: italic;
-    font-size: 1rem;
-    margin-top: 40px;
-} 
+        .emoji-1 { top: 30%; left: 10%; }
+        .emoji-2 { top: 40%; left: 15%; }
+        .emoji-3 { top: 55%; left: 5%; }
+
+        .floating-image {
+            width: 60px;
+            height: auto;
+            position: absolute;
+        }
+
+        .image-1 { top: 35%; left: 50%; }
+        .image-2 { top: 50%; left: 60%; }
+
+        .footer {
+            margin-top: 40px;
+            font-style: italic;
+            font-size: 1rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                font-size: 7vw;
+            }
+            .highlight {
+                left: 10%;
+                top: 25%;
+                font-size: 0.8rem;
+            }
+            .emoji, .floating-image {
+                display: none; /* Hide on smaller screens */
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1><span class="large-text">360 Art and</span> <span class="italic-text">Creative</span> Direction,</h1>
-        <h1><span class="italic-text">Packaging,</span> Web Design and Development <span class="emoji">🟣</span></h1>
-        <h1><span class="italic-text">Visual and Brand Identity,</span></h1>
-        <h1>Printed Collateral <span class="emoji">🥐</span>, Motion, 3D,</h1>
-        <h1>Photography,</h1>
-        <h1>Videography, Paid Ads,</h1>
-        <h1>Social Design,</h1>
+        <h1>360 Art and <span class="italic">Creative</span> Direction,</h1>
+        <h1><span class="italic">Packaging,</span> Web Design and Development,</h1>
+        <h1>Visual and Brand Identity,</h1>
+        <h1><span class="italic">Printed Collateral,</span></h1>
+        <h1>Motion, 3D,</h1>
+        <h1>Photography, Videography,</h1>
+        <h1>Paid Ads, Social Design,</h1>
         <h1>Email Design,</h1>
         <h1>UI/UX, Copywriting</h1>
-        
-        <div class="sticky-note">
-            We've learned that every brand is as unique as the people behind it. When we bring diverse minds together to collaborate, it results in deeper storytelling that's truly bespoke to the brand's story.
-        </div>
-
-        <div class="image-container">
-            <img src="image1.jpg" alt="Decorative Image">
-            <img src="image2.jpg" alt="Decorative Image">
-        </div>
-
-        <p class="footer-text">Our Values</p>
     </div>
+
+    <!-- Floating elements -->
+    <div class="highlight">
+        We’ve learned that every brand is as unique as the people behind it. When we bring diverse minds together to collaborate, it results in deeper storytelling that’s truly bespoke to the brand’s story.
+    </div>
+
+    <div class="emoji emoji-1">🟣</div>
+    <div class="emoji emoji-2">🥚</div>
+    <div class="emoji emoji-3">🥐</div>
+
+    <img src="https://via.placeholder.com/60" class="floating-image image-1" alt="Floating Image 1">
+    <img src="https://via.placeholder.com/60" class="floating-image image-2" alt="Floating Image 2">
+
+    <div class="footer">Our Values</div>
 
 </body>
 </html>
