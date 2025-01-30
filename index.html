@@ -169,27 +169,20 @@
     // Select the elements that have the "data-exit" attribute
     document.querySelectorAll("[data-exit]").forEach(element => {
       element.addEventListener("click", function () {
-        // Detect the current animation from CSS
-        const computedStyle = window.getComputedStyle(this);
-        const currentAnimation = computedStyle.animationName;
-        const animationDuration = parseFloat(computedStyle.animationDuration) * 1000; // Convert seconds to ms
+        // Get the exit direction from the data-exit attribute
+        const exitDirection = this.getAttribute("data-exit");
 
-        // If an animation is active, wait for it to complete before applying exit effect
+        // Apply the corresponding exit animation class
+        if (exitDirection === "left") {
+          this.classList.add("exit-left");
+        } else if (exitDirection === "right") {
+          this.classList.add("exit-right");
+        }
+
+        // Wait for the animation to complete, then hide the element
         setTimeout(() => {
-          const exitDirection = this.getAttribute("data-exit");
-
-          // Apply exit animation
-          if (exitDirection === "left") {
-            this.classList.add("exit-left");
-          } else if (exitDirection === "right") {
-            this.classList.add("exit-right");
-          }
-
-          // Wait for the exit animation to complete, then hide the element
-          setTimeout(() => {
-            this.style.display = "none";
-          }, 1000); // Exit animation duration
-        }, animationDuration > 0 ? animationDuration : 0); // Use detected animation duration or skip if none
+          this.style.display = "none";
+        }, 1000);  // Matches the animation duration (1s)
       });
     });
   </script>
