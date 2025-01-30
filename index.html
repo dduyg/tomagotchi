@@ -97,8 +97,10 @@
             width: 60px;
             height: auto;
             position: absolute;
-            cursor: pointer;
+        }  
+        [data-exit] {
             display: inline-block;
+            cursor: pointer;
             transition: opacity 0.3s;
         }
         .exit-left {animation: image-exit-to-left 1s ease-out forwards;}
@@ -163,8 +165,9 @@
 <footer>✹</footer>
 
   <script>
-    document.querySelectorAll("img").forEach(image => {
-      image.addEventListener("click", function () {
+    // Select the elements that have the "data-exit" attribute
+    document.querySelectorAll("[data-exit]").forEach(element => {
+      element.addEventListener("click", function () {
         // Get the exit direction from the data-exit attribute
         const exitDirection = this.getAttribute("data-exit");
 
