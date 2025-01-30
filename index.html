@@ -71,15 +71,17 @@
             text-decoration: none;
             color: #9a9cfc;
             font-size: 14px;
-            transition: background 0.3s ease;
             border-radius: 10px;
             display: inline-block;
-        }   
+            transition: all 0.3s ease-in-out;
+        }    
         .btn:hover {
             background: #9a9cfc;
             color: #f3c7ca;
             font-weight: bold;
+            animation: rotate 7s linear infinite;
         }
+        @keyframes rotate {from {transform: rotate(0deg)} to {transform: rotate(360deg)} }
 
         @media (max-width: 800px) {
             main {
