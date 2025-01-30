@@ -118,12 +118,9 @@
         .image-2 {animation: bounceIn 1s ease-out forwards 0.5s;}
         .image-2:active {animation: bounceOut 0.6s forwards;}
         .image-4 {animation: image-enter-from-left 1s ease-out forwards;}
+        .image-4:active {animation: show-confirmation 0.3s ease-out forwards;}
         .image-5:active {animation: plyr-popup 0.5s ease;}
-        .image-3:active {animation: show-confirmation 0.3s ease-out forwards;}
-        @media (max-width: 768px) {
-            .image-3:active {animation: show-confirmation-mobile 0.3s ease-out forwards;}
-        }            
-        
+    
     @keyframes image-enter-from-right {from {transform:translatex(101%)} to {transform:translatex(0)} }
     @keyframes image-enter-from-left {from {transform:translatex(-101%)} to {transform:translatex(0)} }
     @keyframes image-exit-to-left {from {transform:translatex(0)} to {transform:translatex(-101%)} }
@@ -146,6 +143,9 @@
                 font-size: 0.6rem;
                 max-width: 190px;
             }
+            .image-4:active {
+                animation: show-confirmation-mobile 0.3s ease-out forwards;
+            }       
         }
     </style>
 </head>
