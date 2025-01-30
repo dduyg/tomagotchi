@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin Spin Animation</title>
+    <style>
+        @keyframes coin-spin {
+            0% {
+                transform: rotateY(0deg);
+            }
+            50% {
+                transform: rotateY(180deg);
+            }
+            100% {
+                transform: rotateY(360deg);
+            }
+        }
+
+        .coin {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: gold;
+            border-radius: 50%;
+            animation: coin-spin 2s linear infinite;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<div class="coin"></div>
+
+</body>
+</html>
