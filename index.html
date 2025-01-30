@@ -3,34 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coin Spin Animation</title>
+    <title>Continuous Coin Spin</title>
     <style>
+        /* Keyframes for the coin spin effect */
         @keyframes coin-spin {
             0% {
-                transform: rotateY(0deg);
+                transform: rotateY(0deg); /* Initial position */
             }
             50% {
-                transform: rotateY(180deg);
+                transform: rotateY(180deg); /* Half rotation (flipping) */
             }
             100% {
-                transform: rotateY(360deg);
+                transform: rotateY(360deg); /* Full rotation */
             }
         }
 
+        /* Styling the coin */
         .coin {
-            display: inline-block;
+            display: inline-block; /* Inline block to make it behave like an element */
             width: 100px;
             height: 100px;
             background-color: gold;
-            border-radius: 50%;
-            animation: coin-spin 2s linear infinite;
-            transform-style: preserve-3d;
-            backface-visibility: hidden;
+            border-radius: 50%; /* Round the edges to make it a coin shape */
+            animation: coin-spin 2s linear infinite; /* Infinite spinning animation */
+            transform-style: preserve-3d; /* Preserve 3D for smooth rotation */
+            backface-visibility: hidden; /* Hide the back face when it's rotated */
         }
     </style>
 </head>
 <body>
 
+<!-- The div element with the "coin" class -->
 <div class="coin"></div>
 
 </body>
