@@ -124,6 +124,12 @@
         .flip-checkbox { /* Hide the checkbox input */
             display: none;
         }
+        .image-3 {
+            display: inline-block;
+            transform-style: preserve-3d; /* Preserve 3D for smooth rotation */
+            transition: transform 2s linear; /* Smooth transition for transform */
+            animation: spin 2s linear infinite;
+        }
         /* Trigger flip animation when the checkbox is checked */
         .flip-checkbox:checked + label .image-3 {
             animation: flip 2s linear; /* Start flip animation */
