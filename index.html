@@ -117,14 +117,22 @@
         .image-1:active {animation: shiver 0.2s cubic-bezier(.175,.885,.32,1.275) 2;}
         .image-2 {animation: bounceIn 1s ease-out forwards 0.5s;}
         .image-2:active {animation: bounceOut 0.6s forwards;}
-         .image-3 {
-            transition: transform 2s linear; /* Smooth transition for transform */
-            transform-style: preserve-3d; /* Preserve 3D for smooth rotation */
-         }
-        .image-3:active {animation: flip 2s linear;}
         .image-4 {animation: image-enter-from-left 1s ease-out forwards;}
         .image-4:active {animation: show-confirmation 0.3s ease-out forwards;}
         .image-5:active {animation: plyr-popup 0.5s ease;}
+
+        .flip-checkbox { /* Hide the checkbox input */
+            display: none;
+        }
+        .image-3 {
+            display: inline-block;
+            transform-style: preserve-3d; /* Preserve 3D for smooth rotation */
+            transition: transform 2s linear; /* Smooth transition for transform */
+        }
+        /* Trigger flip animation when the checkbox is checked */
+        .flip-checkbox:checked + .image-3 {
+            animation: flip 2s linear; /* Start flip animation */
+        }
   
         @keyframes image-enter-from-right {from {transform:translatex(101%)} to {transform:translatex(0)} }
         @keyframes image-enter-from-left {from {transform:translatex(-101%)} to {transform:translatex(0)} }
@@ -175,7 +183,12 @@
         </div>
         <img src="https://media2.giphy.com/media/xbadrwYTEefn2/giphy.gif" class="image-1" alt="🏮">
         <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/sakuma-drops.gif" class="image-2" alt="🥚">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/choosePURPLE.png" class="image-3" alt="🟣">
+        <!-- Flips when checkbox is clicked -->
+        <input type="checkbox" class="flip-checkbox" id="flipTrigger">
+        <label for="flipTrigger">
+            <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/choosePURPLE.png" class="image-3" alt="🟣">
+        </label>
+        <!------>
         <img src="https://vaporscape-gallery.glitch.me/local/76.png" data-exit="right" class="image-4" alt="🌉">
         <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/choose-fighter.gif" class="image-5" alt="🩱🥊">
     </main>
