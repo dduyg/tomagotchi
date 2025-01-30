@@ -59,16 +59,23 @@
 
         footer {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+            overflow-x: auto;
             justify-content: center;
             gap: 10px;
             margin-top: 20px;
             padding: 20px;
+            width: 100%;
+            -webkit-overflow-scrolling: touch;
         }
+        footer::-webkit-scrollbar {
+            display: none;
+        }       
         .btn {
             border: 1px solid #9a9cfc;
             padding: 10px 15px;
             text-decoration: none;
+            cursor: pointer;
             color: #9a9cfc;
             font-size: 14px;
             border-radius: 10px;
