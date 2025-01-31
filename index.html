@@ -13,108 +13,101 @@ body {
     color: #000;
 }
 
-/* Header */
+/* HEADER */
 header {
     text-align: center;
     padding: 20px;
     font-size: 24px;
 }
 
-/* Work Section */
+/* WORK SECTION */
 .work {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     padding: 20px;
 }
 
 .project {
-    width: 22%;
     text-align: center;
-    margin-bottom: 20px;
-}
-
-.project img {
-    width: 100%;
-    height: 300px; /* Making images rectangular */
-    object-fit: cover;
-    border-radius: 10px;
 }
 
 .project-title {
     font-size: 12px;
-    color: gray;
+    font-weight: bold;
+    text-transform: uppercase;
     margin-bottom: 5px;
 }
 
-/* Responsive Work Section */
+.project img {
+    width: 100%;
+    height: 300px; /* Taller rectangular shape */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* RESPONSIVE WORK SECTION */
 @media (max-width: 768px) {
-    .project {
-        width: 48%; /* 2-column layout */
+    .work {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width: 480px) {
-    .project {
-        width: 100%; /* Full width */
-    }
-}
-
-/* Contact Section */
+/* CONTACT SECTION */
 .contact {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 50px;
-    text-align: center;
     position: relative;
 }
 
 .contact-content {
-    background: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/detail-10.gif') no-repeat center center;
-    background-size: contain; /* Oval shape */
+    background: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/detail-10.gif') no-repeat center;
+    background-size: contain;
     width: 60%;
-    height: 300px;
-    border-radius: 50%;
+    height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     padding: 20px;
+    border-radius: 50%;
 }
 
-/* Footer */
+/* FOOTER */
 footer {
     background: #f4f4f4;
     padding: 20px;
-    text-align: center;
 }
 
 .footer-content {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ccc;
+    text-align: center;
 }
 
 .footer-section {
     width: 30%;
-    text-align: left;
-    margin-bottom: 10px;
 }
 
 .footer-section h3 {
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid #000;
+    display: inline-block;
     padding-bottom: 5px;
+    width: 100%;
+    text-align: left;
 }
 
 ul {
     list-style-type: none;
     padding: 0;
+    text-align: left;
 }
 
-/* Responsive Footer */
+/* RESPONSIVE FOOTER */
 @media (max-width: 768px) {
     .footer-content {
         flex-direction: column;
@@ -135,25 +128,25 @@ ul {
 
     <section class="work">
         <div class="project">
-            <div class="project-title">NO. ① — ART DIRECTION, WEB, EMAIL, PAID ADS</div>
+            <p class="project-title">NO. ① — ART DIRECTION, WEB, EMAIL, PAID ADS</p>
             <img src="paris-hilton.jpg" alt="Paris Hilton">
             <h3>SLIVING WITH <i>Paris Hilton</i></h3>
-            <p>Studio partnered with Paris’s ilovecreatives Studio to launch her Iconic Tracksuit Collection...</p>
+            <p>Studio partnered with Paris’s ilovecreatives Studio to launch...</p>
         </div>
         <div class="project">
-            <div class="project-title">NO. ② — BRAND IDENTITY</div>
+            <p class="project-title">NO. ② — BRAND IDENTITY</p>
             <img src="butter.jpg" alt="Butter">
             <h3>BRAND IDENTITY FOR <i>Butter</i></h3>
-            <p>ilovecreatives Studio partnered with the Butter team to create a fresh dynamic identity...</p>
+            <p>ilovecreatives Studio partnered with the Butter team to create...</p>
         </div>
         <div class="project">
-            <div class="project-title">NO. ③ — 360 BRAND LAUNCH</div>
+            <p class="project-title">NO. ③ — 360 BRAND LAUNCH</p>
             <img src="lipstick.jpg" alt="Lipstick">
             <h3>A FRESH FACE FOR <i>Finding Ferdinand</i></h3>
             <p>Studio partnered with Finding Ferdinand to do a 360 rebrand...</p>
         </div>
         <div class="project">
-            <div class="project-title">NO. ④ — CREATIVE DIRECTION, CAMPAIGN PRODUCTION</div>
+            <p class="project-title">NO. ④ — CREATIVE DIRECTION, CAMPAIGN PRODUCTION</p>
             <img src="dedcool.jpg" alt="Dedcool">
             <h3>CALIFORNIAN HOLIDAY FOR <i>Dedcool</i></h3>
             <p>Picture this. It’s December on the West Coast...</p>
@@ -170,11 +163,11 @@ ul {
 
     <footer>
         <div class="footer-content">
-            <div class="footer-section">
+            <div class="footer-section about">
                 <h3>ABOUT</h3>
                 <p>ilovecreatives Studio is your friendly design studio known for experimental, but approachable and fun-ctional design.</p>
             </div>
-            <div class="footer-section">
+            <div class="footer-section projects">
                 <h3>PROJECTS</h3>
                 <ul>
                     <li>Dedcool</li>
@@ -184,7 +177,7 @@ ul {
                     <li>The Gist</li>
                 </ul>
             </div>
-            <div class="footer-section">
+            <div class="footer-section services">
                 <h3>SERVICES</h3>
                 <ul>
                     <li>Brand Identity</li>
