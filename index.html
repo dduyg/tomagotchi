@@ -7,71 +7,55 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
+            margin: 40px;
             padding: 0;
             line-height: 1.6;
         }
-
-        
-        section {
-            padding: 20px;
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            font-style: italic;
+            margin-top: 50px;
+        }
+        .container {
             display: flex;
             justify-content: space-between;
-            flex-direction: column;
-        }
-        .header {
-            border-bottom: 1px solid black;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
         }
         .column {
-            width: 30%;
-            vertical-align: top;
-            display: inline-block;
+            flex: 1;
+            padding: 0 20px;
         }
-        h2 {
-            font-size: 18px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
+        .column h2 {
+            border-bottom: 1px solid black;
+            padding-bottom: 5px;
         }
-        p {
-            font-size: 14px;
+        a {
+            color: blue;
+            text-decoration: none;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
+        a:hover {
+            text-decoration: underline;
         }
-        ul li {
-            font-size: 14px;
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 1.5em;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <footer>
-        <section class="header">
-            <div class="column"><h2>About</h2></div>
-            <div class="column"><h2>Projects</h2></div>
-            <div class="column"><h2>Services</h2></div>
-        </section>
 
-    <section class="content"> 
+    <div class="container">
         <div class="column">
-            <p>
-                ilovecreatives Studio is your friendly design studio known for experimental, but approachable and 
-                <em>fun</em>—ctional design.
-            </p>
-            <p>
-                Clients come to us because they wanted to talk to the actual designer, not the middleman. Or they wanted an agency 
-                that was polished but not predictable. Or they’re actually full capable, but need some help getting systems and 
-                templates in place so they can go off and do the damn thing. Or they wanted someone that would talk business strategy 
-                (not just design) and help them actually grow their business aka make a profit (not just look pretty).
-            </p>
-            <p>
-                At the end of the day, we want to make the thing that’s in your head look better and grow bigger than you thought 
-                it could. The best way to start is to fill out <a href="#">our form</a> so we can do what we do best—go go go!
-            </p>
+            <h2>ABOUT</h2>
+            <p><strong>ilovecreatives Studio</strong> is your friendly design studio known for experimental, but approachable and <em>fun</em>ctional design.</p>
+            <p>Clients come to us because they wanted to talk to the actual designer, not the middleman. Or they wanted an agency that was polished but not predictable. Or they're actually full capable, but need some help getting systems and templates in place so they can go off and do the damn thing. Or they wanted someone that would talk business strategy (not just design) and help them actually grow their business aka make a profit (not just look pretty).</p>
+            <p>At the end of the day, we want to make the thing that’s in your head look better and grow bigger than you thought it could. The best way to start is to fill out <a href="#">our form</a> so we can do what we do best — go go go!</p>
         </div>
+
         <div class="column">
+            <h2>PROJECTS</h2>
             <ul>
                 <li>Dedcool</li>
                 <li>Finding Ferdinand</li>
@@ -87,7 +71,9 @@
                 <li>Kristin Ess Hair</li>
             </ul>
         </div>
+
         <div class="column">
+            <h2>SERVICES</h2>
             <ul>
                 <li>Brand Identity</li>
                 <li>Art Direction</li>
@@ -104,8 +90,9 @@
                 <li>Video Writing & Production</li>
             </ul>
         </div>
-    </section>
+    </div>
 
-    </footer>
+    <div class="footer">by ilovecreatives</div>
+
 </body>
 </html>
