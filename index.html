@@ -3,112 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ilovecreatives Studio</title>
+    <title>LiminalLoop</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
+        * {  /* General Reset */
+            margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #f3f2f9;
+            color: #606887;
+            font-family: 'Yarikha', sans-serif;
             line-height: 1.6;
+            padding: 0;
+            margin: 0;
         }
-        .container {
-            max-width: 900px;
-            margin: auto;
+
+        section {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two equal columns */
+            padding-top: 20px;
+            gap: 3rem 25px;
         }
-        .header {
+        section:first-of-type {
+            border-top: 2px solid currentColor;
+        }
+        .label {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            align-self: start; /* Aligns labels at the top */
+        }
+        .details {
+            font-family: "Didact Gothic", sans-serif;
             display: flex;
-            justify-content: space-between;
-            border-bottom: 2px solid black;
-            padding-bottom: 5px;
-            font-weight: bold;
+            flex-direction: column;
+            gap: 10px 0;
+            align-items: flex-start; /* Aligns details content to the left */
         }
-        .columns {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
+        .details span {
+            font-family: 'Yarikha', sans-serif;
+            font-size: 1.1em;
         }
-        .column {
-            flex: 1;
-            padding-right: 20px;
-        }
-        .column:last-child {
-            padding-right: 0;
-        }
-        .footer {
-            margin-top: 50px;
-            font-style: italic;
-            font-size: 20px;
-        }
-        a {
-            color: blue;
-            text-decoration: none;
-        }
-        .section {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+
+        @media (max-width: 768px) {
+            section {
+                grid-template-columns: 1fr 2fr; /* second column takes up more space */
+            }
+            section:first-of-type {
+                border-top: 1.5px solid currentColor;
+            }
+          }
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <div class="header">
-            <div>ABOUT</div>
-            <div>PROJECTS</div>
-            <div>SERVICES</div>
-        </div>
-
-        <div class="columns">
-            <div class="column">
-                <div class="section">ABOUT</div>
-                <p><strong>ilovecreatives Studio</strong> is your friendly design studio known for experimental, but approachable and <em>fun</em>—ctional design.</p>
-                <p>Clients come to us because they wanted to talk to the actual designer, not the middleman. Or they wanted an agency that was polished but not predictable. Or they’re actually full capable, but need some help getting systems and templates in place so they can go off and do the damn thing. Or they wanted someone that would talk business strategy (not just design) and help them actually grow their business aka make a profit (not just look pretty).</p>
-                <p>At the end of the day, we want to make the thing that’s in your head look better and grow bigger than you thought it could. The best way to start is to fill out <a href="#">our form</a> so we can do what we do best — go go go!</p>
+        <section>
+            <div class="label">Envelope</div>
+            <div class="details">
+                <a href="#">wavelength@holo.meltdown</a>
             </div>
-
-            <div class="column">
-                <div class="section">PROJECTS</div>
-                <ul>
-                    <li>Dedcool</li>
-                    <li>Finding Ferdinand</li>
-                    <li>Girlboss</li>
-                    <li>Paris Hilton Tracksuits</li>
-                    <li>The Gist</li>
-                    <li>Communia</li>
-                    <li>KKW Beauty</li>
-                    <li>Rook & Rose</li>
-                    <li>The Leap</li>
-                    <li>Flask & Field</li>
-                    <li>Every Stylish Girl</li>
-                    <li>Kristin Ess Hair</li>
-                </ul>
+        </section>
+        <section>
+            <div class="label">Social Subspace</div>
+            <div class="details">
+                <a href="#"><span>↗</span> pixelmessage</a>
+                <a href="#"><span>↗</span> neongrid</a>
+                <a href="#"><span>↗</span> datarepository</a>
             </div>
-
-            <div class="column">
-                <div class="section">SERVICES</div>
-                <ul>
-                    <li>Brand Identity</li>
-                    <li>Art Direction</li>
-                    <li>Web Design</li>
-                    <li>Development</li>
-                    <li>Social Design & Strategy</li>
-                    <li>Email Design & Strategy</li>
-                    <li>Packaging</li>
-                    <li>Copywriting</li>
-                    <li>Brand Strategy</li>
-                    <li>Campaign Art Direction</li>
-                    <li>Brand & Website Audits</li>
-                    <li>Social Strategy</li>
-                    <li>Email Strategy</li>
-                    <li>Video Writing & Production</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer">
-            by ilovecreatives
-        </div>
-    </div>
-
+        </section> 
 </body>
 </html>
