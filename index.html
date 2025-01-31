@@ -5,82 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ilovecreatives Studio</title>
     <style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff;
-    color: #000;
-}
-.container {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
-}
-
-nav ul {
-    display: flex;
-    justify-content: space-between;
-    padding: 0;
-    list-style: none;
-    border-bottom: 2px solid black;
-    padding-bottom: 10px;
-}
-
-nav ul li {
-    font-size: 14px;
-}
-
-.about, .projects, .services {
-    margin: 30px 0;
-}
-
-.about p {
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.about a {
-    color: blue;
-    text-decoration: underline;
-}
-
-.projects ul, .services ul {
-    list-style: none;
-    padding: 0;
-    display: inline-block;
-    vertical-align: top;
-    width: 45%;
-}
-
-footer {
-    margin-top: 50px;
-    font-size: 18px;
-    font-weight: bold;
-}
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid black;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .column {
+            width: 30%;
+            vertical-align: top;
+            display: inline-block;
+        }
+        h2 {
+            font-size: 18px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 14px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            font-size: 14px;
+        }
+        .footer {
+            margin-top: 40px;
+            font-style: italic;
+            font-size: 16px;
+        }
+        .footer span {
+            font-weight: bold;
+        }
+        a {
+            color: blue;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <header>
-            <nav>
-                <ul>
-                    <li><strong>ABOUT</strong></li>
-                    <li><strong>PROJECTS</strong></li>
-                    <li><strong>SERVICES</strong></li>
-                </ul>
-            </nav>
-        </header>
+        <div class="header">
+            <h2>About</h2>
+            <h2>Projects</h2>
+            <h2>Services</h2>
+        </div>
 
-        <section class="about">
-            <p><strong>ilovecreatives Studio</strong> is your friendly design studio known for experimental, but approachable and <em>fun</em>—ctional design.</p>
+        <div class="column">
+            <p>
+                ilovecreatives Studio is your friendly design studio known for experimental, but approachable and 
+                <em>fun</em>—ctional design.
+            </p>
+            <p>
+                Clients come to us because they wanted to talk to the actual designer, not the middleman. Or they wanted an agency 
+                that was polished but not predictable. Or they’re actually full capable, but need some help getting systems and 
+                templates in place so they can go off and do the damn thing. Or they wanted someone that would talk business strategy 
+                (not just design) and help them actually grow their business aka make a profit (not just look pretty).
+            </p>
+            <p>
+                At the end of the day, we want to make the thing that’s in your head look better and grow bigger than you thought 
+                it could. The best way to start is to fill out <a href="#">our form</a> so we can do what we do best—go go go!
+            </p>
+        </div>
 
-            <p>Clients come to us because they wanted to talk to the actual designer, not the middleman. Or they wanted an agency that was polished but not predictable. Or they're actually full capable, but need some help getting systems and templates in place so they can go off and do the damn thing. Or they wanted someone that would talk business strategy (not just design) and help them actually grow their business aka make a profit (not just look pretty).</p>
-
-            <p>At the end of the day, we want to make the things in your head look better and grow bigger than you thought it could. The best way to start is to fill out <a href="#">our form</a> so we can do what we do best — go go go!</p>
-        </section>
-
-        <section class="projects">
+        <div class="column">
             <ul>
                 <li>Dedcool</li>
                 <li>Finding Ferdinand</li>
@@ -95,9 +96,9 @@ footer {
                 <li>Every Stylish Girl</li>
                 <li>Kristin Ess Hair</li>
             </ul>
-        </section>
+        </div>
 
-        <section class="services">
+        <div class="column">
             <ul>
                 <li>Brand Identity</li>
                 <li>Art Direction</li>
@@ -106,8 +107,6 @@ footer {
                 <li>Email Design & Strategy</li>
                 <li>Packaging</li>
                 <li>Copywriting</li>
-            </ul>
-            <ul>
                 <li>Brand Strategy</li>
                 <li>Campaign Art Direction</li>
                 <li>Brand & Website Audits</li>
@@ -115,11 +114,12 @@ footer {
                 <li>Email Strategy</li>
                 <li>Video Writing & Production</li>
             </ul>
-        </section>
+        </div>
 
-        <footer>
-            <p>by <strong>ilovecreatives</strong></p>
-        </footer>
+        <div class="footer">
+            <span>by ilovecreatives</span>
+        </div>
     </div>
+
 </body>
 </html>
