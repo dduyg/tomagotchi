@@ -19,6 +19,7 @@ header {
     font-size: 24px;
 }
 
+/* Work Section */
 .work {
     display: flex;
     flex-wrap: wrap;
@@ -27,77 +28,83 @@ header {
 }
 
 .project {
-    width: 48%;
+    width: 22%;
     text-align: center;
-    margin-bottom: 20px;
-}
-
-.project img {
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-    border-radius: 10px;
 }
 
 .project-title {
     font-size: 12px;
-    font-weight: bold;
+    color: gray;
     text-transform: uppercase;
     margin-bottom: 5px;
 }
 
-/* Contact Section with Oval Background */
+.project img {
+    width: 100%;
+    height: 300px; /* Rectangle shape */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Responsive: 2-column layout on smaller screens */
+@media (max-width: 768px) {
+    .work {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .project {
+        width: 48%; /* Two projects per row */
+        margin-bottom: 20px;
+    }
+}
+
+/* Contact Section */
 .contact {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 50px 0;
+    padding: 50px 20px;
+    position: relative;
 }
 
-.oval {
-    width: 100%;
-    height: 50vw; /* 50% of viewport width */
-    max-height: 300px;
-    background: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/detail-10.gif') no-repeat center center;
-    background-size: cover;
+.contact::before {
+    content: "";
+    position: absolute;
+    width: 80%;
+    height: 0;
+    padding-bottom: 80%; /* Ensures circular shape */
+    background: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/detail-10.gif') no-repeat center center / cover;
     border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #000;
+    z-index: -1;
 }
 
 .contact-content {
-    max-width: 600px;
+    text-align: center;
+    max-width: 500px;
 }
 
 /* Footer Section */
 footer {
     background: #f4f4f4;
     padding: 20px;
+    text-align: center;
+}
+
+.footer-border {
+    width: 100%;
+    border-bottom: 1px solid black;
+    margin-bottom: 20px;
 }
 
 .footer-content {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 
 .footer-section {
     width: 30%;
-}
-
-.footer-section h3 {
-    margin: 0;
-    padding-bottom: 5px;
-}
-
-.footer-section hr {
-    border: none;
-    border-bottom: 2px solid #000;
-    width: 100%;
-    margin-bottom: 10px;
+    text-align: left;
 }
 
 ul {
@@ -105,25 +112,14 @@ ul {
     padding: 0;
 }
 
-/* Responsive Design */
+/* Responsive: Stacked footer on smaller screens */
 @media (max-width: 768px) {
-    .work {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .project {
-        width: 90%;
-    }
-
     .footer-content {
         flex-direction: column;
-        align-items: center;
-    }
-
-    .footer-section {
-        width: 90%;
         text-align: center;
+    }
+    .footer-section {
+        width: 100%;
         margin-bottom: 20px;
     }
 }
@@ -139,7 +135,7 @@ ul {
             <p class="project-title">NO. ① — ART DIRECTION, WEB, EMAIL, PAID ADS</p>
             <img src="paris-hilton.jpg" alt="Paris Hilton">
             <h3>SLIVING WITH <i>Paris Hilton</i></h3>
-            <p>Studio partnered with Paris’s ilovecreatives Studio to launch her iconic Tracksuit Collection...</p>
+            <p>Studio partnered with Paris’s ilovecreatives Studio to launch her Iconic Tracksuit Collection...</p>
         </div>
         <div class="project">
             <p class="project-title">NO. ② — BRAND IDENTITY</p>
@@ -162,25 +158,22 @@ ul {
     </section>
 
     <section class="contact">
-        <div class="oval">
-            <div class="contact-content">
-                <p>WE LOVE HEARING <i>your Dreams.</i></p>
-                <h2>THAT’S NOT WATER, <br> THOSE ARE TEARS OF <i>Happy Clients.</i></h2>
-                <p>Let’s get this party started, get in touch.</p>
-            </div>
+        <div class="contact-content">
+            <p>WE LOVE HEARING <i>your Dreams.</i></p>
+            <h2>THAT’S NOT WATER, <br> THOSE ARE TEARS OF <i>Happy Clients.</i></h2>
+            <p>Let’s get this party started, get in touch.</p>
         </div>
     </section>
 
     <footer>
+        <div class="footer-border"></div>
         <div class="footer-content">
             <div class="footer-section">
                 <h3>ABOUT</h3>
-                <hr>
                 <p>ilovecreatives Studio is your friendly design studio known for experimental, but approachable and fun-ctional design.</p>
             </div>
             <div class="footer-section">
                 <h3>PROJECTS</h3>
-                <hr>
                 <ul>
                     <li>Dedcool</li>
                     <li>Finding Ferdinand</li>
@@ -191,7 +184,6 @@ ul {
             </div>
             <div class="footer-section">
                 <h3>SERVICES</h3>
-                <hr>
                 <ul>
                     <li>Brand Identity</li>
                     <li>Art Direction</li>
