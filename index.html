@@ -116,32 +116,35 @@
             font-size: 24px;
         }
 
-/* Footer Section */
-footer {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    padding: 20px;
-}
-.footer-item {
-    width: 30%;
-}
-ul {
-    list-style-type: none;
-    padding: 0;
-}
 
-/* Responsive Footer: Stack on smaller screens */
-@media (max-width: 768px) {
-    footer {
-        flex-direction: column;
-        text-align: center;
-    }
-    .footer-item {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-}
+        footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        footer .column {
+            width: 30%;
+        }
+        h4 {
+            border-bottom: 2px solid;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style-type: none;
+        }
+        ul li {
+            margin-bottom: 5px;
+        }
+        @media (max-width: 768px) {
+            footer {
+                flex-direction: column;
+            }
+            footer .column {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -182,31 +185,30 @@ ul {
         </div>
     </aside>
     <footer>
-        <div class="footer-item">
-            <h3>ABOUT</h3>
-            <p>ilovecreatives Studio is your friendly design studio known for experimental, but approachable and fun-ctional design.</p>
+        <div class="column">
+            <h4>ABOUT</h4>
+            <p>ilovecreatives Studio is your friendly design studio known for fun-ctional design.</p>
         </div>
-            <div class="footer-item">
-                <h3>PROJECTS</h3>
-                <ul>
-                    <li>Dedcool</li>
-                    <li>Finding Ferdinand</li>
-                    <li>Girlboss</li>
-                    <li>Paris Hilton Tracksuits</li>
-                    <li>The Gist</li>
-                </ul>
-            </div>
-        
-            <div class="footer-item">
-                <h3>SERVICES</h3>
-                <ul>
-                    <li>Brand Identity</li>
-                    <li>Art Direction</li>
-                    <li>Web Design</li>
-                    <li>Social Strategy</li>
-                    <li>Email Strategy</li>
-                </ul>
-            </div>
+        <div class="column">
+            <h4>PROJECTS</h4>
+            <ul>
+                <li>Dedcool</li>
+                <li>Finding Ferdinand</li>
+                <li>Girlboss</li>
+                <li>Paris Hilton Tracksuits</li>
+                <li>The Gist</li>     
+            </ul>
+        </div>
+        <div class="column">
+            <h4>SERVICES</h4>
+            <ul>
+                <li>Brand Identity</li>
+                <li>Art Direction</li>
+                <li>Web Design</li>      
+                <li>Social Strategy</li>
+                <li>Email Strategy</li>
+            </ul>
+        </div>     
     </footer>
 </body>
 </html>
