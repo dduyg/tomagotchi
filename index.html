@@ -27,16 +27,22 @@ header {
 
 .project {
     width: 22%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Aligns everything at the top */
+}
+.project-category {
+    font-size: 14px;
+    font-weight: bold;
+    height: 40px; /* Fixed height to ensure alignment */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .project img {
     width: 100%;
     height: 300px; /* Ensures rectangular shape */
     object-fit: cover;
-}
-.project-category {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 5px;
 }
 @media (max-width: 768px) {
     .project { /* 2-column for smaller screens */
