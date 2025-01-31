@@ -40,38 +40,37 @@
             font-size: 24px;
         }
 
-.work {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    padding: 20px;
-}
-
-.project {
-    width: 22%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Aligns everything at the top */
-}
-.project-category {
-    font-size: 14px;
-    font-weight: bold;
-    height: 40px; /* Fixed height to ensure alignment */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.project img {
-    width: 100%;
-    height: 300px; /* Ensures rectangular shape */
-    object-fit: cover;
-}
-@media (max-width: 768px) {
-    .project { /* 2-column for smaller screens */
-        width: 48%;
-        margin-bottom: 20px;
-    }
-}
+        .arcade {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        .item {
+            width: 22%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Aligns everything at the top */
+        }
+        .category {
+            font-size: 14px;
+            font-weight: bold;
+            height: 40px; /* Fixed height to ensure alignment */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        @media (max-width: 768px) {
+            .item {  /* 2-column for smaller screens */
+                width: 48%;
+                margin-bottom: 20px;
+            }
+        }
 
 /* Full width, circular background for contact section */
 .contact {
@@ -130,7 +129,6 @@ ul {
         flex-direction: column;
         text-align: center;
     }
-
     .footer-item {
         width: 100%;
         margin-bottom: 20px;
@@ -139,36 +137,34 @@ ul {
     </style>
 </head>
 <body>
-    <header>
-        <h1>Hyper Object</h1>
-    </header>
+    <header><h1>Hyper Object</h1></header>
 
-    <section class="work">
-        <div class="project">
+    <main class="arcade">
+        <div class="item">
             <p class="project-category">NO. ① — ART DIRECTION, WEB, EMAIL, PAID ADS</p>
             <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-8.gif" alt="⬛">
             <h3>SLIVING WITH <i>Paris Hilton</i></h3>
             <p>Studio partnered with Paris’s ilovecreatives Studio to launch her Iconic with the Butter team...</p>
         </div>
-        <div class="project">
+        <div class="item">
             <p class="project-category">NO. ② — BRAND IDENTITY</p>
             <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="⬛️">
             <h3>BRAND IDENTITY FOR <i>Butter</i></h3>
             <p>ilovecreatives Studio partnered with the Butter team to create a fresh dynamic identity...</p>
         </div>
-        <div class="project">
+        <div class="item">
             <p class="project-category">NO. ③ — 360 BRAND LAUNCH</p>
             <img src="lipstick.jpg" alt="Lipstick">
             <h3>A FRESH FACE FOR <i>Finding Ferdinand</i></h3>
             <p>Studio partnered with Finding Ferdinand to do a 360 rebrand...</p>
         </div>
-        <div class="project">
+        <div class="item">
             <p class="project-category">NO. ④ — CREATIVE DIRECTION, CAMPAIGN PRODUCTION</p>
             <img src="dedcool.jpg" alt="Dedcool">
             <h3>CALIFORNIAN HOLIDAY FOR <i>Dedcool</i></h3>
             <p>Picture this. It’s December on the West Coast...</p>
         </div>
-    </section>
+    </main>
 
     <section class="contact">
         <div class="contact-circle">
