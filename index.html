@@ -13,12 +13,14 @@ body {
     color: #000;
 }
 
+/* Header */
 header {
     text-align: center;
     padding: 20px;
     font-size: 24px;
 }
 
+/* Work Section */
 .work {
     display: flex;
     justify-content: space-around;
@@ -29,26 +31,59 @@ header {
 .project {
     width: 22%;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .project img {
     width: 100%;
+    height: 300px; /* Making images rectangular */
+    object-fit: cover;
     border-radius: 10px;
 }
 
+.project-title {
+    font-size: 12px;
+    color: gray;
+    margin-bottom: 5px;
+}
+
+/* Responsive Work Section */
+@media (max-width: 768px) {
+    .project {
+        width: 48%; /* 2-column layout */
+    }
+}
+
+@media (max-width: 480px) {
+    .project {
+        width: 100%; /* Full width */
+    }
+}
+
+/* Contact Section */
 .contact {
-    background: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/detail-10.gif') no-repeat center center;
-    background-size: cover;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 50px;
-    color: #000;
+    text-align: center;
+    position: relative;
 }
 
 .contact-content {
-    max-width: 600px;
-    margin: auto;
+    background: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/detail-10.gif') no-repeat center center;
+    background-size: contain; /* Oval shape */
+    width: 60%;
+    height: 300px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
+/* Footer */
 footer {
     background: #f4f4f4;
     padding: 20px;
@@ -59,15 +94,37 @@ footer {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
 }
 
-.about, .projects, .services {
+.footer-section {
     width: 30%;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.footer-section h3 {
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
 }
 
 ul {
     list-style-type: none;
     padding: 0;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .footer-section {
+        width: 100%;
+        margin-bottom: 20px;
+    }
 }
     </style>
 </head>
@@ -78,21 +135,25 @@ ul {
 
     <section class="work">
         <div class="project">
+            <div class="project-title">NO. ① — ART DIRECTION, WEB, EMAIL, PAID ADS</div>
             <img src="paris-hilton.jpg" alt="Paris Hilton">
             <h3>SLIVING WITH <i>Paris Hilton</i></h3>
-            <p>Studio partnered with Paris’s ilovecreatives Studio to launch her Iconic with the Butter team...</p>
+            <p>Studio partnered with Paris’s ilovecreatives Studio to launch her Iconic Tracksuit Collection...</p>
         </div>
         <div class="project">
+            <div class="project-title">NO. ② — BRAND IDENTITY</div>
             <img src="butter.jpg" alt="Butter">
             <h3>BRAND IDENTITY FOR <i>Butter</i></h3>
             <p>ilovecreatives Studio partnered with the Butter team to create a fresh dynamic identity...</p>
         </div>
         <div class="project">
+            <div class="project-title">NO. ③ — 360 BRAND LAUNCH</div>
             <img src="lipstick.jpg" alt="Lipstick">
             <h3>A FRESH FACE FOR <i>Finding Ferdinand</i></h3>
             <p>Studio partnered with Finding Ferdinand to do a 360 rebrand...</p>
         </div>
         <div class="project">
+            <div class="project-title">NO. ④ — CREATIVE DIRECTION, CAMPAIGN PRODUCTION</div>
             <img src="dedcool.jpg" alt="Dedcool">
             <h3>CALIFORNIAN HOLIDAY FOR <i>Dedcool</i></h3>
             <p>Picture this. It’s December on the West Coast...</p>
@@ -109,11 +170,11 @@ ul {
 
     <footer>
         <div class="footer-content">
-            <div class="about">
+            <div class="footer-section">
                 <h3>ABOUT</h3>
                 <p>ilovecreatives Studio is your friendly design studio known for experimental, but approachable and fun-ctional design.</p>
             </div>
-            <div class="projects">
+            <div class="footer-section">
                 <h3>PROJECTS</h3>
                 <ul>
                     <li>Dedcool</li>
@@ -123,7 +184,7 @@ ul {
                     <li>The Gist</li>
                 </ul>
             </div>
-            <div class="services">
+            <div class="footer-section">
                 <h3>SERVICES</h3>
                 <ul>
                     <li>Brand Identity</li>
