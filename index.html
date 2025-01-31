@@ -7,16 +7,18 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 40px;
+            margin: 0;
+            padding: 0;
             line-height: 1.6;
         }
-        .container {
-            max-width: 900px;
-            margin: auto;
-        }
-        .header {
+        footer {
+            padding: 20px;
             display: flex;
             justify-content: space-between;
+        }
+
+    
+        .header {
             border-bottom: 1px solid black;
             padding-bottom: 10px;
             margin-bottom: 20px;
@@ -41,29 +43,17 @@
         ul li {
             font-size: 14px;
         }
-        .footer {
-            margin-top: 40px;
-            font-style: italic;
-            font-size: 16px;
-        }
-        .footer span {
-            font-weight: bold;
-        }
-        a {
-            color: blue;
-            text-decoration: none;
-        }
     </style>
 </head>
 <body>
+    <footer>
+        <section class="header">
+            <div class="column"><h2>About</h2></div>
+            <div class="column"><h2>Projects</h2></div>
+            <div class="column"><h2>Services</h2></div>
+        </section>
 
-    <div class="container">
-        <div class="header">
-            <h2>About</h2>
-            <h2>Projects</h2>
-            <h2>Services</h2>
-        </div>
-
+    <section class="content"> 
         <div class="column">
             <p>
                 ilovecreatives Studio is your friendly design studio known for experimental, but approachable and 
@@ -80,7 +70,6 @@
                 it could. The best way to start is to fill out <a href="#">our form</a> so we can do what we do best—go go go!
             </p>
         </div>
-
         <div class="column">
             <ul>
                 <li>Dedcool</li>
@@ -97,7 +86,6 @@
                 <li>Kristin Ess Hair</li>
             </ul>
         </div>
-
         <div class="column">
             <ul>
                 <li>Brand Identity</li>
@@ -115,11 +103,8 @@
                 <li>Video Writing & Production</li>
             </ul>
         </div>
+    </section>
 
-        <div class="footer">
-            <span>by ilovecreatives</span>
-        </div>
-    </div>
-
+    </footer>
 </body>
 </html>
