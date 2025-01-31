@@ -13,23 +13,30 @@ body {
     color: #000;
 }
 
-/* HEADER */
 header {
     text-align: center;
     padding: 20px;
     font-size: 24px;
 }
 
-/* WORK SECTION */
 .work {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     padding: 20px;
 }
 
 .project {
+    width: 48%;
     text-align: center;
+    margin-bottom: 20px;
+}
+
+.project img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
 }
 
 .project-title {
@@ -39,69 +46,42 @@ header {
     margin-bottom: 5px;
 }
 
-.project img {
-    width: 100%;
-    height: 300px; /* Taller rectangular shape */
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-/* RESPONSIVE WORK SECTION */
-@media (max-width: 768px) {
-    .work {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* CONTACT SECTION */
+/* Contact Section with Oval Background */
 .contact {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 50px;
-    position: relative;
+    padding: 50px 0;
 }
 
-.contact-content {
-    background: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/detail-10.gif') no-repeat center;
-    background-size: contain;
-    width: 60%;
-    height: 200px;
+.oval {
+    width: 100%;
+    height: 50vw; /* 50% of viewport width */
+    max-height: 300px;
+    background: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/detail-10.gif') no-repeat center center;
+    background-size: cover;
+    border-radius: 50%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 20px;
-    border-radius: 50%;
+    color: #000;
 }
 
-/* FOOTER */
-/* FOOTER */
+.contact-content {
+    max-width: 600px;
+}
+
+/* Footer Section */
 footer {
     background: #f4f4f4;
     padding: 20px;
-    text-align: center;
 }
 
 .footer-content {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    text-align: left;
-    position: relative;
-    padding-bottom: 10px;
-}
-
-/* Single full-width underline */
-.footer-content::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: #000;
 }
 
 .footer-section {
@@ -109,17 +89,41 @@ footer {
 }
 
 .footer-section h3 {
+    margin: 0;
+    padding-bottom: 5px;
+}
+
+.footer-section hr {
+    border: none;
+    border-bottom: 2px solid #000;
+    width: 100%;
     margin-bottom: 10px;
 }
 
-/* RESPONSIVE FOOTER */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
+    .work {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project {
+        width: 90%;
+    }
+
     .footer-content {
         flex-direction: column;
+        align-items: center;
     }
 
     .footer-section {
-        width: 100%;
+        width: 90%;
+        text-align: center;
         margin-bottom: 20px;
     }
 }
@@ -135,13 +139,13 @@ footer {
             <p class="project-title">NO. ① — ART DIRECTION, WEB, EMAIL, PAID ADS</p>
             <img src="paris-hilton.jpg" alt="Paris Hilton">
             <h3>SLIVING WITH <i>Paris Hilton</i></h3>
-            <p>Studio partnered with Paris’s ilovecreatives Studio to launch...</p>
+            <p>Studio partnered with Paris’s ilovecreatives Studio to launch her iconic Tracksuit Collection...</p>
         </div>
         <div class="project">
             <p class="project-title">NO. ② — BRAND IDENTITY</p>
             <img src="butter.jpg" alt="Butter">
             <h3>BRAND IDENTITY FOR <i>Butter</i></h3>
-            <p>ilovecreatives Studio partnered with the Butter team to create...</p>
+            <p>ilovecreatives Studio partnered with the Butter team to create a fresh dynamic identity...</p>
         </div>
         <div class="project">
             <p class="project-title">NO. ③ — 360 BRAND LAUNCH</p>
@@ -158,21 +162,25 @@ footer {
     </section>
 
     <section class="contact">
-        <div class="contact-content">
-            <p>WE LOVE HEARING <i>your Dreams.</i></p>
-            <h2>THAT’S NOT WATER, <br> THOSE ARE TEARS OF <i>Happy Clients.</i></h2>
-            <p>Let’s get this party started, get in touch.</p>
+        <div class="oval">
+            <div class="contact-content">
+                <p>WE LOVE HEARING <i>your Dreams.</i></p>
+                <h2>THAT’S NOT WATER, <br> THOSE ARE TEARS OF <i>Happy Clients.</i></h2>
+                <p>Let’s get this party started, get in touch.</p>
+            </div>
         </div>
     </section>
 
     <footer>
         <div class="footer-content">
-            <div class="footer-section about">
+            <div class="footer-section">
                 <h3>ABOUT</h3>
+                <hr>
                 <p>ilovecreatives Studio is your friendly design studio known for experimental, but approachable and fun-ctional design.</p>
             </div>
-            <div class="footer-section projects">
+            <div class="footer-section">
                 <h3>PROJECTS</h3>
+                <hr>
                 <ul>
                     <li>Dedcool</li>
                     <li>Finding Ferdinand</li>
@@ -181,8 +189,9 @@ footer {
                     <li>The Gist</li>
                 </ul>
             </div>
-            <div class="footer-section services">
+            <div class="footer-section">
                 <h3>SERVICES</h3>
+                <hr>
                 <ul>
                     <li>Brand Identity</li>
                     <li>Art Direction</li>
