@@ -4,65 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liminal🌉Loop</title>
-    <link rel="stylesheet" href="https://use.typekit.net/kcm3tge.css">
     <style>
-        @font-face {
-            font-family: 'Arial-Narrow';
-            src: url('https://static1.squarespace.com/static/636dcbb833f0c07619a6a5fa/t/636eac52d7a1a240b920cc65/1668197458894/Arial+Narrow.ttf');
-            font-style: normal;
-            font-weight: normal;
-            font-display: swap;
-        }
         body {
             font-family: 'Arial-Narrow', sans-serif;
-            margin: 50px;
+            margin: 30px;
             padding: 0;
-            line-height: 1.5;
+            line-height: 1.4;
             color: black;
             background-color: #F4EBE8;
         }
         main {
             max-width: 900px;
             margin: auto;
-        }     
-        .title {
-            width: 65%;
-        }
-        .title h1 {
-            margin: 0;
-            font-family: 'Arial-Narrow';
-            line-height: 80%;
-            font-size: 72px;
-            font-weight: normal;
-            text-transform: uppercase;
-        }
-        .title h1 em {
-            font-family: 'Adobe-Caslon-Pro';
-            line-height: 80%;
-            letter-spacing: -.06em;
-            font-style: italic;
-            text-transform: none;
-            font-feature-settings: 'swsh' on;
-            font-size: 82px;
-            text-align: justify;
         }
 
-        header, .content {
+        header {
             display: flex;
             justify-content: space-between;
-            gap: 8%;
-        }
-        header {
-            margin-top: 1%;
-            font-size: 14px;
+            margin-top: 0;
+            font-size: 12px;
             text-transform: uppercase;
             border-bottom: 0.075em solid;
             padding-bottom: 20px;
         }
+
         .content {
+            display: flex;
+            justify-content: space-between;
             margin-top: 20px;
             font-size: 15px;
-            text-align: justify;
         }
         .content h3 {      
             display: none;
@@ -70,29 +40,15 @@
         .column {
             width: 30%;
         }
-        .objective {
-            width: 40%;
-        }
         ul {
             list-style-type: none;
             padding: 0;
         }
-
-        .footer-img {
-            width: 100%;
-            height: auto;
-            margin-top: 10px;
+        ul li {
+            margin-bottom: 5px;
         }
+
         @media (max-width: 768px) {
-            body {
-                margin: 30px;
-            }
-            .title {
-                width: 100%;
-            }
-            .title h1, .title h1 em {
-                font-size: 64px !important;
-            }
             header {
                 display: none;
             }
@@ -102,36 +58,14 @@
             .content h3 {
                 display: block;
                 font-weight: normal;
-                font-family: 'Adobe-Caslon-Pro';
                 line-height: 90%;
                 font-size: 28px;
                 letter-spacing: -.04em;
                 font-style: italic;
-                font-feature-settings: 'swsh' on;
                 border-bottom: 0.075rem solid;
-                padding-bottom: 5px;
-                position: relative;
-                display: flex;
-                align-items: baseline;
+                padding-bottom: 10px;
             }
-            h3::before {
-                content: "";
-                display: inline-block;
-                width: 20px;
-                height: 20px;
-                margin-right: 0.6em;
-                background: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/BLOBs/blob-19.gif') no-repeat center center;
-                background-size: contain;
-            }
-            .content .column:nth-child(2) h3::before {
-                background: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/BLOBs/blob-20.gif') no-repeat center center;
-                background-size: contain;
-            }
-            .content h3:nth-child(4)::before {
-                background: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/BLOBs/blob-12.gif') no-repeat center center;
-                background-size: contain;
-            }
-            .column, .objective {
+            .column {
                 width: 100%;
                 margin-bottom: 15px;
             }
@@ -140,16 +74,15 @@
 </head>
 <body>
 <main>
-<div class="title"><h1>BENDING THE BEAUTY AISLE <em>with Good Weird</em></h1></div>    
-    
+
     <header> <!-- (Row 1) -->
-        <div class="objective">Objective</div>
+        <div class="column">Objective</div>
         <div class="column">Services</div>
-        <div class="column">View details<b>↗</b></div>
+        <div class="column">View Detail ↗</div>
     </header>
 
     <div class="content"> <!-- (Row 2) -->
-        <div class="objective">
+        <div class="column">
             <h3>Objective</h3>
             <p>Identifying and analyzing “weird” music listening patterns that deviate from typical preferences but lead to higher user satisfaction, increased streaming time, or better user engagement. Finding users who don't follow the genre or artist trends but still have high engagement or satisfaction by performing clustering on user preferences to see if there are hidden “good weird” user segments.</p>
             <p><u>Dataset:</u> User behavior on a music streaming platform, focusing on unusual listening patterns (e.g., a listener consistently enjoying genres or artists that don't typically align with their demographic). Gathering data about user demographics, listening history, and song ratings. Looking for patterns in behavior that seem "weird" compared to the average listener. Analyzing song features like genre, tempo, lyrics sentiment, and time-of-day listening patterns.</p>
@@ -168,10 +101,9 @@
         </div>   
         <!-- Empty column for alignment -->
         <div class="column"></div>
-        <h3>View details<b>↗</b></h3>
+        <h3>View Detail ↗</h3>
     </div>
 
-<img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/04/goodWeird.png" class="footer-img">
 </main>
 </body>
 </html>
