@@ -188,6 +188,7 @@ If the image is used as a background:
 - [ ]  Proza Libre
 - [ ]  Advent Pro
 - [ ]  Sora 🩶
+- [ ]  Reddit Sans Condensed
 
 <br>
 
