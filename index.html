@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulsing Circle</title>
+    <style>
+      body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #222;
+}
+
+.circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: red;
+    animation: pulse 5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        background-color: red;
+    }
+    20% {
+        transform: scale(1.2);
+        background-color: blue;
+    }
+    40% {
+        transform: scale(1);
+        background-color: green;
+    }
+    60% {
+        transform: scale(1.2);
+        background-color: yellow;
+    }
+    80% {
+        transform: scale(1);
+        background-color: purple;
+    }
+    100% {
+        transform: scale(1.2);
+        background-color: red;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="circle"></div>
+</body>
+</html>
