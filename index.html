@@ -28,42 +28,32 @@
         main {
             max-width: 900px;
             margin: auto;
-        }
-        
-        header {
+        }     
+        .title {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
             flex-wrap: wrap;
         }
-        header h1 {
+        .title h1 {
             font-size: 36px;
-            font-weight: bold;
+            font-weight: normal;
             line-height: 1.2;
         }
-        header h1 span {
-            font-style: italic;
-            font-weight: normal;
-        }
-        header h2 {
-            font-size: 30px;
+        em {
             font-family: "Georgia", serif;
-            font-style: italic;
         }
 
-        /* Section Headers */
-        .section-header {
+
+        header {
             display: flex;
             justify-content: space-between;
             margin-top: 30px;
-            font-size: 14px;
+            font-size: 18px;
             font-weight: bold;
             text-transform: uppercase;
-        }
-
-        .divider {
-            border-bottom: 1px solid black;
-            margin: 10px 0;
+            border-bottom: 1px solid;
+            padding-bottom: 10px;
         }
 
         /* Content Layout */
@@ -77,42 +67,18 @@
         .column {
             width: 30%;
         }
-
         .column p {
             line-height: 1.5;
         }
 
-        .column a {
-            text-decoration: none;
-            color: black;
-            font-size: 14px;
-        }
-
-        .column a:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
             body {
                 margin: 30px;
             }
-
-            .header {
-                flex-direction: column;
-                text-align: center;
+            .title {
+                width: 100%;
             }
-
-            .header h1 {
-                font-size: 28px;
-            }
-
-            .header h2 {
-                font-size: 24px;
-                margin-top: 5px;
-            }
-
-            .section-header {
+            header {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
@@ -128,29 +94,18 @@
                 width: 100%;
                 margin-bottom: 15px;
             }
-
-            .divider {
-                width: 100%;
-                margin-top: 10px;
-            }
         }
     </style>
 </head>
 <body>
 <main>
-    <header>    
-        <h1>BENDING THE BEAUTY AISLE <span>with</span></h1>
-        <h2>Good Weird</h2>
-    </header>
-
-    <!-- (Row 1) -->
-    <div class="section-header">
+<div class="title"><h1>BENDING THE BEAUTY AISLE <em>with Good Weird</em></h1></div>    
+    
+    <header> <!-- (Row 1) -->
         <div class="column">Objective</div>
         <div class="column">Services</div>
-        <div class="column"><a href="#">View Site ↗</a></div>
+        <div class="column"><a href="#">View Detail ↗</a></div>
     </div>
-
-    <div class="divider"></div> <!-- Horizontal Line -->
 
     <!-- (Row 2) -->
     <div class="content">
@@ -167,7 +122,6 @@
         </div>
         <div class="column"></div> <!-- Empty column for alignment -->
     </div>
-  
 </main>
 </body>
 </html>
