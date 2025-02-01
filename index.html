@@ -3,92 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Good Weird</title>
+    <title>Good Weird - Bending the Beauty Aisle</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 40px;
-            padding: 0;
+            margin: 50px;
             color: black;
+            background-color: white;
         }
+        
         .container {
-            display: flex;
-            flex-direction: column;
-            max-width: 1000px;
+            max-width: 900px;
             margin: auto;
         }
-        .row {
+
+        .header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
+            align-items: baseline;
         }
-        .column {
-            flex: 1;
-            padding: 10px;
-        }
-        .divider {
-            border-bottom: 1px solid black;
-            margin-bottom: 20px;
-        }
-        h1 {
-            font-size: 32px;
+
+        .header h1 {
+            font-size: 36px;
             font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: -1px;
             line-height: 1.2;
         }
-        .italic {
+
+        .header h1 span {
             font-style: italic;
-            font-size: 28px;
+            font-weight: normal;
         }
-        h2 {
+
+        .header h2 {
+            font-size: 30px;
+            font-family: "Georgia", serif;
+            font-style: italic;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
             font-size: 14px;
-            text-transform: uppercase;
             font-weight: bold;
-            margin-bottom: 10px;
+            text-transform: uppercase;
         }
-        .services, .site-link {
-            text-align: right;
+
+        .divider {
+            border-bottom: 1px solid black;
+            margin: 10px 0;
         }
-        .site-link a {
+
+        .content {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .column {
+            width: 30%;
+        }
+
+        .column.full {
+            width: 100%;
+        }
+
+        .column p {
+            line-height: 1.5;
+        }
+
+        .column a {
             text-decoration: none;
             color: black;
-            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .column a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- Row 1 -->
-    <div class="row">
-        <div class="column">
-            <h1>Bending the Beauty Aisle <span class="italic">with</span></h1>
-            <h1 class="italic">Good Weird</h1>
-        </div>
-        <div class="column services">
-            <h2>Services</h2>
-        </div>
-        <div class="column site-link">
-            <h2><a href="#">View Site →</a></h2>
-        </div>
+    <!-- Header Title -->
+    <div class="header">
+        <h1>BENDING THE BEAUTY AISLE <span>with</span></h1>
+        <h2>Good Weird</h2>
     </div>
 
-    <div class="divider"></div> <!-- Full-width bottom border -->
+    <!-- Section Headers (Row 1) -->
+    <div class="section-header">
+        <div class="column">Objective</div>
+        <div class="column">Services</div>
+        <div class="column"><a href="#">View Site ↗</a></div>
+    </div>
 
-    <!-- Row 2 -->
-    <div class="row">
+    <div class="divider"></div> <!-- Horizontal Line -->
+
+    <!-- Content (Row 2) -->
+    <div class="content">
         <div class="column">
-            <h2>Objective</h2>
-            <p>Good Weird is a new approach to genderless beauty. With multipurpose products, Good Weird takes the complexity out of makeup, to allow newcomers to feel confident in the beauty aisle. Their skin forward products are functional basics you can take on the go, without needing any tools.</p>
-            <p>To further express their weirdness, ilovecreatives Studio completed a brand refresh and designed a playful, nostalgic-yet-futuristic, new e-commerce site that seamlessly integrates their editorial photography with product collections.</p>
+            <p>
+                Good Weird is a new approach to genderless beauty. With multipurpose products, 
+                Good Weird takes the complexity out of makeup, to allow newcomers to feel confident 
+                in the beauty aisle. Their skin-forward products are functional basics 
+                you can take on the go, without needing any tools.
+            </p>
         </div>
-        <div class="column services">
+        <div class="column">
             <p>Brand Refresh <br> Web Design</p>
         </div>
-        <div class="column"></div> <!-- Empty column for spacing -->
+        <div class="column"></div> <!-- Empty column for alignment -->
+    </div>
+
+    <div class="content">
+        <div class="column full">
+            <p>
+                To further express their weirdness, ilovecreatives Studio completed a brand refresh and designed a playful, 
+                nostalgic-yet-futuristic, new e-commerce site that seamlessly integrates their editorial photography 
+                with product collections.
+            </p>
+        </div>
     </div>
 </div>
+
 </body>
 </html>
