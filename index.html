@@ -33,7 +33,7 @@
             width: 55%;
         }
         .title h1 {
-            font-size: 36px;
+            font-size: 2rem;
             font-weight: normal;
             line-height: 1.2;
         }
@@ -45,27 +45,24 @@
         header {
             display: flex;
             justify-content: space-between;
-            margin-top: 30px;
-            font-size: 18px;
-            font-weight: bold;
+            margin-top: 5px;
+            font-size: 12px;
             text-transform: uppercase;
             border-bottom: 1px solid;
-            padding-bottom: 10px;
+            padding-bottom: 20px;
         }
 
-        /* Content Layout */
         .content {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
-            font-size: 14px;
+            font-size: 15px;
         }
-
+        .content h3 {      
+            display: none;
+        }
         .column {
             width: 30%;
-        }
-        .column p {
-            line-height: 1.5;
         }
 
         @media (max-width: 768px) {
@@ -75,18 +72,22 @@
             .title {
                 width: 100%;
             }
-            header {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
+            .title h1 {  
+                font-size: 3rem;
             }
-
+            header {
+                display: none;
+            }
             .content {
                 flex-direction: column;
-                align-items: center;
-                text-align: center;
             }
-
+            .content h3 {
+                display: block;
+                font-weight: normal;
+                font-size: 1.35em;
+                font-family: serif;
+                border-bottom: 1px solid;
+            }
             .column {
                 width: 100%;
                 margin-bottom: 15px;
@@ -98,25 +99,25 @@
 <main>
 <div class="title"><h1>BENDING THE BEAUTY AISLE <em>with Good Weird</em></h1></div>    
     
-    <header><!-- (Row 1) -->
+    <header> <!-- (Row 1) -->
         <div class="column">Objective</div>
         <div class="column">Services</div>
-        <div class="column"><a href="#">View Detail ↗</a></div>
+        <div class="column">View Detail ↗</div>
     </header>
 
-    <div class="content"><!-- (Row 2) -->
+    <div class="content"> <!-- (Row 2) -->
         <div class="column">
-            <p>
-                Good Weird is a new approach to genderless beauty. With multipurpose products, 
-                Good Weird takes the complexity out of makeup, to allow newcomers to feel confident 
-                in the beauty aisle. Their skin-forward products are functional basics 
-                you can take on the go, without needing any tools.
+            <h3>Objective</h3>
+            <p>Good Weird is a new approach to genderless beauty. With multipurpose products,Good Weird takes the complexity out of makeup, to allow newcomers to feel confidentn the beauty aisle. Their skin-forward products are functional basics you can take on the go, without needing any tools.
             </p>
         </div>
         <div class="column">
+            <h3>Services</h3>
             <p>Brand Refresh <br> Web Design</p>
-        </div>
-        <div class="column"></div> <!-- Empty column for alignment -->
+        </div>   
+        <!-- Empty column for alignment -->
+        <div class="column"></div>
+        <h3>🪸&nbsp;&nbsp;View Detail ↗</h3>
     </div>
 </main>
 </body>
