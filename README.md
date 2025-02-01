@@ -187,6 +187,7 @@ If the image is used as a background:
 - [ ]  Archivo Narrow
 - [ ]  Proza Libre
 - [ ]  Advent Pro
+- [ ]  Sora 🩶
 
 <br>
 
