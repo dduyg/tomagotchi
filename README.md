@@ -11,7 +11,7 @@
 - https://webdevtrick.com/css-moving-text-mask/?amp=1
 - https://webdevtrick.com/text-to-search-input-animation/?amp=1
 
-```
+```css
 body.01 {
   background-color: #EDEBED;
   background-image: radial-gradient(circle farthest-corner at 0% 100%, #706C6E, hsla(0, 0%, 100%, 0) 50%);  
