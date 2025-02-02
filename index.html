@@ -104,9 +104,9 @@
             color: inherit;
             background-repeat: no-repeat;
             background-image: linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor);
-            background-size: 50% 1px, 50% 1px;
+            background-size: 0% 1px, 0% 1px; /* Initially no visible line */
             background-position: 0% bottom, 100% bottom;
-            transition: background-position 0.3s ease;
+            transition: background-size 0.3s ease;
         }
         @keyframes underlineSlideOut {
             from {background-position: 0% bottom, 100% bottom;} 
@@ -117,6 +117,7 @@
             to {background-position: 0% bottom, 100% bottom;}
         }
         li a:hover {
+            background-size: 50% 1px, 50% 1px; /* Make lines visible on hover */
             animation: underlineSlideIn 0.6s cubic-bezier(.19, 1, .22, 1) forwards;
         }
         li h3 a:hover { 
