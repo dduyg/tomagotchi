@@ -98,31 +98,45 @@
             list-style-type: none;
             padding: 0;
         }
-        li a {
-            display: inline;
-            text-decoration: none;
-            color: inherit;
-            background-repeat: no-repeat;
-            background-image: linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor);
-            background-size: 0% 1px, 0% 1px; /* Initially no visible line */
-            background-position: 0% bottom, 100% bottom;
-            transition: background-size 0.3s ease;
-        }
-        @keyframes underlineSlideOut {
-            from {background-position: 0% bottom, 100% bottom;} 
-            to {background-position: 200% bottom, 300% bottom;}
-        }
-        @keyframes underlineSlideIn {
-            from {background-position: -200% bottom, -100% bottom;}
-            to {background-position: 0% bottom, 100% bottom;}
-        }
-        li a:hover {
-            background-size: 50% 1px, 50% 1px; /* Make lines visible on hover */
-            animation: underlineSlideIn 0.6s cubic-bezier(.19, 1, .22, 1) forwards;
-        }
-        li h3 a:hover { 
-            animation: underlineSlideOut 0.6s cubic-bezier(.19, 1, .22, 1) forwards;
-        }
+a {
+  display: inline;
+  text-decoration: none;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px, 0% 1px; /* Initially hidden */
+  background-position: 0% bottom, 100% bottom;
+  transition: background-size 0.3s ease, background-position 0.3s ease; /* Ensures smooth transition */
+}
+
+@keyframes underlineSlideOut {
+  from {
+    background-size: 50% 1px, 50% 1px; /* Start from visible */
+    background-position: 0% bottom, 100% bottom;
+  }
+  to {
+    background-size: 0% 1px, 0% 1px; /* Shrink to hidden */
+    background-position: 200% bottom, 300% bottom;
+  }
+}
+
+@keyframes underlineSlideIn {
+  from {
+    background-size: 0% 1px, 0% 1px; /* Start from hidden */
+    background-position: -200% bottom, -100% bottom;
+  }
+  to {
+    background-size: 50% 1px, 50% 1px; /* Expand to visible */
+    background-position: 0% bottom, 100% bottom;
+  }
+}
+
+a:hover {
+  animation: underlineSlideIn 0.6s cubic-bezier(.19, 1, .22, 1) forwards;
+}
+
+h3 a:hover {
+  animation: underlineSlideOut 0.6s cubic-bezier(.19, 1, .22, 1) forwards;
+}
 
         @media (max-width: 768px) {
             .titles {
