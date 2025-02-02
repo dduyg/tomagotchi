@@ -86,8 +86,7 @@
         .contents em {  
             font-style: normal;
             font-family: 'Ppneuebit',sans-serif;
-            font-weight: 700;
-            font-size: 1.3rem;
+            font-size: 1.3em;
             line-height: 0;
             display: inline-block;
         }
@@ -98,39 +97,37 @@
             list-style-type: none;
             padding: 0;
         }
+
 a {
   display: inline;
   text-decoration: none;
   background-repeat: no-repeat;
-  background-image: linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor);
-  background-size: 0% 1px, 0% 1px; /* Initially hidden */
+  background-image: linear-gradient(transparent, transparent), linear-gradient(transparent, transparent);
+  background-size: 50% 1px, 50% 1px;
   background-position: 0% bottom, 100% bottom;
-  transition: background-size 0.3s ease, background-position 0.3s ease; /* Ensures smooth transition */
+  transition: background-position 0.3s ease, background-image 0.3s ease;
 }
 
 @keyframes underlineSlideOut {
   from {
-    background-size: 50% 1px, 50% 1px; /* Start from visible */
     background-position: 0% bottom, 100% bottom;
   }
   to {
-    background-size: 0% 1px, 0% 1px; /* Shrink to hidden */
     background-position: 200% bottom, 300% bottom;
   }
 }
 
 @keyframes underlineSlideIn {
   from {
-    background-size: 0% 1px, 0% 1px; /* Start from hidden */
     background-position: -200% bottom, -100% bottom;
   }
   to {
-    background-size: 50% 1px, 50% 1px; /* Expand to visible */
     background-position: 0% bottom, 100% bottom;
   }
 }
 
 a:hover {
+  background-image: linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor);
   animation: underlineSlideIn 0.6s cubic-bezier(.19, 1, .22, 1) forwards;
 }
 
@@ -149,7 +146,7 @@ h3 a:hover {
                 display: block;
                 font-weight: normal;
                 line-height: 90%;
-                font-size: 14px;
+                font-size: 15px;
                 font-family: 'Ppneuebit',sans-serif;
                 margin: 0;
                 padding: 0;
@@ -164,20 +161,20 @@ h3 a:hover {
 <body>
 <footer>
     <div class="titles">
-        <div class="column">About</div>
         <div class="column">Connect</div>
+        <div class="column">Things we do</div>
         <div class="column">Site</div>
     </div>
     <div class="contents">
         <div class="column">
-            <h3>01.About</h3>
+            <h3>01.Connect</h3>
             <p><em>ParallaxLayers™</em> is the creative practice of Hong Kong-based data strategist &amp; creative developer Duygu Dağdelen.</p>
             <p>Our approach is adaptable, scalable, and comprehensive. We strategically build custom teams perfectly suited for each project. Everything you want, nothing you don’t.
                <br>&nbsp; &nbsp; We’re intentional about creating high-quality work, meaningful client relationships, and an environment of mutual respect for everyone we collaborate with.
             </p>
         </div>
         <div class="column">
-            <h3>02.Connect</h3>
+            <h3>02.Things we do</h3>
             <ul>
                 <li>Data Aggregation</li>
                 <li>ETL</li>
