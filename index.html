@@ -34,12 +34,23 @@
             width: 100%;
             margin: 10vh auto;
         }
-        h1 {
-            font-size: 2em;
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
-            text-align: center;
         }
-
+        header h1 {
+            font-size: 2em;
+        }
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+            }
+            header h1 {
+                text-align: center;
+            }
+        }
 
         input {
             display: none;
@@ -159,7 +170,12 @@ input:checked ~ .questions {
 </head>
 <body>
 <main>
-  <h1>Accordion Tooltip</h1>
+  <header>
+      <h1>storypadding</h1>
+      <nav>
+          hello
+      </nav>
+  </header>
 
   <article>
     <input type="radio" id="tab-1" name="tabs">
