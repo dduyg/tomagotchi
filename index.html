@@ -3,14 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiminalLoop</title>
+    <title>Liminal🗿Loop</title>
     <style>
         * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        @font-face {
+            font-family: "ABC Favorit";
+            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/ABCfavorit.woff2') format('woff2');
+            font-style: normal;
+            font-weight: normal;
+        }
+        @font-face {
+            font-family: "ABC Favorit";
+            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/ABCfavorit-Italic.woff2') format('woff2');  
+            font-style: italic;
         }
         body {
+            font-family: "ABC Favorit", sans-serif;
+            background: darkgray;
             color: black;
             overflow: hidden;
         }
@@ -22,26 +37,27 @@
         h1 {
             font-size: 2em;
             margin-bottom: 20px;
-            text-align:center;
+            text-align: center;
         }
 
-input {
-    display: none;
-}
-label {
-    display: flex;
-    width: 100%;
-    height: 50px;
-    cursor: pointer;
-    border: 3px solid #3E474F;
-    user-select: none;
-}
-label div:first-child {
-    width: 100%;
-    line-height: 45px;
-    margin-left: 10px;
-    font-size: 1.2em;
-}
+
+        input {
+            display: none;
+        }
+        label {
+            display: flex;
+            width: 100%;
+            height: 50px;
+            cursor: pointer;
+            border: 3px solid;
+            user-select: none;
+        }
+        label div:first-child {
+            width: 100%;
+            line-height: 45px;
+            margin-left: 10px;
+            font-size: 1.2em;
+        }
 
 .cross{
     margin-right:15px;
@@ -143,23 +159,30 @@ input:checked ~ .questions {
 </head>
 <body>
 <main>
-  <h1>Accordion Menu + Tooltip</h1>
+  <h1>Accordion Tooltip</h1>
 
-  <div class="wrap-1">
+  <article>
     <input type="radio" id="tab-1" name="tabs">
-    <label for="tab-1"><div>tab one</div><div class="cross"></div></label>
-    <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia autem quasi inventore unde nobis voluptatibus illum quae rerum laudantium minima, excepturi quis maiores. Eaque quae, nam delectus explicabo, deserunt ipsum!</div>
-  </div>
-
-  <div class="wrap-2">
+    <label for="tab-1"><div>Memory Work</div><div class="cross"></div></label>
+    <div class="content">
+        Memory work is a process of engaging with the past which has both an ethical and historical dimension.[1]
+        During memory work, the process of producing an image or what we refer to as the production of the imaginary, is central.
+        Therefore, the key in the analysis of remembered history are contradictions.[2]
+        This calls for an expanded archive that includes the "oral and popular tradition"[3] as well as the written traditions
+        normally associated with the archives.
+    </div>
+  </article>
+  <article>
     <input type="radio" id="tab-2" name="tabs">
     <label for="tab-2"><div>tab two</div><div class="cross"></div></label>
-    <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia autem quasi inventore unde nobis voluptatibus illum quae rerum laudantium minima, excepturi quis maiores. Eaque quae, nam delectus <span class="tip" data-tip="Eaque quae, nam delectus explicabo, deserunt ipsum!">explicabo</span>,
-      deserunt ipsum! Lorem ipsum dolor sit amet, consectetur adipisicing elit. <span class="tip" data-tip="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">Mollitia</span> autem quasi inventore unde nobis voluptatibus illum quae rerum laudantium
-      minima, excepturi quis maiores. Eaque quae, nam delectus explicabo, <span class="tip" data-tip="Lorem ipsum dolor sit amet.">deserunt</span> ipsum!</div>
-  </div>
+    <div class="content">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia autem quasi inventore unde nobis voluptatibus illum quae rerum laudantium minima, excepturi quis maiores. Eaque quae, nam delectus <span class="tip" data-tip="Eaque quae, nam delectus explicabo, deserunt ipsum!">explicabo</span>,
+        deserunt ipsum! Lorem ipsum dolor sit amet, consectetur adipisicing elit. <span class="tip" data-tip="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">Mollitia</span> autem quasi inventore unde nobis voluptatibus illum quae rerum laudantium
+        minima, excepturi quis maiores. Eaque quae, nam delectus explicabo, <span class="tip" data-tip="Lorem ipsum dolor sit amet.">deserunt</span> ipsum!
+    </div>
+  </article>
 
-  <div class="wrap-3">
+  <article>
     <input type="radio" id="tab-3" name="tabs">
     <label for="tab-3"><div>tab three</div><div class="cross"></div></label>
     <div class="questions">
@@ -167,18 +190,23 @@ input:checked ~ .questions {
         <input type="radio" id="question-1" name="question">
         <label for="question-1"><div>question one</div> <div class="cross"></div></label>
         <div class="content">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam atque, soluta doloribus distinctio saepe labore voluptates facere illum alias perferendis praesentium quia vel accusamus incidunt corporis veniam sapiente. Voluptate, quasi.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam atque, soluta doloribus
+          distinctio saepe labore voluptates facere illum alias perferendis praesentium
+          quia vel accusamus incidunt corporis veniam sapiente. Voluptate, quasi.
         </div>
       </div>
       <div class="question-wrap">
         <input type="radio" id="question-2" name="question">
         <label for="question-2"><div>question two</div> <div class="cross"></div></label>
         <div class="content">
-          Ipsam atque, soluta doloribus distinctio saepe labore voluptates facere illum alias perferendis praesentium quia vel accusamus incidunt corporis veniam sapiente. Voluptate, quasi.
+            Ipsam atque, soluta doloribus distinctio saepe labore
+            voluptates facere illum alias perferendis praesentium
+            quia vel accusamus incidunt corporis veniam sapiente.
+            Voluptate, quasi.
         </div>
       </div>
     </div>
-  </div>
+  </article>
 </main>
 </body>
 </html>
