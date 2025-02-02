@@ -6,6 +6,30 @@
 ⛡ ▆  ⚞ ⏥
 ```
 
+- https://webdevtrick.com/jquery-search-filter/?amp=1
+- https://webdevtrick.com/html-css-glitch-effect/?amp=1
+- https://webdevtrick.com/css-moving-text-mask/?amp=1
+- https://webdevtrick.com/text-to-search-input-animation/?amp=1
+
+```
+body.01 {
+  background-color: #EDEBED;
+  background-image: radial-gradient(circle farthest-corner at 0% 100%, #706C6E, hsla(0, 0%, 100%, 0) 50%);  
+}
+body.02 {
+  background-color: #F7ECE1;
+  background-image: radial-gradient(circle farthest-corner at 100% 100%, #EBCFB2, hsla(0, 0%, 100%, 0) 50%);   
+}
+body.03 {
+  background-color: white;
+  background-image: radial-gradient(circle farthest-corner at 0% 0%, #AAABBC, hsla(0, 0%, 100%, 0) 50%);
+}
+body.04 {
+  background-color: #ddd;
+  background-image: radial-gradient(circle farthest-corner at 100% 0%, #FEA481, hsla(0, 0%, 100%, 0) 50%);
+}
+```
+
 - [x] <img src="https://img.shields.io/badge/■D3D3D3-D3D3D3?style=for-the-badge"/> <img src="https://img.shields.io/badge/■1E1E1E-1E1E1E?style=for-the-badge"/>
 - [ ] <img src="https://img.shields.io/badge/■383838-383838?style=for-the-badge"/> <img src="https://img.shields.io/badge/■C0C0C0-C0C0C0?style=for-the-badge"/>
 - [ ] <img src="https://img.shields.io/badge/■E8E8E8-E8E8E8?style=for-the-badge"/>
