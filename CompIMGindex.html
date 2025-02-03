@@ -5,9 +5,491 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>LiminalLoop </title>
-    <style>
+    <style>    
+@font-face {
+  font-family: "Austin";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/AustinCy-Roman-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/AustinCy-Roman-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Austin";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/AustinCy-Roman Italic-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/AustinCy-Roman Italic-Web.woff") format("woff");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Austin";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/AustinCy-Italic-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/AustinCy-Italic-Web.woff") format("woff");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Austin";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/AustinCy-Semibold-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/AustinCy-Semibold-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Austin";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/AustinCy-Semibold Italic-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/AustinCy-Semibold Italic-Web.woff") format("woff");
+  font-style: italic;
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Austin";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/AustinCy-Bold-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/AustinCy-Bold-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Austin";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/AustinCy-Bold Italic-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/AustinCy-Bold Italic-Web.woff") format("woff");
+  font-style: italic;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Austin";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/AustinCy-Fat-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/AustinCy-Fat-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Dala Floda";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/DalaFlodaCy-Fat-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/DalaFlodaCy-Fat-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 800;
+}
+@font-face {
+  font-family: "Druk Condensed";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/DrukCondCy-Super-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/DrukCondCy-Super-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 800;
+}
+@font-face {
+  font-family: "Druk Condensed";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/DrukXCondCy-Super-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/DrukXCondCy-Super-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 900;
+}
+@font-face {
+  font-family: "Druk Wide";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/DrukWideCy-Bold-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/DrukWideCy-Bold-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Druk Wide";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/DrukWideCy-Super-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/DrukWideCy-Super-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 900;
+}
+@font-face {
+  font-family: "Giorgio Sans";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GiorgioSansLC-Thin-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GiorgioSansLC-Thin-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Giorgio Sans";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GiorgioSansLC-Regular-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GiorgioSansLC-Regular-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Giorgio Sans";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GiorgioSansLC-RegularItalic-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GiorgioSansLC-RegularItalic-Web.woff") format("woff");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Giorgio Sans";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GiorgioSansLC-Medium-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GiorgioSansLC-Medium-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Giorgio Sans";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GiorgioSansLC-Bold-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GiorgioSansLC-Bold-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Giorgio Sans";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GiorgioSansLC-BoldItalic-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GiorgioSansLC-BoldItalic-Web.woff") format("woff");
+  font-style: italic;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Giorgio Sans";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GiorgioSansLC-Heavy-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GiorgioSansLC-Heavy-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 800;
+}
+@font-face {
+  font-family: "Giorgio Sans";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GiorgioSansLC-Black-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GiorgioSansLC-Black-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 900;
+}
+@font-face {
+  font-family: "Graphik";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-Thin-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-Thin-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Graphik";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-ExtraLight-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-ExtraLight-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Graphik";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-Light-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-Light-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Graphik";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-Regular-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-Regular-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Graphik";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-RegularItalic-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-RegularItalic-Web.woff") format("woff");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Graphik";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-Medium-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-Medium-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Graphik";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-Medium Italic-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-Medium Italic-Web.woff") format("woff");
+  font-style: italic;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Graphik";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-Bold-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-Bold-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Graphik";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-BoldItalic-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-BoldItalic-Web.woff") format("woff");
+  font-style: italic;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Graphik";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-Black-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-Black-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 800;
+}
+@font-face {
+  font-family: "Graphik";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-Super-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/GraphikLC-Super-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 900;
+}
+@font-face {
+  font-family: "Kazimir";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Kazimir-Web-Regular.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Kazimir-Web-Regular.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Kazimir";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Kazimir-Web-Medium.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Kazimir-Web-Medium.woff") format("woff");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Kazimir";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Kazimir-Web-Bold.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Kazimir-Web-Bold.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Kazimir";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Kazimir-Web-Black.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Kazimir-Web-Black.woff") format("woff");
+  font-style: normal;
+  font-weight: 900;
+}
+@font-face {
+  font-family: "Kazimir Text";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/KazimirText-Hairline_web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/KazimirText-Hairline_web.woff") format("woff");
+  font-style: normal;
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Kazimir Text";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/KazimirText-Book_web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/KazimirText-Book_web.woff") format("woff");
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Kazimir Text";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/KazimirText-Regular_web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/KazimirText-Regular_web.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Kazimir Text";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/KazimirText-Bold_web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/KazimirText-Bold_web.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Karloff Negative";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/KarloffNegativePro-Web-Regular.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/KarloffNegativePro-Web-Regular.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Karloff Negative";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/KarloffNegativePro-Web-Bold.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/KarloffNegativePro-Web-Bold.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Marlene";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/MarleneCy-Web-Light.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/MarleneCy-Web-Light.woff") format("woff");
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Marlene";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/MarleneCy-Web-Bold.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/MarleneCy-Web-Bold.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Navigo";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Navigo-Thin-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Navigo-Thin-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Navigo";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Navigo-Light-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Navigo-Light-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Navigo";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Navigo-Regular-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Navigo-Regular-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Navigo";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Navigo-Bold-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Navigo-Bold-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Navigo";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Navigo-Black-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Navigo-Black-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 900;
+}
+@font-face {
+  font-family: "Nekst";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Nekst-Thin-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Nekst-Thin-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Nekst";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Nekst-Regular-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Nekst-Regular-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Nekst";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Nekst-SemiBold-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Nekst-SemiBold-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Nekst";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Nekst-Black-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Nekst-Black-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 900;
+}
+@font-face {
+  font-family: "NWT Bodoni";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/NWT_Bodoni-Regular-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/NWT_Bodoni-Regular-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "NWT Bodoni";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/NWT_Bodoni-Italic-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/NWT_Bodoni-Italic-Web.woff") format("woff");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "NWT Bodoni";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/NWT_Bodoni-Bold-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/NWT_Bodoni-Bold-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Parmigiano Text Pro";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Parmigiano_Text_Pro-Regular-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Parmigiano_Text_Pro-Regular-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Parmigiano Text Pro";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Parmigiano_Text_Pro-Black-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Parmigiano_Text_Pro-Black-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 900;
+}
+@font-face {
+  font-family: "Proto Grotesk";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Proto_Grotesk-ExtraLight-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Proto_Grotesk-ExtraLight-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Proto Grotesk";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Proto_Grotesk-Light-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Proto_Grotesk-Light-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Proto Grotesk";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Proto_Grotesk-Regular-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Proto_Grotesk-Regular-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Proto Grotesk";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Proto_Grotesk-Bold-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Proto_Grotesk-Bold-Web.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Spektra";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Spektra-Variable-Web.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Sauber Script";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Sauber_Script-SauberScript-Web.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/Sauber_Script-SauberScript-Web.woff") format("woff");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Stratos";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/StratosLC-Web-Light.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/StratosLC-Web-Light.woff") format("woff");
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Stratos";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/StratosLC-Web-Regular.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/StratosLC-Web-Regular.woff") format("woff");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Stratos";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/StratosLC-Web-Italic.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/StratosLC-Web-Italic.woff") format("woff");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Stratos";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/StratosLC-Web-Medium.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/StratosLC-Web-Medium.woff") format("woff");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Stratos";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/StratosLC-Web-Bold.woff2") format("woff2"),
+       url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/StratosLC-Web-Bold.woff") format("woff");
+  font-style: normal;
+  font-weight: 700;
+}
         body {
-            font-family: "Tenor Sans", sans-serif;
+            font-family: "Austin", sans-serif;
             background-color: white;
             color: #3E474F;
             font-size: 1.4rem;
