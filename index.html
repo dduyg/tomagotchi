@@ -204,7 +204,7 @@
             display: block !important;
             /* Overriding <a> display inline for links inside <li> */
         }
-        a {
+        footer a {
             display: inline;
             text-decoration: none;
             color: inherit;
@@ -222,7 +222,7 @@
             from {background-position: -200% bottom, -100% bottom;}
             to {background-position: 0% bottom, 100% bottom;}
         }
-        a:hover {
+        footer a:hover {
             background-image: linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor); 
             animation: underlineSlideIn 1s cubic-bezier(.19, 1, .22, 1) forwards;
         }
@@ -232,7 +232,20 @@
         .footer-img {
             width: 100%;
             height: auto;
-            opacity: 0.5;
+        }
+        .copyright {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+        .copyright nav a {
+            display: inline-block; 
+            cursor: pointer; 
+            margin-right: .7rem;
+            color: inherit;
+            text-decoration: none;
+            text-transform: uppercase;
         }
         @media (max-width: 768px) {
             .titles {
@@ -337,6 +350,17 @@
             </div>
         </div>
     </footer>
-    <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/d06.png" class="footer-img">
+    <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/d10.png" class="footer-img">
+    <div class="copyright">
+        <p>© parallaxlayers Studio 2025 — Los Angeles</p>
+        <nav>
+            <a href="#🌐">Instagram</a>
+            <a href="#🌐">GitHub</a>
+            <a href="#🌐">ko-fi</a>
+            <a href="#🌐">medium</a>
+            <a href="#🌐">inprnt</a>
+            <a href="#🌐">behance</a>
+        </nav>
+    </div>
 </body>
 </html>
