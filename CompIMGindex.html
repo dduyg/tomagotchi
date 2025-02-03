@@ -5,7 +5,398 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>LiminalLoop </title>
-    <style>    
+    <style>
+
+@font-face {
+  font-family: "Apres RE";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Apres RE/Montserrat-BoldItalic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Apres RE";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Apres RE/Montserrat-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Apres RE";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Apres RE/Montserrat-Italic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Apres RE";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Apres RE/Montserrat-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Benton Modern RE";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Benton Modern RE/Lora-BoldItalic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Benton Modern RE";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Benton Modern RE/Lora-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Benton Modern RE";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Benton Modern RE/Lora-Italic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Benton Modern RE";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Benton Modern RE/Lora-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Benton Sans RE";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Benton Sans RE/OpenSans-BoldItalic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Benton Sans RE";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Benton Sans RE/OpenSans-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Benton Sans RE";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Benton Sans RE/OpenSans-Italic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Benton Sans RE";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Benton Sans RE/OpenSans-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Calibri";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Calibri/OpenSans-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Calibri";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Calibri/OpenSans-Italic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Calibri";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Calibri/OpenSans-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Farnham Display";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Farnham Display/PlayfairDisplay-Italic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Farnham Display";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Farnham Display/PlayfairDisplay-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Farnham Text";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Farnham Text/PlayfairDisplay-BoldItalic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Farnham Text";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Farnham Text/PlayfairDisplay-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Farnham Text";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Farnham Text/PlayfairDisplay-MediumItalic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Farnham Text";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Farnham Text/PlayfairDisplay-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Freight Big";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Freight Big/PlayfairDisplay-Black.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 900;
+}
+@font-face {
+  font-family: "Freight Big";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Freight Big/PlayfairDisplay-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Freight Big";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Freight Big/PlayfairDisplay-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Georgia Pro";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Georgia Pro/Gelasio-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 900;
+}
+@font-face {
+  font-family: "Georgia Pro";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Georgia Pro/Gelasio-BoldItalic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Georgia Pro";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Georgia Pro/Gelasio-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Georgia Pro";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Georgia Pro/Gelasio-Italic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Georgia Pro";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Georgia Pro/Gelasio-SemiBoldItalic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Georgia Pro";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Georgia Pro/Gelasio-SemiBold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Georgia Pro";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Georgia Pro/Gelasio-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Gill Sans";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Gill Sans/Cabin-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Gill Sans";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Gill Sans/Cabin-Italic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Gill Sans";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Gill Sans/Cabin-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Gill Sans";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Gill Sans/Cabin-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "News Gothic";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/News Gothic/NewsCycle-Bold.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "News Gothic";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/News Gothic/NewsCycle-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "News Gothic";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/News Gothic/NewsCycle-Regular.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "News Gothic";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/News Gothic/NewsCycle-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Nitti";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Nitti/SplineSansMono-LightItalic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Nitti";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Nitti/SplineSansMono-Light.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Nitti";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Nitti/SplineSansMono-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Nobel";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Nobel/JosefinSans-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Nobel";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Nobel/JosefinSans-LightItalic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Nobel";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Nobel/JosefinSans-Light.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Nobel";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Nobel/JosefinSans-ExtraLight.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Nobel";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Nobel/JosefinSans-Italic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Nobel";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Nobel/JosefinSans-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Parkinson";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Parkinson/Lora-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Parkinson";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Parkinson/Lora-Italic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Parkinson";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Parkinson/Lora-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Parkinson";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Parkinson/Lora-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Scout RE";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Scout RE/NotoSansDisplay-BoldItalic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Scout RE";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Scout RE/NotoSansDisplay-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Scout RE";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Scout RE/NotoSansDisplay-Italic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Scout RE";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Scout RE/NotoSansDisplay-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Sweet Sans";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Sweet Sans/Raleway-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Sweet Sans";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Sweet Sans/Raleway-Italic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Sweet Sans";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Sweet Sans/Raleway-Light.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Sweet Sans";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Sweet Sans/Raleway-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Sweet Sans";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Sweet Sans/Raleway-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Telefon";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Telefon/Jost-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Telefon";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Telefon/Jost-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Trio Grotesk";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Trio Grotesk/Rubik-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Trio Grotesk";
+  src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Trio Grotesk/Rubik-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+}
 @font-face {
   font-family: "Austin";
   src: url("https://c-p.rmcdn1.net/hosted-fonts/typetoday/AustinCy-Roman-Web.woff2") format("woff2"),
