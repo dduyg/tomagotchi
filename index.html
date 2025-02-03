@@ -204,10 +204,11 @@
             display: block !important;
             /* Overriding <a> display inline for links inside <li> */
         }
-        footer a {
+        a {
+            color: inherit;
             display: inline;
             text-decoration: none;
-            color: inherit;
+            cursor: pointer;
             background-repeat: no-repeat;
             background-image: linear-gradient(transparent, transparent), linear-gradient(transparent, transparent);
             background-size: 50% 1px, 50% 1px;
@@ -222,7 +223,7 @@
             from {background-position: -200% bottom, -100% bottom;}
             to {background-position: 0% bottom, 100% bottom;}
         }
-        footer a:hover {
+        a:hover {
             background-image: linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor); 
             animation: underlineSlideIn 1s cubic-bezier(.19, 1, .22, 1) forwards;
         }
@@ -237,14 +238,17 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 20px;
             font-size: 14px;
+            margin: 20px;
+        }
+        .copyright nav {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
         }
         .copyright nav a {
             display: inline-block; 
-            cursor: pointer; 
-            margin-right: .7rem;
-            color: inherit;
-            text-decoration: none;
             text-transform: uppercase;
         }
         @media (max-width: 768px) {
@@ -266,7 +270,9 @@
                 width: 100%;
                 margin-bottom: 15px;
             }
-        }
+            .copyright, .copyright nav {
+                flex-direction: column;
+            }
     </style>
 </head>
 <body>
