@@ -50,7 +50,20 @@
         }
         footer {
             font-size: 14px;
-            color: #bbb;
+            display: flex;
+            width: 55%;
+            text-align: left;
+            align-items: start;
+            justify-content: space-between;
+        }
+        .footer-content {
+            width: 50%; /* Each paragraph takes 50% of footer */
+        }
+        @media (max-width: 768px) {
+            footer {
+                width: 100%; /* Full width on small screens */
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -69,9 +82,13 @@
         <div>↓<br>Babyblues<br>2019<br>↑</div>
     </main>
 
-    <footer>      
-        <p><b>Hard Thing</b><br>Mastering the perfect boiled egg is like trying to balance a hot and cold shower simultaneously – a delicate dance where the yolk is soft and creamy, but the white stays firm as should.</p>
-        <p><b>Hard Thing No.2</b><br>Just to stop scraping my fingers until they bleed... It’s like trying to unlearn a song that’s been stuck in your head for years, a habit that clings tighter the more you try to let it go.</p>
+    <footer>    
+        <div class="footer-content">
+            <p><b>Hard Thing</b><br>Mastering the perfect boiled egg is like trying to balance a hot and cold shower simultaneously – a delicate dance where the yolk is soft and creamy, but the white stays firm as should.</p>
+        </div>
+        <div class="footer-content">
+            <p><b>Hard Thing No.2</b><br>Just to stop scraping my fingers until they bleed... It’s like trying to unlearn a song that’s been stuck in your head for years, a habit that clings tighter the more you try to let it go.</p>
+        </div>
     </footer>
 </body>
 </html>
