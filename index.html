@@ -48,20 +48,25 @@
             font-size: 18px;
             text-align: center;
         }
-        footer .content {
+        footer {
             font-size: 14px;
             display: flex;
+            justify-content: space-between;
             width: 55%;
             text-align: left;
             align-items: start;
-            justify-content: space-between;
+            min-height: 100px;
+            visibility: visible;
         }
-        footer .content p {
+        footer p {
             width: 50%; /* Each paragraph takes 50% of footer */
         }
         @media (max-width: 768px) {
-            footer .content {
-                width: 100%;
+            main {
+                display: none;
+            }
+            footer {
+                width: 100%; /* Full width on small screens */
             }
         }
     </style>
@@ -72,7 +77,7 @@
         <p>Audrey Hor. Open to a new project & collaboration</p>
     </header>
 
-    <main class="projects">
+    <main>
         <div>↓<br>Border 15<br>2018<br>↑</div>
         <div>↓<br>Nun<br>2017<br>↑</div>
         <div>↓<br>Fotofot<br>2015<br>↑</div>
@@ -81,11 +86,9 @@
         <div>↓<br>Babyblues<br>2019<br>↑</div>
     </main>
 
-    <footer>    
-        <div class="content">
-            <p><b>Hard Thing</b><br>Mastering the perfect boiled egg is like trying to balance a hot and cold shower simultaneously – a delicate dance where the yolk is soft and creamy, but the white stays firm as should.</p>
-            <p><b>Hard Thing No.2</b><br>Just to stop scraping my fingers until they bleed... It’s like trying to unlearn a song that’s been stuck in your head for years, a habit that clings tighter the more you try to let it go.</p>
-        </div>
+    <footer>       
+        <p><b>Hard Thing</b><br>Mastering the perfect boiled egg is like trying to balance a hot and cold shower simultaneously – a delicate dance where the yolk is soft and creamy, but the white stays firm as should.</p>
+        <p><b>Hard Thing No.2</b><br>Just to stop scraping my fingers until they bleed... It’s like trying to unlearn a song that’s been stuck in your head for years, a habit that clings tighter the more you try to let it go.</p>
     </footer>
 </body>
 </html>
