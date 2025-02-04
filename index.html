@@ -26,22 +26,24 @@
             background-color: #651110;
             color: #808080;
             text-transform: uppercase;
-        }
-        .container {
-            height: 90%;
             display: flex;
+            justify-content: center;
             flex-direction: column;
-            justify-content: space-between; /* Space out sections */
-            padding: 0 2%;
-            margin: auto;
+            align-items: center;
+            height: 100vh;
+            padding: 2%;
+            overflow: hidden;
         }
         header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             line-height: 0.9;
             font-size: 24px;
             font-weight: bold;
         }
         main {
-            flex: grow;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -50,12 +52,16 @@
             text-align: center;
         }
         footer {
+            position: absolute;
+            bottom: 2%;
+            left: 0;
+            width: 100%;
             font-size: 14px;
+        }
+        footer .content {
             display: flex;
-            width: 55%;
             justify-content: space-between;
-            text-align: left;
-            flex-shrink: 0; /* Prevents footer from shrinking */
+            width: 55%;
         }
         footer p {
             width: 50%; /* Each paragraph takes 50% of footer */
@@ -64,14 +70,13 @@
             main {
                 display: none;
             }
-            footer {
+            footer .content {
                 width: 100%;
             }
         }
     </style>
 </head>
 <body>
-<div class="container">
     <header>
         <p>Budapest Based Ukrainian – Hungarian Photographer</p>
         <p>Audrey Hor. Open to a new project & collaboration</p>
@@ -86,10 +91,11 @@
         <div>↓<br>Babyblues<br>2019<br>↑</div>
     </main>
 
-    <footer>       
-        <p><b>Hard Thing</b><br>Mastering the perfect boiled egg is like trying to balance a hot and cold shower simultaneously – a delicate dance where the yolk is soft and creamy, but the white stays firm as should.</p>
-        <p><b>Hard Thing No.2</b><br>Just to stop scraping my fingers until they bleed... It’s like trying to unlearn a song that’s been stuck in your head for years, a habit that clings tighter the more you try to let it go.</p>
+    <footer>
+        <div class="content">
+            <p><b>Hard Thing</b><br>Mastering the perfect boiled egg is like trying to balance a hot and cold shower simultaneously – a delicate dance where the yolk is soft and creamy, but the white stays firm as should.</p>
+            <p><b>Hard Thing No.2</b><br>Just to stop scraping my fingers until they bleed... It’s like trying to unlearn a song that’s been stuck in your head for years, a habit that clings tighter the more you try to let it go.</p>
+        </div>
     </footer>
-</div>
 </body>
 </html>
