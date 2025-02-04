@@ -31,14 +31,14 @@
             flex-direction: column;
             justify-content: space-between; /* Space out sections */
             padding: 2%;
-            overflow: hidden;
-        }
+        } 
         header {
             line-height: 0.9;
             font-size: 24px;
             font-weight: bold;
         }
         main {
+            flex-grow: 1; /* Ensures main takes up available space */
             min-height: 0; /* Prevents overflow issues */
             display: flex;
             justify-content: space-between;
@@ -48,12 +48,14 @@
             text-align: center;
         }
         footer {
-            display: table;
             font-size: 14px;
+            display: flex;
             width: 55%;
+            justify-content: space-between;
+            text-align: left;
+            flex-grow: 0; /* Prevents footer from shrinking */
         }
         footer p {
-            display: table-cell;
             width: 50%; /* Each paragraph takes 50% of footer */
         }
         @media (max-width: 768px) {
@@ -61,7 +63,7 @@
                 display: none;
             }
             footer {
-                width: 100%; /* Full width on small screens */
+                width: 100%;
             }
         }
     </style>
