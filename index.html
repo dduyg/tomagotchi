@@ -26,7 +26,6 @@
             background-color: #651110;
             color: #808080;
             text-transform: uppercase;
-            line-height: 0.9;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -35,6 +34,7 @@
             overflow: hidden;
         }
         header {
+            line-height: 0.9;
             font-size: 24px;
             font-weight: bold;
         }
@@ -48,7 +48,7 @@
             font-size: 18px;
             text-align: center;
         }
-        footer {
+        footer .content {
             font-size: 14px;
             display: flex;
             width: 55%;
@@ -56,11 +56,11 @@
             align-items: start;
             justify-content: space-between;
         }
-        .footer-content {
+        footer .content p {
             width: 50%; /* Each paragraph takes 50% of footer */
         }
         @media (max-width: 768px) {
-            footer {
+            footer .content {
                 width: 100%;
             }
         }
@@ -82,10 +82,8 @@
     </main>
 
     <footer>    
-        <div class="footer-content">
+        <div class="content">
             <p><b>Hard Thing</b><br>Mastering the perfect boiled egg is like trying to balance a hot and cold shower simultaneously – a delicate dance where the yolk is soft and creamy, but the white stays firm as should.</p>
-        </div>
-        <div class="footer-content">
             <p><b>Hard Thing No.2</b><br>Just to stop scraping my fingers until they bleed... It’s like trying to unlearn a song that’s been stuck in your head for years, a habit that clings tighter the more you try to let it go.</p>
         </div>
     </footer>
