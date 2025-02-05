@@ -407,7 +407,6 @@ If the image is used as a background:
 - [ ] Bytewave Symphony
 - [ ] Pixelated Abyss
 - [ ] Data Depths
-- [ ] Neptune’s Network
 - [ ] Riptide __Renderer__
 - [ ] Coral Code Crusaders
 - [ ] Seas of Syntax
