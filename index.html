@@ -1,143 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tabs based on the details tag</title>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <style>
-body {
-  font-family: "Libre Franklin", Arial, sans-serif;
-  max-width: 50rem;
-  margin: 4rem auto;
-  background: #16262c;
-  color: #ddd;
-  padding: max(calc(50vh - 22rem), 1rem) 1rem 1rem;
-  font-size: 18px;
-}
+  <title>Pure CSS tabs</title>
+  <link rel="stylesheet" href="./style.css">
 
-h1 {
-  margin-bottom: 2em;
-  text-align: center;
-  color: #fff;
-}
-h1 span {
-  color: #77b728;
-}
-
-p {
-  color: #ffffff7f;
-  font-size: 1.2rem;
-  line-height: 1.66;
-  font-weight: 300;
-  margin: 1rem 0 1.5rem;
-}
-p strong {
-  color: #ddd;
-  font-weight: 700;
-}
-
-.details-tab {
-  padding: 0.5rem 1rem;
-  font-size: 1.1rem;
-  color: #ffffffcc;
-  font-weight: 600;
-  display: block;
-  order: 0;
-  background: #ffffff13;
-  border-radius: 1.5rem;
-  margin-right: 0.35rem;
-  margin-bottom: 0.5rem;
-  cursor: pointer;
-  border: 2px solid transparent;
-}
-.details-tab:hover, .details-tab:focus {
-  border-color: #fff;
-}
-.details-tab::-webkit-details-marker {
-  display: none;
-}
-
-.details-tabs {
-  position: relative;
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.details-content {
-  order: 1;
-  padding: 1rem;
-  width: 100%;
-}
-.details-content details {
-  margin: 1.5rem;
-}
-.details-content details summary {
-  font-weight: 600;
-}
-
-.details-item {
-  display: contents;
-}
-.details-item[open] > .details-tab {
-  background: #fff;
-  color: #333;
-}
-
-@supports selector(::details-content) {
-  .details-item[open]::details-content {
-    display: contents;
-  }
-}
-</style>
 </head>
 <body>
-
-<h1>Using the <span>&lt;details&gt;</span> tag to create tabs</h1>
-<div class="details-tabs">
-	<details class="details-item" open> <!-- default first "tab" to open -->
-		<summary class="details-tab">The details tag</summary>
-		<div class="details-content">
-			<p>Imagine an <strong>accordion-like element</strong> with <strong>native keyboard support</strong> that doesn't require javascript for control.</p>
-			<p>Enter the details tag.</p>
-			<details>
-				<summary>The details tag</summary>
-				<p>This is a details tag with content</p>
-			</details>
-			<p>The details tag gives us a simple accordion with no scripts&mdash;that's great! But it feels like it could be something more...imagine if it could do tabs.</p>
-		</div>
-	</details>
-	<details class="details-item">
-		<summary class="details-tab">What about tabs?</summary>
-		<div class="details-content">
-			<p>Tabs and accordions work in technically the same way, although tabs typically require a shared parent container and containers to build out the tabs and content separate from each other.</p>
-			<p>Interactivity is another difference: the ways accordions or tabs are toggled. With accordions it's common to be able to open and close them individually, but with tabs there must always be one, and only one, open.</p>
-			<p>At first glance there doesn't seem to be a way to make this work. The structure isn't right. The layout isn't right. The functionality isn't quite right. But each of those problems can be solved if we look a bit closer.</p>
-		</div>
-	</details>
-	<details class="details-item">
-		<summary class="details-tab">CSS trickery</summary>
-		<div class="details-content">
-			<p>With a little help from the <strong>display: contents;</strong> property, we can transform a group of discrete details tags with tab and content area elements as children, into a group of the tab and content area elements from all the details elements mixed together.</p>
-			<p>Say you had 3 small buckets of red and blue balls. The buckets can interact with each other or bang together, but the balls inside each bucket can't interact with the balls from the other buckets.</p>
-			<p>You could think of what we are doing like pouring all of the small buckets into a larger bucket. Now all of the balls can interact with each other and we can organize them by color in the bigger bucket. With display: contents; it's as if the details tag isn't there at all&mdash;at least visually.</p>
-			<p>Now that all the tab and content area elements can interact with each other in the flow of the page, we can use <strong>display: flex;</strong> and <strong>order</strong> to make the tabs flow nicely but also be separate from the content area.</p>
-			<p>And that's what you see here! Open up the inspector and have a look.</p>
-		</div>
-	</details>
-	<details class="details-item">
-		<summary class="details-tab">UX patches with javascript</summary>
-		<div class="details-content">
-			<p>So you might have thought we could get by without any JS, but we need it a little. Luckily it's the type of script that you can write once and reuse without reconfiguration.</p>
-			<p>The default functionality of the details tab means that it can be toggled open or closed. That's not what we want for tabs. Each details tag must be manually closed and then another opened. We want a tab to stay open and then close when another is picked.</p>
-			<p>By watching for attribute changes and blocking keyboard and mouse input from toggling a details tab when a tab is open, we can emulate the expected tab behavior.</p>
-			<p>Then it's just a matter of toggling the sibling details tags when another is selected.</p>
-		</div>
-	</details>
+<!-- partial:index.partial.html -->
+<div data-tabs class="tabs">    
+   <div class="tab">
+      <input type="radio" name="tabgroup" id="tab-1" checked>
+      <label for="tab-1">Tab 1</label>
+      <div class="tab__content">
+         <h4>Tab heading 1</h4>
+         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt libero ipsum, veniam magni modi exercitationem debitis ducimus assumenda ratione corporis, illum eius, laborum tempore cumque amet id perspiciatis nostrum unde?</p>
+         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum, maiores.</p>
+      </div> 
+   </div>
+   <div class="tab">
+      <input type="radio" name="tabgroup" id="tab-2">
+      <label for="tab-2">Tab 2</label>
+      <div class="tab__content">
+         <h4>Tab heading 2</h4>
+         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur odio cum eveniet excepturi eum provident molestias ad ipsa unde dignissimos illo porro animi earum aliquam perspiciatis id omnis, adipisci incidunt. Qui, beatae. Beatae animi totam obcaecati at quae, iste facere fuga nemo pariatur esse nihil?</p>
+         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque commodi eos voluptatem numquam pariatur deleniti repellat fugiat eligendi nulla molestiae sunt praesentium vero sequi distinctio error quibusdam maiores natus magnam, explicabo hic sed alias dolores, quis eum! Reprehenderit atque cupiditate dolorum? Saepe, doloribus veniam? Nulla!</p>
+      </div> 
+   </div>
+   <div class="tab">
+      <input type="radio" name="tabgroup" id="tab-3">
+      <label for="tab-3">Tab 3</label>
+      <div class="tab__content">
+         <h4>Tab heading 3</h4>
+         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam officiis voluptas maiores deserunt ullam aliquam?</p>
+         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, officia accusantium quod fuga porro eius animi earum excepturi omnis! Reprehenderit!</p>
+      </div> 
+   </div>
+   <div class="tab">
+      <input type="radio" name="tabgroup" id="tab-4">
+      <label for="tab-4">Tab 4</label>
+      <div class="tab__content">
+         <h4>Tab heading 4</h4>
+         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia exercitationem veritatis vero eaque. Nam totam dolorem sapiente ullam non sed nostrum praesentium voluptatem, ad quam libero deserunt nemo fuga hic repudiandae veritatis cupiditate, mollitia recusandae!</p>
+      </div> 
+   </div>
 </div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script><script  src="./script.js"></script>
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>
-<script  src="./script.js"></script>
 </body>
 </html>
