@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liminal Loop</title>
+    <style>
+        * {  /* Global Reset */
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        @font-face {
+            font-family: "ABC Favorit";
+            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/ABCfavorit.woff2') format('woff2');
+            font-style: normal;
+            font-weight: normal;
+        }
+        @font-face {
+            font-family: "ABC Favorit";
+            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/ABCfavorit-Italic.woff2') format('woff2');  
+            font-style: italic;
+        }
+        body {
+            font-family: "ABC Favorit", sans-serif;
+            background-color: #F5F5E9;
+            color: black;
+            padding: 95px 2em 0;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+        .tabs {
+            clear: both;
+            position: relative;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .tab {
+            float: left;
+        }
+        .tab label {
+            margin-right: 30px;
+            position: relative;
+            top: 0;
+            cursor: pointer;
+            color: #333;
+            text-transform: uppercase;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+        }
+        .tab input[type="radio"] {
+            display: none;
+        }
+        .tabContent {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease-in-out, visibility 0.4s;
+        }
+        input[type="radio"]:checked + label {
+            border-bottom: 2px solid #1d1d1d;
+            color: #1d1d1d;
+            z-index: 2;
+        }
+        input[type="radio"]:checked + label + .tabContent {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+
+<main class="tabs">
+    <div class="tab">
+        <input type="radio" name="tabgroup" id="tab-1" checked>
+        <label for="tab-1">Tab 1</label>
+        <div class="tabContent">
+            <h4>Tab heading 1</h4>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+    </div>
+    <div class="tab">
+        <input type="radio" name="tabgroup" id="tab-2">
+        <label for="tab-2">Tab 2</label>
+        <div class="tabContent">
+            <h4>Tab heading 2</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+    </div>
+    <div class="tab">
+        <input type="radio" name="tabgroup" id="tab-3">
+        <label for="tab-3">Tab 3</label>
+        <div class="tabContent">
+            <h4>Tab heading 3</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+    </div>
+    <div class="tab">
+        <input type="radio" name="tabgroup" id="tab-4">
+        <label for="tab-4">Tab 4</label>
+        <div class="tabContent">
+            <h4>Tab heading 4</h4>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+    </div>
+</main>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let tabs = document.querySelectorAll(".tabContent");
+        let maxHeight = 0;
+
+        tabs.forEach(tab => {
+            let height = tab.offsetHeight;
+            if (height > maxHeight) {
+                maxHeight = height;
+            }
+            tab.style.position = "absolute";
+        });
+
+        document.querySelector(".tabs").style.minHeight = (maxHeight + 40) + "px";
+    });
+</script>
+</body>
+</html>
