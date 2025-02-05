@@ -32,18 +32,20 @@
             font-size: 0.95rem;
         }
         .tabs {
-            clear: both;
-            position: relative;
-            max-width: 700px;
+            max-width: 650px;
             margin: 0 auto;
+            position: relative;
         }
-        .tab {
-            float: left;
+
+        /* Flexbox for evenly spaced labels */
+        .tabLabels {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding-bottom: 10px;
         }
         .tab label {
-            margin-right: 30px;
-            position: relative;
-            top: 0;
             cursor: pointer;
             color: #333;
             text-transform: uppercase;
@@ -52,6 +54,7 @@
         .tab input[type="radio"] {
             display: none;
         }
+
         .tabContent {
             position: absolute;
             top: 40px;
@@ -61,11 +64,14 @@
             visibility: hidden;
             transition: opacity 0.4s ease-in-out, visibility 0.4s;
         }
+
+        /* Style active tab label */
         input[type="radio"]:checked + label {
             border-bottom: 2px solid #1d1d1d;
             color: #1d1d1d;
-            z-index: 2;
         }
+
+        /* Show the selected tab content */
         input[type="radio"]:checked + label + .tabContent {
             opacity: 1;
             visibility: visible;
@@ -75,37 +81,37 @@
 <body>
 
 <main class="tabs">
-    <div class="tab">
+    <!-- Tab Labels -->
+    <div class="tabLabels">
         <input type="radio" name="tabgroup" id="tab-1" checked>
         <label for="tab-1">Tab 1</label>
-        <div class="tabContent">
-            <h4>Tab heading 1</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-        </div>
-    </div>
-    <div class="tab">
+
         <input type="radio" name="tabgroup" id="tab-2">
         <label for="tab-2">Tab 2</label>
-        <div class="tabContent">
-            <h4>Tab heading 2</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        </div>
-    </div>
-    <div class="tab">
+
         <input type="radio" name="tabgroup" id="tab-3">
         <label for="tab-3">Tab 3</label>
-        <div class="tabContent">
-            <h4>Tab heading 3</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        </div>
-    </div>
-    <div class="tab">
+
         <input type="radio" name="tabgroup" id="tab-4">
         <label for="tab-4">Tab 4</label>
-        <div class="tabContent">
-            <h4>Tab heading 4</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-        </div>
+    </div>
+
+    <!-- Tab Contents -->
+    <div class="tabContent">
+        <h4>Tab heading 1</h4>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+    </div>
+    <div class="tabContent">
+        <h4>Tab heading 2</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    </div>
+    <div class="tabContent">
+        <h4>Tab heading 3</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+    </div>
+    <div class="tabContent">
+        <h4>Tab heading 4</h4>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
     </div>
 </main>
 
