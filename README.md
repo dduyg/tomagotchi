@@ -311,11 +311,11 @@ If the image is used as a background:
 
 <br>
 
-- [ ] Righteous
-- [ ] Geostar
-- [ ] Geostar Fill
-- [ ] Georama
-- [ ] Oxanium
+- [ ]  Righteous
+- [ ]  Geostar
+- [ ]  Geostar Fill
+- [ ]  Georama
+- [ ]  Oxanium
 - [ ]  Jacquard 12
 - [ ]  Micro 5
 - [ ]  Jersey 10
@@ -399,6 +399,7 @@ If the image is used as a background:
 - [ ] Code Currents
 - [ ] Aquatic Arrays
 - [ ] Binary Tsunami
+- [ ] Neptune’s Network
 - [ ] Digital Sea Breeze
 - [ ] Digital Tidebreaker
 - [ ] Neon Code Reef
