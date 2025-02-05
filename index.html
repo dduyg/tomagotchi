@@ -38,25 +38,20 @@
             max-width: 650px;
             margin: 0 auto;
         }
-
         .tab {
             float: left;
         }
-
         .tab label {
             margin-right: 20px;
             position: relative;
             top: 0;
             cursor: pointer;
-            color: #333;
             text-transform: uppercase;
             transition: color 0.3s ease, border-bottom 0.3s ease;
         }
-
         .tab input[type="radio"] {
             display: none;
         }
-
         .tabContent {
             position: absolute;
             top: 40px;
@@ -66,13 +61,11 @@
             visibility: hidden;
             transition: opacity 0.4s ease-in-out, visibility 0.4s;
         }
-
         input[type="radio"]:checked + label {
             border-bottom: 2px solid #1d1d1d;
-            color: #1d1d1d;
+            color: white;
             z-index: 2;
         }
-
         input[type="radio"]:checked + label + .tabContent {
             opacity: 1;
             visibility: visible;
@@ -81,7 +74,7 @@
 </head>
 <body>
 
-<div class="tabs">
+<main class="tabs">
     <div class="tab">
         <input type="radio" name="tabgroup" id="tab-1" checked>
         <label for="tab-1">Tab 1</label>
@@ -114,7 +107,7 @@
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
         </div>
     </div>
-</div>
+</main>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
