@@ -346,7 +346,6 @@ If the image is used as a background:
 - [ ]  Turret Road
 - [ ]  Geo
 - [ ]  Workbench
-- [ ]  Syne Mono
 - [ ]  Kanit
 - [ ]  Revalia
 - [ ]  Sixtyfour
