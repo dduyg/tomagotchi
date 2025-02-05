@@ -151,7 +151,6 @@ If the image is used as a background:
 - [ ]  Handjet
 - [ ]  Danfo
 - [ ]  Raleway ♡
-- [ ]  Dosis
 - [ ]  Chivo
 - [ ]  Ruda
 - [ ]  DM Sans
@@ -189,7 +188,6 @@ If the image is used as a background:
 - [ ]  Limelight
 - [ ]  Plaster
 - [ ]  Smokum
-- [ ]  Mohave
 - [ ]  Fira Sans
 - [ ]  Ubuntu Mono
 - [ ]  Rethink Sans
