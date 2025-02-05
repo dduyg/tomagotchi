@@ -3,75 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liminal Loop</title>
+    <title>Pure CSS Tabs with Smooth Transition</title>
     <style>
-        * {  /* Global Reset */
+        /* Global Reset */
+        * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
             outline: none;
             -webkit-tap-highlight-color: transparent;
         }
-        @font-face {
-            font-family: "ABC Favorit";
-            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/ABCfavorit.woff2') format('woff2');
-            font-style: normal;
-            font-weight: normal;
-        }
-        @font-face {
-            font-family: "ABC Favorit";
-            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/ABCfavorit-Italic.woff2') format('woff2');  
-            font-style: italic;
-        }
         body {
-            font-family: "ABC Favorit", sans-serif;
-            background-color: #F5F5E9;
-            color: black;
-            padding: 95px 2em 0;
-            line-height: 1.5;
-            font-size: 0.95rem;
-        }
-        .tabs {
-            max-width: 650px;
-            margin: 0 auto;
-            position: relative;
+            font-family: 'Open Sans', sans-serif;
+            background-color: #C2EABA;
+            padding-top: 50px;
+            line-height: 1.4;
+            font-size: 1.4em;
+            display: flex;
+            justify-content: center;
         }
 
-        /* Flexbox for evenly spaced labels */
+        .tabs {
+            position: relative;
+            max-width: 650px;
+            width: 100%;
+        }
+
+        /* Use flexbox for evenly spaced labels */
         .tabLabels {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            padding-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
         }
+
         .tab label {
+            flex: 1; /* Distributes space evenly */
+            text-align: center;
             cursor: pointer;
             color: #333;
             text-transform: uppercase;
+            padding: 10px 0;
             transition: color 0.3s ease, border-bottom 0.3s ease;
         }
+
         .tab input[type="radio"] {
             display: none;
         }
 
         .tabContent {
             position: absolute;
-            top: 40px;
+            top: 50px;
             left: 0;
             right: 0;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.4s ease-in-out, visibility 0.4s;
+            padding-top: 20px;
         }
 
-        /* Style active tab label */
         input[type="radio"]:checked + label {
             border-bottom: 2px solid #1d1d1d;
             color: #1d1d1d;
         }
 
-        /* Show the selected tab content */
         input[type="radio"]:checked + label + .tabContent {
             opacity: 1;
             visibility: visible;
@@ -80,40 +75,42 @@
 </head>
 <body>
 
-<main class="tabs">
-    <!-- Tab Labels -->
+<div class="tabs">
     <div class="tabLabels">
-        <input type="radio" name="tabgroup" id="tab-1" checked>
-        <label for="tab-1">Tab 1</label>
-
-        <input type="radio" name="tabgroup" id="tab-2">
-        <label for="tab-2">Tab 2</label>
-
-        <input type="radio" name="tabgroup" id="tab-3">
-        <label for="tab-3">Tab 3</label>
-
-        <input type="radio" name="tabgroup" id="tab-4">
-        <label for="tab-4">Tab 4</label>
+        <div class="tab">
+            <input type="radio" name="tabgroup" id="tab-1" checked>
+            <label for="tab-1">Tab 1</label>
+            <div class="tabContent">
+                <h4>Tab heading 1</h4>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+        </div>
+        <div class="tab">
+            <input type="radio" name="tabgroup" id="tab-2">
+            <label for="tab-2">Tab 2</label>
+            <div class="tabContent">
+                <h4>Tab heading 2</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+        </div>
+        <div class="tab">
+            <input type="radio" name="tabgroup" id="tab-3">
+            <label for="tab-3">Tab 3</label>
+            <div class="tabContent">
+                <h4>Tab heading 3</h4>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+        </div>
+        <div class="tab">
+            <input type="radio" name="tabgroup" id="tab-4">
+            <label for="tab-4">Tab 4</label>
+            <div class="tabContent">
+                <h4>Tab heading 4</h4>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+        </div>
     </div>
-
-    <!-- Tab Contents -->
-    <div class="tabContent">
-        <h4>Tab heading 1</h4>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-    </div>
-    <div class="tabContent">
-        <h4>Tab heading 2</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-    </div>
-    <div class="tabContent">
-        <h4>Tab heading 3</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-    </div>
-    <div class="tabContent">
-        <h4>Tab heading 4</h4>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-    </div>
-</main>
+</div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -128,7 +125,7 @@
             tab.style.position = "absolute";
         });
 
-        document.querySelector(".tabs").style.minHeight = (maxHeight + 40) + "px";
+        document.querySelector(".tabs").style.minHeight = (maxHeight + 50) + "px";
     });
 </script>
 </body>
