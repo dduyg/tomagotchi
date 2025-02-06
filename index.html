@@ -13,15 +13,15 @@
             -webkit-tap-highlight-color: transparent;
         }
         body {
-            font-family: "Trio Grotesk", sans-serif;
+            font-family: sans-serif;
             background: #EDE8EC;
             color: #262626;
-            overflow-y: auto;
+            overflow-x: hidden; /* Allow content to be scrollable */
         }
         main {
             max-width: 800px;
             width: 100%;
-            margin: 15vh auto 0;
+            margin: 15vh auto;
         }
         header {
             display: flex;
@@ -37,35 +37,32 @@
             border-radius: 50%;
             cursor: pointer;
         }
-        .badge.forming-kin { background: url('memory01.svg') no-repeat center/100%; }
-        .badge.forming-kin:hover, label[data-color="#f886ff"].active { background-color: #f886ff; }
-
-        .badge.moi { background: url('memory02.svg') no-repeat center/100%; }
-        .badge.moi:hover, label[data-color="#71c6ff"].active { background-color: #71c6ff; }
-
-        .badge.cosmetic-healing { background: url('memory03.svg') no-repeat center/100%; }
-        .badge.cosmetic-healing:hover, label[data-color="#8af38a"].active { background-color: #8af38a; }
-
-        .badge.ai { background: url('memory04.svg') no-repeat center/100%; }
-        .badge.ai:hover, label[data-color="#f2fc72"].active { background-color: #f2fc72; }
-
-        .badge.living-tools { background: url('memory05.svg') no-repeat center/100%; }
-        .badge.living-tools:hover, label[data-color="#c6aeff"].active { background-color: #c6aeff; }
-
+        /* Badge Styles */
+        .badge.forming-kin { background-image: url('memory01.svg'); }
+        .badge.forming-kin:hover, .badge.active.forming-kin { background-color: #f886ff; }
+        .badge.moi { background-image: url('memory02.svg'); }
+        .badge.moi:hover, .badge.active.moi { background-color: #71c6ff; }
+        .badge.cosmetic-healing { background-image: url('memory03.svg'); }
+        .badge.cosmetic-healing:hover, .badge.active.cosmetic-healing { background-color: #8af38a; }
+        .badge.ai { background-image: url('memory04.svg'); }
+        .badge.ai:hover, .badge.active.ai { background-color: #f2fc72; }
+        .badge.living-tools { background-image: url('memory05.svg'); }
+        .badge.living-tools:hover, .badge.active.living-tools { background-color: #c6aeff; }
+        
         input { display: none; }
+
         label {
             display: flex;
             width: 100%;
             height: 50px;
             cursor: pointer;
             border: 3px solid;
-            user-select: none;
             padding: 10px;
-            transition: background 0.3s;
+            transition: background-color 0.3s ease;
         }
         label div:first-child {
             width: 100%;
-            line-height: 45px;
+            line-height: 30px;
             font-size: 1.2em;
         }
         .cross {
@@ -84,26 +81,41 @@
             transform: rotate(90deg);
             margin-top: -2px;
         }
+        
+        /* Content & Accordion */
         .content {
             font-size: 0.9em;
-            margin: 10px;
+            margin: 10px 10px;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-in-out;
+            transition: max-height 0.5s ease;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .content p {
+            flex: 1 1 48%;
+            margin-bottom: 10px;
         }
         input:checked ~ .content {
             max-height: 400px;
             transition: max-height 1s;
         }
-        input:checked ~ label .cross:before { transform: rotate(180deg); }
-        input:checked ~ label .cross:after { transform: rotate(0deg); }
-
-        /* Tooltip Fix */
+        input:checked ~ label {
+            background-color: var(--active-bg);
+        }
+        input:checked ~ label .cross:before {
+            transform: rotate(180deg);
+        }
+        input:checked ~ label .cross:after {
+            transform: rotate(0deg);
+        }
+        
+        /* Tooltip */
         .tip {
             color: #f03768;
             cursor: help;
             position: relative;
-            overflow: visible;
             font-family: monospace;
             font-size: 1.3em;
         }
@@ -113,21 +125,31 @@
             z-index: -100;
             transition: .4s;
         }
+        .tip:before {
+            content: '';
+            border-style: solid;
+            border-width: 0.8em 0.5em 0 0.5em;
+            border-color: #3E474F transparent transparent transparent;
+            transform: translateY(-200%);
+            bottom: 90%;
+            left: 50%;
+        }
+        .tip:after {
+            content: attr(data-tip);
+            background: #3E474F;
+            color: white;
+            width: 150px;
+            padding: 10px;
+            font-size: 0.8em;
+            bottom: 150%;
+            left: -50%;
+        }
         .tip:hover:before, .tip:hover:after {
             opacity: 1;
             z-index: 100;
         }
 
-        /* Two-Column Layout */
-        .content p {
-            margin-bottom: 15px;
-        }
-        @media (min-width: 769px) {
-            .content p {
-                column-count: 2;
-                column-gap: 20px;
-            }
-        }
+        /* Responsive Design */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -141,6 +163,12 @@
                 align-self: flex-end;
                 text-align: right;
             }
+            .content {
+                flex-direction: column;
+            }
+            .content p {
+                flex: 1 1 100%;
+            }
         }
     </style>
 </head>
@@ -150,45 +178,40 @@
     <header>
         <h1>Memory Work</h1>
         <nav>
-            <a href="#formingkin" class="badge forming-kin" data-target="tab-1" data-color="#f886ff"></a>
-            <a href="#mothers-of-invention" class="badge moi" data-target="tab-2" data-color="#71c6ff"></a>
-            <a href="#cosmetic-healing" class="badge cosmetic-healing" data-target="tab-3" data-color="#8af38a"></a>
-            <a href="#ancestral-intelligence" class="badge ai" data-target="tab-4" data-color="#f2fc72"></a>
-            <a href="#almanac" class="badge living-tools" data-target="tab-5" data-color="#c6aeff"></a>
+            <a href="#formingkin" class="badge forming-kin" data-target="tab-1"></a>
+            <a href="#mothers-of-invention" class="badge moi" data-target="tab-2"></a>
+            <a href="#cosmetic-healing" class="badge cosmetic-healing" data-target="tab-3"></a>
+            <a href="#ancestral-intelligence" class="badge ai" data-target="tab-4"></a>
+            <a href="#almanac" class="badge living-tools" data-target="tab-5"></a>
         </nav>
     </header>
 
     <article id="formingkin">
         <input type="radio" id="tab-1" name="tabs">
-        <label for="tab-1" data-color="#f886ff"><div>Forming Kin</div><div class="cross"></div></label>
+        <label for="tab-1"><div>Forming Kin</div><div class="cross"></div></label>
         <div class="content">
-            <p class="dropcap">A call for people to be with and of nature...</p>
+            <p>A call for people to be with and of nature...</p>
             <p>Like mushrooms springing from disseminated spores...</p>
         </div>
     </article>
 
     <article id="mothers-of-invention">
         <input type="radio" id="tab-2" name="tabs">
-        <label for="tab-2" data-color="#71c6ff"><div>Mothers of Invention</div><div class="cross"></div></label>
+        <label for="tab-2"><div>Mothers of Invention</div><div class="cross"></div></label>
         <div class="content">
-            <p class="dropcap">Referring to a loosely knit movement...</p>
-            <p>In response to the clumsy and ineffectual Climate Imperative...</p>
+            <p>Referring to a loosely knit movement...</p>
+            <p>In response to the clumsy and ineffectual...</p>
         </div>
     </article>
-
 </main>
 
 <script>
-    document.querySelectorAll('.badge').forEach(badge => {
-        badge.addEventListener('click', function (e) {
+    document.querySelectorAll(".badge").forEach(badge => {
+        badge.addEventListener("click", function (e) {
             e.preventDefault();
-            const targetId = this.getAttribute('data-target');
-            const targetColor = this.getAttribute('data-color');
-
-            document.getElementById(targetId).checked = true;
-
-            document.querySelectorAll("label").forEach(label => label.classList.remove("active"));
-            document.querySelector(`label[for="${targetId}"]`).classList.add("active");
+            document.getElementById(this.dataset.target).checked = true;
+            document.querySelectorAll(".badge").forEach(b => b.classList.remove("active"));
+            this.classList.add("active");
         });
     });
 </script>
