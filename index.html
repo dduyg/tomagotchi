@@ -47,7 +47,6 @@
             height: 45px;
             margin-right: 10px;
             border-radius: 50%;
-            background-color: #d8d5f1;
         }
         .badge.forming-kin {
             background-image: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/af238fe353b4600c25752fc2aa9d628c68074742/04/memory01.svg');
@@ -214,6 +213,24 @@ input:checked ~ .questions {
     transform: scaleY(1);
 }
 
+        .dropcap::first-letter {
+            margin-right: 5px;
+            float: left;
+            -webkit-transform: translate(0px, 5px);
+            -ms-transform: translate(0px, 5px);
+            transform: translate(0px, 5px);
+            font-family: Gallique, serif;
+            font-size: 50px;
+            line-height: 45px;
+            text-transform: uppercase;
+        }
+        .two-column {
+            display: flex;
+            gap: 20px;
+        }
+        .column {
+            flex: 1;
+        }
         @media (max-width: 768px) {
             header {
                 flex-direction: column; 
@@ -226,6 +243,13 @@ input:checked ~ .questions {
             header nav {
                 align-self: flex-end; /* Align nav to the right */
                 text-align: right;
+            }
+            .two-column {
+                flex-direction: column;
+            }
+            dropcap::first-letter {
+                font-size: 40px;
+                line-height: 35px;
             }
         }
     </style>
@@ -266,25 +290,24 @@ input:checked ~ .questions {
 
   <article>
     <input type="radio" id="tab-3" name="tabs">
-    <label for="tab-3"><div>tab three</div><div class="cross"></div></label>
+    <label for="tab-3"><div>About</div><div class="cross"></div></label>
     <div class="questions">
       <div class="question-wrap">
         <input type="radio" id="question-1" name="question">
-        <label for="question-1"><div>question one</div> <div class="cross"></div></label>
+        <label for="question-1"><div>Memory Work</div> <div class="cross"></div></label>
         <div class="content">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam atque, soluta doloribus
-          distinctio saepe labore voluptates facere illum alias perferendis praesentium
-          quia vel accusamus incidunt corporis veniam sapiente. Voluptate, quasi.
-        </div>
+          <p class="two-column">
+            <div class="dropcap column">Memory Work is a research-based future scenario. It is not a prediction. It is neither visionary, as in preferred, nor is it admonitory, as in dystopian. It is intended as material for meditation, stimuli for imagining collective future memory. Memory Work engages with ethical and moral imperatives across (past, present, and future) time.</p>
+            <div class="column">History is written by the privileged, framed by their prejudices, and coloured by their biases. History records. Memory recalls — through mutual recounting and reconstruction of lived experience. Through memory work, collective futures can be imagined.
+                   <br><br>We encourage you to use this as a resource, to question it and to iterate on it, generating your own future experiences, visions, vignettes, and artifacts.
+            </div>
+          </p>
       </div>
       <div class="question-wrap">
         <input type="radio" id="question-2" name="question">
-        <label for="question-2"><div>question two</div> <div class="cross"></div></label>
+        <label for="question-2"><div>Artifacts</div> <div class="cross"></div></label>
         <div class="content">
-            Ipsam atque, soluta doloribus distinctio saepe labore
-            voluptates facere illum alias perferendis praesentium
-            quia vel accusamus incidunt corporis veniam sapiente.
-            Voluptate, quasi.
+            <p class="dropcap">The following are cultural artifacts from the future scenario, Memory Work. Although they might only exist in this possible future world, they are informed by signals of change observed today. Click each artifact to explore the social, political, technological, and theoretical signals that informed it.</p>     
         </div>
       </div>
     </div>
