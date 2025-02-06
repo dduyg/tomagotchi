@@ -28,7 +28,6 @@
             font-family: "Trio Grotesk", sans-serif;
             background: #EDE8EC;
             color: #262626;
-            overflow: hidden;
         }
         main {
             max-width: 800px;
@@ -39,7 +38,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 20px;       
+            padding-bottom: 20px;
         }
         .badge {
             display: inline-block;
@@ -47,6 +46,7 @@
             height: 45px;
             margin-right: 10px;
             border-radius: 50%;
+            cursor: pointer;
         }
         .badge.forming-kin {
             background-image: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/af238fe353b4600c25752fc2aa9d628c68074742/04/memory01.svg');
@@ -54,47 +54,37 @@
             background-size: 100%;
             background-repeat: no-repeat;
         }
-        .badge.forming-kin:hover {
-            background-color: #f886ff;
-        }
+        .badge.forming-kin:hover, label[for="tab-1"].active { background-color: #f886ff; }
         .badge.moi {
             background-image: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/af238fe353b4600c25752fc2aa9d628c68074742/04/memory02.svg');
             background-position: 50% 50%;
             background-size: 100%;
         }
-        .badge.moi:hover {
-            background-color: #71c6ff;
-        }
+        .badge.moi:hover, label[for="tab-2"].active { background-color: #71c6ff; }
         .badge.cosmetic-healing {
             background-image: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/af238fe353b4600c25752fc2aa9d628c68074742/04/memory03.svg');
             background-position: 50% 50%;
             background-size: 100%;
             background-repeat: no-repeat;
         }
-        .badge.cosmetic-healing:hover {
-            background-color: #8af38a;
-        }
+        .badge.cosmetic-healing:hover, label[for="tab-3"].active { background-color: #8af38a; }
         .badge.ai {
             background-image: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/af238fe353b4600c25752fc2aa9d628c68074742/04/memory04.svg');
             background-position: 50% 50%;
             background-size: 100%;
             background-repeat: no-repeat;
         }
-        .badge.ai:hover {
-            background-color: #f2fc72;
-        }
+        .badge.ai:hover, label[for="tab-4"].active { background-color: #f2fc72; }
         .badge.living-tools {
             background-image: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/af238fe353b4600c25752fc2aa9d628c68074742/04/memory05.svg');
             background-position: 50% 50%;
             background-size: 100%;
             background-repeat: no-repeat;
         }
-        .badge.living-tools:hover {
-            background-color: #c6aeff;
-        }   
-        input {
-            display: none;
-        }
+        .badge.living-tools:hover, label[for="tab-5"].active { background-color: #c6aeff; }
+        
+        input { display: none; }
+
         label {
             display: flex;
             width: 100%;
@@ -102,50 +92,44 @@
             cursor: pointer;
             border: 3px solid;
             user-select: none;
-        }
-        label div:first-child {
-            width: 100%;
-            line-height: 45px;
-            margin-left: 10px;
+            padding-left: 10px;
+            align-items: center;
             font-size: 1.2em;
         }
+        
+        .cross {
+            margin-left: auto;
+            margin-right: 15px;
+        }
+        .cross:before, .cross:after {
+            content: '';
+            border-top: 2px solid #3E474F;
+            width: 15px;
+            display: block;
+            transition: 0.3s;
+        }
+        .cross:after { transform: rotate(90deg); margin-top: -2px; }
+        input:checked ~ label .cross:before { transform: rotate(180deg); }
+        input:checked ~ label .cross:after { transform: rotate(0deg); }
+        
+        .content {
+            box-sizing: border-box;
+            font-size: 0.9em;
+            margin: 10px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        input:checked ~ .content { max-height: 1000px; transition: max-height 1s; }
+        
+        .content p {
+            flex: 1;
+            min-width: 45%;
+        }
 
-.cross{
-    margin-right:15px;
-    margin-top:3px;
-}
-.cross:before,.cross:after {
-    content: '';
-    border-top: 2px solid #3E474F;
-    width: 15px;
-    display: block;
-    margin-top: 18px;
-    transition: 0.3s;
-}
-.cross:after {
-    transform: rotate(90deg);
-    margin-top: -2px;
-}
-
-.content {
-    box-sizing: border-box;
-    font-size: 0.9em;
-    margin: 10px 10px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height, .5s;
-}
-
-input:checked ~ .content {
-    max-height: 400px;
-    transition: max-height, 1s;
-}
-input:checked ~ label .cross:before {
-    transform: rotate(180deg);
-}
-input:checked ~ label .cross:after {
-    transform: rotate(0deg);
-}
 
 .questions {
     margin-top:20px;
@@ -235,6 +219,8 @@ input:checked ~ .questions {
                 font-size: 40px;
                 line-height: 35px;
             }
+            .content { flex-direction: column; }
+            .content p { min-width: 100%; }
         }
     </style>
 </head>
@@ -243,11 +229,11 @@ input:checked ~ .questions {
   <header>
       <h1>Memory Work</h1>
       <nav>
-        <a href="#formingkin" class="badge forming-kin"></a>
-        <a href="#mothers-of-invention" class="badge moi"></a>
-        <a href="#cosmetic-healing" class="badge cosmetic-healing"></a>
-        <a href="#ancestral-intelligence" class="badge ai"></a>
-        <a href="#almanac" class="badge living-tools"></a>
+        <a href="#formingkin" class="badge forming-kin" data-target="tab-1"></a>
+        <a href="#mothers-of-invention" class="badge moi" data-target="tab-2"></a>
+        <a href="#cosmetic-healing" class="badge cosmetic-healing" data-target="tab-3"></a>
+        <a href="#ancestral-intelligence" class="badge ai" data-target="tab-4"></a>
+        <a href="#almanac" class="badge living-tools" data-target="tab-5"></a>
       </nav>
   </header>
 
@@ -261,6 +247,7 @@ input:checked ~ .questions {
         </p>
     </div>
   </article>
+
   <article id="mothers-of-invention">
     <input type="radio" id="tab-2" name="tabs">
     <label for="tab-2"><div>Mothers of Invention</div><div class="cross"></div></label>
@@ -270,9 +257,36 @@ input:checked ~ .questions {
     </div>
   </article>
 
-  <article>
+  <article id="cosmetic-healing">
     <input type="radio" id="tab-3" name="tabs">
-    <label for="tab-3"><div>About</div><div class="cross"></div></label>
+    <label for="tab-3"><div>Cosmetic Healing</div><div class="cross"></div></label>
+    <div class="content">
+        <p class="dropcap">An exploration of beauty and wellness...</p>
+        <p>Reframing cosmetics as ritualistic healing...</p>
+    </div>
+  </article>
+
+  <article id="ancestral-intelligence">
+    <input type="radio" id="tab-4" name="tabs">
+    <label for="tab-4"><div>Ancestral Intelligence</div><div class="cross"></div></label>
+    <div class="content">
+        <p class="dropcap">Honoring traditional knowledge...</p>
+        <p>Integrating AI with ancestral wisdom...</p>
+    </div>
+  </article>
+
+  <article id="almanac">
+    <input type="radio" id="tab-5" name="tabs">
+    <label for="tab-5"><div>Almanac</div><div class="cross"></div></label>
+    <div class="content">
+        <p class="dropcap">A collective knowledge base...</p>
+        <p>Documenting signals of change...</p>
+    </div>
+  </article>
+
+  <article>
+    <input type="radio" id="info-tab" name="tabs">
+    <label for="info-tab"><div>About</div><div class="cross"></div></label>
     <div class="questions">
       <div class="question-wrap">
         <input type="radio" id="question-1" name="question">
@@ -293,5 +307,19 @@ input:checked ~ .questions {
     </div>
   </article>
 </main>
+
+<script>
+    document.querySelectorAll(".badge").forEach(badge => {
+        badge.addEventListener("click", function(e) {
+            e.preventDefault();
+            let target = document.getElementById(this.dataset.target);
+            if (target) {
+                target.checked = true;
+                document.querySelectorAll("label").forEach(label => label.classList.remove("active"));
+                document.querySelector(`label[for="${this.dataset.target}"]`).classList.add("active");
+            }
+        });
+    });
+</script>
 </body>
 </html>
