@@ -123,48 +123,49 @@
             flex-wrap: wrap;
             gap: 15px;
         }
-        input:checked ~ .content { max-height: 1000px; transition: max-height 1s; }
-        
+        input:checked ~ .content { 
+            max-height: 1000px;
+            transition: max-height 1s;
+        }
         .content p {
             flex: 1;
             min-width: 45%;
         }
-
-
-.questions {
-    margin-top:20px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height, .5s;
-}
-.questions label {
-    border:none;
-    box-shadow: none;
-    margin:0;
-}
-input:checked ~ .questions {
-    max-height: 400px;
-    border-bottom:2px solid #3E474F;
-    transition: 1s;
-}
-
-/*----------Tool Tip------------*/
-.tip {
-    color: #f03768;
-    cursor: help;
-    position: relative;
-    overflow: visible;
-    font-family: monospace;
-    font-size: 1.3em;
-}
-.tip:before,
-.tip:after {
-    position: absolute;
-    opacity: 0;
-    z-index: -100;    
-    transform: translateY(-30%);
-    transition: .4s;
-}
+        
+        .questions {
+            margin-top:20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .questions label {
+            border: none;
+            box-shadow: none;
+            margin: 0;
+        }
+        input:checked ~ .questions {
+            max-height: 1000px;
+            border-bottom: 2px solid;
+            transition: 1s;
+        }
+        
+        /*----------Tool Tip------------*/
+        .tip {
+            color: #f03768;
+            cursor: pointer;
+            position: relative;
+            overflow: visible; 
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+        .tip:before,
+        .tip:after { 
+            position: absolute;
+            opacity: 0; 
+            z-index: -100;
+            transform: translateY(-30%); 
+            transition: .4s;
+        }
 .tip:before {
     content: '';
     border-style: solid;
@@ -210,6 +211,7 @@ input:checked ~ .questions {
             header h1 { 
                 align-self: flex-start; /* Align h1 to the left */
                 margin-bottom: 40px; /* Add spacing between h1 and nav */
+                margin-left: 10px
             }
             header nav {
                 align-self: flex-end; /* Align nav to the right */
