@@ -12,23 +12,34 @@
             outline: none;
             -webkit-tap-highlight-color: transparent;
         }
+        @font-face {
+            font-family: "Trio Grotesk";
+            src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Trio Grotesk/Rubik-Regular.woff2") format("woff2");
+            font-style: normal; 
+            font-weight: normal;
+        }
+        @font-face { 
+            font-family: "Trio Grotesk"; 
+            src: url("https://c-p.rmcdn1.net/hosted-fonts/webtype-fallback/Trio Grotesk/Rubik-Medium.woff2") format("woff2"); 
+            font-style: normal;
+            font-weight: 500;
+        }
         body {
-            font-family: sans-serif;
+            font-family: "Trio Grotesk", sans-serif;
             background: #EDE8EC;
             color: #262626;
-            overflow-x: hidden; /* Remove hidden to allow content to expand */
+            overflow: hidden;
         }
         main {
             max-width: 800px;
             width: 100%;
             margin: 15vh auto 0;
-            padding-bottom: 100px; /* Prevent content from being cut off */
         }
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 20px;
+            padding-bottom: 20px;       
         }
         .badge {
             display: inline-block;
@@ -36,25 +47,54 @@
             height: 45px;
             margin-right: 10px;
             border-radius: 50%;
-            cursor: pointer;
         }
-        .badge.forming-kin { background-image: url('memory01.svg'); }
-        .badge.forming-kin:hover, label[for="tab-1"].active { background-color: #f886ff; }
-        
-        .badge.moi { background-image: url('memory02.svg'); }
-        .badge.moi:hover, label[for="tab-2"].active { background-color: #71c6ff; }
-        
-        .badge.cosmetic-healing { background-image: url('memory03.svg'); }
-        .badge.cosmetic-healing:hover, label[for="tab-3"].active { background-color: #8af38a; }
-        
-        .badge.ai { background-image: url('memory04.svg'); }
-        .badge.ai:hover, label[for="tab-4"].active { background-color: #f2fc72; }
-        
-        .badge.living-tools { background-image: url('memory05.svg'); }
-        .badge.living-tools:hover, label[for="tab-5"].active { background-color: #c6aeff; }
-        
-        input { display: none; }
-
+        .badge.forming-kin {
+            background-image: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/af238fe353b4600c25752fc2aa9d628c68074742/04/memory01.svg');
+            background-position: 50% 50%;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+        .badge.forming-kin:hover {
+            background-color: #f886ff;
+        }
+        .badge.moi {
+            background-image: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/af238fe353b4600c25752fc2aa9d628c68074742/04/memory02.svg');
+            background-position: 50% 50%;
+            background-size: 100%;
+        }
+        .badge.moi:hover {
+            background-color: #71c6ff;
+        }
+        .badge.cosmetic-healing {
+            background-image: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/af238fe353b4600c25752fc2aa9d628c68074742/04/memory03.svg');
+            background-position: 50% 50%;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+        .badge.cosmetic-healing:hover {
+            background-color: #8af38a;
+        }
+        .badge.ai {
+            background-image: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/af238fe353b4600c25752fc2aa9d628c68074742/04/memory04.svg');
+            background-position: 50% 50%;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+        .badge.ai:hover {
+            background-color: #f2fc72;
+        }
+        .badge.living-tools {
+            background-image: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/af238fe353b4600c25752fc2aa9d628c68074742/04/memory05.svg');
+            background-position: 50% 50%;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+        .badge.living-tools:hover {
+            background-color: #c6aeff;
+        }   
+        input {
+            display: none;
+        }
         label {
             display: flex;
             width: 100%;
@@ -62,48 +102,139 @@
             cursor: pointer;
             border: 3px solid;
             user-select: none;
-            padding-left: 10px;
-            align-items: center;
+        }
+        label div:first-child {
+            width: 100%;
+            line-height: 45px;
+            margin-left: 10px;
             font-size: 1.2em;
         }
-        
-        .cross {
-            margin-left: auto;
-            margin-right: 15px;
-        }
-        .cross:before, .cross:after {
-            content: '';
-            border-top: 2px solid #3E474F;
-            width: 15px;
-            display: block;
-            transition: 0.3s;
-        }
-        .cross:after { transform: rotate(90deg); margin-top: -2px; }
-        input:checked ~ label .cross:before { transform: rotate(180deg); }
-        input:checked ~ label .cross:after { transform: rotate(0deg); }
-        
-        .content {
-            box-sizing: border-box;
-            font-size: 0.9em;
-            margin: 10px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        input:checked ~ .content { max-height: 1000px; transition: max-height 1s; }
-        
-        .content p {
-            flex: 1;
-            min-width: 45%;
-        }
 
+.cross{
+    margin-right:15px;
+    margin-top:3px;
+}
+.cross:before,.cross:after {
+    content: '';
+    border-top: 2px solid #3E474F;
+    width: 15px;
+    display: block;
+    margin-top: 18px;
+    transition: 0.3s;
+}
+.cross:after {
+    transform: rotate(90deg);
+    margin-top: -2px;
+}
+
+.content {
+    box-sizing: border-box;
+    font-size: 0.9em;
+    margin: 10px 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height, .5s;
+}
+
+input:checked ~ .content {
+    max-height: 400px;
+    transition: max-height, 1s;
+}
+input:checked ~ label .cross:before {
+    transform: rotate(180deg);
+}
+input:checked ~ label .cross:after {
+    transform: rotate(0deg);
+}
+
+.questions {
+    margin-top:20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height, .5s;
+}
+.questions label {
+    border:none;
+    box-shadow: none;
+    margin:0;
+}
+input:checked ~ .questions {
+    max-height: 400px;
+    border-bottom:2px solid #3E474F;
+    transition: 1s;
+}
+
+/*----------Tool Tip------------*/
+.tip {
+    color: #f03768;
+    cursor: help;
+    position: relative;
+    overflow: visible;
+    font-family: monospace;
+    font-size: 1.3em;
+}
+.tip:before,
+.tip:after {
+    position: absolute;
+    opacity: 0;
+    z-index: -100;    
+    transform: translateY(-30%);
+    transition: .4s;
+}
+.tip:before {
+    content: '';
+    border-style: solid;
+    border-width: 0.8em 0.5em 0 0.5em;
+    border-color: #3E474F transparent transparent transparent;
+    transform: translateY(-200%);
+    bottom:90%;
+    left:50%;
+}
+.tip:after {
+    content: attr(data-tip);
+    background: #3E474F;
+    color: white;
+    width: 150px;
+    padding: 10px;
+    font-size: 0.8em;
+    bottom: 150%;
+    left: -50%;
+}
+.tip:hover:before,
+.tip:hover:after {
+    opacity: 1;
+    z-index: 100;
+    transform: scaleY(1);
+}
+
+        .dropcap::first-letter {
+            margin-right: 5px;
+            float: left;
+            -webkit-transform: translate(0px, 5px);
+            -ms-transform: translate(0px, 5px);
+            transform: translate(0px, 5px);
+            font-family: Gallique, serif;
+            font-size: 50px;
+            line-height: 45px;
+            text-transform: uppercase;
+        }
         @media (max-width: 768px) {
-            header { flex-direction: column; text-align: left; }
-            .content { flex-direction: column; }
-            .content p { min-width: 100%; }
+            header {
+                flex-direction: column; 
+                text-align: left;
+            }
+            header h1 { 
+                align-self: flex-start; /* Align h1 to the left */
+                margin-bottom: 40px; /* Add spacing between h1 and nav */
+            }
+            header nav {
+                align-self: flex-end; /* Align nav to the right */
+                text-align: right;
+            }
+            dropcap::first-letter {
+                font-size: 40px;
+                line-height: 35px;
+            }
         }
     </style>
 </head>
@@ -112,11 +243,11 @@
   <header>
       <h1>Memory Work</h1>
       <nav>
-        <a href="#formingkin" class="badge forming-kin" data-target="tab-1"></a>
-        <a href="#mothers-of-invention" class="badge moi" data-target="tab-2"></a>
-        <a href="#cosmetic-healing" class="badge cosmetic-healing" data-target="tab-3"></a>
-        <a href="#ancestral-intelligence" class="badge ai" data-target="tab-4"></a>
-        <a href="#almanac" class="badge living-tools" data-target="tab-5"></a>
+        <a href="#formingkin" class="badge forming-kin"></a>
+        <a href="#mothers-of-invention" class="badge moi"></a>
+        <a href="#cosmetic-healing" class="badge cosmetic-healing"></a>
+        <a href="#ancestral-intelligence" class="badge ai"></a>
+        <a href="#almanac" class="badge living-tools"></a>
       </nav>
   </header>
 
@@ -124,61 +255,43 @@
     <input type="radio" id="tab-1" name="tabs">
     <label for="tab-1"><div>Forming Kin</div><div class="cross"></div></label>
     <div class="content">
-        <p class="dropcap">A call for people to take care of each other...</p>
-        <p>Like mushrooms springing from disseminated spores...</p>
+        <p class="dropcap">A call for people to be with and of nature, to take care of the Earth and each other through mutual aid and collectivized reproduction — the concept of a Living Internet took root as a new way of thinking and feeling about how we form kin.</p>
+        <p>Like mushrooms springing from disseminated spores, an ad-hoc network of communes began to emerge outside of cities. Populated by urbanite folx who looked to move from precarious conditions to collective survival — the communes embodied ways of life oriented around slowness, intentionality, distributed abundance, and decentralized care.
+            <br><br>The Living Internet became a kind of superorganism mediating the flow of nutrients among all living beings.
+        </p>
     </div>
   </article>
-
   <article id="mothers-of-invention">
     <input type="radio" id="tab-2" name="tabs">
     <label for="tab-2"><div>Mothers of Invention</div><div class="cross"></div></label>
     <div class="content">
-        <p class="dropcap">Referring to a loosely knit movement...</p>
-        <p>In response to the Climate Imperative...</p>
+        <p class="dropcap">Referring to a loosely knit movement of political, business, and spiritual leaders; entrepreneurs, scientists, and innovators; and their supporters — the words Mothers of Invention (or the initialism MOI) are found <span class="tip" data-tip="Eaque quae, nam delectus explicabo, deserunt ipsum!">emblazoned</span> amidst the taped seams, utility straps, and zipped pockets of tech aprons and lab coats (worn functionally and fashionably as a political statement).</p>
+        <p>In <span class="tip" data-tip="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">response</span> to the clumsy and ineffectual Climate Imperative of the first decades of the 21st century, the anti-patriarchal Mothers of Invention seized control of the world’s <span class="tip" data-tip="Lorem ipsum dolor sit amet.">institutions</span> — transitioning big businesses into cooperative models, formalizing new means of equitable exchange, and choosing nurture over growth.</p>
     </div>
   </article>
 
-  <article id="cosmetic-healing">
+  <article>
     <input type="radio" id="tab-3" name="tabs">
-    <label for="tab-3"><div>Cosmetic Healing</div><div class="cross"></div></label>
-    <div class="content">
-        <p class="dropcap">An exploration of beauty and wellness...</p>
-        <p>Reframing cosmetics as ritualistic healing...</p>
-    </div>
-  </article>
-
-  <article id="ancestral-intelligence">
-    <input type="radio" id="tab-4" name="tabs">
-    <label for="tab-4"><div>Ancestral Intelligence</div><div class="cross"></div></label>
-    <div class="content">
-        <p class="dropcap">Honoring traditional knowledge...</p>
-        <p>Integrating AI with ancestral wisdom...</p>
-    </div>
-  </article>
-
-  <article id="almanac">
-    <input type="radio" id="tab-5" name="tabs">
-    <label for="tab-5"><div>Almanac</div><div class="cross"></div></label>
-    <div class="content">
-        <p class="dropcap">A collective knowledge base...</p>
-        <p>Documenting signals of change...</p>
+    <label for="tab-3"><div>About</div><div class="cross"></div></label>
+    <div class="questions">
+      <div class="question-wrap">
+        <input type="radio" id="question-1" name="question">
+        <label for="question-1"><div>Memory Work</div> <div class="cross"></div></label>
+        <div class="content">  
+            <p class="dropcap">Memory Work is a research-based future scenario. It is not a prediction. It is neither visionary, as in preferred, nor is it admonitory, as in dystopian. It is intended as material for meditation, stimuli for imagining collective future memory. Memory Work engages with ethical and moral imperatives across (past, present, and future) time.</p>
+            <p>History is written by the privileged, framed by their prejudices, and coloured by their biases. History records. Memory recalls — through mutual recounting and reconstruction of lived experience. Through memory work, collective futures can be imagined.
+              <br><br>We encourage you to use this as a resource, to question it and to iterate on it, generating your own future experiences, visions, vignettes, and artifacts.
+            </p>
+      </div>
+      <div class="question-wrap">
+        <input type="radio" id="question-2" name="question">
+        <label for="question-2"><div>Artifacts</div> <div class="cross"></div></label>
+        <div class="content">
+            <p class="dropcap">The following are cultural artifacts from the future scenario, Memory Work. Although they might only exist in this possible future world, they are informed by signals of change observed today. Click each artifact to explore the social, political, technological, and theoretical signals that informed it.</p>     
+        </div>
+      </div>
     </div>
   </article>
 </main>
-
-<script>
-    document.querySelectorAll(".badge").forEach(badge => {
-        badge.addEventListener("click", function(e) {
-            e.preventDefault();
-            let target = document.getElementById(this.dataset.target);
-            if (target) {
-                target.checked = true;
-                document.querySelectorAll("label").forEach(label => label.classList.remove("active"));
-                document.querySelector(`label[for="${this.dataset.target}"]`).classList.add("active");
-            }
-        });
-    });
-</script>
-
 </body>
 </html>
