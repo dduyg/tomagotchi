@@ -12,28 +12,23 @@
             outline: none;
             -webkit-tap-highlight-color: transparent;
         }
-
         body {
-            font-family: sans-serif;
+            font-family: "Trio Grotesk", sans-serif;
             background: #EDE8EC;
             color: #262626;
-            overflow-y: auto; /* Prevent cutting off content */
+            overflow-y: auto;
         }
-
         main {
             max-width: 800px;
             width: 100%;
             margin: 15vh auto 0;
-            padding: 20px;
         }
-
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding-bottom: 20px;
         }
-
         .badge {
             display: inline-block;
             width: 45px;
@@ -42,126 +37,130 @@
             border-radius: 50%;
             cursor: pointer;
         }
+        .badge.forming-kin { background: url('memory01.svg') no-repeat center/100%; }
+        .badge.forming-kin:hover, label[data-color="#f886ff"].active { background-color: #f886ff; }
 
-        /* Background images for badges */
-        .badge.forming-kin {
-            background-image: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/af238fe353b4600c25752fc2aa9d628c68074742/04/memory01.svg');
-            background-size: cover;
-        }
-        .badge.moi {
-            background-image: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/af238fe353b4600c25752fc2aa9d628c68074742/04/memory02.svg');
-            background-size: cover;
-        }
-        /* Add remaining badge styles... */
+        .badge.moi { background: url('memory02.svg') no-repeat center/100%; }
+        .badge.moi:hover, label[data-color="#71c6ff"].active { background-color: #71c6ff; }
 
-        /* Hover Backgrounds */
-        .badge.forming-kin:hover,
-        article input:checked ~ label.forming-kin {
-            background-color: #f886ff;
-        }
-        .badge.moi:hover,
-        article input:checked ~ label.moi {
-            background-color: #71c6ff;
-        }
-        /* Add hover colors for other badges */
+        .badge.cosmetic-healing { background: url('memory03.svg') no-repeat center/100%; }
+        .badge.cosmetic-healing:hover, label[data-color="#8af38a"].active { background-color: #8af38a; }
 
-        /* Hide radio inputs */
-        input {
-            display: none;
-        }
+        .badge.ai { background: url('memory04.svg') no-repeat center/100%; }
+        .badge.ai:hover, label[data-color="#f2fc72"].active { background-color: #f2fc72; }
 
+        .badge.living-tools { background: url('memory05.svg') no-repeat center/100%; }
+        .badge.living-tools:hover, label[data-color="#c6aeff"].active { background-color: #c6aeff; }
+
+        input { display: none; }
         label {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
             width: 100%;
             height: 50px;
-            padding: 10px;
             cursor: pointer;
             border: 3px solid;
             user-select: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .content {
-            box-sizing: border-box;
             padding: 10px;
+            transition: background 0.3s;
+        }
+        label div:first-child {
+            width: 100%;
+            line-height: 45px;
+            font-size: 1.2em;
+        }
+        .cross {
+            margin-right: 15px;
+            margin-top: 3px;
+        }
+        .cross:before, .cross:after {
+            content: '';
+            border-top: 2px solid #3E474F;
+            width: 15px;
+            display: block;
+            margin-top: 18px;
+            transition: 0.3s;
+        }
+        .cross:after {
+            transform: rotate(90deg);
+            margin-top: -2px;
+        }
+        .content {
             font-size: 0.9em;
+            margin: 10px;
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.5s ease-in-out;
         }
-
-        /* Open state for accordion */
         input:checked ~ .content {
             max-height: 400px;
+            transition: max-height 1s;
         }
+        input:checked ~ label .cross:before { transform: rotate(180deg); }
+        input:checked ~ label .cross:after { transform: rotate(0deg); }
 
-        /* Paragraphs in two columns */
-        .content p {
-            display: inline-block;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        .content p + p {
-            margin-left: 10px;
-        }
-
-        @media (min-width: 768px) {
-            .content {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 15px;
-            }
-            .content p {
-                width: calc(50% - 10px); /* Two columns */
-            }
-        }
-
-        /* Tooltip styles */
+        /* Tooltip Fix */
         .tip {
             color: #f03768;
             cursor: help;
             position: relative;
+            overflow: visible;
             font-family: monospace;
             font-size: 1.3em;
         }
-
-        .tip::after {
-            content: attr(data-tip);
+        .tip:before, .tip:after {
             position: absolute;
-            background: #3E474F;
-            color: white;
-            padding: 8px;
-            font-size: 0.8em;
-            width: 150px;
             opacity: 0;
-            transition: opacity 0.3s;
-            bottom: 150%;
-            left: 0;
+            z-index: -100;
+            transition: .4s;
         }
-
-        .tip:hover::after {
+        .tip:hover:before, .tip:hover:after {
             opacity: 1;
+            z-index: 100;
         }
 
+        /* Two-Column Layout */
+        .content p {
+            margin-bottom: 15px;
+        }
+        @media (min-width: 769px) {
+            .content p {
+                column-count: 2;
+                column-gap: 20px;
+            }
+        }
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: left;
+            }
+            header h1 {
+                align-self: flex-start;
+                margin-bottom: 40px;
+            }
+            header nav {
+                align-self: flex-end;
+                text-align: right;
+            }
+        }
     </style>
 </head>
 <body>
+
 <main>
     <header>
         <h1>Memory Work</h1>
         <nav>
-            <span class="badge forming-kin" data-target="tab-1"></span>
-            <span class="badge moi" data-target="tab-2"></span>
-            <!-- Add other badges -->
+            <a href="#formingkin" class="badge forming-kin" data-target="tab-1" data-color="#f886ff"></a>
+            <a href="#mothers-of-invention" class="badge moi" data-target="tab-2" data-color="#71c6ff"></a>
+            <a href="#cosmetic-healing" class="badge cosmetic-healing" data-target="tab-3" data-color="#8af38a"></a>
+            <a href="#ancestral-intelligence" class="badge ai" data-target="tab-4" data-color="#f2fc72"></a>
+            <a href="#almanac" class="badge living-tools" data-target="tab-5" data-color="#c6aeff"></a>
         </nav>
     </header>
 
     <article id="formingkin">
         <input type="radio" id="tab-1" name="tabs">
-        <label for="tab-1" class="forming-kin"><div>Forming Kin</div></label>
+        <label for="tab-1" data-color="#f886ff"><div>Forming Kin</div><div class="cross"></div></label>
         <div class="content">
             <p class="dropcap">A call for people to be with and of nature...</p>
             <p>Like mushrooms springing from disseminated spores...</p>
@@ -170,30 +169,26 @@
 
     <article id="mothers-of-invention">
         <input type="radio" id="tab-2" name="tabs">
-        <label for="tab-2" class="moi"><div>Mothers of Invention</div></label>
+        <label for="tab-2" data-color="#71c6ff"><div>Mothers of Invention</div><div class="cross"></div></label>
         <div class="content">
             <p class="dropcap">Referring to a loosely knit movement...</p>
             <p>In response to the clumsy and ineffectual Climate Imperative...</p>
         </div>
     </article>
 
-    <!-- More articles -->
-
 </main>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const badges = document.querySelectorAll(".badge");
+    document.querySelectorAll('.badge').forEach(badge => {
+        badge.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('data-target');
+            const targetColor = this.getAttribute('data-color');
 
-        badges.forEach((badge) => {
-            badge.addEventListener("click", function () {
-                const targetId = this.getAttribute("data-target");
-                const targetInput = document.getElementById(targetId);
+            document.getElementById(targetId).checked = true;
 
-                if (targetInput) {
-                    targetInput.checked = true;
-                }
-            });
+            document.querySelectorAll("label").forEach(label => label.classList.remove("active"));
+            document.querySelector(`label[for="${targetId}"]`).classList.add("active");
         });
     });
 </script>
