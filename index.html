@@ -41,45 +41,23 @@
             align-items: center;
             padding-bottom: 20px;       
         }
-        nav {
-            border: 1px solid;
-            border-radius: 8.62px;
-            padding: 10px;
-        }
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column; 
-                align-items: stretch; /* Stretch to full width */ 
-                text-align: left;
-            }
-            header h1 { 
-                align-self: flex-start; /* Align h1 to the left */
-                margin-bottom: 10px; /* Add spacing between h1 and nav */
-            }
-            header nav {
-                align-self: flex-end; /* Align nav to the right */
-                text-align: right;
-            }
-        }
-        
         .badge {
             display: inline-block;
-            width: 70px;
-            height: 70px;
-            margin-right: 8px;
-            margin-bottom: -5px;
+            width: 45px;
+            height: 45px;
+            margin-right: 10px;
             border-radius: 50%;
             background-color: #d8d5f1;
         }
-.badge.forming-kin {
-  background-image: url('../images/icons-04.svg');
-  background-position: 50% 50%;
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
-.badge.forming-kin:hover {
-  background-color: #f886ff;
-}
+        .badge.forming-kin {
+            background-image: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/af238fe353b4600c25752fc2aa9d628c68074742/04/memory01.svg');
+            background-position: 50% 50%;
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+        .badge.forming-kin:hover {
+            background-color: #f886ff;
+        }
 
 .badge.moi {
   background-image: url('../images/icons-05.svg');
@@ -235,24 +213,39 @@ input:checked ~ .questions {
     z-index: 100;
     transform: scaleY(1);
 }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column; 
+                text-align: left;
+            }
+            header h1 { 
+                align-self: flex-start; /* Align h1 to the left */
+                margin-bottom: 40px; /* Add spacing between h1 and nav */
+            }
+            header nav {
+                align-self: flex-end; /* Align nav to the right */
+                text-align: right;
+            }
+        }
     </style>
 </head>
 <body>
 <main>
   <header>
-      <h1>storypadding</h1>
+      <h1>Memory Work</h1>
       <nav>
-        <a href="[#formingkin](https://memory-work.com/#formingkin)" class="badge forming-kin w-inline-block"></a>
-        <a href="[#mothers-of-invention](https://memory-work.com/#mothers-of-invention)" class="badge moi w-inline-block"></a>
-        <a href="[#cosmetic-healing](https://memory-work.com/#cosmetic-healing)" class="badge cosmetic-healing w-inline-block"></a>
-        <a href="[#ancestral-intelligence](https://memory-work.com/#ancestral-intelligence)" class="badge ai w-inline-block"></a>
-        <a href="[#almanac](https://memory-work.com/#almanac)" class="badge living-tools w-inline-block"></a>
+        <a href="#formingkin" class="badge forming-kin"></a>
+        <a href="#mothers-of-invention" class="badge moi"></a>
+        <a href="#cosmetic-healing" class="badge cosmetic-healing"></a>
+        <a href="#ancestral-intelligence" class="badge ai"></a>
+        <a href="#almanac" class="badge living-tools"></a>
       </nav>
   </header>
 
   <article>
     <input type="radio" id="tab-1" name="tabs">
-    <label for="tab-1"><div>Memory Work</div><div class="cross"></div></label>
+    <label for="tab-1"><div>Forming Kin</div><div class="cross"></div></label>
     <div class="content">
         Memory work is a process of engaging with the past which has both an ethical and historical dimension.[1]
         During memory work, the process of producing an image or what we refer to as the production of the imaginary, is central.
