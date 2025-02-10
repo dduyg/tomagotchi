@@ -5,187 +5,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LiminalLoop</title>
     <style>
-@font-face {
-  font-family: 'Test Domaine Text';
-  src: url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/64e6cc8c3c8d3d01f0839713_test-domaine-text-light.woff2') format('woff2');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-@font-face {
-  font-family: 'Cardinal';
-  src: url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/64e0fbec5077f653e248ab86_04c592dfa79bc56cdfdd11b838d90ad8.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+
+body {
+    background-color: #d6c3b1;
+    font-family: 'Georgia', serif;
+    color: #000;
+    padding: 20px;
 }
-@font-face {
-  font-family: 'Cardinal';
-  src: url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/64e0fbec5077f653e248ab81_5dc6f8465bc6479f5a07c273258b5bd4.woff') format('woff');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
 }
-@font-face {
-  font-family: 'Cardinal';
-  src: url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/64e0fbec5077f653e248ab7c_94dd75dcec3a4d1e1021c4bf0749af0c.woff') format('woff');
-  font-weight: 600;
-  font-style: italic;
-  font-display: swap;
+
+/* Title with Image */
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
-@font-face {
-  font-family: 'Cardinal';
-  src: url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/64e0fbec5077f653e248ab83_78eca283d8e58e54b414ebe70420d91c.woff') format('woff');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
+
+h1 {
+    font-size: 60px;
+    font-weight: normal;
 }
-@font-face {
-  font-family: 'Untitledsans';
-  src: url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/652e5e1578a1a7db8024e75d_UntitledSans-LightItalic.ttf') format('truetype'), url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/652e5e1578a1a7db8024e75d_UntitledSans-LightItalic.ttf') format('truetype'), url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/652e5e156f57cd62750355f5_UntitledSans-LightItalic.otf') format('opentype');
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
+
+.title-image {
+    max-width: 200px;
+    height: auto;
 }
-@font-face {
-  font-family: 'Untitledsans';
-  src: url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/652e5e15d5f974cc9fdd0630_UntitledSans-MediumItalic.ttf') format('truetype'), url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/652e5e1577e85d8f2f015df9_UntitledSans-MediumItalic.otf') format('opentype');
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
+
+/* Year and Quote */
+.year {
+    font-size: 14px;
+    margin-top: 10px;
 }
-@font-face {
-  font-family: 'Untitledsans';
-  src: url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/652e5e15d1e880d65c9722d1_UntitledSans-BoldItalic.ttf') format('truetype'), url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/652e5e1681ddb13871226cab_UntitledSans-BoldItalic.otf') format('opentype');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
+
+blockquote {
+    font-style: italic;
+    font-size: 14px;
+    margin-top: 10px;
+    color: #333;
 }
-@font-face {
-  font-family: 'Untitledsans';
-  src: url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/652e5e153007651868c54007_UntitledSans-RegularItalic.ttf') format('truetype'), url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/652e5e159bdb18a8a511761a_UntitledSans-RegularItalic.otf') format('opentype');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
+
+/* Three-Column Layout */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-top: 30px;
 }
-@font-face {
-  font-family: 'Untitledsans';
-  src: url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/652e5e1577e85d8f2f015dfc_UntitledSans-Medium.ttf') format('truetype'), url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/652e5e150591c7106e4d1277_UntitledSans-Medium.otf') format('opentype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
+
+/* Responsive: Stack Third Column Below */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    .column:nth-child(3) {
+        grid-column: span 2;
+    }
 }
-@font-face {
-  font-family: 'Untitledsans';
-  src: url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/652e5e15c5cdebbf2381c7e8_UntitledSans-Light.ttf') format('truetype'), url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/652e5e15c5cdebbf2381c7ee_UntitledSans-Light.otf') format('opentype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
+
+/* Image Styling */
+.workspace-image {
+    width: 100%;
+    border-radius: 5px;
 }
-@font-face {
-  font-family: 'Untitledsans';
-  src: url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/652e5e1571885f5ba49f498e_UntitledSans-Bold.ttf') format('truetype'), url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/652e5e15ba644a6271be3b96_UntitledSans-Bold.otf') format('opentype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
+
+.image-section {
+    margin-top: 40px;
+    position: relative;
 }
-@font-face {
-  font-family: 'Untitledsans';
-  src: url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/652e5e166f57cd627503596a_UntitledSans-Black.ttf') format('truetype'), url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/652e5e15461837bf05a9411f_UntitledSans-Black.otf') format('opentype');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
+
+.wood-texture {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    width: 80px;
 }
-@font-face {
-  font-family: 'Untitledsans';
-  src: url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/652e5e166f57cd627503588f_UntitledSans-BlackItalic.ttf') format('truetype'), url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/652e5e1578a1a7db8024e777_UntitledSans-BlackItalic.otf') format('opentype');
-  font-weight: 900;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Whyte Inktrap Light';
-  src: url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/64e0fbec5077f653e248ab91_Whyte-Inktrap-Light.otf') format('opentype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Untitledsans';
-  src: url('https://cdn.prod.website-files.com/64e0fbec5077f653e248ab5e/652e5e1523e23cbe05e98e25_UntitledSans-Regular.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Andale Mono', monospace;
-            background-color: #D8C0B4;
-            color: black;
-            padding: 2%;
-        }
-        header {
-            padding-top: 6%;
-            display: flex;
-            justify-content: space-between;
-        }
- 
-        header h1 {
-            font-family: Cardinal,sans-serif;
-            font-style: normal;
-            font-weight: 600;
-            max-width: 75%;
-            letter-spacing: -6px;
-            font-size: 7rem;
-            line-height: 6rem;
-        }
-        .project_heading{letter-spacing:-5px;max-width:80%;font-size:6rem;line-height:5rem}
-        
-        .element {
-            width: auto;
-            height: auto;
-            clear: none;
-            display: flex;
-            justify-content:center;
-            align-self:center;
-            align-items:center;
-            display:block;
-        }   
-        @media (max-width: 768px) {
-        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>The Archive</h1>
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/BLOBs/blob-21.gif" class="element">
-    </header>
-
-    <div class="w-row">
-        <div class="column-27 w-col w-col-6">
-        <div class="columns-4 w-row">
-        <div class="w-col w-col-5">
-            <p class="project-info info">
-                <span class="text-span-34">Year <br/></span><span class="text-span-35">2012-2019 </span>
-                
-                <span class="project_body"><br/></span>
-            </p>
-        </div>
-            <div class="column-9 heading w-col w-col-5">
-                <p class="text-span-34"><strong>&quot;As a designer looking to the future, you don&#x27;t want to get lost in the archives&quot; ... but here we are anyway! :)</strong>
-                </p>
+    <div class="container">
+        <header>
+            <div class="title-container">
+                <h1>The Archive</h1>
+                <img src="images/title.png" alt="The Archive" class="title-image">
             </div>
-            <div class="column-11 w-col w-col-1"></div>
-            <div class="column-12 w-col w-col-1"></div>
-        </div>
-        </div>
-        <div class="column-26 w-col w-col-6">
-            <h1 class="project_body bold">I&#x27;ve worked across a diverse range of industries &amp; solved some key challenges in tech, f&amp;b, hospitality, luxury, commerce and modern culture along the way.<br/><br/>Here are some of the folks and a selection of previous projects that I&#x27;ve had the pleasure of working with in the past.<br/>
-            </h1>
+            <p class="year">Year <strong>2012-2019</strong></p>
+            <blockquote>
+                "As a designer looking to the future, you don't want to get lost in the archives ... but here we are anyway! ;)"
+            </blockquote>
+        </header>
+
+        <section class="grid-container">
+            <div class="column">
+                <p>I've worked across a diverse range of industries & solved some key challenges in tech, f&b, hospitality, luxury, commerce, and modern culture along the way.</p>
+            </div>
+            <div class="column">
+                <p>Here are some of the folks and a selection of previous projects that I've had the pleasure of working with in the past.</p>
+            </div>
+            <div class="column">
+                <img src="images/workspace.jpg" alt="Workspace with sketches and coffee" class="workspace-image">
+            </div>
+        </section>
+
+        <div class="image-section">
+            <img src="images/wood-texture.png" alt="Wood Texture" class="wood-texture">
         </div>
     </div>
 </body>
