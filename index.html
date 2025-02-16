@@ -3,43 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiminalLoop</title>
+    <title>The Archive</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         body {
             font-family: Arial, sans-serif;
-            background-color: #d8c2b0;
-            color: #000;
+            background-color: #d5c2b3;
+            margin: 0;
+            padding: 0;
         }
-        main {
+        
+        .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 50px 0;
         }
 
-        /* Title Section */   
-        .title {
-            display: flex;
-            align-items: center;
-            font-size: 60px;
+        .header {
+            text-align: center;
+            position: relative;
+            font-size: 3rem;
             font-weight: bold;
         }
-        .title img {
-            width: 60px; 
-            height: 60px;
-            margin-left: 10px;
+
+        .header img {
+            width: 70px;
+            height: auto;
+            position: absolute;
+            top: 0;
+            right: 10%;
         }
 
-        /* Grid Layout */
         .content {
             display: flex;
             flex-wrap: wrap;
-            margin-top: 20px;
+            justify-content: space-between;
         }
 
         .left {
@@ -48,73 +46,79 @@
             flex-wrap: wrap;
         }
 
-        .left .year {
+        .left .year, .left .quote {
             width: 41.6667%;
-            font-weight: bold;
         }
 
         .left .spacer {
             width: 8.33333%;
         }
 
-        .left .quote {
-            width: 41.6667%;
-            font-style: italic;
-        }
-
         .right {
             width: 50%;
         }
 
-        /* Responsive */
+        .year {
+            font-weight: bold;
+        }
+
+        .quote {
+            font-style: italic;
+        }
+
+        .bottom-image {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .bottom-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
         @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
             .left, .right {
                 width: 100%;
-                margin-bottom: 20px;
             }
-            .left .spacer {
-                display: none;
+
+            .left {
+                display: block;
             }
-        }
 
-        /* Image Section */
-        .image-section {
-            margin-top: 20px;
-        }
-
-        .image-section img {
-            width: 100%;
-            height: auto;
+            .left .year, .left .quote, .left .spacer {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-<main>          
-    <div class="title">
-        The Archive
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/BLOBs/blob-21.gif" alt="wood-texture">
-    </div>
 
-    <!-- Grid Layout -->
-    <div class="content">
-        <div class="left">
-            <div class="year">Year<br>2012-2019</div>
-            <div class="quote">
-                "As a designer looking to the future, you don't want to get lost in the archives ... but here we are anyway! :)"
+    <div class="container">
+        <div class="header">
+            The Archive
+            <img src="wood-texture.png" alt="Wood Texture">
+        </div>
+
+        <div class="content">
+            <div class="left">
+                <div class="year">Year<br>2012-2019</div>
+                <div class="spacer"></div>
+                <div class="quote">"As a designer looking to the future, you don't want to get lost in the archives ... but here we are anyway! ;)"</div>
             </div>
-            <div class="spacer"></div>
-            <div class="spacer"></div>
+            <div class="right">
+                <p>I've worked across a diverse range of industries & solved some key challenges in tech, f&b, hospitality, luxury, commerce and modern culture along the way.</p>
+                <p>Here are some of the folks and a selection of previous projects that I've had the pleasure of working with in the past.</p>
+            </div>
         </div>
-        <div class="right">
-            <p>I've worked across a diverse range of industries & solved some key challenges in tech, f&b, hospitality, luxury, commerce and modern culture along the way.</p>
-            <p>Here are some of the folks and a selection of previous projects that I've had the pleasure of working with in the past.</p>
-        </div>
-    </div>
 
-    <!-- Image Section -->
-    <div class="image-section">
-        <img src="work-image.jpg" alt="Work Process">
+        <div class="bottom-image">
+            <img src="design-desk.jpg" alt="Design Desk">
+        </div>
     </div>
-</main>
 </body>
 </html>
