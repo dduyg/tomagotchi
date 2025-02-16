@@ -11,11 +11,13 @@
             padding: 0;
             background-color: #f8f8f8;
             color: #111;
-        }      
+        }
+        
         .container {
             max-width: 1200px;
             margin: auto;
-            padding: 40px 10px;
+            padding: 40px 20px;
+            background: white;
         }
 
         .title {
@@ -28,6 +30,7 @@
             gap: 10px;
             margin-bottom: 40px;
         }
+
         .title img {
             width: 60px;
             height: 60px;
@@ -37,6 +40,7 @@
         .content {
             display: flex;
             justify-content: space-between;
+            flex-wrap: wrap;
             gap: 20px;
         }
 
@@ -72,11 +76,18 @@
         }
 
         @media screen and (max-width: 768px) {
-            .column:first-child,
-            .column:nth-child(2) {
-                flex: 49%;
+            .content {
+                display: flex;
+                flex-wrap: wrap;
             }
 
+            /* Ensure first two columns remain side by side */
+            .column:first-child,
+            .column:nth-child(2) {
+                flex: 50%;
+            }
+
+            /* Third column takes full width below */
             .column:last-child {
                 flex: 100%;
             }
@@ -89,7 +100,7 @@
     <!-- Title Section -->
     <div class="title">
         Raffles City 
-        <img src="https://media2.giphy.com/media/nR1NepfLlsb4c/giphy.gif">
+        <img src="https://via.placeholder.com/60" alt="Globe">
     </div>
 
     <!-- Three Column Layout -->
