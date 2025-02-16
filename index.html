@@ -12,8 +12,7 @@
             background-color: #d9c2b0;
             color: #000;
         }
-        
-        .container {
+        main {
             width: 90%;
             max-width: 1200px;
             margin: auto;
@@ -61,21 +60,13 @@
             width: 50%;
         }
 
-        .bottom-section {
+        .bottom {
             margin-top: 30px;
         }
-
-        .bottom-image {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .bottom-image img {
+        .bottom img {
             width: 100%;
             max-width: 900px;
             display: block;
-            border-radius: 5px;
         }
 
         /* Responsive design for small screens */
@@ -83,28 +74,18 @@
             .title {
                 font-size: 3rem;
             }
-
-            .content {
-                flex-direction: column;
-            }
-
             .left, .right {
                 width: 100%;
-            }
-
-            .year, .quote, .spacer {
-                width: 100%;
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <!-- Title -->
+<main>
     <div class="title">
         The Archive
-        <img src="wood-texture.png" alt="Wood Texture">
+        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/BLOBs/blob-21.gif" alt="Wood Texture">
     </div>
 
     <!-- Content Section -->
@@ -130,13 +111,9 @@
         </div>
     </div>
 
-    <!-- Bottom Image Section -->
-    <div class="bottom-section">
-        <div class="bottom-image">
-            <img src="design-project.jpg" alt="Project Workspace">
-        </div>
-    </div>
-</div>
-
+    <section class="bottom">
+        <img src="design-project.jpg">
+    </section>
+</main>
 </body>
 </html>
