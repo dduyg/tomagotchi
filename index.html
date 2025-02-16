@@ -40,8 +40,8 @@
         .content {
             display: flex;
             justify-content: space-between;
-            flex-wrap: wrap;
             gap: 20px;
+            flex-wrap: wrap;
         }
 
         .column {
@@ -75,21 +75,20 @@
             margin-top: 40px;
         }
 
+        /* Responsive Design */
         @media screen and (max-width: 768px) {
             .content {
                 display: flex;
                 flex-wrap: wrap;
             }
 
-            /* Ensure first two columns remain side by side */
             .column:first-child,
             .column:nth-child(2) {
-                flex: 50%;
+                flex: 50%; /* Stay next to each other */
             }
 
-            /* Third column takes full width below */
             .column:last-child {
-                flex: 100%;
+                flex: 100%; /* Stack below */
             }
         }
     </style>
