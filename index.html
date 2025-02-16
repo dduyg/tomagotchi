@@ -6,101 +6,137 @@
     <title>The Archive</title>
     <style>
         body {
-            font-family: 'Georgia', serif;
-            background-color: #d6c2b6;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #d9c2b0;
+            color: #000;
         }
+        
         .container {
-            width: 80%;
-            margin: 0 auto;
-            padding-top: 50px;
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 50px 0;
         }
+        
         .title {
-            font-size: 64px;
-            font-weight: normal;
-            text-align: center;
+            font-size: 4rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-transform: capitalize;
             position: relative;
         }
+        
         .title img {
-            width: 60px;
-            height: auto;
-            position: absolute;
-            top: -10px;
-            right: 10%;
+            height: 1em; /* Matches text size */
+            width: auto;
+            margin-left: 10px;
+            vertical-align: middle;
         }
-        .columns {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        .column {
-            padding: 10px;
-        }
-        .year {
-            width: 41.6667%;
-        }
-        .quote {
-            width: 41.6667%;
-            text-align: left;
-        }
-        .spacer {
-            width: 8.3333%;
-        }
+        
         .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .left {
+            display: flex;
+            flex-wrap: wrap;
             width: 50%;
         }
-        .project-section {
-            margin-top: 50px;
-            background-color: white;
-            padding: 20px;
+
+        .year, .quote {
+            width: 41.6667%;
         }
-        .project-image {
+
+        .spacer {
+            width: 8.33333%;
+        }
+
+        .right {
+            width: 50%;
+        }
+
+        .bottom-section {
+            margin-top: 30px;
+        }
+
+        .bottom-image {
             width: 100%;
-            display: block;
-            margin: auto;
-        }
-        .hands-on-work {
             display: flex;
             justify-content: center;
-            align-items: center;
-            margin-top: 20px;
         }
-        .hands-on-work img {
+
+        .bottom-image img {
             width: 100%;
-            height: auto;
+            max-width: 900px;
+            display: block;
+            border-radius: 5px;
+        }
+
+        /* Responsive design for small screens */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 3rem;
+            }
+
+            .content {
+                flex-direction: column;
+            }
+
+            .left, .right {
+                width: 100%;
+            }
+
+            .year, .quote, .spacer {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Title Section -->
-        <div class="title">
-            The Archive
-            <img src="wood-texture.jpg" alt="Wood Texture">
-        </div>
+<div class="container">
+    <!-- Title -->
+    <div class="title">
+        The Archive
+        <img src="wood-texture.png" alt="Wood Texture">
+    </div>
 
-        <!-- Columns -->
-        <div class="columns">
-            <div class="column year"><strong>Year</strong> <br> 2012-2019</div>
-            <div class="column quote">
-                <i>“As a designer looking to the future, you don’t want to get lost in the archives … but here we are anyway! ;)”</i>
+    <!-- Content Section -->
+    <div class="content">
+        <div class="left">
+            <div class="year">
+                <strong>Year</strong><br>2012-2019
             </div>
             <div class="spacer"></div>
-            <div class="column content">
-                I've worked across a diverse range of industries & solved some key challenges in tech, f&b, hospitality, luxury, commerce, and modern culture along the way. <br><br>
+            <div class="spacer"></div>
+            <div class="quote">
+                <em>“As a designer looking to the future, you don’t want to get lost in the archives... but here we are anyway! :)”</em>
+            </div>
+        </div>
+
+        <div class="right">
+            <p>
+                I've worked across a diverse range of industries & solved some key challenges in tech, F&B, hospitality, luxury, commerce, and modern culture along the way.
+            </p>
+            <p>
                 Here are some of the folks and a selection of previous projects that I’ve had the pleasure of working with in the past.
-            </div>
+            </p>
         </div>
-
-        <!-- Project Section -->
-        <div class="project-section">
-            <div class="hands-on-work">
-                <img src="hands-on-design.jpg" alt="Hands-on Design Work">
-            </div>
-        </div>
-
     </div>
+
+    <!-- Bottom Image Section -->
+    <div class="bottom-section">
+        <div class="bottom-image">
+            <img src="design-project.jpg" alt="Project Workspace">
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
