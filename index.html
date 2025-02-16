@@ -3,122 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Archive</title>
+    <title>Raffles City</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #d5c2b3;
             margin: 0;
-            padding: 0;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 50px 0;
+            padding: 20px;
+            background-color: #f8f8f8;
         }
 
-        .header {
-            text-align: center;
-            position: relative;
-            font-size: 3rem;
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+        }
+
+        .title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
             font-weight: bold;
         }
 
-        .header img {
-            width: 70px;
-            height: auto;
-            position: absolute;
-            top: 0;
-            right: 10%;
+        .title img {
+            width: 72px;
+            height: 72px;
+            margin-left: 10px;
         }
 
         .content {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            gap: 20px;
         }
 
-        .left {
-            width: 50%;
-            display: flex;
-            flex-wrap: wrap;
+        .column {
+            padding: 20px;
         }
 
-        .left .year, .left .quote {
-            width: 41.6667%;
+        .column-25 {
+            width: 25%;
         }
 
-        .left .spacer {
-            width: 8.33333%;
-        }
-
-        .right {
+        .column-50 {
             width: 50%;
         }
 
-        .year {
+        .bold {
             font-weight: bold;
         }
 
-        .quote {
-            font-style: italic;
+        .mission {
+            font-size: 18px;
+            line-height: 1.6;
         }
 
         .bottom-image {
-            margin-top: 50px;
-            text-align: center;
-        }
-
-        .bottom-image img {
-            max-width: 100%;
-            height: auto;
+            width: 100%;
+            margin-top: 30px;
         }
 
         @media (max-width: 768px) {
             .content {
-                flex-direction: column;
-            }
-            
-            .left, .right {
-                width: 100%;
+                flex-wrap: wrap;
             }
 
-            .left {
-                display: block;
+            .column-25 {
+                width: 50%;
             }
 
-            .left .year, .left .quote, .left .spacer {
+            .column-50 {
                 width: 100%;
-                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .column-25, .column-50 {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="header">
-            The Archive
-            <img src="wood-texture.png" alt="Wood Texture">
+<div class="container">
+    <div class="title">
+        Raffles City
+        <img src="image-placeholder.png" alt="Title Image">
+    </div>
+
+    <div class="content">
+        <div class="column column-25">
+            <p><span class="bold">Client</span><br>Capitaland</p>
+            <p><span class="bold">Year</span><br>2016</p>
+            <p><span class="bold">Role</span><br>Experience Design</p>
         </div>
 
-        <div class="content">
-            <div class="left">
-                <div class="year">Year<br>2012-2019</div>
-                <div class="spacer"></div>
-                <div class="quote">"As a designer looking to the future, you don't want to get lost in the archives ... but here we are anyway! ;)"</div>
-            </div>
-            <div class="right">
-                <p>I've worked across a diverse range of industries & solved some key challenges in tech, f&b, hospitality, luxury, commerce and modern culture along the way.</p>
-                <p>Here are some of the folks and a selection of previous projects that I've had the pleasure of working with in the past.</p>
-            </div>
+        <div class="column column-25">
+            <p>Raffles City, Chongqing, is the country’s tallest residential building and has won a number of prestigious design and architectural awards.</p>
         </div>
 
-        <div class="bottom-image">
-            <img src="design-desk.jpg" alt="Design Desk">
+        <div class="column column-50">
+            <p class="mission">
+                Our mission was to reawaken Chongqing's history while embracing its modern future at Capitaland's Raffles City. Nestled at the confluence of the Jialing and Yangtze rivers, this development serves as a symbol of the city's rejuvenation.
+                <br><br>
+                We crafted a showsuite experience that captivated visitors, immersing them in a rich tapestry of culture, history, and the essence of the development.
+            </p>
         </div>
     </div>
+
+    <img class="bottom-image" src="bottom-image-placeholder.jpg" alt="Bottom Image">
+</div>
+
 </body>
 </html>
