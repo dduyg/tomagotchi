@@ -39,9 +39,15 @@
 
         .content {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             gap: 20px;
-            flex-wrap: wrap;
+        }
+
+        .row {
+            display: flex;
+            width: 100%;
+            gap: 20px;
         }
 
         .column {
@@ -75,20 +81,18 @@
             margin-top: 40px;
         }
 
-        /* Responsive Design */
         @media screen and (max-width: 768px) {
-            .content {
-                display: flex;
+            .row:first-child {
                 flex-wrap: wrap;
             }
 
             .column:first-child,
             .column:nth-child(2) {
-                flex: 50%; /* Stay next to each other */
+                flex: 50%;
             }
 
             .column:last-child {
-                flex: 100%; /* Stack below */
+                flex: 100%;
             }
         }
     </style>
@@ -104,24 +108,30 @@
 
     <!-- Three Column Layout -->
     <div class="content">
-        <div class="column">
-            <p><span class="bold-text">Client</span><br>Capitaland</p>
-            <p><span class="bold-text">Year</span><br>2016</p>
-            <p><span class="bold-text">Role</span><br>Experience Design</p>
+        <!-- First row: Client details and Quote -->
+        <div class="row">
+            <div class="column">
+                <p><span class="bold-text">Client</span><br>Capitaland</p>
+                <p><span class="bold-text">Year</span><br>2016</p>
+                <p><span class="bold-text">Role</span><br>Experience Design</p>
+            </div>
+            
+            <div class="column">
+                <p class="quote">Raffles City, Chongqing, is the country's tallest residential building and has won a number of prestigious design and architectural awards.</p>
+            </div>
         </div>
-        
-        <div class="column">
-            <p class="quote">Raffles City, Chongqing, is the country's tallest residential building and has won a number of prestigious design and architectural awards.</p>
-        </div>
-        
-        <div class="column">
-            <p>
-                Our mission was to reawaken Chongqing's history while embracing its modern future at Capitaland's Raffles City.
-                Nestled at the confluence of the Jialing and Yangtze rivers, this development serves as a symbol of the city's rejuvenation.
-            </p>
-            <p>
-                We crafted a showsuite experience that captivated visitors, immersing them in a rich tapestry of culture, history, and the essence of the development.
-            </p>
+
+        <!-- Second row: Main content -->
+        <div class="row">
+            <div class="column">
+                <p>
+                    Our mission was to reawaken Chongqing's history while embracing its modern future at Capitaland's Raffles City.
+                    Nestled at the confluence of the Jialing and Yangtze rivers, this development serves as a symbol of the city's rejuvenation.
+                </p>
+                <p>
+                    We crafted a showsuite experience that captivated visitors, immersing them in a rich tapestry of culture, history, and the essence of the development.
+                </p>
+            </div>
         </div>
     </div>
 
