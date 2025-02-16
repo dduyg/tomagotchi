@@ -3,137 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raffles City</title>
+    <title>LiminalLoop</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f5f0;
-            padding: 40px;
-        }
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #111;
+        }        
         .container {
-            display: flex;
-            flex-direction: column;
             max-width: 1200px;
             margin: auto;
+            padding: 40px 10px;
         }
-        /* Title Section */
+
         .title {
-            display: flex;
-            align-items: center;
             font-size: 64px;
             font-weight: bold;
             text-align: center;
+            display: flex;
             justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 40px;
         }
+
         .title img {
-            height: 1em; /* Match text size */
-            width: auto;
-            margin-left: 10px;
+            width: 60px;
+            height: 60px;
+            vertical-align: middle;
         }
-        /* Main Grid Layout */
+
         .content {
             display: flex;
-            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .column {
+            padding: 10px;
+        }
+
+        .column:first-child {
+            flex: 25%;
+        }
+
+        .column:nth-child(2) {
+            flex: 25%;
+        }
+
+        .column:last-child {
+            flex: 50%;
+        }
+
+        .bold-text {
+            font-weight: bold;
+        }
+
+        .quote {
+            border-left: 2px solid black;
+            padding-left: 10px;
+            font-style: italic;
+        }
+
+        .bottom-image {
+            width: 100%;
             margin-top: 40px;
         }
-        .column {
-            padding: 20px;
-        }
-        .column:first-child {
-            width: 25%;
-        }
-        .column:nth-child(2) {
-            width: 25%;
-            border-left: 1px solid #333;
-            padding-left: 20px;
-        }
-        .column:last-child {
-            width: 50%;
-        }
-        .column h3 {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .column p {
-            font-size: 16px;
-            color: #333;
-        }
-        .highlight {
-            font-weight: bold;
-        }
-        /* Responsive Design */
-        @media (max-width: 768px) {
+
+        @media screen and (max-width: 768px) {
             .content {
-                flex-direction: column;
+                flex-wrap: wrap;
             }
+
             .column:first-child,
             .column:nth-child(2) {
-                width: 50%;
-                border: none;
-                padding-left: 0;
+                flex: 50%;
             }
+
             .column:last-child {
-                width: 100%;
+                flex: 100%;
             }
-        }
-        /* Image Section */
-        .image-section {
-            margin-top: 40px;
-            width: 100%;
-        }
-        .image-section img {
-            width: 100%;
-            height: auto;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Title with Image -->
-        <div class="title">
-            Raffles City
-            <img src="https://media2.giphy.com/media/nR1NepfLlsb4c/giphy.gif" alt="Globe">
+
+<div class="container">
+    <!-- Title Section -->
+    <div class="title">
+        Raffles City 
+        <img src="https://media2.giphy.com/media/nR1NepfLlsb4c/giphy.gif" alt="Globe">
+    </div>
+
+    <!-- Three Column Layout -->
+    <div class="content">
+        <div class="column">
+            <p><span class="bold-text">Client</span><br>Capitaland</p>
+            <p><span class="bold-text">Year</span><br>2016</p>
+            <p><span class="bold-text">Role</span><br>Experience Design</p>
         </div>
         
-        <!-- Main Content -->
-        <div class="content">
-            <!-- First Column -->
-            <div class="column">
-                <h3>Client</h3>
-                <p class="highlight">Capitaland</p>
-                <h3>Year</h3>
-                <p class="highlight">2016</p>
-                <h3>Role</h3>
-                <p class="highlight">Experience Design</p>
-            </div>
-
-            <!-- Second Column (Quote) -->
-            <div class="column">
-                <p>Raffles City, Chongqing, is the country’s tallest residential building and has won a number of prestigious design and architectural awards.</p>
-            </div>
-
-            <!-- Third Column (Main Text) -->
-            <div class="column">
-                <p>
-                    Our mission was to reawaken Chongqing's history while embracing its modern future at Capitaland's Raffles City. 
-                    Nestled at the confluence of the Jialing and Yangtze rivers, this development serves as a symbol of the city's rejuvenation.
-                </p>
-                <p>
-                    We crafted a showsuite experience that captivated visitors, immersing them in a rich tapestry of culture, history, and the essence of the development.
-                </p>
-            </div>
+        <div class="column">
+            <p class="quote">Raffles City, Chongqing, is the country's tallest residential building and has won a number of prestigious design and architectural awards.</p>
         </div>
-
-        <!-- Image Section -->
-        <div class="image-section">
-            <img src="your-image-url.jpg" alt="Architectural Design">
+        
+        <div class="column">
+            <p>
+                Our mission was to reawaken Chongqing's history while embracing its modern future at Capitaland's Raffles City.
+                Nestled at the confluence of the Jialing and Yangtze rivers, this development serves as a symbol of the city's rejuvenation.
+            </p>
+            <p>
+                We crafted a showsuite experience that captivated visitors, immersing them in a rich tapestry of culture, history, and the essence of the development.
+            </p>
         </div>
     </div>
+
+    <!-- Bottom Image -->
+    <img src="https://via.placeholder.com/1200x400" alt="Sails" class="bottom-image">
+</div>
+
 </body>
 </html>
