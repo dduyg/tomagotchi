@@ -12,100 +12,128 @@
         }
         body {
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            padding: 20px;
+            background-color: #f8f5f0;
+            padding: 40px;
         }
         .container {
+            display: flex;
+            flex-direction: column;
             max-width: 1200px;
             margin: auto;
-            padding: 10px;
         }
-
+        /* Title Section */
         .title {
             display: flex;
             align-items: center;
-            font-size: 4rem;
+            font-size: 64px;
             font-weight: bold;
+            text-align: center;
+            justify-content: center;
         }
-
         .title img {
-            width: 50px; /* Adjust the image size */
-            height: 50px;
+            height: 1em; /* Match text size */
+            width: auto;
             margin-left: 10px;
         }
-
+        /* Main Grid Layout */
         .content {
             display: flex;
-            gap: 20px;
-            margin-top: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
         }
-
-        .col {
-            padding: 10px;
+        .column {
+            padding: 20px;
         }
-
-        .col-25 {
+        .column:first-child {
             width: 25%;
         }
-
-        .col-50 {
+        .column:nth-child(2) {
+            width: 25%;
+            border-left: 1px solid #333;
+            padding-left: 20px;
+        }
+        .column:last-child {
             width: 50%;
         }
-
-        .bold {
+        .column h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .column p {
+            font-size: 16px;
+            color: #333;
+        }
+        .highlight {
             font-weight: bold;
         }
-
-        .quote {
-            font-style: italic;
-            border-left: 2px solid #000;
-            padding-left: 10px;
-        }
-
-        .bottom-image {
-            width: 100%;
-            margin-top: 20px;
-        }
-
+        /* Responsive Design */
         @media (max-width: 768px) {
             .content {
-                flex-wrap: wrap;
+                flex-direction: column;
             }
-            .col-25 {
+            .column:first-child,
+            .column:nth-child(2) {
                 width: 50%;
+                border: none;
+                padding-left: 0;
             }
-            .col-50 {
+            .column:last-child {
                 width: 100%;
             }
+        }
+        /* Image Section */
+        .image-section {
+            margin-top: 40px;
+            width: 100%;
+        }
+        .image-section img {
+            width: 100%;
+            height: auto;
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Title with Image -->
         <div class="title">
             Raffles City
-            <img src="https://media2.giphy.com/media/nR1NepfLlsb4c/giphy.gif">
+            <img src="https://media2.giphy.com/media/nR1NepfLlsb4c/giphy.gif" alt="Globe">
         </div>
-
+        
+        <!-- Main Content -->
         <div class="content">
-            <div class="col col-25">
-                <p><span class="bold">Client</span><br>Capitaland</p>
-                <p><span class="bold">Year</span><br>2016</p>
-                <p><span class="bold">Role</span><br>Experience Design</p>
+            <!-- First Column -->
+            <div class="column">
+                <h3>Client</h3>
+                <p class="highlight">Capitaland</p>
+                <h3>Year</h3>
+                <p class="highlight">2016</p>
+                <h3>Role</h3>
+                <p class="highlight">Experience Design</p>
             </div>
 
-            <div class="col col-25">
-                <p class="quote">Raffles City, Chongqing, is the country's tallest residential building and has won a number of prestigious design and architectural awards.</p>
+            <!-- Second Column (Quote) -->
+            <div class="column">
+                <p>Raffles City, Chongqing, is the country’s tallest residential building and has won a number of prestigious design and architectural awards.</p>
             </div>
 
-            <div class="col col-50">
-                <p>Our mission was to reawaken Chongqing's history while embracing its modern future at Capitaland's Raffles City. Nestled at the confluence of the Jialing and Yangtze rivers, this development serves as a symbol of the city's rejuvenation.</p>
-                <p>We crafted a showsuite experience that captivated visitors, immersing them in a rich tapestry of culture, history, and the essence of the development.</p>
+            <!-- Third Column (Main Text) -->
+            <div class="column">
+                <p>
+                    Our mission was to reawaken Chongqing's history while embracing its modern future at Capitaland's Raffles City. 
+                    Nestled at the confluence of the Jialing and Yangtze rivers, this development serves as a symbol of the city's rejuvenation.
+                </p>
+                <p>
+                    We crafted a showsuite experience that captivated visitors, immersing them in a rich tapestry of culture, history, and the essence of the development.
+                </p>
             </div>
         </div>
 
-        <img class="bottom-image" src="bottom-image.jpg" alt="Bottom Decorative Image">
+        <!-- Image Section -->
+        <div class="image-section">
+            <img src="your-image-url.jpg" alt="Architectural Design">
+        </div>
     </div>
-
 </body>
 </html>
