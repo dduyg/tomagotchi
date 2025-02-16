@@ -6,65 +6,67 @@
     <title>The Archive</title>
     <style>
         body {
-            font-family: serif;
+            font-family: 'Georgia', serif;
+            background-color: #d6c2b6;
             margin: 0;
             padding: 0;
-            background-color: #d7c1b3;
-            color: #000;
         }
-
         .container {
             width: 80%;
-            margin: 50px auto;
+            margin: 0 auto;
+            padding-top: 50px;
         }
-
-        /* Title Styling */
         .title {
-            display: flex;
-            align-items: center;
-            font-size: 60px;
-            font-weight: bold;
+            font-size: 64px;
+            font-weight: normal;
+            text-align: center;
+            position: relative;
         }
-
         .title img {
-            width: 60px; 
-            height: 60px;
-            margin-left: 10px;
+            width: 60px;
+            height: auto;
+            position: absolute;
+            top: -10px;
+            right: 10%;
         }
-
-        /* Layout for the columns */
-        .grid {
+        .columns {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
         }
-
         .column {
             padding: 10px;
         }
-
         .year {
             width: 41.6667%;
         }
-
         .quote {
             width: 41.6667%;
+            text-align: left;
         }
-
         .spacer {
-            width: 8.33333%;
+            width: 8.3333%;
         }
-
         .content {
             width: 50%;
         }
-
-        /* Image section */
-        .image-section {
-            margin-top: 40px;
+        .project-section {
+            margin-top: 50px;
+            background-color: white;
+            padding: 20px;
         }
-
-        .image-container img {
+        .project-image {
+            width: 100%;
+            display: block;
+            margin: auto;
+        }
+        .hands-on-work {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .hands-on-work img {
             width: 100%;
             height: auto;
         }
@@ -72,35 +74,33 @@
 </head>
 <body>
 
-<div class="container">
-    <!-- Title with image -->
-    <div class="title">
-        The Archive
-        <img src="wood-texture.jpg" alt="Wood Texture">
-    </div>
+    <div class="container">
+        <!-- Title Section -->
+        <div class="title">
+            The Archive
+            <img src="wood-texture.jpg" alt="Wood Texture">
+        </div>
 
-    <!-- Grid Layout -->
-    <div class="grid">
-        <div class="column year">
-            <p><strong>Year</strong><br>2012-2019</p>
+        <!-- Columns -->
+        <div class="columns">
+            <div class="column year"><strong>Year</strong> <br> 2012-2019</div>
+            <div class="column quote">
+                <i>“As a designer looking to the future, you don’t want to get lost in the archives … but here we are anyway! ;)”</i>
+            </div>
+            <div class="spacer"></div>
+            <div class="column content">
+                I've worked across a diverse range of industries & solved some key challenges in tech, f&b, hospitality, luxury, commerce, and modern culture along the way. <br><br>
+                Here are some of the folks and a selection of previous projects that I’ve had the pleasure of working with in the past.
+            </div>
         </div>
-        <div class="spacer"></div>
-        <div class="column quote">
-            <p>"As a designer looking to the future, you don't want to get lost in the archives … but here we are anyway! ;)"</p>
-        </div>
-        <div class="spacer"></div>
-        <div class="column content">
-            <p>I've worked across a diverse range of industries & solved some key challenges in tech, f&b, hospitality, luxury, commerce, and modern culture along the way.</p>
-            <p>Here are some of the folks and a selection of previous projects that I've had the pleasure of working with in the past.</p>
-        </div>
-    </div>
 
-    <!-- Image Section -->
-    <div class="image-section">
-        <div class="image-container">
-            <img src="design-process.jpg" alt="Design process">
+        <!-- Project Section -->
+        <div class="project-section">
+            <div class="hands-on-work">
+                <img src="hands-on-design.jpg" alt="Hands-on Design Work">
+            </div>
         </div>
+
     </div>
-</div>
 </body>
 </html>
