@@ -35,13 +35,16 @@
             padding-left: 20px;
         }
         ol li::before {
-            content: counter(list-item) ".";
-            counter-increment: list-item;
-            font-size: 12px; /* Smaller font size */
+            content: counter(list-counter) ".";
+            counter-increment: list-counter;
             position: absolute;
             left: 0;
-            top: -2px; /* Slightly above the text */
-            line-height: 1;
+            top: -2px; /* Moves number higher */
+            font-size: 12px; /* Smaller number */
+            vertical-align: super;
+        }
+        ol {
+            counter-reset: list-counter;
         }
         .repeat {
             text-align: center;
