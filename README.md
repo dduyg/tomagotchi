@@ -534,9 +534,21 @@ There is no one giant step that does it. It's a lot of little steps.
     font-weight: 300;
     font-style: normal;
 }
-body {
-    font-family: 'Test Domaine Text', sans-serif;
-}
+body {font-family: 'Test Domaine Text', sans-serif;}
+
+        @font-face {
+            font-family: 'Dodopop';
+            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Dodopop-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Dodopop';
+            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Dodopop-Italic.woff2') format('woff2');
+            font-weight: normal;
+            font-style: italic;
+        }
+        body {font-family: 'Dodopop', sans-serif;}
 ```
 
 > I never got punished during high school, yet here I'm at over 30...
