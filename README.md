@@ -387,6 +387,7 @@ If the image is used as a background:
 - [ ]  https://fontesk.com/tag/y2k/
 - [ ]  https://fontesk.com/asix-founder-font/
 - [ ]  https://fontesk.com/graphy-font/
+- [ ]  https://justfreefonts.com/fonts/aeogo-box/
 
 <br>
 
