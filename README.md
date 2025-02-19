@@ -382,6 +382,12 @@ If the image is used as a background:
 - [ ]  Sora 🩶
 - [ ]  Reddit Sans Condensed
 
+
+- Y2K style fonts 
+- [ ]  https://fontesk.com/tag/y2k/
+- [ ]  https://fontesk.com/asix-founder-font/
+- [ ]  https://fontesk.com/graphy-font/
+
 <br>
 
 | `BG` | `TXT` |
