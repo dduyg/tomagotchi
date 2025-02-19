@@ -443,3 +443,101 @@ If the image is used as a background:
 - [ ] Glow Hack Zone
 - [ ] Code Wire Loop
 - [ ] Grid Fire Edge
+
+
+
+# ⌨️
+>  Trademark (™) — &trade;
+
+```
+view-source:
+```
+
+- href="https://societycentered.design/" alt="Society-Centred Design" target="_blank">Society-Centred Design</a> (2020) is a design manifesto by London-based design collective If, calling for a framework that goes beyond human-centred design to advocate for civic value, equity, the common good, public health, and the planet. It centres on design principles such as put care first, earn trust, empower collective agency, create patterns for public value, and redistribute the power of tech.</p> </div> </div>
+
+- https://x.com/i/status/1888623007905587529
+
+```html
+<style>
+.project_heading{letter-spacing:-14px;max-width:100%;padding-bottom:0%;font-size:15rem;font-style:normal;line-height:12rem}
+.project_heading {
+letter-spacing:-10px;
+font-size:11rem;
+line-height:9rem;
+}
+.project_heading{letter-spacing:-6px;font-size:7rem;line-height:6rem}
+
+.project_heading{letter-spacing:-5px;max-width:80%;padding-bottom:0;font-size:6rem;line-height:5rem}
+
+.project_heading.letsconnect{letter-spacing:-4px;font-size:3rem;line-height:3rem}
+
+.paragraph-8.nextproject{
+border-top:1px solid #000;
+font-size:1rem
+;line-height:1rem;
+padding-top: 15px;
+padding-bottom: 15px;
+}
+</style>
+
+  <div class="lets_collaborate">
+    <p class="paragraph-8 nextproject">Curious? I&#x27;m always eager for new possibilities. Get in touch if you’d like to learn more about me or the work.<br/></p>
+    <h1 class="project_heading">Let&#x27;s Connect.</h1>
+```
+
+   <br>
+
+```css
+.details {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+}
+.cover {
+    width: 200px;
+    background-color: currentColor;
+}
+.tracklist {
+    list-style: decimal inside;
+    font-size: 0.8em;
+}
+```
+
+   <br>
+
+```html
+<h4 class="protect-selected" style="transform:translateX(-100%) translateZ(0)">→</h4>
+```
+
+- “The timeless in you is aware of life's timelessness. And knows that yesterday is but today's memory and tomorrow is today's dream."
+
+```
+YOU CAN ALWAYS EDIT
+a Bad PAGE,
+BUT A BLANK PAGE
+Cannot BE EDITED
+```
+
+- Step by step, day by day.
+There is no one giant step that does it. It's a lot of little steps.
+
+```css
+@font-face {           
+    font-family: 'Whyte Inktrap Light';       
+    src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/WhyteInktrap-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {    
+    font-family: 'Test Domaine Text';     
+    src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/test-domaine-text-light.woff2') format('woff2');    
+    font-weight: 300;
+    font-style: normal;
+}
+body {
+    font-family: 'Test Domaine Text', sans-serif;
+}
+```
+
+> I never got punished during high school, yet here I'm at over 30...
+> <br>—Love Your Enemy ⭐️9.2 (31,248)
