@@ -25,18 +25,26 @@
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
         }
         ol {
-            list-style-position: outside;
-            padding-left: 20px;
+            list-style: none;
+            padding-left: 0;
             margin: 0;
         }
         ol li {
             position: relative;
             margin-bottom: 10px;
-            padding-left: 10px;
+            padding-left: 20px;
         }
-        ol li::marker {
-            font-size: 14px;
+        ol li::before {
+            content: counter(list-counter) ".";
+            counter-increment: list-counter;
+            position: absolute;
+            left: 0;
+            top: -5px; /* Moves number higher */
+            font-size: 12px; /* Smaller number */
             vertical-align: super;
+        }
+        ol {
+            counter-reset: list-counter;
         }
         .repeat {
             text-align: center;
