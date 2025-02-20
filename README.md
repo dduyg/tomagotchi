@@ -559,6 +559,14 @@ body {font-family: 'Test Domaine Text', sans-serif;}
     font-style: normal;
 }
 body {font-family: 'Argue', sans-serif;}
+
+@font-face {
+    font-family: 'Chemre';
+    src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Chemre.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+body {font-family: 'Chemre', sans-serif;}
 ```
 
 > I never got punished during high school, yet here I'm at over 30...
