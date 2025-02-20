@@ -567,6 +567,14 @@ body {font-family: 'Argue', sans-serif;}
     font-style: normal;
 }
 body {font-family: 'Chemre', sans-serif;}
+
+@font-face {
+    font-family: 'Laginchy';
+    src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Laginchy.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+body {font-family: 'Laginchy', sans-serif;}
 ```
 
 > I never got punished during high school, yet here I'm at over 30...
