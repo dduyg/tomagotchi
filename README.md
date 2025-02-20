@@ -551,5 +551,15 @@ body {font-family: 'Test Domaine Text', sans-serif;}
         body {font-family: 'Dodopop', sans-serif;}
 ```
 
+```css
+@font-face {
+    font-family: 'Argue';
+    src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Argue.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+body {font-family: 'Argue', sans-serif;}
+```
+
 > I never got punished during high school, yet here I'm at over 30...
 > <br>—Love Your Enemy ⭐️9.2 (31,248)
