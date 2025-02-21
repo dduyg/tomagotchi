@@ -23,7 +23,7 @@
             font-family: "PT Sans Narrow", sans-serif;
             margin: 0;
             padding-bottom: 25px;
-            background-color: #f4f4f4;
+            background-color: ##EDEBED;
             color: #000;
         }
         header {
@@ -46,7 +46,6 @@
             height: 100%;
             width: auto;
         }
-
 
         main {margin: 20px;}
 
@@ -88,8 +87,7 @@
         }
 
         footer {
-            font-family: 'Cardinal', sans-serif;
-            font-weight: 600;
+            font-family: monospace;
             margin: 20px;
         }
         .titles, .contents {
@@ -112,14 +110,6 @@
         .contents h3 {      
             display: none;
         }
-        .contents em {  
-            font-style: normal;
-            font-family: 'Ppneuebit',sans-serif;
-            font-size: 1.3em;
-            font-weight: 450;
-            line-height: 0;
-            display: inline-block;
-        }
         footer .column {
             width: 30%;
         }
@@ -130,36 +120,11 @@
             list-style-type: none;
             line-height: 1.6;
         }
-        li a {
-            display: block !important;
-            /* Overriding <a> display inline for links inside <li> */
-        }
         a {
             color: inherit;
-            display: inline;
             text-decoration: none;
-            cursor: pointer;
-            background-repeat: no-repeat;
-            background-image: linear-gradient(transparent, transparent), linear-gradient(transparent, transparent);
-            background-size: 50% 1px, 50% 1px;
-            background-position: 0% bottom, 100% bottom; 
-            transition: background-position 0.3s ease, background-image 0.3s ease;
         }
-        @keyframes underlineSlideOut {
-            from {background-position: 0% bottom, 100% bottom;} 
-            to {background-position: 200% bottom, 300% bottom;}
-        }
-        @keyframes underlineSlideIn {
-            from {background-position: -200% bottom, -100% bottom;}
-            to {background-position: 0% bottom, 100% bottom;}
-        }
-        a:hover {
-            background-image: linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor); 
-            animation: underlineSlideIn 1s cubic-bezier(.19, 1, .22, 1) forwards;
-        }
-        #things a:hover {
-            animation: underlineSlideOut 1s cubic-bezier(.19, 1, .22, 1) forwards;
-        }
+
         .footer-img {
             margin-top: 10px;
             width: 100%;
