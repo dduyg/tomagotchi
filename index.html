@@ -79,19 +79,22 @@
             display: flex;  
             justify-content: space-between;  
             align-items: flex-start;  
-            gap: 15px;  
-            font-size: 14px;  
+            gap: 15px; 
             margin: 20px;  
         }  
         .cnt-links {  
             display: flex;  
             justify-content: space-between;  
-            gap: 4px 20px;  
+            gap: 4px 20px;
+            font-size: .8rem;
         }  
         .cnt-links a {
-            text-transform: uppercase;  
+            text-transform: uppercase;
+            display: inline-block;
+            cursor: pointer;
         }
         .emphasis {
+            opacity: 0.8;
             text-decoration: underline;
         }
         .cnt-links .spacer {
@@ -100,6 +103,7 @@
         @media (max-width: 768px) {     
             footer, .cnt-links {flex-direction: column;}
             .cnt-links .spacer {display: block;}
+            .emphasis {font-family: var(--mono-font);}
         }
     </style>  
 </head>  
