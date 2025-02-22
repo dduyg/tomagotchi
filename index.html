@@ -24,7 +24,6 @@
             font-weight: 100;
             font-style: italic;
         }
-
         * {
             margin: 0;
             padding: 0;
@@ -32,60 +31,29 @@
             outline: none;
             -webkit-tap-highlight-color: transparent;
         }
-
-        html, body { height: 100%; }
-
+        html {height: 100%;}
         body {
             font-family: 'Canela', serif;
+            background-color: #000;
             color: #ede3e0;
             padding-top: 70px;
             height: 100%;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Background Layers for Crossfade Effect */
-        body::before, body::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-attachment: fixed;
-            transition: opacity 3s ease-in-out;
-        }
-        /* First background */
-        body::before {
             background-image: linear-gradient(#000, #8a93a8);
-            animation: fadeLoop 15s infinite linear;
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            animation: backgroundLoop 15s infinite linear;
         }
-        /* Second background */
-        body::after {
-            background-image: linear-gradient(#000, #a0a2ca);
-            animation: fadeLoopReverse 15s infinite linear;
-            opacity: 0;
-        }
-        /* Animation Keyframes */
-        @keyframes fadeLoop {
-            0%, 100% { opacity: 1; }
-            20% { opacity: 1; }
-            40% { opacity: 0; }
-            60% { opacity: 0; }
-            80% { opacity: 1; }
-        }
-        @keyframes fadeLoopReverse {
-            0%, 100% { opacity: 0; }
-            20% { opacity: 0; }
-            40% { opacity: 1; }
-            60% { opacity: 1; }
-            80% { opacity: 0; }
+        @keyframes backgroundLoop {
+            0% {background-image: linear-gradient(#000, #8a93a8);}
+            20% {background-image: linear-gradient(#000, #a0a2ca);}
+            40% {background-image: linear-gradient(#000 52%, gray);}
+            60% {background-image: linear-gradient(#000 50%, #fff);}
+            80% {background-image: linear-gradient(#000, #7a1d29);}
+            100% {background-image: linear-gradient(#000, #8a93a8);} 
         }
         header {
-            border-bottom: 1px solid #fff;
+            border-bottom: 1px #fff;
             padding: 100px 20px;
-            position: relative;
-            z-index: 2;
         }
         .title {
             max-width: 100%;
@@ -112,14 +80,13 @@
                 font-size: 48px;
                 margin-bottom: 30%;
             }
-            a { margin-left: 40px; }
+            a {margin-left: 40px;}
         }
     </style>
 </head>
 <body>  
     <header>
-        <div class="title">
-            We help businesses extract beauty from noise. Synthesis<sup>®</sup> is a full-service data agency working with companies in the<br/>‍     
+        <div class="title">We help businesses extract beauty from noise. Synthesis<sup>®</sup> is a full-service data agency working with companies in the<br/>‍     
             <span class="superspan"> </span>
             <a href="#🚪"><span class="symbol">c</span>beauty<br/>‍</a>
             <span class="superspan _2"> </span>
