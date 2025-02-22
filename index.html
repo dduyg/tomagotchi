@@ -31,37 +31,18 @@
             outline: none;
             -webkit-tap-highlight-color: transparent;
         }
-        html {height: 100%;}
-        body {
+        html, body {
+            height: 100%;
+            width: 100%;
             font-family: 'Canela', serif;
             background-color: #000;
             color: #ede3e0;
             padding-top: 70px;
-            height: 100%;
-    background-image: linear-gradient(#000, #8a93a8);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    position: relative;
-    overflow: hidden;
-}
-body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(#000, #8a93a8);
-    animation: fadeBackground 15s infinite linear;
-}
-@keyframes fadeBackground {
-    0% { opacity: 1; background: linear-gradient(#000, #8a93a8); }
-    20% { opacity: 1; background: linear-gradient(#000, #a0a2ca); }
-    40% { opacity: 1; background: linear-gradient(#000 52%, gray); }
-    60% { opacity: 1; background: linear-gradient(#000 50%, #fff); }
-    80% { opacity: 1; background: linear-gradient(#000, #7a1d29); }
-    100% { opacity: 1; background: linear-gradient(#000, #8a93a8); }
-}      
+            background-image: linear-gradient(#000, #8a93a8);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            transition: background-image 3s ease-in-out;
+        }
         header {
             border-bottom: 1px #fff;
             padding: 100px 20px;
@@ -107,5 +88,23 @@ body::before {
             <br/>industries.<br/>
         </div>
     </header>
+    
+    <script>
+        const backgrounds = [
+            "linear-gradient(#000, #8a93a8)",
+            "linear-gradient(#000, #a0a2ca)",
+            "linear-gradient(#000 52%, gray)",
+            "linear-gradient(#000 50%, #fff)",
+            "linear-gradient(#000, #7a1d29)"
+        ];
+
+        let index = 0;
+        function changeBackground() {
+            index = (index + 1) % backgrounds.length;
+            document.body.style.backgroundImage = backgrounds[index];
+        }
+
+        setInterval(changeBackground, 4000); // Change background every 4 seconds
+    </script>
 </body>
 </html>
