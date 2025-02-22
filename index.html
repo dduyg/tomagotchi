@@ -21,14 +21,14 @@
             color: #000;  
         }  
   
-        aside {  
+        section {  
             display: flex;  
             justify-content: center;  
             align-items: center;  
             padding: 80px 0 30px;  
             position: relative;  
         }  
-        aside .content {  
+        section .content {  
             position: relative;  
             width: 100%;  
             max-width: 600px; 
@@ -39,7 +39,7 @@
             text-align: center;  
             padding: 30px 5%;  
         }  
-        aside .content::after {  
+        section .content::after {  
             content: "";  
             position: absolute;  
             top: 0;  
@@ -83,54 +83,49 @@
             font-size: 14px;  
             margin: 20px;  
         }  
-        footer nav {  
+        .cnt-links {  
             display: flex;  
             justify-content: space-between;  
             gap: 0 20px;  
         }  
-        footer nav a {
-            text-decoration: underline;
+        .cnt-links a {
             text-transform: uppercase;  
         }
         .emphasis {
-            text-decoration: underline overline;
+            text-decoration: underline;
         }
-        footer div {
+        .cnt-links aside {
             display: none;
         }
-        @media (max-width: 768px) {  
-            footer, footer nav {  
-                flex-direction: column;  
-            }
-            footer div {
-                display: block;
-            }
-        }  
+        @media (max-width: 768px) {     
+            footer, .cnt-links {flex-direction: column;}
+            .cnt-links aside {display: block;}
+        }
     </style>  
 </head>  
 <body>  
-    <aside>  
+    <section>  
         <div class="content">  
             <h4>WE LOVE HEARING <em>your Dreams.</em> TELL US.<br>( CONTACT US )</h4>  
             <h2>THAT’S NOT WATER, <br>THOSE ARE TEARS OF <em>Happy</em> <em>Clients</em>.</h2>  
             <p>Let’s get this party started, get in touch.</p>  
         </div>  
-    </aside>  
+    </section>  
   
     <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/fonts/3Dfonts/cube-font.png" class="footer-img">  
     <footer>  
         <p>© duygudağdelen Lab 2025 — The Hague</p>  
-        <nav>  
+        <div class="cnt-links">
             <a href="#🌐" class="emphasis">Contact</a>  
             <a href="#🌐" class="emphasis">Give Support</a>  
-            <div></div>
+            <aside></aside>
             <a href="#🌐">Instagram</a>  
             <a href="#🌐">GitHub</a>  
             <a href="#🌐">ko-fi</a>  
             <a href="#🌐">medium</a>  
             <a href="#🌐">inprnt</a>  
             <a href="#🌐">behance</a>  
-        </nav>  
+        </div> 
     </footer>  
 </body>  
 </html>
