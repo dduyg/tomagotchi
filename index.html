@@ -39,8 +39,17 @@
             padding-top: 70px;
             height: 100%;
             background-image: linear-gradient(#000, #8a93a8);
-            background-repeat: no-repeat; 
-            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            animation: backgroundLoop 15s infinite linear;
+        }
+        @keyframes backgroundLoop {
+            0% {background-image: linear-gradient(#000, #8a93a8);}
+            20% {background-image: linear-gradient(#000, #a0a2ca);}
+            40% {background-image: linear-gradient(#000 52%, gray);}
+            60% {background-image: linear-gradient(#000 50%, #fff);}
+            80% {background-image: linear-gradient(#000, #7a1d29);}
+            100% {background-image: linear-gradient(#000, #8a93a8);} 
         }
         header {
             border-bottom: 1px #fff;
