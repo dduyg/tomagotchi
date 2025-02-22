@@ -376,6 +376,8 @@ If the image is used as a background:
 - [ ]  Advent Pro
 - [ ]  Sora 🩶
 - [ ]  Reddit Sans Condensed
+- [ ]  Inknut Antiqua
+- [ ]  BioRhyme
 
 - Y2K style fonts 
 - [ ]  https://fontesk.com/tag/y2k/
