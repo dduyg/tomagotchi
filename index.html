@@ -29,6 +29,7 @@
             position: relative;
         }
         .contact {
+            position: relative;
             width: 100%;
             max-width: 600px;
             aspect-ratio: 2/1;
@@ -41,7 +42,27 @@
             align-items: center;
             text-align: center;
             padding: 30px 5%;
+            overflow: hidden;
         }
+
+        /* Semi-transparent overlay */
+        .contact::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.5); /* Adjust opacity here */
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        /* Ensure text remains visible above the overlay */
+        .contact h4,
+        .contact h2,
+        .contact p {
+            position: relative;
+            z-index: 1;
+        }
+
         .contact h4 {
             font-size: 16px;
             font-weight: normal;
@@ -87,6 +108,7 @@
             footer, footer nav {
                 flex-direction: column;
             }
+        }
     </style>
 </head>
 <body>
@@ -97,7 +119,6 @@
             <p>Let’s get this party started, get in touch.</p>
         </div>
     </aside>
-
 
     <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/fonts/3Dfonts/cube-font.png" class="footer-img">
     <footer>
