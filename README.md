@@ -366,7 +366,6 @@ If the image is used as a background:
 - [ ]  Share
 - [ ]  Tenor Sans
 - [ ]  Kodchasan
-- [ ]  Abel
 - [ ]  Reddit Mono
 - [ ]  MuseoModerno
 - [ ]  Bruno Ace SC
@@ -377,7 +376,6 @@ If the image is used as a background:
 - [ ]  Advent Pro
 - [ ]  Sora 🩶
 - [ ]  Reddit Sans Condensed
-
 
 - Y2K style fonts 
 - [ ]  https://fontesk.com/tag/y2k/
@@ -415,7 +413,6 @@ If the image is used as a background:
 - [ ] Seas of Syntax
 - [ ] Bluebyte Odyssey
 - [ ] Virtual Tides
-- [ ] Codebreaker Chronicles
 - [ ] Zeroes and Ones: Encryption Odyssey
 - [ ] Cyber Surge
 - [ ] Virtual Interface
