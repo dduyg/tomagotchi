@@ -192,10 +192,6 @@ body.02 {
   background-image: radial-gradient(circle farthest-corner at 100% 100%, #EBCFB2, hsla(0, 0%, 100%, 0) 50%);   
 }
 body.03 {
-  background-color: white;
-  background-image: radial-gradient(circle farthest-corner at 0% 0%, #AAABBC, hsla(0, 0%, 100%, 0) 50%);
-}
-body.04 {
   background-color: #ddd;
   background-image: radial-gradient(circle farthest-corner at 100% 0%, #FEA481, hsla(0, 0%, 100%, 0) 50%);
 }
