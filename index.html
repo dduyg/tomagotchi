@@ -86,19 +86,23 @@
         footer nav {  
             display: flex;  
             justify-content: space-between;  
-            gap: 5px 30px;  
+            gap: 5px 20px;  
         }  
-        footer nav a {  
+        footer nav a {
+            text-decoration: underline;
             text-transform: uppercase;  
         }
-        footer aside {
+        .emphasis {
+            text-decoration: underline overline;
+        }
+        footer div {
             display: none;
         }
         @media (max-width: 768px) {  
             footer, footer nav {  
                 flex-direction: column;  
             }
-            footer aside {
+            footer div {
                 display: block;
             }
         }  
@@ -117,9 +121,9 @@
     <footer>  
         <p>© duygudağdelen Lab 2025 — The Hague</p>  
         <nav>  
-            <a href="#🌐"><strong>Contact</strong></a>  
-            <a href="#🌐"><strong>Give Support</strong></a>  
-            <aside></aside>
+            <a href="#🌐" class="emphasis">Contact</a>  
+            <a href="#🌐" class="emphasis">Give Support</a>  
+            <div></div>
             <a href="#🌐">Instagram</a>  
             <a href="#🌐">GitHub</a>  
             <a href="#🌐">ko-fi</a>  
