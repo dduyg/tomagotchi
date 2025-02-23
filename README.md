@@ -387,6 +387,9 @@ If the image is used as a background:
 - [ ]  Inclusive Sans
 - [ ]  MuseoModerno
 - [ ]  Carrois Gothic
+- [ ]  Urbanist
+- [ ]  Didact Gothic
+- [ ]  Wix Madefor Display
 
 - Y2K style fonts 
 - [ ]  https://fontesk.com/tag/y2k/
