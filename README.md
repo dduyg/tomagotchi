@@ -400,6 +400,9 @@ If the image is used as a background:
 - [ ]  Varela Round
 - [ ]  Thasadith
 - [ ]  Fahkwang
+- [ ]  Train One
+- [ ]  Hanalei
+- [ ]  Ewert
 
 - Y2K style fonts 
 - [ ]  https://fontesk.com/tag/y2k/
