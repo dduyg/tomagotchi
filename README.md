@@ -378,6 +378,11 @@ If the image is used as a background:
 - [ ]  Reddit Sans Condensed
 - [ ]  Inknut Antiqua
 - [ ]  BioRhyme
+- [ ]  Barlow Condensed
+- [ ]  Arimo
+- [ ]  Rubik
+- [ ]  Work Sans
+- [ ]  Albert Sans
 
 - Y2K style fonts 
 - [ ]  https://fontesk.com/tag/y2k/
