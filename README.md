@@ -391,6 +391,8 @@ If the image is used as a background:
 - [ ]  Text Me One
 - [ ]  Armata
 - [ ]  Wix Madefor Display
+- [ ]  Jura
+- [ ]  Orbit
 
 - Y2K style fonts 
 - [ ]  https://fontesk.com/tag/y2k/
