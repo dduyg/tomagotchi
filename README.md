@@ -393,6 +393,8 @@ If the image is used as a background:
 - [ ]  Wix Madefor Display
 - [ ]  Jura
 - [ ]  Orbit
+- [ ]  Teko
+- [ ]  Encode Sans Condensed
 
 - Y2K style fonts 
 - [ ]  https://fontesk.com/tag/y2k/
