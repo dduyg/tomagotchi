@@ -383,6 +383,10 @@ If the image is used as a background:
 - [ ]  Rubik
 - [ ]  Work Sans
 - [ ]  Albert Sans
+- [ ]  Onest
+- [ ]  Inclusive Sans
+- [ ]  MuseoModerno
+- [ ]  Carrois Gothic
 
 - Y2K style fonts 
 - [ ]  https://fontesk.com/tag/y2k/
