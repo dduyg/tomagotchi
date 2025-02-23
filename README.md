@@ -1,4 +1,4 @@
-# 🪸🐚🐳
+# 🪢📿👝🌉
 
 ```markdown
 ⭓⭔,  ⬡⬢,  ⬮⬯
@@ -395,6 +395,11 @@ If the image is used as a background:
 - [ ]  Orbit
 - [ ]  Teko
 - [ ]  Encode Sans Condensed
+- [ ]  Mona Sans
+- [ ]  Funnel Sans
+- [ ]  Varela Round
+- [ ]  Thasadith
+- [ ]  Fahkwang
 
 - Y2K style fonts 
 - [ ]  https://fontesk.com/tag/y2k/
