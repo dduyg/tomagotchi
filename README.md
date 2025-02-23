@@ -388,7 +388,8 @@ If the image is used as a background:
 - [ ]  MuseoModerno
 - [ ]  Carrois Gothic
 - [ ]  Urbanist
-- [ ]  Didact Gothic
+- [ ]  Text Me One
+- [ ]  Armata
 - [ ]  Wix Madefor Display
 
 - Y2K style fonts 
