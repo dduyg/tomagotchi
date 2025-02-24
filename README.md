@@ -370,7 +370,6 @@ If the image is used as a background:
 - [ ]  MuseoModerno
 - [ ]  Bruno Ace SC
 - [ ]  Parkinsans
-- [ ]  Montserrat
 - [ ]  Archivo Narrow
 - [ ]  Proza Libre
 - [ ]  Advent Pro
