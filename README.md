@@ -404,6 +404,9 @@ If the image is used as a background:
 - [ ]  Hanalei
 - [ ]  Kumar One Outline
 - [ ]  Ewert
+- [ ]  Climate Crisis
+- [ ]  Victor Mono
+- [ ]  Spline Sans Mono
 
 - Y2K style fonts 
 - [ ]  https://fontesk.com/tag/y2k/
