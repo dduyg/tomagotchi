@@ -385,7 +385,6 @@ If the image is used as a background:
 - [ ]  Albert Sans
 - [ ]  Onest
 - [ ]  Inclusive Sans
-- [ ]  MuseoModerno
 - [ ]  Carrois Gothic
 - [ ]  Urbanist
 - [ ]  Text Me One
