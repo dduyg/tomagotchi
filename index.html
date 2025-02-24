@@ -61,17 +61,6 @@
   --main-text: var(--base01);
   --greyed-out-text: var(--base0);
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--base03);
-    --background-accent: var(--base02);
-    --main-text: var(--base1);
-    --greyed-out-text: var(--base00);
-  }
-  #low-png {
-    content: url(low_light.png);
-  }
-}
 
 /* -------------------- */
 /* DIMENSIONS AND SIZES */
@@ -101,7 +90,6 @@ body {
   font-size: 16px;
   color: var(--main-text);
   background-color: var(--background-accent);
-
   margin: 0;
 }
 
@@ -122,14 +110,12 @@ body {
 
   margin-block-end: calc(1.5 * var(--v-space));
 }
-
 .headline h1 {
   font-weight: normal;
   font-size: calc(3rem + (5 * var(--v-unit)));
   margin-block-start: var(--v-space);
   margin-block-end: 0;
 }
-
 .grid {
   display: grid;
   justify-content: center;
@@ -138,56 +124,46 @@ body {
   row-gap: var(--v-space);
   column-gap: var(--col-gap);
 }
-
 .span-all {
   grid-column: 1 / -1;
 }
-
 a {
   color: var(--green);
   text-decoration: none;
   transition: color 400ms ease;
 }
-
 a::before {
   content: '\2192';
   padding-right: .5ch;
 }
-
 a:hover,
 a:focus {
   color: var(--red);
   transition: color 200ms ease;
 }
-
 .top-link {
   display: inline-block;
   padding: .5em .75em;
   border: .12em solid;
   border-radius: 3px;
 }
-
 .half-gap {
   margin-bottom: calc(-.5 * var(--v-space));
   align-self: start;
 }
-
 .dropcap {
   color: var(--orange);
   float: left;
 }
-
 .droptext::first-letter {
   color: #0000;
   margin-left: -1ch;
 }
-
 .wingdings {
   font-size: 200%;
   color: var(--greyed-out-text);
   justify-self: start;
 }
-
 code {
   font-family: mononoki;
   white-space: pre;
@@ -197,81 +173,64 @@ code {
 .keyword {
   color: var(--orange);
 }
-
 .built_in {
   color: var(--red);
 }
-
 .string {
   color: var(--green);
 }
-
 .number {
   color: var(--yellow);
 }
-
 .comment {
   color: var(--greyed-out-text);
   font-style: italic;
 }
 
 /* --------------- */
-
 .monospaced-title {
   font-size: 300%;
 }
-
 .monospaced-title .accent {
   color: var(--background);
   background-color: var(--main-text);
   border-radius: 3px;
 }
-
 .resolution-title {
   text-align: center;
 }
-
 .resolution-title .high {
   font-size: 275%;
 }
-
 .differentiation-title {
   text-align: center;
 }
-
 .differentiation-title .example {
   font-size: 300%;
   color: var(--greyed-out-text);
 }
-
 .donation {
   color: var(--orange);
   text-align: center;
   max-width: 450px;
 }
-
 .showcase-title {
   text-align: center;
   margin-block: 1rem;
 }
-
 .showcase {
   color: var(--greyed-out-text);
   line-height: 1.7rem;
 }
-
 .italic {
   font-style: italic;
 }
-
 .bold {
   font-weight: bold;
 }
-
 .nowrap {
   white-space: nowrap;
 }
-
 footer {
   color: var(--greyed-out-text);
   text-align: center;
