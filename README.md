@@ -402,6 +402,7 @@ If the image is used as a background:
 - [ ]  Fahkwang
 - [ ]  Train One
 - [ ]  Hanalei
+- [ ]  Kumar One Outline
 - [ ]  Ewert
 
 - Y2K style fonts 
