@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liminal🎎Loop</title>
     <style>
-        /* Global Styles */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -32,6 +31,8 @@
         /* Layered Rows */
         .title-row {
             display: block;
+            position: relative;
+            clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
         }
         .title-layer {
             position: absolute;
@@ -40,14 +41,22 @@
             user-select: none;
         }
 
-        /* Text Styling with Animation */
+        /* Clipping Effect */
+        .title-row:nth-child(1) { clip-path: polygon(0% 75%, 100% 75%, 100% 100%, 0% 100%); }
+        .title-row:nth-child(2) { clip-path: polygon(0% 50%, 100% 50%, 100% 75.5%, 0% 75.5%); }
+        .title-row:nth-child(3) { clip-path: polygon(0% 25%, 100% 25%, 100% 50.5%, 0% 50.5%); }
+        .title-row:nth-child(4) { clip-path: polygon(0% 0%, 100% -10%, 100% 35.5%, 0% 25.5%); }
+        .title-row:nth-child(5) { clip-path: polygon(0% -25%, 100% -45%, 100% -9.5%, 0% 0.5%); }
+        .title-row:nth-child(6) { clip-path: polygon(0% -50%, 100% -85%, 100% -44.4%, 0% -24.5%); }
+
+        /* Animated Text */
         .title-text {
             display: block;
             transform-origin: bottom left;
-            animation: moveIn 2s cubic-bezier(.36,0,.06,1) alternate infinite;
+            animation: distort 2s cubic-bezier(.36,0,.06,1) alternate infinite;
         }
 
-        /* Distorted Effect */
+        /* Staggered Animation Effects */
         .title-row:nth-child(1) .title-text { transform: translateY(-0.1em); }
         .title-row:nth-child(2) .title-text { transform: translateY(-0.3em) scaleY(1.1); }
         .title-row:nth-child(3) .title-text { transform: translateY(-0.5em) scaleY(1.2) rotate(-1deg); }
@@ -55,8 +64,8 @@
         .title-row:nth-child(5) .title-text { transform: translateY(-0.9em) scaleY(1.4) rotate(-3deg); }
         .title-row:nth-child(6) .title-text { transform: translateY(-1.1em) scaleY(1.5) rotate(-4deg); }
 
-        /* Animation */
-        @keyframes moveIn {
+        /* Animation Keyframes */
+        @keyframes distort {
             80%, 100% { transform: translateY(0); }
         }
 
