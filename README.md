@@ -311,6 +311,7 @@ If the image is used as a background:
 - [ ]  Geostar
 - [ ]  Geostar Fill
 - [ ]  Georama
+- [ ]  Space Grotesk
 - [ ]  Oxanium
 - [ ]  Jacquard 12
 - [ ]  Micro 5
@@ -477,7 +478,6 @@ view-source:
 
 - href="https://societycentered.design/" alt="Society-Centred Design" target="_blank">Society-Centred Design</a> (2020) is a design manifesto by London-based design collective If, calling for a framework that goes beyond human-centred design to advocate for civic value, equity, the common good, public health, and the planet. It centres on design principles such as put care first, earn trust, empower collective agency, create patterns for public value, and redistribute the power of tech.</p> </div> </div>
 
-- https://x.com/i/status/1888623007905587529
 
 ```html
 <style>
@@ -531,8 +531,6 @@ padding-bottom: 15px;
 <h4 class="protect-selected" style="transform:translateX(-100%) translateZ(0)">→</h4>
 ```
 
-- “The timeless in you is aware of life's timelessness. And knows that yesterday is but today's memory and tomorrow is today's dream."
-
 ```
 YOU CAN ALWAYS EDIT
 a Bad PAGE,
@@ -542,6 +540,10 @@ Cannot BE EDITED
 
 - Step by step, day by day.
 There is no one giant step that does it. It's a lot of little steps.
+
+```html
+<h1>Let’s create <em>all the things</em> together</h1>
+```
 
 ```css
 @font-face {           
@@ -598,6 +600,3 @@ body {font-family: 'Chemre', sans-serif;}
 }
 body {font-family: 'Laginchy', sans-serif;}
 ```
-
-> I never got punished during high school, yet here I'm at over 30...
-> <br>—Love Your Enemy ⭐️9.2 (31,248)
