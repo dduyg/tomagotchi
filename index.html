@@ -3,56 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Magic 8-Ball Python Code</title>
+    <title>Magic 8-Ball Code</title>
     <style>
         body {
-            font-family: 'Courier New', monospace;
+            font-family: "Courier New", monospace;
             background-color: #f4f4f4;
+            color: #8B8882;
             padding: 20px;
         }
         pre {
-            background-color: #2d2d2d;
-            padding: 15px;
-            border-radius: 5px;
+            background-color: #2e2e2e;
+            padding: 20px;
+            border-radius: 10px;
             overflow-x: auto;
         }
         code {
-            color: #8B8882; /* Main color for code */
+            display: block;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
-        .function, .input-output, .keyword, .response {
-            color: #9D70A1; /* Color for function calls and input/output */
+        .highlight-1 {
+            color: #9D70A1;
         }
-        .keyword {
-            color: #141C37; /* Color for import, def, and question */
+        .highlight-2 {
+            color: #141C37;
         }
-        .response {
-            color: #A52829; /* Color for responses and choice */
+        .highlight-3 {
+            color: #A52829;
         }
     </style>
 </head>
 <body>
     <h1>Magic 8-Ball Python Code</h1>
-    <pre>
-<code>
-<span class="keyword">import</span> random
-
-<span class="keyword">def</span> <span class="function">magic_8_ball</span>():
-    <span class="response">responses</span> = [
-        <span class="response">"Yes, definitely!"</span>, <span class="response">"Ask again later."</span>, 
-        <span class="response">"No, I don't think so."</span>,
-        <span class="response">"Without a doubt."</span>, <span class="response">"Maybe... Try again."</span>, 
-        <span class="response">"I wouldn't count on it."</span>,
-        <span class="response">"Yes, but be cautious."</span>, <span class="response">"My sources say yes."</span>, 
-        <span class="response">"Signs point to no."</span>,
-        <span class="response">"Reply hazy, try again."</span>, <span class="response">"Better not tell you now."</span>
-    ]
-    
-    <span class="function">question</span> = <span class="function">input</span>(<span class="response">"Ask a yes-or-no question: "</span>)
-    <span class="function">print</span>(<span class="response">"Shaking the Magic 8-Ball...\n"</span>)
-    <span class="function">print</span>(<span class="response">"The Magic 8-Ball says:"</span>, random.<span class="function">choice</span>(responses))
-
-<span class="function">magic_8_ball</span>()
-</code>
-    </pre>
+    <pre><code>
+<span class="highlight-2">import</span> random      
+<span class="highlight-2">def</span> <span class="highlight-1">magic_8_ball</span>():      
+    <span class="highlight-3">responses</span> = [      
+        <span class="highlight-1">"Yes, definitely!"</span>, <span class="highlight-1">"Ask again later."</span>, <span class="highlight-1">"No, I don't think so."</span>,      
+        <span class="highlight-1">"Without a doubt."</span>, <span class="highlight-1">"Maybe... Try again."</span>, <span class="highlight-1">"I wouldn't count on it."</span>,      
+        <span class="highlight-1">"Yes, but be cautious."</span>, <span class="highlight-1">"My sources say yes."</span>, <span class="highlight-1">"Signs point to no."</span>,      
+        <span class="highlight-1">"Reply hazy, try again."</span>, <span class="highlight-1">"Better not tell you now."</span>      
+    ]      
+          
+    <span class="highlight-1">question</span> = <span class="highlight-1">input</span>(<span class="highlight-1">"Ask a yes-or-no question: "</span>)      
+    <span class="highlight-1">print</span>(<span class="highlight-1">"Shaking the Magic 8-Ball...\n"</span>)      
+    <span class="highlight-1">print</span>(<span class="highlight-1">"The Magic 8-Ball says:"</span>, random.<span class="highlight-3">choice</span>(<span class="highlight-3">responses</span>))      
+      
+<span class="highlight-1">magic_8_ball</span>()      
+    </code></pre>
 </body>
 </html>
