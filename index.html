@@ -25,7 +25,7 @@
         html, body {
             font-family: 'Julia Mono', monospace;
             background: #F2F0E3;
-            color: #8B8882;
+            color: #6a6664;
             height: 100%;
             display: flex;
             align-items: center;
@@ -92,6 +92,27 @@
             color: white;
             background: black;
         }
+
+        /* Code Block */
+        pre {
+            color: #8B8882;
+            overflow-x: auto;
+        }
+        code {
+            display: block;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .keyword {
+            color: #141C37;
+            font-weight: bold;
+        }
+        .function {
+            color: #9D70A1;
+        }
+        .variable {
+            color: #A52829;
+        }
     </style>
 </head>
 <body>
@@ -103,6 +124,21 @@
         <span class="title-row title-layer"><span class="title-text">Title</span></span>
         <span class="title-row title-layer"><span class="title-text">Title</span></span>
     </h1>
-    <p>The camera starts from an old wooden house, and follows the perspective of a young woman, through the dilapidated window, observing the scenery outside. She stands in front of the window, gazing at the town outside. The camera slowly moves with her gaze, capturing a rally being held in the square in the distance, and the crowds on the street are lively and full of vitality. The light shines through the curtains on her face, and the picture is full of warmth and tranquility.</p>
+    <pre><code>
+<span class="keyword">import</span> random
+<span class="keyword">def</span> <span class="function">magic_8_ball</span>():
+    <span class="variable">responses</span> = [
+        <span class="string">"Yes, definitely!"</span>, <span class="string">"Ask again later."</span>, <span class="string">"No, I don't think so."</span>,
+        <span class="string">"Without a doubt."</span>, <span class="string">"Maybe... Try again."</span>, <span class="string">"I wouldn't count on it."</span>,
+        <span class="string">"Yes, but be cautious."</span>, <span class="string">"My sources say yes."</span>, <span class="string">"Signs point to no."</span>,
+        <span class="string">"Reply hazy, try again."</span>, <span class="string">"Better not tell you now."</span>
+    ]
+
+    <span class="keyword">question</span> = <span class="function">input</span>(<span class="string">"Ask a yes-or-no question: "</span>)
+    <span class="function">print</span>(<span class="string">"Shaking the Magic 8-Ball...\n"</span>)
+    <span class="function">print</span>(<span class="string">"The Magic 8-Ball says:"</span>, random.<span class="variable">choice</span>(responses))
+
+<span class="function">magic_8_ball</span>()
+    </code></pre>
 </body>
 </html>
