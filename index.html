@@ -6,63 +6,56 @@
     <title>Magic 8 Ball Python Code</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Courier New', monospace;
             background-color: #f4f4f4;
             margin: 0;
-            padding: 0;
+            padding: 20px;
         }
-        .code-container {
+
+        pre {
             background-color: #2e2e2e;
             color: #8B8882;
             padding: 20px;
-            margin: 30px;
             border-radius: 8px;
             overflow-x: auto;
+            white-space: pre-wrap;
         }
-        .code-line {
-            white-space: nowrap;
-        }
+
         .keyword {
             color: #9D70A1;
         }
-        .string {
-            color: #A52829;
-        }
+
         .function {
             color: #141C37;
         }
+
+        .string {
+            color: #A52829;
+        }
+
         .comment {
             color: #6A6664;
         }
     </style>
 </head>
 <body>
-    <div class="code-container">
-        <pre>
-<span class="keyword">import</span> random  
+    <h1>Magic 8 Ball Python Code</h1>
+    <pre>
+<span class="keyword">import</span> random
 
-<span class="keyword">def</span> magic_8_ball():  
-    <span class="comment"># List of responses for the Magic 8 Ball</span>
-    responses = [  
-        <span class="string">"Yes, definitely!"</span>, 
-        <span class="string">"Ask again later."</span>, 
-        <span class="string">"No, I don't think so."</span>,  
-        <span class="string">"Without a doubt."</span>, 
-        <span class="string">"Maybe... Try again."</span>, 
-        <span class="string">"I wouldn't count on it."</span>,  
-        <span class="string">"Yes, but be cautious."</span>, 
-        <span class="string">"My sources say yes."</span>, 
-        <span class="string">"Signs point to no."</span>,  
-        <span class="string">"Reply hazy, try again."</span>, 
-        <span class="string">"Better not tell you now."</span>  
-    ]  
+<span class="keyword">def</span> magic_8_ball():
+    responses = [
+        <span class="string">"Yes, definitely!"</span>, <span class="string">"Ask again later."</span>, <span class="string">"No, I don't think so."</span>,
+        <span class="string">"Without a doubt."</span>, <span class="string">"Maybe... Try again."</span>, <span class="string">"I wouldn't count on it."</span>,
+        <span class="string">"Yes, but be cautious."</span>, <span class="string">"My sources say yes."</span>, <span class="string">"Signs point to no."</span>,
+        <span class="string">"Reply hazy, try again."</span>, <span class="string">"Better not tell you now."</span>
+    ]
 
-    question = <span class="keyword">input</span>(<span class="string">"Ask a yes-or-no question: "</span>)  
-    <span class="keyword">print</span>(<span class="string">"Shaking the Magic 8-Ball...\n"</span>)  
-    <span class="keyword">print</span>(<span class="string">"The Magic 8-Ball says:"</span>, random.choice(responses))  
+    question = <span class="function">input</span>(<span class="string">"Ask a yes-or-no question: "</span>)
+    print(<span class="string">"Shaking the Magic 8-Ball...\n"</span>)
+    print(<span class="string">"The Magic 8-Ball says:"</span>, random.<span class="function">choice</span>(responses))
 
-magic_8_ball()  
-        </pre>
-    </div>
+magic_8_ball()
+    </pre>
 </body>
 </html>
