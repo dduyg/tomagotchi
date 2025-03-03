@@ -3,116 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Refraction*</title>
+    <title>Refraction</title>
     <style>
-        /* Google Font */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap');
-
-        /* General Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: Arial, sans-serif;
         }
 
         body {
-            background-color: #f5f5f5;
+            background-color: #f8f8f8;
             text-align: center;
-            padding: 20px;
         }
 
-        /* Header Title */
-        .title {
-            font-size: 32px;
+        .header {
+            font-size: 2rem;
             font-weight: bold;
+            margin-top: 20px;
         }
 
-        .title .star {
+        .header span {
             color: green;
+            font-size: 1.5rem;
         }
 
-        .subtitle {
-            font-size: 18px;
-            color: #555;
+        .sub-header {
+            font-size: 1rem;
+            color: gray;
+            font-style: italic;
+            margin: 5px 0 20px;
         }
 
-        /* Grid Layout */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 15px;
-            margin-top: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .gallery img {
             width: 100%;
             height: auto;
-            border-radius: 10px;
-            transition: transform 0.3s ease-in-out;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
         }
 
         .gallery img:hover {
             transform: scale(1.05);
         }
 
-        /* Footer Section */
         .footer {
-            margin-top: 30px;
-            font-size: 14px;
-            color: #777;
+            margin: 20px;
+            font-size: 1rem;
+            color: gray;
         }
 
-        /* Like Button */
-        .like-button {
+        .like-btn {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #007BFF;
+            background: blue;
             color: white;
-            border: none;
+            padding: 10px 15px;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
             font-size: 20px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border: none;
         }
 
-        .like-button.liked {
-            background-color: red;
+        .like-btn:active {
+            background: darkblue;
         }
     </style>
 </head>
 <body>
 
-    <h1 class="title">Refraction<span class="star">*</span></h1>
-    <p class="subtitle">(Shape)(Color)</p>
-    <p style="color: #aaa; font-style: italic;">--- Some test exercises for form and color ---</p>
-
-    <!-- Gallery Section -->
-    <div class="gallery">
-        <img src="https://via.placeholder.com/300/FF5733/FFFFFF?text=Refraction1" alt="Refraction Art 1">
-        <img src="https://via.placeholder.com/300/33FF57/FFFFFF?text=Refraction2" alt="Refraction Art 2">
-        <img src="https://via.placeholder.com/300/337BFF/FFFFFF?text=Refraction3" alt="Refraction Art 3">
-        <img src="https://via.placeholder.com/300/F3FF33/000000?text=Refraction4" alt="Refraction Art 4">
-        <img src="https://via.placeholder.com/300/FF33A8/FFFFFF?text=Refraction5" alt="Refraction Art 5">
-        <img src="https://via.placeholder.com/300/A833FF/FFFFFF?text=Refraction6" alt="Refraction Art 6">
+    <div class="header">
+        Refraction<span>*</span> <span style="color: blue; font-size: 1rem;">(Shape)(Color)</span>
+    </div>
+    <div class="sub-header">
+        --- Some test exercises for form and color ---
     </div>
 
-    <!-- Footer -->
-    <p class="footer">Refraction* (TEST) - Shape(Color)</p>
+    <div class="gallery">
+        <img src="https://via.placeholder.com/300" alt="Image 1">
+        <img src="https://via.placeholder.com/300" alt="Image 2">
+        <img src="https://via.placeholder.com/300" alt="Image 3">
+        <img src="https://via.placeholder.com/300" alt="Image 4">
+        <img src="https://via.placeholder.com/300" alt="Image 5">
+        <img src="https://via.placeholder.com/300" alt="Image 6">
+    </div>
 
-    <!-- Like Button -->
-    <button class="like-button" onclick="toggleLike()">👍</button>
+    <div class="footer">
+        Refraction (Test) (Shape)(Color)
+    </div>
+
+    <button class="like-btn" onclick="likeFunction()">👍</button>
 
     <script>
-        function toggleLike() {
-            let button = document.querySelector('.like-button');
-            button.classList.toggle('liked');
+        function likeFunction() {
+            alert("You liked this!");
         }
     </script>
 
