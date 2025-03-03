@@ -3,109 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Refraction</title>
+    <title>Refraction*</title>
     <style>
-        * {
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            background-color: #f8f8f8;
             text-align: center;
         }
 
+        /* Header */
         .header {
-            font-size: 2rem;
+            font-size: 24px;
             font-weight: bold;
-            margin-top: 20px;
+            margin: 20px 0;
         }
 
-        .header span {
+        .header .star {
             color: green;
-            font-size: 1.5rem;
+            font-size: 28px;
         }
 
-        .sub-header {
-            font-size: 1rem;
-            color: gray;
+        .header .shape {
+            color: blue;
+        }
+
+        .header .color {
+            color: purple;
+        }
+
+        .subtext {
             font-style: italic;
-            margin: 5px 0 20px;
+            color: #999;
         }
 
+        /* Grid Layout */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 15px;
             padding: 20px;
             max-width: 1200px;
-            margin: 0 auto;
+            margin: auto;
         }
 
         .gallery img {
             width: 100%;
-            height: auto;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .gallery img:hover {
-            transform: scale(1.05);
-        }
-
-        .footer {
-            margin: 20px;
-            font-size: 1rem;
-            color: gray;
-        }
-
-        .like-btn {
+        /* Like Button */
+        .like-container {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: blue;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
-            border: none;
         }
 
-        .like-btn:active {
-            background: darkblue;
+        .like-btn {
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .like-btn:hover {
+            background-color: darkblue;
         }
     </style>
 </head>
 <body>
 
     <div class="header">
-        Refraction<span>*</span> <span style="color: blue; font-size: 1rem;">(Shape)(Color)</span>
+        Refraction<span class="star">*</span> <span class="shape">(Shape)</span><span class="color">(Color)</span>
     </div>
-    <div class="sub-header">
-        --- Some test exercises for form and color ---
-    </div>
+    <p class="subtext">--- Some test exercises for form and color ---</p>
 
     <div class="gallery">
-        <img src="https://via.placeholder.com/300" alt="Image 1">
-        <img src="https://via.placeholder.com/300" alt="Image 2">
-        <img src="https://via.placeholder.com/300" alt="Image 3">
-        <img src="https://via.placeholder.com/300" alt="Image 4">
-        <img src="https://via.placeholder.com/300" alt="Image 5">
-        <img src="https://via.placeholder.com/300" alt="Image 6">
+        <img src="https://via.placeholder.com/300x400/ff7f7f/fff?text=Image+1" alt="Abstract Art">
+        <img src="https://via.placeholder.com/300x400/7f7fff/fff?text=Image+2" alt="Abstract Art">
+        <img src="https://via.placeholder.com/300x400/7fff7f/fff?text=Image+3" alt="Abstract Art">
+        <img src="https://via.placeholder.com/300x400/ff7fff/fff?text=Image+4" alt="Abstract Art">
     </div>
 
-    <div class="footer">
-        Refraction (Test) (Shape)(Color)
+    <div class="like-container">
+        <button class="like-btn" onclick="likePost()">👍</button>
     </div>
-
-    <button class="like-btn" onclick="likeFunction()">👍</button>
 
     <script>
-        function likeFunction() {
-            alert("You liked this!");
+        function likePost() {
+            alert("You liked this post!");
         }
     </script>
 
