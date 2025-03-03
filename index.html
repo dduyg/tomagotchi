@@ -3,89 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liminal🧫Loop</title>
+    <title>Refraction*</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap');
+
+        /* General Reset */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f8f8f8;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
             text-align: center;
-        }
-
-        .header {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 20px 0;
-        }
-
-        .header span {
-            color: green;
-            font-size: 28px;
-        }
-
-        .sub-text {
-            color: gray;
-            font-style: italic;
-        }
-
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        .gallery img {
-            width: 200px;
-            height: auto;
-            margin: 10px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .footer {
-            margin-top: 20px;
             padding: 20px;
         }
 
+        /* Header Title */
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .title .star {
+            color: green;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #555;
+        }
+
+        /* Grid Layout */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer Section */
+        .footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        /* Like Button */
         .like-button {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: blue;
+            background-color: #007BFF;
             color: white;
-            padding: 15px;
+            border: none;
             border-radius: 50%;
-            cursor: pointer;
+            width: 50px;
+            height: 50px;
             font-size: 20px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .like-button.liked {
+            background-color: red;
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        Refraction <span>*</span> <span style="color: blue;">(Shape)(Color)</span>
-    </div>
-    <p class="sub-text">--- Some test exercises for form and color ---</p>
+    <h1 class="title">Refraction<span class="star">*</span></h1>
+    <p class="subtitle">(Shape)(Color)</p>
+    <p style="color: #aaa; font-style: italic;">--- Some test exercises for form and color ---</p>
 
+    <!-- Gallery Section -->
     <div class="gallery">
-        <img src="https://via.placeholder.com/200" alt="Artwork 1">
-        <img src="https://via.placeholder.com/200" alt="Artwork 2">
-        <img src="https://via.placeholder.com/200" alt="Artwork 3">
-        <img src="https://via.placeholder.com/200" alt="Artwork 4">
-        <img src="https://via.placeholder.com/200" alt="Artwork 5">
-        <img src="https://via.placeholder.com/200" alt="Artwork 6">
+        <img src="https://via.placeholder.com/300/FF5733/FFFFFF?text=Refraction1" alt="Refraction Art 1">
+        <img src="https://via.placeholder.com/300/33FF57/FFFFFF?text=Refraction2" alt="Refraction Art 2">
+        <img src="https://via.placeholder.com/300/337BFF/FFFFFF?text=Refraction3" alt="Refraction Art 3">
+        <img src="https://via.placeholder.com/300/F3FF33/000000?text=Refraction4" alt="Refraction Art 4">
+        <img src="https://via.placeholder.com/300/FF33A8/FFFFFF?text=Refraction5" alt="Refraction Art 5">
+        <img src="https://via.placeholder.com/300/A833FF/FFFFFF?text=Refraction6" alt="Refraction Art 6">
     </div>
 
-    <div class="like-button" onclick="like()">
-        👍
-    </div>
+    <!-- Footer -->
+    <p class="footer">Refraction* (TEST) - Shape(Color)</p>
+
+    <!-- Like Button -->
+    <button class="like-button" onclick="toggleLike()">👍</button>
 
     <script>
-        function like() {
-            alert("You liked this!");
+        function toggleLike() {
+            let button = document.querySelector('.like-button');
+            button.classList.toggle('liked');
         }
     </script>
 
