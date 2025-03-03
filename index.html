@@ -3,116 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Refraction*</title>
+    <title>Liminal🧫Loop</title>
     <style>
-        /* Google Font */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap');
-
-        /* General Reset */
-        * {
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        body {
-            background-color: #f5f5f5;
+            background-color: #f8f8f8;
             text-align: center;
-            padding: 20px;
         }
 
-        /* Header Title */
-        .title {
-            font-size: 32px;
+        .header {
+            font-size: 24px;
             font-weight: bold;
+            margin: 20px 0;
         }
 
-        .title .star {
+        .header span {
             color: green;
+            font-size: 28px;
         }
 
-        .subtitle {
-            font-size: 18px;
-            color: #555;
+        .sub-text {
+            color: gray;
+            font-style: italic;
         }
 
-        /* Grid Layout */
         .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
         }
 
         .gallery img {
-            width: 100%;
+            width: 200px;
             height: auto;
+            margin: 10px;
             border-radius: 10px;
-            transition: transform 0.3s ease-in-out;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .gallery img:hover {
-            transform: scale(1.05);
-        }
-
-        /* Footer Section */
         .footer {
-            margin-top: 30px;
-            font-size: 14px;
-            color: #777;
+            margin-top: 20px;
+            padding: 20px;
         }
 
-        /* Like Button */
         .like-button {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background-color: #007BFF;
+            background-color: blue;
             color: white;
-            border: none;
+            padding: 15px;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 20px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        .like-button.liked {
-            background-color: red;
+            font-size: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
 <body>
 
-    <h1 class="title">Refraction<span class="star">*</span></h1>
-    <p class="subtitle">(Shape)(Color)</p>
-    <p style="color: #aaa; font-style: italic;">--- Some test exercises for form and color ---</p>
+    <div class="header">
+        Refraction <span>*</span> <span style="color: blue;">(Shape)(Color)</span>
+    </div>
+    <p class="sub-text">--- Some test exercises for form and color ---</p>
 
-    <!-- Gallery Section -->
     <div class="gallery">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="Refraction Art 1">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="Refraction Art 2">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="Refraction Art 3">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="Refraction Art 4">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="Refraction Art 5">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="Refraction Art 6">
+        <img src="https://via.placeholder.com/200" alt="Artwork 1">
+        <img src="https://via.placeholder.com/200" alt="Artwork 2">
+        <img src="https://via.placeholder.com/200" alt="Artwork 3">
+        <img src="https://via.placeholder.com/200" alt="Artwork 4">
+        <img src="https://via.placeholder.com/200" alt="Artwork 5">
+        <img src="https://via.placeholder.com/200" alt="Artwork 6">
     </div>
 
-    <!-- Footer -->
-    <p class="footer">Refraction* (TEST) - Shape(Color)</p>
-
-    <!-- Like Button -->
-    <button class="like-button" onclick="toggleLike()">👍</button>
+    <div class="like-button" onclick="like()">
+        👍
+    </div>
 
     <script>
-        function toggleLike() {
-            let button = document.querySelector('.like-button');
-            button.classList.toggle('liked');
+        function like() {
+            alert("You liked this!");
         }
     </script>
 
