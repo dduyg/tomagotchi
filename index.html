@@ -3,109 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Refraction</title>
+    <title>Refraction*</title>
     <style>
+        /* Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap');
+
+        /* General Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: #f8f8f8;
+            background-color: #f5f5f5;
             text-align: center;
+            padding: 20px;
         }
 
-        .header {
-            font-size: 2rem;
+        /* Header Title */
+        .title {
+            font-size: 32px;
             font-weight: bold;
-            margin-top: 20px;
         }
 
-        .header span {
+        .title .star {
             color: green;
-            font-size: 1.5rem;
         }
 
-        .sub-header {
-            font-size: 1rem;
-            color: gray;
-            font-style: italic;
-            margin: 5px 0 20px;
+        .subtitle {
+            font-size: 18px;
+            color: #555;
         }
 
+        /* Grid Layout */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+            margin-top: 20px;
         }
 
         .gallery img {
             width: 100%;
             height: auto;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
         }
 
         .gallery img:hover {
             transform: scale(1.05);
         }
 
+        /* Footer Section */
         .footer {
-            margin: 20px;
-            font-size: 1rem;
-            color: gray;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #777;
         }
 
-        .like-btn {
+        /* Like Button */
+        .like-button {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: blue;
+            background-color: #007BFF;
             color: white;
-            padding: 10px 15px;
+            border: none;
             border-radius: 50%;
+            width: 50px;
+            height: 50px;
             font-size: 20px;
             cursor: pointer;
-            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
 
-        .like-btn:active {
-            background: darkblue;
+        .like-button.liked {
+            background-color: red;
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        Refraction<span>*</span> <span style="color: blue; font-size: 1rem;">(Shape)(Color)</span>
-    </div>
-    <div class="sub-header">
-        --- Some test exercises for form and color ---
-    </div>
+    <h1 class="title">Refraction<span class="star">*</span></h1>
+    <p class="subtitle">(Shape)(Color)</p>
+    <p style="color: #aaa; font-style: italic;">--- Some test exercises for form and color ---</p>
 
+    <!-- Gallery Section -->
     <div class="gallery">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="Image 1">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="Image 2">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="Image 3">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="Image 4">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="Image 5">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="Image 6">
+        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="Refraction Art 1">
+        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="Refraction Art 2">
+        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="Refraction Art 3">
+        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="Refraction Art 4">
+        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="Refraction Art 5">
+        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="Refraction Art 6">
     </div>
 
-    <div class="footer">
-        Refraction (Test) (Shape)(Color)
-    </div>
+    <!-- Footer -->
+    <p class="footer">Refraction* (TEST) - Shape(Color)</p>
 
-    <button class="like-btn" onclick="likeFunction()">👍</button>
+    <!-- Like Button -->
+    <button class="like-button" onclick="toggleLike()">👍</button>
 
     <script>
-        function likeFunction() {
-            alert("You liked this!");
+        function toggleLike() {
+            let button = document.querySelector('.like-button');
+            button.classList.toggle('liked');
         }
     </script>
 
