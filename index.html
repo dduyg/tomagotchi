@@ -3,147 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liminal🎎Loop</title>
-    <style>   
-        @font-face {
-            font-family: 'Julia Mono';
-            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/JuliaMono-Regular.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Julia Mono';
-            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/JuliaMono-Medium.woff2') format('woff2');
-            font-weight: 500;
-            font-style: normal;
-        }
-        * {
-            box-sizing: border-box;
+    <title>Liminal🧫Loop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f8f8f8;
+            text-align: center;
         }
-        html, body {
-            font-family: 'Julia Mono', monospace;
-            background: #F2F0E3;
-            color: #8B8882;
-            font-size: 14px;
-            height: 100%;
+
+        .header {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .header span {
+            color: green;
+            font-size: 28px;
+        }
+
+        .sub-text {
+            color: gray;
+            font-style: italic;
+        }
+
+        .gallery {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
             justify-content: center;
-            flex-direction: column;
-            padding: 0 20px;
+            margin: 20px 0;
         }
 
-        /* Animated Title */
-        .animated-title {
-            position: relative;
-            font-size: 20vmin;
-            font-weight: 500;
-            text-transform: uppercase;
+        .gallery img {
+            width: 200px;
+            height: auto;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Layered Rows */
-        .title-row {
-            display: block;
-            position: relative;
-            clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
-        }
-        .title-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            user-select: none;
+        .footer {
+            margin-top: 20px;
+            padding: 20px;
         }
 
-        /* Clipping Effect */
-        .title-row:nth-child(1) { clip-path: polygon(0% 75%, 100% 75%, 100% 100%, 0% 100%); }
-        .title-row:nth-child(2) { clip-path: polygon(0% 50%, 100% 50%, 100% 75.5%, 0% 75.5%); }
-        .title-row:nth-child(3) { clip-path: polygon(0% 25%, 100% 25%, 100% 50.5%, 0% 50.5%); }
-        .title-row:nth-child(4) { clip-path: polygon(0% 0%, 100% -10%, 100% 35.5%, 0% 25.5%); }
-        .title-row:nth-child(5) { clip-path: polygon(0% -25%, 100% -45%, 100% -9.5%, 0% 0.5%); }
-        .title-row:nth-child(6) { clip-path: polygon(0% -50%, 100% -85%, 100% -44.4%, 0% -24.5%); }
-
-        /* Animated Text */
-        .title-text {
-            display: block;
-            transform-origin: bottom left;
-            animation: distort 2s cubic-bezier(.36,0,.06,1) alternate infinite;
-        }
-
-        /* Staggered Animation Effects */
-        .title-row:nth-child(1) .title-text { transform: translateY(-0.1em); }
-        .title-row:nth-child(2) .title-text { transform: translateY(-0.3em) scaleY(1.1); }
-        .title-row:nth-child(3) .title-text { transform: translateY(-0.5em) scaleY(1.2) rotate(-1deg); }
-        .title-row:nth-child(4) .title-text { transform: translateY(-0.7em) scaleY(1.3) rotate(-2deg); }
-        .title-row:nth-child(5) .title-text { transform: translateY(-0.9em) scaleY(1.4) rotate(-3deg); }
-        .title-row:nth-child(6) .title-text { transform: translateY(-1.1em) scaleY(1.5) rotate(-4deg); }
-
-        /* Animation Keyframes */
-        @keyframes distort {
-            80%, 100% { transform: translateY(0); }
-        }
-
-        /* Debug Mode */
-        .debug .title-row:nth-child(even) {
-            color: black;
-            background: white;
-        }
-        .debug .title-row:nth-child(odd) {
+        .like-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: blue;
             color: white;
-            background: black;
-        }
-
-        /* Code Block */
-        pre {
-            font-weight: 500;
-            color: #777569;
-            overflow-x: auto;
-        }
-        code {
-            font-family: 'Julia Mono', monospace;
-            display: block;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        .keyword {
-            color: #141C37;
-            font-weight: bold;
-        }
-        .function {
-            color: #aa81ab;
-            font-weight: bold;
-        }
-        .variable {
-            color: #a2231d;
-            font-weight: bold;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
 <body>
-    <h1 class="animated-title">
-        <span class="title-row"><span class="title-text">R3b00t</span></span>
-        <span class="title-row title-layer"><span class="title-text">R3b00t</span></span>
-        <span class="title-row title-layer"><span class="title-text">R3b00t</span></span>
-        <span class="title-row title-layer"><span class="title-text">R3b00t</span></span>
-        <span class="title-row title-layer"><span class="title-text">R3b00t</span></span>
-        <span class="title-row title-layer"><span class="title-text">R3b00t</span></span>
-    </h1>
-    <pre><code>
-<span class="keyword">import</span> random
-<span class="keyword">def</span> <span class="function">magic_8_ball</span>():
-    <span class="variable">responses</span> = [
-        <span class="string">"Yes, def0000initely!"</span>, <span class="string">"Ask again later."</span>, <span class="string">"No, I don't think so."</span>,
-        <span class="string">"Without a doubt."</span>, <span class="string">"Maybe... Try again."</span>, <span class="string">"I wouldn't count on it."</span>,
-        <span class="string">"Yes, but be cautious."</span>, <span class="string">"My sources say yes."</span>, <span class="string">"Signs point to no."</span>,
-        <span class="string">"Reply hazy, try again."</span>, <span class="string">"Better not tell you now."</span>
-    ]
 
-    <span class="keyword">question</span> = <span class="function">input</span>(<span class="string">"Ask a yes-or-no question: "</span>)
-    <span class="function">print</span>(<span class="string">"Shaking the Magic 8-Ball...\n"</span>)
-    <span class="function">print</span>(<span class="string">"The Magic 8-Ball says:"</span>, random.<span class="variable">choice</span>(responses))
+    <div class="header">
+        Refraction <span>*</span> <span style="color: blue;">(Shape)(Color)</span>
+    </div>
+    <p class="sub-text">--- Some test exercises for form and color ---</p>
 
-<span class="function">magic_8_ball</span>()
-    </code></pre>
+    <div class="gallery">
+        <img src="https://via.placeholder.com/200" alt="Artwork 1">
+        <img src="https://via.placeholder.com/200" alt="Artwork 2">
+        <img src="https://via.placeholder.com/200" alt="Artwork 3">
+        <img src="https://via.placeholder.com/200" alt="Artwork 4">
+        <img src="https://via.placeholder.com/200" alt="Artwork 5">
+        <img src="https://via.placeholder.com/200" alt="Artwork 6">
+    </div>
+
+    <div class="like-button" onclick="like()">
+        👍
+    </div>
+
+    <script>
+        function like() {
+            alert("You liked this!");
+        }
+    </script>
+
 </body>
 </html>
