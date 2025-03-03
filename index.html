@@ -3,93 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Refraction - Shape and Color</title>
+    <title>Refraction</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
             text-align: center;
+            background-color: #f8f8f8;
             margin: 0;
             padding: 0;
         }
-        .header {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+
+        .container {
+            max-width: 900px;
+            margin: auto;
             padding: 20px;
         }
-        .header img {
-            width: 150px;
-            height: auto;
-            margin: 5px;
-        }
-        .title {
+
+        .header {
             font-size: 24px;
             font-weight: bold;
-            margin: 20px 0;
+            margin-top: 20px;
         }
-        .title .highlight {
+
+        .header .star {
             color: green;
-            font-size: 26px;
+            font-size: 28px;
         }
-        .sub-title {
+
+        .subtext {
+            font-size: 14px;
             color: gray;
             font-style: italic;
-            font-size: 14px;
+            margin-top: 10px;
         }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
         }
-        .gallery img {
-            width: 250px;
+
+        .grid img {
+            width: 100%;
             height: auto;
-            margin: 10px;
-            border-radius: 10px;
+            border-radius: 5px;
         }
-        .footer {
-            margin: 30px;
-        }
+
         .like-button {
-            background-color: blue;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: blue;
             color: white;
-            padding: 10px 15px;
+            border: none;
+            padding: 10px;
             border-radius: 50%;
+            font-size: 18px;
             cursor: pointer;
-            font-size: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <img src="image1.jpg" alt="Refraction Image">
-        <img src="image2.jpg" alt="Refraction Image">
-        <img src="image3.jpg" alt="Refraction Image">
-        <img src="image4.jpg" alt="Refraction Image">
-        <img src="image5.jpg" alt="Refraction Image">
+<div class="container">
+    <div class="grid">
+        <img src="image1.jpg" alt="Refraction Art">
+        <img src="image2.jpg" alt="Refraction Art">
+        <img src="image3.jpg" alt="Refraction Art">
+        <img src="image4.jpg" alt="Refraction Art">
+        <img src="image5.jpg" alt="Refraction Art">
+        <img src="image6.jpg" alt="Refraction Art">
     </div>
 
-    <div class="title">
-        Refraction <span class="highlight">*</span> 
-        <span style="color: blue;">(Shape)</span>
-        <span style="color: purple;">(Color)</span>
-    </div>
-    
-    <div class="sub-title">
-        --- Some test exercises for form and color ---
-    </div>
+    <h1 class="header">Refraction <span class="star">*</span> <span style="color: blue;">(Shape)(Color)</span></h1>
+    <p class="subtext">--- Some test exercises for form and color ---</p>
 
-    <div class="gallery">
-        <img src="image6.jpg" alt="Refraction Shape">
-        <img src="image7.jpg" alt="Refraction Shape">
+    <div class="grid">
+        <img src="image7.jpg" alt="Refraction Art">
+        <img src="image8.jpg" alt="Refraction Art">
     </div>
+</div>
 
-    <div class="footer">
-        <div class="like-button">👍</div>
-    </div>
+<button class="like-button">👍</button>
 
 </body>
 </html>
