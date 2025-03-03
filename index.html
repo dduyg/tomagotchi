@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Refraction</title>
+    <title>Liminal🧫Loop</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -42,17 +42,27 @@
             width: 100%;
             height: auto;
         }
+
         .like-button {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: blue;
+            background-color: #007BFF;
             color: white;
             border: none;
-            padding: 10px;
             border-radius: 50%;
+            width: 50px;
+            height: 50px;
             font-size: 18px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .like-button.liked {
+            background-color: red;
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -73,6 +83,12 @@
         <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="Refraction Art">
     </div>
 
-<button class="like-button">👍</button>
+    <button class="like-button" onclick="toggleLike()">👍Refraction<sub>*</sub>(TEST) - Shape(Color)</button>
+    <script>
+        function toggleLike() {
+            let button = document.querySelector('.like-button');
+            button.classList.toggle('liked');
+        }
+    </script>
 </body>
 </html>
