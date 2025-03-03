@@ -3,98 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liminal🧫Loop</title>
+    <title>Refraction - Shape and Color</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
             background-color: #f8f8f8;
             text-align: center;
+            margin: 0;
+            padding: 0;
         }
-
         .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .header img {
+            width: 150px;
+            height: auto;
+            margin: 5px;
+        }
+        .title {
             font-size: 24px;
             font-weight: bold;
             margin: 20px 0;
         }
-        .header span {
+        .title .highlight {
             color: green;
-            font-size: 28px;
+            font-size: 26px;
         }
-        .sub-text {
+        .sub-title {
             color: gray;
             font-style: italic;
+            font-size: 14px;
         }
-
         .gallery {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            margin: 20px 0;
+            padding: 20px;
         }
         .gallery img {
-            width: 200px;
+            width: 250px;
             height: auto;
             margin: 10px;
             border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
-
         .footer {
-            margin-top: 30px;
-            font-size: 14px;
-            color: #777;
+            margin: 30px;
         }
-
         .like-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #007BFF;
+            background-color: blue;
             color: white;
-            border: none;
+            padding: 10px 15px;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 20px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-        .like-button.liked {
-            background-color: red;
-            transform: scale(1.05);
+            font-size: 20px;
         }
     </style>
 </head>
 <body>
+
     <div class="header">
-        Refraction <span>*</span> <span style="color: blue;">(Shape)(Color)</span>
+        <img src="image1.jpg" alt="Refraction Image">
+        <img src="image2.jpg" alt="Refraction Image">
+        <img src="image3.jpg" alt="Refraction Image">
+        <img src="image4.jpg" alt="Refraction Image">
+        <img src="image5.jpg" alt="Refraction Image">
     </div>
-    <p class="sub-text">--- Some test exercises for form and color ---</p>
+
+    <div class="title">
+        Refraction <span class="highlight">*</span> 
+        <span style="color: blue;">(Shape)</span>
+        <span style="color: purple;">(Color)</span>
+    </div>
+    
+    <div class="sub-title">
+        --- Some test exercises for form and color ---
+    </div>
 
     <div class="gallery">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="🔘">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="🔘">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="🔘">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="🔘">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="🔘">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/register-6.png" alt="🔘">
+        <img src="image6.jpg" alt="Refraction Shape">
+        <img src="image7.jpg" alt="Refraction Shape">
     </div>
 
-    <p class="footer">Refraction* (TEST) - Shape(Color)</p>
+    <div class="footer">
+        <div class="like-button">👍</div>
+    </div>
 
-    <!-- Like Button -->
-    <button class="like-button" onclick="toggleLike()">👍</button>
-
-    <script>
-        function toggleLike() {
-            let button = document.querySelector('.like-button');
-            button.classList.toggle('liked');
-        }
-    </script>
 </body>
 </html>
