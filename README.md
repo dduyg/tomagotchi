@@ -391,7 +391,6 @@ If the image is used as a background:
 - [ ]  Armata
 - [ ]  Wix Madefor Display
 - [ ]  Jura
-- [ ]  Orbit
 - [ ]  Teko
 - [ ]  Encode Sans Condensed
 - [ ]  Mona Sans
