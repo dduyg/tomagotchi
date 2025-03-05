@@ -405,6 +405,8 @@ If the image is used as a background:
 - [ ]  Climate Crisis
 - [ ]  Victor Mono
 - [ ]  Spline Sans Mono
+- [ ]  Tourney
+- [ ]  Aclonica
 
 - Y2K style fonts 
 - [ ]  https://fontesk.com/tag/y2k/
