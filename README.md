@@ -367,7 +367,6 @@ If the image is used as a background:
 - [ ]  Share
 - [ ]  Tenor Sans
 - [ ]  Kodchasan
-- [ ]  Reddit Mono
 - [ ]  MuseoModerno
 - [ ]  Bruno Ace SC
 - [ ]  Parkinsans
@@ -389,7 +388,6 @@ If the image is used as a background:
 - [ ]  Urbanist
 - [ ]  Text Me One
 - [ ]  Armata
-- [ ]  Wix Madefor Display
 - [ ]  Jura
 - [ ]  Teko
 - [ ]  Encode Sans Condensed
