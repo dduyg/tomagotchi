@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LiminalLoop</title>
+    <style>
+        body {
+            background: darkgray;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        /* Creating the fixed image with opacity */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/BLOBs/blob-23.gif') no-repeat center center;
+            background-size: cover; /* Make sure it covers the entire screen */
+            transform: translate(-50%, -50%);
+            opacity: 0.5;
+            z-index: -1; /* Ensures the image is behind the content */
+        }
+
+        .content {
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+        .button {
+            background-color: #ff6600;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 30px;
+        }
+        .button:hover {
+            background-color: #cc5200;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Welcome to Our Website</h1>
+        <p>Your journey begins here. Explore our content and discover amazing things!</p>
+        <a href="#learn-more" class="button">Learn More</a>
+    </div>
+</body>
+</html>
