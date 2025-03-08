@@ -376,7 +376,7 @@ If the image is used as a background:
 - [ ]  Sora 🩶
 - [ ]  Reddit Sans Condensed
 - [ ]  Inknut Antiqua
-- [ ]  BioRhyme
+- [ ]  Wix Madefor Display
 - [ ]  Barlow Condensed
 - [ ]  Arimo
 - [ ]  Rubik
