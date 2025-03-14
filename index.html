@@ -5,77 +5,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LiminalLoop</title>
     <style>
-        /* Global reset */
-        body, h3, video {
+        body {
+            background-color: #121212; /* Dark background */
+            color: #e0e0e0; /* Light gray text */
+            font-family: 'Courier New', Courier, monospace; /* Futuristic font */
             margin: 0;
             padding: 0;
-            font-family: 'Arial', sans-serif;
         }
-        body {
-            background: linear-gradient(135deg, #ff2a68, #7200ff);
-            color: white;
-            font-family: 'Courier New', Courier, monospace;
-            height: 100vh;
+        .container {
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
             flex-direction: column;
-            text-align: center;
-            overflow: hidden;
+            background: linear-gradient(45deg, #2c3e50, #000000); /* Gradient for cyberpunk feel */
         }
 
-        /* Video container style */
+        /* Video container styling */
         .video-container {
-            border: 3px solid #00ffcc;
-            border-radius: 15px;
+            border: 2px solid #ff00ff; /* Neon pink border */
             padding: 20px;
-            width: 80%;
-            max-width: 800px;
-            background: rgba(0, 0, 0, 0.7);
-            box-shadow: 0 0 15px 5px rgba(0, 255, 255, 0.5);
-            transition: all 0.3s ease;
-        }
-
-        .video-container:hover {
-            box-shadow: 0 0 25px 10px rgba(0, 255, 255, 0.7);
+            width: 80%; /* Adjust width as per your requirement */
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.7); /* Neon glow effect */
+            background: rgba(0, 0, 0, 0.8); /* Slight dark background */
         }
 
         video {
-            width: 100%;
+            width: 100%; /* Makes the video fill the container width */
             height: auto;
-            border-radius: 10px;
+            border-radius: 10px; /* Rounded corners */
         }
 
-        /* Title styling */
+        /* Title styling with cyberpunk effect */
         h3 {
-            margin-top: 20px;
             font-size: 2rem;
-            letter-spacing: 1px;
+            margin-top: 10px;
             text-transform: uppercase;
-            color: #00ffcc;
-            text-shadow: 0 0 5px #ff2a68, 0 0 10px #ff2a68, 0 0 15px #ff2a68;
-            font-family: 'Courier New', monospace;
+            color: #ff00ff; /* Neon pink text */
+            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff; /* Neon glow effect */
+            letter-spacing: 2px;
         }
 
-        /* Neon Glowing effect */
-        h3:after {
-            content: "";
-            display: block;
-            height: 2px;
-            width: 50%;
-            background: #ff2a68;
-            margin: 10px auto;
-            box-shadow: 0 0 10px #ff2a68, 0 0 20px #ff2a68, 0 0 30px #ff2a68;
+        /* Glitch effect for the body */
+        @keyframes glitch {
+            0% {
+                text-shadow: 1px 1px 0 #ff00ff, -1px -1px 0 #ff00ff, 2px 2px 0 #00ff00, -2px -2px 0 #00ff00;
+                transform: translate(0);
+            }
+            25% {
+                text-shadow: -2px -2px 0 #ff00ff, 2px 2px 0 #00ff00;
+                transform: translate(-2px, 2px);
+            }
+            50% {
+                text-shadow: -3px -3px 0 #ff00ff, 3px 3px 0 #00ff00;
+                transform: translate(2px, -2px);
+            }
+            75% {
+                text-shadow: 2px 2px 0 #ff00ff, -2px -2px 0 #00ff00;
+                transform: translate(-2px, 2px);
+            }
+            100% {
+                text-shadow: 1px 1px 0 #ff00ff, -1px -1px 0 #00ff00;
+                transform: translate(0);
+            }
+        }
+
+        h3.glitch {
+            animation: glitch 1.5s infinite;
         }
     </style>
 </head>
 <body>
-    <div class="video-container">
-        <video controls>
-            <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/04/FadedEchoes.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <h3>Vaporwave Video Title</h3>
+    <div class="container">
+        <div class="video-container">
+            <video controls>
+                <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/04/FadedEchoes.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <h3 class="glitch">Cyberpunk Video</h3>
+        </div>
     </div>
 </body>
 </html>
