@@ -322,7 +322,7 @@ If the image is used as a background:
 - [ ]  Ruda
 - [ ]  DM Sans
 - [ ]  Warnes
-- [ ]  Uncial Antiqua
+- [ ]  Viaoda Libre
 - [ ]  Diplomata SC
 - [ ]  Fascinate Inline
 - [ ]  Megrim
@@ -339,7 +339,6 @@ If the image is used as a background:
 - [ ]  Stalinist One
 - [ ]  IBM Plex Mono
 - [ ]  Baumans
-- [ ]  Turret Road
 - [ ]  Geo
 - [ ]  Workbench
 - [ ]  Kanit
@@ -405,9 +404,15 @@ If the image is used as a background:
 
 - Y2K style fonts 
 - [ ]  https://fontesk.com/tag/y2k/
-- [ ]  https://fontesk.com/asix-founder-font/
 - [ ]  https://fontesk.com/graphy-font/
 - [ ]  https://justfreefonts.com/fonts/aeogo-box/
+- [ ]  https://fontesk.com/ut-gixora-metric-font/
+- [ ]  https://fontesk.com/monberg-font/
+- [ ]  https://fontesk.com/eden-meadow-font/
+- [ ]  https://fontesk.com/nurma-font/
+- [ ]  https://fontesk.com/tokolima-font/
+- [ ]  https://fontesk.com/klick-font-2/
+- [ ]  https://fontesk.com/meriah-font/
 
 <br>
 
@@ -456,7 +461,6 @@ If the image is used as a background:
 - [ ] Dark Glow Core
 - [ ] Code Warp Grid
 - [ ] Hack Flux Rise
-- [ ] Dark Sync Void
 - [ ] Tech Punk Rise
 - [ ] Data Core Flux
 - [ ] Glow Hack Zone
