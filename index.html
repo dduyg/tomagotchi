@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deadpool Easter Egg</title>
+    <title>Deadpool Surprise</title>
     <style>
-        .deadpools-easter-egg {
+        .deadpools-surprise {
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -19,26 +19,23 @@
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
         }
-        .deadpools-easter-egg.visible {
+        .deadpools-surprise.visible {
             opacity: 1;
         }
     </style>
 </head>
 <body>
-
-    <div class="deadpools-easter-egg">
+    <div class="deadpools-surprise">
         🦸‍♂️ Surprise! Deadpool is here!
     </div>
-
     <script>
-        const dpsegg = document.querySelector('.deadpools-easter-egg');
+        const dpSurprise = document.querySelector('.deadpools-surprise');
 
-        if (dpsegg) {
+        if (dpSurprise) {
             setTimeout(() => {
-                dpsegg.classList.add('visible');
+                dpSurprise.classList.add('visible');
             }, 10000); // 10 seconds delay
         }
     </script>
-
 </body>
 </html>
