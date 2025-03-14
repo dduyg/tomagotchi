@@ -6,8 +6,18 @@
     <title>Deadpool Easter Egg</title>
     <style>
         .deadpools-easter-egg {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ff0000; /* Deadpool red */
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
             opacity: 0;
-            transition: opacity 0.5s;
+            transition: opacity 0.5s ease-in-out;
         }
         .deadpools-easter-egg.visible {
             opacity: 1;
@@ -15,17 +25,20 @@
     </style>
 </head>
 <body>
+
     <div class="deadpools-easter-egg">
         🦸‍♂️ Surprise! Deadpool is here!
     </div>
 
     <script>
-        // Look at right end, at the bottom //
         const dpsegg = document.querySelector('.deadpools-easter-egg');
 
-        setTimeout(() => {
-            dpsegg.classList.add('visible');
-        }, 10000);
+        if (dpsegg) {
+            setTimeout(() => {
+                dpsegg.classList.add('visible');
+            }, 10000); // 10 seconds delay
+        }
     </script>
+
 </body>
 </html>
