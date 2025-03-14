@@ -6,23 +6,18 @@
     <title>LiminalLoop</title>
     <style>
         body {
-            background-color: #121212; /* Dark background */
+            background: linear-gradient(to left, #243b55, #7289da);
             color: #e0e0e0; /* Light gray text */
             font-family: 'Courier New', Courier, monospace; /* Futuristic font */
             margin: 0;
             padding: 0;
-        }
-        .container {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             flex-direction: column;
-            background: linear-gradient(45deg, #2c3e50, #000000); /* Gradient for cyberpunk feel */
         }
-
-        /* Video container styling */
-        .video-container {
+        .container {
             border: 2px solid #ff00ff; /* Neon pink border */
             padding: 20px;
             width: 80%; /* Adjust width as per your requirement */
@@ -38,7 +33,6 @@
             border-radius: 10px; /* Rounded corners */
         }
 
-        /* Title styling with cyberpunk effect */
         h3 {
             font-size: 2rem;
             margin-top: 10px;
@@ -46,9 +40,8 @@
             color: #ff00ff; /* Neon pink text */
             text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff; /* Neon glow effect */
             letter-spacing: 2px;
+            animation: glitch 1.5s infinite;
         }
-
-        /* Glitch effect for the body */
         @keyframes glitch {
             0% {
                 text-shadow: 1px 1px 0 #ff00ff, -1px -1px 0 #ff00ff, 2px 2px 0 #00ff00, -2px -2px 0 #00ff00;
@@ -71,21 +64,15 @@
                 transform: translate(0);
             }
         }
-
-        h3.glitch {
-            animation: glitch 1.5s infinite;
-        }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="video-container">
-            <video controls>
-                <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/04/FadedEchoes.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <h3 class="glitch">Cyberpunk Video</h3>
-        </div>
+<body>      
+    <div class="container">    
+        <video controls>      
+            <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/04/FadedEchoes.mp4" type="video/mp4">     
+            Your browser does not support the video tag.
+        </video>  
+        <h3>Cyberpunk Video</h3>
     </div>
 </body>
 </html>
