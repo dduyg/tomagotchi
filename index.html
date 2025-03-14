@@ -6,69 +6,127 @@
     <title>LiminalLoop</title>
     <style>
         body {
-            background-color: #2b2b2b;
-            color: #f5f5f5;
-            font-family: 'Courier New', Courier, monospace; /* Punk-inspired font */
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #121212; /* Dark background for cyberpunk theme */
+            color: #e0e0e0;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            text-align: center;
+            flex-direction: column;
         }
 
         .video-container {
-            border: 5px solid #ff0000; /* Red, to add a rebellious tone */
-            padding: 15px;
+            border: 3px solid #00ff00; /* Neon green border */
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.6); /* Neon glow effect */
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
             width: 80%;
-            background: linear-gradient(135deg, #444, #111); /* Grungy background */
-            box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.6); /* Glowing red shadow */
-            margin: 20px;
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+            border-radius: 10px;
         }
 
         video {
-            width: 100%; /* Full width video */
+            width: 100%; 
             height: auto;
-            border: 2px solid #ff0000; /* Border around the video */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
         }
 
         h3 {
             margin-top: 20px;
-            color: #ff0000; /* Red text for emphasis */
-            font-size: 1.8em;
+            font-size: 24px;
+            color: #ff00ff; /* Neon pink text */
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff; /* Glowing text */
+            font-family: 'Courier New', Courier, monospace;
             letter-spacing: 2px;
-            text-transform: uppercase;
-            font-weight: bold;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Shadow for a more rugged look */
         }
 
-        body::before {
-            content: "";
+        /* Glitch effect for title */
+        h3.glitch {
+            position: relative;
+            display: inline-block;
+            color: #ff00ff;
+        }
+
+        h3.glitch::before,
+        h3.glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: #00ff00;
+            z-index: -1;
+            animation: glitch 2s infinite;
+        }
+
+        h3.glitch::after {
+            animation-delay: 1s;
+        }
+
+        @keyframes glitch {
+            0% {
+                transform: translate(-2px, 2px);
+            }
+            10% {
+                transform: translate(2px, -2px);
+            }
+            20% {
+                transform: translate(-2px, 2px);
+            }
+            30% {
+                transform: translate(2px, -2px);
+            }
+            40% {
+                transform: translate(-2px, 2px);
+            }
+            50% {
+                transform: translate(2px, -2px);
+            }
+            60% {
+                transform: translate(-2px, 2px);
+            }
+            70% {
+                transform: translate(2px, -2px);
+            }
+            80% {
+                transform: translate(-2px, 2px);
+            }
+            90% {
+                transform: translate(2px, -2px);
+            }
+            100% {
+                transform: translate(0);
+            }
+        }
+
+        /* Faded background effect */
+        .background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/green-dust-and-scratches.png');
-            z-index: -1;
-            opacity: 0.1;
-        }
-
-        /* Adding a distressed look to the container */
-        .video-container {
-            border-radius: 5px;
-            background: rgba(0, 0, 0, 0.7);
+            background: url('https://www.transparenttextures.com/patterns/subtle-grunge.png') no-repeat center center;
+            background-size: cover;
+            filter: blur(5px);
+            z-index: -2;
+            opacity: 0.4;
         }
     </style>
 </head>
 <body>
+    <div class="background"></div>
     <div class="video-container">
         <video controls>
             <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/04/FadedEchoes.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <h3>Apocalyptic Video</h3>
+        <h3 class="glitch" data-text="Cyberpunk Video">Cyberpunk Video</h3>
     </div>
 </body>
 </html>
