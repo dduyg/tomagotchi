@@ -5,83 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LiminalLoop</title>
     <style>
-	@font-face {
+	    @font-face {
 	   font-family: 'Test Domaine Text';
 	   src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/test-domaine-text-light.woff2') format('woff2');
 	   font-weight: 300;
 	   font-style: normal;
 	}
-@font-face {
+
+	    @font-face {
     font-family: 'Chemre';
     src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Chemre.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
+        body {
+            font-family: 'Test Domaine Text', serif;
+            background-color: #FFF;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
 
-*,
-*:after,
-*:before {
-	box-sizing: border-box;
-}
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
 
-body {
-	font-family: 'Test Domaine Text', serif;
-	background-color: #FFF;
-}
+        .text-box {
+            position: relative;
+            display: inline-block;
+        }
 
-.text-box {
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
+        h1 {
+            font-size: 8vw;
+            font-family: 'Chemre', sans-serif;
+            background-color: #000;
+            color: #FFF;
+            padding: 0.5em;
+            margin: 0;
+            display: inline-block;
+        }
 
-h1 {
-	font-size: 8vw;
-	font-family: 'Chemre', sans-serif;
-	background-color: #000;
-	color: #fff;
-	display: block;
-	padding: .5em;
-}
-h1:nth-child(2) {
-	position: absolute;
-	background-color: #fff;
-	color: #000;
-	clip-path: inset(-1% -1% 50% -1%); // Added the negative values to prevent icky "bleed" in Chrome
-}
+        h1:nth-child(2) {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #FFF;
+            color: #000;
+            clip-path: inset(0 0 50% 0);
+        }
 
-p {
-	font-size: 1.2rem;
-	margin-top: 1em;
-	text-align: center;
-	line-height: 1.4;
-}
-
-.container {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-}  
+        p {
+            font-size: 1.2rem;
+            line-height: 1.4;
+            margin-top: 1em;
+            max-width: 600px;
+        }
     </style>
 </head>
 <body>
-<div class="container">
-	<div class="text-box">
-		<h1>desolation</h1>
-		<h1>desolation</h1>
-	</div>
-	<p>Step by step, day by day.<br>
-	   There is no one giant step that does it.<br>
-	   It's a lot of little steps.
-	</p>
-</div>
+    <div class="container">
+        <div class="text-box">
+            <h1>desolation</h1>
+            <h1>desolation</h1>
+        </div>
+        <p>Step by step, day by day.<br>
+           There is no one giant step that does it.<br>
+           It's a lot of little steps.
+        </p>
+    </div>
 </body>
 </html>
