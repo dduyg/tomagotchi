@@ -6,9 +6,9 @@
     <title>LiminalLoop</title>
     <style>
         body {
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #121212; /* Dark background for cyberpunk theme */
-            color: #e0e0e0;
+            background-color: #2b2b2b;
+            color: #f5f5f5;
+            font-family: 'Courier New', Courier, monospace; /* Punk-inspired font */
             margin: 0;
             padding: 0;
             display: flex;
@@ -17,116 +17,58 @@
             height: 100vh;
             flex-direction: column;
         }
-
-        .video-container {
-            border: 3px solid #00ff00; /* Neon green border */
+        .container {
+            border: 3px solid #ff0000; /* Neon green border */
             padding: 20px;
             box-shadow: 0 0 15px rgba(0, 255, 0, 0.6); /* Neon glow effect */
             background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
             width: 80%;
             max-width: 800px;
             text-align: center;
-            position: relative;
-            border-radius: 10px;
-        }
+        }      
 
         video {
-            width: 100%; 
+            width: 100%; /* Full width video */
             height: auto;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 255, 0, 0.6);
+            border: 2px solid #ff0000; /* Border around the video */
         }
 
         h3 {
             margin-top: 20px;
-            font-size: 24px;
-            color: #ff00ff; /* Neon pink text */
-            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff; /* Glowing text */
-            font-family: 'Courier New', Courier, monospace;
+            color: #ff0000; /* Red text for emphasis */
+            font-size: 1.8em;
             letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Shadow for a more rugged look */
         }
 
-        /* Glitch effect for title */
-        h3.glitch {
-            position: relative;
-            display: inline-block;
-            color: #ff00ff;
-        }
-
-        h3.glitch::before,
-        h3.glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            color: #00ff00;
-            z-index: -1;
-            animation: glitch 2s infinite;
-        }
-
-        h3.glitch::after {
-            animation-delay: 1s;
-        }
-
-        @keyframes glitch {
-            0% {
-                transform: translate(-2px, 2px);
-            }
-            10% {
-                transform: translate(2px, -2px);
-            }
-            20% {
-                transform: translate(-2px, 2px);
-            }
-            30% {
-                transform: translate(2px, -2px);
-            }
-            40% {
-                transform: translate(-2px, 2px);
-            }
-            50% {
-                transform: translate(2px, -2px);
-            }
-            60% {
-                transform: translate(-2px, 2px);
-            }
-            70% {
-                transform: translate(2px, -2px);
-            }
-            80% {
-                transform: translate(-2px, 2px);
-            }
-            90% {
-                transform: translate(2px, -2px);
-            }
-            100% {
-                transform: translate(0);
-            }
-        }
-
-        /* Faded background effect */
-        .background {
+        body::before {
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/subtle-grunge.png') no-repeat center center;
-            background-size: cover;
-            filter: blur(5px);
-            z-index: -2;
-            opacity: 0.4;
+            background: url('https://www.transparenttextures.com/patterns/subtle-grunge.png');
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        /* Adding a distressed look to the container */
+        .container {
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.7);
         }
     </style>
 </head>
 <body>
-    <div class="background"></div>
-    <div class="video-container">
+    <div class="container">
         <video controls>
             <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/04/FadedEchoes.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <h3 class="glitch" data-text="Cyberpunk Video">Cyberpunk Video</h3>
+        <h3>Apocalyptic Video</h3>
     </div>
 </body>
 </html>
