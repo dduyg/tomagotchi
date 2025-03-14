@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiminalLoop</title>
+    <title>Liminal➰️Loop</title>
     <style>
 	@font-face {
 	   font-family: 'Test Domaine Text';
@@ -17,11 +17,13 @@
             font-weight: normal;
 	    font-style: normal;
 	}
+        /* Global Reset */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
         body {
             font-family: 'Test Domaine Text', serif;
             background-color: #FFF;
@@ -35,34 +37,41 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
         }
 
+        /* Stacked Text Effect */
         .text-box {
             position: relative;
             display: flex;
             justify-content: center;
+            align-items: center;
         }
 
         h1 {
             font-size: 8vw;
             font-family: 'Chemre', sans-serif;
+            padding: 0.5em;
+            text-transform: uppercase;
+        }
+        /* Foreground Text */
+        h1:first-child {
             background-color: #000;
             color: #fff;
-            padding: 0.5em;
-            position: relative;
         }
-        h1:nth-child(2) {
+        /* Overlay Text */
+        h1:last-child {
             position: absolute;
             background-color: #fff;
             color: #000;
-            clip-path: inset(-1% -1% 50% -1%); /* Prevents bleed in Chrome */
+            clip-path: inset(-1% -1% 50% -1%);
         }
 
-        p {
+        blockquote {
             font-size: 1.2rem;
-            margin-top: 1em;
-            max-width: 500px;
             line-height: 1.4;
+            margin-top: 1em;
+            max-width: 600px;
         }
     </style>
 </head>
@@ -72,10 +81,11 @@
             <h1>desolation</h1>
             <h1>desolation</h1>
         </div>
-        <p>Step by step, day by day.<br>
-           There is no one giant step that does it.<br>
-           It's a lot of little steps.
-        </p>
+        <blockquote>
+            Step by step, day by day.<br>
+            There is no one giant step that does it.<br>
+            It's a lot of little steps.
+        </blockquote>
     </div>
 </body>
 </html>
