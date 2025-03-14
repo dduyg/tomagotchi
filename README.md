@@ -537,9 +537,6 @@ BUT A BLANK PAGE
 Cannot BE EDITED
 ```
 
-- Step by step, day by day.
-There is no one giant step that does it. It's a lot of little steps.
-
 ```html
 <h1>Let’s create <em>all the things</em> together</h1>
 ```
@@ -551,13 +548,6 @@ There is no one giant step that does it. It's a lot of little steps.
     font-weight: 300;
     font-style: normal;
 }
-@font-face {    
-    font-family: 'Test Domaine Text';     
-    src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/test-domaine-text-light.woff2') format('woff2');    
-    font-weight: 300;
-    font-style: normal;
-}
-body {font-family: 'Test Domaine Text', sans-serif;}
 
         @font-face {
             font-family: 'Dodopop';
@@ -572,6 +562,41 @@ body {font-family: 'Test Domaine Text', sans-serif;}
             font-style: italic;
         }
         body {font-family: 'Dodopop', sans-serif;}
+
+@font-face {
+    font-family: 'Asix Founder';
+    src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/AsixFounderRegular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Asix Founder';
+    src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/AsixFounderItalic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: italic;
+}
+body {font-family: 'Asix Founder', sans-serif;}
+@font-face {
+  font-family: 'Vanosky Thin';
+  src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/VanoskyThin.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Vanosky';
+  src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/VanoskyRegular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+body {font-family: 'Vanosky', sans-serif;}
+body {font-family: 'Vanosky Thin', sans-serif;}        
+@font-face {
+    font-family: 'Astralyz';
+    src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Astralyz.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+body {font-family: 'Astralyz', sans-serif;}
 ```
 
 ```css
