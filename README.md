@@ -597,9 +597,7 @@ body {font-family: 'Vanosky Thin', sans-serif;}
     font-style: normal;
 }
 body {font-family: 'Astralyz', sans-serif;}
-```
 
-```css
 @font-face {
     font-family: 'Argue';
     src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Argue.woff2') format('woff2');
@@ -607,14 +605,6 @@ body {font-family: 'Astralyz', sans-serif;}
     font-style: normal;
 }
 body {font-family: 'Argue', sans-serif;}
-
-@font-face {
-    font-family: 'Chemre';
-    src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Chemre.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-body {font-family: 'Chemre', sans-serif;}
 
 @font-face {
     font-family: 'Laginchy';
