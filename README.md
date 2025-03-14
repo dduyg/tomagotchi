@@ -409,7 +409,6 @@ If the image is used as a background:
 - [ ]  https://fontesk.com/ut-gixora-metric-font/
 - [ ]  https://fontesk.com/monberg-font/
 - [ ]  https://fontesk.com/eden-meadow-font/
-- [ ]  https://fontesk.com/nurma-font/
 - [ ]  https://fontesk.com/tokolima-font/
 - [ ]  https://fontesk.com/klick-font-2/
 - [ ]  https://fontesk.com/meriah-font/
