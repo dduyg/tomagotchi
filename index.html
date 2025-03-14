@@ -5,48 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LiminalLoop</title>
     <style>
-        body {
-            background: linear-gradient(to left, #243b55, #7289da);
-            color: #e0e0e0; /* Light gray text */
-            font-family: 'Courier New', Courier, monospace; /* Futuristic font */
+        /* Global reset */
+        body, h3, video {
             margin: 0;
             padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #ff2a68, #7200ff);
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             flex-direction: column;
-        }
-        .container {
-            border: 3px solid #ff0000;
-            border-radius: 5px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.4);
-            width: 80%;
-            margin-bottom: 20px;
             text-align: center;
+            overflow: hidden;
         }
+
+        /* Video container style */
+        .video-container {
+            border: 3px solid #00ffcc;
+            border-radius: 15px;
+            padding: 20px;
+            width: 80%;
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 0 15px 5px rgba(0, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .video-container:hover {
+            box-shadow: 0 0 25px 10px rgba(0, 255, 255, 0.7);
+        }
+
         video {
-            width: 100%; /* Makes the video fill the container width */
+            width: 100%;
             height: auto;
+            border-radius: 10px;
         }
+
+        /* Title styling */
         h3 {
-            margin-top: 10px;
-            color: #ff0000; /* Red text for emphasis */
-            font-size: 1.8em;
-            letter-spacing: 2px;
+            margin-top: 20px;
+            font-size: 2rem;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Shadow for a more rugged look */
+            color: #00ffcc;
+            text-shadow: 0 0 5px #ff2a68, 0 0 10px #ff2a68, 0 0 15px #ff2a68;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Neon Glowing effect */
+        h3:after {
+            content: "";
+            display: block;
+            height: 2px;
+            width: 50%;
+            background: #ff2a68;
+            margin: 10px auto;
+            box-shadow: 0 0 10px #ff2a68, 0 0 20px #ff2a68, 0 0 30px #ff2a68;
         }
     </style>
 </head>
-<body>      
-    <div class="container">    
-        <video controls>      
-            <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/04/FadedEchoes.mp4" type="video/mp4">     
+<body>
+    <div class="video-container">
+        <video controls>
+            <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/04/FadedEchoes.mp4" type="video/mp4">
             Your browser does not support the video tag.
-        </video>  
-        <h3>Cyberpunk Video</h3>
+        </video>
+        <h3>Chillwave Dreams</h3>
     </div>
 </body>
 </html>
