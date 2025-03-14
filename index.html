@@ -14,55 +14,29 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
             flex-direction: column;
         }
         .container {
-            border: 2px solid #ff00ff; /* Neon pink border */
+            border: 3px solid #ff0000;
+            border-radius: 5px;
             padding: 20px;
-            width: 80%; /* Adjust width as per your requirement */
+            background: rgba(0, 0, 0, 0.4);
+            width: 80%;
             margin-bottom: 20px;
             text-align: center;
-            box-shadow: 0 0 10px rgba(255, 0, 255, 0.7); /* Neon glow effect */
-            background: rgba(0, 0, 0, 0.8); /* Slight dark background */
         }
-
         video {
             width: 100%; /* Makes the video fill the container width */
             height: auto;
-            border-radius: 10px; /* Rounded corners */
         }
-
         h3 {
-            font-size: 2rem;
             margin-top: 10px;
-            text-transform: uppercase;
-            color: #ff00ff; /* Neon pink text */
-            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff; /* Neon glow effect */
+            color: #ff0000; /* Red text for emphasis */
+            font-size: 1.8em;
             letter-spacing: 2px;
-            animation: glitch 1.5s infinite;
-        }
-        @keyframes glitch {
-            0% {
-                text-shadow: 1px 1px 0 #ff00ff, -1px -1px 0 #ff00ff, 2px 2px 0 #00ff00, -2px -2px 0 #00ff00;
-                transform: translate(0);
-            }
-            25% {
-                text-shadow: -2px -2px 0 #ff00ff, 2px 2px 0 #00ff00;
-                transform: translate(-2px, 2px);
-            }
-            50% {
-                text-shadow: -3px -3px 0 #ff00ff, 3px 3px 0 #00ff00;
-                transform: translate(2px, -2px);
-            }
-            75% {
-                text-shadow: 2px 2px 0 #ff00ff, -2px -2px 0 #00ff00;
-                transform: translate(-2px, 2px);
-            }
-            100% {
-                text-shadow: 1px 1px 0 #ff00ff, -1px -1px 0 #00ff00;
-                transform: translate(0);
-            }
+            text-transform: uppercase;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Shadow for a more rugged look */
         }
     </style>
 </head>
