@@ -6,52 +6,86 @@
     <title>LiminalLoop</title>
     <style>
         body {
-            background-color: #2b2b2b;
-            background-image: url("https://www.transparenttextures.com/patterns/basketball.png");      
-            color: #f5f5f5;
-            font-family: 'Courier New', Courier, monospace; /* Punk-inspired font */
+            background-color: #121212; /* Dark background */
+            color: #e0e0e0; /* Light gray text */
+            font-family: 'Courier New', Courier, monospace; /* Futuristic font */
             margin: 0;
             padding: 0;
+        }
+        .container {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             flex-direction: column;
+            background: linear-gradient(45deg, #2c3e50, #000000); /* Gradient for cyberpunk feel */
         }
-        .container {
-            border: 3px solid #ff0000; /* Neon green border */
-            border-radius: 5px;
+
+        /* Video container styling */
+        .video-container {
+            border: 2px solid #ff00ff; /* Neon pink border */
             padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            width: 80%;
-            max-width: 800px;
+            width: 80%; /* Adjust width as per your requirement */
+            margin-bottom: 20px;
             text-align: center;
-        }      
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.7); /* Neon glow effect */
+            background: rgba(0, 0, 0, 0.8); /* Slight dark background */
+        }
 
         video {
-            width: 100%; /* Full width video */
+            width: 100%; /* Makes the video fill the container width */
             height: auto;
-            border: 1px solid #ff0000; /* Border around the video */
+            border-radius: 10px; /* Rounded corners */
         }
 
+        /* Title styling with cyberpunk effect */
         h3 {
-            margin-top: 20px;
-            color: #ff0000; /* Red text for emphasis */
-            font-size: 1.8em;
-            letter-spacing: 2px;
+            font-size: 2rem;
+            margin-top: 10px;
             text-transform: uppercase;
-            font-weight: bold;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Shadow for a more rugged look */
+            color: #ff00ff; /* Neon pink text */
+            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff; /* Neon glow effect */
+            letter-spacing: 2px;
+        }
+
+        /* Glitch effect for the body */
+        @keyframes glitch {
+            0% {
+                text-shadow: 1px 1px 0 #ff00ff, -1px -1px 0 #ff00ff, 2px 2px 0 #00ff00, -2px -2px 0 #00ff00;
+                transform: translate(0);
+            }
+            25% {
+                text-shadow: -2px -2px 0 #ff00ff, 2px 2px 0 #00ff00;
+                transform: translate(-2px, 2px);
+            }
+            50% {
+                text-shadow: -3px -3px 0 #ff00ff, 3px 3px 0 #00ff00;
+                transform: translate(2px, -2px);
+            }
+            75% {
+                text-shadow: 2px 2px 0 #ff00ff, -2px -2px 0 #00ff00;
+                transform: translate(-2px, 2px);
+            }
+            100% {
+                text-shadow: 1px 1px 0 #ff00ff, -1px -1px 0 #00ff00;
+                transform: translate(0);
+            }
+        }
+
+        h3.glitch {
+            animation: glitch 1.5s infinite;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <video controls>
-            <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/04/FadedEchoes.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <h3>Apocalyptic Video</h3>
+        <div class="video-container">
+            <video controls>
+                <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/04/FadedEchoes.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <h3 class="glitch">Cyberpunk Video</h3>
+        </div>
     </div>
 </body>
 </html>
