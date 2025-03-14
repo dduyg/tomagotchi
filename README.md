@@ -337,7 +337,6 @@ If the image is used as a background:
 - [ ]  Karla
 - [ ]  SUSE
 - [ ]  Stalinist One
-- [ ]  IBM Plex Mono
 - [ ]  Baumans
 - [ ]  Geo
 - [ ]  Workbench
