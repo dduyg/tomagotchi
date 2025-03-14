@@ -17,66 +17,53 @@
             font-weight: normal;
 	    font-style: normal;
 	}
-        /* Reset and General Styles */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
             font-family: 'Test Domaine Text', serif;
-            background-color: #fff;
+            background-color: #FFF;
+            margin: 0;
+            padding: 0;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             height: 100vh;
             text-align: center;
         }
-
-        /* Container for center alignment */
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 100%;
-            padding: 1rem;
         }
 
         /* Text Box Styling */
         .text-box {
             position: relative;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
         }
 
-        /* Main Heading */
         h1 {
             font-size: 8vw;
             font-family: 'Chemre', sans-serif;
-            padding: 0.5em;
             background-color: #000;
             color: #fff;
-            position: relative;
-            z-index: 1;
+            padding: 0.5em;
+            margin: 0;
         }
-
-        /* Overlapping Text with Clipping Effect */
+        /* Overlay Effect for Dual-Tone Text */
         h1:nth-child(2) {
             position: absolute;
             background-color: #fff;
             color: #000;
-            clip-path: inset(0 0 50% 0);
-            z-index: 2;
+            clip-path: inset(-1% -1% 50% -1%); /* Prevents bleeding in Chrome */
         }
 
-        /* Paragraph Styling */
         p {
             font-size: 1.2rem;
             margin-top: 1em;
-            line-height: 1.4;
+            line-height: 1.5;
+            max-width: 600px;
         }
     </style>
 </head>
