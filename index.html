@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liminal➰️Loop</title>
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>LiminalLoop</title>  
     <style>
-	@font-face {
+@font-face {
 	   font-family: 'Test Domaine Text';
 	   src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/test-domaine-text-light.woff2') format('woff2');
 	   font-weight: 300;
@@ -17,75 +17,70 @@
             font-weight: normal;
 	    font-style: normal;
 	}
-        /* Global Reset */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Test Domaine Text', serif;
-            background-color: #FFF;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Stacked Text Effect */
-        .text-box {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        h1 {
-            font-size: 8vw;
-            font-family: 'Chemre', sans-serif;
-            padding: 0.5em;
-            text-transform: uppercase;
-        }
-        /* Foreground Text */
-        h1:first-child {
-            background-color: #000;
-            color: #fff;
-        }
-        /* Overlay Text */
-        h1:last-child {
-            position: absolute;
-            background-color: #fff;
-            color: #000;
-            clip-path: inset(-1% -1% 50% -1%);
-        }
-
-        blockquote {
-            font-size: 1.2rem;
-            line-height: 1.4;
-            margin-top: 1em;
-            max-width: 600px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="text-box">
-            <h1>desolation</h1>
-            <h1>desolation</h1>
-        </div>
-        <blockquote>
-            Step by step, day by day.<br>
-            There is no one giant step that does it.<br>
-            It's a lot of little steps.
-        </blockquote>
-    </div>
-</body>
+*,  
+*:after,  
+*:before {  
+	box-sizing: border-box;  
+}  
+  
+body {  
+	font-family: 'Test Domaine Text', serif;  
+	background-color: #FFF;  
+}  
+  
+.text-box {  
+	position: relative;  
+	display: flex;  
+	align-items: center;  
+	justify-content: center;  
+}  
+  
+h1 {  
+	font-size: 8vw;  
+	font-family: 'Chemre', sans-serif;  
+	background-color: #000;  
+	color: #fff;  
+	display: block;  
+	padding: .5em;  
+}  
+h1:nth-child(2) {  
+	position: absolute;  
+	background-color: #fff;  
+	color: #000;  
+	clip-path: inset(-1% -1% 50% -1%); // Added the negative values to prevent icky "bleed" in Chrome  
+}  
+  
+p {  
+	font-size: 1.2rem;  
+	margin-top: 1em;  
+	text-align: center;  
+	line-height: 1.4;  
+}  
+  
+.container {  
+	position: absolute;  
+	top: 0;  
+	left: 0;  
+	right: 0;  
+	bottom: 0;  
+	width: 100%;  
+	display: flex;  
+	align-items: center;  
+	justify-content: center;  
+	flex-direction: column;  
+}    
+    </style>  
+</head>  
+<body>  
+<div class="container">  
+	<div class="text-box">  
+		<h1>desolation</h1>  
+		<h1>desolation</h1>  
+	</div>  
+	<p>Step by step, day by day.<br>  
+	   There is no one giant step that does it.<br>  
+	   It's a lot of little steps.  
+	</p>  
+</div>  
+</body>  
 </html>
