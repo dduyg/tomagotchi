@@ -6,92 +6,70 @@
     <title>LiminalLoop</title>
     <style>
         body {
-            background-color: #2c2c2c;
-            font-family: 'Courier New', Courier, monospace;
+            background-color: #2b2b2b;
             color: #f5f5f5;
+            font-family: 'Courier New', Courier, monospace; /* Punk-inspired font */
             margin: 0;
             padding: 0;
-        }
-        .page-container {
-            background: url('https://www.transparenttextures.com/patterns/dirty-window.png'), linear-gradient(45deg, #3e3e3e, #2c2c2c); 
-            background-blend-mode: multiply;
-            padding: 20px;
-            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
+            height: 100vh;
+            text-align: center;
         }
 
-        /* Styling the video container */
         .video-container {
-            border: 3px solid #444; /* Dark border with a weathered feel */
+            border: 5px solid #ff0000; /* Red, to add a rebellious tone */
             padding: 15px;
             width: 80%;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            background-color: #1e1e1e; /* Dark background inside the container */
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6); /* Adding shadow for depth */
-            border-radius: 5px;
-            background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png'); /* Texture for grunge feel */
+            background: linear-gradient(135deg, #444, #111); /* Grungy background */
+            box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.6); /* Glowing red shadow */
+            margin: 20px;
         }
 
-        /* Video element styling */
         video {
-            width: 100%;
+            width: 100%; /* Full width video */
             height: auto;
-            border-radius: 5px;
-            border: 2px solid #333; /* Border for the video */
+            border: 2px solid #ff0000; /* Border around the video */
         }
 
-        /* Title below the video */
         h3 {
-            margin-top: 10px;
-            font-size: 22px;
-            font-family: 'Courier New', Courier, monospace;
-            text-transform: uppercase;
+            margin-top: 20px;
+            color: #ff0000; /* Red text for emphasis */
+            font-size: 1.8em;
             letter-spacing: 2px;
-            color: #e6e6e6;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+            text-transform: uppercase;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Shadow for a more rugged look */
         }
 
-        /* Adding some faded, apocalyptic effect on the page */
-        .fade-effect {
+        /* Adding a grunge background texture */
+        body::before {
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4); /* Subtle dark overlay */
-            pointer-events: none;
+            background: url('https://www.transparenttextures.com/patterns/dark-smoke.png'); /* Grunge texture */
+            z-index: -1;
+            opacity: 0.1;
         }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background-color: #555;
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background-color: #888;
+        /* Adding a distressed look to the container */
+        .video-container {
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.7);
         }
     </style>
 </head>
 <body>
-    <div class="page-container">
-        <!-- Dark overlay to add a post-apocalyptic effect -->
-        <div class="fade-effect"></div>
-
-        <div class="video-container">
-            <video controls>
-                <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/04/FadedEchoes.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <h3>Apocalyptic Video</h3>
-        </div>
+    <div class="video-container">
+        <video controls>
+            <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/04/FadedEchoes.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <h3>Apocalyptic Video</h3>
     </div>
 </body>
 </html>
