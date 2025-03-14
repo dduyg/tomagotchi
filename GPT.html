@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiminalLoop</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 6em 1em 0;
+      background: #f0ede4;
+      color: black;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    nav > ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    nav > ul li {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 3.5rem;
+      line-height: 1;
+      letter-spacing: -0.1em;
+      text-transform: uppercase;
+      margin: -0.24em 0;
+      padding-right: 1.1em;
+      overflow: hidden;
+    }    
+    nav > ul a {
+      outline: 0;
+      text-decoration: none;
+      color: black;
+      touch-action: manipulation;
+      display: block;
+    }
+    
+    nav > ul a > .holder {
+      position: relative;
+      transform-origin: 0 0;
+    }
+    nav > ul a > .holder,
+    nav > ul a > .holder > svg {
+      transition: transform 1s cubic-bezier(0.165, 0.875, 0.02, 1);
+    }
+
+    nav > ul a > .holder > svg {
+      position: absolute;
+      top: 20%;
+      left: 0;
+      height: 60%;
+      transform: translateX(-120%);
+    }    
+    nav > ul a:hover > .holder {
+      transform: translateX(1em);
+    }
+    nav > ul a:hover > .holder > svg {
+      transform: translateX(-100%);
+    }
+  </style>
+</head>
+<body>
+<nav><ul>
+    <li>
+      <a href="#home">
+        <div class="holder">
+          <svg viewBox="0 0 542 62"><path d="M510.2 61.1l-2.1-2.2 27.3-26.4H.7v-3h534.8L508.1 3.1l2.1-2.2L541.3 31l-31.1 30.1z"></path></svg>
+          Home
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="#blog">
+        <div class="holder">
+          <svg viewBox="0 0 542 62"><path d="M510.2 61.1l-2.1-2.2 27.3-26.4H.7v-3h534.8L508.1 3.1l2.1-2.2L541.3 31l-31.1 30.1z"/></svg>
+          blog
+        </div>
+      </a>
+    </li>
+    <li>
+      <a href="#contact">
+        <div class="holder">
+          <svg viewBox="0 0 542 62"><path d="M510.2 61.1l-2.1-2.2 27.3-26.4H.7v-3h534.8L508.1 3.1l2.1-2.2L541.3 31l-31.1 30.1z"/></svg>
+          Contact
+        </div>
+      </a>
+    </li>
+</ul></nav>
+</body>
+</html>

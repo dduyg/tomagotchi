@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiminalLoop</title>
+  <style>
+    :root {
+      --color-main: rgba(0, 0, 0, 0.87);
+      --color-light-main: #292721; 
+      --marker: #C9C9BF;
+      --back: #9D9D9D;
+      --main-font: "ABeeZee", sans-serif;
+      --mono-font: "Fira Code", monospace;
+    }
+    body {
+      font-family: "Open Sans", sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--back);
+      color: var(--color-main);
+    }
+
+    /* Layout
+    ------------------------------*/    
+    main {
+      max-width: 800px;
+      margin: 50% auto 0;
+      padding: 1.25em;
+      box-sizing: border-box;
+    }
+    .works {
+      width: 100%;
+      border-top: 0.075rem solid currentColor;
+    }
+    .work {
+      border-bottom: 0.075rem solid currentColor;
+      position: relative;
+      padding: 0;
+    }
+
+    /* Start Menu
+    ------------------------------*/
+    .start-menu {   
+      align-self: flex-start;
+      padding: 0 0 10px;
+      margin: 0;
+      display: table;
+      width: 100%;
+    }
+    .start-header, .start-filter { 
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .start-header {
+      width: 60%;
+      font-size: 2em;
+      font-weight: bold;
+    }
+    .start-filter {
+      width: 40%;
+      text-align: right !important; 
+    }
+    .start-filter ul {
+      list-style: none;
+      text-align: right;
+      text-transform: uppercase;
+      padding: 0;
+      margin: 0;
+    }    
+    .start-filter ul li {  
+      position: relative;
+      margin-top: 0.0625em;
+      cursor: pointer;
+      transition: background 0.3s ease-in-out;
+      transition: transform 0.3s;
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+    }
+    .start-filter ul li::before {
+      content: "•";
+      display: inline-block;
+      height: 1em;
+      width: 1em;
+      border-radius: 50%;
+      border: 2px solid currentColor;
+      margin-right: 0.07em;
+      line-height: 1em;
+      text-align: center;
+      transition: background 0.3s ease-in-out;
+    }
+    .start-filter ul li.active-filter {
+      font-style: italic;
+    }
+    .start-filter ul li.active-filter::before {
+      background: var(--color-main);
+    }    
+    .start-filter ul li:hover, .start-filter ul li:focus {
+      transform: scale(1.05);
+    }
+    .start-filter ul li:active {
+      font-weight: bold;
+    }
+
+    /* Header
+    ------------------------------*/
+    header {
+      cursor: pointer;
+      position: relative;
+      -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;  
+      list-style-type: none;
+      padding: 0.9375em 0;
+      margin: 0;
+      display: table;
+      width: 100%;
+    }
+    header::after {
+      content: " ";
+      width: 0.5em;
+      height: 0.5em;
+      border-right: 0.0625em solid currentColor;
+      border-bottom: 0.0625em solid currentColor;
+      position: absolute;
+      right: 0.625em;
+      top: 50%;
+      transform: translateY(-50%) rotate(-45deg);
+      transition: transform 0.2s ease-in-out;
+    }
+    .work.open header {
+      color: var(--marker);
+      font-weight: bold;
+    }
+    .work.open header::after {
+      color: var(--color-main);
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    /* Work Title
+    ------------------------------*/
+    .title, .labels { 
+      display: table-cell;
+      width: 50%;
+      vertical-align: middle;
+    }
+    .title {
+      font-size: 1.15em !important;
+    }
+    .labels {
+      text-align: right !important;
+      padding-right: 11% !important;
+      font-family: var(--mono-font) !important;
+      color: #484848 !important;
+      font-weight: normal !important; 
+    }
+
+    /* Section
+    ------------------------------*/
+    section {
+      display: none;
+      padding: 1.25em 0;
+    }
+    .work.open section {
+      display: block;
+      animation: slideDown 0.3s ease-out;
+    }
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Work Details & Summary
+    ------------------------------*/
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25em;
+    }
+    .details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25em;
+    }
+    .item {
+      display: flex;
+      gap: 1.25em;
+      align-items: flex-start;
+    }
+    .property {
+      font-family: var(--mono-font);
+      font-weight: bold;
+      color: #484848;
+      width: 150px; /* Set a fixed width for alignment */
+    }
+    .detail {
+      flex: 1;
+      color: var(--color-light-main);
+    }
+
+    .work, .work:focus, .work:active {
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .work:focus {
+      box-shadow: 0 0 0 2px #00f;
+    }
+
+    @media screen and (min-width: 30em) {
+      .container {
+        flex-direction: row;
+        gap: 1.25em;
+      }
+      .details {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .summary {
+        flex: 1;
+      }
+      .details, .summary {
+        max-width: 50%;
+      }  
+    }
+   
+    /* Showcase Images
+    ------------------------------*/
+    aside {
+      display: grid;
+      grid-gap: 1em; /* Adjust spacing between items */
+      grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); /* Automatically adjust columns */
+      padding-top: 1.5em;
+    }
+    .showcase {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: opacity .15s ease-in;
+    }
+    .showcase:hover, .showcase:focus {
+      opacity: .5;
+    }
+    .showcase:active {
+      opacity: .8;
+    }
+    .showcase img {
+      width: 100%;
+      height: auto;
+      display: block;
+      pointer-events: none;
+      border: 1px solid var(--color-main);
+    }
+    @media screen and (max-width: 30em) {
+      aside {
+        grid-template-columns: repeat(2, 1fr); /* On screens smaller than 30em, stack in two columns */
+      }
+    }
+    @media screen and (min-width: 30em) {
+      aside {
+        max-width: 48%;
+      }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <div class="start-menu">
+    <div class="start-header">Products</div>
+    <div class="start-filter">
+      <ul>
+        <li data-filter="all" class="active-filter">All&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+        <li data-filter="product">Works</li>
+        <li data-filter="piece">Creations&nbsp;&nbsp;</li>  
+      </ul>
+    </div>
+  </div>
+  <div class="works">
+    <div class="work" data-type="product">
+      <header>
+         <div class="title">Lorem ipsum</div>
+         <div class="labels">Studioooo</div>
+      </header>
+      <section>
+       <div class="container">
+         <div class="details">
+            <div class="item">
+                <div class="property">Category:</div>
+                <div class="detail">Python, NLP, Web Application</div>
+            </div>
+            <div class="item">
+                <div class="property">Year:</div>
+                <div class="detail">2024</div>
+            </div>
+            <div class="item">
+                <div class="property">Client:</div>
+                <div class="detail">LiminalLoop</div>
+            </div>
+         </div>
+         <div class="summary">
+            <div class="info">In the shadowed dawn of a land reborn, Atatürk rose, a beacon fierce and worn, With vision clear and heart unyielding, He forged a nation, hope revealing. Through trials deep and dreams unbound, In every step, a future found, His name, a chant of freedom’s call, A legacy to stand, proud and tall.</div>
+         </div>
+       </div>
+       <aside>
+         <a href="#" class="showcase">
+           <img src="https://via.placeholder.com/400x400/ff66ff/000000?text=Vaporwave+Image" alt="Showcase Image"/>
+         </a>
+         <a href="#" class="showcase">
+           <img src="https://via.placeholder.com/400x400/ff66ff/000000?text=Vaporwave+Image" alt="Showcase Image"/>
+         </a>
+       </aside>     
+      </section>
+    </div>
+    <div class="work" data-type="piece">
+      <header>Repellat Odit Aliquid</header>
+      <section>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci.</p>
+      </section>
+    </div>
+    <div class="work" data-type="product">
+      <header>Repellat Odit Aliquid</header>
+      <section>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, ipsum, fuga, in, obcaecati magni ullam nobis voluptas fugiat tenetur voluptatum quas tempora maxime rerum neque deserunt suscipit provident cumque et mollitia ex aspernatur porro minus sapiente voluptatibus eos at perferendis repellat odit aliquid harum molestias ratione pariatur adipisci.</p>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const works = document.querySelectorAll('.work');
+      const filterItems = document.querySelectorAll('.start-filter ul li');
+      
+      // Function to filter works
+      function filterWorks(type) {
+        works.forEach(work => {
+          if (type === 'all' || work.getAttribute('data-type') === type) {
+            work.style.display = 'block';
+          } else {
+            work.style.display = 'none';
+          }
+        });
+      }
+
+      // Function to set active filter
+      function setActiveFilter(element) {
+        filterItems.forEach(item => {
+          item.classList.remove('active-filter');
+        });
+        element.classList.add('active-filter');
+      }
+
+      // Add click event to filter items
+      filterItems.forEach(item => {
+        item.addEventListener('click', function() {
+          const filterType = this.getAttribute('data-filter');
+          filterWorks(filterType);
+
+          // Reset transition
+          filterItems.forEach(el => {
+            el.style.transition = 'none';
+          });
+
+          setActiveFilter(this);
+
+          // Force reflow to restart transition
+          filterItems.forEach(el => {
+            el.offsetHeight; // Trigger reflow
+            el.style.transition = ''; // Re-enable transition
+          });
+        });
+      });
+
+      // Default filter on page load
+      filterWorks('all');
+
+      // Expand and collapse work sections
+      works.forEach(work => {
+        const header = work.querySelector('header');
+        header.addEventListener('click', function() {
+          if (!work.classList.contains('open')) {
+            works.forEach(w => w.classList.remove('open'));
+          }
+          work.classList.toggle('open');
+        });
+      });
+    });
+  </script>
+
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script>
+    ScrollReveal().reveal('.start-menu, .works, .work', {
+      origin: 'bottom',
+      distance: '50px',
+      duration: 1000,
+      interval: 200
+    });
+  </script>
+</main>
+</body>
+</html>
