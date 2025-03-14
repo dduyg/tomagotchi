@@ -6,85 +6,91 @@
     <title>LiminalLoop</title>
     <style>
         body {
-            background-color: #121212; /* Dark background */
-            color: #e0e0e0; /* Light gray text */
-            font-family: 'Courier New', Courier, monospace; /* Futuristic font */
+            background-color: #2c2c2c;
+            font-family: 'Courier New', Courier, monospace;
+            color: #f5f5f5;
             margin: 0;
             padding: 0;
         }
-        .container {
+        .page-container {
+            background: url('https://www.transparenttextures.com/patterns/dirty-window.png'), linear-gradient(45deg, #3e3e3e, #2c2c2c); 
+            background-blend-mode: multiply;
+            padding: 20px;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
             flex-direction: column;
-            background: linear-gradient(45deg, #2c3e50, #000000); /* Gradient for cyberpunk feel */
         }
 
-        /* Video container styling */
+        /* Styling the video container */
         .video-container {
-            border: 2px solid #ff00ff; /* Neon pink border */
-            padding: 20px;
-            width: 80%; /* Adjust width as per your requirement */
-            margin-bottom: 20px;
+            border: 3px solid #444; /* Dark border with a weathered feel */
+            padding: 15px;
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto;
             text-align: center;
-            box-shadow: 0 0 10px rgba(255, 0, 255, 0.7); /* Neon glow effect */
-            background: rgba(0, 0, 0, 0.8); /* Slight dark background */
+            background-color: #1e1e1e; /* Dark background inside the container */
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.6); /* Adding shadow for depth */
+            border-radius: 5px;
+            background-image: url('https://www.transparenttextures.com/patterns/dark-mosaic.png'); /* Texture for grunge feel */
         }
 
+        /* Video element styling */
         video {
-            width: 100%; /* Makes the video fill the container width */
+            width: 100%;
             height: auto;
-            border-radius: 10px; /* Rounded corners */
+            border-radius: 5px;
+            border: 2px solid #333; /* Border for the video */
         }
 
-        /* Title styling with cyberpunk effect */
+        /* Title below the video */
         h3 {
-            font-size: 2rem;
             margin-top: 10px;
+            font-size: 22px;
+            font-family: 'Courier New', Courier, monospace;
             text-transform: uppercase;
-            color: #ff00ff; /* Neon pink text */
-            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff; /* Neon glow effect */
             letter-spacing: 2px;
+            color: #e6e6e6;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
         }
 
-        /* Glitch effect for the body */
-        @keyframes glitch {
-            0% {
-                text-shadow: 1px 1px 0 #ff00ff, -1px -1px 0 #ff00ff, 2px 2px 0 #00ff00, -2px -2px 0 #00ff00;
-                transform: translate(0);
-            }
-            25% {
-                text-shadow: -2px -2px 0 #ff00ff, 2px 2px 0 #00ff00;
-                transform: translate(-2px, 2px);
-            }
-            50% {
-                text-shadow: -3px -3px 0 #ff00ff, 3px 3px 0 #00ff00;
-                transform: translate(2px, -2px);
-            }
-            75% {
-                text-shadow: 2px 2px 0 #ff00ff, -2px -2px 0 #00ff00;
-                transform: translate(-2px, 2px);
-            }
-            100% {
-                text-shadow: 1px 1px 0 #ff00ff, -1px -1px 0 #00ff00;
-                transform: translate(0);
-            }
+        /* Adding some faded, apocalyptic effect on the page */
+        .fade-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Subtle dark overlay */
+            pointer-events: none;
         }
 
-        h3.glitch {
-            animation: glitch 1.5s infinite;
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #555;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #888;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="page-container">
+        <!-- Dark overlay to add a post-apocalyptic effect -->
+        <div class="fade-effect"></div>
+
         <div class="video-container">
             <video controls>
                 <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/04/FadedEchoes.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <h3 class="glitch">Cyberpunk Video</h3>
+            <h3>Apocalyptic Video</h3>
         </div>
     </div>
 </body>
