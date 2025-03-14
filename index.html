@@ -16,23 +16,32 @@
             src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Chemre.woff2') format('woff2');
             font-weight: normal;
 	    font-style: normal;
-	}	    
-        *, *::before, *::after {
+	}
+        * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
+
         body {
             font-family: 'Test Domaine Text', serif;
             background-color: #FFF;
             display: flex;
             align-items: center;
-	    flex-direction: column;
             justify-content: center;
             height: 100vh;
             text-align: center;
         }
+        .container {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
 
+        /* Stacked Text Effect */
         .text-box {
             position: relative;
             display: flex;
@@ -57,20 +66,22 @@
 
         p {
             font-size: 1.2rem;
-            margin-top: 1em;
-            line-height: 1.4;
+            margin-top: 1.5em;
+            line-height: 1.6;
+            max-width: 600px;
         }
     </style>
 </head>
 <body>
-	<div class="text-box">
+    <div class="container">
+        <div class="text-box">
             <h1>desolation</h1>
             <h1>desolation</h1>
         </div>
-        <p>
-            Step by step, day by day.<br>
-            There is no one giant step that does it.<br>
-            It's a lot of little steps.
+        <p>Step by step, day by day.<br>
+           There is no one giant step that does it.<br>
+           It's a lot of little steps.
         </p>
+    </div>
 </body>
 </html>
