@@ -6,27 +6,6 @@
     <title>LiminalLoop</title>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <style>
-
-        /* Square movement animation */
-        @keyframes squareMove {
-            0%, 10.5% { left: 0; top: 0; }
-            12.5%, 23% { left: 2rem; top: 0; }
-            25%, 35.5% { left: 4rem; top: 0; }
-            37.5%, 48% { left: 4rem; top: 2rem; }
-            50%, 60.5% { left: 4rem; top: 4rem; }
-            62.5%, 73% { left: 2rem; top: 4rem; }
-            75%, 85.5% { left: 0; top: 4rem; }
-            87.5%, 98% { left: 0; top: 2rem; }
-            100% { left: 0; top: 0; }
-        }
-
-        /* Color shifting animation */
-        @keyframes hueRotation {
-            from { filter: hue-rotate(0deg); }
-            to { filter: hue-rotate(360deg); }
-        }
-
-        /* Global styles */
         body {
             font-family: "Comic Neue", cursive;
             font-size: 16px;
@@ -39,13 +18,27 @@
             min-height: 100vh;
         }
 
+        @keyframes squareMove {
+            0%, 10.5% { left: 0; top: 0; }
+            12.5%, 23% { left: 2rem; top: 0; }
+            25%, 35.5% { left: 4rem; top: 0; }
+            37.5%, 48% { left: 4rem; top: 2rem; }
+            50%, 60.5% { left: 4rem; top: 4rem; }
+            62.5%, 73% { left: 2rem; top: 4rem; }
+            75%, 85.5% { left: 0; top: 4rem; }
+            87.5%, 98% { left: 0; top: 2rem; }
+            100% { left: 0; top: 0; }
+        }
+        @keyframes hueRotation {
+            from { filter: hue-rotate(0deg); }
+            to { filter: hue-rotate(360deg); }
+        }
+
         main.square-animation {
             display: flex;
             margin: 5rem;
             transform: scale(0.8);
         }
-
-        /* Square container styles */
         .square-container {
             position: relative;
             width: 6rem;
@@ -53,12 +46,10 @@
             transform: rotate(45deg);
             animation: hueRotation 10s linear infinite;
         }
-
         .square-container:nth-of-type(2) {
             transform: rotate(45deg) translate(-5px, 5px);
         }
 
-        /* Square styles */
         .square {
             position: absolute;
             width: 1.5rem;
@@ -67,7 +58,6 @@
             background-size: cover;
             animation: squareMove 10s ease-in-out infinite;
         }
-
         /* Different animation delays for each square */
         .square:nth-of-type(1) { animation-delay: -1.43s; }
         .square:nth-of-type(2) { animation-delay: -2.86s; }
@@ -76,7 +66,6 @@
         .square:nth-of-type(5) { animation-delay: -7.14s; }
         .square:nth-of-type(6) { animation-delay: -8.57s; }
         .square:nth-of-type(7) { animation-delay: -10s; }
-
     </style>
 </head>
 <body>
