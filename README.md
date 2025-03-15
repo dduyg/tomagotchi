@@ -454,6 +454,8 @@ If the image is used as a background:
 | <img src="https://img.shields.io/badge/■696969-696969?style=for-the-badge"/> |  |
 | <img src="https://img.shields.io/badge/■5C6C78-5C6C78?style=for-the-badge"/> |  |
 | <img src="https://img.shields.io/badge/■330867-330867?style=for-the-badge"/> |  |
+| <img src="https://img.shields.io/badge/■F54931-F54931?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■532FDB-532FDB?style=for-the-badge"/> |
+| <img src="https://img.shields.io/badge/■532DDC-532DDC?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■FEEBE4-FEEBE4?style=for-the-badge"/> |
 
 - [x] Syncing data under coral-coded skies.
 - [ ] Code Currents
