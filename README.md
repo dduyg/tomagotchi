@@ -442,6 +442,16 @@ If the image is used as a background:
     - https://fontesk.com/eternal-mono-font/
     - https://fontesk.com/enfonix-font/
     - https://fontesk.com/badd-mono-font/
+    - https://fontesk.com/korean-strawberry-milk-font/
+    - https://fontesk.com/jt-rejiro-font/
+    - https://fontesk.com/borne-celine-font/
+    - https://fontesk.com/lafemme-vibe-font/
+    - https://fontesk.com/the-saroja-font/
+    - https://fontesk.com/molex-shoora-font/
+    - https://fontesk.com/venice-la-corla-font/
+    - https://fontesk.com/kiltier-font/
+    - https://fontesk.com/mica-valo-font/
+    - https://fontesk.com/moncheur-havens-font/
 
 <br>
 
