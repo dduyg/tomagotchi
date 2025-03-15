@@ -400,8 +400,13 @@ If the image is used as a background:
 - [ ]  Aclonica
 
 
-- [x] 🔘 https://fontesk.com/?s=Mono ❤️
+- [x] 🔘https://fontesk.com/?s=Mono ❤️
     - https://fontesk.com/triform-font/
+    - https://fontesk.com/markl-mono-font/
+    - https://fontesk.com/fliege-mono-font/
+    - https://fontesk.com/asterisk-mono-font/
+    - https://fontesk.com/departure-mono-font/
+    - https://fontesk.com/xanmono-font/
     - https://fontesk.com/tt-geekette-font/
     - https://fontesk.com/ardiga-font/
     - https://fontesk.com/meridiana-pro-font/
@@ -422,17 +427,16 @@ If the image is used as a background:
     - https://fontesk.com/manolo-mono-font/
     - https://fontesk.com/optik-optik-mono-fonts
     - https://fontesk.com/steps-mono-typeface/
-
-🔘 Y2K style fonts 
-- [ ]  https://fontesk.com/tag/y2k/
-- [ ]  https://fontesk.com/graphy-font/
-- [ ]  https://justfreefonts.com/fonts/aeogo-box/
-- [ ]  https://fontesk.com/ut-gixora-metric-font/
-- [ ]  https://fontesk.com/monberg-font/
-- [ ]  https://fontesk.com/eden-meadow-font/
-- [ ]  https://fontesk.com/tokolima-font/
-- [ ]  https://fontesk.com/klick-font-2/
-- [ ]  https://fontesk.com/meriah-font/
+     
+- [x] 🔘Y2K style fonts: https://fontesk.com/tag/y2k/
+    - https://fontesk.com/graphy-font/
+    - https://justfreefonts.com/fonts/aeogo-box/
+    - https://fontesk.com/ut-gixora-metric-font/
+    - https://fontesk.com/monberg-font/
+    - https://fontesk.com/eden-meadow-font/
+    - https://fontesk.com/tokolima-font/
+    - https://fontesk.com/klick-font-2/
+    - https://fontesk.com/meriah-font/
 
 <br>
 
