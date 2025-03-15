@@ -3,63 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monólisplay</title>
+    <title>MonóDisplay</title>
     <style>
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap');
 
 body {
-    background: #fff;
-    color: #000;
     font-family: 'Orbitron', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
+    background-color: white;
     text-align: center;
-    flex-direction: column;
 }
 
 .container {
+    text-align: center;
     position: relative;
-    width: 80%;
-    max-width: 600px;
 }
 
 .title {
-    font-size: 3rem;
-    font-weight: 400;
+    font-size: 4rem;
+    font-weight: normal;
     text-transform: lowercase;
-    letter-spacing: 2px;
-    border-bottom: 1px solid #000;
-    display: inline-block;
-    padding-bottom: 10px;
+    letter-spacing: 3px;
+    color: #121212;
 }
 
-.footer {
+.bottom-section {
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
-    font-size: 0.9rem;
-    margin-top: 20px;
+    align-items: center;
     width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
 }
 
-.font-display, .version {
-    font-weight: 400;
+.bottom-section::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    width: 100%;
+    height: 1px;
+    background-color: black;
+}
+
+.left, .right {
+    font-size: 0.9rem;
+    color: #121212;
 }
     </style>
 </head>
 <body>
     <div class="container">
         <h1 class="title">monólita</h1>
-        <div class="footer">
-            <span class="font-display">FONTE DISPLAY</span>
-            <span class="version">V0.1</span>
+        <div class="bottom-section">
+            <span class="left">FONTE DISPLAY</span>
+            <span class="right">V0.1</span>
         </div>
     </div>
 </body>
