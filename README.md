@@ -399,8 +399,31 @@ If the image is used as a background:
 - [ ]  Tourney
 - [ ]  Aclonica
 
-🔘 https://fontesk.com/?s=Mono ❤️
-- Y2K style fonts 
+
+- [x] 🔘 https://fontesk.com/?s=Mono ❤️
+    - https://fontesk.com/triform-font/
+    - https://fontesk.com/tt-geekette-font/
+    - https://fontesk.com/ardiga-font/
+    - https://fontesk.com/meridiana-pro-font/
+    - https://fontesk.com/monobiletik-font/
+    - https://fontesk.com/0xproto-font/
+    - https://fontesk.com/miracode-font/
+    - https://fontesk.com/jt-mekito-font/
+    - https://fontesk.com/y224-font/
+    - https://fontesk.com/astral-mono-font/
+    - https://fontesk.com/caffeine-mono-font/
+    - https://fontesk.com/new-heterodox-mono-font/
+    - https://fontesk.com/butovo-mono-font/
+    - https://fontesk.com/bakemono-typeface/
+    - https://fontesk.com/ultramono-2-0-typeface/
+    - https://fontesk.com/brinky-mono-font/
+    - https://fontesk.com/feature-mono-typeface/
+    - https://fontesk.com/honchokomono-typeface/
+    - https://fontesk.com/manolo-mono-font/
+    - https://fontesk.com/optik-optik-mono-fonts
+    - https://fontesk.com/steps-mono-typeface/
+
+🔘 Y2K style fonts 
 - [ ]  https://fontesk.com/tag/y2k/
 - [ ]  https://fontesk.com/graphy-font/
 - [ ]  https://justfreefonts.com/fonts/aeogo-box/
