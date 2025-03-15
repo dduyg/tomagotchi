@@ -6,80 +6,63 @@
     <title>JoliciaType</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap');
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
         body {
-            font-family: 'Inconsolata', monospace;
             background-color: black;
             color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: 'Inconsolata', monospace;
             text-align: center;
+            padding: 20px;
         }
 
         .container {
-            width: 80%;
             max-width: 800px;
-            border: 2px solid white;
+            margin: auto;
             padding: 20px;
+            border: 1px solid white;
+            background-image: url('your-background-image.jpg'); /* Replace with actual image */
+            background-size: cover;
+            background-position: center;
         }
 
         h1, h2, h3 {
             font-weight: bold;
+            margin: 10px 0;
         }
 
-        .glitch {
-            font-size: 2rem;
-            line-height: 1.5;
-            white-space: pre-wrap;
-            border-bottom: 1px solid white;
-            padding-bottom: 10px;
+        .line {
+            border-top: 2px solid white;
+            margin: 15px 0;
         }
 
-        .footer {
-            border-top: 1px solid white;
-            padding-top: 10px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .button {
+        .qr-code {
+            width: 80px;
+            height: 80px;
+            background-color: white;
             display: inline-block;
-            padding: 10px 20px;
-            border: 2px solid white;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
+        }
+
+        .play-button {
+            display: inline-block;
+            font-size: 40px;
+            margin-left: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="glitch">
-            {JoliciaType} <br>
-            @markl0 mono <br>
-            (v.1) & weight
-        </div>
 
-        <div class="grid">
-            <div>7 ▶</div>
-            <div>QR CODE</div>
-        </div>
+<div class="container">
+    <h1>{JoliciaType}</h1>
+    <div class="line"></div>
+    <h2>@markl0 mono</h2>
+    <div class="line"></div>
+    <h3>(v.1)</h3>
+    <p>JoliciaType. All rights reserved.</p>
+    <div class="line"></div>
+    <h3>7 <span class="play-button">▶</span></h3>
+    <div class="qr-code"></div>
+    <h3>& weight</h3>
+</div>
 
-        <div class="footer">
-            JoliciaType - All rights reserved.
-        </div>
-    </div>
 </body>
 </html>
