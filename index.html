@@ -5,104 +5,123 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Markl Mono Typeface</title>
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: #f3f3f3;
-    text-align: center;
-    padding: 50px;
+    background-color: #f4f4f4;
     color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
 }
 
 .container {
     max-width: 800px;
-    margin: 0 auto;
+    padding: 20px;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
-    font-size: 14px;
-    text-transform: uppercase;
+    font-size: 12px;
     margin-bottom: 20px;
 }
 
 .part-number, .styles {
-    background: #fff;
-    padding: 8px 12px;
-    border-radius: 5px;
+    border: 1px solid #222;
+    padding: 5px 10px;
     display: inline-block;
 }
 
-h1 {
-    font-size: 60px;
-    font-weight: bold;
+.main-title {
+    font-size: 64px;
+    font-weight: 700;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
-.boxed {
-    border: 2px solid black;
-    padding: 5px 12px;
-    margin-right: 5px;
-}
-
-.styled-o {
-    position: relative;
+.highlight-box {
     display: inline-block;
-    margin-left: 10px;
+    border: 2px solid #222;
+    padding: 5px 10px;
+    font-size: 70px;
+    font-weight: 700;
 }
 
-.styled-o::after {
-    content: 'o.SS05';
-    position: absolute;
-    top: -30px;
-    left: 10px;
-    font-size: 12px;
-    background: #fff;
-    padding: 3px 5px;
-    border-radius: 4px;
+.alt-style {
+    font-size: 64px;
+    font-weight: 700;
+    letter-spacing: -2px;
+}
+
+.label-box {
+    font-size: 14px;
+    margin: 20px 0;
+    font-weight: 600;
+}
+
+.sub-text {
+    font-size: 14px;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
 }
 
 .badge {
-    background: #e74c3c;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #E74C3C;
     color: white;
+    font-size: 14px;
+    font-weight: bold;
     padding: 10px 15px;
     border-radius: 50%;
-    font-weight: bold;
-    display: inline-block;
-    margin-top: 20px;
+    text-align: center;
+    border: 2px solid white;
 }
 
-.description {
-    font-size: 14px;
-    margin-top: 30px;
-    line-height: 1.5;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+.badge span {
+    display: block;
+    font-size: 12px;
 }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <div class="part-number">PART-NUMBER MRKL-V01-JLCTYP</div>
-            <div class="styles">7 STYLE <span>LIGHT → HEAVY</span></div>
+            <div class="part-number">
+                <p>PART-NUMBER MRKL-V01-JLCTYP</p>
+            </div>
+            <div class="styles">
+                <p>7 STYLE <span>LIGHT → HEAVY</span></p>
+            </div>
         </div>
 
-        <h1 class="title">
-            <span class="boxed">M</span>arkl <span class="styled-o">mono</span>
-        </h1>
+        <div class="main-title">
+            <span class="highlight-box">M</span>arkl <span class="alt-style">mono</span>
+        </div>
 
-        <div class="badge">V.1 MARKL MONO</div>
+        <div class="sub-text">
+            <p>non-proportional typeface designed for optimal readability at small sizes. With its clean & structured letterforms</p>
+        </div>
 
-        <p class="description">
-            Non-proportional typeface designed for optimal readability at small sizes. 
-            With its clean & structured letterforms.
-        </p>
+        <div class="label-box">NEW-2025-MONO</div>
+
+        <div class="badge">
+            <span>V.1</span> MARKL MONO
+        </div>
     </div>
 </body>
 </html>
