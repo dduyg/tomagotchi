@@ -5,108 +5,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Markl Mono Typeface</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    font-family: 'Roboto Mono', monospace;
+}
 
-        body {
-            font-family: 'Inconsolata', monospace;
-            background-color: #F4F4F4;
-            color: #222;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
+.container {
+    text-align: center;
+    max-width: 800px;
+}
 
-        .container {
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 20px;
-        }
+.header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
-        }
+.part-number {
+    background: #e0e0e0;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
 
-        .header-box {
-            border: 1px solid #333;
-            padding: 8px 12px;
-            text-align: left;
-        }
+.style-range {
+    background: #e0e0e0;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
 
-        .title {
-            font-size: 70px;
-            font-weight: bold;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.title-section {
+    font-size: 64px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .title span {
-            display: inline-block;
-        }
+.boxed {
+    border: 2px solid black;
+    padding: 5px 10px;
+}
 
-        .boxed {
-            border: 2px solid black;
-            padding: 4px;
-        }
+.mono-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10px;
+}
 
-        .highlight-box {
-            display: inline-block;
-            border: 2px solid black;
-            padding: 5px;
-            font-size: 12px;
-        }
+.ss05 {
+    font-size: 12px;
+    border: 1px solid black;
+    padding: 2px 5px;
+    margin-top: 5px;
+}
 
-        .badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: #FF5722;
-            color: white;
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-            writing-mode: vertical-rl;
-            text-align: center;
-            transform: rotate(180deg);
-        }
+.subtext {
+    font-size: 14px;
+    margin-top: 10px;
+}
 
-        .description {
-            font-size: 14px;
-            max-width: 600px;
-            margin: 20px auto;
-        }
+.description {
+    font-size: 14px;
+    max-width: 600px;
+    margin: 20px auto;
+    color: #333;
+}
+
+.badge {
+    background: #ff5722;
+    color: white;
+    font-size: 14px;
+    padding: 10px 15px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.badge-text {
+    display: inline-block;
+    transform: rotate(20deg);
+}
     </style>
 </head>
 <body>
-
     <div class="container">
         <div class="header">
-            <div class="header-box">
-                <strong>PART-NUMBER</strong> MRKL-V01-JLCTYP <br>
-                <strong>7 STYLE</strong> LIGHT → HEAVY
-            </div>
-            <div>NEW-2025-MONO</div>
+            <div class="part-number">PART-NUMBER MRKL-V01-JLCTYP</div>
+            <div class="style-range">7 STYLE <span>LIGHT → HEAVY</span></div>
         </div>
 
-        <div class="title">
-            <span class="boxed">M</span>arkl <span class="highlight-box">o.SS05</span> mono
+        <div class="title-section">
+            <span class="boxed">M</span><span class="word">arkl</span>
+            <span class="mono-box">
+                <span class="mono-word">mono</span>
+                <span class="ss05">o.SS05</span>
+            </span>
         </div>
 
-        <div class="description">
-            Non-proportional typeface designed for optimal readability at small sizes. With its clean & structured letterforms.
-        </div>
+        <div class="subtext">NEW-2025-MONO</div>
 
-        <div class="badge">V.1 MARKL MONO</div>
+        <p class="description">
+            non-proportional typeface designed for optimal readability at small sizes. 
+            With its clean & structured letterforms.
+        </p>
+
+        <div class="badge">
+            <span class="badge-text">V.1 MARKL MONO</span>
+        </div>
     </div>
-
 </body>
 </html>
