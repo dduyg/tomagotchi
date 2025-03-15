@@ -3,88 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liminal🕶Loop</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <title>MonóDisplay</title>
     <style>
-        @font-face {
-            font-family: 'Monor';
-            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Monor.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Monor';
-            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Monor-bold.woff2') format('woff2');
-            font-weight: bold;
-            font-style: normal;
-        }
-        * {  
-            margin: 0;  
-            padding: 0;  
-            box-sizing: border-box;  
-        }
-        body {
-            font-family: 'Orbitron', sans-serif;
-            background: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/detail-1.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: black;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-        }
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/basketball.png') repeat;
-            opacity: 0.3;
-            pointer-events: none; /* Ensures the overlay doesn't interfere with interactions */
-        }
-        
-        .title {
-            font-size: 4rem;
-            font-weight: normal;
-            text-transform: lowercase;
-            letter-spacing: 2px;
-        }
-        .sub-title {
-            font-family: 'Monor', serif;
-            font-size: 4rem;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        footer {
-            position: absolute;
-            bottom: 15vh;
-            font-size: 14px;
-            display: flex;
-            justify-content: space-between;
-            width: 90%;
-            max-width: 750px;
-            border-top: 2px solid;
-            padding-top: 10px;
-        }
-        footer span {
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 12px;
-        }
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400&display=swap');
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: white;
+    text-align: center;
+}
+
+.container {
+    text-align: center;
+    position: relative;
+}
+
+.title {
+    font-size: 4rem;
+    font-weight: normal;
+    text-transform: lowercase;
+    letter-spacing: 3px;
+    color: #121212;
+}
+
+.bottom-section {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.bottom-section::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    width: 100%;
+    height: 1px;
+    background-color: black;
+}
+
+.left, .right {
+    font-size: 0.9rem;
+    color: #121212;
+}
     </style>
 </head>
 <body>
-    <div class="title">MonÓalti</div>
-    <div class="sub-title">csvle🧜🏻‍♀️ra</div>
-    <footer>
-        <span>no added sugar</span>
-        <span>V0.1</span>
-    </footer>
+    <div class="container">
+        <h1 class="title">monólita</h1>
+        <div class="bottom-section">
+            <span class="left">FONTE DISPLAY</span>
+            <span class="right">V0.1</span>
+        </div>
+    </div>
 </body>
 </html>
