@@ -18,6 +18,21 @@
             min-height: 100vh;
         }
 
+        h3 {
+            margin: 25px 0 30px;
+            color: #ff00ff; /* Neon pink text */
+            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px #ff00ff; /* Neon glow effect */
+            letter-spacing: 2px;
+            animation: glitch 1.5s infinite;
+        }
+        @keyframes glitch {
+            0% {text-shadow: 1px 1px 0 #ff00ff, -1px -1px 0 #ff00ff, 2px 2px 0 #00ff00, -2px -2px 0 #00ff00; transform: translate(0);}
+            25% {text-shadow: -2px -2px 0 #ff00ff, 2px 2px 0 #00ff00; transform: translate(-2px, 2px);}
+            50% {text-shadow: -3px -3px 0 #ff00ff, 3px 3px 0 #00ff00; transform: translate(2px, -2px);}
+            75% {text-shadow: 2px 2px 0 #ff00ff, -2px -2px 0 #00ff00; transform: translate(-2px, 2px);}
+            100% {text-shadow: 1px 1px 0 #ff00ff, -1px -1px 0 #00ff00; transform: translate(0);}
+        }
+
         @keyframes squareMove {
             0%, 10.5% { left: 0; top: 0; }
             12.5%, 23% { left: 2rem; top: 0; }
@@ -69,6 +84,7 @@
     </style>
 </head>
 <body>
+<h3>versalice</h3>
     <main class="square-animation">
         <div class="square-container">
             <div class="square"></div>
