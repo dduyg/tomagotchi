@@ -394,7 +394,6 @@ If the image is used as a background:
 - [ ]  Train One
 - [ ]  Hanalei
 - [ ]  Kumar One Outline
-- [ ]  Ewert
 - [ ]  Climate Crisis
 - [ ]  Victor Mono
 - [ ]  Spline Sans Mono
@@ -428,11 +427,9 @@ If the image is used as a background:
 - [ ] Code Currents
 - [ ] Aquatic Arrays
 - [ ] Binary Tsunami
-- [ ] Neptune’s Network
 - [ ] Digital Sea Breeze
 - [ ] Digital Tidebreaker
 - [ ] Neon Code Reef
-- [ ] Oceanic Algorithms
 - [ ] Coded Currents
 - [ ] Bytewave Symphony
 - [ ] Pixelated Abyss
