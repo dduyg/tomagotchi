@@ -427,6 +427,8 @@ If the image is used as a background:
     - https://fontesk.com/manolo-mono-font/
     - https://fontesk.com/optik-optik-mono-fonts
     - https://fontesk.com/steps-mono-typeface/
+    - https://fontesk.com/znak-mono-font/
+    - https://fontesk.com/league-mono-typeface/
      
 - [x] 🔘Y2K style fonts: https://fontesk.com/tag/y2k/
     - https://fontesk.com/graphy-font/
@@ -437,6 +439,9 @@ If the image is used as a background:
     - https://fontesk.com/tokolima-font/
     - https://fontesk.com/klick-font-2/
     - https://fontesk.com/meriah-font/
+    - https://fontesk.com/eternal-mono-font/
+    - https://fontesk.com/enfonix-font/
+    - https://fontesk.com/badd-mono-font/
 
 <br>
 
