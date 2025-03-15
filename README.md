@@ -310,7 +310,6 @@ If the image is used as a background:
 - [ ]  Geostar
 - [ ]  Geostar Fill
 - [ ]  Georama
-- [ ]  Space Grotesk
 - [ ]  Oxanium
 - [ ]  Jacquard 12
 - [ ]  Micro 5
