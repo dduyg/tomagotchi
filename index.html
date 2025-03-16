@@ -26,32 +26,38 @@ body {
 
 /* HEADER STYLING */
 header {
-    text-align: left;
+    text-align: center;
     margin-bottom: 20px;
 }
 
-.full-header {
-    width: 100%;
-    font-size: 12px;
+.full-row {
     font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-bottom: 1px solid black;
     padding-bottom: 5px;
+    margin-bottom: 5px;
 }
 
-.header-row {
+.header-columns {
     display: flex;
     justify-content: space-between;
     font-size: 12px;
     font-weight: bold;
 }
 
-/* MAIN TYPOGRAPHY */
+.column {
+    flex: 1;
+    text-align: center;
+}
+
+/* MAIN CONTENT */
 h1 {
     font-size: 64px;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
 }
 
 .highlight {
@@ -59,30 +65,33 @@ h1 {
     padding: 5px;
 }
 
-/* SS05 SPECIAL BOX */
-.ss05-container {
+/* SS05 BOXED LETTER */
+.boxed-o {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 5px;
-}
-
-.ss05-box {
-    border: 2px solid black;
-    padding: 5px 10px;
-    font-size: 64px;
-    line-height: 1;
+    margin-left: 5px;
+    position: relative;
 }
 
 .ss05-label {
-    font-size: 12px;
-    border: 1px solid black;
-    padding: 2px 6px;
-    margin-top: 2px;
+    font-size: 10px;
     background: white;
+    padding: 2px 5px;
+    border: 1px solid black;
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 2px;
 }
 
-/* TAGLINE */
+.o-box {
+    border: 2px solid black;
+    padding: 10px;
+    font-size: 64px;
+    display: inline-block;
+}
+
+/* TAGLINE AND DESCRIPTION */
 .tagline {
     font-size: 14px;
     margin: 10px 0;
@@ -95,7 +104,7 @@ h1 {
     margin: 0 auto;
 }
 
-/* BADGE IN TOP RIGHT */
+/* BADGE */
 .badge {
     position: absolute;
     top: 20px;
@@ -126,21 +135,20 @@ h1 {
 <body>
     <div class="container">
         <header>
-            <div class="full-header">PART-NUMBER MRKL-V01-JLCTYP</div>
-            <div class="header-row">
-                <div class="styles">7 STYLE</div>
-                <div class="weight-range">LIGHT → HEAVY</div>
+            <div class="full-row">PART-NUMBER MRKL-V01-JLCTYP</div>
+            <div class="header-columns">
+                <div class="column">7 STYLE</div>
+                <div class="column">LIGHT → HEAVY</div>
             </div>
         </header>
 
         <main>
             <h1>
                 <span class="highlight">M</span>arkl 
-                <span class="ss05-container">
-                    <span class="ss05-box">o</span>
-                    <span class="ss05-label">SS05</span>
-                </span>
-                mono
+                <span class="boxed-o">
+                    <div class="ss05-label">o.<br>SS05</div>
+                    <div class="o-box">o</div>
+                </span>no
             </h1>
             <div class="tagline">NEW-2025-MONO</div>
             <p class="description">
