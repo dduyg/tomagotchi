@@ -3,88 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Me</title>
+    <title>Markl Mono Typeface</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
 
 body {
-    font-family: 'Source Code Pro', monospace;
-    background-color: #f5f5f5;
-    color: #333;
-    text-align: center;
-    padding: 20px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .container {
+    text-align: center;
+    width: 80%;
     max-width: 800px;
-    margin: auto;
-    padding: 20px;
 }
 
-.header {
+.top-info {
     display: flex;
     justify-content: space-between;
-    font-size: 14px;
-    margin-bottom: 20px;
+    font-size: 12px;
+    text-transform: uppercase;
 }
 
-.box {
-    border: 1px solid #333;
-    padding: 5px 10px;
-}
-
-.tagline {
+.headline {
+    margin-top: 20px;
     font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 10px;
+    font-weight: normal;
+    color: #333;
 }
 
 .title {
-    font-size: 48px;
+    font-size: 60px;
     font-weight: bold;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
-.highlight {
+.markl-box, .mono-box {
     display: inline-block;
-    border: 1px solid #333;
-    padding: 5px;
-    font-size: 48px;
-}
-
-.feature {
-    display: inline-block;
-    border: 1px solid #333;
-    padding: 5px;
-    font-size: 14px;
+    border: 2px solid #000;
+    padding: 5px 10px;
+    font-size: 60px;
+    font-weight: bold;
 }
 
 .description {
     font-size: 14px;
-    margin-top: 20px;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .badge {
     background-color: #ff5722;
     color: white;
-    font-weight: bold;
-    padding: 10px;
-    border-radius: 50%;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 10px 15px;
+    border-radius: 50px;
     display: inline-block;
     margin-top: 20px;
+    font-weight: bold;
 }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="box">PART-NUMBER MRKL-V01-JLCTYP</div>
-            <div class="box">7 STYLE &nbsp; LIGHT → HEAVY</div>
+        <div class="top-info">
+            <div class="part-number">
+                <p>PART-NUMBER MRKL-V01-JLCTYP</p>
+            </div>
+            <div class="style-info">
+                <p>7 STYLE <span>LIGHT → HEAVY</span></p>
+            </div>
         </div>
 
-        <h2 class="tagline">NEW-2025-MONO</h2>
+        <h2 class="headline">NEW-2025-MONO</h2>
 
         <div class="title">
-            <span class="highlight">M</span>arkl <span class="feature">o.SS05</span> mono
+            <span class="markl-box">M</span>arkl <span class="mono-box">o</span>no
         </div>
 
         <p class="description">
@@ -92,7 +98,9 @@ body {
             With its clean & structured letterforms
         </p>
 
-        <div class="badge">V.1 MARKL MONO</div>
+        <div class="badge">
+            <span>V.1 MARKL MONO</span>
+        </div>
     </div>
 </body>
 </html>
