@@ -3,184 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liminal🥎Loop</title>
+    <title>Liminal🍋Loop</title>
     <style>
         @font-face {
-            font-family: '0xProto';
-            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/0xProto-Regular.woff2') format('woff2'),
-                url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/0xProto-Regular.woff') format('woff');
+            font-family: 'LT Superior Mono';
+            src: url('LTSuperiorMono-Regular.woff2') format('woff2');
             font-weight: normal;
             font-style: normal;
         }
-        @font-face {
-            font-family: '0xProto';
-            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/0xProto-Italic.woff2') format('woff2'),
-                 url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/0xProto-Italic.woff') format('woff');
-            font-weight: normal;
-            font-style: italic;
-        }
-        @font-face {
-            font-family: '0xProto';
-            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/0xProto-Bold.woff2') format('woff2'),
-                 url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/0xProto-Bold.woff') format('woff');
-            font-weight: bold;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'MonoBiletik';
-            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Mono_Biletik.woff2') format('woff2'),
-                 url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Mono_Biletik.woff') format('woff');
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'KoreanStrawberryMilk';
-            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/KoreanStrawberryMilk.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-        body {
+        * {
             margin: 0;
             padding: 0;
-            font-family: '0xProto', monospace;
-            background-color: #BBD5F0;
-            color: black;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'LT Superior Mono', monospace;
+            background: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/floppyDisk.png') no-repeat center center/cover;
+            color: white;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-        }
-        .container {
-            text-align: center;
-            width: 90%;
-            max-width: 800px;
-            position: relative;
-        }
-
-        header {
-            max-width: 300px;
-            text-transform: uppercase;
-        }
-        .head-box {
-            border: 1px solid;
-            padding: 5px;
-            font-size: 12.5px;
-        }    
-        .box {
-            display: flex;
-            justify-content: space-between;
-            border: 1px solid;
-            border-top: none;
-        }
-        .box .detail {
-            font-size: 12px;
-            width: 48%;
-            padding: 5px;
-        }
-        .box .detail:first-child {
-            border-right: 1px solid;
-        }
-        
-        .title {
-            font-family: 'MonoBiletik', monospace;
-            font-size: 85px;
-            margin: 60px 0 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .title .highlight {
-            display: inline-block;
-            border: 1px solid;
-            padding: 5px 10px;
-        }
-        .annotation-box {
-            position: relative;
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .annotation {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border: 1px solid;
-            padding: 5px;
-            position: relative;
-        }
-        .annotation span:first-child {
-            font-size: 10px;
-            font-family: '0xProto', monospace;
-            padding: 2px 5px;
-            border-bottom: 1px solid;
-            width: 100%;
             text-align: center;
         }
-        .annotation span:last-child {
-            line-height: 1;
+        main {
+            width: 95%;
+            max-width: 900px;
+            backdrop-filter: blur(3px);
         }
-        
-        footer {
-            font-size: 0.8rem;
-            margin: 0 auto;
-            line-height: 1.5;
+        .component {
+            font-size: 100%;
+            font-weight: 700;
+            padding: 10px 0;
+            border-top: 2px solid white;
         }
-        .tagline {
-            position: absolute;
-            top: 45px;
-            right: calc(15% + 100px);
-            font-size: 1.17rem;
-            font-family: 'KoreanStrawberryMilk', sans-serif;
-        }
-       .badge {
-            position: absolute;
-            top: -10px;
-            right: 3%;
-            background-color: #D4FF00;
-            border-radius: 50%;
-            padding: 2%;
-            font-family: 'MonoBiletik', monospace;
-            width: 85px;
-            height: 85px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            text-transform: uppercase;
-            writing-mode: vertical-rl;
-            text-align: center;
-            transform: rotate(180deg);
-        }
-        @media (max-width: 768px) {
-            .title {font-size: 50px;}
-            .tagline {top: -65px;}
-            .badge {top: -115px;}
+        .component:last-child {
+            border-bottom: 2px solid white;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-         <div class="badge">)%Portal Scene8≈</div>
-         <div class="tagline">Work bench V1.4</div>
-        
-      <header>
-          <div class="head-box">lost-in-the-virtual-ætherwaves</div>
-          <div class="box">
-              <div class="detail">PART-NUMBER</div>
-              <div class="detail">LIGHT → HEAVY</div>
-          </div>
-      </header>
-  
-      <main class="title">
-          <span class="highlight">C</span>haeb<span class="annotation-box">
-              <span class="annotation">
-                  <span>0514</span>
-                  <span>o</span>
-              </span>
-          </span>ls
-      </main>
-        
-      <footer>Sacred scrolls and hidden scrolls, wisdom of the past. Echoes of the ancients calling, shadows that are cast. Guardians of forgotten ages, spirits pure and true. Weaving dreams in midnight gardens, stories old and new.</footer>
-    </div>
+    <main>
+        <div class="component">{ Monocity }</div>
+        <div class="component">@marklO mono</div>
+        <div class="component">(v.1)</div>
+        <div class="component">767 weight</div>
+        <div class="component">qr-code </div>
+    </main>
 </body>
 </html>
