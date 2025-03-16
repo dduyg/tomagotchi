@@ -440,7 +440,6 @@ If the image is used as a background:
     - https://fontesk.com/eternal-mono-font/
     - https://fontesk.com/enfonix-font/
     - https://fontesk.com/badd-mono-font/
-    - https://fontesk.com/korean-strawberry-milk-font/
     - https://fontesk.com/jt-rejiro-font/
     - https://fontesk.com/borne-celine-font/
     - https://fontesk.com/lafemme-vibe-font/
