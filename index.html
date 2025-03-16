@@ -56,22 +56,34 @@ h1 {
 }
 
 .highlight {
-    border: 2px solid black;
-    padding: 5px;
     position: relative;
-    display: inline-block;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
     margin: 0 5px;
 }
 
 .annotation {
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid black;
+    padding: 5px;
+    position: relative;
+}
+
+.annotation span:first-child {
     font-size: 10px;
     background: white;
     padding: 2px 5px;
-    border: 1px solid black;
+    border-bottom: 1px solid black;
+    width: 100%;
+    text-align: center;
+}
+
+.annotation span:last-child {
+    font-size: 64px;
+    line-height: 1;
 }
 
 .tagline {
@@ -102,10 +114,12 @@ h1 {
     font-size: 14px;
     font-weight: bold;
 }
+
 .circle {
     font-size: 16px;
     font-weight: bold;
 }
+
 .text {
     font-size: 10px;
 }
@@ -123,7 +137,12 @@ h1 {
 
         <main>
             <h1>
-                Markl<span class="highlight">m<span class="annotation">ss05</span></span>no
+                Markl<span class="highlight">
+                    <span class="annotation">
+                        <span>ss05</span>
+                        <span>o</span>
+                    </span>
+                </span>no
             </h1>
             <div class="tagline">NEW-2025-MONO</div>
             <p class="description">
