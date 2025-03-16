@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maface</title>
+    <title>Mace</title>
     <style>
-  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap');
 
 body {
     font-family: 'Roboto Mono', monospace;
@@ -24,20 +24,34 @@ body {
     max-width: 800px;
 }
 
+/* HEADER STYLING */
 header {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.full-header {
+    width: 100%;
+    font-size: 12px;
+    font-weight: bold;
+    padding-bottom: 5px;
+}
+
+.header-row {
     display: flex;
     justify-content: space-between;
     font-size: 12px;
     font-weight: bold;
-    margin-bottom: 20px;
 }
 
+/* MAIN TYPOGRAPHY */
 h1 {
     font-size: 64px;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 8px;
 }
 
 .highlight {
@@ -45,22 +59,30 @@ h1 {
     padding: 5px;
 }
 
-.ss05 {
-    display: inline-block;
-    position: relative;
+/* SS05 SPECIAL BOX */
+.ss05-container {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 5px;
 }
 
-.ss05::before {
-    content: "o.SS05";
-    font-size: 10px;
-    position: absolute;
-    top: -20px;
-    left: 20px;
-    background: white;
-    padding: 2px 5px;
+.ss05-box {
+    border: 2px solid black;
+    padding: 5px 10px;
+    font-size: 64px;
+    line-height: 1;
+}
+
+.ss05-label {
+    font-size: 12px;
     border: 1px solid black;
+    padding: 2px 6px;
+    margin-top: 2px;
+    background: white;
 }
 
+/* TAGLINE */
 .tagline {
     font-size: 14px;
     margin: 10px 0;
@@ -73,6 +95,7 @@ h1 {
     margin: 0 auto;
 }
 
+/* BADGE IN TOP RIGHT */
 .badge {
     position: absolute;
     top: 20px;
@@ -103,14 +126,21 @@ h1 {
 <body>
     <div class="container">
         <header>
-            <div class="part-number">PART-NUMBER MRKL-V01-JLCTYP</div>
-            <div class="styles">7 STYLE &nbsp;&nbsp;&nbsp; LIGHT → HEAVY</div>
+            <div class="full-header">PART-NUMBER MRKL-V01-JLCTYP</div>
+            <div class="header-row">
+                <div class="styles">7 STYLE</div>
+                <div class="weight-range">LIGHT → HEAVY</div>
+            </div>
         </header>
 
         <main>
             <h1>
                 <span class="highlight">M</span>arkl 
-                <span class="ss05">mono</span>
+                <span class="ss05-container">
+                    <span class="ss05-box">o</span>
+                    <span class="ss05-label">SS05</span>
+                </span>
+                mono
             </h1>
             <div class="tagline">NEW-2025-MONO</div>
             <p class="description">
