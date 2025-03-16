@@ -24,22 +24,22 @@ body {
     max-width: 800px;
 }
 
-/* HEADER STYLING */
+/* Header Styling */
 header {
     text-align: center;
     margin-bottom: 20px;
 }
 
 .full-row {
-    font-weight: bold;
     font-size: 12px;
+    font-weight: bold;
     text-transform: uppercase;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #000;
     padding-bottom: 5px;
     margin-bottom: 5px;
 }
 
-.header-columns {
+.two-columns {
     display: flex;
     justify-content: space-between;
     font-size: 12px;
@@ -51,60 +51,62 @@ header {
     text-align: center;
 }
 
-/* MAIN CONTENT */
+/* Main Title */
 h1 {
     font-size: 64px;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 
+/* Box around 'M' */
 .highlight {
     border: 2px solid black;
     padding: 5px;
 }
 
-/* SS05 BOXED LETTER */
-.boxed-o {
-    display: inline-flex;
+/* SS05 Box */
+.ss05-box {
+    display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 5px;
-    position: relative;
+    border: 1px solid black;
+    padding: 5px;
 }
 
 .ss05-label {
-    font-size: 10px;
-    background: white;
-    padding: 2px 5px;
-    border: 1px solid black;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 1px solid black;
+    width: 100%;
     text-align: center;
-    line-height: 1.2;
-    margin-bottom: 2px;
+    padding-bottom: 3px;
 }
 
-.o-box {
-    border: 2px solid black;
-    padding: 10px;
+.ss05-character {
     font-size: 64px;
-    display: inline-block;
+    font-weight: bold;
+    padding-top: 5px;
 }
 
-/* TAGLINE AND DESCRIPTION */
+/* Tagline */
 .tagline {
     font-size: 14px;
     margin: 10px 0;
     font-weight: bold;
 }
 
+/* Description */
 .description {
     font-size: 14px;
     max-width: 600px;
     margin: 0 auto;
 }
 
-/* BADGE */
+/* Badge */
 .badge {
     position: absolute;
     top: 20px;
@@ -134,21 +136,27 @@ h1 {
 </head>
 <body>
     <div class="container">
+        
+        <!-- Header Section -->
         <header>
             <div class="full-row">PART-NUMBER MRKL-V01-JLCTYP</div>
-            <div class="header-columns">
+            <div class="two-columns">
                 <div class="column">7 STYLE</div>
                 <div class="column">LIGHT → HEAVY</div>
             </div>
         </header>
 
+        <!-- Main Content -->
         <main>
             <h1>
                 <span class="highlight">M</span>arkl 
-                <span class="boxed-o">
-                    <div class="ss05-label">o.<br>SS05</div>
-                    <div class="o-box">o</div>
-                </span>no
+                
+                <div class="ss05-box">
+                    <div class="ss05-label">SS05</div>
+                    <div class="ss05-character">o</div>
+                </div>
+
+                no
             </h1>
             <div class="tagline">NEW-2025-MONO</div>
             <p class="description">
@@ -157,10 +165,12 @@ h1 {
             </p>
         </main>
 
+        <!-- Badge -->
         <div class="badge">
             <div class="circle">V.1</div>
             <div class="text">MARKL MONO</div>
         </div>
+
     </div>
 </body>
 </html>
