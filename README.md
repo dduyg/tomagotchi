@@ -410,8 +410,6 @@ If the image is used as a background:
     - https://fontesk.com/tt-geekette-font/
     - https://fontesk.com/ardiga-font/
     - https://fontesk.com/meridiana-pro-font/
-    - https://fontesk.com/monobiletik-font/
-    - https://fontesk.com/0xproto-font/
     - https://fontesk.com/miracode-font/
     - https://fontesk.com/jt-mekito-font/
     - https://fontesk.com/y224-font/
