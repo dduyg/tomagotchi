@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>Portfolio</title>
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
@@ -11,27 +11,29 @@ body {
     background-color: black;
     color: white;
     font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
+    overflow: hidden;
 }
 
 .container {
+    position: relative;
     text-align: center;
-    max-width: 400px;
+    z-index: 10;
 }
 
-.logo {
-    font-size: 48px;
-    letter-spacing: 2px;
+h1 {
+    font-size: 50px;
     text-transform: uppercase;
+    letter-spacing: 3px;
 }
 
 .local-time {
     font-size: 14px;
-    margin-top: 10px;
     opacity: 0.7;
 }
 
@@ -39,79 +41,123 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 36px;
-    margin: 10px 0;
+    font-size: 40px;
+    margin-top: 10px;
 }
 
 .time-value {
     font-weight: bold;
+    margin-right: 10px;
 }
 
-.am-pm {
-    font-size: 14px;
-    margin-left: 10px;
+.am-pm span {
+    margin: 0 5px;
+    font-size: 16px;
+    opacity: 0.7;
+}
+
+.selected {
+    color: red;
+    opacity: 1;
 }
 
 .description {
     font-size: 18px;
-    margin: 10px 0;
+    margin: 20px 0;
 }
 
-.metrics {
+.details {
     font-size: 14px;
     opacity: 0.8;
 }
 
 .location {
+    margin-top: 20px;
     font-size: 14px;
-    margin: 15px 0;
     opacity: 0.8;
 }
 
-footer {
+.links {
     margin-top: 20px;
 }
 
-.button {
+.links button {
     background: none;
     border: 1px solid white;
     color: white;
-    padding: 8px 15px;
+    font-size: 14px;
+    padding: 5px 10px;
     margin: 5px;
     cursor: pointer;
-    font-size: 14px;
 }
 
-.button:hover {
+.links button:hover {
     background: white;
     color: black;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cubes {
+    width: 80%;
+    height: 80%;
+    background: url('https://i.imgur.com/1Nyrp5h.png') no-repeat center center;
+    background-size: cover;
+    opacity: 0.5;
 }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1 class="logo">YINGER</h1>
+            <h1>YINGER</h1>
         </header>
+        
         <section class="info">
             <p class="local-time">LOCAL TIME (UTC-6:00)</p>
             <div class="time">
                 <span class="time-value">01:05</span>
-                <span class="am-pm">
-                    <input type="radio" checked> am
-                    <input type="radio"> pm
-                </span>
+                <div class="am-pm">
+                    <span class="selected">⭘ am</span>
+                    <span>⭘ pm</span>
+                </div>
             </div>
-            <p class="description">UI Engineer who dips his toes in Realtime 3D ° Interaction ° Perf</p>
-            <p class="metrics">0360 × 0647 <br> 043 FPS</p>
-            <p class="location">FORT COLLINS, COLORADO → US OF A <br> DESIGN ENGINEER @HEX</p>
+            <p class="description">
+                UI Engineer who dips his toes in Realtime 3D ° Interaction ° Perf
+            </p>
+            <p class="details">
+                0360 × 0647 <br>
+                ⬙043 FPS
+            </p>
         </section>
-        <footer>
-            <button class="button">Gh</button>
-            <button class="button">Li</button>
-            <button class="button">X</button>
-            <button class="button">Email</button>
-        </footer>
+
+        <section class="location">
+            <p>FORT COLLINS, COLORADO → US OF A</p>
+            <p>DESIGN ENGINEER @HEX</p>
+        </section>
+
+        <nav class="links">
+            <button>Gh</button>
+            <button>Li</button>
+            <button>X</button>
+            <button>Email</button>
+        </nav>
+    </div>
+
+    <div class="background">
+        <div class="cubes">
+            <!-- Floating cubes effect using CSS -->
+        </div>
     </div>
 </body>
 </html>
