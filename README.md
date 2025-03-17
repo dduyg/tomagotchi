@@ -365,8 +365,6 @@ If the image is used as a background:
 - [ ]  MuseoModerno
 - [ ]  Bruno Ace SC
 - [ ]  Parkinsans
-- [ ]  Archivo Narrow
-- [ ]  Proza Libre
 - [ ]  Advent Pro
 - [ ]  Sora 🩶
 - [ ]  Reddit Sans Condensed
@@ -378,7 +376,6 @@ If the image is used as a background:
 - [ ]  Albert Sans
 - [ ]  Onest
 - [ ]  Inclusive Sans
-- [ ]  Carrois Gothic
 - [ ]  Urbanist
 - [ ]  Text Me One
 - [ ]  Armata
@@ -612,6 +609,7 @@ Cannot BE EDITED
     font-style: italic;
 }
 body {font-family: 'Asix Founder', sans-serif;}
+
 @font-face {
   font-family: 'Vanosky Thin';
   src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/VanoskyThin.woff2') format('woff2');
@@ -625,14 +623,7 @@ body {font-family: 'Asix Founder', sans-serif;}
   font-style: normal;
 }
 body {font-family: 'Vanosky', sans-serif;}
-body {font-family: 'Vanosky Thin', sans-serif;}        
-@font-face {
-    font-family: 'Astralyz';
-    src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Astralyz.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-body {font-family: 'Astralyz', sans-serif;}
+body {font-family: 'Vanosky Thin', sans-serif;}
 
 @font-face {
     font-family: 'Argue';
@@ -648,5 +639,5 @@ body {font-family: 'Argue', sans-serif;}
     font-weight: normal;
     font-style: normal;
 }
-body {font-family: 'Laginchy', sans-serif;}
+body {font-family: 'Laginchy', serif;}
 ```
