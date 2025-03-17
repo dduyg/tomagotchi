@@ -3,116 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiltier - Display Serif</title>
+    <title>UI Engineer</title>
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
 body {
-    background-color: #f8f8f3;
-    font-family: 'Playfair Display', serif;
+    background-color: black;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
     text-align: center;
-    color: black;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    position: relative;
-    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
+header h1 {
+    font-size: 48px;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+}
+
+.content {
+    width: 80%;
+}
+
+.time {
+    font-size: 40px;
+}
+
+.time-large {
+    font-size: 80px;
+    font-weight: bold;
+}
+
+.time-period {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+.description {
+    font-size: 24px;
+    margin: 20px 0;
+}
+
+.meta {
     font-size: 14px;
-    text-transform: uppercase;
-    font-weight: bold;
+    opacity: 0.7;
 }
 
-.top-center {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.title {
-    font-size: 130px;
-    font-weight: bold;
-    text-transform: lowercase;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-top: 50px;
-}
-
-.letter {
-    position: relative;
-}
-
-.rose img {
-    position: absolute;
-    left: 50%;
-    top: -40px;
-    transform: translateX(-50%);
-    height: 120px;
-}
-
-.tagline {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    font-weight: bold;
+.location {
+    font-size: 16px;
     margin-top: 20px;
-    border: 2px solid black;
-    padding: 15px;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 40px;
 }
 
-.star {
-    width: 30px;
-    height: 30px;
-    background: radial-gradient(circle, black 30%, transparent 50%);
-    margin: 0 20px;
+.footer {
+    margin-top: 30px;
+}
+
+.footer button {
+    background: none;
+    border: 1px solid white;
+    color: white;
+    font-size: 18px;
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.footer button:hover {
+    background: white;
+    color: black;
 }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <span class="top-left">14 STYLES</span>
-            <span class="top-right">2 VARIABLE FONTS</span>
-            <span class="top-center">JOLICIATYPE®</span>
+            <h1>YINGER</h1>
         </header>
-
-        <main>
-            <h1 class="title">
-                <span class="letter">K</span>
-                <span class="letter">i</span>
-                <span class="letter">l</span>
-                <span class="letter rose">
-                    t
-                    <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/BLOBs/blob-16.gif" alt="🌹">
+        <div class="content">
+            <div class="time">
+                <span class="time-large">01:05</span>
+                <span class="time-period">
+                    <input type="radio" checked> am
+                    <input type="radio"> pm
                 </span>
-                <span class="letter">i</span>
-                <span class="letter">e</span>
-                <span class="letter">r</span>
-            </h1>
-
-            <div class="tagline">
-                <div class="star"></div>
-                <p>DISPLAY SERIF</p>
-                <div class="star"></div>
             </div>
-        </main>
+            <p class="description">
+                UI Engineer who dips his toes in Realtime 3D° Interaction° Perf°
+            </p>
+            <p class="meta">0360 × 0647 <br> ⬡043 FPS</p>
+            <p class="location">FORT COLLINS, COLORADO → US OF A <br> DESIGN ENGINEER @HEX</p>
+        </div>
+        <div class="footer">
+            <button>Gh</button>
+            <button>Li</button>
+            <button>X</button>
+            <button>Email</button>
+        </div>
     </div>
 </body>
 </html>
