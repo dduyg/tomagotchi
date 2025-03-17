@@ -3,81 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiltier Display Serif</title>
+    <title>Kiltier - Display Serif</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap');
 
 body {
-    font-family: 'Playfair Display', serif;
-    background-color: #f9f8f3;
-    text-align: center;
     margin: 0;
     padding: 0;
+    font-family: 'Playfair Display', serif;
+    background-color: #f8f7f2;
+    text-align: center;
 }
 
 header {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 15px 30px;
     font-size: 14px;
     font-weight: bold;
-    color: #111;
 }
 
-.title {
+.brand {
+    font-size: 16px;
+}
+
+main {
+    margin-top: 50px;
+}
+
+.logo-container {
+    position: relative;
+    display: inline-block;
+}
+
+.kiltier {
     font-size: 150px;
     font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 50px 0;
-}
-
-.rose-container {
-    display: inline-block;
+    color: #111;
     position: relative;
+    display: inline-block;
+    margin: 0;
 }
 
-.rose-container img {
-    height: 120px;
+.rose {
     position: absolute;
-    top: -50px;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 150px;
 }
 
-.sub-title {
+.subtitle {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
-    border: 2px solid black;
-    padding: 20px;
-    width: fit-content;
-    margin: auto;
-    border-radius: 30px;
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 20px;
+    border: 2px solid #111;
+    border-radius: 50px;
+    padding: 10px 30px;
+    display: inline-flex;
+    gap: 20px;
 }
 
-.decorative-symbol {
+.decorative {
     font-size: 40px;
-    margin: 0 20px;
 }
     </style>
 </head>
 <body>
     <header>
-        <div class="top-left">14 STYLES</div>
-        <div class="top-right">2 VARIABLE FONTS</div>
+        <span>14 STYLES</span>
+        <span class="brand">JOLICIATYPE®</span>
+        <span>2 VARIABLE FONTS</span>
     </header>
 
     <main>
-        <h1 class="title">
-            Kilt<span class="rose-container">
-                <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/BLOBs/blob-16.gif" alt="🌹">
-            </span>ier
-        </h1>
-        <div class="sub-title">
-            <div class="decorative-symbol">&#10038;</div>
+        <div class="logo-container">
+            <h1 class="kiltier">Kiltier</h1>
+            <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/BLOBs/blob-16.gif" alt="🌹" class="rose">
+        </div>
+        <div class="subtitle">
+            <div class="decorative">*</div>
             <span>DISPLAY SERIF</span>
-            <div class="decorative-symbol">&#10038;</div>
+            <div class="decorative">*</div>
         </div>
     </main>
 </body>
