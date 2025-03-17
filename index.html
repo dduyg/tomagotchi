@@ -3,104 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UI Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap" rel="stylesheet">
+    <title>Profile</title>
     <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            overflow: hidden;
-        }
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
-        .header {
-            font-size: 50px;
-            font-weight: bold;
-            text-transform: uppercase;
-            padding: 20px;
-        }
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
 
-        .time {
-            font-size: 60px;
-            font-weight: bold;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.container {
+    text-align: center;
+    max-width: 400px;
+}
 
-        .time span {
-            margin: 0 10px;
-        }
+.logo {
+    font-size: 48px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
 
-        .desc {
-            font-size: 24px;
-            max-width: 600px;
-            margin: 20px auto;
-            line-height: 1.5;
-        }
+.local-time {
+    font-size: 14px;
+    margin-top: 10px;
+    opacity: 0.7;
+}
 
-        .location {
-            margin-top: 30px;
-            font-size: 18px;
-            opacity: 0.7;
-        }
+.time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    margin: 10px 0;
+}
 
-        .buttons {
-            margin-top: 30px;
-        }
+.time-value {
+    font-weight: bold;
+}
 
-        .buttons button {
-            background: none;
-            color: white;
-            border: 2px solid white;
-            padding: 10px 20px;
-            margin: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            text-transform: uppercase;
-        }
+.am-pm {
+    font-size: 14px;
+    margin-left: 10px;
+}
 
-        .floating-cubes {
-            position: fixed;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            height: 60%;
-            background: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/BLOBs/blob-16.gif') no-repeat center;
-            background-size: contain;
-        }
+.description {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.metrics {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.location {
+    font-size: 14px;
+    margin: 15px 0;
+    opacity: 0.8;
+}
+
+footer {
+    margin-top: 20px;
+}
+
+.button {
+    background: none;
+    border: 1px solid white;
+    color: white;
+    padding: 8px 15px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.button:hover {
+    background: white;
+    color: black;
+}
     </style>
 </head>
 <body>
-
-    <div class="header">Yinger</div>
-
-    <div class="time">
-        <span>01:05</span> 
-        <span>○ am ○ pm</span>
+    <div class="container">
+        <header>
+            <h1 class="logo">YINGER</h1>
+        </header>
+        <section class="info">
+            <p class="local-time">LOCAL TIME (UTC-6:00)</p>
+            <div class="time">
+                <span class="time-value">01:05</span>
+                <span class="am-pm">
+                    <input type="radio" checked> am
+                    <input type="radio"> pm
+                </span>
+            </div>
+            <p class="description">UI Engineer who dips his toes in Realtime 3D ° Interaction ° Perf</p>
+            <p class="metrics">0360 × 0647 <br> 043 FPS</p>
+            <p class="location">FORT COLLINS, COLORADO → US OF A <br> DESIGN ENGINEER @HEX</p>
+        </section>
+        <footer>
+            <button class="button">Gh</button>
+            <button class="button">Li</button>
+            <button class="button">X</button>
+            <button class="button">Email</button>
+        </footer>
     </div>
-
-    <div class="desc">
-        UI Engineer who dips his toes in Realtime 3D ° Interaction ° Perf
-    </div>
-
-    <div class="location">
-        Fort Collins, Colorado → US of A<br>
-        Design Engineer @ HEX
-    </div>
-
-    <div class="buttons">
-        <button>Gh</button>
-        <button>Li</button>
-        <button>X</button>
-        <button>Email</button>
-    </div>
-
-    <div class="floating-cubes"></div>
-
 </body>
 </html>
