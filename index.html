@@ -7,78 +7,92 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
 
-body {
-    font-family: 'Playfair Display', serif;
-    background-color: #f9f8f3;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-}
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f2;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+        }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #111;
-}
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 50px 20px;
+        }
 
-.title {
-    font-size: 150px;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 50px 0;
-}
+        .header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
 
-.rose-container {
-    display: inline-block;
-    position: relative;
-}
+        .title {
+            font-size: 140px;
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+        }
 
-.rose-container img {
-    height: 120px;
-    position: absolute;
-    top: -50px;
-}
+        .rose {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 180px;
+        }
 
-.sub-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    border: 2px solid black;
-    padding: 20px;
-    width: fit-content;
-    margin: auto;
-    border-radius: 30px;
-}
+        .subtitle-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid black;
+            padding: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: -40px;
+            position: relative;
+        }
 
-.decorative-symbol {
-    font-size: 40px;
-    margin: 0 20px;
-}
+        .decorations {
+            position: absolute;
+            left: 10px;
+            right: 10px;
+            display: flex;
+            justify-content: space-between;
+            width: calc(100% - 20px);
+        }
+
+        .decorations span {
+            font-size: 40px;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="top-left">14 STYLES</div>
-        <div class="top-right">2 VARIABLE FONTS</div>
-    </header>
-
-    <main>
-        <h1 class="title">
-            Kilt<span class="rose-container">
-                <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/BLOBs/blob-16.gif" alt="🌹">
-            </span>ier
-        </h1>
-        <div class="sub-title">
-            <div class="decorative-symbol">&#10038;</div>
-            <span>DISPLAY SERIF</span>
-            <div class="decorative-symbol">&#10038;</div>
+    <div class="container">
+        <div class="header">
+            <span>14 Styles</span>
+            <span>JOLICIATYPE®</span>
+            <span>2 Variable Fonts</span>
         </div>
-    </main>
+
+        <div class="title">
+            Kiltier
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Rose_Single_Flower.jpg" alt="Rose" class="rose">
+        </div>
+
+        <div class="subtitle-box">
+            <div class="decorations">
+                <span>✺</span>
+                <span>✺</span>
+            </div>
+            DISPLAY SERIF
+        </div>
+    </div>
 </body>
 </html>
