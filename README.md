@@ -407,7 +407,6 @@ If the image is used as a background:
     - https://fontesk.com/asterisk-mono-font/
     - https://fontesk.com/departure-mono-font/
     - https://fontesk.com/xanmono-font/
-    - https://fontesk.com/tt-geekette-font/
     - https://fontesk.com/ardiga-font/
     - https://fontesk.com/meridiana-pro-font/
     - https://fontesk.com/miracode-font/
