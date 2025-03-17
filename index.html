@@ -82,6 +82,14 @@
         .specs .btn:hover {
             background: #5a5a5a;
         }
+
+        /* Hide iframe to keep only audio */
+        #youtube-audio {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            visibility: hidden;
+        }
     </style>
 </head>
 <body>
@@ -99,10 +107,30 @@
            Tenhalarda menhalarda bitmiş aşkın
         </p>
         <footer class="specs">
-            <a href="#🎞" class="btn">▀▄</a>
+            <a href="javascript:void(0);" class="btn" id="toggle-music">▀▄</a>
             <a href="#🎞" class="btn">⬊043 FPS</a>
             <a href="#🎞" class="btn">0360 x 0647</a>
         </footer>
     </div>
+
+    <!-- Hidden YouTube Audio -->
+    <div id="youtube-audio"></div>
+
+    <script>
+        let isPlaying = false;
+        const audioContainer = document.getElementById("youtube-audio");
+        const toggleButton = document.getElementById("toggle-music");
+
+        toggleButton.addEventListener("click", function () {
+            if (!isPlaying) {
+                // Start playing audio
+                audioContainer.innerHTML = `<iframe width="1" height="1" src="https://www.youtube.com/embed/Ntc9b7W5EHw?autoplay=1&loop=1&playlist=Ntc9b7W5EHw" frameborder="0" allow="autoplay"></iframe>`;
+            } else {
+                // Stop playing audio
+                audioContainer.innerHTML = "";
+            }
+            isPlaying = !isPlaying;
+        });
+    </script>
 </body>
 </html>
