@@ -3,89 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiltier Display Serif</title>
+    <title>Kiltier - Display Serif</title>
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
 
-body {
-    background-color: #f8f8f2;
-    text-align: center;
-    font-family: 'Playfair Display', serif;
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f8f8f3;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    color: black;
+}
+
+.container {
+    position: relative;
+    padding: 40px;
 }
 
 header {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
     font-size: 14px;
+    text-transform: uppercase;
     font-weight: bold;
 }
 
-.title-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+.top-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .title {
-    font-size: 140px;
+    font-size: 130px;
     font-weight: bold;
-    letter-spacing: -5px;
-    color: #111;
-}
-
-.rose {
-    position: relative;
-    display: inline-block;
-}
-
-.rose img {
-    height: 100px; 
-    position: absolute;
-    top: -50px;
-    left: -10px;
-}
-
-.subtitle-container {
+    text-transform: lowercase;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px;
+    margin-top: 50px;
+}
+
+.letter {
+    position: relative;
+}
+
+.rose img {
+    position: absolute;
+    left: 50%;
+    top: -40px;
+    transform: translateX(-50%);
+    height: 120px;
+}
+
+.tagline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 20px;
     border: 2px solid black;
-    padding: 10px 20px;
-    width: 400px;
-    margin: 20px auto;
-    border-radius: 50px;
+    padding: 15px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 40px;
 }
 
-.subtitle-container h2 {
-    font-size: 30px;
+.star {
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, black 30%, transparent 50%);
     margin: 0 20px;
-}
-
-.icon {
-    font-size: 30px;
 }
     </style>
 </head>
 <body>
-    <header>
-        <span>14 STYLES</span>
-        <span>JOLICIATYPE®</span>
-        <span>2 VARIABLE FONTS</span>
-    </header>
-    
-    <main>
-        <div class="title-container">
-            <h1 class="title">Kil<span class="rose"><img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/BLOBs/blob-16.gif" alt="Rose"></span>tier</h1>
-        </div>
-        <div class="subtitle-container">
-            <div class="icon">*</div>
-            <h2>DISPLAY SERIF</h2>
-            <div class="icon">*</div>
-        </div>
-    </main>
+    <div class="container">
+        <header>
+            <span class="top-left">14 STYLES</span>
+            <span class="top-right">2 VARIABLE FONTS</span>
+            <span class="top-center">JOLICIATYPE®</span>
+        </header>
+
+        <main>
+            <h1 class="title">
+                <span class="letter">K</span>
+                <span class="letter">i</span>
+                <span class="letter">l</span>
+                <span class="letter rose">
+                    t
+                    <img src="rose.png" alt="Rose">
+                </span>
+                <span class="letter">i</span>
+                <span class="letter">e</span>
+                <span class="letter">r</span>
+            </h1>
+
+            <div class="tagline">
+                <div class="star"></div>
+                <p>DISPLAY SERIF</p>
+                <div class="star"></div>
+            </div>
+        </main>
+    </div>
 </body>
 </html>
