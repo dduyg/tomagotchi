@@ -3,96 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Engineer</title>
     <style>
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
 
 body {
+    margin: 0;
+    padding: 0;
     background-color: black;
     color: white;
     font-family: 'Orbitron', sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    text-align: center;
+    position: relative;
     overflow: hidden;
 }
 
 .container {
     position: relative;
-    text-align: center;
-    z-index: 10;
+    z-index: 2;
 }
 
-h1 {
-    font-size: 50px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
+header h1 {
+    font-size: 48px;
+    letter-spacing: 5px;
+    margin-top: 20px;
 }
 
-.local-time {
+.time-section {
+    margin-top: 20px;
+}
+
+.time-section p {
     font-size: 14px;
     opacity: 0.7;
 }
 
 .time {
+    font-size: 48px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 40px;
-    margin-top: 10px;
+    gap: 10px;
 }
 
-.time-value {
-    font-weight: bold;
-    margin-right: 10px;
+.am-pm input {
+    margin-left: 5px;
 }
 
-.am-pm span {
-    margin: 0 5px;
-    font-size: 16px;
-    opacity: 0.7;
-}
-
-.selected {
-    color: red;
-    opacity: 1;
+.content {
+    margin-top: 20px;
 }
 
 .description {
-    font-size: 18px;
-    margin: 20px 0;
+    font-size: 20px;
+    max-width: 80%;
+    margin: 0 auto;
 }
 
-.details {
+.stats {
     font-size: 14px;
-    opacity: 0.8;
+    opacity: 0.7;
+    margin-top: 10px;
 }
 
 .location {
-    margin-top: 20px;
     font-size: 14px;
-    opacity: 0.8;
-}
-
-.links {
     margin-top: 20px;
 }
 
-.links button {
-    background: none;
+.buttons {
+    margin-top: 30px;
+}
+
+.buttons button {
+    background: transparent;
     border: 1px solid white;
     color: white;
-    font-size: 14px;
-    padding: 5px 10px;
+    padding: 10px 20px;
     margin: 5px;
     cursor: pointer;
+    font-size: 16px;
+    font-family: 'Orbitron', sans-serif;
 }
 
-.links button:hover {
-    background: white;
+.buttons button:hover {
+    background-color: white;
     color: black;
 }
 
@@ -102,18 +97,9 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.cubes {
-    width: 80%;
-    height: 80%;
-    background: url('https://i.imgur.com/1Nyrp5h.png') no-repeat center center;
-    background-size: cover;
-    opacity: 0.5;
+    z-index: 1;
+    background: url('https://source.unsplash.com/1600x900/?abstract,3d') center/cover no-repeat;
+    opacity: 0.3;
 }
     </style>
 </head>
@@ -122,41 +108,40 @@ h1 {
         <header>
             <h1>YINGER</h1>
         </header>
-        
-        <section class="info">
-            <p class="local-time">LOCAL TIME (UTC-6:00)</p>
+
+        <div class="time-section">
+            <p>LOCAL TIME (UTC-6:00)</p>
             <div class="time">
-                <span class="time-value">01:05</span>
+                <span>01:05</span>
                 <div class="am-pm">
-                    <span class="selected">⭘ am</span>
-                    <span>⭘ pm</span>
+                    <input type="radio" name="ampm" checked> am
+                    <input type="radio" name="ampm"> pm
                 </div>
             </div>
+        </div>
+
+        <main class="content">
             <p class="description">
                 UI Engineer who dips his toes in Realtime 3D ° Interaction ° Perf
             </p>
-            <p class="details">
-                0360 × 0647 <br>
-                ⬙043 FPS
+            <p class="stats">
+                0360 × 0647 <br> 4043 FPS
             </p>
-        </section>
+            <p class="location">
+                FORT COLLINS, COLORADO → US OF A <br>
+                DESIGN ENGINEER @HEX
+            </p>
+        </main>
 
-        <section class="location">
-            <p>FORT COLLINS, COLORADO → US OF A</p>
-            <p>DESIGN ENGINEER @HEX</p>
-        </section>
-
-        <nav class="links">
+        <footer class="buttons">
             <button>Gh</button>
             <button>Li</button>
             <button>X</button>
             <button>Email</button>
-        </nav>
-    </div>
+        </footer>
 
-    <div class="background">
-        <div class="cubes">
-            <!-- Floating cubes effect using CSS -->
+        <div class="background">
+            <div class="cubes"></div>
         </div>
     </div>
 </body>
