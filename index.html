@@ -3,91 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiltier - Display Serif</title>
+    <title>Kiltier Display Serif</title>
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
 
 body {
+    background-color: #f8f8f2;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
     margin: 0;
     padding: 0;
-    font-family: 'Playfair Display', serif;
-    background-color: #f8f7f2;
-    text-align: center;
 }
 
 header {
     display: flex;
     justify-content: space-between;
-    padding: 15px 30px;
+    padding: 20px;
     font-size: 14px;
     font-weight: bold;
 }
 
-.brand {
-    font-size: 16px;
-}
-
-main {
-    margin-top: 50px;
-}
-
-.logo-container {
-    position: relative;
-    display: inline-block;
-}
-
-.kiltier {
-    font-size: 150px;
-    font-weight: bold;
-    color: #111;
-    position: relative;
-    display: inline-block;
-    margin: 0;
-}
-
-.rose {
-    position: absolute;
-    top: -40px;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 150px;
-}
-
-.subtitle {
+.title-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 32px;
-    font-weight: bold;
-    margin-top: 20px;
-    border: 2px solid #111;
-    border-radius: 50px;
-    padding: 10px 30px;
-    display: inline-flex;
-    gap: 20px;
+    position: relative;
 }
 
-.decorative {
-    font-size: 40px;
+.title {
+    font-size: 140px;
+    font-weight: bold;
+    letter-spacing: -5px;
+    color: #111;
+}
+
+.rose {
+    position: relative;
+    display: inline-block;
+}
+
+.rose img {
+    height: 100px; 
+    position: absolute;
+    top: -50px;
+    left: -10px;
+}
+
+.subtitle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    padding: 10px 20px;
+    width: 400px;
+    margin: 20px auto;
+    border-radius: 50px;
+}
+
+.subtitle-container h2 {
+    font-size: 30px;
+    margin: 0 20px;
+}
+
+.icon {
+    font-size: 30px;
 }
     </style>
 </head>
 <body>
     <header>
         <span>14 STYLES</span>
-        <span class="brand">JOLICIATYPE®</span>
+        <span>JOLICIATYPE®</span>
         <span>2 VARIABLE FONTS</span>
     </header>
-
+    
     <main>
-        <div class="logo-container">
-            <h1 class="kiltier">Kiltier</h1>
-            <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/BLOBs/blob-16.gif" alt="🌹" class="rose">
+        <div class="title-container">
+            <h1 class="title">Kil<span class="rose"><img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/BLOBs/blob-16.gif" alt="Rose"></span>tier</h1>
         </div>
-        <div class="subtitle">
-            <div class="decorative">*</div>
-            <span>DISPLAY SERIF</span>
-            <div class="decorative">*</div>
+        <div class="subtitle-container">
+            <div class="icon">*</div>
+            <h2>DISPLAY SERIF</h2>
+            <div class="icon">*</div>
         </div>
     </main>
 </body>
