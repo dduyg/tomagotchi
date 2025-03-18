@@ -71,8 +71,17 @@
         .component:nth-child(4) {font-family: 'Caffeine Mono', monospace;}
         .component:nth-child(5) {font-weight: 500;}
 
-        aside {display: inline-block;}
-        .component:nth-child(2) aside {font-size: 0.6em;}
+        aside {display: inline;}
+        .component:nth-child(2) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0 10px; /* Space between the text and aside */
+        }
+        .component:nth-child(2) aside {
+            font-size: 0.6em;
+            display: inline-block;
+        }
         .component:nth-child(4) aside {font-family: 'in', sans-serif;}
     </style>
 </head>
