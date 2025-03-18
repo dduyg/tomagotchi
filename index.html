@@ -18,17 +18,23 @@
             font-weight: normal;
         }
 @font-face {
+  font-family: 'Ultramono';
+  src: url('UltramonoWide.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
     font-family: 'Enfonix';
     src: url('Enfonix.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
-@font-face {
-  font-family: 'Honchokomono';
-  src: url('Honchokomono.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
+        @font-face {
+            font-family: 'Honchokomono';
+            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Honchokomono.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
 @font-face {
     font-family: 'Y224';
     src: url('Y224.woff2') format('woff2');
@@ -81,16 +87,18 @@
         .component:nth-child(1) {font-family: 'Laginchy', serif;}
         .component:nth-child(2) {font-family: 'Fliege Mono', monospace;}
         .component:nth-child(3) {font-family: 'Shinko Sans', sans-serif;}
-        .component:nth-child(4) {font-family: 'Honchokomono', monospace;}
-        .component:nth-child(5) {font-family: 'Y224', sans-serif;}
+        .component:nth-child(4) {font-family: 'Triform', monospace;}
+        .component:nth-child(5) {font-family: 'Ultramono', monospace;}
 
         /* 🪄➰️Aside elements styling */
-        aside {display: inline;}
+        aside {
+            display: inline;
+        }
         .component:nth-child(2) {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0 5%;
+            gap: 0 4%;
         }
         .component:nth-child(2) aside {
             font-size: 0.6em;
@@ -98,7 +106,10 @@
             text-align: right;
             font-family: 'Enfonix', sans-serif;
         }
-        .component:nth-child(4) aside {font-family: 'Triform', monospace;}
+        .component:nth-child(4) aside {
+            font-family: 'Honchokomono', monospace;
+            font-size: 1.4em;
+        }
     </style>
 </head>
 <body>
@@ -106,7 +117,7 @@
         <!--1️⃣--><div class="component">{ Monocity }</div>
         <!--2️⃣--><div class="component">@floating lantern <aside>got introduced to<br>a lovely tool</aside></div>
         <!--3️⃣--><div class="component">V.1(Detective Searching Clues)</div>
-        <!--4️⃣--><div class="component">0430 & <aside>Sad Moments</aside></div>
+        <!--4️⃣--><div class="component"><aside>0430 &</aside> Sad Moments</div>
         <!--5️⃣--><div class="component">rested against the wall 'qr-code'</div>
     </main>
 </body>
