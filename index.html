@@ -3,161 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liminal📼Loop</title>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@505&display=swap" rel="stylesheet">
+    <title>Liminal🍋Loop</title>
     <style>
         @font-face {
-            font-family: 'Ribes Black';
-            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Ribes-Black.woff2') format('woff2'),
-                 url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Ribes-Black.woff') format('woff');
+            font-family: 'Shinko Sans';
+            src: url('ShinkoSans.woff2') format('woff2'),
+                 url('ShinkoSans.woff') format('woff');
             font-weight: normal;
             font-style: normal;
         }
+        @font-face {
+            font-family: 'Algeron';
+            src: url('Algeron.woff2') format('woff2'),
+                 url('Algeron.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Butovo Mono';
+            src: url('Butovo-Mono.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        } 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            outline: none;
-            -webkit-tap-highlight-color: transparent;
         }
-        body, html {
-            font-family: "Archivo Narrow", sans-serif;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        .video-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-        .video-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        body {
+            font-family: 'LT Superior Mono', monospace;
+            background: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/floppyDisk.png') no-repeat center center/cover;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             text-align: center;
-            color: #5a5a5a; /* from Semantic UI_/techfolios  */
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-            width: 85%;
-            max-width: 450px;
-            padding: 2%;
-            border-radius: 10px;
         }
-
-        h1 {
-            font-family: 'Ribes Black', sans-serif;
-            font-size: 2.5em;
-            margin-bottom: 40px;
+        main {
+            width: 95%;
+            max-width: 900px;
+            backdrop-filter: blur(3px);
         }
-        p {
-            font-size: 1.2em;
-            line-height: 2;
+        .component {
+            font-size: 100%;
+            font-weight: 700;
+            padding: 10px 0;
+            border-top: 2px solid white;
         }
-
-        .specs {margin-top: 30px;}       
-        .specs .btn {
-            display: inline-block;
-            margin: 5px;
-            padding: 5px 10px;
-            font-size: 15px; 
-            border: 2px solid Gainsboro;
-            color: Gainsboro;
-            text-decoration: none;
-            border-radius: 50px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .component:last-child {
+            border-bottom: 2px solid white;
         }
-        .specs .btn:hover {
-            background: Gainsboro;
-            color: #5a5a5a;
-        }
-
-        /* Hide iframe to keep only audio */
-        #youtube-audio {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            visibility: hidden;
+        .component:nth-child(1) {font-family: 'Algeron', serif;}
+        .component:nth-child(2) {font-family: 'Shinko Sans', sans-serif;}
+        .component:nth-child(3) {font-family: 'Inconsolata', monospace;}
+        .component:nth-child(4) {font-family: 'Inconsolata', monospace;}
+        .component:nth-child(5) {font-family: 'Inconsolata', monospace;}
+        .component:nth-child(4) em {
+            font-style: normal;
+            font-family: 'Butovo Mono', monospace;
         }
     </style>
 </head>
 <body>
-    <div class="video-container">
-        <video autoplay loop muted playsinline>
-            <source src="wouldyousong.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-    <div class="content">
-        <h1>Buried Hearts (보물섬)</h1>
-        <p>Şaşkın sana ne dedim sen ne yaptın<br>
-           Dün gece gördüm seni ters yola saptın<br>
-           Bir o yana bir bu yana yatma şaşkın<br>
-           Tenhalarda menhalarda bitmiş aşkın
-        </p>
-        <footer class="specs">
-            <a href="#🎞" class="btn">▀▄</a>
-            <a href="javascript:void(0);" class="btn" id="toggle-music">🕹🎶🪕</a>
-            <a href="#🎞" class="btn">⬊043 x 0647</a>
-        </footer>
-    </div>
-
-    <!-- Hidden YouTube Audio Player -->
-    <div id="youtube-audio"></div>
-
-    <!-- YouTube IFrame API -->
-    <script>
-        let player;
-        let isPlaying = false;
-
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('youtube-audio', {
-                height: '1',
-                width: '1',
-                videoId: 'Ntc9b7W5EHw', // Your YouTube video ID
-                playerVars: {
-                    'autoplay': 1,
-                    'loop': 1,
-                    'playlist': 'Ntc9b7W5EHw' // Needed for looping
-                },
-                events: {
-                    'onReady': onPlayerReady
-                }
-            });
-        }
-
-        function onPlayerReady(event) {
-            event.target.playVideo();
-        }
-
-        document.getElementById("toggle-music").addEventListener("click", function () {
-            if (player) {
-                if (isPlaying) {
-                    player.pauseVideo();
-                } else {
-                    player.playVideo();
-                }
-                isPlaying = !isPlaying;
-            }
-        });
-
-        // Load YouTube IFrame API script
-        let tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        document.body.appendChild(tag);
-    </script>
+    <main>
+        <div class="component">{ Monocity }</div>
+        <div class="component">@floating lantern</div>
+        <div class="component">(v.1)</div>
+        <div class="component">0430 <em>weight</em></div>
+        <div class="component">qr-code </div>
+    </main>
 </body>
 </html>
