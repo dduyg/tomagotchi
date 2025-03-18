@@ -113,24 +113,49 @@
         </footer>
     </div>
 
-    <!-- Hidden YouTube Audio -->
+    <!-- Hidden YouTube Audio Player -->
     <div id="youtube-audio"></div>
 
+    <!-- YouTube IFrame API -->
     <script>
+        let player;
         let isPlaying = false;
-        const audioContainer = document.getElementById("youtube-audio");
-        const toggleButton = document.getElementById("toggle-music");
 
-        toggleButton.addEventListener("click", function () {
-            if (!isPlaying) {
-                // Start playing audio
-                audioContainer.innerHTML = `<iframe width="1" height="1" src="https://www.youtube.com/embed/Ntc9b7W5EHw?autoplay=1&loop=1&playlist=Ntc9b7W5EHw" frameborder="0" allow="autoplay"></iframe>`;
-            } else {
-                // Stop playing audio
-                audioContainer.innerHTML = "";
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-audio', {
+                height: '1',
+                width: '1',
+                videoId: 'Ntc9b7W5EHw', // Your YouTube video ID
+                playerVars: {
+                    'autoplay': 1,
+                    'loop': 1,
+                    'playlist': 'Ntc9b7W5EHw' // Needed for looping
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        document.getElementById("toggle-music").addEventListener("click", function () {
+            if (player) {
+                if (isPlaying) {
+                    player.pauseVideo();
+                } else {
+                    player.playVideo();
+                }
+                isPlaying = !isPlaying;
             }
-            isPlaying = !isPlaying;
         });
+
+        // Load YouTube IFrame API script
+        let tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.body.appendChild(tag);
     </script>
 </body>
 </html>
