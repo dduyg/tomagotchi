@@ -3,91 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced ASCII Fountain</title>
+    <title>Interactive ASCII Fountain</title>
     <style>
         body {
-            background-color: black;
-            color: white;
+            background-color: #fff;
+            color: #000;
             font-family: monospace;
             text-align: center;
+            white-space: pre;
             overflow: hidden;
         }
-        canvas {
-            display: block;
-            margin: auto;
+        .ascii-art {
+            display: inline-block;
+            text-align: left;
+            position: relative;
+            user-select: none;
         }
     </style>
 </head>
 <body>
 
-<canvas id="asciiCanvas"></canvas>
+<div class="ascii-art" id="ascii-container"></div>
 
 <script>
-    const canvas = document.getElementById("asciiCanvas");
-    const ctx = canvas.getContext("2d");
+    function generateFountain(rows, cols) {
+        let fountain = [];
+        let center = Math.floor(cols / 2);
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const particles = [];
-    const gravity = 0.1;
-    const characters = ["V", "Y", "W"];
-
-    class Particle {
-        constructor(x, y, speedX, speedY) {
-            this.x = x;
-            this.y = y;
-            this.speedX = speedX;
-            this.speedY = speedY;
-            this.char = characters[Math.floor(Math.random() * characters.length)];
-            this.alpha = 1;
-        }
-
-        update() {
-            this.speedY += gravity;
-            this.x += this.speedX;
-            this.y += this.speedY;
-            this.alpha -= 0.005; // Fading effect
-        }
-
-        draw() {
-            ctx.globalAlpha = this.alpha;
-            ctx.fillText(this.char, this.x, this.y);
-            ctx.globalAlpha = 1;
-        }
-    }
-
-    function createFountain() {
-        for (let i = 0; i < 5; i++) { // Particle spawn rate
-            const x = canvas.width / 2 + (Math.random() * 20 - 10);
-            const y = canvas.height - 50;
-            const speedX = Math.random() * 2 - 1;
-            const speedY = Math.random() * -4 - 2;
-            particles.push(new Particle(x, y, speedX, speedY));
-        }
-    }
-
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.font = "16px monospace";
-        ctx.fillStyle = "white";
-
-        createFountain();
-
-        for (let i = particles.length - 1; i >= 0; i--) {
-            const p = particles[i];
-            p.update();
-            p.draw();
-
-            if (p.alpha <= 0) {
-                particles.splice(i, 1);
+        for (let i = 0; i < rows; i++) {
+            let line = "";
+            for (let j = 0; j < cols; j++) {
+                let distance = Math.abs(j - center);
+                if (distance <= i) {
+                    line += (Math.random() > 0.6) ? "V" : " ";
+                } else {
+                    line += " ";
+                }
             }
+            fountain.push(line);
         }
 
-        requestAnimationFrame(animate);
+        return fountain;
     }
 
-    animate();
+    function displayFountain(fountain) {
+        let container = document.getElementById("ascii-container");
+        container.innerHTML = "";
+        
+        fountain.forEach((line, rowIndex) => {
+            let div = document.createElement("div");
+            div.textContent = line;
+            div.style.position = "relative";
+            div.dataset.originalX = 0;
+            div.dataset.originalY = 0;
+            container.appendChild(div);
+        });
+
+        addHoverEffect();
+    }
+
+    function addHoverEffect() {
+        let lines = document.querySelectorAll(".ascii-art div");
+
+        document.addEventListener("mousemove", (event) => {
+            let centerX = window.innerWidth / 2;
+            let centerY = window.innerHeight / 2;
+            
+            lines.forEach((line, index) => {
+                let offsetX = (event.clientX - centerX) * 0.002 * index;
+                let offsetY = (event.clientY - centerY) * 0.002 * index;
+                line.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+            });
+        });
+
+        document.addEventListener("mouseleave", () => {
+            lines.forEach(line => {
+                line.style.transform = `translate(0px, 0px)`;
+            });
+        });
+    }
+
+    let fountainData = generateFountain(20, 50);
+    displayFountain(fountainData);
+
 </script>
+
 </body>
 </html>
