@@ -632,12 +632,4 @@ body {font-family: 'Vanosky Thin', sans-serif;}
     font-style: normal;
 }
 body {font-family: 'Argue', sans-serif;}
-
-@font-face {
-    font-family: 'Laginchy';
-    src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Laginchy.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-body {font-family: 'Laginchy', serif;}
 ```
