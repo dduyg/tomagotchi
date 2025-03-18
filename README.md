@@ -396,11 +396,8 @@ If the image is used as a background:
 - [ ]  Tourney
 - [ ]  Aclonica
 
-
 - [x] 🔘https://fontesk.com/?s=Mono ❤️
-    - https://fontesk.com/triform-font/
     - https://fontesk.com/markl-mono-font/
-    - https://fontesk.com/fliege-mono-font/
     - https://fontesk.com/asterisk-mono-font/
     - https://fontesk.com/departure-mono-font/
     - https://fontesk.com/xanmono-font/
@@ -408,7 +405,6 @@ If the image is used as a background:
     - https://fontesk.com/meridiana-pro-font/
     - https://fontesk.com/miracode-font/
     - https://fontesk.com/jt-mekito-font/
-    - https://fontesk.com/y224-font/
     - https://fontesk.com/astral-mono-font/
     - https://fontesk.com/caffeine-mono-font/
     - https://fontesk.com/new-heterodox-mono-font/
@@ -417,7 +413,6 @@ If the image is used as a background:
     - https://fontesk.com/ultramono-2-0-typeface/
     - https://fontesk.com/brinky-mono-font/
     - https://fontesk.com/feature-mono-typeface/
-    - https://fontesk.com/honchokomono-typeface/
     - https://fontesk.com/manolo-mono-font/
     - https://fontesk.com/optik-optik-mono-fonts
     - https://fontesk.com/steps-mono-typeface/
