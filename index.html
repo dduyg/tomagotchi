@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive ASCII Fountain</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: monospace;
+            text-align: center;
+            overflow: hidden;
+            margin: 0;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="asciiCanvas"></canvas>
+<audio id="bubbleSound" src="https://www.fesliyanstudios.com/play-mp3/4389" preload="auto"></audio>
+
+<script>
+    const canvas = document.getElementById("asciiCanvas");
+    const ctx = canvas.getContext("2d");
+    const sound = document.getElementById("bubbleSound");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+    const gravity = 0.1;
+    const bounceFactor = 0.7;
+    const characters = ["V", "Y", "W"];
+    let mouseX = canvas.width / 2;
+    
+    class Particle {
+        constructor(x, y, speedX, speedY) {
+            this.x = x;
+            this.y = y;
+            this.speedX = speedX;
+            this.speedY = speedY;
+            this.char = characters[Math.floor(Math.random() * characters.length)];
+            this.alpha = 1;
+        }
+
+        update() {
+            this.speedY += gravity; // Gravity effect
+            this.x += this.speedX;
+            this.y += this.speedY;
+
+            // Bounce when hitting the ground
+            if (this.y > canvas.height - 50) {
+                this.y = canvas.height - 50;
+                this.speedY *= -bounceFactor; // Bounce back
+            }
+
+            // Spread effect based on mouse position
+            let spreadEffect = (this.x - mouseX) * 0.002;
+            this.speedX += spreadEffect;
+
+            this.alpha -= 0.004; // Fade out slowly
+        }
+
+        draw() {
+            ctx.globalAlpha = this.alpha;
+            ctx.fillText(this.char, this.x, this.y);
+            ctx.globalAlpha = 1;
+        }
+    }
+
+    function createFountain() {
+        for (let i = 0; i < 5; i++) {
+            const x = mouseX + (Math.random() * 20 - 10);
+            const y = canvas.height - 50;
+            const speedX = Math.random() * 2 - 1;
+            const speedY = Math.random() * -5 - 2;
+            particles.push(new Particle(x, y, speedX, speedY));
+        }
+        sound.currentTime = 0;
+        sound.play();
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.font = "16px monospace";
+        ctx.fillStyle = "white";
+
+        createFountain();
+
+        for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+            p.update();
+            p.draw();
+
+            if (p.alpha <= 0) {
+                particles.splice(i, 1);
+            }
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    window.addEventListener("mousemove", (event) => {
+        mouseX = event.clientX;
+    });
+
+    animate();
+</script>
+</body>
+</html>
