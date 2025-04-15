@@ -3,113 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LiminalLoop</title>
+  <title>Hover & Parallax Example</title>
   <style>
+    /* Reset and base styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    html, body {
-      height: 100%;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow-x: hidden;
-    }
-
-    .parallax {
-      position: relative;
-      height: 100vh;
-      overflow-y: auto;
-      perspective: 1px;
-      perspective-origin: center;
-    }
-
-    .parallax-layer {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
+    body.parallax {
+      font-family: Arial, sans-serif;
+      background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1950&q=80');
+      background-attachment: fixed;
+      background-position: center center;
+      background-repeat: no-repeat;
       background-size: cover;
-      background-position: center;
-      will-change: transform;
-      z-index: -1;
-    }
-
-    .layer1 {
-      background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80');
-    }
-
-    .layer2 {
-      background-image: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=1500&q=80');
-    }
-
-    main {
-      position: relative;
-      padding: 4rem 2rem;
-      max-width: 800px;
-      margin: 0 auto;
+      color: #fff;
+      padding: 2rem;
     }
 
     h1 {
-      font-size: 3rem;
-      color: white;
       text-align: center;
       margin-bottom: 2rem;
-      text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
     }
 
     .component {
-      font-size: 2rem;
-      padding: 1rem;
-      margin: 1rem 0;
-      color: white;
-      background: rgba(0,0,0,0.4);
-      border-radius: 8px;
-      transition: transform 0.3s ease, color 0.3s ease, background 0.3s ease;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 1rem;
+      width: 250px;
+      text-align: center;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .component:hover {
-      transform: scale(1.05);
-      color: #ffe600;
-      background: rgba(255, 255, 255, 0.1);
+      animation: hoverPop 0.5s ease forwards;
+      cursor: pointer;
     }
 
-    footer {
-      text-align: center;
-      color: white;
-      margin-top: 4rem;
-      padding-bottom: 2rem;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    @keyframes hoverPop {
+      0% {
+        transform: scale(1);
+        text-shadow: none;
+      }
+      100% {
+        transform: scale(1.05);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+      }
     }
   </style>
 </head>
-<body>
-  <div class="parallax">
-    <div class="parallax-layer layer1" data-speed="0.3"></div>
-    <div class="parallax-layer layer2" data-speed="0.6"></div>
-
-    <main>
-      <h1>Animated Components</h1>
-      <div class="component" style="font-family: 'Courier New', monospace;">Courier Style Component</div>
-      <div class="component" style="font-family: 'Brush Script MT', cursive;">Brush Script Component</div>
-      <div class="component" style="font-family: 'Lucida Console', monospace;">Lucida Console Component</div>
-      <footer>&copy; 2025 Fancy Animations</footer>
-    </main>
+<body class="parallax">
+  <h1>Hover Animations & Parallax Effect</h1>
+  <div class="container">
+    <div class="component">Component 1</div>
+    <div class="component">Component 2</div>
+    <div class="component">Component 3</div>
+    <div class="component">Component 4</div>
+    <div class="component">Component 5</div>
   </div>
 
   <script>
-    document.addEventListener("scroll", function () {
-      const layers = document.querySelectorAll(".parallax-layer");
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-      layers.forEach(layer => {
-        const speed = parseFloat(layer.getAttribute("data-speed"));
-        const yOffset = scrollTop * speed;
-        layer.style.transform = `translateY(${yOffset}px)`;
-      });
+    // Parallax scrolling background effect
+    window.addEventListener('scroll', function () {
+      const offset = window.pageYOffset;
+      document.body.style.backgroundPositionY = offset * 0.5 + 'px';
     });
   </script>
 </body>
