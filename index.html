@@ -129,39 +129,36 @@
     </main>
 
 <script>
-    function fitTextToWidth(el) {
-      const containerWidth = el.clientWidth;
-      let fontSize = 100; // Start large
-      const textClone = el.cloneNode(true);
+function fitTextToWidth(container, minFontSize = 5, maxFontSize = 100) {
+    const span = container.querySelector('span');
+    let fontSize = maxFontSize;
+    span.style.whiteSpace = 'nowrap';
+    span.style.display = 'inline-block';
 
-      textClone.style.position = 'absolute';
-      textClone.style.visibility = 'hidden';
-      textClone.style.width = 'auto';
-      textClone.style.height = 'auto';
-      textClone.style.whiteSpace = 'nowrap';
-      textClone.style.padding = '0';
-      textClone.style.border = 'none';
+    // Binary search to find the max font size that fits
+    let low = minFontSize;
+    let high = maxFontSize;
 
-      document.body.appendChild(textClone);
-
-      while (fontSize > 5) {
-        textClone.style.fontSize = fontSize + 'px';
-        if (textClone.scrollWidth <= containerWidth) break;
-        fontSize -= 1;
-      }
-
-      el.style.fontSize = fontSize + 'px';
-      document.body.removeChild(textClone);
+    while (low <= high) {
+        fontSize = (low + high) / 2;
+        span.style.fontSize = fontSize + 'px';
+        if (span.offsetWidth <= container.offsetWidth) {
+            low = fontSize + 0.5;
+        } else {
+            high = fontSize - 0.5;
+        }
     }
 
-    function applyFitToAll() {
-      document.querySelectorAll('.component').forEach(el => {
-        fitTextToWidth(el);
-      });
-    }
+    // Set final font size
+    span.style.fontSize = Math.floor(high) + 'px';
+}
 
-    window.addEventListener('load', applyFitToAll);
-    window.addEventListener('resize', applyFitToAll);
-  </script>
+function fitAllComponents() {
+    document.querySelectorAll('.component').forEach(fitTextToWidth);
+}
+
+window.addEventListener('load', fitAllComponents);
+window.addEventListener('resize', fitAllComponents);
+</script>
 </body>
 </html>
