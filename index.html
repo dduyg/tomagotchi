@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Glowing Border Input</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Glowing Border</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
   <style>
     * {
@@ -11,108 +11,93 @@
       padding: 0;
       box-sizing: border-box;
     }
-
     body {
       display: grid;
       place-items: center;
       min-height: 100vh;
+      width: 100%;
       background: #1e1e1e;
       font-family: "Montserrat", sans-serif;
-      padding: 20px;
     }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
     .input-field {
-      position: relative;
       width: 250px;
+      position: relative;
+      margin-top: 30px;
     }
-
     .input-field input {
       width: 100%;
       border: none;
       outline: none;
       background: transparent;
       color: #fff;
-      font-size: 1rem;
-      padding: 5px 0;
-      letter-spacing: 0.05em;
-      font-family: inherit;
+      font-size: 18px;
+      font-family: 'Montserrat', sans-serif;
+      padding: 0 0 5px;
+      letter-spacing: 0.1em;
     }
-
-    .input-field label {
+    .input-field span {
       position: absolute;
-      top: 0;
       left: 0;
-      padding-bottom: 5px;
-      color: #bababa;
-      font-size: 0.85rem;
-      text-transform: uppercase;
+      padding: 0 0 5px;
+      letter-spacing: 0.1em;
+      font-size: 14px;
       pointer-events: none;
-      transition: 0.3s ease;
-      letter-spacing: 0.05em;
+      transition: 0.2s;
+      top: 0;
+      color: #bababa;
+      text-transform: uppercase;
     }
-
-    .input-field input:focus + label,
-    .input-field input:not(:placeholder-shown) + label {
-      top: -18px;
-      font-size: 0.7rem;
+    .input-field input:focus ~ span,
+    .input-field input:not(:placeholder-shown) ~ span {
+      top: -16px;
+      font-size: 0.7em;
     }
-
-    .input-field .glow-line {
+    .input-field i {
       position: absolute;
-      bottom: 0;
       left: 0;
+      bottom: 0;
       height: 2px;
       width: 100%;
-      background: #fff;
+      background: #FFF;
       overflow: hidden;
     }
-
-    .input-field .glow-line::before {
+    .input-field i::before {
       content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
       width: 100%;
       height: 100%;
+      position: absolute;
       background: linear-gradient(to right, #4287f5, #d91653, #0dd910, #ebe010, #4287f5);
       background-size: 250px;
-      animation: glow 0.8s linear infinite;
-      transition: 0.3s ease;
+      animation: anim 0.6s linear infinite;
+      left: -100%;
+      transition: 0.4s;
     }
-
-    .input-field input:focus ~ .glow-line::before,
-    .input-field input:not(:placeholder-shown) ~ .glow-line::before {
+    .input-field input:focus ~ i::before,
+    .input-field input:not(:placeholder-shown) ~ i::before {
       left: 0;
     }
-
-    @keyframes glow {
-      0% {
+    @keyframes anim {
+      from {
         background-position-x: 0;
       }
-      100% {
+      to {
         background-position-x: 250px;
       }
     }
   </style>
 </head>
 <body>
-  <form>
-    <div class="input-field">
-      <input type="text" id="firstName" placeholder=" " required />
-      <label for="firstName">First Name</label>
-      <div class="glow-line"></div>
-    </div>
-    <div class="input-field">
-      <input type="text" id="lastName" placeholder=" " required />
-      <label for="lastName">Last Name</label>
-      <div class="glow-line"></div>
-    </div>
+  <form class="outer" autocomplete="off" novalidate>
+    <label class="input-field" for="first-name">
+      <input type="text" id="first-name" placeholder=" " />
+      <span>First Name</span>
+      <i></i>
+    </label>
+    <label class="input-field" for="last-name">
+      <input type="text" id="last-name" placeholder=" " />
+      <span>Last Name</span>
+      <i></i>
+    </label>
   </form>
 </body>
 </html>
