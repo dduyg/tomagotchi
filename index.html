@@ -1,107 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Glowing Border Inputs</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glowing🪄Border</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            width: 100%;
+            background: #1e1e1e;
+            font-family: "Montserrat", sans-serif;
+        }
+        .input-field {
+            width: 250px;
+            position: relative;
+            margin-top: 30px;
+        }
+        .input-field input {
+            width: 100%;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: #fff;
+            font-size: 18px; font-family: 'Montserrat', sans-serif;
+            padding: 0 0 5px;
+            letter-spacing: 0.1em;
+        }
+        .input-field span {
+            position: absolute;
+            left: 0;
+            padding: 0 0 5px;
+            color: #FFF;
+            letter-spacing: 0.1em;
+            font-size: 14px;
+            /*   bottom: 0; */
+            pointer-events: none;
+            transition: 0.2s;
+            top: 0;
+            color: #bababa;
+            text-transform: uppercase;
+        }
+        .input-field input:focus ~ span,
+        .input-field input:not(:placeholder-shown) ~ span{
+            top: -16px;
+            font-size: 0.7em;
+        }
+        .input-field i {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 2px;
+            width: 100%;
+            background: #FFF;
+            overflow: hidden;
+        }
+        .input-field i::before {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: linear-gradient(to right, #4287f5,#d91653,#0dd910,#ebe010, #4287f5);
+            animation: anim 0.6s linear infinite;
+            left: -100%;
+            transition: 0.4s;
+}
+.input-field input:focus ~ i::before,
+.input-field input:not(:placeholder-shown) ~ i::before{
+  left: 0;
+}
+@keyframes anim{
+  from{
+    background-position-x: 0;
+  }
+  to{
+    background-position-x: 250px;
     }
-    body {
-      display: grid;
-      place-items: center;
-      min-height: 100vh;
-      background: #1e1e1e;
-      font-family: "Montserrat", sans-serif;
-      color: #fff;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
-    .input-field {
-      position: relative;
-      width: 250px;
-    }
-    .input-field input {
-      width: 100%;
-      border: none;
-      outline: none;
-      background: transparent;
-      color: #fff;
-      font-size: 1.125rem; /* 18px */
-      padding: 8px 0 5px 0;
-      letter-spacing: 0.1em;
-      font-family: inherit;
-    }
-    .input-field label {
-      position: absolute;
-      left: 0;
-      top: 0;
-      padding-bottom: 5px;
-      font-size: 0.875rem; /* 14px */
-      letter-spacing: 0.1em;
-      color: #bababa;
-      text-transform: uppercase;
-      pointer-events: none;
-      transition: 0.2s ease all;
-    }
-    .input-field input:focus + label,
-    .input-field input:not(:placeholder-shown) + label {
-      top: -16px;
-      font-size: 0.7rem;
-      color: #eee;
-    }
-    .input-field i {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      height: 2px;
-      width: 100%;
-      background: #fff;
-      overflow: hidden;
-    }
-    .input-field i::before {
-      content: '';
-      position: absolute;
-      width: 250px;
-      height: 100%;
-      background: linear-gradient(to right, #4287f5, #d91653, #0dd910, #ebe010, #4287f5);
-      animation: anim 0.6s linear infinite;
-      left: -250px;
-      transition: left 0.4s ease;
-    }
-    /* Animation triggers only on focus */
-    .input-field input:focus ~ i::before {
-      left: 0;
-    }
-    @keyframes anim {
-      from {
-        background-position-x: 0;
-      }
-      to {
-        background-position-x: 250px;
-      }
-    }
-  </style>
+}
+    </style>
 </head>
 <body>
-  <form>
-    <div class="input-field">
-      <input type="text" id="first-name" placeholder=" " autocomplete="off" />
-      <label for="first-name">First Name</label>
-      <i></i>
-    </div>
-    <div class="input-field">
-      <input type="text" id="last-name" placeholder=" " autocomplete="off" />
-      <label for="last-name">Last Name</label>
-      <i></i>
-    </div>
-  </form>
+<div class="outer">
+  <div class="input-field">
+    <input type="text" placeholder=" ">
+    <span>First Name</span>
+    <i></i>
+  </div>
+  <div class="input-field">
+    <input type="text" placeholder=" ">
+    <span>Last Name</span>
+    <i></i>
+  </div>
+</div>
 </body>
 </html>
