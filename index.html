@@ -129,36 +129,34 @@
     </main>
 
 <script>
-function fitTextToWidth(container, minFontSize = 5, maxFontSize = 100) {
-    const span = container.querySelector('span');
-    let fontSize = maxFontSize;
-    span.style.whiteSpace = 'nowrap';
-    span.style.display = 'inline-block';
+document.addEventListener("DOMContentLoaded", () => {
+    const components = document.querySelectorAll('.component');
 
-    // Binary search to find the max font size that fits
-    let low = minFontSize;
-    let high = maxFontSize;
+    components.forEach(component => {
+        const parentWidth = component.offsetWidth;
+        let fontSize = 100; // start at 100%
 
-    while (low <= high) {
-        fontSize = (low + high) / 2;
-        span.style.fontSize = fontSize + 'px';
-        if (span.offsetWidth <= container.offsetWidth) {
-            low = fontSize + 0.5;
-        } else {
-            high = fontSize - 0.5;
-        }
-    }
+        const fitText = () => {
+            component.style.fontSize = fontSize + "%";
 
-    // Set final font size
-    span.style.fontSize = Math.floor(high) + 'px';
-}
+            // Allow browser to reflow
+            const originalHeight = component.offsetHeight;
+            component.style.whiteSpace = 'nowrap';
+            let currentWidth = component.scrollWidth;
 
-function fitAllComponents() {
-    document.querySelectorAll('.component').forEach(fitTextToWidth);
-}
+            while (currentWidth > parentWidth && fontSize > 10) {
+                fontSize -= 1;
+                component.style.fontSize = fontSize + "%";
+                currentWidth = component.scrollWidth;
+            }
 
-window.addEventListener('load', fitAllComponents);
-window.addEventListener('resize', fitAllComponents);
+            component.style.whiteSpace = ''; // reset if needed
+        };
+
+        fitText();
+        window.addEventListener('resize', fitText); // Recalculate on resize
+    });
+});
 </script>
 </body>
 </html>
