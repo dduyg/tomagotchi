@@ -77,10 +77,14 @@
         .component {
             font-weight: 700;
             padding: 0.625em 0;
-            border-top: 0.125rem solid white;
+            border-top: 2px solid white;
         }
         .component:last-child {
-            border-bottom: 0.125rem solid white;
+            border-bottom: 2px solid white;
+        }
+        @media (min-width: 768px) {
+            .component {border-top-width: 4px;}
+            .component:last-child {border-bottom-width: 4px;}
         }
         /* 🪄Components styling */
         .component:nth-child(1) {font-family: 'Shinko Sans', sans-serif;}
