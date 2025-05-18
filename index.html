@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Glowing Border</title>
+  <title>Glowing Border Inputs</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
   <style>
     * {
@@ -15,14 +15,18 @@
       display: grid;
       place-items: center;
       min-height: 100vh;
-      width: 100%;
       background: #1e1e1e;
       font-family: "Montserrat", sans-serif;
+      color: #fff;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
     }
     .input-field {
-      width: 250px;
       position: relative;
-      margin-top: 30px;
+      width: 250px;
     }
     .input-field input {
       width: 100%;
@@ -30,27 +34,28 @@
       outline: none;
       background: transparent;
       color: #fff;
-      font-size: 18px;
-      font-family: 'Montserrat', sans-serif;
-      padding: 0 0 5px;
+      font-size: 1.125rem; /* 18px */
+      padding: 8px 0 5px 0;
       letter-spacing: 0.1em;
+      font-family: inherit;
     }
-    .input-field span {
+    .input-field label {
       position: absolute;
       left: 0;
-      padding: 0 0 5px;
-      letter-spacing: 0.1em;
-      font-size: 14px;
-      pointer-events: none;
-      transition: 0.2s;
       top: 0;
+      padding-bottom: 5px;
+      font-size: 0.875rem; /* 14px */
+      letter-spacing: 0.1em;
       color: #bababa;
       text-transform: uppercase;
+      pointer-events: none;
+      transition: 0.2s ease all;
     }
-    .input-field input:focus ~ span,
-    .input-field input:not(:placeholder-shown) ~ span {
+    .input-field input:focus + label,
+    .input-field input:not(:placeholder-shown) + label {
       top: -16px;
-      font-size: 0.7em;
+      font-size: 0.7rem;
+      color: #eee;
     }
     .input-field i {
       position: absolute;
@@ -58,19 +63,18 @@
       bottom: 0;
       height: 2px;
       width: 100%;
-      background: #FFF;
+      background: #fff;
       overflow: hidden;
     }
     .input-field i::before {
       content: '';
-      width: 100%;
-      height: 100%;
       position: absolute;
+      width: 250px;
+      height: 100%;
       background: linear-gradient(to right, #4287f5, #d91653, #0dd910, #ebe010, #4287f5);
-      background-size: 250px;
       animation: anim 0.6s linear infinite;
-      left: -100%;
-      transition: 0.4s;
+      left: -250px;
+      transition: left 0.4s ease;
     }
     .input-field input:focus ~ i::before,
     .input-field input:not(:placeholder-shown) ~ i::before {
@@ -87,17 +91,17 @@
   </style>
 </head>
 <body>
-  <form class="outer" autocomplete="off" novalidate>
-    <label class="input-field" for="first-name">
-      <input type="text" id="first-name" placeholder=" " />
-      <span>First Name</span>
+  <form>
+    <div class="input-field">
+      <input type="text" id="first-name" placeholder=" " autocomplete="off" />
+      <label for="first-name">First Name</label>
       <i></i>
-    </label>
-    <label class="input-field" for="last-name">
-      <input type="text" id="last-name" placeholder=" " />
-      <span>Last Name</span>
+    </div>
+    <div class="input-field">
+      <input type="text" id="last-name" placeholder=" " autocomplete="off" />
+      <label for="last-name">Last Name</label>
       <i></i>
-    </label>
+    </div>
   </form>
 </body>
 </html>
