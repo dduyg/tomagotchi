@@ -1,61 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASCII⛲️Fountain</title>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: monospace;
-            text-align: center;
-            overflow: hidden;
-        }
-        pre {
-            font-size: 12px;
-            line-height: 12px;
-            white-space: pre;
-            display: inline-block;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Liminal🎱Loop</title>
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+    }    
+    @font-face {
+      font-family: 'Eden Meadow';
+      src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/EdenMeadow.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    body.parallax {
+      font-family: 'Eden Meadow', sans-serif;
+      background-image: url('kemalist-devrim.jpg');    
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: SeaShell;
+      padding: 2rem;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin: 3rem 0 2rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .component {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 1rem;
+      width: 250px;
+      font-size: 1.2em;
+      text-align: center;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .component:hover {
+      animation: hoverPop 0.5s ease forwards;
+      cursor: pointer;
+    }
+
+    @keyframes hoverPop {
+      0% {
+        transform: scale(1);
+        text-shadow: none;
+      }
+      100% {
+        transform: scale(1.05);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+      }
+    }
+  </style>
 </head>
-<body>
-    <pre id="fountain"></pre>
+<body class="parallax">
+  <h1>badkidsgoodpeople</h1>
+  <div class="container">
+    <div class="component">Between the Hammer & the Anvil</div>
+    <div class="component">İLK🤎 BENDEN</div>
+    <div class="component">This account isn't dead</div>
+    <div class="component">DEMİRYOLUUUU 🛤️🛤️🛤️🛤️ TREN 🚂🚂  ÇUF ÇUF ÇUF ÇUF ÇUF ÇUF ÇUF🚂🚂🚂🚂🚂🚂🚂🚂🛤️🛤️</div>
+  </div>
 
-    <script>
-        function generateFountain(width, height) {
-            let fountain = [];
-            let center = Math.floor(width / 2);
-
-            for (let y = 0; y < height; y++) {
-                let row = "";
-                for (let x = 0; x < width; x++) {
-                    let distance = Math.abs(center - x) + y;
-                    if (distance % 6 === 0) {
-                        row += "V"; // Water droplet character
-                    } else {
-                        row += " ";
-                    }
-                }
-                fountain.push(row);
-            }
-            return fountain.join("\n");
-        }
-
-        function animateFountain() {
-            let width = 60;
-            let height = 20;
-            let fountainElement = document.getElementById("fountain");
-
-            function update() {
-                fountainElement.textContent = generateFountain(width, height);
-                setTimeout(update, 200);
-            }
-            update();
-        }
-
-        animateFountain();
-    </script>
+  <script>
+    // Parallax scrolling background effect
+    window.addEventListener('scroll', function () {
+      const offset = window.pageYOffset;
+      document.body.style.backgroundPositionY = offset * 0.5 + 'px';
+    });
+  </script>
 </body>
 </html>
