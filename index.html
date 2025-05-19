@@ -24,9 +24,9 @@
 
     .main-content {
       flex: 1;
+      overflow-y: auto;
       padding: 40px;
       padding-right: 100px;
-      overflow-y: auto;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -36,15 +36,15 @@
     .tab-content {
       display: none;
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-      max-width: 600px;
+      transform: translateX(30px);
+      transition: all 0.4s ease;
+      max-width: 700px;
     }
 
     .tab-content.active {
       display: block;
       opacity: 1;
-      transform: translateY(0);
+      transform: translateX(0);
     }
 
     .tab-menu {
@@ -59,6 +59,7 @@
       align-items: flex-start;
       border-right: 2px solid #808000;
       background-color: transparent;
+      z-index: 10;
     }
 
     .tab-button {
@@ -67,13 +68,25 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 2px solid #808000;
-      border-left: none;
-      border-radius: 30px 0 0 30px;
       margin-bottom: 10px;
       background: transparent;
       cursor: pointer;
       transition: background 0.3s;
+      border: none;
+      position: relative;
+    }
+
+    .tab-button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 30px 0 0 30px;
+      border: 2px solid #808000;
+      border-left: none;
+      pointer-events: none;
     }
 
     .tab-button.active {
@@ -83,6 +96,7 @@
     .tab-button i {
       font-size: 20px;
       color: #808000;
+      z-index: 1;
     }
   </style>
 </head>
@@ -106,30 +120,28 @@
   </div>
 
   <div class="tab-menu">
-    <button class="tab-button active" onclick="switchTab('tab1', this)">
+    <div class="tab-button active" onclick="switchTab('tab1', this)">
       <i class="fas fa-scroll"></i>
-    </button>
-    <button class="tab-button" onclick="switchTab('tab2', this)">
+    </div>
+    <div class="tab-button" onclick="switchTab('tab2', this)">
       <i class="fas fa-tools"></i>
-    </button>
-    <button class="tab-button" onclick="switchTab('tab3', this)">
+    </div>
+    <div class="tab-button" onclick="switchTab('tab3', this)">
       <i class="fas fa-globe"></i>
-    </button>
-    <button class="tab-button" onclick="switchTab('tab4', this)">
+    </div>
+    <div class="tab-button" onclick="switchTab('tab4', this)">
       <i class="fab fa-telegram-plane"></i>
-    </button>
+    </div>
   </div>
 
   <script>
     function switchTab(tabId, button) {
       document.querySelectorAll('.tab-content').forEach(tab => {
         tab.classList.remove('active');
-        // Force reflow for animation restart
-        void tab.offsetWidth;
+        void tab.offsetWidth; // force reflow for animation
       });
 
-      const targetTab = document.getElementById(tabId);
-      targetTab.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
 
       document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
