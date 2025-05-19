@@ -6,82 +6,91 @@
   <title>Liminal🥟Loop</title>
   <style>
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
       display: flex;
-      justify-content: flex-end;
-      margin: 0;
+      height: 100vh;
+      overflow: hidden;
     }
 
-    .tabs-container {
+    .tab-container {
       display: flex;
-      flex-direction: row-reverse;
-      height: 100vh;
+      flex-direction: row;
       width: 100%;
     }
 
-    .tab-icons {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      border-left: 2px solid black;
-    }
-
-    .tab-icons button {
-      background: none;
-      border: none;
+    .tab-content-area {
+      flex: 1;
       padding: 20px;
-      cursor: pointer;
-      border-bottom: 1px solid #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 60px;
-    }
-
-    .tab-icons button.active {
-      background-color: #eee;
     }
 
     .tab-content {
-      flex: 1;
-      padding: 40px;
-    }
-
-    .tab-content > div {
       display: none;
     }
 
-    .tab-content > div.active {
+    .tab-content.active {
       display: block;
+    }
+
+    .tab-buttons {
+      display: flex;
+      flex-direction: column;
+      background: #f9f9f9;
+      border-left: 1px solid #ccc;
+    }
+
+    .tab-button {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      cursor: pointer;
+      background: white;
+      transition: background 0.3s;
+    }
+
+    .tab-button.active {
+      background: #ddd;
+    }
+
+    .icon {
+      font-size: 24px;
     }
   </style>
 </head>
 <body>
+  <div class="tab-container">
+    <div class="tab-content-area">
+      <div class="tab-content active" id="content1">Profile section content goes here.</div>
+      <div class="tab-content" id="content2">Settings section content goes here.</div>
+      <div class="tab-content" id="content3">Web section content goes here.</div>
+      <div class="tab-content" id="content4">Message section content goes here.</div>
+    </div>
 
-<div class="tabs-container">
-  <div class="tab-icons">
-    <button class="tab-btn active" onclick="openTab(0)">👤</button>
-    <button class="tab-btn" onclick="openTab(1)">🛠️</button>
-    <button class="tab-btn" onclick="openTab(2)">🌐</button>
-    <button class="tab-btn" onclick="openTab(3)">✈️</button>
+    <div class="tab-buttons">
+      <div class="tab-button active" data-target="content1">👤</div>
+      <div class="tab-button" data-target="content2">🛠️</div>
+      <div class="tab-button" data-target="content3">🌐</div>
+      <div class="tab-button" data-target="content4">✈️</div>
+    </div>
   </div>
-  <div class="tab-content">
-    <div class="tab active">Here is content for tab 1</div>
-    <div class="tab">Here is content for tab 2</div>
-    <div class="tab">Here is content for tab 3</div>
-    <div class="tab">Here is content for tab 4</div>
-  </div>
-</div>
 
-<script>
-  function openTab(index) {
-    const tabs = document.querySelectorAll('.tab');
-    const buttons = document.querySelectorAll('.tab-btn');
-    tabs.forEach(tab => tab.classList.remove('active'));
-    buttons.forEach(btn => btn.classList.remove('active'));
-    tabs[index].classList.add('active');
-    buttons[index].classList.add('active');
-  }
-</script>
+  <script>
+    const buttons = document.querySelectorAll('.tab-button');
+    const contents = document.querySelectorAll('.tab-content');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        buttons.forEach(btn => btn.classList.remove('active'));
+        contents.forEach(content => content.classList.remove('active'));
+
+        button.classList.add('active');
+        const target = document.getElementById(button.dataset.target);
+        target.classList.add('active');
+      });
+    });
+  </script>
 </body>
 </html>
