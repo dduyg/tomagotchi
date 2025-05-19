@@ -7,12 +7,10 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: Arial, sans-serif;
       display: flex;
       height: 100vh;
       overflow: hidden;
-      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
-      color: #fff;
     }
 
     .tab-container {
@@ -23,35 +21,46 @@
 
     .tab-content-area {
       flex: 1;
-      padding: 30px;
+      padding: 20px;
       position: relative;
+      overflow: hidden;
     }
 
     .tab-content {
       display: none;
-      opacity: 0;
-      transform: translateX(-50px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
       position: absolute;
-      width: 100%;
-      height: 100%;
-      background: rgba(20, 20, 30, 0.6);
-      border-radius: 12px;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       padding: 20px;
-      box-shadow: 0 0 10px #ff00cc88, 0 0 30px #00ffff33;
+      background: white;
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
     .tab-content.active {
       display: block;
-      opacity: 1;
-      transform: translateX(0);
+      animation: fadeInLeft 0.3s ease forwards;
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
 
     .tab-buttons {
       display: flex;
       flex-direction: column;
-      background: #111;
-      border-left: 2px solid #ff00cc44;
+      background: #f9f9f9;
+      border-left: 1px solid #ccc;
     }
 
     .tab-button {
@@ -60,24 +69,18 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      border-bottom: 1px solid #222;
+      border-bottom: 1px solid #ccc;
       cursor: pointer;
-      background: #1a1a1a;
-      transition: background 0.3s, transform 0.2s;
-      font-size: 24px;
-      color: #00ffff;
-      text-shadow: 0 0 5px #00ffff, 0 0 10px #ff00ff;
-    }
-
-    .tab-button:hover {
-      background: #222;
-      transform: scale(1.1);
+      background: white;
+      transition: background 0.3s;
     }
 
     .tab-button.active {
-      background: #2a003f;
-      color: #ff00cc;
-      box-shadow: inset 0 0 10px #ff00cc;
+      background: #ddd;
+    }
+
+    .icon {
+      font-size: 24px;
     }
   </style>
 </head>
@@ -107,17 +110,15 @@
         buttons.forEach(btn => btn.classList.remove('active'));
         contents.forEach(content => {
           content.classList.remove('active');
-          content.style.display = 'none';
+          content.style.display = 'none'; // reset display
         });
 
         button.classList.add('active');
         const target = document.getElementById(button.dataset.target);
-        target.style.display = 'block';
-
-        // Reflow for transition
-        void target.offsetWidth;
-
-        target.classList.add('active');
+        target.style.display = 'block'; // ensure it's shown before animating
+        setTimeout(() => {
+          target.classList.add('active');
+        }, 10); // slight delay to trigger CSS animation
       });
     });
   </script>
