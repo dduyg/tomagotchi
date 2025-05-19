@@ -2,92 +2,93 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Liminal🔘Loop</title>
+  <title>Right Vertical Tabs</title>
   <style>
     body {
       margin: 0;
       font-family: sans-serif;
       display: flex;
       height: 100vh;
+      overflow: hidden;
     }
 
     .content {
-      flex-grow: 1;
-      padding: 20px;
+      flex: 1;
+      padding: 40px;
     }
 
-    .tabs {
-      width: 80px;
-      background: #2c3e50;
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .vertical-tabs {
+      width: 60px;
+      background-color: #fff;
+      border-left: 2px solid #000;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: center;
-      padding: 10px 0;
       position: fixed;
       right: 0;
       top: 0;
       bottom: 0;
     }
 
-    .tab {
-      background: none;
+    .tab-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin: 20px 0;
       border: none;
-      color: white;
-      padding: 20px 0;
-      font-size: 24px;
+      background-color: #000;
       cursor: pointer;
-      transition: background 0.3s;
+      outline: none;
     }
 
-    .tab.active {
-      background: #34495e;
+    .tab-btn.active {
+      background-color: #444;
     }
 
-    .tab-content {
-      display: none;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    .main {
-      margin-right: 80px;
-      flex: 1;
+    .main-content {
+      flex-grow: 1;
+      padding-right: 80px; /* space for vertical tabs */
     }
   </style>
 </head>
 <body>
 
-  <div class="main">
-    <div id="tab1" class="tab-content active">
-      <h1>Home</h1>
-      <p>Welcome to the home tab.</p>
+  <div class="main-content">
+    <div id="tab1" class="tab-panel active">
+      <p>Here section content here section content here section content...</p>
     </div>
-    <div id="tab2" class="tab-content">
-      <h1>Settings</h1>
-      <p>Change your settings here.</p>
+    <div id="tab2" class="tab-panel">
+      <p>Another section content here...</p>
     </div>
-    <div id="tab3" class="tab-content">
-      <h1>Profile</h1>
-      <p>Your profile info.</p>
+    <div id="tab3" class="tab-panel">
+      <p>Final section content here...</p>
     </div>
   </div>
 
-  <div class="tabs">
-    <button class="tab active" onclick="showTab('tab1', this)">🏠</button>
-    <button class="tab" onclick="showTab('tab2', this)">⚙️</button>
-    <button class="tab" onclick="showTab('tab3', this)">👤</button>
+  <div class="vertical-tabs">
+    <button class="tab-btn active" onclick="switchTab('tab1', this)"></button>
+    <button class="tab-btn" onclick="switchTab('tab2', this)"></button>
+    <button class="tab-btn" onclick="switchTab('tab3', this)"></button>
   </div>
 
   <script>
-    function showTab(tabId, el) {
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-panel').forEach(tab => tab.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
 
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      el.classList.add('active');
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
     }
   </script>
+
 </body>
 </html>
