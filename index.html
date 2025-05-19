@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Right Vertical Tabs</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Liminal Loop</title>
   <style>
     body {
       margin: 0;
@@ -12,81 +13,100 @@
       overflow: hidden;
     }
 
-    .content {
+    .main-content {
       flex: 1;
       padding: 40px;
+      padding-right: 100px; /* spacing for tabs */
     }
 
-    .tab-panel {
+    .tab-content {
       display: none;
     }
 
-    .tab-panel.active {
+    .tab-content.active {
       display: block;
     }
 
-    .vertical-tabs {
-      width: 60px;
-      background-color: #fff;
-      border-left: 2px solid #000;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+    .tab-menu {
+      width: 80px;
       position: fixed;
       right: 0;
       top: 0;
       bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      background: #fff;
+      border-left: 2px solid #000;
     }
 
-    .tab-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      margin: 20px 0;
-      border: none;
-      background-color: #000;
+    .tab-button {
+      width: 80px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #000;
+      border-left: none;
+      border-radius: 30px 0 0 30px;
+      margin-bottom: 10px;
+      background: #fff;
       cursor: pointer;
-      outline: none;
+      transition: background 0.3s;
     }
 
-    .tab-btn.active {
-      background-color: #444;
+    .tab-button.active {
+      background: #ddd;
     }
 
-    .main-content {
-      flex-grow: 1;
-      padding-right: 80px; /* space for vertical tabs */
+    .tab-button i {
+      font-size: 20px;
     }
   </style>
+
+  <!-- Icons via Font Awesome (Optional) -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
   <div class="main-content">
-    <div id="tab1" class="tab-panel active">
-      <p>Here section content here section content here section content...</p>
+    <div id="tab1" class="tab-content active">
+      <p>Profile section content here...</p>
     </div>
-    <div id="tab2" class="tab-panel">
-      <p>Another section content here...</p>
+    <div id="tab2" class="tab-content">
+      <p>Tools/settings section content here...</p>
     </div>
-    <div id="tab3" class="tab-panel">
-      <p>Final section content here...</p>
+    <div id="tab3" class="tab-content">
+      <p>Web/network section content here...</p>
+    </div>
+    <div id="tab4" class="tab-content">
+      <p>Telegram/Send section content here...</p>
     </div>
   </div>
 
-  <div class="vertical-tabs">
-    <button class="tab-btn active" onclick="switchTab('tab1', this)"></button>
-    <button class="tab-btn" onclick="switchTab('tab2', this)"></button>
-    <button class="tab-btn" onclick="switchTab('tab3', this)"></button>
+  <div class="tab-menu">
+    <button class="tab-button active" onclick="switchTab('tab1', this)">
+      <i class="fas fa-user"></i>
+    </button>
+    <button class="tab-button" onclick="switchTab('tab2', this)">
+      <i class="fas fa-tools"></i>
+    </button>
+    <button class="tab-button" onclick="switchTab('tab3', this)">
+      <i class="fas fa-globe"></i>
+    </button>
+    <button class="tab-button" onclick="switchTab('tab4', this)">
+      <i class="fab fa-telegram-plane"></i>
+    </button>
   </div>
 
   <script>
-    function switchTab(tabId, btn) {
-      document.querySelectorAll('.tab-panel').forEach(tab => tab.classList.remove('active'));
+    function switchTab(tabId, button) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
 
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
     }
   </script>
 
