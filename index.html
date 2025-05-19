@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Liminal🫒Loop</title>
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/63e03a9b9c.js" crossorigin="anonymous"></script>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       background-color: #EDEBED;
@@ -19,16 +24,33 @@
 
     .main-content {
       flex: 1;
-      padding: 40px;
-      padding-right: 100px; /* spacing for tabs */
+      padding: 40px 100px 40px 40px;
+      overflow-y: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
     }
 
     .tab-content {
       display: none;
+      max-width: 800px;
+      animation: slideIn 0.5s ease forwards;
     }
 
     .tab-content.active {
       display: block;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
     }
 
     .tab-menu {
@@ -41,7 +63,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
-      border-right: 2px solid;
+      background-color: #EDEBED;
+      border-left: 2px solid #808000;
     }
 
     .tab-button {
@@ -50,13 +73,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid;
-      border-left: none;
+      border: none;
       border-radius: 30px 0 0 30px;
       margin-bottom: 10px;
       background: transparent;
       cursor: pointer;
       transition: background 0.3s;
+      border: 2px solid #808000;
+      border-right: none;
     }
 
     .tab-button.active {
@@ -65,10 +89,9 @@
 
     .tab-button i {
       font-size: 20px;
+      color: #808000;
     }
   </style>
-
-  <script src="https://kit.fontawesome.com/63e03a9b9c.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -106,10 +129,19 @@
 
   <script>
     function switchTab(tabId, button) {
-      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      const tabs = document.querySelectorAll('.tab-content');
+      const buttons = document.querySelectorAll('.tab-button');
+
+      tabs.forEach(tab => {
+        tab.classList.remove('active');
+      });
+
       document.getElementById(tabId).classList.add('active');
 
-      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+      buttons.forEach(btn => {
+        btn.classList.remove('active');
+      });
+
       button.classList.add('active');
     }
   </script>
