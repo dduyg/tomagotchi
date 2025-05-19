@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Vertical Tabs with Icons</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Liminal➰️Loop</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
-      font-family: sans-serif;
+      font-family: Arial, sans-serif;
       display: flex;
       height: 100vh;
+      overflow: hidden;
     }
 
     .content {
       flex: 1;
       padding: 40px;
-      padding-right: 100px; /* space for tab buttons */
+      padding-right: 120px; /* leave space for tabs */
     }
 
     .tab-content {
@@ -31,16 +29,16 @@
 
     .tabs {
       position: fixed;
-      right: 0;
       top: 0;
-      bottom: 0;
+      right: 0;
+      height: 100%;
       width: 100px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: flex-start;
-      background-color: white;
+      justify-content: center;
       border-left: 2px solid black;
+      background: #fff;
     }
 
     .tab-button {
@@ -53,37 +51,35 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      margin-bottom: 8px;
       cursor: pointer;
-      margin-bottom: 5px;
-      transition: background 0.3s;
+      transition: background 0.2s;
     }
 
     .tab-button.active {
-      background-color: #ddd;
+      background-color: #e0e0e0;
     }
 
     .tab-button i {
       font-size: 20px;
     }
   </style>
-
-  <!-- Font Awesome for Icons -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
   <div class="content">
     <div id="tab1" class="tab-content active">
-      <p>Profile section content here section content...</p>
+      <p>Profile tab content goes here...</p>
     </div>
     <div id="tab2" class="tab-content">
-      <p>Tools section content here section content...</p>
+      <p>Settings tab content goes here...</p>
     </div>
     <div id="tab3" class="tab-content">
-      <p>Network section content here section content...</p>
+      <p>Global tab content goes here...</p>
     </div>
     <div id="tab4" class="tab-content">
-      <p>Telegram section content here section content...</p>
+      <p>Telegram tab content goes here...</p>
     </div>
   </div>
 
@@ -103,12 +99,18 @@
   </div>
 
   <script>
-    function switchTab(tabId, btn) {
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+    function switchTab(tabId, clickedButton) {
+      // Show the correct content
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
       document.getElementById(tabId).classList.add('active');
 
-      document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
-      btn.classList.add('active');
+      // Update active button
+      document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      clickedButton.classList.add('active');
     }
   </script>
 </body>
