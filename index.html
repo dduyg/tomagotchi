@@ -17,25 +17,28 @@
       color: #808000;
       font-family: "Atkinson Hyperlegible Next", sans-serif;
       height: 100vh;
-      display: flex;
       overflow: hidden;
+      display: flex;
     }
 
     .main-content {
       flex: 1;
-      margin-right: 80px;
+      padding: 40px;
+      padding-right: 100px;
+      overflow-y: auto;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      overflow-y: auto;
-      padding: 40px;
+    }
+
+    .tab-container {
+      max-width: 800px;
+      width: 100%;
     }
 
     .tab-content {
       display: none;
-      max-width: 800px;
-      width: 100%;
       opacity: 0;
       transform: translateX(30px);
       transition: opacity 0.4s ease, transform 0.4s ease;
@@ -58,7 +61,7 @@
       justify-content: center;
       align-items: flex-start;
       border-left: 2px solid #808000;
-      background: #EDEBED;
+      background-color: #EDEBED;
       z-index: 10;
     }
 
@@ -75,7 +78,6 @@
       background: transparent;
       cursor: pointer;
       transition: background 0.3s;
-      box-sizing: border-box;
     }
 
     .tab-button.active {
@@ -87,60 +89,63 @@
       color: #808000;
     }
   </style>
+
   <script src="https://kit.fontawesome.com/63e03a9b9c.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-<div class="main-content">
-  <div id="tab1" class="tab-content active">
-    <h2>Title: "Love Type Error"</h2>
-    <p>Premise:</p>
-    <p>Baek Ji-won, a by-the-book HR manager at a major cosmetics company, is forced into a fake relationship with Choi Hyun-woo, a free-spirited, notoriously flirtatious product developer, to protect the company’s reputation after they're caught in a compromising misunderstanding. As they pretend to be a couple to calm the gossip mill, real feelings sneak in—and chaos follows.</p>
+  <div class="main-content">
+    <div class="tab-container">
+      <div id="tab1" class="tab-content active">
+        <h2>Title: "Love Type Error"</h2>
+        <p>Premise:</p>
+        <p>Baek Ji-won, a by-the-book HR manager at a major cosmetics company, is forced into a fake relationship with Choi Hyun-woo, a free-spirited, notoriously flirtatious product developer, to protect the company’s reputation after they're caught in a compromising misunderstanding. As they pretend to be a couple to calm the gossip mill, real feelings sneak in—and chaos follows.</p>
+      </div>
+      <div id="tab2" class="tab-content">
+        <p>Tools/settings section content here...</p>
+      </div>
+      <div id="tab3" class="tab-content">
+        <p>Web/network section content here...</p>
+      </div>
+      <div id="tab4" class="tab-content">
+        <p>Telegram/Send section content here...</p>
+      </div>
+    </div>
   </div>
-  <div id="tab2" class="tab-content">
-    <p>Tools/settings section content here...</p>
+
+  <div class="tab-menu">
+    <button class="tab-button active" onclick="switchTab('tab1', this)">
+      <i class="fas fa-scroll"></i>
+    </button>
+    <button class="tab-button" onclick="switchTab('tab2', this)">
+      <i class="fas fa-tools"></i>
+    </button>
+    <button class="tab-button" onclick="switchTab('tab3', this)">
+      <i class="fas fa-globe"></i>
+    </button>
+    <button class="tab-button" onclick="switchTab('tab4', this)">
+      <i class="fab fa-telegram-plane"></i>
+    </button>
   </div>
-  <div id="tab3" class="tab-content">
-    <p>Web/network section content here...</p>
-  </div>
-  <div id="tab4" class="tab-content">
-    <p>Telegram/Send section content here...</p>
-  </div>
-</div>
 
-<div class="tab-menu">
-  <button class="tab-button active" onclick="switchTab('tab1', this)">
-    <i class="fas fa-scroll"></i>
-  </button>
-  <button class="tab-button" onclick="switchTab('tab2', this)">
-    <i class="fas fa-tools"></i>
-  </button>
-  <button class="tab-button" onclick="switchTab('tab3', this)">
-    <i class="fas fa-globe"></i>
-  </button>
-  <button class="tab-button" onclick="switchTab('tab4', this)">
-    <i class="fab fa-telegram-plane"></i>
-  </button>
-</div>
+  <script>
+    function switchTab(tabId, button) {
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
 
-<script>
-  function switchTab(tabId, button) {
-    document.querySelectorAll('.tab-content').forEach(tab => {
-      tab.classList.remove('active');
-    });
+      setTimeout(() => {
+        const tabToShow = document.getElementById(tabId);
+        if (tabToShow) {
+          tabToShow.classList.add('active');
+        }
+      }, 50); // smooth entry timing
 
-    setTimeout(() => {
-      const tabToShow = document.getElementById(tabId);
-      if (tabToShow) {
-        tabToShow.classList.add('active');
-      }
-    }, 50); // slight delay for animation
-
-    document.querySelectorAll('.tab-button').forEach(btn => {
-      btn.classList.remove('active');
-    });
-    button.classList.add('active');
-  }
-</script>
+      document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      button.classList.add('active');
+    }
+  </script>
 </body>
 </html>
