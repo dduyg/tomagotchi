@@ -1,113 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LiminalLoop</title>
+  <meta charset="UTF-8">
+  <title>Liminal🥟Loop</title>
   <style>
     body {
-      margin: 0;
-      font-family: sans-serif;
+      font-family: Arial, sans-serif;
       display: flex;
+      justify-content: flex-end;
+      margin: 0;
+    }
+
+    .tabs-container {
+      display: flex;
+      flex-direction: row-reverse;
       height: 100vh;
-      overflow: hidden;
+      width: 100%;
     }
 
-    .main-content {
-      flex: 1;
-      padding: 40px;
-      padding-right: 100px; /* spacing for tabs */
-    }
-
-    .tab-content {
-      display: none;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    .tab-menu {
-      width: 80px;
-      position: fixed;
-      right: 0;
-      top: 0;
-      bottom: 0;
+    .tab-icons {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: flex-start;
-      background: #fff;
-      border-left: 2px solid #000;
+      border-left: 2px solid black;
     }
 
-    .tab-button {
-      width: 80px;
-      height: 60px;
+    .tab-icons button {
+      background: none;
+      border: none;
+      padding: 20px;
+      cursor: pointer;
+      border-bottom: 1px solid #000;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid #000;
-      border-left: none;
-      border-radius: 30px 0 0 30px;
-      margin-bottom: 10px;
-      background: #fff;
-      cursor: pointer;
-      transition: background 0.3s;
+      width: 60px;
     }
 
-    .tab-button.active {
-      background: #ddd;
+    .tab-icons button.active {
+      background-color: #eee;
     }
 
-    .tab-button i {
-      font-size: 20px;
+    .tab-content {
+      flex: 1;
+      padding: 40px;
+    }
+
+    .tab-content > div {
+      display: none;
+    }
+
+    .tab-content > div.active {
+      display: block;
     }
   </style>
-
-  <!-- Icons via Font Awesome (Optional) -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-  <div class="main-content">
-    <div id="tab1" class="tab-content active">
-      <p>Profile section content here...</p>
-    </div>
-    <div id="tab2" class="tab-content">
-      <p>Tools/settings section content here...</p>
-    </div>
-    <div id="tab3" class="tab-content">
-      <p>Web/network section content here...</p>
-    </div>
-    <div id="tab4" class="tab-content">
-      <p>Telegram/Send section content here...</p>
-    </div>
+<div class="tabs-container">
+  <div class="tab-icons">
+    <button class="tab-btn active" onclick="openTab(0)">👤</button>
+    <button class="tab-btn" onclick="openTab(1)">🛠️</button>
+    <button class="tab-btn" onclick="openTab(2)">🌐</button>
+    <button class="tab-btn" onclick="openTab(3)">✈️</button>
   </div>
-
-  <div class="tab-menu">
-    <button class="tab-button active" onclick="switchTab('tab1', this)">
-      <i class="fas fa-user"></i>
-    </button>
-    <button class="tab-button" onclick="switchTab('tab2', this)">
-      <i class="fas fa-tools"></i>
-    </button>
-    <button class="tab-button" onclick="switchTab('tab3', this)">
-      <i class="fas fa-globe"></i>
-    </button>
-    <button class="tab-button" onclick="switchTab('tab4', this)">
-      <i class="fab fa-telegram-plane"></i>
-    </button>
+  <div class="tab-content">
+    <div class="tab active">Here is content for tab 1</div>
+    <div class="tab">Here is content for tab 2</div>
+    <div class="tab">Here is content for tab 3</div>
+    <div class="tab">Here is content for tab 4</div>
   </div>
+</div>
 
-  <script>
-    function switchTab(tabId, button) {
-      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-
-      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-    }
-  </script>
+<script>
+  function openTab(index) {
+    const tabs = document.querySelectorAll('.tab');
+    const buttons = document.querySelectorAll('.tab-btn');
+    tabs.forEach(tab => tab.classList.remove('active'));
+    buttons.forEach(btn => btn.classList.remove('active'));
+    tabs[index].classList.add('active');
+    buttons[index].classList.add('active');
+  }
+</script>
 </body>
 </html>
