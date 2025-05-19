@@ -3,25 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Right Side Vertical Tabs</title>
+  <title>LiminalLoop</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: sans-serif;
       display: flex;
       height: 100vh;
       overflow: hidden;
     }
 
-    .tab-container {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-    }
-
-    .tab-content-area {
+    .main-content {
       flex: 1;
-      padding: 20px;
+      padding: 40px;
+      padding-right: 100px; /* spacing for tabs */
     }
 
     .tab-content {
@@ -32,22 +27,32 @@
       display: block;
     }
 
-    .tab-buttons {
+    .tab-menu {
+      width: 80px;
+      position: fixed;
+      right: 0;
+      top: 0;
+      bottom: 0;
       display: flex;
       flex-direction: column;
-      background: #f9f9f9;
-      border-left: 1px solid #ccc;
+      justify-content: center;
+      align-items: flex-start;
+      background: #fff;
+      border-left: 2px solid #000;
     }
 
     .tab-button {
-      width: 60px;
+      width: 80px;
       height: 60px;
       display: flex;
-      justify-content: center;
       align-items: center;
-      border-bottom: 1px solid #ccc;
+      justify-content: center;
+      border: 1px solid #000;
+      border-left: none;
+      border-radius: 30px 0 0 30px;
+      margin-bottom: 10px;
+      background: #fff;
       cursor: pointer;
-      background: white;
       transition: background 0.3s;
     }
 
@@ -55,42 +60,54 @@
       background: #ddd;
     }
 
-    .icon {
-      font-size: 24px;
+    .tab-button i {
+      font-size: 20px;
     }
   </style>
+
+  <!-- Icons via Font Awesome (Optional) -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div class="tab-container">
-    <div class="tab-content-area">
-      <div class="tab-content active" id="content1">Profile section content goes here.</div>
-      <div class="tab-content" id="content2">Settings section content goes here.</div>
-      <div class="tab-content" id="content3">Web section content goes here.</div>
-      <div class="tab-content" id="content4">Message section content goes here.</div>
-    </div>
 
-    <div class="tab-buttons">
-      <div class="tab-button active" data-target="content1">👤</div>
-      <div class="tab-button" data-target="content2">🛠️</div>
-      <div class="tab-button" data-target="content3">🌐</div>
-      <div class="tab-button" data-target="content4">✈️</div>
+  <div class="main-content">
+    <div id="tab1" class="tab-content active">
+      <p>Profile section content here...</p>
+    </div>
+    <div id="tab2" class="tab-content">
+      <p>Tools/settings section content here...</p>
+    </div>
+    <div id="tab3" class="tab-content">
+      <p>Web/network section content here...</p>
+    </div>
+    <div id="tab4" class="tab-content">
+      <p>Telegram/Send section content here...</p>
     </div>
   </div>
 
+  <div class="tab-menu">
+    <button class="tab-button active" onclick="switchTab('tab1', this)">
+      <i class="fas fa-user"></i>
+    </button>
+    <button class="tab-button" onclick="switchTab('tab2', this)">
+      <i class="fas fa-tools"></i>
+    </button>
+    <button class="tab-button" onclick="switchTab('tab3', this)">
+      <i class="fas fa-globe"></i>
+    </button>
+    <button class="tab-button" onclick="switchTab('tab4', this)">
+      <i class="fab fa-telegram-plane"></i>
+    </button>
+  </div>
+
   <script>
-    const buttons = document.querySelectorAll('.tab-button');
-    const contents = document.querySelectorAll('.tab-content');
+    function switchTab(tabId, button) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
 
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        buttons.forEach(btn => btn.classList.remove('active'));
-        contents.forEach(content => content.classList.remove('active'));
-
-        button.classList.add('active');
-        const target = document.getElementById(button.dataset.target);
-        target.classList.add('active');
-      });
-    });
+      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+    }
   </script>
 </body>
 </html>
