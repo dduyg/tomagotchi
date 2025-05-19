@@ -7,11 +7,11 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Courier New', monospace;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       height: 100vh;
       overflow: hidden;
-      background: linear-gradient(to right, #ff8bd3, #8be9fd, #d6a2e8);
+      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
       color: #fff;
     }
 
@@ -30,11 +30,15 @@
     .tab-content {
       display: none;
       opacity: 0;
-      transform: translateX(-40px);
+      transform: translateX(-50px);
       transition: opacity 0.6s ease, transform 0.6s ease;
       position: absolute;
       width: 100%;
       height: 100%;
+      background: rgba(20, 20, 30, 0.6);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 10px #ff00cc88, 0 0 30px #00ffff33;
     }
 
     .tab-content.active {
@@ -46,9 +50,8 @@
     .tab-buttons {
       display: flex;
       flex-direction: column;
-      background: rgba(255, 255, 255, 0.1);
-      border-left: 2px solid #ffffff44;
-      backdrop-filter: blur(10px);
+      background: #111;
+      border-left: 2px solid #ff00cc44;
     }
 
     .tab-button {
@@ -57,22 +60,24 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      border-bottom: 1px solid #ffffff33;
+      border-bottom: 1px solid #222;
       cursor: pointer;
-      background: transparent;
+      background: #1a1a1a;
       transition: background 0.3s, transform 0.2s;
       font-size: 24px;
-      color: #fff;
-      text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff, 0 0 20px #00ffff;
+      color: #00ffff;
+      text-shadow: 0 0 5px #00ffff, 0 0 10px #ff00ff;
     }
 
     .tab-button:hover {
-      background: rgba(255, 255, 255, 0.15);
-      transform: scale(1.05);
+      background: #222;
+      transform: scale(1.1);
     }
 
     .tab-button.active {
-      background: rgba(255, 255, 255, 0.2);
+      background: #2a003f;
+      color: #ff00cc;
+      box-shadow: inset 0 0 10px #ff00cc;
     }
   </style>
 </head>
@@ -109,7 +114,7 @@
         const target = document.getElementById(button.dataset.target);
         target.style.display = 'block';
 
-        // Trigger reflow for transition
+        // Reflow for transition
         void target.offsetWidth;
 
         target.classList.add('active');
