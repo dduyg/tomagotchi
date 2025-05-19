@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Liminal🫒Loop</title>
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/63e03a9b9c.js" crossorigin="anonymous"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -17,45 +16,35 @@
       background-image: radial-gradient(circle farthest-corner at 0% 100%, #706C6E, hsla(0, 0%, 100%, 0) 50%);
       color: #808000;
       font-family: "Atkinson Hyperlegible Next", sans-serif;
-      display: flex;
       height: 100vh;
+      display: flex;
       overflow: hidden;
     }
 
     .main-content {
       flex: 1;
-      padding: 40px;
-      padding-right: 100px;
-      overflow-y: auto;
+      margin-right: 80px;
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
-    }
-
-    .tab-wrapper {
-      max-width: 800px;
-      width: 100%;
-      animation: slideIn 0.3s ease;
-    }
-
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateX(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+      height: 100vh;
+      overflow-y: auto;
+      padding: 40px;
     }
 
     .tab-content {
       display: none;
+      max-width: 800px;
+      width: 100%;
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
     .tab-content.active {
       display: block;
+      opacity: 1;
+      transform: translateX(0);
     }
 
     .tab-menu {
@@ -69,8 +58,8 @@
       justify-content: center;
       align-items: flex-start;
       border-left: 2px solid #808000;
-      background: transparent;
-      z-index: 100;
+      background: #EDEBED;
+      z-index: 10;
     }
 
     .tab-button {
@@ -79,25 +68,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      border: 2px solid #808000;
+      border-left: none;
+      border-radius: 30px 0 0 30px;
       margin-bottom: 10px;
       background: transparent;
       cursor: pointer;
-      position: relative;
-      border: none;
-    }
-
-    .tab-button::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 30px 0 0 30px;
-      border: 2px solid #808000;
-      border-left: none;
-      pointer-events: none;
-      z-index: 0;
+      transition: background 0.3s;
+      box-sizing: border-box;
     }
 
     .tab-button.active {
@@ -107,63 +85,62 @@
     .tab-button i {
       font-size: 20px;
       color: #808000;
-      z-index: 1;
     }
   </style>
+  <script src="https://kit.fontawesome.com/63e03a9b9c.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-  <div class="main-content">
-    <div class="tab-wrapper" id="tab-wrapper">
-      <div id="tab1" class="tab-content active">
-        <h2>Title: "Love Type Error"</h2>
-        <p>Premise:</p>
-        <p>Baek Ji-won, a by-the-book HR manager at a major cosmetics company, is forced into a fake relationship with Choi Hyun-woo, a free-spirited, notoriously flirtatious product developer, to protect the company’s reputation after they're caught in a compromising misunderstanding. As they pretend to be a couple to calm the gossip mill, real feelings sneak in—and chaos follows.</p>
-      </div>
-      <div id="tab2" class="tab-content">
-        <p>Tools/settings section content here...</p>
-      </div>
-      <div id="tab3" class="tab-content">
-        <p>Web/network section content here...</p>
-      </div>
-      <div id="tab4" class="tab-content">
-        <p>Telegram/Send section content here...</p>
-      </div>
-    </div>
+<div class="main-content">
+  <div id="tab1" class="tab-content active">
+    <h2>Title: "Love Type Error"</h2>
+    <p>Premise:</p>
+    <p>Baek Ji-won, a by-the-book HR manager at a major cosmetics company, is forced into a fake relationship with Choi Hyun-woo, a free-spirited, notoriously flirtatious product developer, to protect the company’s reputation after they're caught in a compromising misunderstanding. As they pretend to be a couple to calm the gossip mill, real feelings sneak in—and chaos follows.</p>
   </div>
-
-  <div class="tab-menu">
-    <button class="tab-button active" onclick="switchTab('tab1', this)">
-      <i class="fas fa-scroll"></i>
-    </button>
-    <button class="tab-button" onclick="switchTab('tab2', this)">
-      <i class="fas fa-tools"></i>
-    </button>
-    <button class="tab-button" onclick="switchTab('tab3', this)">
-      <i class="fas fa-globe"></i>
-    </button>
-    <button class="tab-button" onclick="switchTab('tab4', this)">
-      <i class="fab fa-telegram-plane"></i>
-    </button>
+  <div id="tab2" class="tab-content">
+    <p>Tools/settings section content here...</p>
   </div>
+  <div id="tab3" class="tab-content">
+    <p>Web/network section content here...</p>
+  </div>
+  <div id="tab4" class="tab-content">
+    <p>Telegram/Send section content here...</p>
+  </div>
+</div>
 
-  <script>
-    function switchTab(tabId, button) {
-      document.querySelectorAll('.tab-content').forEach(tab => {
-        tab.classList.remove('active');
-      });
+<div class="tab-menu">
+  <button class="tab-button active" onclick="switchTab('tab1', this)">
+    <i class="fas fa-scroll"></i>
+  </button>
+  <button class="tab-button" onclick="switchTab('tab2', this)">
+    <i class="fas fa-tools"></i>
+  </button>
+  <button class="tab-button" onclick="switchTab('tab3', this)">
+    <i class="fas fa-globe"></i>
+  </button>
+  <button class="tab-button" onclick="switchTab('tab4', this)">
+    <i class="fab fa-telegram-plane"></i>
+  </button>
+</div>
 
-      const activeTab = document.getElementById(tabId);
-      activeTab.classList.add('active');
+<script>
+  function switchTab(tabId, button) {
+    document.querySelectorAll('.tab-content').forEach(tab => {
+      tab.classList.remove('active');
+    });
 
-      const wrapper = document.getElementById('tab-wrapper');
-      wrapper.classList.remove('tab-wrapper'); // trigger reflow
-      void wrapper.offsetWidth;
-      wrapper.classList.add('tab-wrapper');
+    setTimeout(() => {
+      const tabToShow = document.getElementById(tabId);
+      if (tabToShow) {
+        tabToShow.classList.add('active');
+      }
+    }, 50); // slight delay for animation
 
-      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-    }
-  </script>
+    document.querySelectorAll('.tab-button').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    button.classList.add('active');
+  }
+</script>
 </body>
 </html>
