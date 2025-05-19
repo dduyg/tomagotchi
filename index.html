@@ -3,23 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Liminal➰️Loop</title>
+  <title>RTabs</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       display: flex;
+      justify-content: flex-end;
       height: 100vh;
       overflow: hidden;
     }
 
-    .content {
-      flex: 1;
-      padding: 40px;
-      padding-right: 120px; /* leave space for tabs */
+    .tab-container {
+      display: flex;
+      flex-direction: row-reverse;
+      width: 100%;
+    }
+
+    .tab-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #f9f9f9;
+      border-left: 1px solid #ccc;
+    }
+
+    .tab-button {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      cursor: pointer;
+      background: white;
+      transition: background 0.3s;
+    }
+
+    .tab-button.active {
+      background: #ddd;
     }
 
     .tab-content {
+      flex: 1;
+      padding: 20px;
       display: none;
     }
 
@@ -27,91 +54,43 @@
       display: block;
     }
 
-    .tabs {
-      position: fixed;
-      top: 0;
-      right: 0;
-      height: 100%;
-      width: 100px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      border-left: 2px solid black;
-      background: #fff;
-    }
-
-    .tab-button {
-      width: 100px;
-      height: 60px;
-      border: 1px solid black;
-      border-left: none;
-      border-radius: 30px 0 0 30px;
-      background: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 8px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .tab-button.active {
-      background-color: #e0e0e0;
-    }
-
-    .tab-button i {
-      font-size: 20px;
+    .icon {
+      font-size: 24px;
     }
   </style>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
+  <div class="tab-container">
+    <div class="tab-content" id="content1">Profile section content goes here.</div>
+    <div class="tab-content" id="content2">Settings section content goes here.</div>
+    <div class="tab-content" id="content3">Web section content goes here.</div>
+    <div class="tab-content" id="content4">Message section content goes here.</div>
 
-  <div class="content">
-    <div id="tab1" class="tab-content active">
-      <p>Profile tab content goes here...</p>
+    <div class="tab-buttons">
+      <div class="tab-button active" data-target="content1">👤</div>
+      <div class="tab-button" data-target="content2">🛠️</div>
+      <div class="tab-button" data-target="content3">🌐</div>
+      <div class="tab-button" data-target="content4">✈️</div>
     </div>
-    <div id="tab2" class="tab-content">
-      <p>Settings tab content goes here...</p>
-    </div>
-    <div id="tab3" class="tab-content">
-      <p>Global tab content goes here...</p>
-    </div>
-    <div id="tab4" class="tab-content">
-      <p>Telegram tab content goes here...</p>
-    </div>
-  </div>
-
-  <div class="tabs">
-    <button class="tab-button active" onclick="switchTab('tab1', this)">
-      <i class="fas fa-user"></i>
-    </button>
-    <button class="tab-button" onclick="switchTab('tab2', this)">
-      <i class="fas fa-tools"></i>
-    </button>
-    <button class="tab-button" onclick="switchTab('tab3', this)">
-      <i class="fas fa-globe"></i>
-    </button>
-    <button class="tab-button" onclick="switchTab('tab4', this)">
-      <i class="fab fa-telegram-plane"></i>
-    </button>
   </div>
 
   <script>
-    function switchTab(tabId, clickedButton) {
-      // Show the correct content
-      document.querySelectorAll('.tab-content').forEach(tab => {
-        tab.classList.remove('active');
-      });
-      document.getElementById(tabId).classList.add('active');
+    const buttons = document.querySelectorAll('.tab-button');
+    const contents = document.querySelectorAll('.tab-content');
 
-      // Update active button
-      document.querySelectorAll('.tab-button').forEach(btn => {
-        btn.classList.remove('active');
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        buttons.forEach(btn => btn.classList.remove('active'));
+        contents.forEach(content => content.classList.remove('active'));
+
+        button.classList.add('active');
+        const target = document.getElementById(button.dataset.target);
+        target.classList.add('active');
       });
-      clickedButton.classList.add('active');
-    }
+    });
+
+    // Activate first content by default
+    document.getElementById('content1').classList.add('active');
   </script>
 </body>
 </html>
