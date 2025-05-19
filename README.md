@@ -378,6 +378,7 @@ If the image is used as a background:
 - [ ]  Inclusive Sans
 - [ ]  Urbanist
 - [ ]  Text Me One
+- [ ]  Ribeye Marrow
 - [ ]  Armata
 - [ ]  Jura
 - [ ]  Teko
