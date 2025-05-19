@@ -1,96 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RTabs</title>
+  <meta charset="UTF-8">
+  <title>LiminalLoop</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: sans-serif;
       display: flex;
-      justify-content: flex-end;
       height: 100vh;
       overflow: hidden;
     }
 
-    .tab-container {
-      display: flex;
-      flex-direction: row-reverse;
-      width: 100%;
-    }
-
-    .tab-buttons {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background: #f9f9f9;
-      border-left: 1px solid #ccc;
-    }
-
-    .tab-button {
-      width: 60px;
-      height: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-bottom: 1px solid #ccc;
-      cursor: pointer;
-      background: white;
-      transition: background 0.3s;
-    }
-
-    .tab-button.active {
-      background: #ddd;
-    }
-
-    .tab-content {
+    .content {
       flex: 1;
-      padding: 20px;
+      padding: 40px;
+    }
+
+    .tab-panel {
       display: none;
     }
 
-    .tab-content.active {
+    .tab-panel.active {
       display: block;
     }
 
-    .icon {
-      font-size: 24px;
+    .vertical-tabs {
+      width: 60px;
+      background-color: #fff;
+      border-left: 2px solid #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+
+    .tab-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin: 20px 0;
+      border: none;
+      background-color: #000;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .tab-btn.active {
+      background-color: #444;
+    }
+
+    .main-content {
+      flex-grow: 1;
+      padding-right: 80px; /* space for vertical tabs */
     }
   </style>
 </head>
 <body>
-  <div class="tab-container">
-    <div class="tab-content" id="content1">Profile section content goes here.</div>
-    <div class="tab-content" id="content2">Settings section content goes here.</div>
-    <div class="tab-content" id="content3">Web section content goes here.</div>
-    <div class="tab-content" id="content4">Message section content goes here.</div>
 
-    <div class="tab-buttons">
-      <div class="tab-button active" data-target="content1">👤</div>
-      <div class="tab-button" data-target="content2">🛠️</div>
-      <div class="tab-button" data-target="content3">🌐</div>
-      <div class="tab-button" data-target="content4">✈️</div>
+  <div class="main-content">
+    <div id="tab1" class="tab-panel active">
+      <p>Here section content here section content here section content...</p>
+    </div>
+    <div id="tab2" class="tab-panel">
+      <p>Another section content here...</p>
+    </div>
+    <div id="tab3" class="tab-panel">
+      <p>Final section content here...</p>
     </div>
   </div>
 
+  <div class="vertical-tabs">
+    <button class="tab-btn active" onclick="switchTab('tab1', this)"></button>
+    <button class="tab-btn" onclick="switchTab('tab2', this)"></button>
+    <button class="tab-btn" onclick="switchTab('tab3', this)"></button>
+  </div>
+
   <script>
-    const buttons = document.querySelectorAll('.tab-button');
-    const contents = document.querySelectorAll('.tab-content');
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-panel').forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
 
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        buttons.forEach(btn => btn.classList.remove('active'));
-        contents.forEach(content => content.classList.remove('active'));
-
-        button.classList.add('active');
-        const target = document.getElementById(button.dataset.target);
-        target.classList.add('active');
-      });
-    });
-
-    // Activate first content by default
-    document.getElementById('content1').classList.add('active');
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
   </script>
 </body>
 </html>
