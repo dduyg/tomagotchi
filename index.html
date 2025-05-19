@@ -7,11 +7,11 @@
   <style>  
     body {  
       margin: 0;  
-      font-family: Arial, sans-serif;  
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
       height: 100vh;  
       overflow: hidden;  
-      background: #00ffc8; /* bright aqua background */  
-      color: #1a0033; /* dark purple text */  
+      background: #f4e6f5; /* soft pastel pink */  
+      color: #3a2e5a; /* deep muted purple for text */  
     }  
   
     .tab-container {  
@@ -19,6 +19,7 @@
       flex-direction: row;  
       width: 100%;  
       height: 100%;  
+      box-shadow: inset 0 0 20px #d8c9e8; /* subtle purple glow */  
     }  
   
     .tab-content-area {  
@@ -28,8 +29,13 @@
       justify-content: center;  
       position: relative;  
       overflow: hidden;  
-      background: #70e1f5; /* soft cyan background */  
-      color: #1a0033;  
+      background: #ede4f7; /* pale lavender */  
+      color: #3a2e5a;  
+      border-radius: 0 15px 15px 0;  
+      padding: 30px;  
+      font-weight: 500;  
+      font-size: 1.15rem;  
+      box-shadow: inset 0 0 20px #cbb9e4;  
     }  
   
     .tab-content {  
@@ -40,7 +46,7 @@
       right: 0;  
       bottom: 0;  
       padding: 40px;  
-      background: rgba(156, 39, 176, 0.8); /* semi-transparent purple */  
+      background: #f7f1fa; /* very light lilac/off-white */  
       opacity: 0;  
       transform: translateX(-30px);  
       transition: opacity 0.3s ease, transform 0.3s ease;  
@@ -48,9 +54,9 @@
       align-items: center;  
       justify-content: center;  
       font-size: 1.1rem;  
-      color: #fff;  
-      text-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;  
-      border-radius: 10px;
+      color: #4a3c71; /* dusty violet */  
+      border-radius: 12px;  
+      box-shadow: 0 4px 20px rgba(73, 60, 113, 0.15);  
     }  
   
     .tab-content.active {  
@@ -74,9 +80,11 @@
       flex-direction: column;  
       justify-content: center;  
       align-items: center;  
-      background: #ff6eff; /* neon pink */  
-      border-left: 2px solid #00fff7; /* bright aqua */  
+      background: #d6c3f7; /* muted lavender purple */  
+      border-left: 2px solid #b09be8;  
       padding: 10px 0;  
+      border-radius: 15px 0 0 15px;  
+      box-shadow: inset 5px 0 10px #b09be8;  
     }  
   
     .tab-button {  
@@ -85,28 +93,27 @@
       display: flex;  
       justify-content: center;  
       align-items: center;  
-      border-bottom: 2px solid #00fff7;  
+      border-bottom: 2px solid #b09be8;  
       cursor: pointer;  
-      background: #7d00ff; /* deep violet */  
+      background: #cbbcf3; /* lighter lavender */  
       transition: background 0.3s, color 0.3s;  
-      font-size: 24px;  
-      color: #00fff7;  
-      text-shadow: 0 0 5px #00fff7;  
-      border-radius: 8px 8px 0 0;
-      user-select: none;
+      font-size: 28px;  
+      color: #5e4b99; /* deep muted purple */  
+      border-radius: 10px 10px 0 0;  
+      user-select: none;  
+      box-shadow: 0 3px 8px rgba(80, 68, 126, 0.3);  
     }  
   
     .tab-button:hover {  
-      background: #00fff7;  
-      color: #7d00ff;  
-      text-shadow: 0 0 10px #7d00ff;  
+      background: #a594d9; /* deeper lavender */  
+      color: #fff;  
+      box-shadow: 0 0 12px #7c6abf;  
     }  
   
     .tab-button.active {  
-      background: #00fff7;  
-      color: #7d00ff;  
-      box-shadow: 0 0 15px #ff6eff;  
-      text-shadow: 0 0 15px #7d00ff;  
+      background: #7c6abf; /* rich violet */  
+      color: #f4e6f5; /* pale pink text */  
+      box-shadow: 0 0 20px #7c6abf;  
     }  
   </style>  
 </head>  
@@ -120,10 +127,10 @@
     </div>  
   
     <div class="tab-buttons">  
-      <div class="tab-button active" data-target="content1">👤</div>  
-      <div class="tab-button" data-target="content2">🛠️</div>  
+      <div class="tab-button active" data-target="content1">👩‍💼</div>  
+      <div class="tab-button" data-target="content2">⚙️</div>  
       <div class="tab-button" data-target="content3">🌐</div>  
-      <div class="tab-button" data-target="content4">✈️</div>  
+      <div class="tab-button" data-target="content4">✉️</div>  
     </div>  
   </div>  
   
