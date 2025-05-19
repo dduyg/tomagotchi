@@ -7,16 +7,16 @@
   <style>
     body {
       margin: 0;
-      font-family: sans-serif;
+      font-family: Arial, sans-serif;
       display: flex;
       height: 100vh;
       overflow: hidden;
     }
 
-    .main-content {
+    .content {
       flex: 1;
       padding: 40px;
-      padding-right: 100px; /* spacing for tabs */
+      padding-right: 120px; /* leave space for tabs */
     }
 
     .tab-content {
@@ -27,65 +27,63 @@
       display: block;
     }
 
-    .tab-menu {
-      width: 80px;
+    .tabs {
       position: fixed;
-      right: 0;
       top: 0;
-      bottom: 0;
+      right: 0;
+      height: 100%;
+      width: 100px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: flex-start;
+      justify-content: center;
+      border-left: 2px solid black;
       background: #fff;
-      border-left: 2px solid #000;
     }
 
     .tab-button {
-      width: 80px;
+      width: 100px;
       height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid #000;
+      border: 1px solid black;
       border-left: none;
       border-radius: 30px 0 0 30px;
-      margin-bottom: 10px;
-      background: #fff;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 8px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: background 0.2s;
     }
 
     .tab-button.active {
-      background: #ddd;
+      background-color: #e0e0e0;
     }
 
     .tab-button i {
       font-size: 20px;
     }
   </style>
-
-  <!-- Icons via Font Awesome (Optional) -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-  <div class="main-content">
+  <div class="content">
     <div id="tab1" class="tab-content active">
-      <p>Profile section content here...</p>
+      <p>Profile tab content goes here...</p>
     </div>
     <div id="tab2" class="tab-content">
-      <p>Tools/settings section content here...</p>
+      <p>Settings tab content goes here...</p>
     </div>
     <div id="tab3" class="tab-content">
-      <p>Web/network section content here...</p>
+      <p>Global tab content goes here...</p>
     </div>
     <div id="tab4" class="tab-content">
-      <p>Telegram/Send section content here...</p>
+      <p>Telegram tab content goes here...</p>
     </div>
   </div>
 
-  <div class="tab-menu">
+  <div class="tabs">
     <button class="tab-button active" onclick="switchTab('tab1', this)">
       <i class="fas fa-user"></i>
     </button>
@@ -101,12 +99,18 @@
   </div>
 
   <script>
-    function switchTab(tabId, button) {
-      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    function switchTab(tabId, clickedButton) {
+      // Show the correct content
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
       document.getElementById(tabId).classList.add('active');
 
-      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
+      // Update active button
+      document.querySelectorAll('.tab-button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      clickedButton.classList.add('active');
     }
   </script>
 </body>
