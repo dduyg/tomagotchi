@@ -6,48 +6,29 @@
   <title>Liminal🫒Loop</title>
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
       background-color: #EDEBED;
       background-image: radial-gradient(circle farthest-corner at 0% 100%, #706C6E, hsla(0, 0%, 100%, 0) 50%);
       color: #808000;
       font-family: "Atkinson Hyperlegible Next", sans-serif;
+      display: flex;
       height: 100vh;
       overflow: hidden;
-      display: flex;
     }
 
     .main-content {
       flex: 1;
       padding: 40px;
-      padding-right: 100px;
-      overflow-y: auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .tab-container {
-      max-width: 800px;
-      width: 100%;
+      padding-right: 100px; /* spacing for tabs */
     }
 
     .tab-content {
       display: none;
-      opacity: 0;
-      transform: translateX(30px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
     .tab-content.active {
       display: block;
-      opacity: 1;
-      transform: translateX(0);
     }
 
     .tab-menu {
@@ -60,9 +41,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
-      border-left: 2px solid #808000;
-      background-color: #EDEBED;
-      z-index: 10;
+      border-right: 2px solid;
     }
 
     .tab-button {
@@ -71,7 +50,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 2px solid #808000;
+      border: 1px solid;
       border-left: none;
       border-radius: 30px 0 0 30px;
       margin-bottom: 10px;
@@ -86,7 +65,6 @@
 
     .tab-button i {
       font-size: 20px;
-      color: #808000;
     }
   </style>
 
@@ -95,21 +73,19 @@
 <body>
 
   <div class="main-content">
-    <div class="tab-container">
-      <div id="tab1" class="tab-content active">
-        <h2>Title: "Love Type Error"</h2>
-        <p>Premise:</p>
-        <p>Baek Ji-won, a by-the-book HR manager at a major cosmetics company, is forced into a fake relationship with Choi Hyun-woo, a free-spirited, notoriously flirtatious product developer, to protect the company’s reputation after they're caught in a compromising misunderstanding. As they pretend to be a couple to calm the gossip mill, real feelings sneak in—and chaos follows.</p>
-      </div>
-      <div id="tab2" class="tab-content">
-        <p>Tools/settings section content here...</p>
-      </div>
-      <div id="tab3" class="tab-content">
-        <p>Web/network section content here...</p>
-      </div>
-      <div id="tab4" class="tab-content">
-        <p>Telegram/Send section content here...</p>
-      </div>
+    <div id="tab1" class="tab-content active">
+      <h2>Title: "Love Type Error"</h2>
+      <p>Premise:</p>
+      <p>Baek Ji-won, a by-the-book HR manager at a major cosmetics company, is forced into a fake relationship with Choi Hyun-woo, a free-spirited, notoriously flirtatious product developer, to protect the company’s reputation after they're caught in a compromising misunderstanding. As they pretend to be a couple to calm the gossip mill, real feelings sneak in—and chaos follows.</p>
+    </div>
+    <div id="tab2" class="tab-content">
+      <p>Tools/settings section content here...</p>
+    </div>
+    <div id="tab3" class="tab-content">
+      <p>Web/network section content here...</p>
+    </div>
+    <div id="tab4" class="tab-content">
+      <p>Telegram/Send section content here...</p>
     </div>
   </div>
 
@@ -130,20 +106,10 @@
 
   <script>
     function switchTab(tabId, button) {
-      document.querySelectorAll('.tab-content').forEach(tab => {
-        tab.classList.remove('active');
-      });
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
 
-      setTimeout(() => {
-        const tabToShow = document.getElementById(tabId);
-        if (tabToShow) {
-          tabToShow.classList.add('active');
-        }
-      }, 50); // smooth entry timing
-
-      document.querySelectorAll('.tab-button').forEach(btn => {
-        btn.classList.remove('active');
-      });
+      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
     }
   </script>
