@@ -21,7 +21,7 @@
 
     .tab-content-area {
       flex: 1;
-      padding: 20px;
+      padding: 60px 40px; /* Increased top spacing */
       position: relative;
       overflow: hidden;
     }
@@ -29,11 +29,10 @@
     .tab-content {
       display: none;
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      padding: 20px;
+      top: 60px; /* Adjusted to match padding */
+      left: 40px;
+      right: 40px;
+      bottom: 40px;
       background: white;
       opacity: 0;
       transform: translateX(-30px);
@@ -61,6 +60,7 @@
       flex-direction: column;
       background: #f9f9f9;
       border-left: 1px solid #ccc;
+      padding-top: 20px; /* Adds vertical spacing */
     }
 
     .tab-button {
@@ -110,15 +110,15 @@
         buttons.forEach(btn => btn.classList.remove('active'));
         contents.forEach(content => {
           content.classList.remove('active');
-          content.style.display = 'none'; // reset display
+          content.style.display = 'none';
         });
 
         button.classList.add('active');
         const target = document.getElementById(button.dataset.target);
-        target.style.display = 'block'; // ensure it's shown before animating
+        target.style.display = 'block';
         setTimeout(() => {
           target.classList.add('active');
-        }, 10); // slight delay to trigger CSS animation
+        }, 10);
       });
     });
   </script>
