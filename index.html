@@ -5,7 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Liminal🫒Loop</title>
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/63e03a9b9c.js" crossorigin="anonymous"></script>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       background-color: #EDEBED;
@@ -20,15 +25,26 @@
     .main-content {
       flex: 1;
       padding: 40px;
-      padding-right: 100px; /* spacing for tabs */
+      padding-right: 100px;
+      overflow-y: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
     .tab-content {
       display: none;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      max-width: 600px;
     }
 
     .tab-content.active {
       display: block;
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .tab-menu {
@@ -41,7 +57,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
-      border-right: 2px solid;
+      border-right: 2px solid #808000;
+      background-color: transparent;
     }
 
     .tab-button {
@@ -50,7 +67,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid;
+      border: 2px solid #808000;
       border-left: none;
       border-radius: 30px 0 0 30px;
       margin-bottom: 10px;
@@ -65,10 +82,9 @@
 
     .tab-button i {
       font-size: 20px;
+      color: #808000;
     }
   </style>
-
-  <script src="https://kit.fontawesome.com/63e03a9b9c.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -106,8 +122,14 @@
 
   <script>
     function switchTab(tabId, button) {
-      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+        // Force reflow for animation restart
+        void tab.offsetWidth;
+      });
+
+      const targetTab = document.getElementById(tabId);
+      targetTab.classList.add('active');
 
       document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
