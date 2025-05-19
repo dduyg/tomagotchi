@@ -5,30 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Liminal🥟Loop</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
-
     body {
       margin: 0;
-      font-family: 'Orbitron', monospace;
+      font-family: Arial, sans-serif;
       display: flex;
       height: 100vh;
       overflow: hidden;
-      background: #0f0f1b;
-      color: #00fff7;
     }
 
     .tab-container {
       display: flex;
       flex-direction: row;
       width: 100%;
-      backdrop-filter: blur(8px);
     }
 
     .tab-content-area {
       flex: 1;
-      padding: 30px;
-      background: linear-gradient(145deg, #1a1a2e, #12121d);
-      border-right: 2px solid #ff0080;
+      padding: 20px;
     }
 
     .tab-content {
@@ -37,15 +30,13 @@
 
     .tab-content.active {
       display: block;
-      animation: flickerIn 0.6s ease-in;
     }
 
     .tab-buttons {
       display: flex;
       flex-direction: column;
-      background: #0c0c15;
-      border-left: 2px solid #00fff7;
-      box-shadow: inset 0 0 10px #00fff7;
+      background: #f9f9f9;
+      border-left: 1px solid #ccc;
     }
 
     .tab-button {
@@ -54,40 +45,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid #ccc;
       cursor: pointer;
-      background: transparent;
-      color: #00fff7;
-      text-shadow: 0 0 6px #00fff7, 0 0 10px #ff0080;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .tab-button::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border: 1px solid #ff0080;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .tab-button:hover::before,
-    .tab-button.active::before {
-      opacity: 1;
-      box-shadow: 0 0 10px #ff0080, 0 0 20px #ff0080;
+      background: white;
+      transition: background 0.3s;
     }
 
     .tab-button.active {
-      background: rgba(255, 0, 128, 0.1);
-    }
-
-    @keyframes flickerIn {
-      0% { opacity: 0; }
-      10% { opacity: 0.3; }
-      20% { opacity: 0.8; }
-      30% { opacity: 0.4; }
-      100% { opacity: 1; }
+      background: #ddd;
     }
 
     .icon {
