@@ -30,13 +30,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      position: relative;
     }
 
     .tab-wrapper {
-      max-width: 700px;
+      max-width: 800px;
       width: 100%;
-      animation: slideIn 0.4s ease forwards;
+      animation: slideIn 0.3s ease;
     }
 
     @keyframes slideIn {
@@ -68,7 +68,9 @@
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
-      border-right: 2px solid #808000;
+      border-left: 2px solid #808000;
+      background: transparent;
+      z-index: 100;
     }
 
     .tab-button {
@@ -81,6 +83,7 @@
       background: transparent;
       cursor: pointer;
       position: relative;
+      border: none;
     }
 
     .tab-button::before {
@@ -111,7 +114,7 @@
 <body>
 
   <div class="main-content">
-    <div class="tab-wrapper">
+    <div class="tab-wrapper" id="tab-wrapper">
       <div id="tab1" class="tab-content active">
         <h2>Title: "Love Type Error"</h2>
         <p>Premise:</p>
@@ -130,18 +133,18 @@
   </div>
 
   <div class="tab-menu">
-    <div class="tab-button active" onclick="switchTab('tab1', this)">
+    <button class="tab-button active" onclick="switchTab('tab1', this)">
       <i class="fas fa-scroll"></i>
-    </div>
-    <div class="tab-button" onclick="switchTab('tab2', this)">
+    </button>
+    <button class="tab-button" onclick="switchTab('tab2', this)">
       <i class="fas fa-tools"></i>
-    </div>
-    <div class="tab-button" onclick="switchTab('tab3', this)">
+    </button>
+    <button class="tab-button" onclick="switchTab('tab3', this)">
       <i class="fas fa-globe"></i>
-    </div>
-    <div class="tab-button" onclick="switchTab('tab4', this)">
+    </button>
+    <button class="tab-button" onclick="switchTab('tab4', this)">
       <i class="fab fa-telegram-plane"></i>
-    </div>
+    </button>
   </div>
 
   <script>
@@ -153,10 +156,10 @@
       const activeTab = document.getElementById(tabId);
       activeTab.classList.add('active');
 
-      const wrapper = activeTab.closest('.tab-wrapper');
-      wrapper.classList.remove('slideIn');
-      void wrapper.offsetWidth; // Force reflow
-      wrapper.classList.add('slideIn');
+      const wrapper = document.getElementById('tab-wrapper');
+      wrapper.classList.remove('tab-wrapper'); // trigger reflow
+      void wrapper.offsetWidth;
+      wrapper.classList.add('tab-wrapper');
 
       document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
