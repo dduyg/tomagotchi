@@ -2,49 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Vaporwave YouTube Embed</title>
+  <title>Seapunk YouTube Embed</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Monoton&display=swap');
 
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #ff00cc, #3333ff);
-      font-family: 'Press Start 2P', cursive;
-      color: #fff;
+      background: linear-gradient(135deg, #a0f0ed, #b29fff, #7af9c4);
+      background-size: 400% 400%;
+      animation: oceanFlow 20s ease infinite;
+      font-family: 'Monoton', cursive;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      overflow: hidden;
+      color: #ffffff;
+    }
+
+    @keyframes oceanFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .video-container {
       background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border: 4px double #00f0ff;
-      padding: 30px;
+      border: 3px dashed #00ffd5;
       border-radius: 20px;
-      box-shadow: 0 0 25px #00f0ff, 0 0 50px #ff00cc;
+      padding: 25px;
+      box-shadow: 0 0 20px #7af9c4, 0 0 40px #b29fff;
       max-width: 800px;
       width: 100%;
+      backdrop-filter: blur(8px);
     }
 
     h2 {
       text-align: center;
-      color: #00f0ff;
-      text-shadow: 2px 2px #ff00cc;
+      font-size: 26px;
       margin-bottom: 20px;
-      font-size: 18px;
+      color: #00ffd5;
+      text-shadow: 1px 1px #b29fff;
     }
 
     .video-wrapper {
       position: relative;
-      padding-bottom: 56.25%;
+      padding-bottom: 56.25%; /* 16:9 */
       height: 0;
       overflow: hidden;
       border-radius: 12px;
-      border: 3px solid #ff00cc;
+      border: 2px solid #b29fff;
     }
 
     .video-wrapper iframe {
@@ -53,22 +60,23 @@
       left: 0;
       width: 100%;
       height: 100%;
-      border: 0;
+      border: none;
     }
   </style>
 </head>
 <body>
 
   <div class="video-container">
-    <h2>Vaporwave Vibes</h2>
+    <h2>Seapunk Splash Zone</h2>
     <div class="video-wrapper">
       <iframe 
         src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
-        title="Vaporwave Video"
+        title="Seapunk Video"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
       </iframe>
     </div>
   </div>
+
 </body>
 </html>
