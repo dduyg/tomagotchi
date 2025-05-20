@@ -1,24 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Link Hover Animation</title>
-  <link href="https://fonts.googleapis.com/css?family=Inter:400,500,600,700&display=swap" rel="stylesheet">
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>Liminal🕶Loop</title>
   <style>
-    html {
-      box-sizing: border-box;
-      -webkit-font-smoothing: antialiased;
-    }
-    *, *::before, *::after {
-      box-sizing: inherit;
-    }
     body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      height: 100vh;
       background: #F6F8FF;
-      font-family: "Inter", Arial, sans-serif;
+      font-family: "Inter", sans-serif;
     }
     :root {
       --text-color: #2B3044;
@@ -27,7 +17,10 @@
       --line-height: 16px;
       --duration-line: 0.84s;
     }
-    p {
+    .pointing {
+      position: fixed;
+      top: 8%;
+      right: 10%;    
       font-size: var(--font-size);
       line-height: var(--line-height);
       margin: 0;
@@ -90,7 +83,7 @@
   </style>
 </head>
 <body>
-  <p>Hover <a class="link" href="#">the link</a> for magic</p>
+  <div class="pointing">two way data <a class="link" href="#">binding</a></div>
 
   <script>
     document.querySelectorAll('.link').forEach(link => {
