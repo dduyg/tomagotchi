@@ -128,7 +128,40 @@
       width: 100%;
       height: 100%;
       border: 0;
-    }    
+    }
+
+    .ascii {
+      background-color: #1e1e1e;
+      color: white;
+      border-radius: 8px;
+      margin-top: 45px;
+      padding: 20px 40px 20px 10px;
+      width: fit-content;
+      max-width: 90%;
+      position: relative;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .ascii-copy {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #ff69b4;
+      color: white;
+      border: none
+      padding: 6px 12px;
+      font-size: 12px;  
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .ascii-copy:hover {
+      background-color: #ff1493;
+    }
+  </style>
   </style>
 </head>
 <body>
@@ -142,6 +175,12 @@
             <iframe src="https://www.youtube.com/embed/5u1KuoGMOPo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
         </aside>
+        <div class="ascii">
+          <button class="ascii-copy" onclick="copyAscii()">📋</button>
+    <pre id="ascii-art">(╥_╥)    
+  /(    )\    
+ /  |  |  \</pre>
+        </div>
       </div>
       <div class="tab-content" id="content3">A European man and a Japanese woman look up in horror and scream, with a city burning and exploding in the background, and dark clouds covering the sky. The camera focuses on the woman's face, capturing her terrified expression, her eyes wide open, with faint traces of tears at the corners of her eyes. Both faces are covered with mud, reflecting the chaos around them. The scene is depicted in the style of Japanese realistic films, emphasizing high-definition details and lifelike complexity, immersing the audience in the intense emotions and panic of the time.</div>
       <div class="tab-content" id="content4">On a quiet evening, Kenji sits alone on a wooden bench by the river, tossing stones into the dark water. His eyes are heavy with regret as the city lights shimmer in the distance. Nearby, an elderly man feeds stray cats, humming an old folk song. Kenji’s phone buzzes—a message from his estranged sister. He hesitates, then types a reply. The river flows steadily, carrying away years of silence, offering a chance for forgiveness in the stillness.</div>
@@ -186,6 +225,14 @@
         }, 10); // slight delay ensures animation works
       });
     });
+  </script>
+  <script>
+    function copyAscii() {
+      const text = document.getElementById('ascii-art').innerText;
+      navigator.clipboard.writeText(text)
+        .then(() => alert('Copied to clipboard!'))
+        .catch(() => alert('Copy failed.'));
+    }
   </script>
 </body>
 </html>
