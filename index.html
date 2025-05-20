@@ -2,131 +2,112 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Link hover w/ line</title>
-  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Inter:400,500,600,700&amp;display=swap'>
+  <title>Link Hover Animation</title>
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,500,600,700&display=swap" rel="stylesheet">
   <style>
-html {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-}
-* {
-  box-sizing: inherit;
-}
-*:before, *:after {
-  box-sizing: inherit;
-}
-body {
-  min-height: 100vh;
-  display: flex;
-  font-family: "Inter", Arial;
-  justify-content: center;
-  align-items: center;
-  background: #F6F8FF;
-}
-:root {
-  --text: ;
-  --line:;
-  --font-size: ;
-  --: ;
-  --duration-line: ;
-}
-
-p {
-  font-size: 18px;
-  margin: 0;
-  color: #2B3044;
-  font-size: 16px;
-  line-height: 16px;
-  zoom: 1.5;
-}
-p .link {
-  display: inline-block;
-  position: relative;
-  text-decoration: none;
-  color: inherit;
-}
-p .link div {
-  overflow: hidden;
-}
-p .link div:first-child {
-  display: flex;
-  overflow: hidden;
-  text-shadow: 0 16px 0 #2B3044;
-}
-p .link div:last-child {
-  position: absolute;
-  pointer-events: none;
-  right: 0;
-  left: 0;
-  bottom: -3px;
-  height: 5px;
-}
-p .link div:last-child svg {
-  display: block;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 300%;
-  height: 5px;
-  fill: none;
-  stroke: #275EFE;
-  stroke-width: 1.5px;
-  stroke-linecap: round;
-  stroke-dasharray: 63.5px 128px;
-  stroke-dashoffset: var(--line-offset, 190.25px);
-  transform: translateX(var(--line-x)) translateZ(0);
-  transition: transform var(--line-d, 0s), stroke-dashoffset var(--line-d, 0s);
-}
-p .link div span {
-  display: block;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-  font-style: normal;
-  transition: transform .44s ease;
-  transform: translateY(var(--m, 0));
-}
-p .link div span:nth-child(1) {
-  transition-delay: 0.05s;
-}
-p .link div span:nth-child(2) {
-  transition-delay: 0.1s;
-}
-p .link div span:nth-child(3) {
-  transition-delay: 0.15s;
-}
-p .link div span:nth-child(4) {
-  transition-delay: 0.2s;
-}
-p .link div span:nth-child(5) {
-  transition-delay: 0.25s;
-}
-p .link div span:nth-child(6) {
-  transition-delay: 0.3s;
-}
-p .link div span:nth-child(7) {
-  transition-delay: 0.35s;
-}
-p .link div span:nth-child(8) {
-  transition-delay: 0.4s;
-}
-p .link div span:nth-child(9) {
-  transition-delay: 0.45s;
-}
-p .link div span:nth-child(10) {
-  transition-delay: 0.5s;
-}
-p .link div span:nth-child(11) {
-  transition-delay: 0.55s;
-}
-p .link:hover {
-  --m: calc(16px * -1);
-  --line-d: .84s;
-  --line-x: 65.66%;
-  --line-offset: 63.5px;
-}
+    html {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+    *, *::before, *::after {
+      box-sizing: inherit;
+    }
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #F6F8FF;
+      font-family: "Inter", Arial, sans-serif;
+    }
+    :root {
+      --text-color: #2B3044;
+      --line-color: #275EFE;
+      --font-size: 16px;
+      --line-height: 16px;
+      --duration-line: 0.84s;
+    }
+    p {
+      font-size: var(--font-size);
+      line-height: var(--line-height);
+      margin: 0;
+      color: var(--text-color);
+      zoom: 1.5;
+    }
+    .link {
+      display: inline-block;
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+    }
+    .link > div {
+      overflow: hidden;
+    }
+    .link > div:first-child {
+      display: flex;
+      text-shadow: 0 16px 0 var(--text-color);
+    }
+    .link > div:last-child {
+      position: absolute;
+      pointer-events: none;
+      left: 0;
+      right: 0;
+      bottom: -3px;
+      height: 5px;
+    }
+    .link svg {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 300%;
+      height: 5px;
+      fill: none;
+      stroke: var(--line-color);
+      stroke-width: 1.5px;
+      stroke-linecap: round;
+      stroke-dasharray: 63.5px 128px;
+      stroke-dashoffset: var(--line-offset, 190.25px);
+      transform: translateX(var(--line-x, 0)) translateZ(0);
+      transition: transform var(--line-d, 0s), stroke-dashoffset var(--line-d, 0s);
+    }
+    .link span {
+      display: block;
+      backface-visibility: hidden;
+      font-style: normal;
+      transition: transform 0.44s ease;
+      transform: translateY(var(--m, 0));
+    }
+    .link span:nth-child(n) {
+      transition-delay: calc(0.05s * var(--i));
+    }
+    .link:hover {
+      --m: calc(var(--font-size) * -1);
+      --line-d: var(--duration-line);
+      --line-x: 65.66%;
+      --line-offset: 63.5px;
+    }
   </style>
 </head>
 <body>
-  <p>Hover <a class="link" href="">the link</a> for magic</p>
+  <p>Hover <a class="link" href="#">the link</a> for magic</p>
+
+  <script>
+    document.querySelectorAll('.link').forEach(link => {
+      const chars = link.textContent.trim().split('');
+      const spanHTML = chars.map((char, i) => 
+        `<span style="--i:${i + 1}">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
+      
+      const textDiv = `<div>${spanHTML}</div>`;
+      const lineDiv = `
+        <div>
+          <svg preserveAspectRatio="none" viewBox="0 0 192 5">
+            <path d="M191.246 4H129C129 4 127.781 4.00674 127 4C114.767 3.89447 108.233 1 96 1C83.7669 1 77.2327 3.89447 65 4C64.219 4.00674 63 4 63 4H0.751923"/>
+          </svg>
+        </div>`;
+
+      link.innerHTML = textDiv + lineDiv;
+    });
+  </script>
 </body>
 </html>
