@@ -6,51 +6,52 @@
   <title>Crying Face ASCII Art</title>
   <style>
     body {
-      background-color: #f9f9f9;
-      font-family: Arial, sans-serif;
+      font-family: 'Courier New', monospace;
+      background-color: #f0f0f0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
-      padding: 20px;
     }
-    .container {
+
+    .ascii-container {
       background-color: #1e1e1e;
       color: #f8f8f2;
       border-radius: 8px;
       padding: 20px;
-      width: 100%;
-      max-width: 500px;
+      width: fit-content;
+      max-width: 90%;
       position: relative;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
+
     pre {
       margin: 0;
       white-space: pre-wrap;
       word-break: break-word;
-      font-family: monospace;
     }
+
     .copy-btn {
       position: absolute;
       top: 10px;
       right: 10px;
-      padding: 6px 12px;
-      font-size: 12px;
-      border: none;
-      border-radius: 4px;
       background-color: #007bff;
       color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 6px 12px;
       cursor: pointer;
-      transition: background-color 0.3s;
+      font-size: 12px;
     }
+
     .copy-btn:hover {
       background-color: #0056b3;
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="ascii-container">
     <button class="copy-btn" onclick="copyAscii()">Copy</button>
     <pre id="ascii-art">(╥_╥)    
   /(    )\    
@@ -59,10 +60,10 @@
 
   <script>
     function copyAscii() {
-      const asciiText = document.getElementById("ascii-art").innerText;
-      navigator.clipboard.writeText(asciiText)
-        .then(() => alert("ASCII art copied to clipboard!"))
-        .catch(() => alert("Failed to copy."));
+      const text = document.getElementById('ascii-art').innerText;
+      navigator.clipboard.writeText(text)
+        .then(() => alert('Copied to clipboard!'))
+        .catch(() => alert('Copy failed.'));
     }
   </script>
 </body>
