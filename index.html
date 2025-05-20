@@ -1,15 +1,50 @@
-<!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>CSS Transparent and Outlined Text</title>
-  <link rel="stylesheet" href="./style.css">
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Liminal🕶Loop</title>
+    <style>
+* {box-sizing: border-box;}
+body, html {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	font-size: 2.5em;
+	font-family: Impact;
+	letter-spacing: 2px;
+}
+body {
+	background: linear-gradient(to bottom right, lime, lightblue) 50% 50% / 100% 100% no-repeat;
+	display: flex;
+	justify-content: center; /* justify content center on main axis */
+	align-items: center; /* align items center on cross axis */
+	text-align: center; /* center text inside block elements */
+}
 
+/* Faux outline for older browsers */
+.outline {
+    color: white; /* Unfortunately you can't use transparent here … */
+    text-shadow:
+	   -1px -1px 0 #000,  
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		 1px 1px 0 #000
+}
+
+/* Real outline for modern browsers */
+@supports((text-stroke: 2px black) or (-webkit-text-stroke: 2px black)) {
+    .outline {
+        color: transparent;
+        -webkit-text-stroke: 2px black;
+		text-stroke: 2px black;
+        text-shadow: none;
+    }
+}      
+    </style>
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<h1 class="outline">I AM THE<br />OUTLINED<br />TEXT</h1>
-<!-- partial -->
-  
+  <h1 class="outline">I AM THE<br />OUTLINED<br />TEXT</h1>  
 </body>
 </html>
