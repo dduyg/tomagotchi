@@ -29,8 +29,23 @@
       align-items: center;
       height: 100vh;
       margin: 0;
+      position: relative;
       overflow: hidden;
     }
+    body::before {
+      content: "";    
+      position: fixed;   
+      top: 50%;      
+      left: 50%;    
+      width: 100vw;  
+      height: 100vh;      
+      background: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/BLOBs/blob-14.gif') no-repeat center center;       
+      background-size: contain;
+      transform: translate(-50%, -50%); 
+      opacity: 0.3;     
+      z-index: -1;
+    }
+    
     main {
       max-width: 600px;
       padding: 0 20px;
