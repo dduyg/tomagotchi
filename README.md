@@ -183,11 +183,7 @@ _.-._
 - https://webdevtrick.com/text-to-search-input-animation/?amp=1
 
 ```css
-body.01 {
-  background-color: #EDEBED;
-  background-image: radial-gradient(circle farthest-corner at 0% 100%, #706C6E, hsla(0, 0%, 100%, 0) 50%);  
-}
-body.02 {
+body {
   background-color: #F7ECE1;
   background-image: radial-gradient(circle farthest-corner at 100% 100%, #EBCFB2, hsla(0, 0%, 100%, 0) 50%);   
 }
@@ -573,20 +569,6 @@ Cannot BE EDITED
     font-weight: 300;
     font-style: normal;
 }
-
-        @font-face {
-            font-family: 'Dodopop';
-            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Dodopop-Regular.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Dodopop';
-            src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/Dodopop-Italic.woff2') format('woff2');
-            font-weight: normal;
-            font-style: italic;
-        }
-        body {font-family: 'Dodopop', sans-serif;}
 
 @font-face {
     font-family: 'Asix Founder';
