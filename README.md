@@ -61,13 +61,6 @@ _____
       /   \     /   \
 ```
 
-## Crying Face (For Melodramas & Sad Moments)
-```
-(╥_╥)  
-  /(    )\  
- /  |  |  \
-```
-
 ## CEO & Assistant (For Office Romance or Chaebol Dramas)
 ```
 (•_•)  (•_•)  
@@ -159,13 +152,6 @@ _.-._
   |~~|  
   |~~|  
   |__|
-```
-
-## A Romantic Couple (Love Story Theme)
-```
-(♥‿♥)   (♥‿♥)  
-    \      /  
-     \____/
 ```
 
 ## A City Skyline (Seoul Night Vibes)
@@ -335,9 +321,6 @@ If the image is used as a background:
 - [ ]  Revalia
 - [ ]  Sixtyfour
 - [ ]  Michroma
-- [ ]  Nova Round
-- [ ]  Nova Oval
-- [ ]  Nova Cut
 - [ ]  Pixelify Sans
 - [ ]  Notable
 - [ ]  Limelight
@@ -357,7 +340,6 @@ If the image is used as a background:
 - [ ]  MuseoModerno
 - [ ]  Bruno Ace SC
 - [ ]  Parkinsans
-- [ ]  Advent Pro
 - [ ]  Sora 🩶
 - [ ]  Reddit Sans Condensed
 - [ ]  Inknut Antiqua
