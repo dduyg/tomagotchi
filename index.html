@@ -6,62 +6,63 @@
   <title>Crying Face ASCII Art</title>
   <style>
     body {
-      background-color: #f4f4f4;
+      background-color: #f9f9f9;
       font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
-    }
-    .code-wrapper {
-      position: relative;
-      background-color: #2d2d2d;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       padding: 20px;
-      max-width: 400px;
     }
-    .copy-button {
+    .container {
+      background-color: #1e1e1e;
+      color: #f8f8f2;
+      border-radius: 8px;
+      padding: 20px;
+      width: 100%;
+      max-width: 500px;
+      position: relative;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: monospace;
+    }
+    .copy-btn {
       position: absolute;
       top: 10px;
       right: 10px;
+      padding: 6px 12px;
+      font-size: 12px;
+      border: none;
+      border-radius: 4px;
       background-color: #007bff;
       color: white;
-      border: none;
-      padding: 6px 10px;
-      font-size: 12px;
-      border-radius: 4px;
       cursor: pointer;
+      transition: background-color 0.3s;
     }
-    .copy-button:hover {
+    .copy-btn:hover {
       background-color: #0056b3;
-    }
-    pre {
-      color: #f8f8f2;
-      font-family: monospace;
-      margin: 0;
-      white-space: pre;
-      overflow-x: auto;
     }
   </style>
 </head>
 <body>
-  <div class="code-wrapper">
-    <button class="copy-button" onclick="copyToClipboard()">Copy</button>
+  <div class="container">
+    <button class="copy-btn" onclick="copyAscii()">Copy</button>
     <pre id="ascii-art">(╥_╥)    
   /(    )\    
  /  |  |  \</pre>
   </div>
 
   <script>
-    function copyToClipboard() {
-      const text = document.getElementById("ascii-art").innerText;
-      navigator.clipboard.writeText(text).then(() => {
-        alert("Copied to clipboard📋!");
-      }, () => {
-        alert("Failed to copy!😯");
-      });
+    function copyAscii() {
+      const asciiText = document.getElementById("ascii-art").innerText;
+      navigator.clipboard.writeText(asciiText)
+        .then(() => alert("ASCII art copied to clipboard!"))
+        .catch(() => alert("Failed to copy."));
     }
   </script>
 </body>
