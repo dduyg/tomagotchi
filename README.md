@@ -326,7 +326,6 @@ If the image is used as a background:
 - [ ]  Capriola
 - [ ]  Faculty Glyphic
 - [ ]  Karla
-- [ ]  Viaoda Libre
 - [ ]  SUSE
 - [ ]  Stalinist One
 - [ ]  Baumans
