@@ -15,7 +15,7 @@
       margin: 0;
     }
 
-    .ascii-container {
+    .ascii {
       background-color: #1e1e1e;
       color: white;
       border-radius: 8px;
@@ -25,33 +25,31 @@
       position: relative;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
-
     pre {
       margin: 0;
       white-space: pre-wrap;
       word-break: break-word;
+      font-family: monospace;
     }
-
     .copy-btn {
       position: absolute;
       top: 10px;
       right: 10px;
-      background-color: #ff69b4;
+      background-color: rgba(0, 0, 0, 0.8);
       color: white;
-      border: none
-      padding: 6px 12px;
+      border: none;
+      padding: 10px;
       font-size: 12px;  
       border-radius: 4px;
       cursor: pointer;
     }
-
     .copy-btn:hover {
       background-color: #ff1493;
     }
   </style>
 </head>
 <body>
-  <div class="ascii-container">
+  <div class="ascii">
     <button class="copy-btn" onclick="copyAscii()">📋</button>
     <pre id="ascii-art">(╥_╥)    
   /(    )\    
