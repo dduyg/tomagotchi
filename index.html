@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crying Face ASCII Art</title>
+  <style>
+    body {
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .code-wrapper {
+      position: relative;
+      background-color: #2d2d2d;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      max-width: 400px;
+    }
+    .copy-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      font-size: 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .copy-button:hover {
+      background-color: #0056b3;
+    }
+    pre {
+      color: #f8f8f2;
+      font-family: monospace;
+      margin: 0;
+      white-space: pre;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="code-wrapper">
+    <button class="copy-button" onclick="copyToClipboard()">Copy</button>
+    <pre id="ascii-art">(╥_╥)    
+  /(    )\    
+ /  |  |  \</pre>
+  </div>
+
+  <script>
+    function copyToClipboard() {
+      const text = document.getElementById("ascii-art").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copied to clipboard📋!");
+      }, () => {
+        alert("Failed to copy!😯");
+      });
+    }
+  </script>
+</body>
+</html>
