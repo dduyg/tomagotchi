@@ -25,7 +25,7 @@
       overflow-y: auto;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start; /* Changed from center */
       position: relative;
     }
 
@@ -33,10 +33,12 @@
       display: none;
       max-width: 800px;
       animation: slideIn 0.7s ease forwards;
+      padding-top: 20px; /* Added padding to align better with buttons */
     }
     .tab-content.active {
       display: block;
     }
+
     @keyframes slideIn {
       from {
         transform: translateX(-30px);
