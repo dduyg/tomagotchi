@@ -1,21 +1,132 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Link hover w/ line</title>
-  <link rel="stylesheet" href="https://public.codepenassets.com/css/reset-2.0.min.css">
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Inter:400,500,600,700&amp;display=swap'><link rel="stylesheet" href="./style.css">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Inter:400,500,600,700&amp;display=swap'>
+  <style>
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+* {
+  box-sizing: inherit;
+}
+*:before, *:after {
+  box-sizing: inherit;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  font-family: "Inter", Arial;
+  justify-content: center;
+  align-items: center;
+  background: #F6F8FF;
+}
+:root {
+  --text: ;
+  --line:;
+  --font-size: ;
+  --: ;
+  --duration-line: ;
+}
 
+p {
+  font-size: 18px;
+  margin: 0;
+  color: #2B3044;
+  font-size: 16px;
+  line-height: 16px;
+  zoom: 1.5;
+}
+p .link {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+p .link div {
+  overflow: hidden;
+}
+p .link div:first-child {
+  display: flex;
+  overflow: hidden;
+  text-shadow: 0 16px 0 #2B3044;
+}
+p .link div:last-child {
+  position: absolute;
+  pointer-events: none;
+  right: 0;
+  left: 0;
+  bottom: -3px;
+  height: 5px;
+}
+p .link div:last-child svg {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 300%;
+  height: 5px;
+  fill: none;
+  stroke: #275EFE;
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  stroke-dasharray: 63.5px 128px;
+  stroke-dashoffset: var(--line-offset, 190.25px);
+  transform: translateX(var(--line-x)) translateZ(0);
+  transition: transform var(--line-d, 0s), stroke-dashoffset var(--line-d, 0s);
+}
+p .link div span {
+  display: block;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  font-style: normal;
+  transition: transform .44s ease;
+  transform: translateY(var(--m, 0));
+}
+p .link div span:nth-child(1) {
+  transition-delay: 0.05s;
+}
+p .link div span:nth-child(2) {
+  transition-delay: 0.1s;
+}
+p .link div span:nth-child(3) {
+  transition-delay: 0.15s;
+}
+p .link div span:nth-child(4) {
+  transition-delay: 0.2s;
+}
+p .link div span:nth-child(5) {
+  transition-delay: 0.25s;
+}
+p .link div span:nth-child(6) {
+  transition-delay: 0.3s;
+}
+p .link div span:nth-child(7) {
+  transition-delay: 0.35s;
+}
+p .link div span:nth-child(8) {
+  transition-delay: 0.4s;
+}
+p .link div span:nth-child(9) {
+  transition-delay: 0.45s;
+}
+p .link div span:nth-child(10) {
+  transition-delay: 0.5s;
+}
+p .link div span:nth-child(11) {
+  transition-delay: 0.55s;
+}
+p .link:hover {
+  --m: calc(16px * -1);
+  --line-d: .84s;
+  --line-x: 65.66%;
+  --line-offset: 63.5px;
+}
+  </style>
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<p>Hover <a class="link" href="">the link</a> for magic</p>
-
-<!-- dribbble - twitter -->
-<a class="dribbble" href="https://dribbble.com/ai" target="_blank"><img src="https://cdn.dribbble.com/assets/dribbble-ball-mark-2bd45f09c2fb58dbbfb44766d5d1d07c5a12972d602ef8b32204d28fa3dda554.svg" alt=""></a>
-<a class="twitter" target="_top" href="https://twitter.com/aaroniker_me"><svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72"><path d="M67.812 16.141a26.246 26.246 0 0 1-7.519 2.06 13.134 13.134 0 0 0 5.756-7.244 26.127 26.127 0 0 1-8.313 3.176A13.075 13.075 0 0 0 48.182 10c-7.229 0-13.092 5.861-13.092 13.093 0 1.026.118 2.021.338 2.981-10.885-.548-20.528-5.757-26.987-13.679a13.048 13.048 0 0 0-1.771 6.581c0 4.542 2.312 8.551 5.824 10.898a13.048 13.048 0 0 1-5.93-1.638c-.002.055-.002.11-.002.162 0 6.345 4.513 11.638 10.504 12.84a13.177 13.177 0 0 1-3.449.457c-.846 0-1.667-.078-2.465-.231 1.667 5.2 6.499 8.986 12.23 9.09a26.276 26.276 0 0 1-16.26 5.606A26.21 26.21 0 0 1 4 55.976a37.036 37.036 0 0 0 20.067 5.882c24.083 0 37.251-19.949 37.251-37.249 0-.566-.014-1.134-.039-1.694a26.597 26.597 0 0 0 6.533-6.774z"></path></svg></a>
-<!-- partial -->
-  <script  src="./script.js"></script>
-
+  <p>Hover <a class="link" href="">the link</a> for magic</p>
 </body>
 </html>
