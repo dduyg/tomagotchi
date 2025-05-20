@@ -165,7 +165,6 @@
       background-color: #EE999C;
     }
   </style>
-  </style>
 </head>
 <body>
   <div class="tab-container">
@@ -179,10 +178,10 @@
           </div>
         </aside>
         <div class="ascii">
-          <button class="ascii-copy" onclick="copyAscii()">📋</button>
-    <pre id="ascii-art">(╥_╥)    
-  /(    )\    
- /  |  |  \</pre>
+          <button class="ascii-copy" onclick="copyAscii('ascii-art-1')">📋</button>
+          <pre id="ascii-art-1">(╥_╥)    
+/(    )\    
+/  |  |  \</pre>
         </div>
       </div>
       <div class="tab-content" id="content3">A European man and a Japanese woman look up in horror and scream, with a city burning and exploding in the background, and dark clouds covering the sky. The camera focuses on the woman's face, capturing her terrified expression, her eyes wide open, with faint traces of tears at the corners of her eyes. Both faces are covered with mud, reflecting the chaos around them. The scene is depicted in the style of Japanese realistic films, emphasizing high-definition details and lifelike complexity, immersing the audience in the intense emotions and panic of the time.</div>
@@ -195,10 +194,10 @@
           </div>
         </aside>           
         <div class="ascii">     
-          <button class="ascii-copy" onclick="copyAscii()">📋</button>
-    <pre id="ascii-art">(♥‿♥)   (♥‿♥)  
-    \      /  
-     \____/</pre>             
+          <button class="ascii-copy" onclick="copyAscii('ascii-art-2')">📋</button>
+          <pre id="ascii-art-2">(♥‿♥)   (♥‿♥)  
+  \      /  
+   \____/</pre>             
         </div>
       </div>
       <div class="tab-content" id="content6">In a small, cluttered apartment, Hiroshi sits quietly on the floor, sharpening his worn-out knives. His wife, Keiko, folds clothes nearby, stealing worried glances. The faint hum of the city outside contrasts with the heavy silence inside. Their daughter naps in the corner, unaware of the mounting tension. Hiroshi sighs, rubbing his tired eyes. “We’ll get through this,” he murmurs, though the uncertainty lingers. Keiko nods softly, clutching his hand as rain begins to tap on the window.</div>
@@ -228,19 +227,18 @@
 
         button.classList.add('active');
         const target = document.getElementById(button.dataset.target);
-        target.style.display = 'flex'; // needed to trigger animation
+        target.style.display = 'flex';
         setTimeout(() => {
           target.classList.add('active');
-        }, 10); // slight delay ensures animation works
+        }, 10);
       });
     });
-  </script>
-  <script>
-    function copyAscii() {
-      const text = document.getElementById('ascii-art').innerText;
-      navigator.clipboard.writeText(text)
-        .then(() => alert('Copied to clipboard!📋😁'))
-        .catch(() => alert('Copy failed.🪢☹️'));
+
+    function copyAscii(id) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).catch(() => {
+        console.error('Copy failed.');
+      });
     }
   </script>
 </body>
