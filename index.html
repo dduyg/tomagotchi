@@ -1,55 +1,54 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>Liminal🕶Loop</title>
-    <style>
-@font-face {
-  font-family: 'Impact';
-  src: url('Impact.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}	    
-	    
-* {box-sizing: border-box;}
-     body {
-	padding: 0;
-	margin: 0;
-	font-size: 2rem;
-	font-family: 'Impact', sans-serif;
-	letter-spacing: 2px;
-	line-height: 1.4;
-	background: linear-gradient(to bottom right, lime, lightblue) 50% 50% / 100% 100% no-repeat;
-	display: flex;
-	justify-content: center; /* justify content center on main axis */
-	align-items: center; /* align items center on cross axis */
-	text-align: center; /* center text inside block elements */
-	height: 100vh;
-     }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Liminal Loop - A stylish outlined text example with modern CSS" />
+  <title>Liminal🕶Loop</title>
+  <style>	  
+    @font-face {
+      font-family: 'Impact';
+      src: url('Impact.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-size: 2rem;
+      font-family: Impact, sans-serif;
+      letter-spacing: 2px;
+      line-height: 1.4;
+      background: linear-gradient(to bottom right, lime, lightblue);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
 
-/* Faux outline for older browsers */
-.outline {
-    color: white; /* Unfortunately you can't use transparent here … */
-    text-shadow:
-	   -1px -1px 0 #000,  
-		1px -1px 0 #000,
-		-1px 1px 0 #000,
-		 1px 1px 0 #000
-}
-
-/* Real outline for modern browsers */
-@supports((text-stroke: 2px black) or (-webkit-text-stroke: 2px black)) {
+    /* Fallback outline using shadows */
     .outline {
+      color: white;
+      text-shadow:
+        -1px -1px 0 #000,
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+    }
+
+    /* True text-stroke for modern browsers */
+    @supports ((-webkit-text-stroke: 2px black) or (text-stroke: 2px black)) {
+      .outline {
         color: transparent;
         -webkit-text-stroke: 2px black;
-		text-stroke: 2px black;
+        text-stroke: 2px black;
         text-shadow: none;
+      }
     }
-}      
-    </style>
+  </style>
 </head>
 <body>
-  <h1 class="outline">I AM THE<br />OUTLINED<br />TEXT</h1>  
+  <h1 class="outline">I AM THE<br>OUTLINED<br>TEXT</h1>
 </body>
 </html>
