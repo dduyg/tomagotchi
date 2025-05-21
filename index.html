@@ -7,24 +7,31 @@
   <title>LiminalLoop</title>
   <style>	  
     @font-face {
-      font-family: 'BandeinsStrangeVariable';
-      src: url('https://res.cloudinary.com/dldmpwpcp/raw/upload/v1566406079/BandeinsStrangeVariable_esetvq.ttf') format('truetype');
-      font-weight: normal;
+      font-family: 'BandeinsStrange';  
+      src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/BandeinsStrangeVariable.woff2') format('woff2');
+      font-weight: 1 1000; /* for variable font support */
       font-style: normal;
-    }    
+      font-display: swap;
+    } 
     body {
       margin: 0;
       padding: 0;
       background: linear-gradient(to bottom right, lime, lightblue);
+      color: black;
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      font-size: 2rem;
-      font-family: 'BandeinsStrangeVariable', sans-serif;
-      letter-spacing: 2px;
+      font-family: 'BandeinsStrange', sans-serif;
+      font-variation-settings: "wght" 400; 
       line-height: 1.4;
+    }
+
+    h1 {
+      font-size: 2rem;
+      letter-spacing: 2px;
     }
 
     /* Fallback outline using shadows */
@@ -46,9 +53,22 @@
         text-shadow: none;
       }
     }
+
+    .text-block {
+      font-size: 16px;
+      line-height: 1.5;
+      text-align: left;
+      max-width: 600px;
+      width: calc(100% - (20px * 2));
+      padding-bottom: 65px;
+    }
   </style>
 </head>
 <body>
   <h1 class="outline">I AM THE<br>OUTLINED<br>TEXT</h1>
+
+  <div class="text-block">
+    
+  </div>                  
 </body>
 </html>
