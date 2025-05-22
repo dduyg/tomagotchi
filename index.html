@@ -1,33 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>404 | Lost in the Code</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 - Lost in the Code</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
     body {
       margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #ff8de3, #8de3ff);
-      background-size: 400% 400%;
-      animation: gradientShift 10s ease infinite;
+      background: linear-gradient(135deg, #2c003e, #000000);
+      color: #00fff9;
       font-family: 'Press Start 2P', monospace;
-      color: #fff;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
       overflow: hidden;
+      text-align: center;
+      animation: flicker 3s infinite alternate;
     }
 
-    @keyframes gradientShift {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.85; }
+      100% { opacity: 1; }
+    }
+
+    h1 {
+      font-size: 3rem;
+      text-shadow: 0 0 10px #ff00ff, 0 0 20px #00fff9;
+      margin: 0;
+    }
+
+    p {
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 20px auto;
+      text-shadow: 0 0 5px #00fff9;
     }
 
     .glitch {
-      font-size: 4rem;
       position: relative;
-      display: inline-block;
+      color: #fff;
     }
 
     .glitch::before,
@@ -35,70 +51,61 @@
       content: attr(data-text);
       position: absolute;
       left: 0;
-      top: 0;
-      opacity: 0.8;
+      width: 100%;
+      overflow: hidden;
     }
 
     .glitch::before {
-      color: #ff00c8;
-      animation: glitch1 2s infinite;
+      animation: glitchTop 1s infinite linear;
+      color: #ff00ff;
+      top: -2px;
     }
 
     .glitch::after {
-      color: #00fff7;
-      animation: glitch2 2s infinite;
+      animation: glitchBottom 1s infinite linear;
+      color: #00fff9;
+      top: 2px;
     }
 
-    @keyframes glitch1 {
-      0% {transform: translate(0, 0);}
-      20% {transform: translate(-3px, 2px);}
-      40% {transform: translate(-1px, -3px);}
-      60% {transform: translate(2px, 0);}
-      80% {transform: translate(1px, 2px);}
-      100% {transform: translate(0, 0);}
+    @keyframes glitchTop {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      5% { clip: rect(0, 9999px, 10px, 0); }
+      10% { clip: rect(0, 9999px, 0, 0); }
     }
 
-    @keyframes glitch2 {
-      0% {transform: translate(0, 0);}
-      20% {transform: translate(2px, -1px);}
-      40% {transform: translate(-2px, 1px);}
-      60% {transform: translate(0, 3px);}
-      80% {transform: translate(-1px, -2px);}
-      100% {transform: translate(0, 0);}
-    }
-
-    .message {
-      margin-top: 20px;
-      font-size: 1rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
+    @keyframes glitchBottom {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      5% { clip: rect(5px, 9999px, 15px, 0); }
+      10% { clip: rect(0, 9999px, 0, 0); }
     }
 
     a {
-      display: inline-block;
       margin-top: 30px;
+      display: inline-block;
       padding: 10px 20px;
-      background: #000;
-      color: #fff;
+      background: #ff00ff;
+      color: #000;
       text-decoration: none;
-      border: 2px solid #fff;
-      transition: background 0.3s, color 0.3s;
+      font-weight: bold;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #ff00ff;
+      transition: all 0.3s ease-in-out;
     }
 
     a:hover {
-      background: #fff;
+      background: #00fff9;
       color: #000;
+      box-shadow: 0 0 15px #00fff9;
     }
   </style>
 </head>
 <body>
-  <div class="glitch" data-text="404">404</div>
-  <div class="message">
-    <p>You’ve reached the end of the digital highway, a broken byte in the matrix, a misplaced semicolon in the code of reality.</p>
-    <p>This page doesn’t exist — or maybe it transcended. Either way, it’s not here.</p>
-  </div>
-  <a href="/">Return to Mainframe</a>
+  <h1 class="glitch" data-text="404: LOST SIGNAL">404: LOST SIGNAL</h1>
+  <p>
+    The page you're looking for fell through a digital wormhole. <br>
+    Maybe it's hiding in the back of your code editor, or <br>
+    maybe it just ascended to the vaporwave dimension.
+  </p>
+  <a href="/">Return to Reality (Home)</a>
 </body>
 </html>
