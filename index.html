@@ -1,74 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>404 | Page Not Found</title>
+  <meta charset="UTF-8">
+  <title>404 | Lost in the Code</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
     body {
       margin: 0;
-      background: linear-gradient(135deg, #1a1a1a 0%, #3d0066 100%);
-      color: #f0f0f0;
-      font-family: 'Share Tech Mono', monospace;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      overflow: hidden;
+      padding: 0;
+      background: linear-gradient(135deg, #ff8de3, #8de3ff);
+      background-size: 400% 400%;
+      animation: gradientShift 10s ease infinite;
+      font-family: 'Press Start 2P', monospace;
+      color: #fff;
       text-align: center;
+      overflow: hidden;
     }
 
-    .logo {
-      width: 100px;
-      height: auto;
-      margin-bottom: 20px;
+    @keyframes gradientShift {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
     }
 
-    h1 {
-      font-size: 5em;
-      color: #ff66cc;
-      text-shadow: 0 0 10px #ff66cc, 0 0 20px #9933ff;
-      animation: glitch 1s infinite;
+    .glitch {
+      font-size: 4rem;
+      position: relative;
+      display: inline-block;
     }
 
-    p {
-      font-size: 1.3em;
-      color: #ccc;
-      margin-top: -20px;
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0.8;
+    }
+
+    .glitch::before {
+      color: #ff00c8;
+      animation: glitch1 2s infinite;
+    }
+
+    .glitch::after {
+      color: #00fff7;
+      animation: glitch2 2s infinite;
+    }
+
+    @keyframes glitch1 {
+      0% {transform: translate(0, 0);}
+      20% {transform: translate(-3px, 2px);}
+      40% {transform: translate(-1px, -3px);}
+      60% {transform: translate(2px, 0);}
+      80% {transform: translate(1px, 2px);}
+      100% {transform: translate(0, 0);}
+    }
+
+    @keyframes glitch2 {
+      0% {transform: translate(0, 0);}
+      20% {transform: translate(2px, -1px);}
+      40% {transform: translate(-2px, 1px);}
+      60% {transform: translate(0, 3px);}
+      80% {transform: translate(-1px, -2px);}
+      100% {transform: translate(0, 0);}
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
     }
 
     a {
+      display: inline-block;
       margin-top: 30px;
       padding: 10px 20px;
-      color: #00ffff;
+      background: #000;
+      color: #fff;
       text-decoration: none;
-      border: 2px solid #00ffff;
-      border-radius: 4px;
-      transition: all 0.3s ease;
+      border: 2px solid #fff;
+      transition: background 0.3s, color 0.3s;
     }
 
     a:hover {
-      background: #00ffff;
-      color: #1a1a1a;
-    }
-
-    @keyframes glitch {
-      0% { transform: translate(0); }
-      20% { transform: translate(-2px, 2px); }
-      40% { transform: translate(-2px, -2px); }
-      60% { transform: translate(2px, 2px); }
-      80% { transform: translate(2px, -2px); }
-      100% { transform: translate(0); }
+      background: #fff;
+      color: #000;
     }
   </style>
 </head>
 <body>
-  <img src="your-logo.png" alt="Logo" class="logo"/>
-  <h1>404</h1>
-  <p>Lost in the code matrix. This page doesn't exist.</p>
-  <a href="/">Return to Home</a>
+  <div class="glitch" data-text="404">404</div>
+  <div class="message">
+    <p>You’ve reached the end of the digital highway, a broken byte in the matrix, a misplaced semicolon in the code of reality.</p>
+    <p>This page doesn’t exist — or maybe it transcended. Either way, it’s not here.</p>
+  </div>
+  <a href="/">Return to Mainframe</a>
 </body>
 </html>
