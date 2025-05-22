@@ -5,21 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>404 - Page Not Found</title>
 <style>
-  /* Vaporwave glitch colors */
-  :root {
-    --neon-pink: #ff3ca6;
-    --neon-cyan: #00fff7;
-    --dark-bg: #0d0d1a;
-    --glitch-red: #ff0055;
-    --glitch-blue: #00eaff;
-    --text-shadow1: 2px 0 var(--glitch-red);
-    --text-shadow2: -2px 0 var(--glitch-blue);
-  }
-
   body {
     margin: 0;
-    background: var(--dark-bg);
-    color: var(--neon-cyan);
+    background: #0d0d1a;
+    color: #00fff7;
     font-family: 'Press Start 2P', monospace;
     height: 100vh;
     display: flex;
@@ -30,77 +19,110 @@
     flex-direction: column;
     text-align: center;
   }
+  
+    .glitch {
+      font-size: 3rem;
+      position: relative;
+      color: #fff;
+    }
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+    .glitch::before {
+      animation: glitchTop 2s infinite;
+      color: #ff00c8;
+      top: -2px;
+    }
+    .glitch::after {
+      animation: glitchBottom 2s infinite;
+      color: #00fff9;
+      top: 2px;
+    }
+    @keyframes glitchTop {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      5% { clip: rect(0, 9999px, 30px, 0); }
+      10% { clip: rect(0, 9999px, 0, 0); }
+      15% { clip: rect(10px, 9999px, 50px, 0); }
+      20% { clip: rect(0, 9999px, 0, 0); }
+    }
+    @keyframes glitchBottom {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      5% { clip: rect(40px, 9999px, 70px, 0); }
+      10% { clip: rect(0, 9999px, 0, 0); }
+      15% { clip: rect(20px, 9999px, 60px, 0); }
+      20% { clip: rect(0, 9999px, 0, 0); }
+    }
 
-  h1 {
-    font-size: 3rem;
-    position: relative;
-    color: var(--neon-pink);
-    animation: glitch 2s infinite;
-    margin: 0.5em 0 0.2em;
-  }
+    <div class="glitch" data-text="404 ERROR">404 ERROR</div>
+
 
   h2 {
     font-size: 1rem;
     margin: 0.2em 0 1.5em;
-    color: var(--neon-cyan);
-    text-shadow: var(--text-shadow1), var(--text-shadow2);
+    color: #00fff7;
+    text-shadow: 2px 0 #ff0055, -2px 0 #00eaff;
   }
 
   a.home-link {
-    color: var(--neon-pink);
+    color: #ff3ca6;
     text-decoration: none;
     font-size: 0.9rem;
-    border: 2px solid var(--neon-pink);
+    border: 2px solid #ff3ca6;
     padding: 0.75em 2em;
     border-radius: 8px;
     transition: all 0.3s ease;
     letter-spacing: 0.1em;
   }
   a.home-link:hover {
-    background: var(--neon-pink);
-    color: var(--dark-bg);
+    background: #ff3ca6;
+    color: #0d0d1a;
     box-shadow:
-      0 0 10px var(--neon-pink),
-      0 0 40px var(--neon-pink),
-      0 0 80px var(--neon-pink);
+      0 0 10px #ff3ca6,
+      0 0 40px #ff3ca6,
+      0 0 80px #ff3ca6;
   }
 
   /* Glitch animation */
   @keyframes glitch {
     0% {
       text-shadow: 
-        2px 0 var(--glitch-red),
-        -2px 0 var(--glitch-blue);
+        2px 0 #ff0055,
+        -2px 0 #00eaff;
       transform: translate(0);
     }
     20% {
       text-shadow:
-        2px 2px var(--glitch-red),
-        -2px -2px var(--glitch-blue);
+        2px 2px #ff0055,
+        -2px -2px #00eaff;
       transform: translate(-2px, 1px);
     }
     40% {
       text-shadow:
-        -2px -2px var(--glitch-red),
-        2px 2px var(--glitch-blue);
+        -2px -2px #ff0055,
+        2px 2px #00eaff;
       transform: translate(2px, -1px);
     }
     60% {
       text-shadow:
-        2px -2px var(--glitch-red),
-        -2px 2px var(--glitch-blue);
+        2px -2px #ff0055,
+        -2px 2px #00eaff;
       transform: translate(-1px, 2px);
     }
     80% {
       text-shadow:
-        -2px 2px var(--glitch-red),
-        2px -2px var(--glitch-blue);
+        -2px 2px #ff0055,
+        2px -2px #00eaff;
       transform: translate(1px, -2px);
     }
     100% {
       text-shadow:
-        2px 0 var(--glitch-red),
-        -2px 0 var(--glitch-blue);
+        2px 0 #ff0055,
+        -2px 0 #00eaff;
       transform: translate(0);
     }
   }
@@ -120,7 +142,6 @@
     pointer-events: none;
     animation: flicker 0.15s infinite;
   }
-
   @keyframes flicker {
     0%, 100% {opacity: 0.05;}
     50% {opacity: 0.15;}
@@ -130,7 +151,6 @@
     max-width: 450px;
     margin: 0 auto 2em;
     font-size: 0.85rem;
-    color: var(--neon-cyan);
     letter-spacing: 0.04em;
   }
 </style>
