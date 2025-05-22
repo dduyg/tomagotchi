@@ -1,69 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>404 - Lost in the Code</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 Not Found</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@700&display=swap');
 
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Press Start 2P', monospace;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-      color: #f5f5f5;
-      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(135deg, #ff00cc 0%, #3333ff 100%);
+      color: #ffffff;
       display: flex;
       flex-direction: column;
+      align-items: center;
       justify-content: center;
       height: 100vh;
-      background-image: url('https://media.giphy.com/media/jpbnoe3UIa8TU8LM13/giphy.gif');
-      background-size: cover;
-      background-position: center;
+      overflow: hidden;
+      text-align: center;
     }
 
-    .overlay {
-      background: rgba(0, 0, 0, 0.65);
-      padding: 2rem;
-      border-radius: 12px;
-      margin: 2rem;
-      box-shadow: 0 0 20px #ff00c8, 0 0 30px #00ffff;
+    .logo {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 2.5rem;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #ff00cc;
+      margin-bottom: 20px;
+      animation: glitch 1s infinite;
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(2px, -2px); }
+      60% { transform: translate(-1px, 1px); }
+      80% { transform: translate(1px, -1px); }
+      100% { transform: translate(0); }
     }
 
     h1 {
-      font-size: 3rem;
-      color: #00ffff;
-      text-shadow: 2px 2px #ff00c8;
-      margin-bottom: 1rem;
+      font-size: 5rem;
+      margin: 0;
+      color: #ffffff;
+      text-shadow: 0 0 5px #ff00cc, 0 0 15px #00ffff;
     }
 
     p {
-      font-size: 1rem;
-      margin-bottom: 2rem;
+      font-size: 1.2rem;
+      margin: 20px 0;
+      color: #e0e0ff;
     }
 
     a {
+      color: #00ffff;
+      font-weight: bold;
       text-decoration: none;
-      color: #ff00c8;
       border: 2px solid #00ffff;
-      padding: 0.75rem 1.5rem;
+      padding: 10px 20px;
       border-radius: 8px;
-      transition: all 0.3s ease;
+      transition: background 0.3s, color 0.3s;
     }
 
     a:hover {
-      background-color: #00ffff;
-      color: #0f0c29;
+      background: #00ffff;
+      color: #000000;
     }
   </style>
 </head>
 <body>
-  <div class="overlay">
-    <h1>404: SYSTEM MALFUNCTION</h1>
-    <p>You’ve jacked into a node that doesn’t exist.<br>
-    This path echoes through the datastream, but there's nothing here... yet.</p>
-    <a href="/">Return to Mainframe</a>
-  </div>
+  <div class="logo">CYBERWAVE404</div>
+  <h1>404</h1>
+  <p>Looks like you've slipped into the datastream void.</p>
+  <a href="/">Return to Reality (Home)</a>
 </body>
 </html>
