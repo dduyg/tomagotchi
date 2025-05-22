@@ -315,7 +315,6 @@ If the image is used as a background:
 - [ ]  SUSE
 - [ ]  Stalinist One
 - [ ]  Baumans
-- [ ]  Geo
 - [ ]  Workbench
 - [ ]  Kanit
 - [ ]  Revalia
@@ -326,7 +325,6 @@ If the image is used as a background:
 - [ ]  Limelight
 - [ ]  Plaster
 - [ ]  Fira Sans
-- [ ]  Ubuntu Mono
 - [ ]  Rethink Sans
 - [ ]  Inconsolata
 - [ ]  Cousine
@@ -358,7 +356,6 @@ If the image is used as a background:
 - [ ]  Encode Sans Condensed
 - [ ]  Mona Sans
 - [ ]  Funnel Sans
-- [ ]  Varela Round
 - [ ]  Thasadith
 - [ ]  Fahkwang
 - [ ]  Train One
