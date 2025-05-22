@@ -3,89 +3,135 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>404 | Data Breach</title>
+  <title>LiminalLoop</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Share+Tech+Mono&display=swap');
-
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-      color: #00fff7;
-      font-family: 'Share Tech Mono', monospace;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      background: radial-gradient(circle at center, #0ff 0%, #00f 100%);
+      color: #fff;
+      font-family: 'Press Start 2P', monospace;
       overflow: hidden;
+      text-align: center;
+      animation: glitchBG 10s infinite alternate;
+    }
+    @keyframes glitchBG {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
     }
 
     .container {
-      text-align: center;
-      max-width: 700px;
-      padding: 20px;
-    }
-
-    .logo {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3rem;
-      color: #ff00ff;
-      letter-spacing: 2px;
-      text-shadow: 0 0 5px #ff00ff, 0 0 15px #00fff7;
-      margin-bottom: 30px;
-    }
-
-    .error-code {
-      font-size: 6rem;
-      color: #00fff7;
-      text-shadow: 0 0 10px #00fff7, 0 0 20px #00fff7;
-    }
-
-    .message {
-      font-size: 1.5rem;
-      margin: 20px 0;
-      color: #ffffffcc;
-    }
-
-    a.home-link {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 24px;
-      font-size: 1rem;
-      color: #0ff;
-      background-color: transparent;
-      border: 2px solid #0ff;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: all 0.3s ease;
-    }
-
-    a.home-link:hover {
-      background-color: #0ff;
-      color: #000;
-      box-shadow: 0 0 15px #0ff;
+      padding: 10vh 2rem 0;
     }
 
     .glitch {
-      animation: glitch 1s infinite;
+      font-size: 3rem;
+      position: relative;
+      color: #fff;
+    }
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+    .glitch::before {
+      animation: glitchTop 2s infinite;
+      color: #ff00c8;
+      top: -2px;
+    }
+    .glitch::after {
+      animation: glitchBottom 2s infinite;
+      color: #00fff9;
+      top: 2px;
+    }
+    @keyframes glitchTop {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      5% { clip: rect(0, 9999px, 30px, 0); }
+      10% { clip: rect(0, 9999px, 0, 0); }
+      15% { clip: rect(10px, 9999px, 50px, 0); }
+      20% { clip: rect(0, 9999px, 0, 0); }
+    }
+    @keyframes glitchBottom {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      5% { clip: rect(40px, 9999px, 70px, 0); }
+      10% { clip: rect(0, 9999px, 0, 0); }
+      15% { clip: rect(20px, 9999px, 60px, 0); }
+      20% { clip: rect(0, 9999px, 0, 0); }
     }
 
-    @keyframes glitch {
-      0% { text-shadow: 2px 0 red, -2px 0 blue; }
-      20% { text-shadow: -2px 0 red, 2px 0 blue; }
-      40% { text-shadow: 2px 2px red, -2px -2px blue; }
-      60% { text-shadow: -2px 2px red, 2px -2px blue; }
-      80% { text-shadow: 2px -2px red, -2px 2px blue; }
-      100% { text-shadow: 0 0 red, 0 0 blue; }
+    a {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.5rem 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid #fff;
+      color: #fff;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    .matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="logo glitch">DATA//BREACH</div>
-    <div class="error-code">404</div>
-    <div class="message">The page you're slicing through the net for doesn't exist.</div>
-    <a href="/" class="home-link">Return to Mainframe</a>
+    <div class="glitch" data-text="DATA//BREACH">DATA//BREACH</div>
+    <p style="margin-top: 2rem;">
+      You’ve fallen out of the mainframe.<br>
+      The data stream was corrupted.<br>
+      But don’t panic, the homepage awaits.
+    </p>
+    <a href="#">DATA.WAV</a>
   </div>
+
+  <canvas class="matrix"></canvas>
+  <script>
+    const canvas = document.querySelector('.matrix');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const chars = '0101010101011010010011100101'.split('');
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array.from({ length: columns }).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#0f0';
+      ctx.font = fontSize + 'px monospace';
+
+      drops.forEach((y, i) => {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        const x = i * fontSize;
+        ctx.fillText(text, x, y * fontSize);
+
+        if (y * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      });
+    }
+
+    setInterval(drawMatrix, 50);
+  </script>
 </body>
 </html>
