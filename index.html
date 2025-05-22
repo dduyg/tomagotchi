@@ -31,6 +31,7 @@
     }
     .container {
       display: flex;
+      flex-direction: row;
       width: 100%;
       height: 100vh;
       padding: var(--gutter);
@@ -68,6 +69,7 @@
       color: var(--color-foreground);
       text-decoration: none;
       transition: color 0.3s;
+      margin: 4px 0;
     }
     .nav-links a:hover { color: var(--color-accent); }
     .footer {
@@ -94,6 +96,35 @@
       height: 100%;
       z-index: -1;
     }
+
+    /* Mobile responsive styles */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        height: auto;
+      }
+      .sidebar,
+      .main-content {
+        width: 100%;
+        padding: var(--gutter);
+        text-align: center;
+        align-items: center;
+      }
+      .logo {
+        font-size: 6rem;
+        margin-left: 0;
+      }
+      .description,
+      .nav-links,
+      .footer,
+      .division {
+        align-items: center;
+        text-align: center;
+      }
+      .nav-links a {
+        margin: 4px 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -117,7 +148,6 @@
     </div>
   </div>
 
-  <!-- Three.js + Effects + Rapier -->
   <script type="module">
     import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
     import { OrbitControls } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js";
@@ -143,10 +173,11 @@
       await RAPIER.init();
       scene = new THREE.Scene();
       camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      camera.position.z = 4;
+      camera.position.z = window.innerWidth < 768 ? 6 : 4;
 
       renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       document.body.appendChild(renderer.domElement);
 
       const renderScene = new RenderPass(scene, camera);
@@ -160,7 +191,7 @@
 
       scene.add(new THREE.HemisphereLight(0x00bbff, 0xaa00ff, 0.5));
       controls = new OrbitControls(camera, renderer.domElement);
-      controls.enableZoom = false;
+      controls.enableZoom = window.innerWidth > 768;
 
       world = new RAPIER.World({ x: 0, y: 0, z: 0 });
       for (let i = 0; i < 100; i++) {
