@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>404 - Page Not Found</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=VT323&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
-  html, body {
-    margin: 0; padding: 0;
-    height: 100%;
-    background: linear-gradient(135deg, #00ffc8, #ff00ea);
-    font-family: 'Orbitron', monospace, sans-serif;
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff00cc, #3333ff);
     color: #00ffea;
+    font-family: 'VT323', monospace, monospace;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,128 +20,111 @@
     user-select: none;
   }
 
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background:
-      radial-gradient(circle at 20% 30%, #00ffea55, transparent 40%),
-      radial-gradient(circle at 80% 70%, #ff00ea55, transparent 40%);
-    animation: pulse 6s infinite alternate;
-    z-index: 0;
-  }
-
-  @keyframes pulse {
-    0% { filter: brightness(0.7); }
-    100% { filter: brightness(1.1); }
-  }
-
-  main {
-    position: relative;
-    z-index: 1;
+  .container {
     text-align: center;
-    max-width: 500px;
-    background: rgba(0,0,0,0.4);
+    max-width: 600px;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.6);
     border: 2px solid #00ffea;
-    border-radius: 16px;
-    padding: 40px 30px;
-    box-shadow: 0 0 30px #ff00ea88, 0 0 50px #00ffea88;
+    box-shadow:
+      0 0 10px #00ffea,
+      0 0 20px #ff00cc,
+      0 0 30px #3333ff;
+    position: relative;
   }
 
   h1 {
-    font-size: 5rem;
-    margin: 0 0 10px;
+    font-size: 6rem;
+    margin: 0 0 0.2rem 0;
     text-shadow:
-      0 0 8px #00ffea,
-      0 0 16px #00ffea,
-      0 0 24px #ff00ea;
-    letter-spacing: 4px;
+      0 0 5px #ff00cc,
+      0 0 10px #00ffea,
+      0 0 20px #3333ff;
+    animation: glitch 2s infinite;
   }
 
   p {
-    font-family: 'VT323', monospace;
-    font-size: 1.4rem;
-    margin: 20px 0 40px;
-    color: #00ffea;
-    text-shadow: 0 0 5px #00ffea99;
+    font-size: 1.5rem;
+    margin: 1rem 0 2rem 0;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px #00ffea;
   }
 
-  a.home-link {
+  a {
     display: inline-block;
-    text-decoration: none;
-    color: #ff00ea;
+    color: #ff00cc;
     font-weight: bold;
-    font-size: 1.2rem;
-    border: 2px solid #ff00ea;
-    padding: 12px 28px;
-    border-radius: 30px;
-    transition: 
-      background-color 0.3s ease,
-      color 0.3s ease,
-      box-shadow 0.3s ease;
-    box-shadow: 0 0 10px #ff00eaaa;
+    text-decoration: none;
+    border: 2px solid #ff00cc;
+    padding: 0.7rem 1.5rem;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
   }
 
-  a.home-link:hover,
-  a.home-link:focus {
-    background-color: #ff00ea;
+  a:hover {
+    background: #ff00cc;
     color: #000;
-    box-shadow: 0 0 25px #ff00eaee;
+    box-shadow:
+      0 0 15px #ff00cc,
+      0 0 30px #ff00cc;
   }
 
-  /* Glitch effect on "404" */
-  h1.glitch {
-    position: relative;
-    color: #00ffea;
-  }
-  h1.glitch::before,
-  h1.glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    opacity: 0.8;
-    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-  }
-  h1.glitch::before {
-    left: 2px;
-    text-shadow: -2px 0 #ff00ea;
-    animation: glitchTop 2s infinite linear alternate-reverse;
-  }
-  h1.glitch::after {
-    left: -2px;
-    top: 2px;
-    text-shadow: -2px 0 #00ffea;
-    clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
-    animation: glitchBottom 3s infinite linear alternate-reverse;
-  }
-
-  @keyframes glitchTop {
-    0% { transform: translate(0, 0); }
-    20% { transform: translate(-3px, 2px); }
-    40% { transform: translate(-2px, -2px); }
-    60% { transform: translate(3px, 0); }
-    80% { transform: translate(2px, 2px); }
-    100% { transform: translate(0, 0); }
+  /* Glitch effect */
+  @keyframes glitch {
+    0% {
+      text-shadow:
+        2px 0 #ff00cc,
+        -2px 0 #00ffea;
+    }
+    20% {
+      text-shadow:
+        -2px 0 #ff00cc,
+        2px 0 #00ffea;
+    }
+    40% {
+      text-shadow:
+        2px 0 #ff00cc,
+        -2px 0 #00ffea;
+    }
+    60% {
+      text-shadow:
+        -2px 0 #ff00cc,
+        2px 0 #00ffea;
+    }
+    80% {
+      text-shadow:
+        2px 0 #ff00cc,
+        -2px 0 #00ffea;
+    }
+    100% {
+      text-shadow:
+        -2px 0 #ff00cc,
+        2px 0 #00ffea;
+    }
   }
 
-  @keyframes glitchBottom {
-    0% { transform: translate(0, 0); }
-    20% { transform: translate(3px, -2px); }
-    40% { transform: translate(2px, 2px); }
-    60% { transform: translate(-3px, 0); }
-    80% { transform: translate(-2px, -2px); }
-    100% { transform: translate(0, 0); }
+  /* Flicker effect on text */
+  @keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+      opacity: 1;
+    }
+    20%, 22%, 24%, 55% {
+      opacity: 0.4;
+    }
   }
 
+  p {
+    animation: flicker 3s infinite;
+  }
 </style>
 </head>
 <body>
-<main>
-  <h1 class="glitch" data-text="404">404</h1>
-  <p>Oops, looks like the data stream hit a dead zone.<br />
-  This page is lost in the cyber waves — but the code never lies.</p>
-  <a href="/" class="home-link" aria-label="Go back to homepage">Dive back home</a>
-</main>
+  <div class="container">
+    <h1>404</h1>
+    <p>System glitch detected.<br />Data lost in the void.</p>
+    <a href="/">Return to Home Base</a>
+  </div>
 </body>
 </html>
