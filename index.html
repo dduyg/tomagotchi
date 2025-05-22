@@ -3,106 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>404 - Lost in the Code</title>
+  <title>404 | Page Not Found</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
     body {
       margin: 0;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      background: linear-gradient(135deg, #1a1a1a 0%, #3d0066 100%);
       color: #f0f0f0;
-      font-family: 'Press Start 2P', monospace;
+      font-family: 'Share Tech Mono', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
       text-align: center;
-      overflow: hidden;
-    }
-
-    .glitch {
-      font-size: 3rem;
-      position: relative;
-      color: #fff;
-    }
-
-    .glitch::before,
-    .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      width: 100%;
-      overflow: hidden;
-    }
-
-    .glitch::before {
-      animation: glitchTop 2s infinite;
-      color: #ff00c8;
-      top: -2px;
-    }
-
-    .glitch::after {
-      animation: glitchBottom 2s infinite;
-      color: #00fff9;
-      top: 2px;
-    }
-
-    @keyframes glitchTop {
-      0% { clip: rect(0, 9999px, 0, 0); }
-      5% { clip: rect(0, 9999px, 30px, 0); }
-      10% { clip: rect(0, 9999px, 0, 0); }
-      15% { clip: rect(10px, 9999px, 50px, 0); }
-      20% { clip: rect(0, 9999px, 0, 0); }
-    }
-
-    @keyframes glitchBottom {
-      0% { clip: rect(0, 9999px, 0, 0); }
-      5% { clip: rect(40px, 9999px, 70px, 0); }
-      10% { clip: rect(0, 9999px, 0, 0); }
-      15% { clip: rect(20px, 9999px, 60px, 0); }
-      20% { clip: rect(0, 9999px, 0, 0); }
-    }
-
-    .container {
-      padding: 4rem 1rem;
     }
 
     .logo {
-      max-width: 120px;
-      margin-bottom: 2rem;
-      animation: float 6s ease-in-out infinite;
+      width: 100px;
+      height: auto;
+      margin-bottom: 20px;
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+    h1 {
+      font-size: 5em;
+      color: #ff66cc;
+      text-shadow: 0 0 10px #ff66cc, 0 0 20px #9933ff;
+      animation: glitch 1s infinite;
+    }
+
+    p {
+      font-size: 1.3em;
+      color: #ccc;
+      margin-top: -20px;
     }
 
     a {
-      display: inline-block;
-      margin-top: 2rem;
+      margin-top: 30px;
+      padding: 10px 20px;
+      color: #00ffff;
       text-decoration: none;
-      color: #0ff;
-      border: 2px solid #0ff;
-      padding: 0.5rem 1rem;
-      transition: 0.3s;
+      border: 2px solid #00ffff;
+      border-radius: 4px;
+      transition: all 0.3s ease;
     }
 
     a:hover {
-      background: #0ff;
-      color: #000;
+      background: #00ffff;
+      color: #1a1a1a;
     }
 
-    .subtext {
-      margin-top: 1rem;
-      color: #ccc;
-      font-size: 0.75rem;
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img src="your-logo.png" alt="Logo" class="logo"/>
-    <div class="glitch" data-text="404 ERROR">404 ERROR</div>
-    <p>Looks like you've taken a wrong turn in the code matrix.</p>
-    <a href="/">Return Home</a>
-    <div class="subtext">Vaporwave glitch aesthetic engaged. System still stable.</div>
-  </div>
+  <img src="your-logo.png" alt="Logo" class="logo"/>
+  <h1>404</h1>
+  <p>Lost in the code matrix. This page doesn't exist.</p>
+  <a href="/">Return to Home</a>
 </body>
 </html>
