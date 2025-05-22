@@ -1,164 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>404 - Page Not Found</title>
-<style>
-  body {
-    margin: 0;
-    background: #0d0d1a;
-    color: #00fff7;
-    font-family: 'Press Start 2P', monospace;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    user-select: none;
-    flex-direction: column;
-    text-align: center;
-  }
-  
-    .glitch {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 - Lost in the Code</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Press Start 2P', monospace;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: #f5f5f5;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100vh;
+      background-image: url('https://media.giphy.com/media/jpbnoe3UIa8TU8LM13/giphy.gif');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.65);
+      padding: 2rem;
+      border-radius: 12px;
+      margin: 2rem;
+      box-shadow: 0 0 20px #ff00c8, 0 0 30px #00ffff;
+    }
+
+    h1 {
       font-size: 3rem;
-      position: relative;
-      color: #fff;
+      color: #00ffff;
+      text-shadow: 2px 2px #ff00c8;
+      margin-bottom: 1rem;
     }
-    .glitch::before,
-    .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      width: 100%;
-      overflow: hidden;
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 2rem;
     }
-    .glitch::before {
-      animation: glitchTop 2s infinite;
+
+    a {
+      text-decoration: none;
       color: #ff00c8;
-      top: -2px;
-    }
-    .glitch::after {
-      animation: glitchBottom 2s infinite;
-      color: #00fff9;
-      top: 2px;
-    }
-    @keyframes glitchTop {
-      0% { clip: rect(0, 9999px, 0, 0); }
-      5% { clip: rect(0, 9999px, 30px, 0); }
-      10% { clip: rect(0, 9999px, 0, 0); }
-      15% { clip: rect(10px, 9999px, 50px, 0); }
-      20% { clip: rect(0, 9999px, 0, 0); }
-    }
-    @keyframes glitchBottom {
-      0% { clip: rect(0, 9999px, 0, 0); }
-      5% { clip: rect(40px, 9999px, 70px, 0); }
-      10% { clip: rect(0, 9999px, 0, 0); }
-      15% { clip: rect(20px, 9999px, 60px, 0); }
-      20% { clip: rect(0, 9999px, 0, 0); }
+      border: 2px solid #00ffff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
     }
 
-  h2 {
-    font-size: 1rem;
-    margin: 0.2em 0 1.5em;
-    color: #00fff7;
-    text-shadow: 2px 0 #ff0055, -2px 0 #00eaff;
-  }
-
-  a.home-link {
-    color: #ff3ca6;
-    text-decoration: none;
-    font-size: 0.9rem;
-    border: 2px solid #ff3ca6;
-    padding: 0.75em 2em;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    letter-spacing: 0.1em;
-  }
-  a.home-link:hover {
-    background: #ff3ca6;
-    color: #0d0d1a;
-    box-shadow:
-      0 0 10px #ff3ca6,
-      0 0 40px #ff3ca6,
-      0 0 80px #ff3ca6;
-  }
-
-  /* Glitch animation */
-  @keyframes glitch {
-    0% {
-      text-shadow: 
-        2px 0 #ff0055,
-        -2px 0 #00eaff;
-      transform: translate(0);
+    a:hover {
+      background-color: #00ffff;
+      color: #0f0c29;
     }
-    20% {
-      text-shadow:
-        2px 2px #ff0055,
-        -2px -2px #00eaff;
-      transform: translate(-2px, 1px);
-    }
-    40% {
-      text-shadow:
-        -2px -2px #ff0055,
-        2px 2px #00eaff;
-      transform: translate(2px, -1px);
-    }
-    60% {
-      text-shadow:
-        2px -2px #ff0055,
-        -2px 2px #00eaff;
-      transform: translate(-1px, 2px);
-    }
-    80% {
-      text-shadow:
-        -2px 2px #ff0055,
-        2px -2px #00eaff;
-      transform: translate(1px, -2px);
-    }
-    100% {
-      text-shadow:
-        2px 0 #ff0055,
-        -2px 0 #00eaff;
-      transform: translate(0);
-    }
-  }
-
-  /* Background glitch flicker */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0.02),
-      rgba(255, 255, 255, 0.02) 1px,
-      transparent 2px,
-      transparent 4px
-    );
-    pointer-events: none;
-    animation: flicker 0.15s infinite;
-  }
-  @keyframes flicker {
-    0%, 100% {opacity: 0.05;}
-    50% {opacity: 0.15;}
-  }
-
-  p.message {
-    max-width: 450px;
-    margin: 0 auto 2em;
-    font-size: 0.85rem;
-    letter-spacing: 0.04em;
-  }
-</style>
+  </style>
 </head>
 <body>
-  <div class="glitch" data-text="404 ERROR">404 ERROR</div>
-  <h2>DATA CORRUPTION DETECTED</h2>
-  <p class="message">
-    Looks like the page you’re searching for got lost in the matrix.  
-    Don’t panic—rewind your steps and try again.
-  </p>
-  <a href="/" class="home-link">RETURN TO HOME</a>
+  <div class="overlay">
+    <h1>404: SYSTEM MALFUNCTION</h1>
+    <p>You’ve jacked into a node that doesn’t exist.<br>
+    This path echoes through the datastream, but there's nothing here... yet.</p>
+    <a href="/">Return to Mainframe</a>
+  </div>
 </body>
 </html>
