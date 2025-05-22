@@ -4,21 +4,19 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LiminalLoop</title>
-<link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
 <style>
   body {
     margin: 0;
-    background: #0d0d1a;
-    color: #00fff7;
-    font-family: "Ubuntu Mono", monospace;
-    height: 100vh;
+    background: radial-gradient(ellipse at center, #0f0f1a 0%, #000000 100%);
+    font-family: 'Orbitron', monospace;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    height: 100vh;
     overflow: hidden;
-    user-select: none;
+    color: #ffffffcc;
+
     flex-direction: column;
-    text-align: center;
   }
 
   h2 {
@@ -26,85 +24,6 @@
     margin: 0.2em 0 1.5em;
     color: #00fff7;
     text-shadow: 2px 0 #ff0055, -2px 0 #00eaff;
-  }
-
-  a.home-link {
-    color: #ff3ca6;
-    text-decoration: none;
-    font-size: 0.9rem;
-    border: 2px solid #ff3ca6;
-    padding: 0.75em 2em;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    letter-spacing: 0.1em;
-  }
-  a.home-link:hover {
-    background: #ff3ca6;
-    color: #0d0d1a;
-    box-shadow:
-      0 0 10px #ff3ca6,
-      0 0 40px #ff3ca6,
-      0 0 80px #ff3ca6;
-  }
-
-  /* Glitch animation */
-  @keyframes glitch {
-    0% {
-      text-shadow: 
-        2px 0 #ff0055,
-        -2px 0 #00eaff;
-      transform: translate(0);
-    }
-    20% {
-      text-shadow:
-        2px 2px #ff0055,
-        -2px -2px #00eaff;
-      transform: translate(-2px, 1px);
-    }
-    40% {
-      text-shadow:
-        -2px -2px #ff0055,
-        2px 2px #00eaff;
-      transform: translate(2px, -1px);
-    }
-    60% {
-      text-shadow:
-        2px -2px #ff0055,
-        -2px 2px #00eaff;
-      transform: translate(-1px, 2px);
-    }
-    80% {
-      text-shadow:
-        -2px 2px #ff0055,
-        2px -2px #00eaff;
-      transform: translate(1px, -2px);
-    }
-    100% {
-      text-shadow:
-        2px 0 #ff0055,
-        -2px 0 #00eaff;
-      transform: translate(0);
-    }
-  }
-
-  /* Background glitch flicker */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0.02),
-      rgba(255, 255, 255, 0.02) 1px,
-      transparent 2px,
-      transparent 4px
-    );
-    pointer-events: none;
-    animation: flicker 0.15s infinite;
-  }
-  @keyframes flicker {
-    0%, 100% {opacity: 0.05;}
-    50% {opacity: 0.15;}
   }
 
   p {
@@ -123,6 +42,5 @@
     Hiçbir zorluk, inançla çalışan bir milleti yolundan döndüremez.
     Unutmayın, umut varsa mücadele vardır; mücadele varsa zafer kaçınılmazdır.
   </p>
-  <a href="#🪢" class="home-link">NEURAL INTERFERENCE</a>
 </body>
 </html>
