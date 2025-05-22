@@ -5,189 +5,154 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>404 - Page Not Found</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+  /* Vaporwave color palette */
+  :root {
+    --bg-color: #0f0c29;
+    --gradient-start: #302b63;
+    --gradient-end: #24243e;
+    --accent-pink: #ff6ec7;
+    --accent-cyan: #00ffe7;
+    --text-color: #ffffff;
+    --glitch-red: #ff00c8;
+    --glitch-cyan: #00fff9;
+  }
 
   body {
     margin: 0;
     height: 100vh;
-    background: linear-gradient(135deg, #ff77ff, #00ffff);
-    font-family: 'VT323', monospace;
-    color: #00ffe7;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: var(--text-color);
+    font-family: 'Press Start 2P', cursive, monospace;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     overflow: hidden;
-    position: relative;
   }
 
   .glitch {
-    font-size: 5rem;
     position: relative;
-    color: #00ffe7;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    animation: flicker 3s infinite;
+    font-size: 4rem;
+    color: var(--accent-pink);
+    animation: glitchAnim 2s infinite;
+    user-select: none;
   }
-
   .glitch::before,
   .glitch::after {
     content: attr(data-text);
     position: absolute;
     left: 0;
-    right: 0;
-    opacity: 0.7;
-    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
   }
-
   .glitch::before {
+    animation: glitchAnimBefore 2s infinite;
+    color: var(--glitch-cyan);
+    clip-path: polygon(0 2%, 100% 2%, 100% 33%, 0 33%);
     left: 2px;
-    text-shadow: -2px 0 #ff00c8;
-    animation: glitchTop 2s infinite;
+    top: -2px;
+    opacity: 0.8;
   }
-
   .glitch::after {
+    animation: glitchAnimAfter 2s infinite;
+    color: var(--glitch-red);
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
     left: -2px;
-    text-shadow: -2px 0 #00fff7;
-    clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
-    animation: glitchBottom 2s infinite;
+    top: 2px;
+    opacity: 0.8;
   }
 
-  @keyframes glitchTop {
+  @keyframes glitchAnim {
     0% {
-      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-      transform: translate(0);
+      text-shadow: 2px 0 var(--glitch-red), -2px 0 var(--glitch-cyan);
     }
     20% {
-      clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%);
-      transform: translate(-2px, -2px);
+      text-shadow: -2px 0 var(--glitch-red), 2px 0 var(--glitch-cyan);
     }
     40% {
-      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-      transform: translate(2px, 2px);
+      text-shadow: 2px 0 var(--glitch-red), -2px 0 var(--glitch-cyan);
     }
     60% {
-      clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%);
-      transform: translate(-2px, -2px);
+      text-shadow: -2px 0 var(--glitch-red), 2px 0 var(--glitch-cyan);
     }
     80%, 100% {
-      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+      text-shadow: 2px 0 var(--glitch-red), -2px 0 var(--glitch-cyan);
+    }
+  }
+
+  @keyframes glitchAnimBefore {
+    0%, 100% {
+      clip-path: polygon(0 2%, 100% 2%, 100% 33%, 0 33%);
       transform: translate(0);
     }
+    50% {
+      clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%);
+      transform: translate(2px, -2px);
+    }
   }
-
-  @keyframes glitchBottom {
-    0% {
-      clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+  @keyframes glitchAnimAfter {
+    0%, 100% {
+      clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
       transform: translate(0);
     }
-    20% {
-      clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
-      transform: translate(2px, 2px);
-    }
-    40% {
-      clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
-      transform: translate(-2px, -2px);
-    }
-    60% {
-      clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
-      transform: translate(2px, 2px);
-    }
-    80%, 100% {
-      clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
-      transform: translate(0);
+    50% {
+      clip-path: polygon(0 75%, 100% 75%, 100% 85%, 0 85%);
+      transform: translate(-2px, 2px);
     }
   }
 
-  @keyframes flicker {
-    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-      opacity: 1;
-    }
-    20%, 22%, 24%, 55% {
-      opacity: 0.4;
-    }
-  }
-
-  .container {
-    text-align: center;
-    max-width: 600px;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.4);
-    border: 2px solid #00ffe7;
-    box-shadow: 0 0 20px #00ffe7;
-    border-radius: 12px;
-  }
-
-  .message {
+  .subtitle {
     font-size: 1.25rem;
-    margin: 20px 0 40px;
-    line-height: 1.5;
-    color: #ff77ff;
-    text-shadow:
-      0 0 5px #ff77ff,
-      0 0 10px #ff77ff,
-      0 0 20px #ff77ff;
+    margin-top: 1rem;
+    max-width: 600px;
+    text-align: center;
+    line-height: 1.4;
+    color: var(--accent-cyan);
+    text-shadow: 0 0 8px var(--accent-cyan);
   }
 
-  a.home-link {
-    display: inline-block;
-    font-family: 'VT323', monospace;
-    font-size: 1.2rem;
-    color: #00ffe7;
-    border: 2px solid #00ffe7;
-    padding: 12px 28px;
+  .home-link {
+    margin-top: 3rem;
+    font-size: 1rem;
     text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    color: var(--accent-pink);
+    border: 2px solid var(--accent-pink);
+    padding: 0.75rem 1.5rem;
     border-radius: 8px;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
-
-  a.home-link:hover {
-    background-color: #00ffe7;
-    color: #000;
-    box-shadow: 0 0 15px #00ffe7;
+  .home-link:hover {
+    background-color: var(--accent-pink);
+    color: var(--bg-color);
   }
 
-  /* Background glitch lines */
-  .glitch-lines {
-    position: absolute;
+  /* Background scanlines for glitch effect */
+  body::before {
+    content: "";
+    position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     pointer-events: none;
-    background:
+    background-image:
       repeating-linear-gradient(
         0deg,
-        rgba(0,255,231,0.07),
-        rgba(0,255,231,0.07) 2px,
-        transparent 3px,
-        transparent 6px
-      ),
-      repeating-linear-gradient(
-        90deg,
-        rgba(255,119,255,0.07),
-        rgba(255,119,255,0.07) 1px,
-        transparent 2px,
-        transparent 4px
+        rgba(255,255,255,0.03) 0,
+        rgba(255,255,255,0.03) 1px,
+        transparent 1px,
+        transparent 3px
       );
-    animation: glitchLinesMove 5s linear infinite;
-    mix-blend-mode: screen;
-  }
-
-  @keyframes glitchLinesMove {
-    0% {background-position: 0 0, 0 0;}
-    100% {background-position: 100% 100%, 100% 100%;}
+    z-index: 0;
   }
 </style>
 </head>
 <body>
-  <div class="glitch-lines"></div>
-  <div class="container">
-    <div class="glitch" data-text="404 ERROR">404 ERROR</div>
-    <div class="message">
-      Whoops, you just hit a glitch in the matrix.<br />
-      This page is lost in cyberspace.<br />
-      But don’t worry, the data streams back home...
-    </div>
-    <a class="home-link" href="/">RETURN TO HOME</a>
+  <div>
+    <h1 class="glitch" data-text="404 ERROR">404 ERROR</h1>
+    <p class="subtitle">
+      Oops, looks like the data stream you requested got corrupted.<br />
+      The code you’re trying to reach is lost in the glitchwaves of cyberspace.<br />
+      Try navigating back before the system overloads.
+    </p>
+    <a href="/" class="home-link" aria-label="Go back to homepage">Return to Home</a>
   </div>
 </body>
 </html>
