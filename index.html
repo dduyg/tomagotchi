@@ -5,153 +5,161 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>404 - Page Not Found</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Share+Tech+Mono&display=swap');
 
-  /* Seapunk colors and aesthetic */
+  /* Seapunk color palette */
   :root {
-    --neon-cyan: #00ffe7;
-    --neon-pink: #ff6fff;
-    --dark-bg: #0a0f21;
-    --glitch-pink: #ff33cc;
-    --glitch-cyan: #00ffff;
-    --text-shadow-glitch: 2px 0 var(--glitch-pink), -2px 0 var(--glitch-cyan);
+    --sea-blue: #00f5ff;
+    --neon-pink: #ff00d4;
+    --black-bg: #0a0a23;
+    --glitch-green: #00ff9c;
+    --purple: #9b00ff;
   }
 
   body {
     margin: 0;
-    background: linear-gradient(135deg, #031f2e 0%, #071425 100%);
-    color: var(--neon-cyan);
-    font-family: 'Orbitron', monospace, sans-serif;
     height: 100vh;
+    background: linear-gradient(135deg, var(--sea-blue), var(--purple));
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--sea-blue);
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
   }
 
   h1 {
-    font-size: 10rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 6rem;
     margin: 0;
     position: relative;
-    animation: glitch 1.5s infinite;
+    color: var(--neon-pink);
+    text-shadow:
+      0 0 5px var(--neon-pink),
+      0 0 10px var(--neon-pink),
+      0 0 20px var(--neon-pink),
+      0 0 40px var(--neon-pink);
+    animation: flicker 3s infinite alternate;
   }
 
-  @keyframes glitch {
-    0% {
-      text-shadow: 2px 0 var(--glitch-pink), -2px 0 var(--glitch-cyan);
-      transform: translate(0);
-    }
-    20% {
-      text-shadow: 2px 2px var(--glitch-pink), -2px -2px var(--glitch-cyan);
-      transform: translate(-2px, 2px);
-    }
-    40% {
-      text-shadow: -2px 0 var(--glitch-pink), 2px 0 var(--glitch-cyan);
-      transform: translate(2px, -2px);
-    }
-    60% {
-      text-shadow: 2px -2px var(--glitch-pink), -2px 2px var(--glitch-cyan);
-      transform: translate(-1px, 1px);
-    }
-    80% {
-      text-shadow: -2px 2px var(--glitch-pink), 2px -2px var(--glitch-cyan);
-      transform: translate(1px, -1px);
-    }
-    100% {
-      text-shadow: 2px 0 var(--glitch-pink), -2px 0 var(--glitch-cyan);
-      transform: translate(0);
-    }
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
   }
 
   p {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     max-width: 600px;
-    margin: 20px auto 40px;
-    color: #a0f0f8;
-    text-shadow: 0 0 5px #00ffe7;
-    line-height: 1.4;
+    text-align: center;
+    margin: 20px 0 40px;
+    color: var(--sea-blue);
+    text-shadow:
+      0 0 5px var(--sea-blue),
+      0 0 10px var(--sea-blue);
   }
 
   a.home-link {
-    color: var(--neon-pink);
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.6rem;
-    border: 2px solid var(--neon-pink);
-    padding: 10px 25px;
+    display: inline-block;
+    padding: 14px 30px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.3rem;
+    color: var(--black-bg);
+    background: var(--neon-pink);
     border-radius: 30px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    box-shadow: 0 0 10px var(--neon-pink);
+    text-decoration: none;
+    box-shadow:
+      0 0 10px var(--neon-pink),
+      0 0 20px var(--neon-pink),
+      0 0 40px var(--neon-pink);
+    transition: background 0.3s ease, color 0.3s ease;
   }
 
   a.home-link:hover {
-    background-color: var(--neon-pink);
-    color: var(--dark-bg);
-    box-shadow: 0 0 30px var(--neon-pink);
+    background: var(--glitch-green);
+    color: var(--black-bg);
+    box-shadow:
+      0 0 15px var(--glitch-green),
+      0 0 30px var(--glitch-green),
+      0 0 60px var(--glitch-green);
   }
 
-  /* subtle underwater animation */
-  .background-bubbles {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 0;
+  /* Glitch effect text */
+  .glitch {
+    position: relative;
+    color: var(--neon-pink);
   }
-
-  .bubble {
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
     position: absolute;
-    bottom: -50px;
-    background: radial-gradient(circle at center, #00ffe7 0%, transparent 70%);
-    border-radius: 50%;
-    opacity: 0.3;
-    animation: rise 8s linear infinite;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
   }
-
-  .bubble:nth-child(1) {
-    width: 40px; height: 40px;
-    left: 20%;
-    animation-delay: 0s;
+  .glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 var(--glitch-green);
+    animation: glitchTop 2s infinite linear alternate-reverse;
   }
-
-  .bubble:nth-child(2) {
-    width: 25px; height: 25px;
-    left: 50%;
-    animation-delay: 2.5s;
-    animation-duration: 6s;
+  .glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 var(--neon-pink);
+    animation: glitchBottom 2s infinite linear alternate-reverse;
   }
-
-  .bubble:nth-child(3) {
-    width: 15px; height: 15px;
-    left: 80%;
-    animation-delay: 1s;
-    animation-duration: 7s;
-  }
-
-  @keyframes rise {
+  @keyframes glitchTop {
     0% {
-      transform: translateY(0) scale(1);
-      opacity: 0.3;
+      clip: rect(0, 900px, 0, 0);
+    }
+    10% {
+      clip: rect(0, 900px, 20px, 0);
+      transform: translate(-2px, -2px);
+    }
+    20% {
+      clip: rect(10px, 900px, 40px, 0);
+      transform: translate(2px, 0);
+    }
+    30% {
+      clip: rect(5px, 900px, 30px, 0);
+      transform: translate(-1px, 2px);
+    }
+    40% {
+      clip: rect(0, 900px, 0, 0);
     }
     100% {
-      transform: translateY(-110vh) scale(1.3);
-      opacity: 0;
+      clip: rect(0, 900px, 0, 0);
     }
   }
-
+  @keyframes glitchBottom {
+    0% {
+      clip: rect(0, 900px, 0, 0);
+    }
+    10% {
+      clip: rect(40px, 900px, 60px, 0);
+      transform: translate(2px, 2px);
+    }
+    20% {
+      clip: rect(50px, 900px, 80px, 0);
+      transform: translate(-2px, 0);
+    }
+    30% {
+      clip: rect(45px, 900px, 70px, 0);
+      transform: translate(1px, -2px);
+    }
+    40% {
+      clip: rect(0, 900px, 0, 0);
+    }
+    100% {
+      clip: rect(0, 900px, 0, 0);
+    }
+  }
 </style>
 </head>
 <body>
-  <div class="background-bubbles">
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-    <div class="bubble"></div>
-  </div>
-  
-  <h1>404</h1>
-  <p>Whoa, you've drifted into the data void — this page doesn't exist in our neon ocean of code.</p>
-  <a href="/" class="home-link">Surf back to Home</a>
+  <h1 class="glitch" data-text="404">404</h1>
+  <p>Oops, looks like you’ve dived into uncharted data streams. This page is lost in the cyber ocean, but don’t worry — the coder tide can take you home.</p>
+  <a href="/" class="home-link">Return to Safe Shore</a>
 </body>
 </html>
