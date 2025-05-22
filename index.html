@@ -3,138 +3,111 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>404 - Lost in the Code</title>
+  <title>404 Not Found | CyberCoder</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
     body {
       margin: 0;
-      padding: 0;
-      background: radial-gradient(circle at center, #0ff 0%, #00f 100%);
-      color: #fff;
-      font-family: 'Press Start 2P', monospace;
+      background: #0f0f0f;
+      color: #0ff;
+      font-family: 'Orbitron', monospace;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
       overflow: hidden;
-      text-align: center;
-      animation: glitchBG 10s infinite alternate;
     }
 
-    @keyframes glitchBG {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
+    .logo {
+      font-size: 2.5rem;
+      color: #f0f;
+      text-shadow: 0 0 10px #f0f, 0 0 20px #0ff;
+      letter-spacing: 3px;
+      margin-bottom: 30px;
     }
 
     .glitch {
-      font-size: 2em;
+      font-size: 6rem;
       position: relative;
-      display: inline-block;
-      color: #fff;
+      color: #0ff;
+      text-shadow: 0 0 2px #0ff, 0 0 5px #00f;
+      animation: flicker 2s infinite;
     }
 
     .glitch::before,
     .glitch::after {
-      content: attr(data-text);
+      content: '404';
       position: absolute;
       left: 0;
       width: 100%;
-      overflow: hidden;
+      opacity: 0.6;
     }
 
     .glitch::before {
-      top: -2px;
+      animation: glitchTop 2s infinite;
       color: #f0f;
-      z-index: -1;
-      animation: glitchTop 1s infinite linear alternate-reverse;
+      top: -3px;
     }
 
     .glitch::after {
-      top: 2px;
+      animation: glitchBottom 2s infinite;
       color: #0ff;
-      z-index: -2;
-      animation: glitchBottom 1s infinite linear alternate-reverse;
+      top: 3px;
     }
 
     @keyframes glitchTop {
-      0% { clip: rect(0, 9999px, 0, 0); }
-      100% { clip: rect(0, 9999px, 100%, 0); }
+      0%, 100% { left: 0; }
+      20% { left: -2px; }
+      40% { left: 2px; }
+      60% { left: -1px; }
+      80% { left: 1px; }
     }
 
     @keyframes glitchBottom {
-      0% { clip: rect(0, 9999px, 0, 0); }
-      100% { clip: rect(100%, 9999px, 100%, 0); }
+      0%, 100% { left: 0; }
+      25% { left: 2px; }
+      50% { left: -2px; }
+      75% { left: 1px; }
     }
 
-    .container {
-      padding: 10vh 2rem;
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+      }
+      20%, 22%, 24%, 55% {
+        opacity: 0.4;
+      }
     }
 
-    a {
-      display: inline-block;
-      margin-top: 2rem;
-      padding: 0.5rem 1.5rem;
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid #fff;
-      color: #fff;
+    .message {
+      margin-top: 10px;
+      font-size: 1.5rem;
+      color: #ccc;
+    }
+
+    .home-link {
+      margin-top: 30px;
       text-decoration: none;
-      text-transform: uppercase;
-      transition: all 0.3s ease;
+      padding: 12px 24px;
+      background: #111;
+      color: #0ff;
+      border: 1px solid #0ff;
+      border-radius: 6px;
+      transition: background 0.3s, color 0.3s;
     }
 
-    a:hover {
-      background: #fff;
+    .home-link:hover {
+      background: #0ff;
       color: #000;
-    }
-
-    .matrix {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="glitch" data-text="404: LOST IN THE CODE">404: LOST IN THE CODE</div>
-    <p style="margin-top: 2rem;">
-      You’ve fallen out of the mainframe.<br>
-      The data stream was corrupted.<br>
-      But don’t panic, the homepage awaits.
-    </p>
-    <a href="/">Return to the Main Terminal</a>
-  </div>
-
-  <canvas class="matrix"></canvas>
-  <script>
-    const canvas = document.querySelector('.matrix');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const chars = '0101010101011010010011100101'.split('');
-    const fontSize = 14;
-    const columns = canvas.width / fontSize;
-    const drops = Array.from({ length: columns }).fill(1);
-
-    function drawMatrix() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#0f0';
-      ctx.font = fontSize + 'px monospace';
-
-      drops.forEach((y, i) => {
-        const text = chars[Math.floor(Math.random() * chars.length)];
-        const x = i * fontSize;
-        ctx.fillText(text, x, y * fontSize);
-
-        if (y * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-        drops[i]++;
-      });
-    }
-
-    setInterval(drawMatrix, 50);
-  </script>
+  <div class="logo">CYBER<span style="color:#0ff;">CODER</span></div>
+  <div class="glitch">404</div>
+  <div class="message">Page not found in this dimension.</div>
+  <a href="/" class="home-link">Back to Home</a>
 </body>
 </html>
