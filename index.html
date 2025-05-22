@@ -2,119 +2,107 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>404 | Not Found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 - Lost in the Code</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
     body {
-      background: linear-gradient(135deg, #ff00c8, #00ffe5);
-      color: #fff;
-      font-family: 'Orbitron', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      margin: 0;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: #f0f0f0;
+      font-family: 'Press Start 2P', monospace;
+      text-align: center;
       overflow: hidden;
     }
 
-    .logo {
-      width: 120px;
-      height: 120px;
-      background: url('your-logo.png') no-repeat center center;
-      background-size: contain;
-      margin-bottom: 30px;
-    }
-
     .glitch {
-      font-size: 72px;
+      font-size: 3rem;
       position: relative;
-      color: white;
+      color: #fff;
     }
 
     .glitch::before,
     .glitch::after {
-      content: '404';
+      content: attr(data-text);
       position: absolute;
       left: 0;
+      width: 100%;
+      overflow: hidden;
     }
 
     .glitch::before {
-      color: #f0f;
-      animation: glitch-left 1s infinite;
+      animation: glitchTop 2s infinite;
+      color: #ff00c8;
+      top: -2px;
     }
 
     .glitch::after {
-      color: #0ff;
-      animation: glitch-right 1s infinite;
+      animation: glitchBottom 2s infinite;
+      color: #00fff9;
+      top: 2px;
     }
 
-    @keyframes glitch-left {
-      0% { transform: translateX(0); }
-      20% { transform: translateX(-2px); }
-      40% { transform: translateX(-4px); }
-      60% { transform: translateX(-2px); }
-      80% { transform: translateX(-1px); }
-      100% { transform: translateX(0); }
+    @keyframes glitchTop {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      5% { clip: rect(0, 9999px, 30px, 0); }
+      10% { clip: rect(0, 9999px, 0, 0); }
+      15% { clip: rect(10px, 9999px, 50px, 0); }
+      20% { clip: rect(0, 9999px, 0, 0); }
     }
 
-    @keyframes glitch-right {
-      0% { transform: translateX(0); }
-      20% { transform: translateX(2px); }
-      40% { transform: translateX(4px); }
-      60% { transform: translateX(2px); }
-      80% { transform: translateX(1px); }
-      100% { transform: translateX(0); }
+    @keyframes glitchBottom {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      5% { clip: rect(40px, 9999px, 70px, 0); }
+      10% { clip: rect(0, 9999px, 0, 0); }
+      15% { clip: rect(20px, 9999px, 60px, 0); }
+      20% { clip: rect(0, 9999px, 0, 0); }
     }
 
-    p {
-      font-size: 20px;
-      margin: 20px 0;
-      text-align: center;
+    .container {
+      padding: 4rem 1rem;
+    }
+
+    .logo {
+      max-width: 120px;
+      margin-bottom: 2rem;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
     a {
-      color: #fff;
-      padding: 10px 20px;
-      border: 2px solid #fff;
+      display: inline-block;
+      margin-top: 2rem;
       text-decoration: none;
-      transition: all 0.3s ease;
+      color: #0ff;
+      border: 2px solid #0ff;
+      padding: 0.5rem 1rem;
+      transition: 0.3s;
     }
 
     a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
+      background: #0ff;
+      color: #000;
     }
 
-    .scanlines {
-      pointer-events: none;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.05),
-        rgba(255,255,255,0.05) 1px,
-        transparent 1px,
-        transparent 2px
-      );
-      z-index: 2;
+    .subtext {
+      margin-top: 1rem;
+      color: #ccc;
+      font-size: 0.75rem;
     }
   </style>
 </head>
 <body>
-  <div class="logo"></div>
-  <div class="glitch">404</div>
-  <p>Whoa. You broke into the wrong subnet.</p>
-  <a href="/">Return to Home</a>
-  <div class="scanlines"></div>
+  <div class="container">
+    <img src="your-logo.png" alt="Logo" class="logo"/>
+    <div class="glitch" data-text="404 ERROR">404 ERROR</div>
+    <p>Looks like you've taken a wrong turn in the code matrix.</p>
+    <a href="/">Return Home</a>
+    <div class="subtext">Vaporwave glitch aesthetic engaged. System still stable.</div>
+  </div>
 </body>
 </html>
