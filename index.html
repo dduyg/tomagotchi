@@ -5,124 +5,153 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>404 - Page Not Found</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+  /* Seapunk colors and aesthetic */
+  :root {
+    --neon-cyan: #00ffe7;
+    --neon-pink: #ff6fff;
+    --dark-bg: #0a0f21;
+    --glitch-pink: #ff33cc;
+    --glitch-cyan: #00ffff;
+    --text-shadow-glitch: 2px 0 var(--glitch-pink), -2px 0 var(--glitch-cyan);
+  }
 
   body {
     margin: 0;
-    background: linear-gradient(135deg, #1de9b6 0%, #2979ff 100%);
-    color: #00ffea;
-    font-family: 'Orbitron', monospace, monospace;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    background: linear-gradient(135deg, #031f2e 0%, #071425 100%);
+    color: var(--neon-cyan);
+    font-family: 'Orbitron', monospace, sans-serif;
     height: 100vh;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     text-align: center;
+    overflow: hidden;
   }
 
   h1 {
-    font-size: 6rem;
+    font-size: 10rem;
     margin: 0;
-    text-shadow: 0 0 20px #00ffea, 0 0 40px #00ffd8, 0 0 80px #00ffd8;
+    position: relative;
+    animation: glitch 1.5s infinite;
+  }
+
+  @keyframes glitch {
+    0% {
+      text-shadow: 2px 0 var(--glitch-pink), -2px 0 var(--glitch-cyan);
+      transform: translate(0);
+    }
+    20% {
+      text-shadow: 2px 2px var(--glitch-pink), -2px -2px var(--glitch-cyan);
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      text-shadow: -2px 0 var(--glitch-pink), 2px 0 var(--glitch-cyan);
+      transform: translate(2px, -2px);
+    }
+    60% {
+      text-shadow: 2px -2px var(--glitch-pink), -2px 2px var(--glitch-cyan);
+      transform: translate(-1px, 1px);
+    }
+    80% {
+      text-shadow: -2px 2px var(--glitch-pink), 2px -2px var(--glitch-cyan);
+      transform: translate(1px, -1px);
+    }
+    100% {
+      text-shadow: 2px 0 var(--glitch-pink), -2px 0 var(--glitch-cyan);
+      transform: translate(0);
+    }
   }
 
   p {
-    font-size: 1.5rem;
-    margin: 1rem 0 3rem;
+    font-size: 1.8rem;
     max-width: 600px;
+    margin: 20px auto 40px;
+    color: #a0f0f8;
+    text-shadow: 0 0 5px #00ffe7;
     line-height: 1.4;
-    text-shadow: 0 0 10px #00ffea;
   }
 
-  a {
-    color: #ff41f4;
-    font-weight: bold;
-    font-size: 1.25rem;
+  a.home-link {
+    color: var(--neon-pink);
     text-decoration: none;
-    border: 2px solid #ff41f4;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 10px #ff41f4;
+    font-weight: bold;
+    font-size: 1.6rem;
+    border: 2px solid var(--neon-pink);
+    padding: 10px 25px;
+    border-radius: 30px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 0 10px var(--neon-pink);
   }
 
-  a:hover {
-    background: #ff41f4;
-    color: #1a1a1a;
-    box-shadow: 0 0 30px #ff41f4;
+  a.home-link:hover {
+    background-color: var(--neon-pink);
+    color: var(--dark-bg);
+    box-shadow: 0 0 30px var(--neon-pink);
   }
 
-  /* Data-coder style glitch effect */
-  @keyframes glitch {
+  /* subtle underwater animation */
+  .background-bubbles {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .bubble {
+    position: absolute;
+    bottom: -50px;
+    background: radial-gradient(circle at center, #00ffe7 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: rise 8s linear infinite;
+  }
+
+  .bubble:nth-child(1) {
+    width: 40px; height: 40px;
+    left: 20%;
+    animation-delay: 0s;
+  }
+
+  .bubble:nth-child(2) {
+    width: 25px; height: 25px;
+    left: 50%;
+    animation-delay: 2.5s;
+    animation-duration: 6s;
+  }
+
+  .bubble:nth-child(3) {
+    width: 15px; height: 15px;
+    left: 80%;
+    animation-delay: 1s;
+    animation-duration: 7s;
+  }
+
+  @keyframes rise {
     0% {
-      clip: rect(42px, 9999px, 44px, 0);
-      transform: skew(0.5deg);
-    }
-    5% {
-      clip: rect(10px, 9999px, 15px, 0);
-      transform: skew(0.8deg);
-    }
-    10% {
-      clip: rect(85px, 9999px, 90px, 0);
-      transform: skew(0.3deg);
-    }
-    15% {
-      clip: rect(42px, 9999px, 44px, 0);
-      transform: skew(0.5deg);
-    }
-    20% {
-      clip: rect(10px, 9999px, 15px, 0);
-      transform: skew(0.8deg);
-    }
-    25% {
-      clip: rect(85px, 9999px, 90px, 0);
-      transform: skew(0.3deg);
-    }
-    30% {
-      clip: rect(42px, 9999px, 44px, 0);
-      transform: skew(0.5deg);
+      transform: translateY(0) scale(1);
+      opacity: 0.3;
     }
     100% {
-      clip: rect(42px, 9999px, 44px, 0);
-      transform: skew(0.5deg);
+      transform: translateY(-110vh) scale(1.3);
+      opacity: 0;
     }
   }
 
-  .glitch {
-    position: relative;
-    display: inline-block;
-    color: #00ffea;
-  }
-
-  .glitch::before,
-  .glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    overflow: hidden;
-    color: #ff41f4;
-    clip: rect(0, 900px, 0, 0);
-  }
-
-  .glitch::before {
-    animation: glitch 2s infinite linear alternate-reverse;
-    left: 2px;
-    text-shadow: -2px 0 #ff41f4;
-  }
-
-  .glitch::after {
-    animation: glitch 1.5s infinite linear alternate;
-    left: -2px;
-    text-shadow: 2px 0 #00ffea;
-  }
 </style>
 </head>
 <body>
-  <h1 class="glitch" data-text="404">404</h1>
-  <p>Looks like you’ve stumbled into the digital void. This page has been lost in the data streams, but don’t worry — your code’s still solid.</p>
-  <a href="/">Return to Basecamp</a>
+  <div class="background-bubbles">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+  
+  <h1>404</h1>
+  <p>Whoa, you've drifted into the data void — this page doesn't exist in our neon ocean of code.</p>
+  <a href="/" class="home-link">Surf back to Home</a>
 </body>
 </html>
