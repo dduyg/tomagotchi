@@ -3,117 +3,110 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>404 – Lost in the Data Stream</title>
+  <title>404 - Signal Lost</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
 
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: linear-gradient(145deg, #0f0f0f, #1a1a1a);
-      color: #00ffe0;
+      background: radial-gradient(ellipse at center, #0f0f1a 0%, #000000 100%);
+      color: #00ffff;
+      font-family: 'Orbitron', monospace;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
       overflow: hidden;
     }
 
+    .container {
+      text-align: center;
+      padding: 20px;
+    }
+
     .logo {
       font-size: 2.5rem;
-      text-shadow: 0 0 8px #00ffe0, 0 0 15px #00ffe0;
+      font-weight: 700;
+      color: #ff00ff;
+      text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
       margin-bottom: 20px;
-      letter-spacing: 2px;
+    }
+
+    h1 {
+      font-size: 6rem;
+      margin: 0;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+    }
+
+    p {
+      font-size: 1.25rem;
+      color: #ffffffcc;
+      margin: 20px 0;
+    }
+
+    a {
+      color: #00ffcc;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      border: 1px solid #00ffcc;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    a:hover {
+      background: #00ffcc;
+      color: #000;
     }
 
     .glitch {
-      font-size: 6rem;
       position: relative;
-      color: #00ffe0;
-      text-shadow: 0 0 5px #00ffe0, 0 0 10px #00ffe0;
+      display: inline-block;
     }
 
     .glitch::before,
     .glitch::after {
-      content: '404';
+      content: attr(data-text);
       position: absolute;
       left: 0;
       width: 100%;
       overflow: hidden;
-      color: #ff00c8;
-      clip: rect(0, 900px, 0, 0);
+      color: #ff00ff;
+      z-index: -1;
     }
 
     .glitch::before {
-      animation: glitchTop 2s infinite linear;
+      top: -2px;
+      text-shadow: 2px 0 red;
+      animation: glitch 2s infinite linear alternate-reverse;
     }
 
     .glitch::after {
-      animation: glitchBottom 2s infinite linear;
+      top: 2px;
+      text-shadow: -2px 0 blue;
+      animation: glitch 1.5s infinite linear alternate-reverse;
     }
 
-    @keyframes glitchTop {
-      0% {
-        clip: rect(0, 9999px, 0, 0);
-      }
-      5% {
-        clip: rect(0, 9999px, 20px, 0);
-        transform: translate(-3px, -3px);
-      }
-      10% {
-        clip: rect(0, 9999px, 0, 0);
-        transform: none;
-      }
-      100% {
-        clip: rect(0, 9999px, 0, 0);
-      }
-    }
-
-    @keyframes glitchBottom {
-      0% {
-        clip: rect(0, 9999px, 0, 0);
-      }
-      5% {
-        clip: rect(60px, 9999px, 100px, 0);
-        transform: translate(3px, 3px);
-      }
-      10% {
-        clip: rect(0, 9999px, 0, 0);
-        transform: none;
-      }
-      100% {
-        clip: rect(0, 9999px, 0, 0);
-      }
-    }
-
-    .message {
-      font-size: 1.2rem;
-      margin-top: 10px;
-      color: #a0fdfa;
-      text-align: center;
-    }
-
-    a.home-link {
-      margin-top: 30px;
-      padding: 10px 20px;
-      border: 2px solid #00ffe0;
-      text-decoration: none;
-      color: #00ffe0;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    a.home-link:hover {
-      background: #00ffe0;
-      color: #000;
+    @keyframes glitch {
+      0% { clip-path: inset(0 0 90% 0); }
+      10% { clip-path: inset(10% 0 85% 0); }
+      20% { clip-path: inset(15% 0 70% 0); }
+      30% { clip-path: inset(30% 0 50% 0); }
+      40% { clip-path: inset(50% 0 30% 0); }
+      50% { clip-path: inset(70% 0 20% 0); }
+      60% { clip-path: inset(90% 0 0 0); }
+      100% { clip-path: inset(0 0 90% 0); }
     }
   </style>
 </head>
 <body>
-  <div class="logo">[ CYBERDATA NODE ]</div>
-  <div class="glitch">404</div>
-  <div class="message">You’ve fallen out of the data stream.<br />The page you're looking for doesn't exist.</div>
-  <a class="home-link" href="/">Reconnect to Home</a>
+  <div class="container">
+    <div class="logo glitch" data-text="DATA//BREACH">DATA//BREACH</div>
+    <h1>404</h1>
+    <p>Signal Lost. The path you're coding through doesn't exist.</p>
+    <a href="/">Return to Home Terminal</a>
+  </div>
 </body>
 </html>
