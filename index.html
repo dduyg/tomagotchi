@@ -1,161 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>404 - Data Not Found</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-
-  /* Colors and theme */
-  :root {
-    --neon-pink: #ff3ca6;
-    --neon-cyan: #00fff7;
-    --dark-bg: #0b0b17;
-    --glitch-red: #ff004f;
-    --glitch-cyan: #00fff7;
-  }
-
-  body {
-    margin: 0;
-    background: var(--dark-bg);
-    color: var(--neon-pink);
-    font-family: 'VT323', monospace, monospace;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    user-select: none;
-  }
-
-  h1 {
-    font-size: 12rem;
-    position: relative;
-    color: var(--neon-pink);
-    text-transform: uppercase;
-    letter-spacing: 1rem;
-  }
-
-  /* Glitch effect */
-  h1::before, h1::after {
-    content: "404";
-    position: absolute;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    clip: rect(0, 900px, 0, 0);
-  }
-  h1::before {
-    animation: glitchTop 2s infinite linear alternate-reverse;
-    color: var(--glitch-red);
-    z-index: -1;
-  }
-  h1::after {
-    animation: glitchBottom 2s infinite linear alternate-reverse;
-    color: var(--glitch-cyan);
-    z-index: -2;
-  }
-
-  @keyframes glitchTop {
-    0% {
-      clip: rect(0, 900px, 10px, 0);
-      transform: translate(-3px, -3px);
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>404 | Lost in the Code</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #2e003e, #0f0c29);
+      color: #00ffe0;
+      font-family: 'Press Start 2P', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
     }
-    50% {
-      clip: rect(5px, 900px, 20px, 0);
-      transform: translate(3px, 3px);
-    }
-    100% {
-      clip: rect(0, 900px, 10px, 0);
-      transform: translate(-3px, -3px);
-    }
-  }
 
-  @keyframes glitchBottom {
-    0% {
-      clip: rect(20px, 900px, 40px, 0);
-      transform: translate(3px, 3px);
+    .glitch-container {
+      text-align: center;
     }
-    50% {
-      clip: rect(15px, 900px, 30px, 0);
-      transform: translate(-3px, -3px);
+
+    .glitch {
+      font-size: 3rem;
+      position: relative;
+      color: #00ffe0;
+      animation: flicker 2s infinite;
     }
-    100% {
-      clip: rect(20px, 900px, 40px, 0);
-      transform: translate(3px, 3px);
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
     }
-  }
 
-  p {
-    font-size: 1.8rem;
-    max-width: 700px;
-    text-align: center;
-    margin: 0 1rem 3rem;
-    color: var(--neon-cyan);
-    text-shadow:
-      0 0 5px var(--neon-cyan),
-      0 0 10px var(--neon-cyan);
-  }
-
-  a.home-link {
-    font-size: 2rem;
-    padding: 1rem 3rem;
-    border: 3px solid var(--neon-pink);
-    color: var(--neon-pink);
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.2rem;
-    transition: all 0.3s ease;
-    box-shadow:
-      0 0 10px var(--neon-pink),
-      0 0 20px var(--neon-pink);
-  }
-
-  a.home-link:hover {
-    background: var(--neon-pink);
-    color: var(--dark-bg);
-    box-shadow:
-      0 0 20px var(--neon-pink),
-      0 0 40px var(--neon-pink);
-  }
-
-  /* Background glitch lines */
-  .glitch-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    background:
-      repeating-linear-gradient(
-        180deg,
-        transparent,
-        transparent 2px,
-        rgba(255, 0, 255, 0.1) 3px
-      );
-    animation: scanline 1.5s linear infinite;
-    z-index: -10;
-  }
-
-  @keyframes scanline {
-    0% {
-      background-position: 0 0;
+    .glitch::before {
+      top: -2px;
+      color: #ff00c8;
+      z-index: -1;
+      animation: glitchTop 2s infinite linear;
     }
-    100% {
-      background-position: 0 100%;
+
+    .glitch::after {
+      top: 2px;
+      color: #00f0ff;
+      z-index: -2;
+      animation: glitchBottom 1.5s infinite linear;
     }
-  }
-</style>
+
+    @keyframes glitchTop {
+      0% { clip: rect(0, 9999px, 0, 0); }
+      10% { clip: rect(0, 9999px, 10px, 0); }
+      20% { clip: rect(5px, 9999px, 15px, 0); }
+      30% { clip: rect(10px, 9999px, 20px, 0); }
+      100% { clip: rect(0, 9999px, 0, 0); }
+    }
+
+    @keyframes glitchBottom {
+      0% { clip: rect(10px, 9999px, 10px, 0); }
+      15% { clip: rect(20px, 9999px, 25px, 0); }
+      30% { clip: rect(5px, 9999px, 10px, 0); }
+      100% { clip: rect(10px, 9999px, 10px, 0); }
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+      52% { opacity: 0.5; }
+      54% { opacity: 1; }
+    }
+
+    .message {
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #ffffffcc;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 2rem;
+      text-decoration: none;
+      color: #ff00c8;
+      background: #00ffe0;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      transition: background 0.3s ease;
+    }
+
+    a:hover {
+      background: #ff00c8;
+      color: #0f0c29;
+    }
+  </style>
 </head>
 <body>
-  <div class="glitch-bg"></div>
-  <h1>404</h1>
-  <p>Oops! The data stream has been interrupted.<br>
-     Looks like the code got lost in the glitch matrix.<br>
-     But don't worry, you can reboot your journey from here.</p>
-  <a href="/" class="home-link" aria-label="Go back to homepage">Return Home</a>
+  <div class="glitch-container">
+    <div class="glitch" data-text="404: SIGNAL LOST">404: SIGNAL LOST</div>
+    <div class="message">
+      You've glitched out of the mainframe.<br>
+      The page you're looking for doesn't exist — or it's been consumed by the void.<br>
+      Return to reality and try again.
+    </div>
+    <a href="/">Return to Home</a>
+  </div>
 </body>
 </html>
