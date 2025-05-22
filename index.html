@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>404 - Lost in the Code</title>
+  <meta charset="UTF-8">
+  <title>404 | Lost in the Code</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Press+Start+2P&display=swap');
-
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-      color: #f8f8f8;
-      font-family: 'Press Start 2P', monospace;
+      background: linear-gradient(135deg, #ff00c8, #00ffe7);
+      background-size: 400% 400%;
+      animation: gradientMove 10s ease infinite;
+      color: #fff;
+      font-family: 'Press Start 2P', cursive;
       overflow: hidden;
     }
 
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     .glitch {
-      font-size: 3em;
-      color: #ff00ff;
+      font-size: 3rem;
       position: relative;
-      animation: flicker 2s infinite;
+      color: white;
       text-align: center;
-      margin-top: 100px;
+      top: 20vh;
+      animation: glitch 1s infinite;
     }
 
     .glitch::before,
@@ -30,95 +36,79 @@
       content: attr(data-text);
       position: absolute;
       left: 0;
-      width: 100%;
-      overflow: hidden;
+      right: 0;
     }
 
     .glitch::before {
-      top: -2px;
-      left: 2px;
-      color: #00fff7;
-      animation: glitchTop 1.5s infinite linear;
+      animation: glitchTop 1s infinite;
+      color: #ff00c8;
+      z-index: -1;
     }
 
     .glitch::after {
-      top: 2px;
-      left: -2px;
-      color: #ff004f;
-      animation: glitchBottom 1.5s infinite linear;
+      animation: glitchBottom 1s infinite;
+      color: #00ffe7;
+      z-index: -2;
+    }
+
+    @keyframes glitch {
+      0% { transform: none; }
+      20% { transform: skew(-5deg); }
+      40% { transform: skew(5deg); }
+      60% { transform: skew(-3deg); }
+      80% { transform: skew(3deg); }
+      100% { transform: none; }
     }
 
     @keyframes glitchTop {
-      0% { clip-path: inset(0 0 85% 0); }
-      50% { clip-path: inset(10% 0 60% 0); }
-      100% { clip-path: inset(5% 0 70% 0); }
+      0% { transform: translate(-2px, -2px); }
+      50% { transform: translate(2px, -1px); }
+      100% { transform: translate(-2px, -2px); }
     }
 
     @keyframes glitchBottom {
-      0% { clip-path: inset(90% 0 0 0); }
-      50% { clip-path: inset(40% 0 20% 0); }
-      100% { clip-path: inset(60% 0 10% 0); }
-    }
-
-    @keyframes flicker {
-      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-        opacity: 1;
-      }
-      20%, 24%, 55% {
-        opacity: 0.2;
-      }
+      0% { transform: translate(2px, 2px); }
+      50% { transform: translate(-2px, 1px); }
+      100% { transform: translate(2px, 2px); }
     }
 
     .message {
       text-align: center;
-      font-size: 1.1em;
-      margin: 30px auto;
+      margin-top: 5vh;
+      font-size: 1rem;
+      padding: 0 1rem;
+    }
+
+    .message p {
       max-width: 600px;
-      padding: 0 20px;
-      color: #ffffffcc;
+      margin: 0 auto;
     }
 
-    .home-link {
-      display: block;
-      text-align: center;
-      margin-top: 40px;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1em;
-      color: #00fff7;
+    a.button {
+      display: inline-block;
+      margin-top: 3rem;
+      padding: 0.8rem 2rem;
+      background: #111;
+      color: #fff;
       text-decoration: none;
-      transition: transform 0.2s ease-in-out;
+      border: 2px solid #fff;
+      transition: background 0.3s;
     }
 
-    .home-link:hover {
-      color: #ff00ff;
-      transform: scale(1.1);
-    }
-
-    .scanlines {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: repeating-linear-gradient(
-        0deg,
-        rgba(255,255,255,0.03),
-        rgba(255,255,255,0.03) 1px,
-        transparent 1px,
-        transparent 2px
-      );
-      pointer-events: none;
+    a.button:hover {
+      background: #ff00c8;
+      border-color: #00ffe7;
+      color: #000;
     }
   </style>
 </head>
 <body>
-  <div class="glitch" data-text="404 ERROR">404 ERROR</div>
+  <div class="glitch" data-text="404: FILE NOT FOUND">404: FILE NOT FOUND</div>
   <div class="message">
-    You just hit a digital dead-end, traveler.<br><br>
-    The code ran into the void, and this page doesn't exist—or maybe it never did. <br>
-    Reality is bending, pixels are glitching... but don't worry, the mainframe still holds.
+    <p>You’ve stepped outside the grid.</p>
+    <p>The data stream lost your request somewhere between the neon clouds and the ghost servers. But don’t worry—your code hasn’t crashed.</p>
+    <p>Backtrack through the synthwave and reboot your journey.</p>
+    <a href="/" class="button">Return to Home Base</a>
   </div>
-  <a class="home-link" href="/">RETURN TO THE MAINFRAME</a>
-  <div class="scanlines"></div>
 </body>
 </html>
