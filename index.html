@@ -1,110 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>404 | Lost in the Stream</title>
+  <meta charset="UTF-8">
+  <title>404 - Lost in the Code</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
     body {
       margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      font-family: 'Share Tech Mono', monospace;
+      color: #f8f8f2;
+      overflow: hidden;
       height: 100vh;
-      background: linear-gradient(135deg, #1a1a1a, #0f0c29, #302b63, #24243e);
-      background-size: 600% 600%;
-      animation: gradientShift 20s ease infinite;
-      color: #e0e0e0;
-      font-family: 'Orbitron', monospace;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      overflow: hidden;
+      animation: bgShift 10s infinite alternate;
     }
 
-    @keyframes gradientShift {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
-
-    h1 {
-      font-size: 8rem;
-      color: #ff00cc;
-      text-shadow: 0 0 8px #ff00cc, 0 0 12px #00ffff;
-      margin: 0;
-    }
-
-    p {
-      font-size: 1.5rem;
-      margin: 20px;
-      color: #c0f0ff;
-      text-align: center;
-      max-width: 80%;
-      line-height: 1.6;
-    }
-
-    a {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 12px 24px;
-      background: #ff00cc;
-      color: #0f0c29;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-      box-shadow: 0 0 12px #ff00cc;
-      transition: transform 0.2s ease;
-    }
-
-    a:hover {
-      transform: scale(1.05);
+    @keyframes bgShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
     }
 
     .glitch {
+      font-size: 4rem;
       position: relative;
       color: #fff;
-      font-size: 4rem;
+      text-shadow: 2px 2px 0 #ff00c8, -2px -2px 0 #00fff9;
+      animation: glitch 1.5s infinite;
     }
 
-    .glitch::before, .glitch::after {
-      content: attr(data-text);
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px #ff00c8, -2px -2px #00fff9; }
+      20% { text-shadow: -2px 0 #00fff9, 2px 2px #ff00c8; }
+      40% { text-shadow: 2px -2px #ff00c8, -2px 2px #00fff9; }
+      60% { text-shadow: -2px -2px #ff00c8, 2px 0 #00fff9; }
+      80% { text-shadow: 2px 2px #ff00c8, -2px -2px #00fff9; }
+      100% { text-shadow: -2px 2px #00fff9, 2px -2px #ff00c8; }
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      text-align: center;
+      max-width: 600px;
+      color: #dcdcdc;
+    }
+
+    a.home-link {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      background: #00fff9;
+      color: #0f0c29;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    a.home-link:hover {
+      background: #ff00c8;
+      color: #fff;
+    }
+
+    .scanlines {
       position: absolute;
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
-      overflow: hidden;
-      color: #ff00cc;
-      clip: rect(0, 900px, 0, 0);
-    }
-
-    .glitch::before {
-      animation: glitchTop 2s infinite linear alternate-reverse;
-    }
-
-    .glitch::after {
-      color: #00ffff;
-      animation: glitchBot 2s infinite linear alternate-reverse;
-    }
-
-    @keyframes glitchTop {
-      0% { clip: rect(0, 9999px, 0, 0); }
-      5% { clip: rect(5px, 9999px, 20px, 0); }
-      10% { clip: rect(10px, 9999px, 5px, 0); }
-      15% { clip: rect(3px, 9999px, 25px, 0); }
-      20% { clip: rect(0, 9999px, 0, 0); }
-    }
-
-    @keyframes glitchBot {
-      0% { clip: rect(0, 9999px, 0, 0); }
-      5% { clip: rect(25px, 9999px, 5px, 0); }
-      10% { clip: rect(15px, 9999px, 30px, 0); }
-      15% { clip: rect(20px, 9999px, 10px, 0); }
-      20% { clip: rect(0, 9999px, 0, 0); }
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.02),
+        rgba(255,255,255,0.02) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      pointer-events: none;
+      z-index: 1;
     }
   </style>
 </head>
 <body>
-  <h1 class="glitch" data-text="404">404</h1>
-  <p>You've gone off-grid... The page you were decoding is lost in the vapor. Maybe it was never written. Maybe it was encrypted into the void. But you're still connected.</p>
-  <a href="/">Back to Homebase</a>
+  <div class="glitch">404 - PAGE NOT FOUND</div>
+  <div class="message">
+    The code broke, reality fractured, and now you're floating in the digital void.<br>
+    But don't panic — you're still in the matrix.<br><br>
+    Let's jack you back into the mainframe.
+  </div>
+  <a class="home-link" href="/">Return to Home</a>
+  <div class="scanlines"></div>
 </body>
 </html>
