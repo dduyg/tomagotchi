@@ -1,101 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>404 | Lost in the Code</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Press+Start+2P&display=swap');
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>404 - Page Not Found</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-      color: #f8f8f2;
-      font-family: 'Orbitron', monospace;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-    }
+  /* Vaporwave glitch colors */
+  :root {
+    --neon-pink: #ff3ca6;
+    --neon-cyan: #00fff7;
+    --dark-bg: #0d0d1a;
+    --glitch-red: #ff0055;
+    --glitch-blue: #00eaff;
+    --text-shadow1: 2px 0 var(--glitch-red);
+    --text-shadow2: -2px 0 var(--glitch-blue);
+  }
 
-    h1 {
-      font-size: 6rem;
-      margin: 0;
-      color: #ff6ec7;
-      text-shadow: 0 0 10px #00ffff, 0 0 20px #ff6ec7;
-      animation: glitch 2s infinite;
-    }
+  body {
+    margin: 0;
+    background: var(--dark-bg);
+    color: var(--neon-cyan);
+    font-family: 'Press Start 2P', monospace;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    user-select: none;
+    flex-direction: column;
+    text-align: center;
+  }
 
-    p {
-      font-size: 1.5rem;
-      color: #f8f8f2;
-      max-width: 80%;
-      text-align: center;
-      margin: 1.5rem 0;
-    }
+  h1 {
+    font-size: 3rem;
+    position: relative;
+    color: var(--neon-pink);
+    animation: glitch 2s infinite;
+    margin: 0.5em 0 0.2em;
+  }
 
-    a {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background: #00ffff;
-      color: #1a1a1a;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 5px;
-      box-shadow: 0 0 10px #00ffff;
-      transition: background 0.3s ease;
-    }
+  h2 {
+    font-size: 1rem;
+    margin: 0.2em 0 1.5em;
+    color: var(--neon-cyan);
+    text-shadow: var(--text-shadow1), var(--text-shadow2);
+  }
 
-    a:hover {
-      background: #ff6ec7;
-      box-shadow: 0 0 15px #ff6ec7;
-    }
+  a.home-link {
+    color: var(--neon-pink);
+    text-decoration: none;
+    font-size: 0.9rem;
+    border: 2px solid var(--neon-pink);
+    padding: 0.75em 2em;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.1em;
+  }
+  a.home-link:hover {
+    background: var(--neon-pink);
+    color: var(--dark-bg);
+    box-shadow:
+      0 0 10px var(--neon-pink),
+      0 0 40px var(--neon-pink),
+      0 0 80px var(--neon-pink);
+  }
 
-    @keyframes glitch {
-      0% {
-        transform: translate(0);
-      }
-      20% {
-        transform: translate(-2px, 2px);
-      }
-      40% {
-        transform: translate(2px, -2px);
-      }
-      60% {
-        transform: translate(-1px, 1px);
-      }
-      80% {
-        transform: translate(1px, -1px);
-      }
-      100% {
-        transform: translate(0);
-      }
+  /* Glitch animation */
+  @keyframes glitch {
+    0% {
+      text-shadow: 
+        2px 0 var(--glitch-red),
+        -2px 0 var(--glitch-blue);
+      transform: translate(0);
     }
+    20% {
+      text-shadow:
+        2px 2px var(--glitch-red),
+        -2px -2px var(--glitch-blue);
+      transform: translate(-2px, 1px);
+    }
+    40% {
+      text-shadow:
+        -2px -2px var(--glitch-red),
+        2px 2px var(--glitch-blue);
+      transform: translate(2px, -1px);
+    }
+    60% {
+      text-shadow:
+        2px -2px var(--glitch-red),
+        -2px 2px var(--glitch-blue);
+      transform: translate(-1px, 2px);
+    }
+    80% {
+      text-shadow:
+        -2px 2px var(--glitch-red),
+        2px -2px var(--glitch-blue);
+      transform: translate(1px, -2px);
+    }
+    100% {
+      text-shadow:
+        2px 0 var(--glitch-red),
+        -2px 0 var(--glitch-blue);
+      transform: translate(0);
+    }
+  }
 
-    .scanlines {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: repeating-linear-gradient(
-        0deg,
-        rgba(255, 255, 255, 0.03),
-        rgba(255, 255, 255, 0.03) 1px,
-        transparent 1px,
-        transparent 3px
-      );
-      pointer-events: none;
-    }
-  </style>
+  /* Background glitch flicker */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 2px,
+      transparent 4px
+    );
+    pointer-events: none;
+    animation: flicker 0.15s infinite;
+  }
+
+  @keyframes flicker {
+    0%, 100% {opacity: 0.05;}
+    50% {opacity: 0.15;}
+  }
+
+  p.message {
+    max-width: 450px;
+    margin: 0 auto 2em;
+    font-size: 0.85rem;
+    color: var(--neon-cyan);
+    letter-spacing: 0.04em;
+  }
+</style>
 </head>
 <body>
-  <div class="scanlines"></div>
-  <h1>404</h1>
-  <p>You're adrift in the datastream.<br />The file you seek is lost in the void, maybe it never existed...</p>
-  <a href="/">Return to Reality (Home)</a>
+  <h1>404 ERROR</h1>
+  <h2>DATA CORRUPTION DETECTED</h2>
+  <p class="message">
+    Looks like the page you’re searching for got lost in the matrix.  
+    Don’t panic—rewind your steps and try again.
+  </p>
+  <a href="/" class="home-link">RETURN TO HOME</a>
 </body>
 </html>
