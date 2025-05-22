@@ -1,155 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LiminalLoop</title>
-  <link href="https://fonts.googleapis.com/css2?family=Geo&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: radial-gradient(circle at center, #0ff 0%, #00f 100%);
-      color: #fff;
-      font-family: "Varela Round", sans-serif;
-      overflow: hidden;
-      text-align: center;
-      animation: glitchBG 10s infinite alternate;
-    }
-    @keyframes glitchBG {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 100% 50%; }
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>404 - Page Not Found</title>
+<style>
+  body {
+    margin: 0;
+    background: #0d0d1a;
+    color: #00fff7;
+    font-family: 'Press Start 2P', monospace;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    user-select: none;
+    flex-direction: column;
+    text-align: center;
+  }
 
-    .container {
-      padding: 15vh 2rem 0;
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
+  h2 {
+    font-size: 1rem;
+    margin: 0.2em 0 1.5em;
+    color: #00fff7;
+    text-shadow: 2px 0 #ff0055, -2px 0 #00eaff;
+  }
 
-   h1 {
-      font-family: "Geo", monospace;
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-      position: relative;
-    }
-    h1::before,
-    h1::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      width: 100%;
-      overflow: hidden;
-    }
-    h1::before {
-      animation: glitchTop 2s infinite;
-      color: #ff00c8;
-      top: -2px;
-    }
-    h1::after {
-      animation: glitchBottom 2s infinite;
-      color: #00ff00;
-      top: 2px;
-    }
-    @keyframes glitchTop {
-      0% { clip: rect(0, 9999px, 0, 0); }
-      5% { clip: rect(0, 9999px, 30px, 0); }
-      10% { clip: rect(0, 9999px, 0, 0); }
-      15% { clip: rect(10px, 9999px, 50px, 0); }
-      20% { clip: rect(0, 9999px, 0, 0); }
-    }
-    @keyframes glitchBottom {
-      0% { clip: rect(0, 9999px, 0, 0); }
-      5% { clip: rect(40px, 9999px, 70px, 0); }
-      10% { clip: rect(0, 9999px, 0, 0); }
-      15% { clip: rect(20px, 9999px, 60px, 0); }
-      20% { clip: rect(0, 9999px, 0, 0); }
-    }
+  a.home-link {
+    color: #ff3ca6;
+    text-decoration: none;
+    font-size: 0.9rem;
+    border: 2px solid #ff3ca6;
+    padding: 0.75em 2em;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    letter-spacing: 0.1em;
+  }
+  a.home-link:hover {
+    background: #ff3ca6;
+    color: #0d0d1a;
+    box-shadow:
+      0 0 10px #ff3ca6,
+      0 0 40px #ff3ca6,
+      0 0 80px #ff3ca6;
+  }
 
-    a {
-      display: inline-block;
-      font-family: "Geo", monospace;
-      margin-top: 2rem;
-      padding: 1rem 3rem;
-      background-color: rgba(255, 255, 255, 0.1);
-      border: 2px solid;
-      color: inherit;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.4rem;
-      position: relative;
-      z-index: 2;
-      overflow: hidden;
+  /* Glitch animation */
+  @keyframes glitch {
+    0% {
+      text-shadow: 
+        2px 0 #ff0055,
+        -2px 0 #00eaff;
+      transform: translate(0);
     }
-    a::before {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(120deg, #ff43a4, #00fff7, #ff43a4);
-      transition: left 0.7s ease;
-      z-index: -1;
+    20% {
+      text-shadow:
+        2px 2px #ff0055,
+        -2px -2px #00eaff;
+      transform: translate(-2px, 1px);
     }
-    a:hover::before {
-      left: 0;
+    40% {
+      text-shadow:
+        -2px -2px #ff0055,
+        2px 2px #00eaff;
+      transform: translate(2px, -1px);
     }
+    60% {
+      text-shadow:
+        2px -2px #ff0055,
+        -2px 2px #00eaff;
+      transform: translate(-1px, 2px);
+    }
+    80% {
+      text-shadow:
+        -2px 2px #ff0055,
+        2px -2px #00eaff;
+      transform: translate(1px, -2px);
+    }
+    100% {
+      text-shadow:
+        2px 0 #ff0055,
+        -2px 0 #00eaff;
+      transform: translate(0);
+    }
+  }
 
-    .matrix {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-    }
-  </style>
+  /* Background glitch flicker */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 2px,
+      transparent 4px
+    );
+    pointer-events: none;
+    animation: flicker 0.15s infinite;
+  }
+  @keyframes flicker {
+    0%, 100% {opacity: 0.05;}
+    50% {opacity: 0.15;}
+  }
+
+  p.message {
+    max-width: 450px;
+    margin: 0 auto 2em;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <h1 data-text="DATA//BREACH">DATA//BREACH</h1>
-    <p>
-      Türk milleti, tarih boyunca hür yaşamış ve hür yaşayacaktır.
-      Hürriyet ve istiklâl benim karakterimdir. Milletin istiklâlini 
-      yine milletin azim ve kararı kurtaracaktır. İnançla yürüyenler,
-      en karanlık yolları aydınlığa çevirir.
-    </p>
-    <a href="#">DATA.WAV</a>
-  </div>
-
-  <canvas class="matrix"></canvas>
-  <script>
-    const canvas = document.querySelector('.matrix');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const chars = '0101010101011010010011100101'.split('');
-    const fontSize = 14;
-    const columns = canvas.width / fontSize;
-    const drops = Array.from({ length: columns }).fill(1);
-
-    function drawMatrix() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#0f0';
-      ctx.font = fontSize + 'px monospace';
-
-      drops.forEach((y, i) => {
-        const text = chars[Math.floor(Math.random() * chars.length)];
-        const x = i * fontSize;
-        ctx.fillText(text, x, y * fontSize);
-
-        if (y * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-        drops[i]++;
-      });
-    }
-
-    setInterval(drawMatrix, 50);
-  </script>
+  <h2>NEURAL INTERFERENCE</h2>
+  <p class="message">
+    Looks like the page you’re searching for got lost in the matrix.  
+    Don’t panic—rewind your steps and try again.
+  </p>
+  <a href="#🪢" class="home-link">RETURN TO HOME</a>
 </body>
 </html>
