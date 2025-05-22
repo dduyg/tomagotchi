@@ -3,82 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>404 | Data Corrupted</title>
+  <title>404 - Not Found</title>
   <style>
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+    * {
       margin: 0;
-      background: radial-gradient(circle, #0f0c29, #302b63, #24243e);
-      font-family: 'Courier New', Courier, monospace;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(ellipse at center, #0f0f0f 0%, #000000 100%);
       color: #00ffea;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      font-family: 'Share Tech Mono', monospace;
       height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
       overflow: hidden;
     }
-    .container {
-      text-align: center;
-      max-width: 600px;
-      padding: 20px;
-      border: 2px solid #00ffea;
-      border-radius: 15px;
-      box-shadow: 0 0 30px #00ffea;
-      background-color: rgba(0, 0, 0, 0.6);
-    }
-    .logo {
-      font-size: 2.5rem;
-      font-weight: bold;
-      color: #ff007c;
-      text-shadow: 0 0 10px #ff007c;
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-size: 3rem;
-      margin: 10px 0;
-      color: #00ffea;
-      text-shadow: 0 0 5px #00ffea;
-    }
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 30px;
-      color: #aaffff;
-    }
-    a {
-      color: #ff007c;
-      text-decoration: none;
-      font-weight: bold;
-      border: 2px solid #ff007c;
-      padding: 10px 20px;
-      border-radius: 10px;
-      transition: all 0.3s ease;
-    }
-    a:hover {
-      background: #ff007c;
-      color: #000;
-      box-shadow: 0 0 10px #ff007c;
-    }
+
     .glitch {
+      font-size: 3rem;
       color: #00ffea;
-      font-size: 4rem;
+      position: relative;
       animation: glitch 1s infinite;
     }
+
     @keyframes glitch {
-      0% { text-shadow: 2px 2px #ff007c; }
-      20% { text-shadow: -2px -2px #00ffea; }
-      40% { text-shadow: 2px -2px #ff007c; }
-      60% { text-shadow: -2px 2px #00ffea; }
-      80% { text-shadow: 2px 2px #ff007c; }
-      100% { text-shadow: -2px -2px #00ffea; }
+      0% {text-shadow: 2px 0 red, -2px 0 cyan;}
+      20% {text-shadow: -2px -1px red, 2px 1px cyan;}
+      40% {text-shadow: 2px 1px red, -2px -1px cyan;}
+      60% {text-shadow: -2px 0 red, 2px 0 cyan;}
+      80% {text-shadow: 2px -1px red, -2px 1px cyan;}
+      100% {text-shadow: -2px 1px red, 2px -1px cyan;}
+    }
+
+    h1 {
+      font-size: 8rem;
+      margin: 1rem 0;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      color: #ccc;
+    }
+
+    a {
+      font-size: 1.2rem;
+      color: #00ffea;
+      text-decoration: none;
+      border: 2px solid #00ffea;
+      padding: 0.5rem 1.2rem;
+      border-radius: 4px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    a:hover {
+      background: #00ffea;
+      color: #000;
+    }
+
+    .scanlines::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 255, 234, 0.03),
+        rgba(0, 255, 234, 0.03) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      pointer-events: none;
     }
   </style>
 </head>
-<body>
-  <div class="container">
-    <div class="logo">[404 C0D3R]</div>
-    <div class="glitch">404</div>
-    <h1>Data Not Found</h1>
-    <p>The signal's lost. Whatever you were searching for doesn't exist in this sector.</p>
-    <a href="/">Jack back to Home</a>
-  </div>
+<body class="scanlines">
+  <div class="glitch">NEURAL INTERFERENCE</div>
+  <h1>404</h1>
+  <p>The data stream you were tracing has vanished into the void.</p>
+  <a href="/">Return to Home Node</a>
 </body>
 </html>
