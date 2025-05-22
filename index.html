@@ -7,192 +7,187 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
-  /* Reset */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
   body {
-    background: linear-gradient(135deg, #2b0e7e, #ff43a4);
-    color: #00fff7;
-    font-family: 'VT323', monospace, monospace;
+    margin: 0;
     height: 100vh;
+    background: linear-gradient(135deg, #ff77ff, #00ffff);
+    font-family: 'VT323', monospace;
+    color: #00ffe7;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    user-select: none;
+    position: relative;
+  }
+
+  .glitch {
+    font-size: 5rem;
+    position: relative;
+    color: #00ffe7;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    animation: flicker 3s infinite;
+  }
+
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    right: 0;
+    opacity: 0.7;
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
+  }
+
+  .glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff00c8;
+    animation: glitchTop 2s infinite;
+  }
+
+  .glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 #00fff7;
+    clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+    animation: glitchBottom 2s infinite;
+  }
+
+  @keyframes glitchTop {
+    0% {
+      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+      transform: translate(0);
+    }
+    20% {
+      clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%);
+      transform: translate(-2px, -2px);
+    }
+    40% {
+      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+      transform: translate(2px, 2px);
+    }
+    60% {
+      clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%);
+      transform: translate(-2px, -2px);
+    }
+    80%, 100% {
+      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+      transform: translate(0);
+    }
+  }
+
+  @keyframes glitchBottom {
+    0% {
+      clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+      transform: translate(0);
+    }
+    20% {
+      clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+      transform: translate(2px, 2px);
+    }
+    40% {
+      clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+      transform: translate(-2px, -2px);
+    }
+    60% {
+      clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+      transform: translate(2px, 2px);
+    }
+    80%, 100% {
+      clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+      transform: translate(0);
+    }
+  }
+
+  @keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+      opacity: 1;
+    }
+    20%, 22%, 24%, 55% {
+      opacity: 0.4;
+    }
   }
 
   .container {
     text-align: center;
     max-width: 600px;
-    padding: 2rem;
-    position: relative;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid #00ffe7;
+    box-shadow: 0 0 20px #00ffe7;
+    border-radius: 12px;
   }
 
-  h1 {
-    font-size: 12rem;
-    line-height: 1;
-    color: #00fff7;
+  .message {
+    font-size: 1.25rem;
+    margin: 20px 0 40px;
+    line-height: 1.5;
+    color: #ff77ff;
     text-shadow:
-      1px 0 #ff43a4,
-      -1px 0 #ff43a4,
-      0 1px #ff43a4,
-      0 -1px #ff43a4;
-    animation: glitch 2s infinite;
-    user-select: none;
+      0 0 5px #ff77ff,
+      0 0 10px #ff77ff,
+      0 0 20px #ff77ff;
   }
 
-  @keyframes glitch {
-    0% {
-      text-shadow:
-        2px 0 #ff43a4,
-        -2px 0 #00fff7,
-        0 2px #ff43a4,
-        0 -2px #00fff7;
-      transform: skew(0deg);
-    }
-    20% {
-      text-shadow:
-        3px 0 #00fff7,
-        -3px 0 #ff43a4,
-        0 3px #00fff7,
-        0 -3px #ff43a4;
-      transform: skew(-5deg);
-    }
-    40% {
-      text-shadow:
-        1px 0 #ff43a4,
-        -1px 0 #00fff7,
-        0 1px #ff43a4,
-        0 -1px #00fff7;
-      transform: skew(3deg);
-    }
-    60% {
-      text-shadow:
-        2px 0 #00fff7,
-        -2px 0 #ff43a4,
-        0 2px #00fff7,
-        0 -2px #ff43a4;
-      transform: skew(-2deg);
-    }
-    80% {
-      text-shadow:
-        3px 0 #ff43a4,
-        -3px 0 #00fff7,
-        0 3px #ff43a4,
-        0 -3px #00fff7;
-      transform: skew(4deg);
-    }
-    100% {
-      text-shadow:
-        2px 0 #ff43a4,
-        -2px 0 #00fff7,
-        0 2px #ff43a4,
-        0 -2px #00fff7;
-      transform: skew(0deg);
-    }
-  }
-
-  p {
-    font-size: 1.5rem;
-    margin: 1rem 0 2rem;
-    letter-spacing: 0.05em;
-    text-shadow: 0 0 5px #ff43a4, 0 0 10px #00fff7;
-  }
-
-  a {
+  a.home-link {
     display: inline-block;
-    padding: 1rem 3rem;
-    border: 2px solid #00fff7;
-    color: #00fff7;
-    text-decoration: none;
-    font-weight: bold;
+    font-family: 'VT323', monospace;
     font-size: 1.2rem;
-    border-radius: 6px;
-    position: relative;
-    overflow: hidden;
+    color: #00ffe7;
+    border: 2px solid #00ffe7;
+    padding: 12px 28px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 8px;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-  a::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(120deg, #ff43a4, #00fff7, #ff43a4);
-    transition: left 0.5s ease;
-    z-index: -1;
-  }
-
-  a:hover::before {
-    left: 0;
-  }
-
-  a:hover {
+  a.home-link:hover {
+    background-color: #00ffe7;
     color: #000;
-    background-color: #00fff7;
+    box-shadow: 0 0 15px #00ffe7;
   }
 
-  /* Glitch scanline effect */
-  .scanlines {
+  /* Background glitch lines */
+  .glitch-lines {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
     pointer-events: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: repeating-linear-gradient(
-      180deg,
-      rgba(0,255,247,0.07) 0,
-      rgba(0,255,247,0.07) 1px,
-      transparent 2px,
-      transparent 4px
-    );
+    background:
+      repeating-linear-gradient(
+        0deg,
+        rgba(0,255,231,0.07),
+        rgba(0,255,231,0.07) 2px,
+        transparent 3px,
+        transparent 6px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        rgba(255,119,255,0.07),
+        rgba(255,119,255,0.07) 1px,
+        transparent 2px,
+        transparent 4px
+      );
+    animation: glitchLinesMove 5s linear infinite;
     mix-blend-mode: screen;
-    animation: scan 0.3s linear infinite;
   }
 
-  @keyframes scan {
-    0% {background-position: 0 0;}
-    100% {background-position: 0 4px;}
-  }
-
-  /* Glitch flicker bars */
-  .glitch-bar {
-    position: fixed;
-    width: 100%;
-    height: 3px;
-    background: #ff43a4;
-    opacity: 0.2;
-    animation: flicker 0.15s infinite alternate;
-  }
-  .glitch-bar:nth-child(2) {
-    top: 25vh;
-    animation-delay: 0.1s;
-  }
-  .glitch-bar:nth-child(3) {
-    top: 60vh;
-    animation-delay: 0.05s;
-  }
-  @keyframes flicker {
-    0% {opacity: 0.2;}
-    100% {opacity: 0.6;}
+  @keyframes glitchLinesMove {
+    0% {background-position: 0 0, 0 0;}
+    100% {background-position: 100% 100%, 100% 100%;}
   }
 </style>
 </head>
 <body>
-  <div class="container" role="main">
-    <h1>404</h1>
-    <p>ERROR: DATA CORRUPTED.<br>THE PAGE YOU SEEK IS LOST IN THE GLITCHES OF CYBERSPACE.</p>
-    <a href="/" aria-label="Return to homepage">REBOOT TO HOME</a>
+  <div class="glitch-lines"></div>
+  <div class="container">
+    <div class="glitch" data-text="404 ERROR">404 ERROR</div>
+    <div class="message">
+      Whoops, you just hit a glitch in the matrix.<br />
+      This page is lost in cyberspace.<br />
+      But don’t worry, the data streams back home...
+    </div>
+    <a class="home-link" href="/">RETURN TO HOME</a>
   </div>
-
-  <div class="scanlines"></div>
-  <div class="glitch-bar"></div>
-  <div class="glitch-bar"></div>
 </body>
 </html>
