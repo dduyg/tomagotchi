@@ -65,19 +65,34 @@
     a {
       display: inline-block;
       margin-top: 2rem;
-      padding: 0.5rem 1.5rem;
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid #fff;
-      color: #fff;
+      padding: 1rem 3rem;
+      border: 2px solid;
+      color: inherit;
       text-decoration: none;
-      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 1.2rem;
+      border-radius: 6px;
+      position: relative;
+      overflow: hidden;
       transition: all 0.3s ease;
     }
-
-    a:hover {
-      background: #fff;
-      color: #000;
+    a::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, #ff43a4, #00fff7, #ff43a4);
+      transition: left 0.5s ease;
+      z-index: -1;
     }
+    a:hover::before {
+      left: 0;
+    }
+    a:hover {
+      color: #000;
+      background-color: #fff;
+    }    
 
     .matrix {
       position: fixed;
