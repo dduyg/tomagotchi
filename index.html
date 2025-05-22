@@ -97,40 +97,33 @@
       z-index: -1;
     }
 
-    /* MOBILE STYLES */
+    /* Mobile responsive styles */
     @media (max-width: 768px) {
- 
-  .container {
-    flex-direction: column;
-  }
-  .sidebar, .main-content {
-    width: 100%;
-    padding: var(--gutter);
-    align-items: center;
-    text-align: center;
-  }
-  .sidebar {
-    padding: 1.5rem;
-  }
-  .logo {
-    font-size: 8rem;
-    margin-left: 0;
-  }
-  .description, .nav-links a, .footer, .division {
-    font-size: 0.75rem;
-    max-width: 90%;
-    margin: 0 auto;
-  }
-  .main-content {
-    font-size: 0.85rem;
-    padding: 2rem;
-  }
-  .logo {
-  font-size: clamp(4rem, 10vw, 20rem);
-}
-.description {
-  font-size: clamp(0.7rem, 1vw + 0.5rem, 1rem);
-}
+      .container {
+        flex-direction: column;
+        height: auto;
+      }
+      .sidebar,
+      .main-content {
+        width: 100%;
+        padding: var(--gutter);
+        text-align: center;
+        align-items: center;
+      }
+      .logo {
+        font-size: 6rem;
+        margin-left: 0;
+      }
+      .description,
+      .nav-links,
+      .footer,
+      .division {
+        align-items: center;
+        text-align: center;
+      }
+      .nav-links a {
+        margin: 4px 0;
+      }
     }
   </style>
 </head>
