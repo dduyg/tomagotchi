@@ -7,18 +7,40 @@
 <style>
   body {
     margin: 0;
-    background: radial-gradient(ellipse at center, #0f0f1a 0%, #000000 100%);
+    background: linear-gradient(135deg, #2b0e7e, #ff43a4);
+    color: #00fff7;
     font-family: 'Orbitron', monospace;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
     overflow: hidden;
-    color: #ffffffcc;
-
     flex-direction: column;
+    user-select: none;
   }
 
+  /* Glitch scanline effect */
+  .scanlines {
+    pointer-events: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: repeating-linear-gradient(
+      180deg,
+      rgba(0,255,247,0.07) 0,
+      rgba(0,255,247,0.07) 1px,
+      transparent 2px,
+      transparent 4px
+    );
+    mix-blend-mode: screen;
+    animation: scan 0.3s linear infinite;
+  }
+  @keyframes scan {
+    0% {background-position: 0 0;}
+    100% {background-position: 0 4px;}
+  }
+  
   h2 {
     font-size: 1.6rem;
     margin: 0.2em 0 1.5em;
@@ -35,6 +57,7 @@
 </style>
 </head>
 <body>
+  <div class="scanlines"></div>
   <h2>Lost in the Void</h2>
   <p>
     Özgürlük ve bağımsızlık benim karakterimdir.
