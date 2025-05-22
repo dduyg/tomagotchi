@@ -5,126 +5,124 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>404 - Page Not Found</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
 
   body {
     margin: 0;
-    height: 100vh;
-    background: linear-gradient(135deg, #ff00cc, #3333ff);
+    background: linear-gradient(135deg, #1de9b6 0%, #2979ff 100%);
     color: #00ffea;
-    font-family: 'VT323', monospace, monospace;
+    font-family: 'Orbitron', monospace, monospace;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100vh;
     overflow: hidden;
-    user-select: none;
-  }
-
-  .container {
     text-align: center;
-    max-width: 600px;
-    padding: 2rem;
-    background: rgba(0, 0, 0, 0.6);
-    border: 2px solid #00ffea;
-    box-shadow:
-      0 0 10px #00ffea,
-      0 0 20px #ff00cc,
-      0 0 30px #3333ff;
-    position: relative;
   }
 
   h1 {
     font-size: 6rem;
-    margin: 0 0 0.2rem 0;
-    text-shadow:
-      0 0 5px #ff00cc,
-      0 0 10px #00ffea,
-      0 0 20px #3333ff;
-    animation: glitch 2s infinite;
+    margin: 0;
+    text-shadow: 0 0 20px #00ffea, 0 0 40px #00ffd8, 0 0 80px #00ffd8;
   }
 
   p {
     font-size: 1.5rem;
-    margin: 1rem 0 2rem 0;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-shadow: 0 0 8px #00ffea;
+    margin: 1rem 0 3rem;
+    max-width: 600px;
+    line-height: 1.4;
+    text-shadow: 0 0 10px #00ffea;
   }
 
   a {
-    display: inline-block;
-    color: #ff00cc;
+    color: #ff41f4;
     font-weight: bold;
+    font-size: 1.25rem;
     text-decoration: none;
-    border: 2px solid #ff00cc;
-    padding: 0.7rem 1.5rem;
+    border: 2px solid #ff41f4;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
     transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+    box-shadow: 0 0 10px #ff41f4;
   }
 
   a:hover {
-    background: #ff00cc;
-    color: #000;
-    box-shadow:
-      0 0 15px #ff00cc,
-      0 0 30px #ff00cc;
+    background: #ff41f4;
+    color: #1a1a1a;
+    box-shadow: 0 0 30px #ff41f4;
   }
 
-  /* Glitch effect */
+  /* Data-coder style glitch effect */
   @keyframes glitch {
     0% {
-      text-shadow:
-        2px 0 #ff00cc,
-        -2px 0 #00ffea;
+      clip: rect(42px, 9999px, 44px, 0);
+      transform: skew(0.5deg);
+    }
+    5% {
+      clip: rect(10px, 9999px, 15px, 0);
+      transform: skew(0.8deg);
+    }
+    10% {
+      clip: rect(85px, 9999px, 90px, 0);
+      transform: skew(0.3deg);
+    }
+    15% {
+      clip: rect(42px, 9999px, 44px, 0);
+      transform: skew(0.5deg);
     }
     20% {
-      text-shadow:
-        -2px 0 #ff00cc,
-        2px 0 #00ffea;
+      clip: rect(10px, 9999px, 15px, 0);
+      transform: skew(0.8deg);
     }
-    40% {
-      text-shadow:
-        2px 0 #ff00cc,
-        -2px 0 #00ffea;
+    25% {
+      clip: rect(85px, 9999px, 90px, 0);
+      transform: skew(0.3deg);
     }
-    60% {
-      text-shadow:
-        -2px 0 #ff00cc,
-        2px 0 #00ffea;
-    }
-    80% {
-      text-shadow:
-        2px 0 #ff00cc,
-        -2px 0 #00ffea;
+    30% {
+      clip: rect(42px, 9999px, 44px, 0);
+      transform: skew(0.5deg);
     }
     100% {
-      text-shadow:
-        -2px 0 #ff00cc,
-        2px 0 #00ffea;
+      clip: rect(42px, 9999px, 44px, 0);
+      transform: skew(0.5deg);
     }
   }
 
-  /* Flicker effect on text */
-  @keyframes flicker {
-    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-      opacity: 1;
-    }
-    20%, 22%, 24%, 55% {
-      opacity: 0.4;
-    }
+  .glitch {
+    position: relative;
+    display: inline-block;
+    color: #00ffea;
   }
 
-  p {
-    animation: flicker 3s infinite;
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    color: #ff41f4;
+    clip: rect(0, 900px, 0, 0);
+  }
+
+  .glitch::before {
+    animation: glitch 2s infinite linear alternate-reverse;
+    left: 2px;
+    text-shadow: -2px 0 #ff41f4;
+  }
+
+  .glitch::after {
+    animation: glitch 1.5s infinite linear alternate;
+    left: -2px;
+    text-shadow: 2px 0 #00ffea;
   }
 </style>
 </head>
 <body>
-  <div class="container">
-    <h1>404</h1>
-    <p>System glitch detected.<br />Data lost in the void.</p>
-    <a href="/">Return to Home Base</a>
-  </div>
+  <h1 class="glitch" data-text="404">404</h1>
+  <p>Looks like you’ve stumbled into the digital void. This page has been lost in the data streams, but don’t worry — your code’s still solid.</p>
+  <a href="/">Return to Basecamp</a>
 </body>
 </html>
