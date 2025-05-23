@@ -324,7 +324,6 @@ If the image is used as a background:
 - [ ]  Plaster
 - [ ]  Fira Sans
 - [ ]  Rethink Sans
-- [ ]  Inconsolata
 - [ ]  Cousine
 - [ ]  Anonymous Pro
 - [ ]  Smooch Sans
@@ -350,7 +349,6 @@ If the image is used as a background:
 - [ ]  Ribeye Marrow
 - [ ]  Armata
 - [ ]  Jura
-- [ ]  Teko
 - [ ]  Encode Sans Condensed
 - [ ]  Mona Sans
 - [ ]  Funnel Sans
