@@ -1,376 +1,376 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>LiminalLoop</title>
   <style>
-@import url("https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono&display=swap");
-*, *::after, *::before {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-:root {
-  --color-background: rgb(0, 0, 0); /* Pure Black */
-  --color-foreground: rgb(255, 255, 255); /* Pure White */
-  --color-accent: rgb(255, 140, 0); /* Dark Orange */
-  --color-muted-orange: rgb(255, 165, 0); /* Standard Orange */
-  --color-light-gray: rgb(211, 211, 211); /* Light Gray */
-  --color-dark-gray: rgb(50, 50, 50); /* Dark Gray */
-  --font-primary: "Anton", serif;
-  --font-mono: "IBM Plex Mono", monospace;
-  --margin: 32px;
-  --gutter: 16px;
-}
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  font-family: var(--font-primary);
-  background-color: var(--color-background);
-  color: var(--color-foreground);
-  letter-spacing: -0.03em;
-  text-align: center;
-  position: relative;
-}
-
-/* Layout Styles */
-.header {
-  position: fixed;
-  top: 0;
-  left: var(--gutter);
-  right: var(--gutter);
-  padding: 1rem 0;
-  z-index: 1000;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.container {
-  display: flex;
-  width: 100%;
-  height: 100vh;
-  padding: var(--gutter);
-  margin-top: 4rem;
-}
-
-.sidebar {
-  width: 30%;
-  padding: var(--margin) 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: left;
-}
-
-.main-content {
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: var(--margin);
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-}
-
-.logo {
-  font-size: 1.5rem;
-  line-height: 1;
-  font-family: var(--font-mono);
-  color: var(--color-accent);
-}
-.logo sup {
-  font-size: 1.5rem;
-}
-
-.description {
-  font-size: 0.85rem;
-  line-height: 1.4;
-  margin-bottom: 2.5rem;
-  max-width: 360px;
-  font-family: var(--font-mono);
-}
-
-.nav-links {
-  display: flex;
-  flex-direction: column;
-  font-family: var(--font-mono);
-}
-.nav-links a {
-  color: var(--color-foreground);
-  text-decoration: none;
-  margin-bottom: 1rem;
-  transition: color 0.3s;
-}
-.nav-links a:hover {
-  color: var(--color-accent);
-}
-
-.footer {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-}
-.footer p {
-  opacity: 0.6;
-}
-
-.division {
-  margin-top: 2rem;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  opacity: 0.8;
-}
-
-a {
-  color: var(--color-foreground);
-}
-
-/* Menu Styles */
-.nav__toggle {
-  position: relative;
-  cursor: pointer;
-  z-index: 1100;
-  font-family: var(--font-mono);
-  color: var(--color-accent);
-  text-transform: uppercase;
-}
-.nav__toggle-state--close {
-  display: none;
-  color: var(--color-foreground);
-}
-
-.menu {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 50%;
-  height: 100vh;
-  background-color: rgba(50, 50, 50, 0.8);
-  -webkit-backdrop-filter: contrast(0.8) blur(7px) url(#fluted);
-          backdrop-filter: contrast(0.8) blur(7px) url(#fluted);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  z-index: 1;
-  transform: translateY(-100%);
-}
-
-.menu.open {
-  transform: translateY(0);
-}
-
-.menu__content {
-  width: calc(100% - (2 * var(--gutter)));
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  height: 100%;
-  padding: 2rem 0;
-}
-
-.menu__grid {
-  display: grid;
-  width: 100%;
-  height: 100%;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--gutter);
-}
-
-.menu__column {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  text-align: left;
-  grid-column: span 3;
-}
-
-.menu__column p {
-  width: 100%;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  line-height: 1.2;
-  color: var(--color-foreground);
-}
-
-.menu__nav {
-  display: flex;
-  flex-direction: column;
-}
-
-.menu__footer-link {
-  font-family: var(--font-mono);
-  text-decoration: none;
-  font-size: 4rem;
-  margin-bottom: 0.5rem;
-  opacity: 1;
-  position: relative;
-  display: block;
-  text-transform: uppercase;
-  letter-spacing: -0.03em;
-  overflow: hidden;
-}
-
-.menu__divider {
-  width: 50%;
-  height: 4px;
-  background-color: var(--color-accent);
-  margin: 1rem 0;
-}
-
-.double-hover {
-  position: relative;
-  overflow: hidden;
-  display: inline-block;
-}
-.double-hover span {
-  display: block;
-}
-.double-hover span:nth-of-type(2) {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.signal {
-  text-align: left;
-  max-width: 6ch;
-}
-
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  }
+    @import url("https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono&display=swap");
+    *, *::after,
+    *::before {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    :root {
+      --color-background: rgb(0, 0, 0);
+      --color-foreground: rgb(255, 255, 255);
+      --color-accent: rgb(255, 140, 0);
+      --color-muted-orange: rgb(255, 165, 0);
+      --color-light-gray: rgb(211, 211, 211);
+      --color-dark-gray: rgb(50, 50, 50);
+      --font-primary: "Anton", serif;
+      --font-mono: "IBM Plex Mono", monospace;
+      --margin: 32px;
+      --gutter: 16px;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: var(--font-primary);
+      background-color: var(--color-background);
+      color: var(--color-foreground);
+      letter-spacing: -0.03em;
+      text-align: center;
+      position: relative;
+    }
+    /* Layout Styles */
+    .header {
+      position: fixed;
+      top: 0;
+      left: var(--gutter);
+      right: var(--gutter);
+      padding: 1rem 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .container {
+      display: flex;
+      width: 100%;
+      height: 100vh;
+      padding: var(--gutter);
+      margin-top: 4rem;
+    }
+    .sidebar {
+      width: 30%;
+      padding: var(--margin) 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left;
+    }
+    .main-content {
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: var(--margin);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+    }
+    .logo {
+      font-size: 1.5rem;
+      line-height: 1;
+      font-family: var(--font-mono);
+      color: var(--color-accent);
+    }
+    .logo sup {
+      font-size: 1.5rem;
+    }
+    .description {
+      font-size: 0.85rem;
+      line-height: 1.4;
+      margin-bottom: 2.5rem;
+      max-width: 360px;
+      font-family: var(--font-mono);
+    }
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      font-family: var(--font-mono);
+    }
+    .nav-links a {
+      color: var(--color-foreground);
+      text-decoration: none;
+      margin-bottom: 1rem;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: var(--color-accent);
+    }
+    .footer {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+    }
+    .footer p {
+      opacity: 0.6;
+    }
+    .division {
+      margin-top: 2rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      opacity: 0.8;
+    }
+    a {
+      color: var(--color-foreground);
+    }
+    /* Menu Styles */
+    .nav__toggle {
+      position: relative;
+      cursor: pointer;
+      z-index: 1100;
+      font-family: var(--font-mono);
+      color: var(--color-accent);
+      text-transform: uppercase;
+      background: none;
+      border: none;
+      font-size: 1rem;
+      user-select: none;
+    }
+    .nav__toggle:focus {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+    .nav__toggle-state--close {
+      display: none;
+      color: var(--color-foreground);
+    }
+    .nav__toggle.open .nav__toggle-state--open {
+      display: none;
+    }
+    .nav__toggle.open .nav__toggle-state--close {
+      display: block;
+    }
+    .menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100vh;
+      background-color: rgba(50, 50, 50, 0.8);
+      -webkit-backdrop-filter: contrast(0.8) blur(7px) url(#fluted);
+      backdrop-filter: contrast(0.8) blur(7px) url(#fluted);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      z-index: 1;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+    }
+    .menu.open {
+      transform: translateY(0);
+    }
+    .menu__content {
+      width: calc(100% - (2 * var(--gutter)));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+      height: 100%;
+      padding: 2rem 0;
+    }
+    .menu__grid {
+      display: grid;
+      width: 100%;
+      height: 100%;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--gutter);
+    }
+    .menu__column {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      text-align: left;
+      grid-column: span 3;
+    }
+    .menu__column p {
+      width: 100%;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      line-height: 1.2;
+      color: var(--color-foreground);
+    }
+    .menu__nav {
+      display: flex;
+      flex-direction: column;
+    }
+    .menu__footer-link {
+      font-family: var(--font-mono);
+      text-decoration: none;
+      font-size: 4rem;
+      margin-bottom: 0.5rem;
+      opacity: 1;
+      position: relative;
+      display: block;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      overflow: hidden;
+    }
+    .menu__divider {
+      width: 50%;
+      height: 4px;
+      background-color: var(--color-accent);
+      margin: 1rem 0;
+    }
+    .double-hover {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+    }
+    .double-hover span {
+      display: block;
+    }
+    .double-hover span:nth-of-type(2) {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .signal {
+      text-align: left;
+      max-width: 6ch;
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
   </style>
 </head>
 <body>
-<header class="header">
-  <div class="logo">
-    Heptapod<sup>®</sup>
-  </div>
-  <div class="nav__toggle" id="menuToggle">
-    <div class="nav__toggle-slider">
-      <div class="nav__toggle-state nav__toggle-state--open">
-        <div class="nav__toggle-text double-hover">
-          <span>Menu</span>
-          <span>Menu</span>
-        </div>
-      </div>
-      <div class="nav__toggle-state nav__toggle-state--close">
-        <div class="nav__toggle-text double-hover">
-          <span>Close</span>
-          <span>Close</span>
-        </div>
-      </div>
+  <header class="header">
+    <div class="logo">
+      Heptapod<sup>®</sup>
     </div>
-  </div>
-</header>
+    <button
+      class="nav__toggle"
+      id="menuToggle"
+      aria-controls="menu"
+      aria-expanded="false"
+      aria-label="Toggle menu"
+      type="button"
+    >
+      <div class="nav__toggle-slider">
+        <div class="nav__toggle-state nav__toggle-state--open">
+          <div class="nav__toggle-text double-hover">
+            <span>Menu</span>
+            <span>Menu</span>
+          </div>
+        </div>
+        <div class="nav__toggle-state nav__toggle-state--close">
+          <div class="nav__toggle-text double-hover">
+            <span>Close</span>
+            <span>Close</span>
+          </div>
+        </div>
+      </div>
+    </button>
+  </header>
 
-<div class="container">
-
-  <aside class="sidebar">
-    <p class="description">
-      DECODING THE HEPTAPOD LANGUAGE TO BRIDGE DIMENSIONS AND COMMUNICATE WITH THE UNKNOWN.
-    </p>
-    <nav class="nav-links">
-      <a href="#">_LANGUAGE DECRYPTION</a>
-      <a href="#">_TEMPORAL SHIFTS</a>
-      <a href="#">_SIGNAL ANALYSIS</a>
-      <a href="#">_COMMUNICATION LOGS</a>
-    </nav>
-    <div class="footer">
-      <p>
-        Err: [2024 - SIGNAL LOST]<br />
-        SYSTEM TIME: CYCLE 2187.42
+  <div class="container">
+    <aside class="sidebar">
+      <p class="description">
+        DECODING THE HEPTAPOD LANGUAGE TO BRIDGE DIMENSIONS AND COMMUNICATE WITH THE UNKNOWN.
       </p>
-    </div>
-  </aside>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#">_LANGUAGE DECRYPTION</a>
+        <a href="#">_TEMPORAL SHIFTS</a>
+        <a href="#">_SIGNAL ANALYSIS</a>
+        <a href="#">_COMMUNICATION LOGS</a>
+      </nav>
+      <div class="footer">
+        <p>
+          Err: [2024 - SIGNAL LOST]<br />
+          SYSTEM TIME: CYCLE 2187.42
+        </p>
+      </div>
+    </aside>
 
-  <main class="main-content">
-    <p class="signal">_Signal Reception Initiated...</p>
-  </main>
+    <main class="main-content">
+      <p class="signal">_Signal Reception Initiated...</p>
+    </main>
+  </div>
 
-</div>
-
-<div class="menu" id="menu">
-  <div class="menu__content">
-    <div class="menu__grid">
-
-      <!-- Menu Column 1 -->
-      <div class="menu__column">
-        <nav class="menu__nav">
-          <a href="#" class="menu__footer-link double-hover">
-            <span>Linguistic</span>
-            <span>Linguistic</span>
-          </a>
-          <a href="#" class="menu__footer-link double-hover">
-            <span>Temporal</span>
-            <span>Temporal</span>
-          </a>
-          <a href="#" class="menu__footer-link double-hover">
-            <span>Semantic</span>
-            <span>Semantic</span>
-          </a>
-          <a href="#" class="menu__footer-link double-hover">
-            <span>Communication</span>
-            <span>Communication</span>
-          </a>
-        </nav>
-        <div class="menu__footer">
-          <div class="menu__divider"></div>
-          <p class="division">
-            ACCESS LEVEL: RESTRICTED.<br>
-            TRACE INITIATED: SOURCE UNKNOWN.
-          </p>
+  <div class="menu" id="menu" role="menu" aria-hidden="true">
+    <div class="menu__content">
+      <div class="menu__grid">
+        <!-- Menu Column 1 -->
+        <div class="menu__column">
+          <nav class="menu__nav">
+            <a href="#" class="menu__footer-link double-hover" role="menuitem" tabindex="-1">
+              <span>Linguistic</span>
+              <span>Linguistic</span>
+            </a>
+            <a href="#" class="menu__footer-link double-hover" role="menuitem" tabindex="-1">
+              <span>Temporal</span>
+              <span>Temporal</span>
+            </a>
+            <a href="#" class="menu__footer-link double-hover" role="menuitem" tabindex="-1">
+              <span>Semantic</span>
+              <span>Semantic</span>
+            </a>
+            <a href="#" class="menu__footer-link double-hover" role="menuitem" tabindex="-1">
+              <span>Communication</span>
+              <span>Communication</span>
+            </a>
+          </nav>
+          <div class="menu__footer">
+            <div class="menu__divider"></div>
+            <p class="division">
+              ACCESS LEVEL: RESTRICTED.<br />
+              TRACE INITIATED: SOURCE UNKNOWN.
+            </p>
+          </div>
         </div>
       </div>
-
     </div>
   </div>
-</div>
 
-<svg>
-  <filter id="fluted" primitiveUnits="objectBoundingBox">
-    <feImage x="0" y="0" in="blur_0" result="image_0" crossorigin="anonymous" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1' color-interpolation-filters='sRGB'>
-                <g>
-                  <rect width='1' height='1' fill='black' />
-                  <rect width='1' height='1' fill='url(%23red)' style='mix-blend-mode:screen' />
-                  <rect width='1' height='1' fill='url(%23green)' style='mix-blend-mode:screen' />
-                  <rect width='1' height='1' fill='url(%23yellow)' style='mix-blend-mode:screen' />
-                </g>
-                <defs>
-                  <radialGradient id='yellow' cx='0' cy='0' r='1' >
-                    <stop stop-color='yellow' />
-                    <stop stop-color='yellow' offset='1' stop-opacity='0' />
-                  </radialGradient>
-                  <radialGradient id='green' cx='1' cy='0' r='1' >
-                    <stop stop-color='green' />
-                    <stop stop-color='green' offset='1' stop-opacity='0' />
-                  </radialGradient>
-                  <radialGradient id='red' cx='0' cy='1' r='1' >
-                    <stop stop-color='red' />
-                    <stop stop-color='red' offset='1' stop-opacity='0' />
-                  </radialGradient>
-                </defs>
-              </svg>" preserveAspectRatio="none meet" width=".03" height="1" />
-    <feTile in="image_0" result="tile_0" />
-    <feGaussianBlur stdDeviation=".003" edgeMode="none" in="tile_0" result="bar_smoothness" x="0" y="0" />
-    <feDisplacementMap scale=".08" xChannelSelector="R" yChannelSelector="G" in="SourceGraphic" in2="bar_smoothness" result="displacement_0" />
-  </filter>
-</svg>
+  <svg style="display:none;">
+    <filter id="fluted" primitiveUnits="objectBoundingBox">
+      <feImage
+        x="0"
+        y="0"
+        width="1"
+        height="1"
+        preserveAspectRatio="none"
+        xlink:href="data:image/svg+xml;utf8,
+        <svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'>
+          <defs>
+            <filter id='fluteFilter'>
+              <feTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='2' result='noise'/>
+              <feDisplacementMap in='SourceGraphic' in2='noise' scale='8' xChannelSelector='R' yChannelSelector='G'/>
+            </filter>
+          </defs>
+          <rect width='100' height='100' filter='url(%23fluteFilter)'/>
+        </svg>"
+      />
+    </filter>
+  </svg>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const menu = document.getElementById("menu");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = menu.classList.toggle("open");
+      menuToggle.classList.toggle("open", isOpen);
+      menuToggle.setAttribute("aria-expanded", isOpen);
+      menu.setAttribute("aria-hidden", !isOpen);
+    });
+  </script>
 
 <script type="module">
 import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
