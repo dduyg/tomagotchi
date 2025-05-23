@@ -7,11 +7,7 @@
   <title>LiminalLoop</title>
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100..900&family=IBM+Plex+Mono&display=swap");
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * {margin: 0; padding: 0; box-sizing: border-box;}
     body {
       font-family: "Barlow Condensed", sans-serif;
       letter-spacing: -0.03em;
@@ -101,132 +97,116 @@
       font-size: 0.8rem;
     }
 
-.container {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-}
-.scroller {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  will-change: transform;
-}
+    .container {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .scroller {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      will-change: transform;
+    }
 
-.section {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0 5vw;
-  overflow: hidden;
-}
-/* Background overlay for better text readability */
-.section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 1;
-}
-.section-1 {
-  background-color: #a0a89e;
-  z-index: 10;
-}
-.section-2 {
-  background-color: #8c9389;
-  z-index: 20;
-}
-.section-3 {
-  background-color: #b8c0b6;
-  z-index: 30;
-}
-.section-4 {
-  background-color: #969e94;
-  z-index: 40;
-}
-.video-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  z-index: 0;
-}
-.section-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 2rem;
-  position: relative;
-  z-index: 10;
-}
-.section-title {
-  font-size: 3rem;
-  font-weight: 600;
-  color: white;
-}
-.section-paragraph {
-  color: white;
-  font-size: 1.2rem;
-  max-width: 60%;
-  margin-top: 1rem;
-  position: relative;
-  z-index: 10;
-  text-align: left;
-}
+    .section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 5vw;
+      overflow: hidden;
+    }
+    /* Background overlay for better text readability */
+    .section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
+    .section-1 { background-color: #a0a89e; z-index: 10; }
+    .section-2 { background-color: #8c9389; z-index: 20; }
+    .section-3 { background-color: #b8c0b6; z-index: 30; }
+    .section-4 { background-color: #969e94; z-index: 40; }
+    .video-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      -o-object-fit: cover;
+      object-fit: cover; 
+      z-index: 0;
+    }
+    .section-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 10;
+    }
+    .section-title {
+      font-size: 3rem;
+      font-weight: 600;
+    }
+    .section-paragraph {
+      font-size: 1.2rem;
+      max-width: 60%;
+      margin-top: 1rem;
+      position: relative;
+      z-index: 10;
+      text-align: left;
+    }
 
-.left-content {
-  max-width: 40%;
-  position: relative;
-  z-index: 10;
-}
-.right-content {
-  max-width: 40%;
-  text-align: right;
-  text-transform: uppercase;
-  position: relative;
-  z-index: 10;
-}
+    .left-content {
+      max-width: 40%;
+      position: relative;
+      z-index: 10;
+    }
+    .right-content {
+      max-width: 40%;
+      text-align: right;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 10;
+    }
 
-/* Progress indicator */
-.bottom-progress {
-  position: fixed;
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  z-index: 2000;
-  color: white;
-  font-family: "IBM Plex Mono", monospace;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-}
-.bottom-progress-bar {
-  width: 100px;
-  height: 2px;
-  background-color: rgba(255, 255, 255, 0.3);
-  overflow: hidden;
-}
-.bottom-progress-fill {
-  height: 100%;
-  width: 100%;
-  background-color: white;
-  transform-origin: left;
-  transform: scaleX(0);
-  will-change: transform;
-}
+    .bottom-progress {
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 2000;
+      font-family: "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+    .bottom-progress-bar {
+      width: 100px;
+      height: 2px;
+      background-color: rgba(255, 255, 255, 0.3);
+      overflow: hidden;
+    }
+    .bottom-progress-fill {
+      height: 100%;
+      width: 100%;
+      background-color: white;
+      transform-origin: left;
+      transform: scaleX(0);
+      will-change: transform;
+    }
   </style>
 </head>
 <body>
