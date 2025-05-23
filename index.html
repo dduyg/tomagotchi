@@ -1,15 +1,18 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-  <meta charset="UTF-8" />  
-  <meta name="viewport" content="width=device-width, initial-scale=1" />  
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
-  <title>LiminalLoop</title>  
-  <style>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>LiminalLoop</title>
+  <style>
     @import url("https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono&display=swap");
-    *, *::after, *::before {
+    *,
+    *::after,
+    *::before {
       box-sizing: border-box;
-      margin: 0; padding: 0;
+      margin: 0;
+      padding: 0;
     }
     :root {
       --color-background: rgb(0, 0, 0);
@@ -34,8 +37,8 @@
       letter-spacing: -0.03em;
       text-align: center;
       position: relative;
-      overflow: hidden;
     }
+    /* Layout Styles */
     .header {
       position: fixed;
       top: 0;
@@ -72,6 +75,7 @@
       font-family: var(--font-mono);
       text-transform: uppercase;
     }
+    /* Component Styles */
     .logo {
       font-size: 1.5rem;
       line-height: 1;
@@ -115,9 +119,11 @@
       font-size: 0.7rem;
       opacity: 0.8;
     }
+    /* Link Styles */
     a {
       color: var(--color-foreground);
     }
+    /* Menu Styles */
     .nav__toggle {
       position: relative;
       cursor: pointer;
@@ -137,6 +143,7 @@
       width: 50%;
       height: 100vh;
       background-color: rgba(50, 50, 50, 0.8);
+      -webkit-backdrop-filter: contrast(0.8) blur(7px) url(#fluted);
       backdrop-filter: contrast(0.8) blur(7px) url(#fluted);
       display: flex;
       justify-content: center;
@@ -144,7 +151,7 @@
       overflow: hidden;
       z-index: 900;
       transform: translateY(-100%);
-      transition: transform 0.4s ease;
+      transition: transform 0.3s ease;
     }
     .menu.open {
       transform: translateY(0);
@@ -228,179 +235,593 @@
       width: 100%;
       height: 100%;
       z-index: -1;
-      display: block;
     }
-  </style>  
-</head>  
-<body>  
-  <header class="header">  
-    <div class="logo">Heptapod<sup>®</sup></div>  
-    <div class="nav__toggle" id="menuToggle">  
-      <div class="nav__toggle-slider">  
-        <div class="nav__toggle-state nav__toggle-state--open">  
-          <div class="nav__toggle-text double-hover">  
-            <span>Menu</span>  
-            <span>Menu</span>  
-          </div>  
-        </div>  
-        <div class="nav__toggle-state nav__toggle-state--close">  
-          <div class="nav__toggle-text double-hover">  
-            <span>Close</span>  
-            <span>Close</span>  
-          </div>  
-        </div>  
-      </div>  
-    </div>  
-  </header>  
-  
-  <div class="container">  
-    <aside class="sidebar">  
-      <p class="description">  
-        DECODING THE HEPTAPOD LANGUAGE TO BRIDGE DIMENSIONS AND COMMUNICATE WITH THE UNKNOWN.  
-      </p>  
-      <nav class="nav-links">  
-        <a href="#">_LANGUAGE DECRYPTION</a>  
-        <a href="#">_TEMPORAL SHIFTS</a>  
-        <a href="#">_SIGNAL ANALYSIS</a>  
-        <a href="#">_COMMUNICATION LOGS</a>  
-      </nav>  
-      <div class="footer">  
-        <p>  
-          Err: [2024 - SIGNAL LOST]<br />  
-          SYSTEM TIME: CYCLE 2187.42  
-        </p>  
-      </div>  
-    </aside>  
-  
-    <main class="main-content">  
-      <p class="signal">_Signal Reception Initiated...</p>  
-    </main>  
-  </div>  
-  
-  <div class="menu" id="menu">  
-    <div class="menu__content">  
-      <div class="menu__grid">  
-        <div class="menu__column">  
-          <nav class="menu__nav">  
-            <a href="#" class="menu__footer-link double-hover">  
-              <span>Linguistic</span>  
-              <span>Linguistic</span>  
-            </a>  
-            <a href="#" class="menu__footer-link double-hover">  
-              <span>Temporal</span>  
-              <span>Temporal</span>  
-            </a>  
-            <a href="#" class="menu__footer-link double-hover">  
-              <span>Semantic</span>  
-              <span>Semantic</span>  
-            </a>  
-            <a href="#" class="menu__footer-link double-hover">  
-              <span>Communication</span>  
-              <span>Communication</span>  
-            </a>  
-          </nav>  
-          <div class="menu__footer">  
-            <div class="menu__divider"></div>  
-            <p class="division">  
-              ACCESS LEVEL: RESTRICTED.<br>  
-              TRACE INITIATED: SOURCE UNKNOWN.  
-            </p>  
-          </div>  
-        </div>  
-      </div>  
-    </div>  
-  </div>  
-  
-  <svg style="display:none;">  
-    <filter id="fluted" primitiveUnits="objectBoundingBox">  
-      <feImage x="0" y="0" in="blur_0" result="image_0" crossorigin="anonymous" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1' color-interpolation-filters='sRGB'><g><rect width='1' height='1' fill='black'/><rect width='1' height='1' fill='url(%23red)' style='mix-blend-mode:screen'/><rect width='1' height='1' fill='url(%23green)' style='mix-blend-mode:screen'/><rect width='1' height='1' fill='url(%23yellow)' style='mix-blend-mode:screen'/></g><defs><radialGradient id='yellow' cx='0' cy='0' r='1'><stop stop-color='yellow'/><stop stop-color='yellow' offset='1' stop-opacity='0'/></radialGradient><radialGradient id='green' cx='1' cy='0' r='1'><stop stop-color='green'/><stop stop-color='green' offset='1' stop-opacity='0'/></radialGradient><radialGradient id='red' cx='0' cy='1' r='1'><stop stop-color='red'/><stop stop-color='red' offset='1' stop-opacity='0'/></radialGradient></defs></svg>" preserveAspectRatio="none meet" width=".03" height="1"/>  
-      <feTile in="image_0" result="tile_0"/>  
-      <feGaussianBlur stdDeviation=".003" edgeMode="none" in="tile_0" result="bar_smoothness" x="0" y="0"/>  
-      <feDisplacementMap scale=".08" xChannelSelector="R" yChannelSelector="G" in="SourceGraphic" in2="bar_smoothness" result="displacement_0"/>  
-    </filter>  
-  </svg>  
-  
-  <canvas id="bgCanvas"></canvas>  
-  
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>  
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>  
-  <script src="https://unpkg.com/split-type"></script>  
-  
-  <script>
-    (() => {
-      const menuToggle = document.getElementById('menuToggle');
-      const menu = document.getElementById('menu');
-      
-      menuToggle.addEventListener('click', () => {
-        menu.classList.toggle('open');
-        // Toggle visibility of open/close text
-        menuToggle.querySelector('.nav__toggle-state--open').style.display = menu.classList.contains('open') ? 'none' : 'block';
-        menuToggle.querySelector('.nav__toggle-state--close').style.display = menu.classList.contains('open') ? 'block' : 'none';
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      Heptapod<sup>®</sup>
+    </div>
+    <div class="nav__toggle" id="menuToggle">
+      <div class="nav__toggle-slider">
+        <div class="nav__toggle-state nav__toggle-state--open">
+          <div class="nav__toggle-text double-hover">
+            <span>Menu</span>
+            <span>Menu</span>
+          </div>
+        </div>
+        <div class="nav__toggle-state nav__toggle-state--close">
+          <div class="nav__toggle-text double-hover">
+            <span>Close</span>
+            <span>Close</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <aside class="sidebar">
+      <p class="description">
+        DECODING THE HEPTAPOD LANGUAGE TO BRIDGE DIMENSIONS AND COMMUNICATE WITH THE UNKNOWN.
+      </p>
+      <nav class="nav-links">
+        <a href="#">_LANGUAGE DECRYPTION</a>
+        <a href="#">_TEMPORAL SHIFTS</a>
+        <a href="#">_SIGNAL ANALYSIS</a>
+        <a href="#">_COMMUNICATION LOGS</a>
+      </nav>
+      <div class="footer">
+        <p>
+          Err: [2024 - SIGNAL LOST]<br />
+          SYSTEM TIME: CYCLE 2187.42
+        </p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <p class="signal">_Signal Reception Initiated...</p>
+    </main>
+  </div>
+
+  <div class="menu" id="menu">
+    <div class="menu__content">
+      <div class="menu__grid">
+        <!-- Menu Column 1 -->
+        <div class="menu__column">
+          <nav class="menu__nav">
+            <a href="#" class="menu__footer-link double-hover">
+              <span>Linguistic</span>
+              <span>Linguistic</span>
+            </a>
+            <a href="#" class="menu__footer-link double-hover">
+              <span>Temporal</span>
+              <span>Temporal</span>
+            </a>
+            <a href="#" class="menu__footer-link double-hover">
+              <span>Semantic</span>
+              <span>Semantic</span>
+            </a>
+            <a href="#" class="menu__footer-link double-hover">
+              <span>Communication</span>
+              <span>Communication</span>
+            </a>
+          </nav>
+          <div class="menu__footer">
+            <div class="menu__divider"></div>
+            <p class="division">
+              ACCESS LEVEL: RESTRICTED.<br />
+              TRACE INITIATED: SOURCE UNKNOWN.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <svg>
+    <filter id="fluted" primitiveUnits="objectBoundingBox">
+      <feImage
+        x="0"
+        y="0"
+        in="blur_0"
+        result="image_0"
+        crossorigin="anonymous"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1' color-interpolation-filters='sRGB'>
+                <g>
+                  <rect width='1' height='1' fill='black' />
+                  <rect width='1' height='1' fill='url(%23red)' style='mix-blend-mode:screen' />
+                  <rect width='1' height='1' fill='url(%23green)' style='mix-blend-mode:screen' />
+                  <rect width='1' height='1' fill='url(%23yellow)' style='mix-blend-mode:screen' />
+                </g>
+                <defs>
+                  <radialGradient id='yellow' cx='0' cy='0' r='1' >
+                    <stop stop-color='yellow' />
+                    <stop stop-color='yellow' offset='1' stop-opacity='0' />
+                  </radialGradient>
+                  <radialGradient id='green' cx='1' cy='0' r='1' >
+                    <stop stop-color='green' />
+                    <stop stop-color='green' offset='1' stop-opacity='0' />
+                  </radialGradient>
+                  <radialGradient id='red' cx='0' cy='1' r='1' >
+                    <stop stop-color='red' />
+                    <stop stop-color='red' offset='1' stop-opacity='0' />
+                  </radialGradient>
+                </defs>
+              </svg>"
+        preserveAspectRatio="none meet"
+        width=".03"
+        height="1"
+      />
+      <feTile in="image_0" result="tile_0" />
+      <feGaussianBlur stdDeviation=".003" edgeMode="none" in="tile_0" result="bar_smoothness" x="0" y="0" />
+      <feDisplacementMap scale=".08" xChannelSelector="R" yChannelSelector="G" in="SourceGraphic" in2="bar_smoothness" result="displacement_0" />
+    </filter>
+  </svg>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
+  <script src="https://unpkg.com/split-type"></script>
+
+<script type="module">
+import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
+import { OrbitControls } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js";
+import { EffectComposer } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/RenderPass.js";
+import { ShaderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/ShaderPass.js";
+import { SMAAPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/SMAAPass.js";
+import { GUI } from "https://cdn.skypack.dev/dat.gui";
+
+document.addEventListener("DOMContentLoaded", () => {
+  gsap.registerPlugin(CustomEase);
+
+  const body = document.body;
+  const menu = document.getElementById("menu");
+  const menuToggle = document.getElementById("menuToggle");
+  const openState = menuToggle.querySelector(".nav__toggle-state--open");
+  const closeState = menuToggle.querySelector(".nav__toggle-state--close");
+  const menuItems = document.querySelectorAll(".menu__footer-link");
+
+  let isMenuOpen = false;
+
+  // Define custom eases
+  CustomEase.create("easeOutFast", "M0,0 C0.25,0.1 0.25,1 1,1"); // Opening ease
+  CustomEase.create("easeInFast", "M0,0 C0.5,0 0.75,0.2 1,1"); // Closing ease
+
+  // Ensure menu items and toggle states are set properly
+  gsap.set(menuItems, { opacity: 0, y: -20 });
+  gsap.set(openState, { opacity: 1, display: "block" }); // Initially show "MENU"
+  gsap.set(closeState, { opacity: 0, display: "none" }); // Initially hide "CLOSE"
+
+  menuToggle.addEventListener("click", () => {
+    if (!isMenuOpen) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  });
+
+  // Add event listener for ESC key to close the menu
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && isMenuOpen) {
+      closeMenu();
+    }
+  });
+
+  // Add event listener for clicks outside the menu to close it
+  document.addEventListener("click", (event) => {
+    if (
+      isMenuOpen &&
+      !menu.contains(event.target) &&
+      !menuToggle.contains(event.target)
+    ) {
+      closeMenu();
+    }
+  });
+
+  function openMenu() {
+    // Add a class to the body when the menu opens
+    body.classList.add("menu-open");
+
+    // Animate dividers from 0 to 100% width
+    gsap.to(".menu__divider", {
+      width: "140px",
+      duration: 0.6,
+      opacity: 1,
+      ease: "power2.out",
+      delay: 0.4
+    });
+
+    gsap.to(".menu__column p", {
+      opacity: 1,
+      stagger: { amount: 0.3, from: "start" },
+      duration: 0.6,
+      ease: "power2.in",
+      delay: 0.6
+    });
+
+    // Fade out the "MENU" text and fade in the "CLOSE" text
+    gsap.to(openState, {
+      opacity: 0,
+      duration: 0.3,
+      onComplete: () => {
+        gsap.set(openState, { display: "none" }); // Hide after fade out
+        gsap.set(closeState, { display: "block" }); // Show "CLOSE" before fading in
+        gsap.to(closeState, { opacity: 1, duration: 0.3 });
+      }
+    });
+
+    gsap.to(menu, {
+      y: 0,
+      duration: 0.6,
+      ease: "easeOutFast", // Use custom ease for opening
+      onComplete: () => {
+        // Start stagger animation after the menu has fully opened
+        gsap.to(menuItems, {
+          y: 0,
+          opacity: 1,
+          stagger: 0.1,
+          duration: 0.5,
+          ease: "power3.out"
+        });
+      }
+    });
+    isMenuOpen = true;
+  }
+
+  function closeMenu() {
+    // Animate dividers from 100% back to 0% width
+    gsap.to(".menu__column p", {
+      opacity: 0,
+      stagger: { amount: 0.1, from: "end" },
+      duration: 0.4,
+      ease: "power2.in"
+    });
+
+    gsap.to(".menu__divider", {
+      width: "0%",
+      duration: 0.4,
+      ease: "power2.in"
+    });
+
+    // Reverse the stagger animation before closing the menu
+    gsap.to(menuItems, {
+      y: 20,
+      opacity: 0,
+      stagger: { amount: 0.1, from: "end" },
+      duration: 0.3,
+      ease: "power3.in",
+      onComplete: () => {
+        gsap.to(closeState, {
+          opacity: 0,
+          duration: 0.3,
+          onComplete: () => {
+            gsap.set(closeState, { display: "none" });
+            gsap.set(openState, { display: "block" });
+            gsap.to(openState, { opacity: 1, duration: 0.3 });
+          }
+        });
+
+        // Close the menu after items are hidden    
+        gsap.to(menu, {    
+          y: "-100%",    
+          duration: 0.4,    
+          ease: "easeInFast",    
+          onComplete: () => {    
+            body.classList.remove("menu-open");    
+          }    
+        });
+      }
+    });
+
+    isMenuOpen = false;
+  }
+
+  createDoubleHoverEffect();
+
+  function createDoubleHoverEffect() {
+    let items = gsap.utils.toArray(".double-hover");
+    items.forEach((item) => {
+      let titCur = new SplitType(item.querySelector("span:first-of-type"), {
+        types: "chars"
+      });
+      let titNew = new SplitType(item.querySelector("span:nth-of-type(2)"), {
+        types: "chars"
       });
 
-      // Animate the signal text with SplitType and GSAP
-      const signalText = document.querySelector('.signal');
-      const split = new SplitType(signalText, { types: 'chars' });
+      gsap.set(titCur.chars, { yPercent: 0, transformOrigin: "top left" });
+      gsap.set(titNew.chars, {
+        yPercent: 100,
+        transformOrigin: "bottom center"
+      });
 
-      gsap.fromTo(split.chars, 
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, stagger: 0.05, ease: "power2.out", duration: 1 }
-      );
-
-      // Background animation on canvas
-      const canvas = document.getElementById('bgCanvas');
-      const ctx = canvas.getContext('2d');
-
-      function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-      resize();
-      window.addEventListener('resize', resize);
-
-      // Create moving circles as background objects
-      const circles = [];
-      const circleCount = 60;
-
-      function randomRange(min, max) {
-        return Math.random() * (max - min) + min;
-      }
-
-      for(let i = 0; i < circleCount; i++) {
-        circles.push({
-          x: randomRange(0, canvas.width),
-          y: randomRange(0, canvas.height),
-          radius: randomRange(10, 25),
-          speedX: randomRange(-0.3, 0.3),
-          speedY: randomRange(-0.3, 0.3),
-          color: `rgba(255, 140, 0, ${randomRange(0.05, 0.15)})`
+      item.addEventListener("mouseenter", function () {
+        gsap.to(titCur.chars, {
+          yPercent: -100,
+          stagger: { amount: 0.0 },
+          duration: 0.6,
+          ease: "power3"
         });
-      }
-
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        circles.forEach(c => {
-          c.x += c.speedX;
-          c.y += c.speedY;
-
-          if (c.x - c.radius > canvas.width) c.x = -c.radius;
-          else if (c.x + c.radius < 0) c.x = canvas.width + c.radius;
-          if (c.y - c.radius > canvas.height) c.y = -c.radius;
-          else if (c.y + c.radius < 0) c.y = canvas.height + c.radius;
-
-          // Draw circle with radial gradient for soft glow effect
-          const grad = ctx.createRadialGradient(c.x, c.y, 0, c.x, c.y, c.radius);
-          grad.addColorStop(0, c.color);
-          grad.addColorStop(1, 'rgba(255, 140, 0, 0)');
-          ctx.fillStyle = grad;
-          ctx.beginPath();
-          ctx.arc(c.x, c.y, c.radius, 0, Math.PI * 2);
-          ctx.fill();
+        gsap.to(titNew.chars, {
+          yPercent: 0,
+          stagger: { amount: 0.0 },
+          duration: 0.6,
+          ease: "power3"
         });
-        requestAnimationFrame(animate);
-      }
-      animate();
-    })();
-  </script>  
-</body>  
+      });
+
+      item.addEventListener("mouseleave", function () {
+        gsap.to(titCur.chars, {
+          yPercent: 0,
+          stagger: { amount: 0.0 },
+          duration: 0.6,
+          ease: "power3"
+        });
+        gsap.to(titNew.chars, {
+          yPercent: 100,
+          stagger: { amount: 0.0 },
+          duration: 0.6,
+          ease: "power3"
+        });
+      });
+    });
+  }
+});
+</script>
+<script type="module">
+import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
+import { OrbitControls } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js";
+import { EffectComposer } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/RenderPass.js";
+import { ShaderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/ShaderPass.js";
+import { SMAAPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/SMAAPass.js";
+import { GUI } from "https://cdn.skypack.dev/dat.gui";
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(
+  35,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
+const renderer = new THREE.WebGLRenderer({
+  antialias: true,
+  powerPreference: "high-performance"
+});
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+document.body.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+
+const vertexShader = `
+uniform float time;
+uniform float noiseIntensity;
+uniform int noiseType;
+varying vec2 vUv;
+varying vec3 vNormal;
+varying vec3 vPosition;
+
+// Simplex noise functions omitted here for brevity; include your full noise code here...
+
+void main() {
+    vUv = uv;
+    vNormal = normal;
+    vec3 pos = position;
+
+    if (noiseType == 1) {
+        float noise = snoise(vec3(pos.x * 2.0, pos.y * 2.0, pos.z * 2.0 + time * 0.1)) * 0.5 + 0.5;
+        pos += normal * noise * noiseIntensity;
+    } else if (noiseType == 2) {
+        float noise1 = snoise(vec3(pos.x * 4.0, pos.y * 4.0, pos.z * 4.0 + time * 0.1));
+        float noise2 = snoise(vec3(pos.x * 8.0, pos.y * 8.0, pos.z * 8.0 + time * 0.2));
+        pos += normal * (noise1 * 0.3 + noise2 * 0.1) * noiseIntensity;
+    }
+
+    vPosition = pos;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+}
+`;
+
+const fragmentShader = `
+uniform sampler2D matcapTexture;
+uniform float brightness;
+uniform float contrast;
+uniform float saturation;
+varying vec3 vNormal;
+varying vec3 vPosition;
+
+vec3 adjustContrast(vec3 color, float value) {
+  return 0.5 + (1.0 + value) * (color - 0.5);
+}
+
+vec3 adjustSaturation(vec3 color, float value) {
+  const vec3 luminosityFactor = vec3(0.2126, 0.7152, 0.0722);
+  vec3 grayscale = vec3(dot(color, luminosityFactor));
+  return mix(grayscale, color, 1.0 + value);
+}
+
+void main() {
+  vec3 normal = normalize(vNormal);
+  vec3 viewDir = normalize(cameraPosition - vPosition);
+  vec3 x = normalize(vec3(viewDir.z, 0.0, -viewDir.x));
+  vec3 y = cross(viewDir, x);
+  vec2 uv = vec2(dot(x, normal), dot(y, normal)) * 0.495 + 0.5;
+
+  vec3 matcapColor = texture2D(matcapTexture, uv).rgb;
+
+  matcapColor = adjustContrast(matcapColor, contrast);
+  matcapColor = adjustSaturation(matcapColor, saturation);
+  matcapColor *= brightness;
+
+  gl_FragColor = vec4(matcapColor, 1.0);
+}
+`;
+
+const loader = new THREE.TextureLoader();
+const matcapTexture = loader.load(
+  "https://raw.githubusercontent.com/nidorx/matcaps/master/1024/604A30_DC9065_212C14_AC9C92.png"
+);
+
+const createMaterial = (noiseIntensity, noiseType, brightness) => {
+  return new THREE.ShaderMaterial({
+    uniforms: {
+      time: { value: 0 },
+      noiseIntensity: { value: noiseIntensity },
+      noiseType: { value: noiseType },
+      matcapTexture: { value: matcapTexture },
+      brightness: { value: brightness },
+      contrast: { value: 0 },
+      saturation: { value: 0 }
+    },
+    vertexShader,
+    fragmentShader
+  });
+};
+
+const spheres = [];
+const sphereDistanceDefault = 5;
+let sphereDistance = sphereDistanceDefault;
+
+const sphereGeometry = new THREE.SphereGeometry(1, 64, 64);
+
+const materials = [
+  createMaterial(0.0, 0, 1.0),
+  createMaterial(0.8, 1, 1.2),
+  createMaterial(1.15, 2, 1.4)
+];
+
+for (let i = 0; i < 3; i++) {
+  const sphere = new THREE.Mesh(sphereGeometry, materials[i]);
+  scene.add(sphere);
+  spheres.push(sphere);
+}
+
+function updateSpherePositions() {
+  spheres.forEach((sphere, i) => {
+    sphere.position.x = (i - 1) * sphereDistance;
+  });
+}
+
+updateSpherePositions();
+
+camera.position.set(0, 0, 10);
+
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+
+const smaaPass = new SMAAPass(
+  window.innerWidth * renderer.getPixelRatio(),
+  window.innerHeight * renderer.getPixelRatio()
+);
+composer.addPass(smaaPass);
+
+const grainShader = {
+  uniforms: {
+    tDiffuse: { value: null },
+    grainIntensity: { value: 0.012 },
+    grainStrength: { value: 15 },
+    time: { value: 0 }
+  },
+  vertexShader: `
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  `,
+  fragmentShader: `
+    uniform sampler2D tDiffuse;
+    uniform float grainIntensity;
+    uniform float grainStrength;
+    uniform float time;
+    varying vec2 vUv;
+
+    float random(vec2 p) {
+      vec2 K1 = vec2(23.14069263277926, 2.665144142690225);
+      return fract(cos(dot(p, K1)) * 12345.6789);
+    }
+
+    void main() {
+      vec4 color = texture2D(tDiffuse, vUv);
+      vec2 uvRandom = vUv;
+      uvRandom.y *= random(vec2(uvRandom.y, time));
+      color.rgb += random(uvRandom) * grainIntensity * grainStrength;
+      gl_FragColor = color;
+    }
+  `
+};
+
+const grainPass = new ShaderPass(grainShader);
+composer.addPass(grainPass);
+
+const gui = new GUI();
+
+const renderFolder = gui.addFolder("Render Settings");
+renderFolder.add({ pixelRatio: renderer.getPixelRatio() }, "pixelRatio", 0.5, 2, 0.1).onChange((value) => {
+  renderer.setPixelRatio(value);
+  composer.setSize(window.innerWidth, window.innerHeight);
+  smaaPass.setSize(window.innerWidth * value, window.innerHeight * value);
+});
+renderFolder.open();
+
+const grainFolder = gui.addFolder("Grain Effect");
+grainFolder.add(grainPass.uniforms.grainIntensity, "value", 0, 0.05).name("Grain Intensity");
+grainFolder.add(grainPass.uniforms.grainStrength, "value", 0, 50).name("Grain Strength");
+grainFolder.open();
+
+const positionFolder = gui.addFolder("Sphere Positions");
+positionFolder.add({ distance: sphereDistance }, "distance", 1, 10).name("Distance").onChange((value) => {
+  sphereDistance = value;
+  updateSpherePositions();
+});
+
+spheres.forEach((sphere, i) => {
+  const folder = positionFolder.addFolder(`Sphere ${i + 1}`);
+  folder.add(sphere.position, "x", -10, 10).name("X").listen();
+  folder.add(sphere.position, "y", -10, 10).name("Y");
+  folder.add(sphere.position, "z", -10, 10).name("Z");
+  folder.open();
+});
+
+positionFolder.open();
+
+spheres.forEach((sphere, i) => {
+  const folder = gui.addFolder(`Sphere ${i + 1}`);
+  folder.add(sphere.material.uniforms.noiseIntensity, "value", 0, 2).name("Noise Intensity");
+  folder.add(sphere.material.uniforms.noiseType, "value", 0, 2, 1).name("Noise Type");
+  folder.add(sphere.material.uniforms.brightness, "value", 0.5, 2).name("Brightness");
+  folder.add(sphere.material.uniforms.contrast, "value", -1, 1).name("Contrast");
+  folder.add(sphere.material.uniforms.saturation, "value", -1, 1).name("Saturation");
+  folder.open();
+});
+
+function animate(time) {
+  requestAnimationFrame(animate);
+  time *= 0.001; // seconds
+
+  spheres.forEach(sphere => {
+    sphere.material.uniforms.time.value = time;
+  });
+
+  grainPass.uniforms.time.value = time;
+
+  controls.update();
+  composer.render();
+}
+
+animate(0);
+
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  composer.setSize(window.innerWidth, window.innerHeight);
+  smaaPass.setSize(window.innerWidth * renderer.getPixelRatio(), window.innerHeight * renderer.getPixelRatio());
+});
+
+gui.hide();
+</script>
+</body>
 </html>
