@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>LiminalLoop</title>
-  <style>
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
+  <title>LiminalLoop</title>  
+  <style>  
     @import url("https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono&display=swap");
-    *,
-    *::after,
-    *::before {
+    *, *::after, *::before {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
     }
     :root {
       --color-background: rgb(0, 0, 0);
@@ -37,8 +34,8 @@
       letter-spacing: -0.03em;
       text-align: center;
       position: relative;
+      overflow: hidden;
     }
-    /* Layout Styles */
     .header {
       position: fixed;
       top: 0;
@@ -75,7 +72,6 @@
       font-family: var(--font-mono);
       text-transform: uppercase;
     }
-    /* Component Styles */
     .logo {
       font-size: 1.5rem;
       line-height: 1;
@@ -119,11 +115,9 @@
       font-size: 0.7rem;
       opacity: 0.8;
     }
-    /* Link Styles */
     a {
       color: var(--color-foreground);
     }
-    /* Menu Styles */
     .nav__toggle {
       position: relative;
       cursor: pointer;
@@ -131,7 +125,6 @@
       font-family: var(--font-mono);
       color: var(--color-accent);
       text-transform: uppercase;
-      user-select: none;
     }
     .nav__toggle-state--close {
       display: none;
@@ -151,7 +144,7 @@
       overflow: hidden;
       z-index: 900;
       transform: translateY(-100%);
-      transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+      transition: transform 0.4s ease;
     }
     .menu.open {
       transform: translateY(0);
@@ -235,155 +228,179 @@
       width: 100%;
       height: 100%;
       z-index: -1;
+      display: block;
     }
-  </style>
-</head>
-<body>
-  <header class="header">
-    <div class="logo">
-      Heptapod<sup>®</sup>
-    </div>
-    <div class="nav__toggle" id="menuToggle" aria-label="Toggle menu" role="button" tabindex="0">
-      <div class="nav__toggle-slider">
-        <div class="nav__toggle-state nav__toggle-state--open">
-          <div class="nav__toggle-text double-hover">
-            <span>Menu</span>
-            <span>Menu</span>
-          </div>
-        </div>
-        <div class="nav__toggle-state nav__toggle-state--close">
-          <div class="nav__toggle-text double-hover">
-            <span>Close</span>
-            <span>Close</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <div class="container">
-    <aside class="sidebar">
-      <p class="description">
-        DECODING THE HEPTAPOD LANGUAGE TO BRIDGE DIMENSIONS AND COMMUNICATE WITH THE UNKNOWN.
-      </p>
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#">_LANGUAGE DECRYPTION</a>
-        <a href="#">_TEMPORAL SHIFTS</a>
-        <a href="#">_SIGNAL ANALYSIS</a>
-        <a href="#">_COMMUNICATION LOGS</a>
-      </nav>
-      <div class="footer">
-        <p>
-          Err: [2024 - SIGNAL LOST]<br />
-          SYSTEM TIME: CYCLE 2187.42
-        </p>
-      </div>
-    </aside>
-
-    <main class="main-content">
-      <p class="signal">_Signal Reception Initiated...</p>
-    </main>
-  </div>
-
-  <div class="menu" id="menu" aria-hidden="true">
-    <div class="menu__content">
-      <div class="menu__grid">
-        <div class="menu__column">
-          <nav class="menu__nav" aria-label="Secondary menu">
-            <a href="#" class="menu__footer-link double-hover">
-              <span>Linguistic</span>
-              <span>Linguistic</span>
-            </a>
-            <a href="#" class="menu__footer-link double-hover">
-              <span>Temporal</span>
-              <span>Temporal</span>
-            </a>
-            <a href="#" class="menu__footer-link double-hover">
-              <span>Semantic</span>
-              <span>Semantic</span>
-            </a>
-            <a href="#" class="menu__footer-link double-hover">
-              <span>Communication</span>
-              <span>Communication</span>
-            </a>
-          </nav>
-          <div class="menu__footer">
-            <div class="menu__divider"></div>
-            <p class="division">
-              ACCESS LEVEL: RESTRICTED.<br />
-              TRACE INITIATED: SOURCE UNKNOWN.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <svg style="display:none">
-    <filter id="fluted" primitiveUnits="objectBoundingBox">
-      <feImage
-        x="0"
-        y="0"
-        in="blur_0"
-        result="image_0"
-        crossorigin="anonymous"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1' color-interpolation-filters='sRGB'><g><rect width='1' height='1' fill='black' /><rect width='1' height='1' fill='url(%23red)' style='mix-blend-mode:screen' /><rect width='1' height='1' fill='url(%23green)' style='mix-blend-mode:screen' /><rect width='1' height='1' fill='url(%23yellow)' style='mix-blend-mode:screen' /></g><defs><radialGradient id='yellow' cx='0' cy='0' r='1' ><stop stop-color='yellow' /><stop stop-color='yellow' offset='1' stop-opacity='0' /></radialGradient><radialGradient id='green' cx='1' cy='0' r='1' ><stop stop-color='green' /><stop stop-color='green' offset='1' stop-opacity='0' /></radialGradient><radialGradient id='red' cx='0' cy='1' r='1' ><stop stop-color='red' /><stop stop-color='red' offset='1' stop-opacity='0' /></radialGradient></defs></svg>"
-        preserveAspectRatio="none meet"
-        width=".03"
-        height="1"
-      />
-      <feTile in="image_0" result="tile_0" />
-      <feGaussianBlur stdDeviation=".003" edgeMode="none" in="tile_0" result="bar_smoothness" x="0" y="0" />
-      <feDisplacementMap scale=".08" xChannelSelector="R" yChannelSelector="G" in="SourceGraphic" in2="bar_smoothness" result="displacement_0" />
-    </filter>
-  </svg>
-
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
-  <script src="https://unpkg.com/split-type"></script>
+  </style>  
+</head>  
+<body>  
+  <header class="header">  
+    <div class="logo">Heptapod<sup>®</sup></div>  
+    <div class="nav__toggle" id="menuToggle">  
+      <div class="nav__toggle-slider">  
+        <div class="nav__toggle-state nav__toggle-state--open">  
+          <div class="nav__toggle-text double-hover">  
+            <span>Menu</span>  
+            <span>Menu</span>  
+          </div>  
+        </div>  
+        <div class="nav__toggle-state nav__toggle-state--close">  
+          <div class="nav__toggle-text double-hover">  
+            <span>Close</span>  
+            <span>Close</span>  
+          </div>  
+        </div>  
+      </div>  
+    </div>  
+  </header>  
+  
+  <div class="container">  
+    <aside class="sidebar">  
+      <p class="description">  
+        DECODING THE HEPTAPOD LANGUAGE TO BRIDGE DIMENSIONS AND COMMUNICATE WITH THE UNKNOWN.  
+      </p>  
+      <nav class="nav-links">  
+        <a href="#">_LANGUAGE DECRYPTION</a>  
+        <a href="#">_TEMPORAL SHIFTS</a>  
+        <a href="#">_SIGNAL ANALYSIS</a>  
+        <a href="#">_COMMUNICATION LOGS</a>  
+      </nav>  
+      <div class="footer">  
+        <p>  
+          Err: [2024 - SIGNAL LOST]<br />  
+          SYSTEM TIME: CYCLE 2187.42  
+        </p>  
+      </div>  
+    </aside>  
+  
+    <main class="main-content">  
+      <p class="signal">_Signal Reception Initiated...</p>  
+    </main>  
+  </div>  
+  
+  <div class="menu" id="menu">  
+    <div class="menu__content">  
+      <div class="menu__grid">  
+        <div class="menu__column">  
+          <nav class="menu__nav">  
+            <a href="#" class="menu__footer-link double-hover">  
+              <span>Linguistic</span>  
+              <span>Linguistic</span>  
+            </a>  
+            <a href="#" class="menu__footer-link double-hover">  
+              <span>Temporal</span>  
+              <span>Temporal</span>  
+            </a>  
+            <a href="#" class="menu__footer-link double-hover">  
+              <span>Semantic</span>  
+              <span>Semantic</span>  
+            </a>  
+            <a href="#" class="menu__footer-link double-hover">  
+              <span>Communication</span>  
+              <span>Communication</span>  
+            </a>  
+          </nav>  
+          <div class="menu__footer">  
+            <div class="menu__divider"></div>  
+            <p class="division">  
+              ACCESS LEVEL: RESTRICTED.<br>  
+              TRACE INITIATED: SOURCE UNKNOWN.  
+            </p>  
+          </div>  
+        </div>  
+      </div>  
+    </div>  
+  </div>  
+  
+  <svg style="display:none;">  
+    <filter id="fluted" primitiveUnits="objectBoundingBox">  
+      <feImage x="0" y="0" in="blur_0" result="image_0" crossorigin="anonymous" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1' color-interpolation-filters='sRGB'><g><rect width='1' height='1' fill='black'/><rect width='1' height='1' fill='url(%23red)' style='mix-blend-mode:screen'/><rect width='1' height='1' fill='url(%23green)' style='mix-blend-mode:screen'/><rect width='1' height='1' fill='url(%23yellow)' style='mix-blend-mode:screen'/></g><defs><radialGradient id='yellow' cx='0' cy='0' r='1'><stop stop-color='yellow'/><stop stop-color='yellow' offset='1' stop-opacity='0'/></radialGradient><radialGradient id='green' cx='1' cy='0' r='1'><stop stop-color='green'/><stop stop-color='green' offset='1' stop-opacity='0'/></radialGradient><radialGradient id='red' cx='0' cy='1' r='1'><stop stop-color='red'/><stop stop-color='red' offset='1' stop-opacity='0'/></radialGradient></defs></svg>" preserveAspectRatio="none meet" width=".03" height="1"/>  
+      <feTile in="image_0" result="tile_0"/>  
+      <feGaussianBlur stdDeviation=".003" edgeMode="none" in="tile_0" result="bar_smoothness" x="0" y="0"/>  
+      <feDisplacementMap scale=".08" xChannelSelector="R" yChannelSelector="G" in="SourceGraphic" in2="bar_smoothness" result="displacement_0"/>  
+    </filter>  
+  </svg>  
+  
+  <canvas id="bgCanvas"></canvas>  
+  
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>  
+  <script src="https://unpkg.com/split-type"></script>  
   
   <script>
     (() => {
-      const menuToggle = document.getElementById("menuToggle");
-      const menu = document.getElementById("menu");
-      const body = document.body;
-
-      // Accessibility: toggle menu with keyboard enter/space
-      menuToggle.addEventListener("keydown", e => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          toggleMenu();
-        }
+      const menuToggle = document.getElementById('menuToggle');
+      const menu = document.getElementById('menu');
+      
+      menuToggle.addEventListener('click', () => {
+        menu.classList.toggle('open');
+        // Toggle visibility of open/close text
+        menuToggle.querySelector('.nav__toggle-state--open').style.display = menu.classList.contains('open') ? 'none' : 'block';
+        menuToggle.querySelector('.nav__toggle-state--close').style.display = menu.classList.contains('open') ? 'block' : 'none';
       });
 
-      menuToggle.addEventListener("click", toggleMenu);
+      // Animate the signal text with SplitType and GSAP
+      const signalText = document.querySelector('.signal');
+      const split = new SplitType(signalText, { types: 'chars' });
 
-      function toggleMenu() {
-        const isOpen = menu.classList.toggle("open");
-        menuToggle.classList.toggle("nav__toggle-state--close", isOpen);
-        menuToggle.classList.toggle("nav__toggle-state--open", !isOpen);
-        menu.setAttribute("aria-hidden", !isOpen);
-        // Optionally disable scroll when menu open
-        body.style.overflow = isOpen ? "hidden" : "";
+      gsap.fromTo(split.chars, 
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, stagger: 0.05, ease: "power2.out", duration: 1 }
+      );
+
+      // Background animation on canvas
+      const canvas = document.getElementById('bgCanvas');
+      const ctx = canvas.getContext('2d');
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      // Create moving circles as background objects
+      const circles = [];
+      const circleCount = 60;
+
+      function randomRange(min, max) {
+        return Math.random() * (max - min) + min;
       }
 
-      // Animate main signal text on load
-      window.addEventListener("load", () => {
-        const signalEl = document.querySelector(".signal");
-        if (!signalEl) return;
-        // Use SplitType to split text for animation
-        const split = new SplitType(signalEl, { types: "chars" });
-
-        gsap.from(split.chars, {
-          opacity: 0,
-          y: 20,
-          stagger: 0.05,
-          ease: "power2.out",
-          duration: 0.7,
-          delay: 0.5,
+      for(let i = 0; i < circleCount; i++) {
+        circles.push({
+          x: randomRange(0, canvas.width),
+          y: randomRange(0, canvas.height),
+          radius: randomRange(10, 25),
+          speedX: randomRange(-0.3, 0.3),
+          speedY: randomRange(-0.3, 0.3),
+          color: `rgba(255, 140, 0, ${randomRange(0.05, 0.15)})`
         });
-      });
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        circles.forEach(c => {
+          c.x += c.speedX;
+          c.y += c.speedY;
+
+          if (c.x - c.radius > canvas.width) c.x = -c.radius;
+          else if (c.x + c.radius < 0) c.x = canvas.width + c.radius;
+          if (c.y - c.radius > canvas.height) c.y = -c.radius;
+          else if (c.y + c.radius < 0) c.y = canvas.height + c.radius;
+
+          // Draw circle with radial gradient for soft glow effect
+          const grad = ctx.createRadialGradient(c.x, c.y, 0, c.x, c.y, c.radius);
+          grad.addColorStop(0, c.color);
+          grad.addColorStop(1, 'rgba(255, 140, 0, 0)');
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.arc(c.x, c.y, c.radius, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        requestAnimationFrame(animate);
+      }
+      animate();
     })();
-  </script>
-</body>
+  </script>  
+</body>  
 </html>
