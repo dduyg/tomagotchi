@@ -12,15 +12,11 @@
         font-family: "PP Neue Montreal", sans-serif;
         font-weight: 400;
       }
-
-      *,
-      *::before,
-      *::after {
+      *, *::before, *::after {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
-
       :root {
         --font-size-min: 16;
         --font-size-max: 20;
@@ -31,14 +27,12 @@
         --accent-color: yellow;
         --blue-color: #0000ff;
       }
-
       html {
         font-size: calc(100vw / 1512 * 10);
         scrollbar-color: var(--accent-color) #0000;
         scrollbar-width: thin;
         overflow-x: hidden;
       }
-
       body {
         font-family: "PP Neue Montreal", sans-serif;
         font-weight: 700;
@@ -71,7 +65,6 @@
         align-items: flex-start;
         gap: 0.2rem;
       }
-
       li {
         font-size: 2rem;
         position: relative;
@@ -81,11 +74,9 @@
         display: inline-block;
         z-index: 1;
       }
-
       li:first-child {
         margin-top: 0;
       }
-
       li::after {
         content: "";
         position: absolute;
@@ -97,11 +88,9 @@
         z-index: -1;
         transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       }
-
       li:hover::after {
         width: 100%;
       }
-
       li:hover {
         color: black;
         mix-blend-mode: difference;
@@ -130,7 +119,6 @@
         z-index: 100;
         pointer-events: none;
       }
-
       @keyframes noise-animation {
         0% { transform: translate(0, 0); }
         10% { transform: translate(-2%, -3%); }
@@ -190,7 +178,6 @@
         font-size: 2rem;
         padding-top: 1rem;
       }
-
       .logo span {
         background-color: var(--blue-color);
         padding: 0.2rem 0.5rem;
@@ -230,7 +217,6 @@
         width: 100%;
         overflow-x: hidden;
       }
-
       section::before {
         content: "";
         position: sticky;
@@ -243,12 +229,10 @@
         mix-blend-mode: difference;
         pointer-events: none;
       }
-
       section:nth-of-type(even) {
         background: black;
         color: white;
       }
-
       .section__content {
         display: grid;
         grid-area: 1 / 1;
@@ -269,13 +253,11 @@
         width: 100%;
         max-width: 100vw;
       }
-
       .minimalist-content h2 {
         font-size: 6rem;
         margin-bottom: 2rem;
         max-width: 100%;
       }
-
       .minimalist-content p {
         font-size: 2.2rem;
         max-width: 30ch;
@@ -293,7 +275,6 @@
         height: calc(100vh - 160px);
         max-width: 100vw;
       }
-
       .grid-card {
         background-color: #f5f5f5;
         border-radius: 8px;
@@ -305,7 +286,6 @@
         overflow: hidden;
         justify-content: space-between;
       }
-
       .grid-card:nth-child(5) {
         background-color: var(--accent-color);
         cursor: pointer;
@@ -316,7 +296,6 @@
         margin-bottom: 0;
         text-transform: uppercase;
       }
-
       .card-number {
         position: absolute;
         top: 20px;
@@ -324,7 +303,6 @@
         font-size: 1.4rem;
         opacity: 0.7;
       }
-
       .circle-container {
         position: absolute;
         top: 20px;
@@ -332,23 +310,19 @@
         width: 8px;
         height: 8px;
       }
-
       .circle-svg {
         width: 100%;
         height: 100%;
         overflow: visible;
       }
-
       #middle-box {
         transition: padding 0.2s;
       }
-
       .card-content {
         display: flex;
         flex-direction: column;
         margin-top: auto;
       }
-
       .small-text {
         font-size: 2rem;
         line-height: 1.4;
@@ -360,17 +334,14 @@
       .grid-card:nth-child(5) .small-text {
         color: #000;
       }
-
       .grid-card:nth-child(5) a {
         color: #000;
         text-decoration: none;
         border-bottom: 1px solid rgba(0, 0, 0, 0.3);
       }
-
       .grid-card:nth-child(5) a:hover {
         border-bottom-color: #000;
       }
-
       @media (max-width: 768px) {
         .grid-cards-container {
           grid-template-columns: 1fr;
@@ -378,44 +349,33 @@
           height: auto;
           gap: 1rem;
         }
-
         .minimalist-content h2 {
           font-size: 4rem;
         }
-
         .minimalist-content p {
           font-size: 1.8rem;
         }
-
         header {
           grid-template-columns: 1fr;
           grid-template-rows: repeat(3, auto);
           gap: 1rem;
         }
-
-        .logo,
-        .nav-menu,
-        .cta {
+        .logo, .nav-menu, .cta {
           grid-column: 1;
         }
-
         .logo {
           grid-row: 1;
         }
-
         .nav-menu {
           grid-row: 2;
         }
-
         .cta {
           grid-row: 3;
           justify-content: flex-start;
         }
-
         html {
           font-size: 14px;
         }
-
         .small-text {
           font-size: 1.6rem;
         }
