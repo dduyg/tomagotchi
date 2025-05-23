@@ -6,173 +6,122 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>LiminalLoop</title>
   <style>
-@import url("https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300&family=Space+Mono&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300&family=Space+Mono&display=swap");
+    *, *::after, *::before {box-sizing: border-box;}
+    :root {
+      --color-background: rgb(10, 10, 10);
+      --color-foreground: rgb(240, 240, 240);
+      --color-accent: rgb(205, 205, 0);
+      --font-primary: "Cormorant", serif;
+      --font-mono: "Space Mono", monospace;
+      --margin: 32px;
+      --gutter: 16px;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-primary);
+      background-color: var(--color-background);
+      color: var(--color-foreground);
+      letter-spacing: -0.02em;
+      position: relative;
+      text-align: center;
+    }
 
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-}
+    .container {
+      display: flex;
+      width: 100%;
+      height: 100vh;
+      padding: var(--gutter);
+    }
+   .sidebar {
+     width: 40%;
+     padding: var(--margin);
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     text-align: left;
+   }
 
-:root {
-  --color-background: rgb(10, 10, 10);
-  --color-foreground: rgb(240, 240, 240);
-  --color-accent: rgb(205, 205, 0);
-  --font-primary: "Cormorant", serif;
-  --font-mono: "Space Mono", monospace;
-  --margin: 32px;
-  --gutter: 16px;
-}
+    .logo {  
+      font-size: 1.25rem;
+      line-height: 0.9;
+      font-family: var(--font-mono);
+      color: var(--color-accent);
+      margin-bottom: 1rem;
+    }
+    .logo sup {font-size: 6rem;}
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-primary);
-  background-color: var(--color-background);
-  color: var(--color-foreground);
-  letter-spacing: -0.03em;
-  position: relative;
-  text-align: center;
-}
+    .description {
+      font-size: 0.75rem;
+      line-height: 1.2;
+      margin-bottom: 40px;
+      max-width: 360px;
+      font-family: var(--font-mono);
+    }
 
-.container {
-  display: flex;
-  width: 100%;
-  height: 100vh;
-  padding: var(--gutter);
-}
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      font-family: var(--font-mono);
+    }
+    .nav-links a {
+      color: var(--color-foreground);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { 
+      color: var(--color-accent);
+    }
 
-.sidebar {
-  width: 40%;
-  padding: var(--margin);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: left;
-}
+    .footer {
+      margin-top: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+    }
+    .footer p {
+      opacity: 0.5;
+    }
 
-.logo {
-  font-size: 1.25rem;
-  line-height: 0.9;
-  font-family: var(--font-mono);
-  color: var(--color-accent);
-  margin-bottom: 1rem;
-}
+    .division {margin-top: auto;}
 
-.logo sup {
-  font-size: 6rem;
-}
-
-.description {
-  font-size: 0.75rem;
-  line-height: 1.2;
-  margin-bottom: 40px;
-  max-width: 360px;
-  font-family: var(--font-mono);
-}
-
-.nav-links {
-  display: flex;
-  flex-direction: column;
-  font-family: var(--font-mono);
-}
-
-.nav-links a {
-  color: var(--color-foreground);
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.nav-links a:hover {
-  color: var(--color-accent);
-}
-
-.footer {
-  margin-top: 1rem;
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-}
-
-.footer p {
-  opacity: 0.5;
-}
-
-.social-links {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.division {
-  margin-top: auto;
-}
-
-.main-content {
-  width: 65%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: var(--margin);
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-}
-
-button.book {
-  background-color: var(--color-accent);
-  color: var(--color-foreground);
-  border: none;
-  padding: 10px 20px;
-  border-radius: 2;
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  cursor: pointer;
-  margin-top: var(--gutter);
-  transition: background-color 0.3s;
-}
-
-button.book:hover {
-  background-color: rgb(255, 100, 20);
-}
-
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-}
+    .main-content {
+      width: 65%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: var(--margin);
+      font-family: var(--font-mono);
+      text-transform: uppercase;
+    }
   </style>
 </head>
 <body>
 <div class="container">
-  <div class="sidebar">
-    <div class="logo">Exodus Black</div>
-    <p class="description">THE ARCHIVE COLLECTS RECORDS OF ABANDONED WORLDS AND LOST TECHNOLOGIES, WAITING TO BE DISCOVERED.</p>
-    <nav class="nav-links">
-      <a href="#">_DATA VAULTS</a>
-      <a href="#">_DEEP SPACE</a>
-      <a href="#">_FORBIDDEN ZONES</a>
-      <a href="#">_EXODUS LOGS</a>
-    </nav>
-    <div class="footer">
-      <p>Err: [404 - SIGNAL LOST]<br />
-        SYSTEM TIME: CYCLE 2187.42</p>
-    </div>
-    <p class="division">
-      ACCESS LEVEL: RESTRICTED.<br>
-      TRACE INITIATED: SOURCE UNKNOWN.</p>
-  </div>
-  <div class="main-content">
-    <p class="signal">_Uplink Pending...</p>
-  </div>
+   <div class="sidebar">
+     <div class="logo">Exodus Black</div>
+     <p class="description">THE ARCHIVE COLLECTS RECORDS OF ABANDONED WORLDS AND LOST TECHNOLOGIES, WAITING TO BE DISCOVERED.</p>
+     <nav class="nav-links">
+       <a href="#">_DATA VAULTS</a>
+       <a href="#">_DEEP SPACE</a>
+       <a href="#">_FORBIDDEN ZONES</a>
+       <a href="#">_EXODUS LOGS</a>
+     </nav>
+     <div class="footer">
+       <p>Err: [404 - SIGNAL LOST]<br />
+         SYSTEM TIME: CYCLE 2187.42</p>
+     </div>
+     <p class="division">
+       ACCESS LEVEL: RESTRICTED.<br>
+       TRACE INITIATED: SOURCE UNKNOWN.</p>
+   </div>
+   <div class="main-content">
+     <p class="signal">_Uplink Pending...</p>
+   </div>
 </div>
-
-  <script type="module" src="./script.js"></script>
 </body>
 </html>
