@@ -297,7 +297,6 @@ If the image is used as a background:
 - [ ]  Raleway ♡
 - [ ]  Chivo
 - [ ]  Ruda
-- [ ]  DM Sans
 - [ ]  Warnes
 - [ ]  Viaoda Libre
 - [ ]  Diplomata SC
@@ -308,7 +307,6 @@ If the image is used as a background:
 - [ ]  Overlock
 - [ ]  Titillium Web
 - [ ]  Nunito
-- [ ]  Unbounded
 - [ ]  Capriola
 - [ ]  Faculty Glyphic
 - [ ]  Karla
