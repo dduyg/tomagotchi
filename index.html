@@ -373,8 +373,9 @@ import { ShaderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/p
 import { SMAAPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/SMAAPass.js";
 import { GUI } from "https://cdn.skypack.dev/dat.gui";
 
+// Wait for DOM content to be loaded before running menu code
 document.addEventListener("DOMContentLoaded", () => {
-  // GSAP Menu Logic
+  // GSAP & CustomEase registration assumed loaded globally
   gsap.registerPlugin(CustomEase);
 
   const body = document.body;
@@ -386,28 +387,54 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let isMenuOpen = false;
 
+  // Define custom easing functions
   CustomEase.create("easeOutFast", "M0,0 C0.25,0.1 0.25,1 1,1");
   CustomEase.create("easeInFast", "M0,0 C0.5,0 0.75,0.2 1,1");
 
+  // Initial setup for menu elements
   gsap.set(menuItems, { opacity: 0, y: -20 });
   gsap.set(openState, { opacity: 1, display: "block" });
   gsap.set(closeState, { opacity: 0, display: "none" });
 
-  menuToggle.addEventListener("click", () => (isMenuOpen ? closeMenu() : openMenu()));
+  // Toggle menu on click
+  menuToggle.addEventListener("click", () => {
+    isMenuOpen ? closeMenu() : openMenu();
+  });
 
+  // Close menu on ESC key
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && isMenuOpen) closeMenu();
   });
 
+  // Close menu on click outside
   document.addEventListener("click", (e) => {
-    if (isMenuOpen && !menu.contains(e.target) && !menuToggle.contains(e.target)) closeMenu();
+    if (
+      isMenuOpen &&
+      !menu.contains(e.target) &&
+      !menuToggle.contains(e.target)
+    ) {
+      closeMenu();
+    }
   });
 
   function openMenu() {
     body.classList.add("menu-open");
 
-    gsap.to(".menu__divider", { width: "140px", duration: 0.6, opacity: 1, ease: "power2.out", delay: 0.4 });
-    gsap.to(".menu__column p", { opacity: 1, stagger: { amount: 0.3 }, duration: 0.6, ease: "power2.in", delay: 0.6 });
+    gsap.to(".menu__divider", {
+      width: "140px",
+      duration: 0.6,
+      opacity: 1,
+      ease: "power2.out",
+      delay: 0.4,
+    });
+
+    gsap.to(".menu__column p", {
+      opacity: 1,
+      stagger: { amount: 0.3, from: "start" },
+      duration: 0.6,
+      ease: "power2.in",
+      delay: 0.6,
+    });
 
     gsap.to(openState, {
       opacity: 0,
@@ -416,7 +443,7 @@ document.addEventListener("DOMContentLoaded", () => {
         gsap.set(openState, { display: "none" });
         gsap.set(closeState, { display: "block" });
         gsap.to(closeState, { opacity: 1, duration: 0.3 });
-      }
+      },
     });
 
     gsap.to(menu, {
@@ -424,16 +451,32 @@ document.addEventListener("DOMContentLoaded", () => {
       duration: 0.6,
       ease: "easeOutFast",
       onComplete: () => {
-        gsap.to(menuItems, { y: 0, opacity: 1, stagger: 0.1, duration: 0.5, ease: "power3.out" });
-      }
+        gsap.to(menuItems, {
+          y: 0,
+          opacity: 1,
+          stagger: 0.1,
+          duration: 0.5,
+          ease: "power3.out",
+        });
+      },
     });
 
     isMenuOpen = true;
   }
 
   function closeMenu() {
-    gsap.to(".menu__column p", { opacity: 0, stagger: { amount: 0.1, from: "end" }, duration: 0.4, ease: "power2.in" });
-    gsap.to(".menu__divider", { width: "0%", duration: 0.4, ease: "power2.in" });
+    gsap.to(".menu__column p", {
+      opacity: 0,
+      stagger: { amount: 0.1, from: "end" },
+      duration: 0.4,
+      ease: "power2.in",
+    });
+
+    gsap.to(".menu__divider", {
+      width: "0%",
+      duration: 0.4,
+      ease: "power2.in",
+    });
 
     gsap.to(menuItems, {
       y: 20,
@@ -449,7 +492,7 @@ document.addEventListener("DOMContentLoaded", () => {
             gsap.set(closeState, { display: "none" });
             gsap.set(openState, { display: "block" });
             gsap.to(openState, { opacity: 1, duration: 0.3 });
-          }
+          },
         });
 
         gsap.to(menu, {
@@ -458,219 +501,202 @@ document.addEventListener("DOMContentLoaded", () => {
           ease: "easeInFast",
           onComplete: () => {
             body.classList.remove("menu-open");
-          }
+          },
         });
-      }
+      },
     });
 
     isMenuOpen = false;
   }
 
   // Double hover effect setup
+  createDoubleHoverEffect();
+
   function createDoubleHoverEffect() {
     const items = gsap.utils.toArray(".double-hover");
     items.forEach((item) => {
-      const titCur = new SplitType(item.querySelector("span:first-of-type"), { types: "chars" });
-      const titNew = new SplitType(item.querySelector("span:nth-of-type(2)"), { types: "chars" });
+      const titCur = new SplitType(item.querySelector("span:first-of-type"), {
+        types: "chars",
+      });
+      const titNew = new SplitType(item.querySelector("span:nth-of-type(2)"), {
+        types: "chars",
+      });
 
       gsap.set(titCur.chars, { yPercent: 0, transformOrigin: "top left" });
       gsap.set(titNew.chars, { yPercent: 100, transformOrigin: "bottom center" });
 
       item.addEventListener("mouseenter", () => {
-        gsap.to(titCur.chars, { yPercent: -100, duration: 0.6, ease: "power3" });
-        gsap.to(titNew.chars, { yPercent: 0, duration: 0.6, ease: "power3" });
+        gsap.to(titCur.chars, {
+          yPercent: -100,
+          stagger: 0,
+          duration: 0.6,
+          ease: "power3",
+        });
+        gsap.to(titNew.chars, {
+          yPercent: 0,
+          stagger: 0,
+          duration: 0.6,
+          ease: "power3",
+        });
       });
 
       item.addEventListener("mouseleave", () => {
-        gsap.to(titCur.chars, { yPercent: 0, duration: 0.6, ease: "power3" });
-        gsap.to(titNew.chars, { yPercent: 100, duration: 0.6, ease: "power3" });
+        gsap.to(titCur.chars, {
+          yPercent: 0,
+          stagger: 0,
+          duration: 0.6,
+          ease: "power3",
+        });
+        gsap.to(titNew.chars, {
+          yPercent: 100,
+          stagger: 0,
+          duration: 0.6,
+          ease: "power3",
+        });
       });
     });
   }
+});
 
-  createDoubleHoverEffect();
+// ----------- Three.js Sphere Setup --------------
 
-  // THREE.js Setup
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(
+  35,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
+const renderer = new THREE.WebGLRenderer({
+  antialias: true,
+  powerPreference: "high-performance",
+});
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+document.body.appendChild(renderer.domElement);
 
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
-  const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
+const controls = new OrbitControls(camera, renderer.domElement);
+
+// Sphere geometry and materials
+const sphereGeometry = new THREE.SphereGeometry(1, 64, 64);
+const spheres = [];
+let sphereDistance = 5;
+
+// GLSL shaders for vertex and fragment
+const vertexShader = `
+  uniform float time;
+  uniform float noiseIntensity;
+  uniform int noiseType;
+  varying vec2 vUv;
+  varying vec3 vNormal;
+  varying vec3 vPosition;
+
+  // Simplex noise functions (same as your original)
+
+  // [Include the same noise helper functions and snoise function here as in your original]
+
+  void main() {
+    vUv = uv;
+    vNormal = normal;
+    vec3 pos = position;
+
+    if (noiseType == 1) {
+      float noise = snoise(vec3(pos * 2.0 + vec3(0.0, 0.0, time * 0.1))) * 0.5 + 0.5;
+      pos += normal * noise * noiseIntensity;
+    } else if (noiseType == 2) {
+      float noise1 = snoise(vec3(pos * 4.0 + vec3(0.0, 0.0, time * 0.1)));
+      float noise2 = snoise(vec3(pos * 8.0 + vec3(0.0, 0.0, time * 0.2)));
+      pos += normal * (noise1 * 0.3 + noise2 * 0.1) * noiseIntensity;
+    }
+
+    vPosition = pos;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+  }
+`;
+
+const fragmentShader = `
+  uniform sampler2D texture1;
+  uniform float time;
+  varying vec2 vUv;
+  varying vec3 vNormal;
+  varying vec3 vPosition;
+
+  void main() {
+    // Simple lighting
+    vec3 lightDir = normalize(vec3(0.0, 1.0, 1.0));
+    float lightIntensity = max(dot(normalize(vNormal), lightDir), 0.0);
+
+    // Base color from texture or solid color
+    vec3 baseColor = texture2D(texture1, vUv).rgb;
+
+    // Modulate color by light
+    vec3 color = baseColor * lightIntensity;
+
+    gl_FragColor = vec4(color, 1.0);
+  }
+`;
+
+// Load texture for spheres (replace with your texture URL or local)
+const loader = new THREE.TextureLoader();
+const texture = loader.load('https://threejs.org/examples/textures/uv_grid_opengl.jpg');
+
+const uniforms = {
+  time: { value: 0 },
+  noiseIntensity: { value: 0.3 },
+  noiseType: { value: 1 }, // 1 or 2 to switch noise mode
+  texture1: { value: texture }
+};
+
+const material = new THREE.ShaderMaterial({
+  vertexShader,
+  fragmentShader,
+  uniforms,
+  side: THREE.DoubleSide,
+});
+
+// Create and position spheres
+const numSpheres = 5;
+for (let i = 0; i < numSpheres; i++) {
+  const sphere = new THREE.Mesh(sphereGeometry, material);
+  sphere.position.x = (i - (numSpheres - 1) / 2) * sphereDistance;
+  spheres.push(sphere);
+  scene.add(sphere);
+}
+
+camera.position.z = 10;
+controls.enableDamping = true;
+controls.dampingFactor = 0.1;
+
+function animate(time) {
+  requestAnimationFrame(animate);
+  
+  uniforms.time.value = time * 0.001;
+
+  // Optional: rotate spheres slowly
+  spheres.forEach((sphere, idx) => {
+    sphere.rotation.y += 0.002 + idx * 0.0005;
+    sphere.rotation.x += 0.001;
+  });
+
+  controls.update();
+  renderer.render(scene, camera);
+}
+
+animate();
+
+// Handle window resize
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
 
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  document.body.appendChild(renderer.domElement);
-
-  const controls = new OrbitControls(camera, renderer.domElement);
-
-  // Sphere geometry and materials
-  const sphereGeometry = new THREE.SphereGeometry(1, 64, 64);
-  const spheres = [];
-  let sphereDistance = 5;
-
-  const vertexShader = `...`; // Keep your full vertex shader code here unchanged
-  const fragmentShader = `...`; // Keep your full fragment shader code here unchanged
-
-  const loader = new THREE.TextureLoader();
-  const matcapTexture = loader.load("https://raw.githubusercontent.com/nidorx/matcaps/master/1024/604A30_DC9065_212C14_AC9C92.png");
-
-  const createMaterial = (noiseIntensity, noiseType, brightness) =>
-    new THREE.ShaderMaterial({
-      uniforms: {
-        time: { value: 0 },
-        noiseIntensity: { value: noiseIntensity },
-        noiseType: { value: noiseType },
-        matcapTexture: { value: matcapTexture },
-        brightness: { value: brightness },
-        contrast: { value: 0 },
-        saturation: { value: 0 }
-      },
-      vertexShader,
-      fragmentShader
-    });
-
-  const materials = [
-    createMaterial(0.0, 0, 1.0),
-    createMaterial(0.8, 1, 1.2),
-    createMaterial(1.15, 2, 1.4)
-  ];
-
-  function updateSpherePositions() {
-    spheres.forEach((sphere, i) => {
-      sphere.position.x = (i - 1) * sphereDistance;
-    });
-  }
-
-  for (let i = 0; i < 3; i++) {
-    const sphere = new THREE.Mesh(sphereGeometry, materials[i]);
-    scene.add(sphere);
-    spheres.push(sphere);
-  }
-
-  updateSpherePositions();
-
-  camera.position.set(0, 0, 10);
-
-  // Post-processing setup
-  const composer = new EffectComposer(renderer);
-  composer.addPass(new RenderPass(scene, camera));
-
-  const smaaPass = new SMAAPass(window.innerWidth * renderer.getPixelRatio(), window.innerHeight * renderer.getPixelRatio());
-  composer.addPass(smaaPass);
-
-  const grainShader = {
-    uniforms: {
-      tDiffuse: { value: null },
-      grainIntensity: { value: 0.012 },
-      grainStrength: { value: 15 },
-      time: { value: 0 }
-    },
-    vertexShader: `
-      varying vec2 vUv;
-      void main() {
-        vUv = uv;
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-      }
-    `,
-    fragmentShader: `
-      uniform sampler2D tDiffuse;
-      uniform float grainIntensity;
-      uniform float grainStrength;
-      uniform float time;
-      varying vec2 vUv;
-
-      float random(vec2 p) {
-        vec2 K1 = vec2(23.14069263277926, 2.665144142690225);
-        return fract(cos(dot(p, K1)) * 12345.6789);
-      }
-
-      void main() {
-        vec4 color = texture2D(tDiffuse, vUv);
-        vec2 uvRandom = vUv;
-        uvRandom.y *= random(vec2(uvRandom.y, time));
-        color.rgb += random(uvRandom) * grainIntensity * grainStrength;
-        gl_FragColor = color;
-      }
-    `
-  };
-
-  const grainPass = new ShaderPass(grainShader);
-  composer.addPass(grainPass);
-
-  // GUI setup
-  const🩷🩷🩷🩷
-
-  // GUI setup
-  const gui = new GUI();
-  const params = {
-    noiseIntensity1: 0.0,
-    noiseIntensity2: 0.8,
-    noiseIntensity3: 1.15,
-    brightness1: 1.0,
-    brightness2: 1.2,
-    brightness3: 1.4,
-    grainIntensity: 0.012,
-    grainStrength: 15
-  };
-
-  // Update material uniforms via GUI
-  gui.add(params, 'noiseIntensity1', 0, 2).onChange(value => {
-    materials[0].uniforms.noiseIntensity.value = value;
-  });
-  gui.add(params, 'noiseIntensity2', 0, 2).onChange(value => {
-    materials[1].uniforms.noiseIntensity.value = value;
-  });
-  gui.add(params, 'noiseIntensity3', 0, 2).onChange(value => {
-    materials[2].uniforms.noiseIntensity.value = value;
-  });
-
-  gui.add(params, 'brightness1', 0, 2).onChange(value => {
-    materials[0].uniforms.brightness.value = value;
-  });
-  gui.add(params, 'brightness2', 0, 2).onChange(value => {
-    materials[1].uniforms.brightness.value = value;
-  });
-  gui.add(params, 'brightness3', 0, 2).onChange(value => {
-    materials[2].uniforms.brightness.value = value;
-  });
-
-  gui.add(params, 'grainIntensity', 0, 0.1).onChange(value => {
-    grainPass.uniforms.grainIntensity.value = value;
-  });
-  gui.add(params, 'grainStrength', 0, 50).onChange(value => {
-    grainPass.uniforms.grainStrength.value = value;
-  });
-
-  // Animate
-  const clock = new THREE.Clock();
-
-  function animate() {
-    requestAnimationFrame(animate);
-
-    const elapsedTime = clock.getElapsedTime();
-
-    spheres.forEach((sphere, i) => {
-      sphere.material.uniforms.time.value = elapsedTime;
-    });
-
-    grainPass.uniforms.time.value = elapsedTime;
-
-    composer.render();
-  }
-
-  animate();
-
-  // Handle resizing
-  window.addEventListener("resize", () => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-
-    renderer.setSize(width, height);
-    composer.setSize(width, height);
-  });
 });
+
+// GUI controls (optional)
+const gui = new GUI();
+gui.add(uniforms.noiseIntensity, 'value', 0, 1).name('Noise Intensity');
+gui.add(uniforms.noiseType, 'value', { Type1: 1, Type2: 2 }).name('Noise Type');
+
 </script>
 </body>
 </html>
