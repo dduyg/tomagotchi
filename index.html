@@ -1,762 +1,653 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>LiminalLoop</title>
-  <style>
-@font-face {
-  src: url("https://fonts.cdnfonts.com/css/pp-neue-montreal") format("woff2");
-  font-family: "PP Neue Montreal", sans-serif;
-  font-weight: 400;
-}
-*, *:before, *:after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-:root {
-  --font-size-min: 16;
-  --font-size-max: 20;
-  --font-ratio-min: 1.2;
-  --font-ratio-max: 1.33;
-  --font-width-min: 375;
-  --font-width-max: 1500;
-  --accent-color: yellow;
-  --blue-color: #0000ff;
-}
-html {
-  font-size: calc(100vw / 1512 * 10);
-  scrollbar-color: var(--accent-color) #0000;
-  scrollbar-width: thin;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-}
-body {
-  font-family: "PP Neue Montreal", sans-serif;
-  font-weight: 700;
-  font-size: 1.8rem;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: white;
-  letter-spacing: -0.02em;
-  color: #000;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>LiminalLoop</title>
+    <link href="https://fonts.cdnfonts.com/css/pp-neue-montreal" rel="stylesheet" />
+    <style>
+      @font-face {
+        src: url("https://fonts.cdnfonts.com/css/pp-neue-montreal") format("woff2");
+        font-family: "PP Neue Montreal", sans-serif;
+        font-weight: 400;
+      }
 
-h2 {
-  --font-level: 5;
-  margin: 0;
-  line-height: 0.85;
-  text-wrap: balance;
-  width: 800px;
-  max-width: calc(100% - 2rem);
-  text-transform: none;
-}
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-ul {
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  margin: 0;
-  align-items: flex-start;
-  gap: 0.2rem;
-}
-li {
-  font-size: 2rem;
-  position: relative;
-  cursor: pointer;
-  color: white;
-  padding: 0;
-  display: inline-block;
-  z-index: 1;
-}
-li:first-child {
-  margin-top: 0;
-}
-li::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background-color: white;
-  z-index: -1;
-  transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-li:hover::after {
-  width: 100%;
-}
-/* This ensures the text is visible on hover */
-li:hover {
-  color: black;
-  mix-blend-mode: difference;
-}
+      :root {
+        --font-size-min: 16;
+        --font-size-max: 20;
+        --font-ratio-min: 1.2;
+        --font-ratio-max: 1.33;
+        --font-width-min: 375;
+        --font-width-max: 1500;
+        --accent-color: yellow;
+        --blue-color: #0000ff;
+      }
 
-button {
-  background: black;
-  color: white;
-  border: 0;
-  padding: 0.5rem 1rem;
-  text-transform: uppercase;
-}
+      html {
+        font-size: calc(100vw / 1512 * 10);
+        scrollbar-color: var(--accent-color) #0000;
+        scrollbar-width: thin;
+        overflow-x: hidden;
+      }
 
-/* Background noise effect */
-body::before {
-  content: "";
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: transparent
-    url("http://assets.iceable.com/img/noise-transparent.png") repeat 0 0;
-  background-size: 300px 300px;
-  -webkit-animation: noise-animation 0.3s steps(5) infinite;
-          animation: noise-animation 0.3s steps(5) infinite;
-  opacity: 0.03;
-  will-change: transform;
-  z-index: 100;
-  pointer-events: none;
-}
+      body {
+        font-family: "PP Neue Montreal", sans-serif;
+        font-weight: 700;
+        font-size: 1.8rem;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: white;
+        letter-spacing: -0.02em;
+        color: #000;
+        overflow-x: hidden;
+      }
 
-@-webkit-keyframes noise-animation {
-  0% {
-    transform: translate(0, 0);
-  }
-  10% {
-    transform: translate(-2%, -3%);
-  }
-  20% {
-    transform: translate(-4%, 2%);
-  }
-  30% {
-    transform: translate(2%, -4%);
-  }
-  40% {
-    transform: translate(-2%, 5%);
-  }
-  50% {
-    transform: translate(-4%, 2%);
-  }
-  60% {
-    transform: translate(3%, 0);
-  }
-  70% {
-    transform: translate(0, 3%);
-  }
-  80% {
-    transform: translate(-3%, 0);
-  }
-  90% {
-    transform: translate(2%, 2%);
-  }
-  100% {
-    transform: translate(1%, 0);
-  }
-}
+      h2 {
+        --font-level: 5;
+        margin: 0;
+        line-height: 0.85;
+        text-wrap: balance;
+        width: 800px;
+        max-width: calc(100% - 2rem);
+        text-transform: none;
+      }
 
-@keyframes noise-animation {
-  0% {
-    transform: translate(0, 0);
-  }
-  10% {
-    transform: translate(-2%, -3%);
-  }
-  20% {
-    transform: translate(-4%, 2%);
-  }
-  30% {
-    transform: translate(2%, -4%);
-  }
-  40% {
-    transform: translate(-2%, 5%);
-  }
-  50% {
-    transform: translate(-4%, 2%);
-  }
-  60% {
-    transform: translate(3%, 0);
-  }
-  70% {
-    transform: translate(0, 3%);
-  }
-  80% {
-    transform: translate(-3%, 0);
-  }
-  90% {
-    transform: translate(2%, 2%);
-  }
-  100% {
-    transform: translate(1%, 0);
-  }
-}
+      ul {
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+        align-items: flex-start;
+        gap: 0.2rem;
+      }
 
-/* Selection styling */
-::-moz-selection {
-  background: var(--accent-color);
-  color: black;
-}
-::selection {
-  background: var(--accent-color);
-  color: black;
-}
+      li {
+        font-size: 2rem;
+        position: relative;
+        cursor: pointer;
+        color: white;
+        padding: 0;
+        display: inline-block;
+        z-index: 1;
+      }
 
-/* Fluid typography */
-:where(h2, p) {
-  --fluid-min: calc(
-    var(--font-size-min) * pow(var(--font-ratio-min), var(--font-level, 0))
-  );
-  --fluid-max: calc(
-    var(--font-size-max) * pow(var(--font-ratio-max), var(--font-level, 0))
-  );
-  --fluid-preferred: calc(
-    (var(--fluid-max) - var(--fluid-min)) /
-      (var(--font-width-max) - var(--font-width-min))
-  );
-  --fluid-type: clamp(
-    (var(--fluid-min) / 16) * 1rem,
-    ((var(--fluid-min) / 16) * 1rem) -
-      (((var(--fluid-preferred) * var(--font-width-min)) / 16) * 1rem) +
-      (var(--fluid-preferred) * var(--variable-unit, 100vi)),
-    (var(--fluid-max) / 16) * 1rem
-  );
-  font-size: var(--fluid-type);
-}
+      li:first-child {
+        margin-top: 0;
+      }
 
-/* Layout components */
-.container {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  -moz-column-gap: 0.25rem;
-       column-gap: 0.25rem;
-  padding: 0 2rem;
-  width: 100%;
-}
+      li::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: white;
+        z-index: -1;
+        transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
 
-header {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  -moz-column-gap: 1rem;
-       column-gap: 1rem;
-  padding: 1rem 2rem;
-  height: auto;
-  align-items: flex-start;
-  position: fixed; /* Change back to fixed instead of sticky */
-  top: 0;
-  left: 0;
-  right: 0;
-  mix-blend-mode: difference;
-  z-index: 10;
-  text-transform: uppercase;
-  color: white;
-  width: 100%;
-}
-header::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  mix-blend-mode: difference;
-}
+      li:hover::after {
+        width: 100%;
+      }
 
-.logo {
-  grid-column: 1 / 3;
-  display: flex;
-  align-items: flex-start;
-  font-size: 2rem;
-  padding-top: 1rem;
-}
-.logo span {
-  background-color: var(--blue-color);
-  padding: 0.2rem 0.5rem;
-  color: white;
-  mix-blend-mode: normal;
-}
+      li:hover {
+        color: black;
+        mix-blend-mode: difference;
+      }
 
-.nav-menu {
-  grid-column: 4 / 10;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
+      button {
+        background: black;
+        color: white;
+        border: 0;
+        padding: 0.5rem 1rem;
+        text-transform: uppercase;
+      }
 
-.cta {
-  grid-column: 10 / 13;
-  display: flex;
-  justify-content: flex-end;
-  font-size: 2rem;
-  padding-top: 1rem;
-}
+      body::before {
+        content: "";
+        position: fixed;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: transparent url("http://assets.iceable.com/img/noise-transparent.png") repeat 0 0;
+        background-size: 300px 300px;
+        animation: noise-animation 0.3s steps(5) infinite;
+        opacity: 0.03;
+        will-change: transform;
+        z-index: 100;
+        pointer-events: none;
+      }
 
-main {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-  padding-top: var(
-    --header-height,
-    80px
-  ); /* Add padding to account for fixed header */
-}
+      @keyframes noise-animation {
+        0% { transform: translate(0, 0); }
+        10% { transform: translate(-2%, -3%); }
+        20% { transform: translate(-4%, 2%); }
+        30% { transform: translate(2%, -4%); }
+        40% { transform: translate(-2%, 5%); }
+        50% { transform: translate(-4%, 2%); }
+        60% { transform: translate(3%, 0); }
+        70% { transform: translate(0, 3%); }
+        80% { transform: translate(-3%, 0); }
+        90% { transform: translate(2%, 2%); }
+        100% { transform: translate(1%, 0); }
+      }
 
-section {
-  min-height: 100vh;
-  color: black;
-  display: grid;
-  place-items: center;
-  position: relative;
-  width: 100%;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-}
-section::before {
-  content: "";
-  position: sticky;
-  top: 0;
-  height: var(--header-height, auto);
-  width: 100%;
-  z-index: 2;
-  grid-area: 1 / 1;
-  align-self: start;
-  mix-blend-mode: difference;
-  pointer-events: none;
-}
-section:nth-of-type(even) {
-  background: black;
-  color: white;
-}
-.section__content {
-  display: grid;
-  grid-area: 1 / 1;
-  min-height: 100vh;
-  padding-block: 80px;
-  place-items: center;
-  width: 100%;
-  max-width: 100vw; /* Ensure content doesn't exceed viewport width */
-}
+      ::selection {
+        background: var(--accent-color);
+        color: black;
+      }
 
-/* Content components */
-.minimalist-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 2rem;
-  width: 100%;
-  max-width: 100vw; /* Ensure content doesn't exceed viewport width */
-}
-.minimalist-content h2 {
-  font-size: 6rem;
-  margin-bottom: 2rem;
-  max-width: 100%;
-}
-.minimalist-content p {
-  font-size: 2.2rem;
-  max-width: 30ch;
-  line-height: 1.4;
-  color: inherit;
-}
+      .container {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        column-gap: 0.25rem;
+        padding: 0 2rem;
+        width: 100%;
+      }
 
-.grid-cards-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  gap: 0.25rem;
-  padding: 0.25rem 2rem;
-  width: 100%;
-  height: calc(100vh - 160px);
-  max-width: 100vw; /* Ensure content doesn't exceed viewport width */
-}
-.grid-card {
-  background-color: #f5f5f5;
-  border-radius: 8px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  position: relative;
-  overflow: hidden;
-  justify-content: space-between;
-}
-.grid-card:nth-child(5) {
-  background-color: var(--accent-color);
-  cursor: pointer;
-}
+      header {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        column-gap: 1rem;
+        padding: 1rem 2rem;
+        align-items: flex-start;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        mix-blend-mode: difference;
+        z-index: 10;
+        text-transform: uppercase;
+        color: white;
+        width: 100%;
+      }
 
-.card-title {
-  font-size: 2rem;
-  margin-bottom: 0;
-  text-transform: uppercase;
-}
-.card-number {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 1.4rem;
-  opacity: 0.7;
-}
+      header::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        mix-blend-mode: difference;
+      }
 
-.circle-container {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 8px;
-  height: 8px;
-}
-.circle-svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
+      .logo {
+        grid-column: 1 / 3;
+        display: flex;
+        align-items: flex-start;
+        font-size: 2rem;
+        padding-top: 1rem;
+      }
 
-/* Add this to ensure the middle box has a transition */
-#middle-box {
-  transition: padding 0.2s;
-}
+      .logo span {
+        background-color: var(--blue-color);
+        padding: 0.2rem 0.5rem;
+        color: white;
+        mix-blend-mode: normal;
+      }
 
-.card-content {
-  display: flex;
-  flex-direction: column;
-  margin-top: auto;
-}
+      .nav-menu {
+        grid-column: 4 / 10;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
 
-.small-text {
-  font-size: 2rem;
-  line-height: 1.4;
-  margin: 0;
-  color: #333;
-  text-transform: uppercase;
-}
+      .cta {
+        grid-column: 10 / 13;
+        display: flex;
+        justify-content: flex-end;
+        font-size: 2rem;
+        padding-top: 1rem;
+      }
 
-.grid-card:nth-child(5) .small-text {
-  color: #000;
-}
-.grid-card:nth-child(5) a {
-  color: #000;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-}
-.grid-card:nth-child(5) a:hover {
-  border-bottom-color: #000;
-}
+      main {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        overflow-x: hidden;
+        padding-top: var(--header-height, 80px);
+      }
 
-/* Debug styles */
-[data-debug="true"] section::before {
-  outline: 2px solid var(--accent-color);
-  background: repeating-linear-gradient(
-    45deg,
-    #0000 0 7px,
-    var(--accent-color) 7px 8px
-  );
-}
+      section {
+        min-height: 100vh;
+        color: black;
+        display: grid;
+        place-items: center;
+        position: relative;
+        width: 100%;
+        overflow-x: hidden;
+      }
 
-/* Smooth scrolling */
-html.lenis {
-  height: auto;
-}
+      section::before {
+        content: "";
+        position: sticky;
+        top: 0;
+        height: var(--header-height, auto);
+        width: 100%;
+        z-index: 2;
+        grid-area: 1 / 1;
+        align-self: start;
+        mix-blend-mode: difference;
+        pointer-events: none;
+      }
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto;
-}
+      section:nth-of-type(even) {
+        background: black;
+        color: white;
+      }
 
-.lenis.lenis-smooth [data-lenis-prevent] {
-  -ms-scroll-chaining: none;
-      overscroll-behavior: contain;
-}
+      .section__content {
+        display: grid;
+        grid-area: 1 / 1;
+        min-height: 100vh;
+        padding-block: 80px;
+        place-items: center;
+        width: 100%;
+        max-width: 100vw;
+      }
 
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
+      .minimalist-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 2rem;
+        width: 100%;
+        max-width: 100vw;
+      }
 
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
+      .minimalist-content h2 {
+        font-size: 6rem;
+        margin-bottom: 2rem;
+        max-width: 100%;
+      }
 
-/* Add responsive adjustments */
-@media (max-width: 768px) {
-  .grid-cards-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    height: auto;
-    gap: 1rem;
-  }
+      .minimalist-content p {
+        font-size: 2.2rem;
+        max-width: 30ch;
+        line-height: 1.4;
+        color: inherit;
+      }
 
-  .minimalist-content h2 {
-    font-size: 4rem;
-  }
+      .grid-cards-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 0.25rem;
+        padding: 0.25rem 2rem;
+        width: 100%;
+        height: calc(100vh - 160px);
+        max-width: 100vw;
+      }
 
-  .minimalist-content p {
-    font-size: 1.8rem;
-  }
+      .grid-card {
+        background-color: #f5f5f5;
+        border-radius: 8px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        position: relative;
+        overflow: hidden;
+        justify-content: space-between;
+      }
 
-  header {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, auto);
-    gap: 1rem;
-  }
+      .grid-card:nth-child(5) {
+        background-color: var(--accent-color);
+        cursor: pointer;
+      }
 
-  .logo,
-  .nav-menu,
-  .cta {
-    grid-column: 1;
-  }
+      .card-title {
+        font-size: 2rem;
+        margin-bottom: 0;
+        text-transform: uppercase;
+      }
 
-  .logo {
-    grid-row: 1;
-  }
+      .card-number {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 1.4rem;
+        opacity: 0.7;
+      }
 
-  .nav-menu {
-    grid-row: 2;
-  }
+      .circle-container {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 8px;
+        height: 8px;
+      }
 
-  .cta {
-    grid-row: 3;
-    justify-content: flex-start;
-  }
+      .circle-svg {
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
 
-  html {
-    font-size: 14px;
-  }
+      #middle-box {
+        transition: padding 0.2s;
+      }
 
-  .small-text {
-    font-size: 1.6rem;
-  }
-  }
-  </style>
-</head>
-<body>
-<header id="site-header">
-  <div class="logo">
-    <span>REDUCE</span>
-  </div>
-  <nav class="nav-menu">
-    <ul>
-      <li>LISTEN</li>
-      <li>SPACE</li>
-      <li>SILENCE</li>
-      <li>ESSENCE</li>
-    </ul>
-  </nav>
-  <div class="cta">
-    <span>OBSERVE+</span>
-  </div>
-</header>
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        margin-top: auto;
+      }
 
-<main>
-  <section>
-    <div class="section__content">
-      <div class="grid-cards-container">
-        <div class="grid-card">
-          <div class="card-title">SILENCE</div>
-          <div class="card-number">01</div>
-          <div class="card-content">
-            <p class="small-text">THE SPACE BETWEEN THOUGHTS</p>
-            <p class="small-text">IS WHERE CREATIVITY LIVES</p>
-            <p class="small-text">FIND THE QUIET</p>
+      .small-text {
+        font-size: 2rem;
+        line-height: 1.4;
+        margin: 0;
+        color: #333;
+        text-transform: uppercase;
+      }
+
+      .grid-card:nth-child(5) .small-text {
+        color: #000;
+      }
+
+      .grid-card:nth-child(5) a {
+        color: #000;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+      }
+
+      .grid-card:nth-child(5) a:hover {
+        border-bottom-color: #000;
+      }
+
+      @media (max-width: 768px) {
+        .grid-cards-container {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto;
+          height: auto;
+          gap: 1rem;
+        }
+
+        .minimalist-content h2 {
+          font-size: 4rem;
+        }
+
+        .minimalist-content p {
+          font-size: 1.8rem;
+        }
+
+        header {
+          grid-template-columns: 1fr;
+          grid-template-rows: repeat(3, auto);
+          gap: 1rem;
+        }
+
+        .logo,
+        .nav-menu,
+        .cta {
+          grid-column: 1;
+        }
+
+        .logo {
+          grid-row: 1;
+        }
+
+        .nav-menu {
+          grid-row: 2;
+        }
+
+        .cta {
+          grid-row: 3;
+          justify-content: flex-start;
+        }
+
+        html {
+          font-size: 14px;
+        }
+
+        .small-text {
+          font-size: 1.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="site-header">
+      <div class="logo"><span>REDUCE</span></div>
+      <nav class="nav-menu">
+        <ul>
+          <li>LISTEN</li>
+          <li>SPACE</li>
+          <li>SILENCE</li>
+          <li>ESSENCE</li>
+        </ul>
+      </nav>
+      <div class="cta"><span>OBSERVE+</span></div>
+    </header>
+
+    <main>
+      <section>
+        <div class="section__content">
+          <div class="grid-cards-container">
+            <div class="grid-card">
+              <div class="card-title">SILENCE</div>
+              <div class="card-number">01</div>
+              <div class="card-content">
+                <p class="small-text">THE SPACE BETWEEN THOUGHTS</p>
+                <p class="small-text">IS WHERE CREATIVITY LIVES</p>
+                <p class="small-text">FIND THE QUIET</p> 
+              </div>
+            </div>
+            <div class="grid-card">
+              <div class="card-title">PRESENCE</div>
+              <div class="card-number">02</div>     
+              <div class="card-content">
+                <p class="small-text">GREAT ART IS ABOUT PAYING ATTENTION</p>
+                <p class="small-text">BEING AWAKE IN YOUR LIFE</p>
+                <p class="small-text">NOTICING THE MOMENT</p>  
+              </div>  
+            </div>  
+            <div class="grid-card">
+              <div class="card-title">SIMPLICITY</div>
+              <div class="card-number">03</div>
+              <div class="card-content">
+                <p class="small-text">REMOVE WHAT DOESN'T NEED TO BE THERE</p>
+                <p class="small-text">UNTIL YOU'RE LEFT WITH ONLY</p>
+                <p class="small-text">WHAT MATTERS MOST</p>  
+              </div>   
+            </div>
+            <div class="grid-card">
+              <div class="card-title">INTUITION</div> 
+              <div class="card-number">04</div>
+              <div class="card-content">
+                <p class="small-text">THE BEST ART DIVIDES THE AUDIENCE</p>
+                <p class="small-text">IF YOU'RE TRYING TO PLEASE EVERYONE</p>
+                <p class="small-text">YOU'RE NOT MAKING ART</p>
+              </div>
+            </div>
+            <div class="grid-card" id="middle-box">
+              <div class="card-title">GRATITUDE</div>
+              <div class="circle-container" id="circle-container">
+                <svg class="circle-svg" viewBox="0 0 8 8" id="circle-svg">
+                  <circle cx="4" cy="4" r="4" fill="black" />  
+                </svg> 
+              </div> 
+              <div class="card-content"> 
+                <p class="small-text">WHEN WE ACKNOWLEDGE THOSE</p>
+                <p class="small-text">WHO INSPIRE OUR WORK</p>
+                <p class="small-text">THANK YOU <a href="https://codepen.io/jh3y" target="_blank">JHEY</a></p>  
+              </div>
+            </div>
+            <div class="grid-card">
+              <div class="card-title">ESSENCE</div>
+              <div class="card-number">06</div>
+              <div class="card-content">
+                <p class="small-text">FIND THE CORE OF THE IDEA</p>
+                <p class="small-text">STRIP AWAY EVERYTHING ELSE</p>
+                <p class="small-text">UNTIL IT'S PURE</p>
+              </div>
+            </div>  
+            <div class="grid-card">
+              <div class="card-title">SPACE</div>
+              <div class="card-number">07</div>
+              <div class="card-content">
+                <p class="small-text">THE NEGATIVE SPACE</p>
+                <p class="small-text">IS AS IMPORTANT AS</p>
+                <p class="small-text">WHAT YOU PUT IN</p>
+              </div>
+            </div>
+            <div class="grid-card">
+              <div class="card-title">BEGINNERS MIND</div>
+              <div class="card-number">08</div>
+              <div class="card-content">
+                <p class="small-text">APPROACH EACH PROJECT</p>
+                <p class="small-text">AS IF IT'S YOUR FIRST</p>
+                <p class="small-text">WITH FRESH EYES</p>
+              </div>
+            </div>
+            <div class="grid-card">
+              <div class="card-title">SURRENDER</div>
+              <div class="card-number">09</div>
+              <div class="card-content">
+                <p class="small-text">LET GO OF EXPECTATIONS</p>
+                <p class="small-text">ALLOW THE WORK TO BECOME</p>  
+                <p class="small-text">WHAT IT NEEDS TO BE</p>
+              </div> 
+            </div>
           </div>
         </div>
-        <div class="grid-card">
-          <div class="card-title">PRESENCE</div>
-          <div class="card-number">02</div>
-          <div class="card-content">
-            <p class="small-text">GREAT ART IS ABOUT PAYING ATTENTION</p>
-            <p class="small-text">BEING AWAKE IN YOUR LIFE</p>
-            <p class="small-text">NOTICING THE MOMENT</p>
+      </section>
+      <section>
+        <div class="section__content">
+          <div class="minimalist-content">
+            <h2>Subtract.</h2> 
+            <p>Remove everything that isn't essential. What remains is truth.</p>
+          </div>   
+        </div>
+      </section>
+      <section>
+        <div class="section__content"> 
+          <div class="minimalist-content">
+            <h2>Listen.</h2>
+            <p>The silence between interactions is where meaning resides.</p>
           </div>
         </div>
-        <div class="grid-card">
-          <div class="card-title">SIMPLICITY</div>
-          <div class="card-number">03</div>
-          <div class="card-content">
-            <p class="small-text">REMOVE WHAT DOESN'T NEED TO BE THERE</p>
-            <p class="small-text">UNTIL YOU'RE LEFT WITH ONLY</p>
-            <p class="small-text">WHAT MATTERS MOST</p>
+      </section>
+      <section>
+        <div class="section__content">
+          <div class="minimalist-content">
+            <h2>Wait.</h2>
+            <p>Patience reveals what urgency conceals.</p>
           </div>
         </div>
-        <div class="grid-card">
-          <div class="card-title">INTUITION</div>
-          <div class="card-number">04</div>
-          <div class="card-content">
-            <p class="small-text">THE BEST ART DIVIDES THE AUDIENCE</p>
-            <p class="small-text">IF YOU'RE TRYING TO PLEASE EVERYONE</p>
-            <p class="small-text">YOU'RE NOT MAKING ART</p>
-          </div>
-        </div>
-        <div class="grid-card" id="middle-box">
-          <div class="card-title">GRATITUDE</div>
-          <div class="circle-container" id="circle-container">
-            <svg class="circle-svg" viewBox="0 0 8 8" id="circle-svg">
-              <circle cx="4" cy="4" r="4" fill="black" />
-            </svg>
-          </div>
-          <div class="card-content">
-            <p class="small-text">WHEN WE ACKNOWLEDGE THOSE</p>
-            <p class="small-text">WHO INSPIRE OUR WORK</p>
-            <p class="small-text">THANK YOU <a href="https://codepen.io/jh3y" target="_blank">JHEY</a></p>
-          </div>
-        </div>
-        <div class="grid-card">
-          <div class="card-title">ESSENCE</div>
-          <div class="card-number">06</div>
-          <div class="card-content">
-            <p class="small-text">FIND THE CORE OF THE IDEA</p>
-            <p class="small-text">STRIP AWAY EVERYTHING ELSE</p>
-            <p class="small-text">UNTIL IT'S PURE</p>
-          </div>
-        </div>
-        <div class="grid-card">
-          <div class="card-title">SPACE</div>
-          <div class="card-number">07</div>
-          <div class="card-content">
-            <p class="small-text">THE NEGATIVE SPACE</p>
-            <p class="small-text">IS AS IMPORTANT AS</p>
-            <p class="small-text">WHAT YOU PUT IN</p>
-          </div>
-        </div>
-        <div class="grid-card">
-          <div class="card-title">BEGINNERS MIND</div>
-          <div class="card-number">08</div>
-          <div class="card-content">
-            <p class="small-text">APPROACH EACH PROJECT</p>
-            <p class="small-text">AS IF IT'S YOUR FIRST</p>
-            <p class="small-text">WITH FRESH EYES</p>
-          </div>
-        </div>
-        <div class="grid-card">
-          <div class="card-title">SURRENDER</div>
-          <div class="card-number">09</div>
-          <div class="card-content">
-            <p class="small-text">LET GO OF EXPECTATIONS</p>
-            <p class="small-text">ALLOW THE WORK TO BECOME</p>
-            <p class="small-text">WHAT IT NEEDS TO BE</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section>
-    <div class="section__content">
-      <div class="minimalist-content">
-        <h2>Subtract.</h2>
-        <p>Remove everything that isn't essential. What remains is truth.</p>
-      </div>
-    </div>
-  </section>
-  <section>
-    <div class="section__content">
-      <div class="minimalist-content">
-        <h2>Listen.</h2>
-        <p>The silence between interactions is where meaning resides.</p>
-      </div>
-    </div>
-  </section>
-  <section>
-    <div class="section__content">
-      <div class="minimalist-content">
-        <h2>Wait.</h2>
-        <p>Patience reveals what urgency conceals.</p>
-      </div>
-    </div>
-  </section>
-</main>
+      </section>
+    </main>
 
-<script type="module">
-  import Lenis from "https://cdn.skypack.dev/@studio-freight/lenis";
-  import { gsap } from "https://cdn.skypack.dev/gsap";
+    <script type="module">
+      import Lenis from "https://cdn.skypack.dev/@studio-freight/lenis";
+      import { gsap } from "https://cdn.skypack.dev/gsap";
 
-  document.addEventListener("DOMContentLoaded", () => {
-    // Initialize Lenis for smooth scrolling
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: "vertical",
-      gestureDirection: "vertical",
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false
-    });
+      document.addEventListener("DOMContentLoaded", () => {
+        // Initialize Lenis for smooth scrolling
+        const lenis = new Lenis({  
+          duration: 1.2,  
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          direction: "vertical",
+          gestureDirection: "vertical",
+          smooth: true,
+          mouseMultiplier: 1,
+          smoothTouch: false,
+          touchMultiplier: 2,
+          infinite: false
+        });
+ 
+        function raf(time) {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+ 
+        requestAnimationFrame(raf);
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+        // GSAP animation for middle box
+ 
+        const middleBox = document.getElementById("middle-box");
+        const circleSvg = document.getElementById("circle-svg");
 
-    requestAnimationFrame(raf);
+        middleBox.addEventListener("mouseenter", () => {
+          gsap.to(middleBox, {
+            padding: "25px",
+            duration: 0.6,
+            ease: "elastic.out(0.3, 0.3)",
+            overwrite: true
+          });
+   
+          gsap.to(circleSvg, {
+            scale: 2, 
+            duration: 0.7,
+            ease: "elastic.out(0.2, 0.1)",
+            overwrite: true,
+            transformOrigin: "center center"
+          });
+        });
+ 
+        middleBox.addEventListener("mouseleave", () => {
+          gsap.to(middleBox, {
+            padding: "20px",
+            duration: 0.2,
+            ease: "power2.out",
+            overwrite: true
+          });
 
-    // GSAP animation for middle box
-    const middleBox = document.getElementById("middle-box");
-    const circleSvg = document.getElementById("circle-svg");
+          gsap.to(circleSvg, {
+            scale: 1,
+            duration: 0.2,
+            ease: "power3.out",
+            overwrite: true
+          }); 
+        });
+  
+        // Debug button
+        const debug = document.createElement("button");
+        debug.textContent = "Debug";
+        debug.style.position = "fixed";
+        debug.style.bottom = "20px";
+        debug.style.right = "20px";
+        debug.style.zIndex = "1000";
 
-    middleBox.addEventListener("mouseenter", () => {
-      gsap.to(middleBox, {
-        padding: "25px",
-        duration: 0.6,
-        ease: "elastic.out(0.3, 0.3)",
-        overwrite: true
+        debug.addEventListener("click", () => {
+          document.documentElement.dataset.debug = document.documentElement.matches(
+            '[data-debug="true"]' 
+          ) 
+            ? "false"
+            : "true";
+        });
+
+        document.body.appendChild(debug);
+ 
+        // Fix header height issue   
+        const updateHeaderHeight = () => {
+          const header = document.getElementById("site-header"); 
+          const headerHeight = header.offsetHeight;
+          document.documentElement.style.setProperty(
+            "--header-height",
+            `${headerHeight}px`
+          );
+        };
+   
+        updateHeaderHeight();
+        window.addEventListener("resize", updateHeaderHeight);
       });
-
-      gsap.to(circleSvg, {
-        scale: 2,
-        duration: 0.7,
-        ease: "elastic.out(0.2, 0.1)",
-        overwrite: true,
-        transformOrigin: "center center"
-      });
-    });
-
-    middleBox.addEventListener("mouseleave", () => {
-      gsap.to(middleBox, {
-        padding: "20px",
-        duration: 0.2,
-        ease: "power2.out",
-        overwrite: true
-      });
-
-      gsap.to(circleSvg, {
-        scale: 1,
-        duration: 0.2,
-        ease: "power3.out",
-        overwrite: true
-      });
-    });
-
-    // Debug button
-    const debug = document.createElement("button");
-    debug.textContent = "Debug";
-    debug.style.position = "fixed";
-    debug.style.bottom = "20px";
-    debug.style.right = "20px";
-    debug.style.zIndex = "1000";
-
-    debug.addEventListener("click", () => {
-      document.documentElement.dataset.debug = document.documentElement.matches(
-        '[data-debug="true"]'
-      )
-        ? "false"
-        : "true";
-    });
-
-    document.body.appendChild(debug);
-
-    // Fix header height issue
-    const updateHeaderHeight = () => {
-      const header = document.getElementById("site-header");
-      const headerHeight = header.offsetHeight;
-      document.documentElement.style.setProperty(
-        "--header-height",
-        `${headerHeight}px`
-      );
-    };
-
-    updateHeaderHeight();
-    window.addEventListener("resize", updateHeaderHeight);
-  });
-</script>
-</body>
+    </script>
+  </body>
 </html>
