@@ -1,0 +1,258 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=IBM+Plex+Mono&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Barlow Condensed", sans-serif;
+  letter-spacing: -0.03em;
+  overflow: hidden;
+  background-color: #a0a89e;
+  height: 100vh;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  z-index: 2000;
+}
+
+.logo-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.logo-text {
+  order: 1;
+}
+
+.circle {
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  border-radius: 50%;
+  margin-left: 8px;
+  order: 2;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.logo-container:hover .circle {
+  order: 0;
+  margin-left: 0;
+  margin-right: 8px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-left: 2rem;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 400;
+  text-transform: uppercase;
+  position: relative;
+  padding: 2px 0;
+}
+
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  left: 0;
+  top: 50%;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: right;
+}
+
+nav ul li a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  z-index: 2000;
+  color: white;
+}
+
+footer div:first-child {
+  font-family: "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+footer a {
+  margin-left: 1rem;
+  text-decoration: none;
+  color: white;
+  font-family: "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.container {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.scroller {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  will-change: transform;
+}
+
+.section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 5vw;
+  overflow: hidden;
+}
+
+/* Background overlay for better text readability */
+.section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.section-1 {
+  background-color: #a0a89e;
+  z-index: 10;
+}
+
+.section-2 {
+  background-color: #8c9389;
+  z-index: 20;
+}
+
+.section-3 {
+  background-color: #b8c0b6;
+  z-index: 30;
+}
+
+.section-4 {
+  background-color: #969e94;
+  z-index: 40;
+}
+
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: 0;
+}
+
+.section-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 600;
+  color: white;
+}
+
+.section-paragraph {
+  color: white;
+  font-size: 1.2rem;
+  max-width: 60%;
+  margin-top: 1rem;
+  position: relative;
+  z-index: 10;
+  text-align: left;
+}
+
+.left-content {
+  max-width: 40%;
+  position: relative;
+  z-index: 10;
+}
+
+.right-content {
+  max-width: 40%;
+  text-align: right;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 10;
+}
+
+/* Progress indicator */
+.bottom-progress {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 2000;
+  color: white;
+  font-family: "IBM Plex Mono", monospace;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.bottom-progress-bar {
+  width: 100px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+}
+
+.bottom-progress-fill {
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  transform-origin: left;
+  transform: scaleX(0);
+  will-change: transform;
+}
