@@ -1,261 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>LiminalLoop</title>
-  <style>
-    @import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=IBM+Plex+Mono&display=swap");
-    * {
-      box-sizing: border-box;
-    }
-    :root {
-      --color--background: rgb(60, 60, 60);
-      --color--foreground: rgb(200, 200, 200);
-      --color--accent: rgb(170, 170, 170);
-      --font-primary: "Inter", sans-serif;
-      --font-secondary: "IBM Plex Mono", monospace;
-      --margin: 32px;
-      --gutter: 16px;
-    }
-    body {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      padding: 0;
-      font-family: var(--font-primary);
-      background: radial-gradient(circle at 10% 20%, rgb(230, 230, 230) 0%, rgb(180, 180, 180) 45%, rgb(100, 100, 100) 90%);
-      color: var(--color--foreground);
-      letter-spacing: -0.03em;
-      position: relative;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: transparent url("http://assets.iceable.com/img/noise-transparent.png") repeat 0 0;
-      background-size: 300px 300px;
-      animation: noise-animation 0.3s steps(5) infinite;
-      opacity: 0.9;
-      z-index: 100;
-      pointer-events: none;
-    }
-    @keyframes noise-animation {
-      0% { transform: translate(0, 0); }
-      10% { transform: translate(-2%, -3%); }
-      20% { transform: translate(-4%, 2%); }
-      30% { transform: translate(2%, -4%); }
-      40% { transform: translate(-2%, 5%); }
-      50% { transform: translate(-4%, 2%); }
-      60% { transform: translate(3%, 0); }
-      70% { transform: translate(0, 3%); }
-      80% { transform: translate(-3%, 0); }
-      90% { transform: translate(2%, 2%); }
-      100% { transform: translate(1%, 0); }
-    }
-    canvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background: transparent;
-      z-index: -1;
-    }
-    .container {
-      display: flex;
-      width: 100%;
-      height: 100vh;
-      padding: var(--gutter);
-    }
-    .sidebar {
-      width: 40%;
-      padding: var(--margin);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      text-align: left;
-    }
-    .logo {
-      font-size: 20rem;
-      line-height: 0.9;
-      font-family: var(--font-secondary);
-      color: var(--color-accent);
-      margin-bottom: 1rem;
-      margin-left: -22px;
-    }
-    .logo sup {
-      font-size: 6rem;
-    }
-    .description {
-      font-size: 0.75rem;
-      line-height: 1.2;
-      margin-bottom: 40px;
-      max-width: 360px;
-      font-family: var(--font-secondary);
-    }
-    .nav-links {
-      display: flex;
-      flex-direction: column;
-      font-family: var(--font-secondary);
-    }
-    .nav-links a {
-      color: var(--color--foreground);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    .nav-links a:hover {
-      color: var(--color--accent);
-    }
-    .footer {
-      margin-top: 1rem;
-      font-family: var(--font-secondary);
-      font-size: 0.65rem;
-    }
-    .footer p {
-      opacity: 0.5;
-    }
-    .social-links {
-      margin-top: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .division {
-      margin-top: auto;
-    }
-    .main-content {
-      width: 65%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: var(--margin);
-      font-family: var(--font-secondary);
-      text-transform: uppercase;
-      text-align: right;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Threejs Explorations 1609-V01</title>
+  <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
+<link rel="stylesheet" href="./style.css">
+
 </head>
 <body>
-  <canvas id="canvas"></canvas>
-  <div class="container">
-    <div class="sidebar">
-      <div class="logo">NX<sup>°</sup></div>
-      <p class="description">THE ARCHIVE COLLECTS RECORDS OF ABANDONED WORLDS AND LOST TECHNOLOGIES, WAITING TO BE DISCOVERED.</p>
-      <nav class="nav-links">
-        <a href="#">_DATA VAULTS</a>
-        <a href="#">_DEEP SPACE</a>
-        <a href="#">_FORBIDDEN ZONES</a>
-        <a href="#">_EXODUS LOGS</a>
-      </nav>
-      <div class="footer">
-        <p>Err: [404 - SIGNAL LOST]<br />SYSTEM TIME: CYCLE 2187.42</p>
-      </div>
-      <p class="division">ACCESS LEVEL: RESTRICTED.<br>TRACE INITIATED: SOURCE UNKNOWN.</p>
-    </div>
-    <div class="main-content">
-      <p class="signal">_Uplink Pending...</p>
-    </div>
+<!-- partial:index.partial.html -->
+<div id="container"></div>
+
+<div class="layout">
+  <div class="layout__middle">
+    <p class="layout__middle-text layout__middle-text--left">|</p>
+    <p class="layout__middle-text layout__middle-text--right">Scanning Coordinates:<br> Uncharted Zone ✶</p>
   </div>
 
-  <script type="module">
-    import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
-    import { OrbitControls } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js";
-    import { EffectComposer } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/EffectComposer.js";
-    import { RenderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/RenderPass.js";
-    import { ShaderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/ShaderPass.js";
+  <div class="layout__label layout__label--top-left">
+    <span class="layout__label-text">Vessel<br>Oblivion Horizon</span>
+  </div>
+  <div class="layout__label layout__label--top-right">
+    <span class="layout__label-text">Objective<br>Lost Signal Retrieval</span>
+  </div>
+  <div class="layout__label layout__label--bottom-left">
+    Core<br> Anomaly Drive<br> Status: Unknown
+  </div>
+  <div class="layout__label layout__label--bottom-right">
+    <span class="layout__label-text">Alert<br>Dimensional Rift<br> Imminent</span>
+  </div>
 
-    const PARAMS = {
-      strength: 0.1, radius: 0.2, edgeWidth: 0.03, edgeOpacity: 0.1,
-      chromaticAberration: 0.02, reflectionIntensity: 0.2,
-      waveDistortion: 0.05, waveSpeed: 0.8, lensBlur: 0.1,
-      clearCenterSize: 0.5
-    };
+  <div class="layout__text-wrapper">
+    <h2 style="margin-top:200px;">BEYOND THE VEIL, ALL SIGNALS FADE</h2>
+  </div>
+</div>
+<!-- partial -->
+  <script type="module" src="./script.js"></script>
 
-    let scene, camera, renderer, composer, customPass, aspect;
-
-    const canvas = document.getElementById("canvas");
-    renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(window.devicePixelRatio);
-
-    aspect = window.innerWidth / window.innerHeight;
-    scene = new THREE.Scene();
-    camera = new THREE.OrthographicCamera(-aspect, aspect, 1, -1, 0.1, 10);
-    camera.position.z = 1;
-
-    new OrbitControls(camera, canvas).enabled = false;
-
-    new THREE.TextureLoader().load(
-      "https://images.unsplash.com/photo-1504805572947-34fad45aed93?q=80&w=2340&auto=format&fit=crop",
-      (texture) => {
-        const bgAspect = texture.image.width / texture.image.height;
-        const bgGeometry = new THREE.PlaneGeometry(2 * bgAspect, 2);
-        const bgMaterial = new THREE.MeshBasicMaterial({ map: texture });
-        scene.add(new THREE.Mesh(bgGeometry, bgMaterial));
-      }
-    );
-
-    composer = new EffectComposer(renderer);
-    composer.addPass(new RenderPass(scene, camera));
-
-    const fragmentShader = `/* Same shader code as before... trimmed for brevity */`;
-
-    customPass = new ShaderPass({
-      uniforms: {
-        tDiffuse: { value: null },
-        uMouse: { value: new THREE.Vector2(0.5, 0.5) },
-        uRadius: { value: PARAMS.radius },
-        uStrength: { value: PARAMS.strength },
-        uEdgeWidth: { value: PARAMS.edgeWidth },
-        uEdgeOpacity: { value: PARAMS.edgeOpacity },
-        uChromaticAberration: { value: PARAMS.chromaticAberration },
-        uReflectionIntensity: { value: PARAMS.reflectionIntensity },
-        uWaveDistortion: { value: PARAMS.waveDistortion },
-        uWaveSpeed: { value: PARAMS.waveSpeed },
-        uLensBlur: { value: PARAMS.lensBlur },
-        uClearCenterSize: { value: PARAMS.clearCenterSize },
-        uAspect: { value: aspect },
-        uTime: { value: 0 }
-      },
-      vertexShader: `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
-      fragmentShader: `/* Paste your full fragmentShader code here as-is */`
-    });
-
-    composer.addPass(customPass);
-
-    window.addEventListener("resize", () => {
-      aspect = window.innerWidth / window.innerHeight;
-      camera.left = -aspect;
-      camera.right = aspect;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      composer.setSize(window.innerWidth, window.innerHeight);
-      customPass.uniforms.uAspect.value = aspect;
-    });
-
-    document.addEventListener("mousemove", (event) => {
-      customPass.uniforms.uMouse.value.set(
-        event.clientX / window.innerWidth,
-        1 - event.clientY / window.innerHeight
-      );
-    });
-
-    function animate(time) {
-      requestAnimationFrame(animate);
-      customPass.uniforms.uTime.value = time * 0.001;
-      composer.render();
-    }
-
-    animate();
-  </script>
 </body>
 </html>

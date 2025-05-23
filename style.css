@@ -1,0 +1,186 @@
+/*
+  Original idea and inspired by https://www.shadertoy.com/view/fdXXWH
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300&family=Space+Mono&display=swap");
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-background: rgb(20, 24, 30);
+  --color-foreground: rgb(230, 230, 230);
+  --color-accent: rgb(100, 200, 255);
+  --font-primary: "Cormorant", serif;
+  --font-mono: "Space Mono", monospace;
+  --margin: 32px;
+  --gutter: 16px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-primary);
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgb(0, 0, 0) 0%,
+    rgb(10, 10, 20) 90%
+  );
+  color: var(--color-foreground);
+  letter-spacing: -0.03em;
+  position: relative;
+  text-align: center;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  padding: 6rem 2rem;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.layout__header,
+.layout__footer,
+.layout__middle,
+.layout__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.layout__header-text,
+.layout__footer-text {
+  font-family: var(--font-mono);
+}
+
+.layout__header-text {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 30px;
+}
+
+.layout__middle-text {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.layout__middle-text--right {
+  text-align: right;
+  transform: rotate3d(0, 0, 1, 90deg) translate3d(100%, 10px, 0);
+  transform-origin: right;
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+.layout__footer-text {
+  font-size: 15rem;
+  line-height: 1em;
+  letter-spacing: -0.05em;
+  margin: 0;
+}
+
+.layout__label {
+  position: absolute;
+  font-size: 0.75rem;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.layout__label--top-left {
+  top: var(--margin);
+  left: var(--margin);
+  text-align: left;
+}
+
+.layout__label--top-right {
+  top: var(--margin);
+  right: var(--margin);
+  text-align: right;
+  font-family: var(--font-mono);
+}
+
+.layout__label--bottom-left {
+  bottom: var(--margin);
+  left: var(--margin);
+  text-align: left;
+}
+
+.layout__label--bottom-right {
+  bottom: var(--margin);
+  right: var(--margin);
+  text-align: right;
+  font-family: var(--font-mono);
+}
+
+.layout__text-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 200;
+  z-index: 100;
+  max-width: 440px;
+  mix-blend-mode: screen;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.layout__text-wrapper h1 {
+  font-size: 5rem;
+  font-weight: 300;
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.layout__text-wrapper h1 span {
+  display: block;
+  font-size: 1.5rem;
+}
+
+.layout__text-wrapper h1::after {
+  content: "";
+  display: block;
+  width: 50%;
+  height: 1px;
+  background: var(--color-foreground);
+  margin: 1rem auto;
+  opacity: 0.2;
+}
+
+.layout__text-wrapper h2 {
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  margin-top: 1rem;
+  text-transform: uppercase;
+}
+
+.dg.ac {
+  z-index: 9999 !important;
+}

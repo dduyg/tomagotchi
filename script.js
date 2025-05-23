@@ -3,242 +3,177 @@ import { OrbitControls } from "https://cdn.skypack.dev/three@0.136.0/examples/js
 import { EffectComposer } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/EffectComposer.js";
 import { RenderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/RenderPass.js";
 import { ShaderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/ShaderPass.js";
-import { GUI } from "https://cdn.skypack.dev/dat.gui";
 
-const PARAMS = {
-  distortion: {
-    strength: 0.1,
-    radius: 0.2,
-    edgeWidth: 0.03,
-    edgeOpacity: 0.1,
-    chromaticAberration: 0.02,
-    reflectionIntensity: 0.2,
-    waveDistortion: 0.05,
-    waveSpeed: 0.8,
-    lensBlur: 0.1,
-    clearCenterSize: 0.5 // New parameter for clear center size
-  }
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(
+  75,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// Custom background shader
+const backgroundShader = {
+  uniforms: {
+    lightDirection: {
+      value: new THREE.Vector3(Math.sqrt(0.05), Math.sqrt(0.2), Math.sqrt(0.2))
+    }
+  },
+  vertexShader: `
+                varying vec3 vWorldPosition;
+                void main() {
+                    vec4 worldPosition = modelMatrix * vec4(position, 1.0);
+                    vWorldPosition = worldPosition.xyz;
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+            `,
+  fragmentShader: `
+                uniform vec3 lightDirection;
+                varying vec3 vWorldPosition;
+                
+                vec3 background(vec3 d) {
+                    float light = dot(d, lightDirection);
+                    return vec3(max(light * 0.5 + 0.5, 0.0));
+                }
+                
+                void main() {
+                    vec3 viewDirection = normalize(vWorldPosition - cameraPosition);
+                    vec3 color = background(viewDirection);
+                    gl_FragColor = vec4(color, 1.0);
+                }
+            `
 };
 
-let scene, camera, renderer, controls;
-let composer, customPass;
-let backgroundTexture;
-let aspect;
+// Create background
+const backgroundGeometry = new THREE.SphereGeometry(500, 60, 40);
+backgroundGeometry.scale(-1, 1, 1); // Invert the geometry so it's visible from the inside
+const backgroundMaterial = new THREE.ShaderMaterial(backgroundShader);
+const backgroundMesh = new THREE.Mesh(backgroundGeometry, backgroundMaterial);
+scene.add(backgroundMesh);
 
-function main() {
-  const canvas = document.createElement("canvas");
-  document.body.appendChild(canvas);
-  renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
+// Create organic ground
+const groundGeometry = new THREE.PlaneGeometry(20, 20, 200, 200);
+const groundMaterial = new THREE.MeshStandardMaterial({
+  color: 0x999999,
+  roughness: 2.8
+});
+const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+ground.rotation.x = -Math.PI / 2;
+scene.add(ground);
 
-  aspect = window.innerWidth / window.innerHeight;
-  scene = new THREE.Scene();
-  camera = new THREE.OrthographicCamera(-aspect, aspect, 1, -1, 0.1, 10);
-  camera.position.z = 1;
-
-  controls = new OrbitControls(camera, canvas);
-  controls.enabled = false;
-
-  loadBackgroundTexture();
-  setupPostProcessing();
-  setupGUI();
-
-  window.addEventListener("resize", onWindowResize);
-  document.addEventListener("mousemove", onMouseMove);
-
-  animate();
+// Modify ground vertices for organic shape
+const positions = ground.geometry.attributes.position.array;
+for (let i = 0; i < positions.length; i += 3) {
+  const x = positions[i];
+  const z = positions[i + 2];
+  positions[i + 1] = Math.sin(x * 0.5) * Math.cos(z * 0.5) * 0.5;
 }
+ground.geometry.attributes.position.needsUpdate = true;
 
-function loadBackgroundTexture() {
-  new THREE.TextureLoader().load(
-    "https://images.unsplash.com/photo-1504805572947-34fad45aed93?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    (texture) => {
-      backgroundTexture = texture;
-      const bgAspect = texture.image.width / texture.image.height;
-      const bgGeometry = new THREE.PlaneGeometry(2 * bgAspect, 2);
-      const bgMaterial = new THREE.MeshBasicMaterial({ map: texture });
-      const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
-      scene.add(bgMesh);
-    }
-  );
-}
+// Create floating sphere
+const floatingSphereGeometry = new THREE.SphereGeometry(0.5, 32, 32);
+const floatingSphereMaterial = new THREE.MeshStandardMaterial({
+  color: 0xaaaaaa,
+  roughness: 2.3
+});
+const floatingSphere = new THREE.Mesh(
+  floatingSphereGeometry,
+  floatingSphereMaterial
+);
+floatingSphere.position.set(0, 3, 0);
+scene.add(floatingSphere);
 
-function setupPostProcessing() {
-  composer = new EffectComposer(renderer);
-  composer.addPass(new RenderPass(scene, camera));
+// Create partially submerged sphere
+const submergedSphereGeometry = new THREE.SphereGeometry(0.7, 32, 32);
+const submergedSphereMaterial = new THREE.MeshStandardMaterial({
+  color: 0xa0a0a0,
+  roughness: 2.5
+});
+const submergedSphere = new THREE.Mesh(
+  submergedSphereGeometry,
+  submergedSphereMaterial
+);
+submergedSphere.position.set(0, 0.2, 0);
+scene.add(submergedSphere);
 
-  const vertexShader = `
+// Lighting
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+scene.add(ambientLight);
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
+directionalLight.position.copy(backgroundShader.uniforms.lightDirection.value);
+scene.add(directionalLight);
+
+// Soft shadows
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+ground.receiveShadow = true;
+floatingSphere.castShadow = true;
+submergedSphere.castShadow = true;
+directionalLight.castShadow = true;
+directionalLight.shadow.mapSize.width = 1024;
+directionalLight.shadow.mapSize.height = 1024;
+directionalLight.shadow.camera.near = 1;
+directionalLight.shadow.camera.far = 20;
+directionalLight.shadow.radius = 10;
+
+camera.position.set(0, 5, 10);
+camera.lookAt(0, 0, 0);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+
+// Post-processing for film grain
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+
+const filmGrainShader = {
+  uniforms: {
+    tDiffuse: { value: null },
+    amount: { value: 0.15 },
+    time: { value: 0 }
+  },
+  vertexShader: `
                 varying vec2 vUv;
                 void main() {
                     vUv = uv;
                     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
                 }
-            `;
-
-  const fragmentShader = `
+            `,
+  fragmentShader: `
                 uniform sampler2D tDiffuse;
-                uniform vec2 uMouse;
-                uniform float uRadius;
-                uniform float uStrength;
-                uniform float uEdgeWidth;
-                uniform float uEdgeOpacity;
-                uniform float uChromaticAberration;
-                uniform float uReflectionIntensity;
-                uniform float uWaveDistortion;
-                uniform float uWaveSpeed;
-                uniform float uLensBlur;
-                uniform float uClearCenterSize;
-                uniform float uAspect;
-                uniform float uTime;
+                uniform float amount;
+                uniform float time;
                 varying vec2 vUv;
-
-                vec4 blur(sampler2D image, vec2 uv, vec2 resolution, vec2 direction) {
-                    vec4 color = vec4(0.0);
-                    vec2 off1 = vec2(1.3333333333333333) * direction;
-                    color += texture2D(image, uv) * 0.29411764705882354;
-                    color += texture2D(image, uv + (off1 / resolution)) * 0.35294117647058826;
-                    color += texture2D(image, uv - (off1 / resolution)) * 0.35294117647058826;
-                    return color;
+                float random(vec2 co) {
+                    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
                 }
-
                 void main() {
-                    vec2 center = uMouse;
-                    vec2 adjustedUv = vUv;
-                    adjustedUv.x *= uAspect;
-                    center.x *= uAspect;
-                    float dist = distance(adjustedUv, center);
-                    
-                    if (dist < uRadius) {
-                        float normalizedDist = dist / uRadius;
-                        vec2 direction = normalize(adjustedUv - center);
-                        
-                        // Calculate distortion factor based on clear center size
-                        float clearArea = uClearCenterSize * uRadius;
-                        float distortionFactor = smoothstep(clearArea, uRadius, dist);
-                        
-                        // Edge-focused distortion
-                        vec2 distortedUv = adjustedUv - direction * uStrength * distortionFactor * distortionFactor;
-                        
-                        // Wave distortion
-                        float wave = sin(normalizedDist * 10.0 - uTime * uWaveSpeed) * uWaveDistortion * distortionFactor;
-                        distortedUv += direction * wave;
-                        
-                        distortedUv.x /= uAspect;
-
-                        // Chromatic aberration
-                        float aberrationStrength = uChromaticAberration * distortionFactor;
-                        vec2 redUv = distortedUv + direction * aberrationStrength / vec2(uAspect, 1.0);
-                        vec2 blueUv = distortedUv - direction * aberrationStrength / vec2(uAspect, 1.0);
-
-                        vec4 colorR = texture2D(tDiffuse, redUv);
-                        vec4 colorG = texture2D(tDiffuse, distortedUv);
-                        vec4 colorB = texture2D(tDiffuse, blueUv);
-
-                        // Reflection effect
-                        vec4 reflection = texture2D(tDiffuse, vUv + direction * 0.1 * distortionFactor);
-                        
-                        gl_FragColor = vec4(colorR.r, colorG.g, colorB.b, 1.0);
-                        gl_FragColor = mix(gl_FragColor, reflection, uReflectionIntensity * distortionFactor);
-
-                        // Lens blur
-                        float blurAmount = uLensBlur * distortionFactor;
-                        gl_FragColor = mix(gl_FragColor, blur(tDiffuse, distortedUv, vec2(1.0 / uAspect, 1.0), vec2(blurAmount)), distortionFactor);
-
-                        // Edge highlight
-                        float edgeHighlight = smoothstep(uRadius - uEdgeWidth, uRadius, dist);
-                        gl_FragColor = mix(gl_FragColor, vec4(1.0, 1.0, 1.0, 1.0), edgeHighlight * uEdgeOpacity);
-                    } else {
-                        gl_FragColor = texture2D(tDiffuse, vUv);
-                    }
+                    vec4 color = texture2D(tDiffuse, vUv);
+                    vec2 uvRandom = vUv;
+                    uvRandom.y *= random(vec2(uvRandom.y, time));
+                    color.rgb += random(uvRandom) * amount - (amount / 2.0);
+                    gl_FragColor = color;
                 }
-            `;
+            `
+};
 
-  customPass = new ShaderPass({
-    uniforms: {
-      tDiffuse: { value: null },
-      uMouse: { value: new THREE.Vector2(0.5, 0.5) },
-      uRadius: { value: PARAMS.distortion.radius },
-      uStrength: { value: PARAMS.distortion.strength },
-      uEdgeWidth: { value: PARAMS.distortion.edgeWidth },
-      uEdgeOpacity: { value: PARAMS.distortion.edgeOpacity },
-      uChromaticAberration: { value: PARAMS.distortion.chromaticAberration },
-      uReflectionIntensity: { value: PARAMS.distortion.reflectionIntensity },
-      uWaveDistortion: { value: PARAMS.distortion.waveDistortion },
-      uWaveSpeed: { value: PARAMS.distortion.waveSpeed },
-      uLensBlur: { value: PARAMS.distortion.lensBlur },
-      uClearCenterSize: { value: PARAMS.distortion.clearCenterSize },
-      uAspect: { value: aspect },
-      uTime: { value: 0 }
-    },
-    vertexShader: vertexShader,
-    fragmentShader: fragmentShader
-  });
-  composer.addPass(customPass);
-}
-
-function setupGUI() {
-  const gui = new GUI();
-  const distFolder = gui.addFolder("Distortion");
-  distFolder
-    .add(PARAMS.distortion, "strength", 0, 1)
-    .onChange((value) => (customPass.uniforms.uStrength.value = value));
-  distFolder
-    .add(PARAMS.distortion, "radius", 0.1, 0.5)
-    .onChange((value) => (customPass.uniforms.uRadius.value = value));
-  distFolder
-    .add(PARAMS.distortion, "edgeWidth", 0, 0.05)
-    .onChange((value) => (customPass.uniforms.uEdgeWidth.value = value));
-  distFolder
-    .add(PARAMS.distortion, "edgeOpacity", 0, 1)
-    .onChange((value) => (customPass.uniforms.uEdgeOpacity.value = value));
-  distFolder
-    .add(PARAMS.distortion, "chromaticAberration", 0, 0.1)
-    .onChange(
-      (value) => (customPass.uniforms.uChromaticAberration.value = value)
-    );
-  distFolder
-    .add(PARAMS.distortion, "reflectionIntensity", 0, 1)
-    .onChange(
-      (value) => (customPass.uniforms.uReflectionIntensity.value = value)
-    );
-  distFolder
-    .add(PARAMS.distortion, "waveDistortion", 0, 0.1)
-    .onChange((value) => (customPass.uniforms.uWaveDistortion.value = value));
-  distFolder
-    .add(PARAMS.distortion, "waveSpeed", 0, 5)
-    .onChange((value) => (customPass.uniforms.uWaveSpeed.value = value));
-  distFolder
-    .add(PARAMS.distortion, "lensBlur", 0, 0.1)
-    .onChange((value) => (customPass.uniforms.uLensBlur.value = value));
-  distFolder
-    .add(PARAMS.distortion, "clearCenterSize", 0, 1)
-    .onChange((value) => (customPass.uniforms.uClearCenterSize.value = value));
-  distFolder.open();
-}
-
-function onWindowResize() {
-  aspect = window.innerWidth / window.innerHeight;
-  camera.left = -aspect;
-  camera.right = aspect;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  composer.setSize(window.innerWidth, window.innerHeight);
-  customPass.uniforms.uAspect.value = aspect;
-}
-
-function onMouseMove(event) {
-  const mousePosition = new THREE.Vector2(
-    event.clientX / window.innerWidth,
-    1 - event.clientY / window.innerHeight
-  );
-  customPass.uniforms.uMouse.value.copy(mousePosition);
-}
+const filmGrainPass = new ShaderPass(filmGrainShader);
+composer.addPass(filmGrainPass);
 
 function animate(time) {
   requestAnimationFrame(animate);
-  customPass.uniforms.uTime.value = time * 0.001;
+  filmGrainPass.uniforms["time"].value = time / 1000;
   composer.render();
 }
 
-main();
+animate(0);
+
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  composer.setSize(window.innerWidth, window.innerHeight);
+});
