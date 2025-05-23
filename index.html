@@ -368,95 +368,188 @@
   <script src="https://unpkg.com/split-type"></script>
 
 <script type="module">
-  import * as THREE from "https://unpkg.com/three@0.158.0/build/three.module.js";
-  import { OrbitControls } from "https://unpkg.com/three@0.158.0/examples/jsm/controls/OrbitControls.js";
+import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
+import { OrbitControls } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js";
+import { EffectComposer } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/RenderPass.js";
+import { ShaderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/ShaderPass.js";
+import { SMAAPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/SMAAPass.js";
+import { GUI } from "https://cdn.skypack.dev/dat.gui";
+import gsap from "https://cdn.skypack.dev/gsap@3.12.2";
+import CustomEase from "https://cdn.skypack.dev/gsap@3.12.2/CustomEase";
+import SplitType from "https://cdn.skypack.dev/split-type";
 
-  document.addEventListener("DOMContentLoaded", () => {
-    // Menu toggle logic
-    const menuToggle = document.getElementById("menuToggle");
-    const openState = menuToggle.querySelector(".nav__toggle-state--open");
-    const closeState = menuToggle.querySelector(".nav__toggle-state--close");
-    const menu = document.getElementById("menu"); // Assuming there's a menu element
-    let isMenuOpen = false;
+document.addEventListener("DOMContentLoaded", () => {
+  gsap.registerPlugin(CustomEase);
+  CustomEase.create("easeOutFast", "M0,0 C0.25,0.1 0.25,1 1,1");
+  CustomEase.create("easeInFast", "M0,0 C0.5,0 0.75,0.2 1,1");
 
-    menuToggle.addEventListener("click", () => {
-      isMenuOpen ? closeMenu() : openMenu();
-    });
+  const body = document.body;
+  const menu = document.getElementById("menu");
+  const menuToggle = document.getElementById("menuToggle");
+  const openState = menuToggle.querySelector(".nav__toggle-state--open");
+  const closeState = menuToggle.querySelector(".nav__toggle-state--close");
+  const menuItems = document.querySelectorAll(".menu__footer-link");
 
-    function openMenu() {
-      openState.style.display = "none";
-      closeState.style.display = "inline-block";
-      menu.classList.add("menu--open");
-      isMenuOpen = true;
-    }
+  let isMenuOpen = false;
 
-    function closeMenu() {
-      closeState.style.display = "none";
-      openState.style.display = "inline-block";
-      menu.classList.remove("menu--open");
-      isMenuOpen = false;
-    }
+  gsap.set(menuItems, { opacity: 0, y: -20 });
+  gsap.set(openState, { opacity: 1, display: "block" });
+  gsap.set(closeState, { opacity: 0, display: "none" });
 
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && isMenuOpen) {
-        closeMenu();
-      }
-    });
-
-    document.addEventListener("click", (event) => {
-      if (
-        isMenuOpen &&
-        !menu.contains(event.target) &&
-        !menuToggle.contains(event.target)
-      ) {
-        closeMenu();
-      }
-    });
-
-    // THREE.js logic
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    );
-    camera.position.z = 5;
-
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
-
-    const controls = new OrbitControls(camera, renderer.domElement);
-
-    const geometry = new THREE.TorusGeometry(1, 0.4, 16, 100);
-    const material = new THREE.MeshStandardMaterial({ color: 0x00ff99 });
-    const torus = new THREE.Mesh(geometry, material);
-    scene.add(torus);
-
-    const light = new THREE.PointLight(0xffffff, 1);
-    light.position.set(5, 5, 5);
-    scene.add(light);
-
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-    scene.add(ambientLight);
-
-    function animate() {
-      requestAnimationFrame(animate);
-      torus.rotation.x += 0.01;
-      torus.rotation.y += 0.01;
-      controls.update();
-      renderer.render(scene, camera);
-    }
-
-    animate();
-
-    window.addEventListener("resize", () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
+  menuToggle.addEventListener("click", () => {
+    isMenuOpen ? closeMenu() : openMenu();
   });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && isMenuOpen) closeMenu();
+  });
+
+  document.addEventListener("click", (e) => {
+    if (isMenuOpen && !menu.contains(e.target) && !menuToggle.contains(e.target)) {
+      closeMenu();
+    }
+  });
+
+  function openMenu() {
+    body.classList.add("menu-open");
+
+    gsap.to(".menu__divider", {
+      width: "140px",
+      duration: 0.6,
+      opacity: 1,
+      ease: "power2.out",
+      delay: 0.4,
+    });
+
+    gsap.to(".menu__column p", {
+      opacity: 1,
+      stagger: { amount: 0.3, from: "start" },
+      duration: 0.6,
+      ease: "power2.in",
+      delay: 0.6,
+    });
+
+    gsap.to(openState, {
+      opacity: 0,
+      duration: 0.3,
+      onComplete: () => {
+        gsap.set(openState, { display: "none" });
+        gsap.set(closeState, { display: "block" });
+        gsap.to(closeState, { opacity: 1, duration: 0.3 });
+      },
+    });
+
+    gsap.to(menu, {
+      y: 0,
+      duration: 0.6,
+      ease: "easeOutFast",
+      onComplete: () => {
+        gsap.to(menuItems, {
+          y: 0,
+          opacity: 1,
+          stagger: 0.1,
+          duration: 0.5,
+          ease: "power3.out",
+        });
+      },
+    });
+
+    isMenuOpen = true;
+  }
+
+  function closeMenu() {
+    gsap.to(".menu__column p", {
+      opacity: 0,
+      stagger: { amount: 0.1, from: "end" },
+      duration: 0.4,
+      ease: "power2.in",
+    });
+
+    gsap.to(".menu__divider", {
+      width: "0%",
+      duration: 0.4,
+      ease: "power2.in",
+    });
+
+    gsap.to(menuItems, {
+      y: 20,
+      opacity: 0,
+      stagger: { amount: 0.1, from: "end" },
+      duration: 0.3,
+      ease: "power3.in",
+      onComplete: () => {
+        gsap.to(closeState, {
+          opacity: 0,
+          duration: 0.3,
+          onComplete: () => {
+            gsap.set(closeState, { display: "none" });
+            gsap.set(openState, { display: "block" });
+            gsap.to(openState, { opacity: 1, duration: 0.3 });
+          },
+        });
+
+        gsap.to(menu, {
+          y: "-100%",
+          duration: 0.4,
+          ease: "easeInFast",
+          onComplete: () => {
+            body.classList.remove("menu-open");
+          },
+        });
+      },
+    });
+
+    isMenuOpen = false;
+  }
+
+  function createDoubleHoverEffect() {
+    const items = gsap.utils.toArray(".double-hover");
+    items.forEach((item) => {
+      const titCur = new SplitType(item.querySelector("span:first-of-type"), {
+        types: "chars",
+      });
+      const titNew = new SplitType(item.querySelector("span:nth-of-type(2)"), {
+        types: "chars",
+      });
+
+      gsap.set(titCur.chars, { yPercent: 0 });
+      gsap.set(titNew.chars, { yPercent: 100 });
+
+      item.addEventListener("mouseenter", () => {
+        gsap.to(titCur.chars, {
+          yPercent: -100,
+          duration: 0.6,
+          ease: "power3.out",
+          stagger: 0,
+        });
+        gsap.to(titNew.chars, {
+          yPercent: 0,
+          duration: 0.6,
+          ease: "power3.out",
+          stagger: 0,
+        });
+      });
+
+      item.addEventListener("mouseleave", () => {
+        gsap.to(titCur.chars, {
+          yPercent: 0,
+          duration: 0.6,
+          ease: "power3.out",
+          stagger: 0,
+        });
+        gsap.to(titNew.chars, {
+          yPercent: 100,
+          duration: 0.6,
+          ease: "power3.out",
+          stagger: 0,
+        });
+      });
+    });
+  }
+
+  createDoubleHoverEffect();
+});
 </script>
 </body>
 </html>
