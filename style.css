@@ -1,0 +1,215 @@
+/*
+  Hover animation by the awesome Manoela Ilic https://tympanus.net/codrops/2024/06/19/hover-animations-for-terminal-like-typography/ and original idea by https://www.jeandawson.com/
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=JetBrains+Mono:ital@0;1&display=swap");
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+/* CSS Variables */
+:root {
+  --color--foreground--100: rgb(10, 10, 10);
+  --color--background--100: rgb(255, 255, 200);
+  --color--accent: rgb(255, 223, 0);
+  --font-primary: "Inter", sans-serif;
+  --font-secondary: "JetBrains Mono", monospace;
+  --blendmode-effect: difference;
+  --bg-blur: 0px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-primary);
+  background-color: var(--color--background--100);
+  color: var(--color--foreground--100);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-weight: 400;
+  position: relative;
+  overflow: hidden;
+  font-size: 1.25rem;
+  z-index: 10;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 2px,
+    #0000002d 4px
+  );
+  background-size: auto 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color--foreground--100);
+}
+
+/* Grid Container */
+.grid-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 90%;
+  position: relative;
+  counter-reset: item 0;
+}
+
+.grid-container::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color--background--100);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.5;
+  z-index: 100;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* List item styling */
+.list__item {
+  cursor: pointer;
+  width: 100%;
+  display: grid;
+  grid-column-gap: 2rem;
+  padding: 0;
+  /* grid-template-columns: 100%; */
+  justify-content: space-around;
+  align-items: center;
+  justify-items: flex-start;
+  grid-template-columns: 40px 1fr 1fr 1fr 1fr;
+}
+
+.list__item::before {
+  content: counter(item, decimal-leading-zero);
+  counter-increment: item;
+  padding: 4px 0;
+  line-height: 0.8;
+}
+
+.list__item:hover .hover-effect--bg::after {
+  transform: scaleX(1);
+}
+
+/* Styling for hover effects */
+.hover-effect {
+  font-family: var(--font-secondary);
+  position: relative;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--color--foreground--100);
+  z-index: 1;
+}
+
+.hover-effect--bg {
+  transition: background-color 0.3s ease;
+}
+
+.hover-effect--bg::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color--accent);
+  transition: transform 0.3s ease;
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: -1;
+  mix-blend-mode: var(--blendmode-effect);
+  -webkit-backdrop-filter: blur(var(--bg-blur));
+          backdrop-filter: blur(var(--bg-blur));
+}
+
+/* Fixed Elements Grid Layout */
+.fixed-grid {
+  position: fixed;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  padding: 1rem;
+}
+
+.fixed-item {
+  font-family: var(--font-secondary);
+  color: var(--color--foreground--100);
+  font-size: 0.9rem;
+  padding: 8px;
+  pointer-events: auto;
+}
+
+.square {
+  background-color: var(--color--foreground--100);
+  width: 8px;
+  height: 8px;
+}
+
+/* Specific positions for each fixed item */
+.top-left {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  align-self: start;
+  justify-self: start;
+}
+
+.top-right {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  align-self: start;
+  justify-self: end;
+}
+
+.bottom-left {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  align-self: end;
+  justify-self: start;
+}
+
+.bottom-right {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  align-self: end;
+  justify-self: end;
+}
+
+/* Blinking seconds animation */
+.blinking {
+  -webkit-animation: blink 1s steps(1) infinite;
+          animation: blink 1s steps(1) infinite;
+}
+
+@-webkit-keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
