@@ -196,17 +196,14 @@
     .menu__footer-link {
       font-family: var(--font-mono);
       text-decoration: none;
-      font-size: 3rem;
-      margin-bottom: 0.8rem;
+      font-size: 4rem;
+      margin-bottom: 0.5rem;
       opacity: 1;
       position: relative;
       display: block;
       text-transform: uppercase;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
       overflow: hidden;
-    }
-    @media (max-width: 768px) {  
-      .menu__footer-link {font-size: 1.5rem;}
     }
     .menu__divider {
       width: 50%;
@@ -363,189 +360,187 @@
     </filter>
   </svg>
 
-<script type="module">
-import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
-import { OrbitControls } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js";
-import { EffectComposer } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/EffectComposer.js";
-import { RenderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/RenderPass.js";
-import { ShaderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/ShaderPass.js";
-import { SMAAPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/SMAAPass.js";
-import { GUI } from "https://cdn.skypack.dev/dat.gui";
-import gsap from "https://cdn.skypack.dev/gsap@3.12.2";
-import CustomEase from "https://cdn.skypack.dev/gsap@3.12.2/CustomEase";
-import SplitType from "https://cdn.skypack.dev/split-type";
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/CustomEase.min.js"></script>
+  <script src="https://unpkg.com/split-type"></script>
 
-document.addEventListener("DOMContentLoaded", () => {
-  gsap.registerPlugin(CustomEase);
-  CustomEase.create("easeOutFast", "M0,0 C0.25,0.1 0.25,1 1,1");
-  CustomEase.create("easeInFast", "M0,0 C0.5,0 0.75,0.2 1,1");
+  <script type="module">
+    document.addEventListener("DOMContentLoaded", () => {
+      gsap.registerPlugin(CustomEase);
 
-  const body = document.body;
-  const menu = document.getElementById("menu");
-  const menuToggle = document.getElementById("menuToggle");
-  const openState = menuToggle.querySelector(".nav__toggle-state--open");
-  const closeState = menuToggle.querySelector(".nav__toggle-state--close");
-  const menuItems = document.querySelectorAll(".menu__footer-link");
+      const body = document.body;
+      const menu = document.getElementById("menu");
+      const menuToggle = document.getElementById("menuToggle");
+      const openState = menuToggle.querySelector(".nav__toggle-state--open");
+      const closeState = menuToggle.querySelector(".nav__toggle-state--close");
+      const menuItems = document.querySelectorAll(".menu__footer-link");
 
-  let isMenuOpen = false;
+      let isMenuOpen = false;
 
-  gsap.set(menuItems, { opacity: 0, y: -20 });
-  gsap.set(openState, { opacity: 1, display: "block" });
-  gsap.set(closeState, { opacity: 0, display: "none" });
+      CustomEase.create("easeOutFast", "M0,0 C0.25,0.1 0.25,1 1,1");
+      CustomEase.create("easeInFast", "M0,0 C0.5,0 0.75,0.2 1,1");
 
-  menuToggle.addEventListener("click", () => {
-    isMenuOpen ? closeMenu() : openMenu();
-  });
+      gsap.set(menuItems, { opacity: 0, y: -20 });
+      gsap.set(openState, { opacity: 1, display: "block" });
+      gsap.set(closeState, { opacity: 0, display: "none" });
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && isMenuOpen) closeMenu();
-  });
+      menuToggle.addEventListener("click", () => {
+        if (!isMenuOpen) {
+          openMenu();
+        } else {
+          closeMenu();
+        }
+      });
 
-  document.addEventListener("click", (e) => {
-    if (isMenuOpen && !menu.contains(e.target) && !menuToggle.contains(e.target)) {
-      closeMenu();
-    }
-  });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && isMenuOpen) {
+          closeMenu();
+        }
+      });
 
-  function openMenu() {
-    body.classList.add("menu-open");
+      document.addEventListener("click", (event) => {
+        if (
+          isMenuOpen &&
+          !menu.contains(event.target) &&
+          !menuToggle.contains(event.target)
+        ) {
+          closeMenu();
+        }
+      });
 
-    gsap.to(".menu__divider", {
-      width: "140px",
-      duration: 0.6,
-      opacity: 1,
-      ease: "power2.out",
-      delay: 0.4,
-    });
-
-    gsap.to(".menu__column p", {
-      opacity: 1,
-      stagger: { amount: 0.3, from: "start" },
-      duration: 0.6,
-      ease: "power2.in",
-      delay: 0.6,
-    });
-
-    gsap.to(openState, {
-      opacity: 0,
-      duration: 0.3,
-      onComplete: () => {
-        gsap.set(openState, { display: "none" });
-        gsap.set(closeState, { display: "block" });
-        gsap.to(closeState, { opacity: 1, duration: 0.3 });
-      },
-    });
-
-    gsap.to(menu, {
-      y: 0,
-      duration: 0.6,
-      ease: "easeOutFast",
-      onComplete: () => {
-        gsap.to(menuItems, {
-          y: 0,
+      function openMenu() {
+        body.classList.add("menu-open");
+        gsap.to(".menu__divider", {
+          width: "140px",
+          duration: 0.6,
           opacity: 1,
-          stagger: 0.1,
-          duration: 0.5,
-          ease: "power3.out",
+          ease: "power2.out",
+          delay: 0.4
         });
-      },
-    });
-
-    isMenuOpen = true;
-  }
-
-  function closeMenu() {
-    gsap.to(".menu__column p", {
-      opacity: 0,
-      stagger: { amount: 0.1, from: "end" },
-      duration: 0.4,
-      ease: "power2.in",
-    });
-
-    gsap.to(".menu__divider", {
-      width: "0%",
-      duration: 0.4,
-      ease: "power2.in",
-    });
-
-    gsap.to(menuItems, {
-      y: 20,
-      opacity: 0,
-      stagger: { amount: 0.1, from: "end" },
-      duration: 0.3,
-      ease: "power3.in",
-      onComplete: () => {
-        gsap.to(closeState, {
+        gsap.to(".menu__column p", {
+          opacity: 1,
+          stagger: { amount: 0.3, from: "start" },
+          duration: 0.6,
+          ease: "power2.in",
+          delay: 0.6
+        });
+        gsap.to(openState, {
           opacity: 0,
           duration: 0.3,
           onComplete: () => {
-            gsap.set(closeState, { display: "none" });
-            gsap.set(openState, { display: "block" });
-            gsap.to(openState, { opacity: 1, duration: 0.3 });
-          },
+            gsap.set(openState, { display: "none" });
+            gsap.set(closeState, { display: "block" });
+            gsap.to(closeState, { opacity: 1, duration: 0.3 });
+          }
         });
-
         gsap.to(menu, {
-          y: "-100%",
-          duration: 0.4,
-          ease: "easeInFast",
+          y: 0,
+          duration: 0.6,
+          ease: "easeOutFast",
           onComplete: () => {
-            body.classList.remove("menu-open");
-          },
+            gsap.to(menuItems, {
+              y: 0,
+              opacity: 1,
+              stagger: 0.1,
+              duration: 0.5,
+              ease: "power3.out"
+            });
+          }
         });
-      },
+        isMenuOpen = true;
+      }
+
+      function closeMenu() {
+        gsap.to(".menu__column p", {
+          opacity: 0,
+          stagger: { amount: 0.1, from: "end" },
+          duration: 0.4,
+          ease: "power2.in"
+        });
+        gsap.to(".menu__divider", {
+          width: "0%",
+          duration: 0.4,
+          ease: "power2.in"
+        });
+        gsap.to(menuItems, {
+          y: 20,
+          opacity: 0,
+          stagger: { amount: 0.1, from: "end" },
+          duration: 0.3,
+          ease: "power3.in",
+          onComplete: () => {
+            gsap.to(closeState, {
+              opacity: 0,
+              duration: 0.3,
+              onComplete: () => {
+                gsap.set(closeState, { display: "none" });
+                gsap.set(openState, { display: "block" });
+                gsap.to(openState, { opacity: 1, duration: 0.3 });
+              }
+            });
+            gsap.to(menu, {
+              y: "-100%",
+              duration: 0.4,
+              ease: "easeInFast",
+              onComplete: () => {
+                body.classList.remove("menu-open");
+              }
+            });
+          }
+        });
+        isMenuOpen = false;
+      }
+
+      createDoubleHoverEffect();
+
+      function createDoubleHoverEffect() {
+        let items = gsap.utils.toArray(".double-hover");
+        items.forEach((item) => {
+          let titCur = new SplitType(item.querySelector("span:first-of-type"), {
+            types: "chars"
+          });
+          let titNew = new SplitType(item.querySelector("span:nth-of-type(2)"), {
+            types: "chars"
+          });
+
+          gsap.set(titCur.chars, { yPercent: 0, transformOrigin: "top left" });
+          gsap.set(titNew.chars, {
+            yPercent: 100,
+            transformOrigin: "bottom center"
+          });
+
+          item.addEventListener("mouseenter", function () {
+            gsap.to(titCur.chars, {
+              yPercent: -100,
+              stagger: { amount: 0.0 },
+              duration: 0.6,
+              ease: "power4.out"
+            });
+            gsap.to(titNew.chars, {
+              yPercent: 0,
+              stagger: { amount: 0.0 },
+              duration: 0.6,
+              ease: "power4.out"
+            });
+          });
+
+          item.addEventListener("mouseleave", function () {
+            gsap.to(titCur.chars, {
+              yPercent: 0,
+              stagger: { amount: 0.0 },
+              duration: 0.6,
+              ease: "power4.in"
+            });
+            gsap.to(titNew.chars, {
+              yPercent: 100,
+              stagger: { amount: 0.0 },
+              duration: 0.6,
+              ease: "power4.in"
+            });
+          });
+        });
+      }
     });
-
-    isMenuOpen = false;
-  }
-
-  function createDoubleHoverEffect() {
-    const items = gsap.utils.toArray(".double-hover");
-    items.forEach((item) => {
-      const titCur = new SplitType(item.querySelector("span:first-of-type"), {
-        types: "chars",
-      });
-      const titNew = new SplitType(item.querySelector("span:nth-of-type(2)"), {
-        types: "chars",
-      });
-
-      gsap.set(titCur.chars, { yPercent: 0 });
-      gsap.set(titNew.chars, { yPercent: 100 });
-
-      item.addEventListener("mouseenter", () => {
-        gsap.to(titCur.chars, {
-          yPercent: -100,
-          duration: 0.6,
-          ease: "power3.out",
-          stagger: 0,
-        });
-        gsap.to(titNew.chars, {
-          yPercent: 0,
-          duration: 0.6,
-          ease: "power3.out",
-          stagger: 0,
-        });
-      });
-
-      item.addEventListener("mouseleave", () => {
-        gsap.to(titCur.chars, {
-          yPercent: 0,
-          duration: 0.6,
-          ease: "power3.out",
-          stagger: 0,
-        });
-        gsap.to(titNew.chars, {
-          yPercent: 100,
-          duration: 0.6,
-          ease: "power3.out",
-          stagger: 0,
-        });
-      });
-    });
-  }
-
-  createDoubleHoverEffect();
-});
-</script>
+  </script>
 </body>
-</html>
+</html>            
