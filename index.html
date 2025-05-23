@@ -372,89 +372,141 @@ canvas {
   </filter>
 </svg>
 
-<script type="module">
-  import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
+  <script type="module">
+    import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
 
-  const matcapTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/nidorx/matcaps/master/1024/293534_B2BFC5_738289_8A9AA7.png');
-
-  const scene = new THREE.Scene();
-  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
-  camera.position.z = 1;
-
-  const renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  document.body.appendChild(renderer.domElement);
-
-  const uniforms = {
-    iResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
-    iTime: { value: 0 },
-    iMouse: { value: new THREE.Vector2(0, 0) },
-    blobColor: { value: new THREE.Color('rgb(0,0,0)') },
-    liquidColor: { value: new THREE.Color('rgb(230,102,153)') },
-    backgroundColor: { value: new THREE.Color('rgb(255,255,255)') },
-    blobSize: { value: 80000 },
-    mouseInfluence: { value: 15000 },
-    speedMultiplier: { value: 6.0 },
-    noiseIntensity: { value: 0.2 },
-    distortionScale: { value: 10.0 },
-    liquidSpeed: { value: 2.0 },
-    liquidDeformIntensity: { value: 0.5 },
-    liquidRadius: { value: 2.0 },
-    matcapTexture: { value: matcapTexture },
-    randomSeed: { value: Math.random() * 1000 },
-    collisionDistance: { value: 150.0 },
-    blendingFactor: { value: 0.8 }
-  };
-
-  const material = new THREE.ShaderMaterial({
-    uniforms,
-    vertexShader: `
-      varying vec2 vUv;
-      void main() {
-        vUv = uv;
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-      }
-    `,
-    fragmentShader: `
-      varying vec2 vUv;
-      uniform float iTime;
-      uniform vec2 iResolution;
-      uniform vec2 iMouse;
-      uniform vec3 blobColor;
-      uniform vec3 liquidColor;
-      uniform vec3 backgroundColor;
-
-      void main() {
-        vec2 uv = gl_FragCoord.xy / iResolution.xy;
-        vec3 col = mix(blobColor, liquidColor, 0.5 + 0.5 * sin(iTime + uv.xyx * 40.0));
-        gl_FragColor = vec4(col, 1.0);
-      }
-    `
-  });
-
-  const geometry = new THREE.PlaneGeometry(2, 2);
-  const mesh = new THREE.Mesh(geometry, material);
-  scene.add(mesh);
-
-  const mouse = uniforms.iMouse.value;
-  document.addEventListener('mousemove', (event) => {
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-  });
-
-  window.addEventListener('resize', () => {
+    const scene = new THREE.Scene();
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    uniforms.iResolution.value.set(window.innerWidth, window.innerHeight);
-  });
+    document.body.appendChild(renderer.domElement);
 
-  const clock = new THREE.Clock();
-  function animate() {
-    uniforms.iTime.value = clock.getElapsedTime();
-    renderer.render(scene, camera);
-    requestAnimationFrame(animate);
-  }
+    let mouse = new THREE.Vector2(0, 0);
+    document.addEventListener("mousemove", (e) => {
+      mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
 
-  animate();
-</script>
+    const texture = new THREE.TextureLoader().load(
+      "https://raw.githubusercontent.com/nidorx/matcaps/master/1024/293534_B2BFC5_738289_8A9AA7.png"
+    );
+
+    const uniforms = {
+      iResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+      iTime: { value: 0 },
+      iMouse: { value: new THREE.Vector2() },
+      blobColor: { value: new THREE.Color("rgb(0,0,0)") },
+      liquidColor: { value: new THREE.Color("rgb(230,102,153)") },
+      backgroundColor: { value: new THREE.Color("rgb(255,255,255)") },
+      blobSize: { value: 80000 },
+      mouseInfluence: { value: 15000 },
+      speedMultiplier: { value: 6.0 },
+      noiseIntensity: { value: 0.2 },
+      distortionScale: { value: 10.0 },
+      liquidSpeed: { value: 2.0 },
+      liquidDeformIntensity: { value: 0.5 },
+      liquidRadius: { value: 2.0 },
+      matcapTexture: { value: texture },
+      randomSeed: { value: Math.random() * 1000 },
+      collisionDistance: { value: 150.0 },
+      blendingFactor: { value: 0.8 }
+    };
+
+    const material = new THREE.ShaderMaterial({
+      uniforms,
+      vertexShader: `
+        varying vec2 vUv;
+        void main() {
+          vUv = uv;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform vec2 iResolution;
+        uniform float iTime;
+        uniform vec2 iMouse;
+        uniform vec3 blobColor;
+        uniform vec3 liquidColor;
+        uniform vec3 backgroundColor;
+        uniform float blobSize;
+        uniform float mouseInfluence;
+        uniform float speedMultiplier;
+        uniform float noiseIntensity;
+        uniform float distortionScale;
+        uniform float liquidSpeed;
+        uniform float liquidDeformIntensity;
+        uniform float liquidRadius;
+        uniform sampler2D matcapTexture;
+        varying vec2 vUv;
+
+        float pointSDF(vec3 p, float r) {
+          return length(p) - r;
+        }
+
+        float getDist(vec3 p) {
+          float d = pointSDF(p - vec3(iMouse.x * 5.0, 1.0, 4.0), liquidRadius);
+          d -= cos(2.0 * iTime + p.x * 5.0 + p.z * 0.1) * liquidDeformIntensity;
+          d -= sin(iTime * liquidSpeed + p.y * p.x * 2.0) * liquidDeformIntensity;
+          return d;
+        }
+
+        float rayMarch(vec3 ro, vec3 rd) {
+          float dist = 0.0;
+          for(int i = 0; i < 100; i++) {
+            vec3 p = ro + rd * dist;
+            float d = getDist(p);
+            dist += d;
+            if(d < 0.01 || dist > 100.0) break;
+          }
+          return dist;
+        }
+
+        vec3 getNormal(vec3 p) {
+          vec2 e = vec2(0.01, 0.0);
+          return normalize(vec3(
+            getDist(p + e.xyy) - getDist(p - e.xyy),
+            getDist(p + e.yxy) - getDist(p - e.yxy),
+            getDist(p + e.yyx) - getDist(p - e.yyx)
+          ));
+        }
+
+        void main() {
+          vec2 uv = (gl_FragCoord.xy / iResolution.xy) * 2.0 - 1.0;
+          uv.x *= iResolution.x / iResolution.y;
+
+          vec3 ro = vec3(0.0, 0.0, -5.0);
+          vec3 rd = normalize(vec3(uv, 1.0));
+
+          float d = rayMarch(ro, rd);
+          if(d > 100.0) {
+            gl_FragColor = vec4(backgroundColor, 1.0);
+            return;
+          }
+
+          vec3 p = ro + rd * d;
+          vec3 n = getNormal(p);
+          vec3 r = reflect(-rd, n);
+          vec2 matcapUV = r.xy * 0.5 + 0.5;
+
+          vec3 matcapColor = texture2D(matcapTexture, matcapUV).rgb;
+          gl_FragColor = vec4(mix(blobColor, liquidColor, 0.5) * matcapColor, 1.0);
+        }
+      `
+    });
+
+    const geometry = new THREE.PlaneGeometry(2, 2);
+    const mesh = new THREE.Mesh(geometry, material);
+    scene.add(mesh);
+    camera.position.z = 1;
+
+    function animate(t) {
+      requestAnimationFrame(animate);
+      uniforms.iTime.value = t * 0.001;
+      uniforms.iMouse.value.copy(mouse);
+      renderer.render(scene, camera);
+    }
+
+    animate();
+  </script>
 </body>
 </html>
