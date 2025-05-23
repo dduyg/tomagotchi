@@ -235,82 +235,192 @@
     </div>
   </div>
 
-  <script type="module">
-    import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
-    import { OrbitControls } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js";
-    import { EffectComposer } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/EffectComposer.js";
-    import { RenderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/RenderPass.js";
-    import { ShaderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/ShaderPass.js";
+<script type="module">
+  import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
+  import { OrbitControls } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js";
+  import { EffectComposer } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/EffectComposer.js";
+  import { RenderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/RenderPass.js";
+  import { ShaderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/ShaderPass.js";
 
-    const PARAMS = {
-      distortion: {
-        strength: 0.1,
-        radius: 0.2,
-        edgeWidth: 0.03,
-        edgeOpacity: 0.1,
-        chromaticAberration: 0.02,
-        reflectionIntensity: 0.2,
-        waveDistortion: 0.05,
-        waveSpeed: 0.8,
-        lensBlur: 0.1,
-        clearCenterSize: 0.5,
-      },
+  const PARAMS = {
+    distortion: {
+      strength: 0.1,
+      radius: 0.2,
+      edgeWidth: 0.03,
+      edgeOpacity: 0.1,
+      chromaticAberration: 0.02,
+      reflectionIntensity: 0.2,
+      waveDistortion: 0.05,
+      waveSpeed: 0.8,
+      lensBlur: 0.1,
+      clearCenterSize: 0.5,
+    },
+  };
+
+  let scene, camera, renderer, composer;
+  let customPass;
+  let mouse = new THREE.Vector2(0, 0);
+  let aspect;
+
+  function main() {
+    const canvas = document.getElementById("canvas");
+    renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+
+    aspect = window.innerWidth / window.innerHeight;
+    scene = new THREE.Scene();
+    camera = new THREE.OrthographicCamera(-aspect, aspect, 1, -1, 0.1, 10);
+    camera.position.z = 1;
+
+    loadBackgroundTexture();
+    setupPostProcessing();
+
+    window.addEventListener("resize", onWindowResize);
+    window.addEventListener("mousemove", onMouseMove);
+
+    animate();
+  }
+
+  function loadBackgroundTexture() {
+    new THREE.TextureLoader().load(
+      "https://images.unsplash.com/photo-1504805572947-34fad45aed93?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      (texture) => {
+        const bgAspect = texture.image.width / texture.image.height;
+        const bgGeometry = new THREE.PlaneGeometry(2 * bgAspect, 2);
+        const bgMaterial = new THREE.MeshBasicMaterial({ map: texture });
+        const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
+        scene.add(bgMesh);
+      }
+    );
+  }
+
+  function setupPostProcessing() {
+    composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+
+    const vertexShader = `
+      varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `;
+
+    const fragmentShader = `
+      uniform sampler2D tDiffuse;
+      uniform vec2 uMouse;
+      uniform float uRadius;
+      uniform float uStrength;
+      uniform float uEdgeWidth;
+      uniform float uEdgeOpacity;
+      uniform float uChromaticAberration;
+      uniform float uReflectionIntensity;
+      uniform float uWaveDistortion;
+      uniform float uWaveSpeed;
+      uniform float uLensBlur;
+      uniform float uClearCenterSize;
+      varying vec2 vUv;
+
+      float circle(vec2 uv, vec2 disc_center, float disc_radius, float edge_softness) {
+        float dist = length(uv - disc_center);
+        return smoothstep(disc_radius + edge_softness, disc_radius - edge_softness, dist);
+      }
+
+      void main() {
+        vec2 uv = vUv;
+        vec2 dir = uv - uMouse;
+
+        // Wave distortion
+        float wave = sin((uv.y + uWaveSpeed * 10.0) * 30.0) * uWaveDistortion;
+
+        // Apply distortion based on distance from mouse
+        float dist = length(dir);
+        float effect = smoothstep(uRadius, uRadius - uEdgeWidth, dist);
+        vec2 distortedUv = uv + dir * effect * uStrength + vec2(wave, 0.0);
+
+        // Chromatic aberration
+        float ca = uChromaticAberration * effect;
+        vec2 redUV = distortedUv + vec2(ca, 0.0);
+        vec2 greenUV = distortedUv;
+        vec2 blueUV = distortedUv - vec2(ca, 0.0);
+
+        vec4 color;
+        color.r = texture2D(tDiffuse, redUV).r;
+        color.g = texture2D(tDiffuse, greenUV).g;
+        color.b = texture2D(tDiffuse, blueUV).b;
+        color.a = 1.0;
+
+        // Reflection overlay (simplified)
+        float reflection = smoothstep(uRadius, uRadius - uEdgeWidth * 2.0, dist) * uReflectionIntensity;
+        color.rgb += reflection;
+
+        // Lens blur (simple approximation)
+        float blur = smoothstep(uRadius, uRadius - uClearCenterSize, dist) * uLensBlur;
+        color.rgb = mix(color.rgb, vec3(0.5), blur);
+
+        // Clear center
+        float clearCenter = circle(uv, uMouse, uClearCenterSize, uEdgeWidth);
+        color.rgb = mix(vec3(0.5), color.rgb, clearCenter);
+
+        gl_FragColor = color;
+      }
+    `;
+
+    const uniforms = {
+      tDiffuse: { value: null },
+      uMouse: { value: new THREE.Vector2(0.5, 0.5) },
+      uRadius: { value: PARAMS.distortion.radius },
+      uStrength: { value: PARAMS.distortion.strength },
+      uEdgeWidth: { value: PARAMS.distortion.edgeWidth },
+      uEdgeOpacity: { value: PARAMS.distortion.edgeOpacity },
+      uChromaticAberration: { value: PARAMS.distortion.chromaticAberration },
+      uReflectionIntensity: { value: PARAMS.distortion.reflectionIntensity },
+      uWaveDistortion: { value: PARAMS.distortion.waveDistortion },
+      uWaveSpeed: { value: PARAMS.distortion.waveSpeed },
+      uLensBlur: { value: PARAMS.distortion.lensBlur },
+      uClearCenterSize: { value: PARAMS.distortion.clearCenterSize },
     };
 
-    let scene, camera, renderer, controls;
-    let composer, customPass;
-    let backgroundTexture;
-    let aspect;
+    customPass = new ShaderPass(new THREE.ShaderMaterial({
+      uniforms,
+      vertexShader,
+      fragmentShader,
+    }), "tDiffuse");
 
-    function main() {
-      const canvas = document.getElementById("canvas");
-      renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(window.devicePixelRatio);
+    composer.addPass(customPass);
+  }
 
-      aspect = window.innerWidth / window.innerHeight;
-      scene = new THREE.Scene();
+  function onWindowResize() {
+    aspect = window.innerWidth / window.innerHeight;
+    camera.left = -aspect;
+    camera.right = aspect;
+    camera.updateProjectionMatrix();
 
-      camera = new THREE.OrthographicCamera(-aspect, aspect, 1, -1, 0.1, 10);
-      camera.position.z = 1;
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    composer.setSize(window.innerWidth, window.innerHeight);
+  }
 
-      controls = new OrbitControls(camera, canvas);
-      controls.enabled = false;
+  function onMouseMove(event) {
+    mouse.x = event.clientX / window.innerWidth;
+    mouse.y = 1 - event.clientY / window.innerHeight;
+    if (customPass) {
+      customPass.uniforms.uMouse.value.set(mouse.x, mouse.y);
+    }
+  }
 
-      loadBackgroundTexture();
-      setupPostProcessing();
+  function animate(time) {
+    requestAnimationFrame(animate);
 
-      window.addEventListener("resize", onWindowResize);
-      document.addEventListener("mousemove", onMouseMove);
-
-      animate();
+    if (customPass) {
+      // Animate wave speed over time
+      customPass.uniforms.uWaveSpeed.value = PARAMS.distortion.waveSpeed + Math.sin(time * 0.001) * 0.5;
     }
 
-    function loadBackgroundTexture() {
-      new THREE.TextureLoader().load(
-        "https://images.unsplash.com/photo-1504805572947-34fad45aed93?q=80&w=2340&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        (texture) => {
-          backgroundTexture = texture;
-          const bgAspect = texture.image.width / texture.image.height;
-          const bgGeometry = new THREE.PlaneGeometry(2 * bgAspect, 2);
-          const bgMaterial = new THREE.MeshBasicMaterial({ map: texture });
-          const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
-          scene.add(bgMesh);
-        }
-      );
-    }
+    composer.render();
+  }
 
-    function setupPostProcessing() {
-      composer = new EffectComposer(renderer);
-      composer.addPass(new RenderPass(scene, camera));
-
-      const vertexShader = `
-        varying vec2 vUv;
-        void main() {
-          vUv = uv;
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-        }
-      `;
-
-      const fragmentShader = `
-        uniform sampler2D tDiffuse;
+  main();
+</script>
+</body>
+</html>
