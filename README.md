@@ -301,7 +301,6 @@ If the image is used as a background:
 - [ ]  Viaoda Libre
 - [ ]  Diplomata SC
 - [ ]  Fascinate Inline
-- [ ]  Megrim
 - [ ]  Montserrat Alternates
 - [ ]  Offside ♡~
 - [ ]  Overlock
@@ -357,9 +356,7 @@ If the image is used as a background:
 - [ ]  Train One
 - [ ]  Hanalei
 - [ ]  Kumar One Outline
-- [ ]  Climate Crisis
 - [ ]  Victor Mono
-- [ ]  Spline Sans Mono
 - [ ]  Tourney
 
 - [x] 🔘https://fontesk.com/?s=Mono ❤️
