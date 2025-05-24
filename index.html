@@ -4,16 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Liminal🩷Loop</title>
+  <title>Liminal🔬Loop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant&display=swap" rel="stylesheet">
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300&family=Space+Mono&display=swap");
-    *, *::after, *::before { box-sizing: border-box; }
+    *, *::after, *::before { box-sizing: border-box;}
+    @font-face { 
+      font-family: 'Kalamayka'; 
+      src: url('KalamaykaVF.woff2') format('woff2'),
+           url('KalamaykaVF.woff') format('woff');
+      font-weight: 100 700; /* for variable fonts */ 
+      font-style: normal;
+    }
     :root {
       --color-background: rgb(10, 10, 10);
       --color-foreground: rgb(240, 240, 240);
       --color-accent: rgb(255, 211, 182);
-      --font-primary: "Cormorant", serif;
-      --font-mono: "Space Mono", monospace;
       --margin: 32px;
       --gutter: 16px;
     }
@@ -24,7 +29,8 @@
       min-height: 100vh;
       margin: 0;
       padding: 0;
-      font-family: var(--font-primary);
+      font-family: 'Kalamayka', monospace;
+      font-variation-settings: 'wght' 400;
       background-color: var(--color-background);
       color: var(--color-foreground);
       text-align: center;
@@ -47,7 +53,6 @@
     .logo {
       font-size: 20rem;
       line-height: 0.9;
-      font-family: var(--font-mono);
       color: var(--color-accent);
       margin-bottom: 1rem;
       margin-left: -22px;
@@ -62,12 +67,10 @@
       line-height: 1.2;
       margin-bottom: 40px;
       max-width: 360px;
-      font-family: var(--font-mono);
     }
     .nav-links {
       display: flex;
       flex-direction: column;
-      font-family: var(--font-mono);
     }
     .nav-links a {
       color: var(--color-foreground);
@@ -78,18 +81,19 @@
     .nav-links a:hover { color: var(--color-accent); }
     .footer {
       margin-top: 1rem;
-      font-family: var(--font-mono);
       font-size: 0.65rem;
     }
     .footer p { opacity: 0.5; }
-    .division { margin-top: auto; }
+    .division { 
+      margin-top: auto;
+      font-family: "Cormorant", serif;
+    }
     .main-content {
       width: 65%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       padding: var(--margin);
-      font-family: var(--font-mono);
       text-transform: uppercase;
     }
     canvas {
