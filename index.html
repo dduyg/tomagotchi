@@ -5,9 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>LiminalLoop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Boldonse&display=swap" rel="stylesheet">
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300&family=Space+Mono&display=swap");
-    *, *::after, *::before {box-sizing: border-box;}
+    *, *::after, *::before {box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent;}
     :root {
       --color-background: rgb(10, 10, 10);
       --color-foreground: rgb(240, 240, 240);
@@ -24,11 +27,11 @@
       min-height: 100vh;
       margin: 0;
       padding: 0;
-      font-family: var(--font-primary);
+      font-family: "M PLUS 1", sans-serif;
       background-color: #033301;
       color: #76726F;
       text-align: center;
-    } 
+    }
     body::before {  
       content: "";
       position: fixed; 
@@ -37,11 +40,11 @@
       background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.03) 1px, transparent 2px, transparent 4px);
       z-index: 10;
       animation: scan 0.3s linear infinite;
-    } 
+    }
     @keyframes scan {  
       0% {background-position: 0 0;}
       100% {background-position: 0 4px;}
-    }    
+    }
 
     #badge { 
       position: fixed;
@@ -86,14 +89,12 @@
      text-align: left;
    }
 
-    .logo {  
+    .title {  
       font-size: 1.6rem;
       line-height: 0.9;
-      font-family: var(--font-mono);
-      color: var(--color-accent);
+      font-family: "Boldonse", sans-serif;
       margin-bottom: 1rem;
     }
-
     .description {
       font-size: 0.75rem;
       line-height: 1.2;
@@ -108,7 +109,7 @@
       font-family: var(--font-mono);
     }
     .nav-links a {
-      color: var(--color-foreground);
+      color: inherit;
       text-decoration: none;
       transition: color 0.3s;
     }
@@ -143,7 +144,7 @@
   
 <main class="container">
    <div class="sidebar">
-     <div class="logo">Exodus Black</div>
+     <div class="title">Exodus Black</div>
      <p class="description">THE ARCHIVE COLLECTS RECORDS OF ABANDONED WORLDS AND LOST TECHNOLOGIES, WAITING TO BE DISCOVERED.</p>
      <nav class="nav-links">
        <a href="#">_DATA VAULTS</a>
