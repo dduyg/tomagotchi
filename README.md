@@ -377,6 +377,7 @@ If the image is used as a background:
     - https://fontesk.com/brinky-mono-font/
     - https://fontesk.com/feature-mono-typeface/
     - https://fontesk.com/manolo-mono-font/
+    - https://fontesk.com/lacrimoceras-mono-font/
     - https://fontesk.com/optik-optik-mono-fonts
     - https://fontesk.com/steps-mono-typeface/
     - https://fontesk.com/znak-mono-font/
