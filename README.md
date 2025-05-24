@@ -403,6 +403,16 @@ If the image is used as a background:
     - https://fontesk.com/kiltier-font/
     - https://fontesk.com/mica-valo-font/
     - https://fontesk.com/moncheur-havens-font/
+- [x] 🔘geometric/header fonts:
+    - https://fontesk.com/defekt-font/
+    - https://fontesk.com/kepler-452b-font/
+    - https://fontesk.com/latimer-sans-font/
+    - https://fontesk.com/shapes-font/
+    - https://fontesk.com/glock-font/
+    - https://fontesk.com/01-typekini-font/
+    - https://fontesk.com/jugend-typeface/
+    - https://fontesk.com/amiak-nhzdn-font/
+    - https://fontesk.com/astakhov-flacon-font/
 
 <br>
 
