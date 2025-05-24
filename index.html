@@ -1,5 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liminal🍇Loop</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; overflow: hidden; font-family: sans-serif; }
+    .container { position: relative; height: 100vh; overflow: hidden; }
+    .scroller { position: absolute; width: 100%; top: 0; left: 0; will-change: transform; }
+    .section {
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 3em;
+      color: white;
+    }
+    .section-1 { background: #444; }
+    .section-2 { background: #666; }
+    .section-3 { background: #888; }
+    .section-4 { background: #aaa; }
 
-<!-- Full fixed and enhanced index.html goes here -->
-<!-- For brevity, the actual long HTML content is not shown in this code block.
-In practice, you'd place the complete modified HTML from the previous step,
-including additional logic for keyboard and mobile swipe support. -->
+    video.video-background {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .section-content {
+      z-index: 1;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="scroller">
+      <!-- Buffer before -->
+      <section class="section section-1"><video class="video-background" autoplay muted loop playsinline><source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/Bryce3D.mp4" type="video/mp4" /></video><div class="section-content">CSV</div></section>
+      <section class="section section-2"><video class="video-background" autoplay muted loop playsinline><source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/Bryce3D_02.mp4" type="video/mp4" /></video><div class="section-content">Parquet</div></section>
+      <section class="section section-3"><video class="video-background" autoplay muted loop playsinline><source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/Bryce3D_03.mp4" type="video/mp4" /></video><div class="section-content">XML</div></section>
+      <section class="section section-4"><video class="video-background" autoplay muted loop playsinline><source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/Bryce3D_04.mp4" type="video/mp4" /></video><div class="section-content">Avro</div></section>
+      <!-- Main sequence -->
+      <section class="section section-1"><video class="video-background" autoplay muted loop playsinline><source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/Bryce3D.mp4" type="video/mp4" /></video><div class="section-content">CSV</div></section>
+      <section class="section section-2"><video class="video-background" autoplay muted loop playsinline><source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/Bryce3D_02.mp4" type="video/mp4" /></video><div class="section-content">Parquet</div></section>
+      <section class="section section-3"><video class="video-background" autoplay muted loop playsinline><source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/Bryce3D_03.mp4" type="video/mp4" /></video><div class="section-content">XML</div></section>
+      <section class="section section-4"><video class="video-background" autoplay muted loop playsinline><source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/Bryce3D_04.mp4" type="video/mp4" /></video><div class="section-content">Avro</div></section>
+      <!-- Buffer after -->
+      <section class="section section-1"><video class="video-background" autoplay muted loop playsinline><source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/Bryce3D.mp4" type="video/mp4" /></video><div class="section-content">CSV</div></section>
+      <section class="section section-2"><video class="video-background" autoplay muted loop playsinline><source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/Bryce3D_02.mp4" type="video/mp4" /></video><div class="section-content">Parquet</div></section>
+      <section class="section section-3"><video class="video-background" autoplay muted loop playsinline><source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/Bryce3D_03.mp4" type="video/mp4" /></video><div class="section-content">XML</div></section>
+      <section class="section section-4"><video class="video-background" autoplay muted loop playsinline><source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/Bryce3D_04.mp4" type="video/mp4" /></video><div class="section-content">Avro</div></section>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.querySelector(".container");
+      const scroller = document.querySelector(".scroller");
+      const sectionHeight = window.innerHeight;
+      const sequenceHeight = sectionHeight * 4;
+
+      let currentY = sequenceHeight;
+      let targetY = sequenceHeight;
+
+      function scrollToY(y) {
+        targetY = y;
+        animate();
+      }
+
+      function checkLoop() {
+        if (currentY < sectionHeight) {
+          currentY += sequenceHeight;
+          targetY += sequenceHeight;
+        } else if (currentY > sectionHeight * 2) {
+          currentY -= sequenceHeight;
+          targetY -= sequenceHeight;
+        }
+      }
+
+      function animate() {
+        currentY += (targetY - currentY) * 0.1;
+        scroller.style.transform = `translateY(-${currentY}px)`;
+        checkLoop();
+        if (Math.abs(targetY - currentY) > 0.5) {
+          requestAnimationFrame(animate);
+        }
+      }
+
+      // Wheel scroll
+      container.addEventListener("wheel", e => {
+        e.preventDefault();
+        targetY += e.deltaY;
+        animate();
+      }, { passive: false });
+
+      // Touch scroll
+      let startY = 0;
+      container.addEventListener("touchstart", e => {
+        startY = e.touches[0].clientY;
+      });
+      container.addEventListener("touchmove", e => {
+        e.preventDefault();
+        const delta = startY - e.touches[0].clientY;
+        startY = e.touches[0].clientY;
+        targetY += delta * 1.5;
+        animate();
+      }, { passive: false });
+
+      // Keyboard scroll
+      document.addEventListener("keydown", e => {
+        if (e.key === "ArrowDown" || e.key === "PageDown") {
+          targetY += sectionHeight;
+          animate();
+        } else if (e.key === "ArrowUp" || e.key === "PageUp") {
+          targetY -= sectionHeight;
+          animate();
+        }
+      });
+
+      // Initial position
+      scroller.style.transform = `translateY(-${currentY}px)`;
+    });
+  </script>
+</body>
+</html>
