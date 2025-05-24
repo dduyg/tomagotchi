@@ -307,7 +307,6 @@ If the image is used as a background:
 - [ ]  Titillium Web
 - [ ]  Nunito
 - [ ]  Capriola
-- [ ]  Faculty Glyphic
 - [ ]  Karla
 - [ ]  SUSE
 - [ ]  Stalinist One
