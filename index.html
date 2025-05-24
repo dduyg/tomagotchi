@@ -438,200 +438,201 @@
 </footer>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const container = document.querySelector(".container");
-    const scroller = document.querySelector(".scroller");
-    const bottomProgressFill = document.querySelector(".bottom-progress-fill");
-    const bottomProgressPercent = document.querySelector(".bottom-progress-percent");
-    const sections = document.querySelectorAll(".section");
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.querySelector(".container");
+  const scroller = document.querySelector(".scroller");
+  const bottomProgressFill = document.querySelector(".bottom-progress-fill");
+  const bottomProgressPercent = document.querySelector(".bottom-progress-percent");
 
-    const SMOOTH_FACTOR = 0.05;
-    const TOUCH_SENSITIVITY = 2.5;
+  const SMOOTH_FACTOR = 0.08;
+  const TOUCH_SENSITIVITY = 2.5;
 
-    let targetScrollY = 0;
-    let currentScrollY = 0;
-    let lastScrollY = 0;
-    let isAnimating = false;
-    let currentProgressScale = 0;
-    let targetProgressScale = 0;
-    let lastPercentage = 0;
+  let targetScrollY = 0;
+  let currentScrollY = 0;
+  let lastScrollY = 0;
+  let isAnimating = false;
+  let currentProgressScale = 0;
+  let targetProgressScale = 0;
+  let lastPercentage = 0;
 
-    let isDown = false;
-    let lastTouchY = 0;
-    let touchVelocity = 0;
-    let lastTouchTime = 0;
+  let isDown = false;
+  let lastTouchY = 0;
+  let touchVelocity = 0;
+  let lastTouchTime = 0;
 
-    const lerp = (start, end, factor) => start + (end - start) * factor;
-    const roundToTwo = (num) => Math.round(num * 100) / 100;
+  const roundToTwo = (num) => Math.round(num * 100) / 100;
 
-    const getSectionHeight = () => window.innerHeight;
-    const getSequenceHeight = () => getSectionHeight() * 4;
+  const getSectionHeight = () => window.innerHeight;
+  const getSequenceHeight = () => getSectionHeight() * 4;
 
-    const initPosition = () => {
-      const sequenceHeight = getSequenceHeight();
-      targetScrollY = sequenceHeight;
-      currentScrollY = targetScrollY;
+  const initPosition = () => {
+    const sequenceHeight = getSequenceHeight();
+    targetScrollY = sequenceHeight;
+    currentScrollY = targetScrollY;
+    lastScrollY = currentScrollY;
+    scroller.style.transform = `translate3d(0, -${currentScrollY}px, 0)`;
+  };
+
+  const checkBoundaries = () => {
+    const sectionHeight = getSectionHeight();
+    const sequenceHeight = getSequenceHeight();
+
+    if (currentScrollY >= sequenceHeight * 3 - sectionHeight / 2) {
+      targetScrollY -= sequenceHeight;
+      currentScrollY -= sequenceHeight;
       lastScrollY = currentScrollY;
-      scroller.style.transform = `translateY(-${currentScrollY}px)`;
-    };
+      scroller.style.transform = `translate3d(0, -${currentScrollY}px, 0)`;
+      return true;
+    }
 
-    const checkBoundaries = () => {
-      const sequenceHeight = getSequenceHeight();
-      const threshold = getSectionHeight() / 2;
+    if (currentScrollY <= sectionHeight / 2) {
+      targetScrollY += sequenceHeight;
+      currentScrollY += sequenceHeight;
+      lastScrollY = currentScrollY;
+      scroller.style.transform = `translate3d(0, -${currentScrollY}px, 0)`;
+      return true;
+    }
 
-      if (currentScrollY > sequenceHeight * 2 - threshold) {
-        targetScrollY -= sequenceHeight;
-        currentScrollY -= sequenceHeight;
-        lastScrollY = currentScrollY;
-        scroller.style.transform = `translateY(-${currentScrollY}px)`;
-        return true;
-      }
+    return false;
+  };
 
-      if (currentScrollY < sequenceHeight - threshold) {
-        targetScrollY += sequenceHeight;
-        currentScrollY += sequenceHeight;
-        lastScrollY = currentScrollY;
-        scroller.style.transform = `translateY(-${currentScrollY}px)`;
-        return true;
-      }
+  const updateProgress = () => {
+    const sequenceHeight = getSequenceHeight();
+    const position = currentScrollY % sequenceHeight;
+    const percentage = (position / sequenceHeight) * 100;
 
-      return false;
-    };
+    bottomProgressPercent.textContent = `${Math.round(percentage)}%`;
+    targetProgressScale = percentage / 100;
 
-    const updateProgress = () => {
-      const sequenceHeight = getSequenceHeight();
-      const position = currentScrollY % sequenceHeight;
-      const percentage = (position / sequenceHeight) * 100;
+    if (
+      (lastPercentage > 80 && percentage < 20) ||
+      (lastPercentage < 20 && percentage > 80)
+    ) {
+      currentProgressScale = targetProgressScale;
+      bottomProgressFill.style.transform = `scaleX(${currentProgressScale})`;
+    }
 
-      bottomProgressPercent.textContent = `${Math.round(percentage)}%`;
-      targetProgressScale = percentage / 100;
+    lastPercentage = percentage;
+  };
 
-      if (
-        (lastPercentage > 80 && percentage < 20) ||
-        (lastPercentage < 20 && percentage > 80)
-      ) {
-        currentProgressScale = targetProgressScale;
-        bottomProgressFill.style.transform = `scaleX(${currentProgressScale})`;
-      }
+  const easeOutExpo = (x) => 1 - Math.pow(2, -10 * x);
 
-      lastPercentage = percentage;
-    };
+  const animate = () => {
+    const t = SMOOTH_FACTOR;
+    currentScrollY += (targetScrollY - currentScrollY) * easeOutExpo(t);
+    scroller.style.transform = `translate3d(0, -${roundToTwo(currentScrollY)}px, 0)`;
 
-    const animate = () => {
-      currentScrollY = lerp(currentScrollY, targetScrollY, SMOOTH_FACTOR);
-      scroller.style.transform = `translateY(-${roundToTwo(currentScrollY)}px)`;
+    const didReset = checkBoundaries();
+    if (!didReset) updateProgress();
 
-      const didReset = checkBoundaries();
-      if (!didReset) updateProgress();
+    currentProgressScale += (targetProgressScale - currentProgressScale) * easeOutExpo(t);
+    bottomProgressFill.style.transform = `scaleX(${roundToTwo(currentProgressScale)})`;
 
-      currentProgressScale = lerp(currentProgressScale, targetProgressScale, SMOOTH_FACTOR);
-      bottomProgressFill.style.transform = `scaleX(${roundToTwo(currentProgressScale)})`;
-
-      if (
-        Math.abs(targetScrollY - currentScrollY) > 0.01 ||
-        Math.abs(targetProgressScale - currentProgressScale) > 0.001
-      ) {
-        requestAnimationFrame(animate);
-      } else {
-        setTimeout(() => {
-          if (!isAnimating) {
-            isAnimating = true;
-            requestAnimationFrame(animate);
-          }
-        }, 100);
-        isAnimating = false;
-      }
-    };
-
-    const startAnimation = () => {
-      if (!isAnimating) {
-        isAnimating = true;
-        requestAnimationFrame(animate);
-      }
-    };
-
-    initPosition();
-    updateProgress();
-
-    let wheelTimeout;
-    const handleWheel = (e) => {
-      e.preventDefault();
-      targetScrollY += e.deltaY;
-      clearTimeout(wheelTimeout);
-      startAnimation();
-      wheelTimeout = setTimeout(() => {
-        startAnimation();
-      }, 100);
-    };
-
-    const handleTouchStart = (e) => {
-      isDown = true;
-      lastTouchY = e.touches[0].clientY;
-      lastTouchTime = Date.now();
-    };
-
-    const handleTouchMove = (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-
-      const currentTouchY = e.touches[0].clientY;
-      const touchDelta = lastTouchY - currentTouchY;
-
-      const sensitivity = window.innerWidth < 768 ? TOUCH_SENSITIVITY * 1.5 : TOUCH_SENSITIVITY;
-
-      targetScrollY += touchDelta * sensitivity;
-
-      const currentTime = Date.now();
-      const timeDelta = currentTime - lastTouchTime;
-      if (timeDelta > 0) {
-        touchVelocity = (touchDelta / timeDelta) * 15;
-      }
-
-      lastTouchY = currentTouchY;
-      lastTouchTime = currentTime;
-
-      startAnimation();
-    };
-
-    const handleTouchEnd = () => {
-      isDown = false;
-
-      if (Math.abs(touchVelocity) > 0.1) {
-        const inertiaFactor = window.innerWidth < 768 ? 15 : 20;
-        targetScrollY += touchVelocity * inertiaFactor;
-
-        const decayVelocity = () => {
-          touchVelocity *= 0.95;
-          if (Math.abs(touchVelocity) > 0.1) {
-            targetScrollY += touchVelocity;
-            requestAnimationFrame(decayVelocity);
-          }
-        };
-
-        requestAnimationFrame(decayVelocity);
-      }
-
+    if (
+      Math.abs(targetScrollY - currentScrollY) > 0.3 ||
+      Math.abs(targetProgressScale - currentProgressScale) > 0.01
+    ) {
+      requestAnimationFrame(animate);
+    } else {
       setTimeout(() => {
-        startAnimation();
+        if (!isAnimating) {
+          isAnimating = true;
+          requestAnimationFrame(animate);
+        }
       }, 100);
-    };
+      isAnimating = false;
+    }
+  };
 
-    container.addEventListener("wheel", handleWheel, { passive: false });
-    container.addEventListener("touchstart", handleTouchStart, { passive: true });
-    container.addEventListener("touchmove", handleTouchMove, { passive: false });
-    container.addEventListener("touchend", handleTouchEnd, { passive: true });
+  const startAnimation = () => {
+    if (!isAnimating) {
+      isAnimating = true;
+      requestAnimationFrame(animate);
+    }
+  };
 
-    const handleResize = () => {
-      initPosition();
-      updateProgress();
+  initPosition();
+  updateProgress();
+
+  let wheelTimeout;
+  const handleWheel = (e) => {
+    e.preventDefault();
+    targetScrollY += e.deltaY;
+    clearTimeout(wheelTimeout);
+    startAnimation();
+    wheelTimeout = setTimeout(() => {
       startAnimation();
-    };
+    }, 100);
+  };
 
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("orientationchange", handleResize);
+  const handleTouchStart = (e) => {
+    isDown = true;
+    lastTouchY = e.touches[0].clientY;
+    lastTouchTime = Date.now();
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+
+    const currentTouchY = e.touches[0].clientY;
+    const touchDelta = lastTouchY - currentTouchY;
+
+    const sensitivity = window.innerWidth < 768 ? TOUCH_SENSITIVITY * 1.5 : TOUCH_SENSITIVITY;
+
+    targetScrollY += touchDelta * sensitivity;
+
+    const currentTime = Date.now();
+    const timeDelta = currentTime - lastTouchTime;
+    if (timeDelta > 0) {
+      touchVelocity = (touchDelta / timeDelta) * 15;
+    }
+
+    lastTouchY = currentTouchY;
+    lastTouchTime = currentTime;
 
     startAnimation();
-  });
+  };
+
+  const handleTouchEnd = () => {
+    isDown = false;
+
+    if (Math.abs(touchVelocity) > 0.1) {
+      const inertiaFactor = window.innerWidth < 768 ? 15 : 20;
+      targetScrollY += touchVelocity * inertiaFactor;
+
+      const decayVelocity = () => {
+        touchVelocity *= 0.95;
+        if (Math.abs(touchVelocity) > 0.1) {
+          targetScrollY += touchVelocity;
+          requestAnimationFrame(decayVelocity);
+        }
+      };
+
+      requestAnimationFrame(decayVelocity);
+    }
+
+    setTimeout(() => {
+      startAnimation();
+    }, 100);
+  };
+
+  container.addEventListener("wheel", handleWheel, { passive: false });
+  container.addEventListener("touchstart", handleTouchStart, { passive: true });
+  container.addEventListener("touchmove", handleTouchMove, { passive: false });
+  container.addEventListener("touchend", handleTouchEnd, { passive: true });
+
+  const handleResize = () => {
+    initPosition();
+    updateProgress();
+    startAnimation();
+  };
+
+  window.addEventListener("resize", handleResize);
+  window.addEventListener("orientationchange", handleResize);
+
+  setTimeout(() => startAnimation(), 50);
+});
 </script>
 </body>
 </html>
