@@ -4,13 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>LiminalLoop</title>
+  <title>Liminal☄️Loop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Modak&display=swap" rel="stylesheet">
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono&display=swap");
-    *, *::after, *::before {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    *, *::after, *::before {box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent;}
+    @font-face {
+      font-family: 'Xanmono';
+      src: url('Xanmono.woff2') format('woff2'); 
+      font-weight: normal; 
+      font-style: normal;
     }
     :root {
       --color-background: rgb(0, 0, 0);
@@ -19,8 +21,6 @@
       --color-muted-orange: rgb(255, 165, 0);
       --color-light-gray: rgb(211, 211, 211);
       --color-dark-gray: rgb(50, 50, 50);
-      --font-primary: "Anton", serif;
-      --font-mono: "IBM Plex Mono", monospace;
       --margin: 32px;
       --gutter: 16px;
     }
@@ -29,14 +29,13 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      font-family: var(--font-primary);
+      font-family: 'Xanmono', monospace;
       background-color: var(--color-background);
       color: var(--color-foreground);
       letter-spacing: -0.03em;
       text-align: center;
       position: relative;
     }
-    /* Layout Styles */
     .header {
       position: fixed;
       top: 0;
@@ -70,30 +69,24 @@
       justify-content: center;
       align-items: center;
       padding: var(--margin);
-      font-family: var(--font-mono);
       text-transform: uppercase;
     }
-    /* Component Styles */
     .logo {
       font-size: 1.5rem;
       line-height: 1;
-      font-family: var(--font-mono);
+      font-family: "Modak", sans-serif;
       color: var(--color-accent);
     }
-    .logo sup {
-      font-size: 1.5rem;
-    }
+    .logo sup { font-size: 1.5rem; }
     .description {
       font-size: 0.85rem;
       line-height: 1.4;
       margin-bottom: 2.5rem;
       max-width: 360px;
-      font-family: var(--font-mono);
     }
     .nav-links {
       display: flex;
       flex-direction: column;
-      font-family: var(--font-mono);
     }
     .nav-links a {
       color: var(--color-foreground);
@@ -101,32 +94,19 @@
       margin-bottom: 1rem;
       transition: color 0.3s;
     }
-    .nav-links a:hover {
-      color: var(--color-accent);
-    }
-    .footer {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-    }
-    .footer p {
-      opacity: 0.6;
-    }
+    .nav-links a:hover { color: var(--color-accent); }
+    .footer { font-size: 0.7rem; }
+    .footer p { opacity: 0.6; }
     .division {
       margin-top: 2rem;
-      font-family: var(--font-mono);
       font-size: 0.7rem;
       opacity: 0.8;
     }
-    /* Link Styles */
-    a {
-      color: var(--color-foreground);
-    }
-    /* Menu Styles */
+    a { color: var(--color-foreground); }
     .nav__toggle {
       position: relative;
       cursor: pointer;
       z-index: 1100;
-      font-family: var(--font-mono);
       color: var(--color-accent);
       text-transform: uppercase;
     }
@@ -151,9 +131,7 @@
       transform: translateY(-100%);
       transition: transform 0.3s ease;
     }
-    .menu.open {
-      transform: translateY(0);
-    }
+    .menu.open { transform: translateY(0); }
     .menu__content {
       width: calc(100% - (2 * var(--gutter)));
       display: flex;
@@ -181,7 +159,6 @@
     }
     .menu__column p {
       width: 100%;
-      font-family: var(--font-mono);
       font-size: 0.75rem;
       text-transform: uppercase;
       line-height: 1.2;
@@ -192,7 +169,6 @@
       flex-direction: column;
     }
     .menu__footer-link {
-      font-family: var(--font-mono);
       text-decoration: none;
       font-size: 3rem;
       margin-bottom: 0.8rem;     
@@ -217,9 +193,7 @@
       overflow: hidden;
       display: inline-block;
     }
-    .double-hover span {
-      display: block;
-    }
+    .double-hover span { display: block; }
     .double-hover span:nth-of-type(2) {
       position: absolute;
       top: 0;
