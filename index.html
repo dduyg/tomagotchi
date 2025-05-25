@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Liminal⚾️Loop</title>
   <style>
+    * {box-sizing: border-box;}
     body {
       margin: 0;
       padding: 2rem;
@@ -16,20 +17,22 @@
     .container {
       display: flex;
       flex-direction: row;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
     }
 
     .left, .right {
-      width: 50%;
-      padding: 1rem;
+      flex: 1 1 45%;
+      min-width: 280px;
     }
 
-    .left h1, .left h2, .left h3, .left p {
-      margin: 1rem 0;
+    .left div {
+      margin-bottom: 1.5rem;
     }
 
     .left .architectural {
       font-size: 2rem;
-      font-weight: normal;
     }
 
     .left .simplicity {
@@ -73,6 +76,16 @@
     .right p {
       margin-bottom: 1.5rem;
     }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .left, .right {
+        flex: 1 1 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -92,8 +105,10 @@
         nihil impedit quo minus id quod maxime placeat.
       </p>
       <p>
-        Nihil molestiae consequatur, vel illum qui dolorem eum. <em>Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</em> 
-        <strong>Et harum quidem rerum facilis est et expedita distinctio.</strong> Excepteur sint occaecat cupidatat non proident, sunt in culpa.
+        Nihil molestiae consequatur, vel illum qui dolorem eum.
+        <em>Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</em>
+        <strong>Et harum quidem rerum facilis est et expedita distinctio.</strong>
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa.
       </p>
       <p>
         Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.
