@@ -1,107 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Liminal⚾️Loop</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>LiminalLoop</title>
   <style>
-    * {box-sizing: border-box;}
-    @font-face {
-  font-family: 'Codetta';
-  src: url('Codetta.woff2') format('woff2'),
-       url('Codetta.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-    }
-    body {
-      margin: 0;
-      padding: 2rem;
-      font-family: 'Codetta', monospace;
-      background-color: #aaa;
-      color: #000;
-    }
-    .container {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
+:root {
+  --warm-off-white: #f5f5f0;
+  --warm-off-white-dim: #d9d9d0;
+  --text-primary: #f5f5f0;
+  --text-secondary: #d9d9d0;
+  --background-dark: #050505;
+  --background-gradient-1: #1a1a1a;
+  --background-gradient-2: #0a0a0a;
 
-    .left, .right {
-      flex: 1 1 45%;
-      min-width: 280px;
-    }
-    .left div {
-      margin-bottom: 1.5rem;
-    }
+  /* Typography */
+  --font-primary: "PP Neue Montreal", sans-serif;
+  --font-secondary: "TheGoodMonolith", sans-serif;
+  --font-size-small: 0.825rem;
+  --font-size-regular: 1rem;
+  --font-size-medium: 1.5rem;
+  --font-size-large: 4rem;
 
-    .left .architectural {
-      font-size: 2rem;
-    }
-    .left .simplicity {
-      font-size: 2.5rem;
-      font-style: italic;
-      font-weight: bold;
-    }
-    .left .rendezvous {
-      font-size: 2rem;
-    }
-    .left .function-spaces {
-      font-style: italic;
-      font-size: 1.5rem;
-    }
-    .left .metamorphose {
-      font-weight: 900;
-      font-size: 2rem;
-    }
+  /* Layout */
+  --spacing-small: 0.5rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 2rem;
 
-    .right {
-      font-size: 1rem;
-      line-height: 1.6;
-    }
+  /* Transitions */
+  --transition-fast: 0.3s ease;
+  --transition-medium: 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
 
-    .right .bold-uppercase {
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-    .right em {
-      font-style: italic;
-    }
-    .right strong {
-      font-weight: bold;
-    }
-    .right p {
-      margin-bottom: 1.5rem;
-    }
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: pink;
+  background-color: var(--background-dark);
+  padding: var(--spacing-large);
+}
+
+.links {
+  position: fixed;
+  bottom: var(--spacing-large);
+  left: var(--spacing-large);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: var(--font-size-regular);
+}
+.link {
+  color: var(--warm-off-white-dim);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  position: relative;
+  padding-left: 0;
+}
+.link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 1px;
+  background-color: var(--warm-off-white);
+  transform: translateY(-50%);
+  transition: width var(--transition-fast), opacity var(--transition-fast);
+  opacity: 0;
+}
+.link:hover {
+  color: var(--warm-off-white);
+  padding-left: 1.2rem;
+}
+.link:hover::before {
+  width: 0.8rem;
+  opacity: 1;
+}
+
+/* Coordinates */
+.coordinates {
+  position: fixed;
+  bottom: var(--spacing-large);
+  right: var(--spacing-large);
+  text-align: right;
+  z-index: 10;
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-small);
+  color: var(--text-secondary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .footer-links {
+    gap: 0.4rem;
+  }
+  .coordinates {
+    font-size: 0.7rem;
+  }
+}
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="left">
-      <div class="architectural">Architectural</div>
-      <div class="simplicity">Simplicity</div>
-      <div class="rendezvous">Rendezvous</div>
-      <div class="function-spaces">Function spaces</div>
-      <div class="metamorphose">METAMORPHOSE</div>
-    </div>
-    <div class="right">
-      <p class="bold-uppercase">Duis aute irure dolor in reprehenderit in voluptate velit.</p>
-      <p>
-        Lağ0ris nisi ut aliquip ex ea commodo consequat. Et iusto odio dignissimos ducimus qui blanditiis
-        praesentium voluptatum deleniti atque. Nam libero tempore, cum soluta nobis est eligendi optio cumque
-        nihil impedit quo minus id quod maxime placeat.
-      </p>
-      <p>
-        Nihil molestiae consequatur, vel illum qui dolorem eum.
-        <em>Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</em>
-        <strong>Et harum quidem rerum facilis est et expedita distinctio.</strong>
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa.
-      </p>
-      <p>
-        Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.
-      </p>
-    </div>
-  </div>
+
+<div class="links">
+  <a href="#" class="link">Visual Work</a>
+  <a href="#" class="link">Bio</a>
+  <a href="#" class="link">Journal</a>
+</div>
+
+<div class="coordinates">
+  <p>34°05'24.0"N 118°24'39.6"W</p>
+  <p>the space between thoughts</p>
+</div>
 </body>
 </html>
