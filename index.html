@@ -140,6 +140,7 @@
 
     const w = window.innerWidth;
     const h = window.innerHeight;
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(25, w / h, 0.1, 1000);
     camera.position.z = 10;
@@ -152,9 +153,12 @@
     controls.enableDamping = true;
 
     await RAPIER.init();
-    let world = new RAPIER.World({ x: 1, y: 3, z: 5 });
+    const gravity = { x: 1, y: 3, z: 5 };
+    const world = new RAPIER.World(gravity);
 
-    let mousePos = new THREE.Vector2(), mouseX = 0, mouseY = 0;
+    const mousePos = new THREE.Vector2();
+    let mouseX = 0;
+    let mouseY = 0;
 
     const settings = {
       parallaxStrength: 0.1,
@@ -179,8 +183,47 @@
         refractionRatio: { value: 0.8 },
         distortionAmount: { value: 0.1 }
       },
-      vertexShader: `varying vec3 vNormal; varying vec3 vViewPosition; varying vec2 vUv; varying vec3 vColor; attribute vec3 color; void main() { vUv = uv; vNormal = normalize(normalMatrix * normal); vec4 mvPosition = modelViewMatrix * vec4(position, 1.0); vViewPosition = -mvPosition.xyz; vColor = color; gl_Position = projectionMatrix * mvPosition; }`,
-      fragmentShader: `uniform sampler2D tBackground; uniform sampler2D tMatcap; uniform vec2 resolution; uniform float refractionRatio; uniform float distortionAmount; varying vec3 vNormal; varying vec3 vViewPosition; varying vec2 vUv; varying vec3 vColor; void main() { vec3 normal = normalize(vNormal); vec3 viewDir = normalize(vViewPosition); vec3 refracted = refract(viewDir, normal, refractionRatio); vec2 uv = gl_FragCoord.xy / resolution; vec2 offset = refracted.xy * distortionAmount; vec4 backgroundColor = texture2D(tBackground, uv + offset); vec3 r = reflect(-viewDir, normal); float m = 2.0 * sqrt(r.x * r.x + r.y * r.y + (r.z + 1.0) * (r.z + 1.0)); vec2 matcapUv = r.xy / m + 0.5; vec4 matcapColor = texture2D(tMatcap, matcapUv); vec4 finalColor = mix(backgroundColor, matcapColor, 0.5); finalColor.rgb *= vColor; gl_FragColor = finalColor; }`
+      vertexShader: `
+        varying vec3 vNormal;
+        varying vec3 vViewPosition;
+        varying vec2 vUv;
+        varying vec3 vColor;
+        attribute vec3 color;
+        void main() {
+          vUv = uv;
+          vNormal = normalize(normalMatrix * normal);
+          vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+          vViewPosition = -mvPosition.xyz;
+          vColor = color;
+          gl_Position = projectionMatrix * mvPosition;
+        }
+      `,
+      fragmentShader: `
+        uniform sampler2D tBackground;
+        uniform sampler2D tMatcap;
+        uniform vec2 resolution;
+        uniform float refractionRatio;
+        uniform float distortionAmount;
+        varying vec3 vNormal;
+        varying vec3 vViewPosition;
+        varying vec2 vUv;
+        varying vec3 vColor;
+        void main() {
+          vec3 normal = normalize(vNormal);
+          vec3 viewDir = normalize(vViewPosition);
+          vec3 refracted = refract(viewDir, normal, refractionRatio);
+          vec2 uv = gl_FragCoord.xy / resolution;
+          vec2 offset = refracted.xy * distortionAmount;
+          vec4 backgroundColor = texture2D(tBackground, uv + offset);
+          vec3 r = reflect(-viewDir, normal);
+          float m = 2.0 * sqrt(r.x * r.x + r.y * r.y + (r.z + 1.0) * (r.z + 1.0));
+          vec2 matcapUv = r.xy / m + 0.5;
+          vec4 matcapColor = texture2D(tMatcap, matcapUv);
+          vec4 finalColor = mix(backgroundColor, matcapColor, 0.5);
+          finalColor.rgb *= vColor;
+          gl_FragColor = finalColor;
+        }
+      `
     };
 
     const metaMat = new ShaderMaterial(metaballsShader);
@@ -195,6 +238,7 @@
 
     async function create2DTextTexture(text, fontSize, color) {
       await document.fonts.load(`${fontSize}px 'BandeinsStrange'`);
+
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
       canvas.width = 2048;
@@ -215,27 +259,42 @@
     }
 
     let textTexture = await create2DTextTexture("Pixelated Abyss", 180, settings.textColor);
-    const textMaterial = new THREE.MeshBasicMaterial({ map: textTexture, transparent: true, opacity: 0.8 });
-    const textMesh = new THREE.Mesh(new THREE.PlaneGeometry(20, 10), textMaterial);
+    const aspectRatio = 2048 / 1024;
+    const planeWidth = 20;
+    const planeHeight = planeWidth / aspectRatio;
+
+    const textGeometry = new THREE.PlaneGeometry(planeWidth, planeHeight);
+    const textMaterial = new THREE.MeshBasicMaterial({
+      map: textTexture,
+      transparent: true,
+      opacity: 0.8
+    });
+    const textMesh = new THREE.Mesh(textGeometry, textMaterial);
     textMesh.position.set(0, 0, -8);
     scene.add(textMesh);
 
     function updateTextColor() {
-      create2DTextTexture("Pixelated Abyss", 180, settings.textColor).then(tex => {
-        textMaterial.map = tex;
+      create2DTextTexture("Pixelated Abyss", 180, settings.textColor).then(texture => {
+        textMaterial.map = texture;
         textMaterial.needsUpdate = true;
       });
     }
 
     function getBody({ RAPIER, world }) {
-      const size = 0.2, range = 3, density = 0.5;
+      const size = 0.2;
+      const range = 3;
+      const density = 0.5;
       let x = Math.random() * range - range * 0.5;
       let y = Math.random() * range - range * 0.5 + 3;
       let z = Math.random() * range - range * 0.5;
 
-      let rigidBodyDesc = RAPIER.RigidBodyDesc.dynamic().setTranslation(x, y, z).setLinearDamping(2);
+      let rigidBodyDesc = RAPIER.RigidBodyDesc.dynamic()
+        .setTranslation(x, y, z)
+        .setLinearDamping(2);
       let rigid = world.createRigidBody(rigidBodyDesc);
-      world.createCollider(RAPIER.ColliderDesc.ball(size).setDensity(density), rigid);
+      let colliderDesc = RAPIER.ColliderDesc.ball(size).setDensity(density);
+      world.createCollider(colliderDesc, rigid);
+
       const color = new THREE.Color().setHSL(Math.random(), 1, 0.5);
 
       function update() {
@@ -251,9 +310,16 @@
       return { update };
     }
 
-    const bodies = Array.from({ length: 10 }, () => getBody({ RAPIER, world }));
+    const bodies = [];
+    const numBodies = 10;
+    for (let i = 0; i < numBodies; i++) {
+      const body = getBody({ RAPIER, world });
+      bodies.push(body);
+    }
 
-    let mouseRigid = world.createRigidBody(RAPIER.RigidBodyDesc.kinematicPositionBased().setTranslation(0, 0, 0));
+    const mouseRigid = world.createRigidBody(
+      RAPIER.RigidBodyDesc.kinematicPositionBased().setTranslation(0, 0, 0)
+    );
     world.createCollider(RAPIER.ColliderDesc.ball(0.5), mouseRigid);
 
     const composer = new EffectComposer(renderer);
@@ -266,18 +332,46 @@
         grainIntensity: { value: 0.15 },
         blackAndWhite: { value: true }
       },
-      vertexShader: `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
-      fragmentShader: `uniform sampler2D tDiffuse; uniform float grainSize; uniform float grainIntensity; uniform bool blackAndWhite; varying vec2 vUv; float random(vec2 p) { return fract(sin(dot(p.xy, vec2(12.9898,78.233))) * 43758.5453); } void main() { vec4 color = texture2D(tDiffuse, vUv); vec2 grainUv = vUv * grainSize; float grain = random(grainUv) * grainIntensity; color.rgb += vec3(grain); if (blackAndWhite) { float gray = dot(color.rgb, vec3(0.299, 0.587, 0.114)); color.rgb = vec3(gray); } gl_FragColor = color; }`
+      vertexShader: `
+        varying vec2 vUv;
+        void main() {
+          vUv = uv;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform sampler2D tDiffuse;
+        uniform float grainSize;
+        uniform float grainIntensity;
+        uniform bool blackAndWhite;
+        varying vec2 vUv;
+
+        float random(vec2 p) {
+          return fract(sin(dot(p.xy, vec2(12.9898,78.233))) * 43758.5453);
+        }
+
+        void main() {
+          vec4 color = texture2D(tDiffuse, vUv);
+          vec2 grainUv = vUv * grainSize;
+          float grain = random(grainUv) * grainIntensity;
+          color.rgb += vec3(grain);
+          if (blackAndWhite) {
+            float gray = dot(color.rgb, vec3(0.299, 0.587, 0.114));
+            color.rgb = vec3(gray);
+          }
+          gl_FragColor = color;
+        }
+      `
     };
 
     const customPass = new ShaderPass(customShader);
     composer.addPass(customPass);
 
-    function applyParallaxEffect(object, depth, baseStrength, depthMultiplier = 1) {
+    function applyParallaxEffect(object, depth, strength, depthMultiplier = 1) {
       const normalizedX = mouseX * depth;
       const normalizedY = mouseY * depth;
-      object.position.x += (normalizedX - object.position.x) * baseStrength;
-      object.position.y += (normalizedY - object.position.y) * baseStrength;
+      object.position.x += (normalizedX - object.position.x) * strength;
+      object.position.y += (normalizedY - object.position.y) * strength;
       object.position.z = -0.3 * (normalizedY + normalizedX) * depthMultiplier;
       const maxRotation = 0.1;
       object.rotation.y = THREE.MathUtils.clamp(THREE.MathUtils.degToRad(normalizedX * 3), -maxRotation, maxRotation);
@@ -289,6 +383,7 @@
       controls.update();
       world.step();
       mouseRigid.setTranslation({ x: mousePos.x * 4, y: mousePos.y * 4, z: 0 });
+
       metaballs.visible = false;
       renderer.setRenderTarget(backgroundRenderTarget);
       renderer.render(scene, camera);
