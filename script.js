@@ -1,418 +1,291 @@
 import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
 import { OrbitControls } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js";
-import { MarchingCubes } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/objects/MarchingCubes.js";
-import RAPIER from "https://cdn.skypack.dev/@dimforge/rapier3d-compat@0.11.2";
 import * as dat from "https://cdn.skypack.dev/dat.gui";
-import { EffectComposer } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/EffectComposer.js";
-import { RenderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/RenderPass.js";
-import { ShaderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/ShaderPass.js";
-import { ShaderMaterial } from "https://cdn.skypack.dev/three@0.136.0";
+
+// Raycaster for detecting mouse interactions
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+let lastMouseMoveTime = 0;
+let lastMousePosition = new THREE.Vector2();
+let mouseSpeed = 0;
+let lastMouseSpeed = 0;
+
+// Load a matcap texture
+const loader = new THREE.TextureLoader();
+const matcapTexture = loader.load(
+  "https://raw.githubusercontent.com/nidorx/matcaps/master/1024/0A0A0A_A9A9A9_525252_747474.png"
+);
 
 // Scene setup
-const w = window.innerWidth;
-const h = window.innerHeight;
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(25, w / h, 0.1, 1000);
-camera.position.z = 10;
+scene.background = new THREE.Color(0x000000);
 
+// Renderer setup with shadow support
 const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(w, h);
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
 document.body.appendChild(renderer.domElement);
 
-// Orbit Controls setup
+// Camera setup
+const camera = new THREE.PerspectiveCamera(
+  35,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
+camera.position.set(-30, 15, 30);
+camera.lookAt(0, 0, 0);
+
+// Orbit controls
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
+controls.dampingFactor = 0.1;
 
-// Initialize Rapier physics world
-await RAPIER.init();
-let gravity = { x: 1, y: 3, z: 5 };
-let world = new RAPIER.World(gravity);
+// Apply the matcap material correctly to the spheres
+const matcapMaterial = new THREE.MeshMatcapMaterial({ matcap: matcapTexture });
 
-let mousePos = new THREE.Vector2();
-let mouseX = 0;
-let mouseY = 0;
+// Create a grid of spheres
+const gridSize = 80;
+const spacing = 0.4;
+const geometry = new THREE.SphereGeometry(0.15, 32, 32);
 
-// Parallax settings and colors
-const settings = {
-  parallaxStrength: 0.1, // Global parallax strength
-  metaballDepth: 0.1, // Depth multiplier for metaballs
-  textDepth: 0.1, // Depth multiplier for text
-  backgroundColor: "#000000", // Background color
-  textColor: "#0019ff" // Text color
-};
+const spheres = [];
+const originalPositions = []; // Store original positions
 
-// Set initial background color
-scene.background = new THREE.Color(settings.backgroundColor);
+// Initialize spheres and their original positions
+for (let i = -gridSize / 2; i < gridSize / 2; i++) {
+  for (let j = -gridSize / 2; j < gridSize / 2; j++) {
+    const sphere = new THREE.Mesh(geometry, matcapMaterial);
+    const position = new THREE.Vector3(i * spacing, 0, j * spacing);
 
-// Load matcap texture
-const textureLoader = new THREE.TextureLoader();
-const matcap = textureLoader.load(
-  "https://pbs.twimg.com/media/EQVip4yU4AENYb3.png"
-);
+    sphere.position.copy(position);
+    scene.add(sphere);
+    spheres.push(sphere);
 
-// Create a render target for the background
-const backgroundRenderTarget = new THREE.WebGLRenderTarget(w, h);
-
-// Create metaballs with custom shader
-const metaballsShader = {
-  uniforms: {
-    tBackground: { value: null },
-    tMatcap: { value: null },
-    resolution: { value: new THREE.Vector2(w, h) },
-    refractionRatio: { value: 0.8 },
-    distortionAmount: { value: 0.1 }
-  },
-  vertexShader: `
-    varying vec3 vNormal;
-    varying vec3 vViewPosition;
-    varying vec2 vUv;
-    varying vec3 vColor;
-
-    attribute vec3 color;
-
-    void main() {
-      vUv = uv;
-      vNormal = normalize(normalMatrix * normal);
-      vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-      vViewPosition = -mvPosition.xyz;
-      vColor = color;
-      gl_Position = projectionMatrix * mvPosition;
-    }
-  `,
-  fragmentShader: `
-    uniform sampler2D tBackground;
-    uniform sampler2D tMatcap;
-    uniform vec2 resolution;
-    uniform float refractionRatio;
-    uniform float distortionAmount;
-
-    varying vec3 vNormal;
-    varying vec3 vViewPosition;
-    varying vec2 vUv;
-    varying vec3 vColor;
-
-    void main() {
-      vec3 normal = normalize(vNormal);
-      vec3 viewDir = normalize(vViewPosition);
-      
-      // Calculate refraction
-      vec3 refracted = refract(viewDir, normal, refractionRatio);
-      
-      // Calculate UV offset based on refraction
-      vec2 uv = gl_FragCoord.xy / resolution;
-      vec2 offset = refracted.xy * distortionAmount;
-      
-      // Sample background with offset
-      vec4 backgroundColor = texture2D(tBackground, uv + offset);
-      
-      // Sample matcap
-      vec3 r = reflect(-viewDir, normal);
-      float m = 2.0 * sqrt(r.x * r.x + r.y * r.y + (r.z + 1.0) * (r.z + 1.0));
-      vec2 matcapUv = r.xy / m + 0.5;
-      vec4 matcapColor = texture2D(tMatcap, matcapUv);
-      
-      // Blend background and matcap
-      vec4 finalColor = mix(backgroundColor, matcapColor, 0.5);
-      finalColor.rgb *= vColor;
-      
-      gl_FragColor = finalColor;
-    }
-  `
-};
-
-const metaMat = new ShaderMaterial(metaballsShader);
-metaMat.uniforms.tMatcap.value = matcap;
-
-const metaballs = new MarchingCubes(96, metaMat, true, true, 90000);
-metaballs.scale.setScalar(8);
-metaballs.isolation = 1000;
-scene.add(metaballs);
-
-// Add ambient light for better visibility
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-scene.add(ambientLight);
-
-// Updated function to handle multiline text rendering
-function create2DTextTexture(text, fontSize, color) {
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
-
-  // Define canvas size
-  canvas.width = 2048;
-  canvas.height = 1024; // Adjust height to accommodate two lines
-
-  ctx.font = `${fontSize}px Arial`;
-  ctx.fillStyle = color;
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.imageSmoothingEnabled = true;
-  ctx.imageSmoothingQuality = "high";
-
-  // Split the text into two lines
-  const lines = text.split(" "); // Adjust split logic if needed for specific phrases
-  const lineHeight = fontSize * 0.7; // Line height multiplier for spacing
-
-  // Draw the first line ("The") on the upper half
-  ctx.fillText(lines[0], canvas.width / 2, canvas.height / 2 - lineHeight / 2);
-
-  // Draw the second line ("Descent") on the lower half
-  ctx.fillText(lines[1], canvas.width / 2, canvas.height / 2 + lineHeight / 2);
-
-  return new THREE.CanvasTexture(canvas);
-}
-
-// Create and add text plane with multiline text
-let textTexture = create2DTextTexture("The Descent", 180, settings.textColor); // Use two words separated by space
-const aspectRatio = 2048 / 1024; // Adjust aspect ratio based on new canvas size
-const planeWidth = 20;
-const planeHeight = planeWidth / aspectRatio;
-
-const textGeometry = new THREE.PlaneGeometry(planeWidth, planeHeight);
-const textMaterial = new THREE.MeshBasicMaterial({
-  map: textTexture,
-  transparent: true,
-  opacity: 0.8
-});
-const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-textMesh.position.set(0, 0, -8);
-scene.add(textMesh);
-
-// Function to update text color
-function updateTextColor() {
-  textTexture = create2DTextTexture("TheDescent", 180, settings.textColor);
-  textMaterial.map = textTexture;
-  textMaterial.needsUpdate = true;
-}
-
-// Function to create dynamic rigid bodies with metaball updates
-function getBody({ debug = false, RAPIER, world }) {
-  const size = 0.2;
-  const range = 3;
-  const density = 0.5;
-  let x = Math.random() * range - range * 0.5;
-  let y = Math.random() * range - range * 0.5 + 3;
-  let z = Math.random() * range - range * 0.5;
-
-  let rigidBodyDesc = RAPIER.RigidBodyDesc.dynamic()
-    .setTranslation(x, y, z)
-    .setLinearDamping(2);
-  let rigid = world.createRigidBody(rigidBodyDesc);
-  let colliderDesc = RAPIER.ColliderDesc.ball(size).setDensity(density);
-  world.createCollider(colliderDesc, rigid);
-
-  const color = new THREE.Color().setHSL(Math.random(), 1, 0.5);
-
-  function update() {
-    rigid.resetForces(true);
-    let position = rigid.translation();
-    let pos = new THREE.Vector3(position.x, position.y, position.z);
-    let dir = pos.clone().sub(new THREE.Vector3(0, 0, 0)).normalize();
-    rigid.addForce(dir.multiplyScalar(-0.5), true);
-    pos.multiplyScalar(0.1).add(new THREE.Vector3(0.5, 0.5, 0.5));
-    return { pos, color };
+    originalPositions.push(position.clone());
   }
-
-  return { update };
 }
 
-// Create metaball bodies
-const bodies = [];
-const numBodies = 10;
-for (let i = 0; i < numBodies; i++) {
-  const body = getBody({ RAPIER, world });
-  bodies.push(body);
+// Mouse move event to track mouse position
+window.addEventListener("mousemove", onMouseMove);
+
+function onMouseMove(event) {
+  const currentTime = performance.now();
+  const deltaTime = (currentTime - lastMouseMoveTime) / 1000; // in seconds
+  lastMouseMoveTime = currentTime;
+
+  const rect = renderer.domElement.getBoundingClientRect();
+  if (
+    event.clientX >= rect.left &&
+    event.clientX <= rect.right &&
+    event.clientY >= rect.top &&
+    event.clientY <= rect.bottom
+  ) {
+    const newMouseX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    const newMouseY = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
+    // Calculate mouse speed
+    const dx = newMouseX - lastMousePosition.x;
+    const dy = newMouseY - lastMousePosition.y;
+    mouseSpeed = Math.sqrt(dx * dx + dy * dy) / deltaTime;
+
+    mouse.x = newMouseX;
+    mouse.y = newMouseY;
+    lastMousePosition.set(newMouseX, newMouseY);
+  } else {
+    mouse.x = -9999;
+  }
 }
 
-// MOUSE RIGID BODY setup
-let bodyDesc = RAPIER.RigidBodyDesc.kinematicPositionBased().setTranslation(
-  0,
-  0,
-  0
-);
-let mouseRigid = world.createRigidBody(bodyDesc);
-let dynamicCollider = RAPIER.ColliderDesc.ball(0.5);
-world.createCollider(dynamicCollider, mouseRigid);
+// Function to get the mouse position in world coordinates
+function getMouseWorldPosition() {
+  raycaster.setFromCamera(mouse, camera);
+  const intersects = raycaster.intersectObject(plane);
+  if (intersects.length > 0) {
+    return intersects[0].point;
+  }
+  return null;
+}
 
-// dat.gui setup
+// Create an invisible plane for detecting mouse position
+const planeGeometry = new THREE.PlaneGeometry(500, 500);
+const planeMaterial = new THREE.MeshBasicMaterial({ visible: false });
+const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+plane.rotation.x = -Math.PI / 2;
+scene.add(plane);
+
+// GUI for controlling parameters
+const guiParams = {
+  rippleSpeed: 1.5,
+  rippleFrequency: 0.95,
+  rippleAmplitude: 0.5,
+  attenuation: 0.15,
+  interactionRadius: 8.0,
+  waveLifetime: 2.0,
+  minSpeed: 0.5,
+  maxSpeed: 10,
+  minRippleDistance: 0.5,
+  maxRippleHeight: 1.0,
+  maxRipples: 15,
+  velocityFactor: 0.7,
+  transitionSpeed: 0.05,
+  returnSpeed: 0.02
+};
+
 const gui = new dat.GUI();
-const params = {
-  grainSize: 1,
-  grainIntensity: 0.15,
-  blackAndWhite: true
-};
+gui.add(guiParams, "rippleSpeed", 0.1, 10.0).name("Ripple Speed");
+gui.add(guiParams, "rippleFrequency", 0.1, 2.0).name("Ripple Frequency");
+gui.add(guiParams, "rippleAmplitude", 0.1, 2.0).name("Ripple Amplitude");
+gui.add(guiParams, "attenuation", 0.01, 0.5).name("Attenuation");
+gui.add(guiParams, "interactionRadius", 1.0, 20.0).name("Interaction Radius");
+gui.add(guiParams, "waveLifetime", 0.5, 5.0).name("Wave Lifetime");
+gui.add(guiParams, "minSpeed", 0.1, 1.0).name("Min Mouse Speed");
+gui.add(guiParams, "maxSpeed", 5.0, 20.0).name("Max Mouse Speed");
+gui.add(guiParams, "minRippleDistance", 0.1, 2.0).name("Min Ripple Distance");
+gui.add(guiParams, "maxRippleHeight", 0.1, 2.0).name("Max Ripple Height");
+gui.add(guiParams, "maxRipples", 1, 30).step(1).name("Max Ripples");
+gui.add(guiParams, "velocityFactor", 0, 1).name("Velocity Influence");
+gui.add(guiParams, "transitionSpeed", 0.01, 0.5).name("Transition Speed");
+gui.add(guiParams, "returnSpeed", 0.01, 0.1).name("Return Speed");
 
-gui.add(params, "grainSize", 0.1, 5).onChange(updateEffects);
-gui.add(params, "grainIntensity", 0, 1).onChange(updateEffects);
-gui.add(params, "blackAndWhite").onChange(updateEffects);
-gui
-  .add(metaMat.uniforms.refractionRatio, "value", 0, 1)
-  .name("Refraction Ratio");
-gui
-  .add(metaMat.uniforms.distortionAmount, "value", 0, 0.5)
-  .name("Distortion Amount");
-gui;
-gui
-  .add(settings, "parallaxStrength", 0.01, 0.5, 0.01)
-  .name("Parallax Strength");
-gui.add(settings, "metaballDepth", 0.1, 1.5, 0.05).name("Metaball Depth");
-gui.add(settings, "textDepth", 0.5, 2.5, 0.05).name("Text Depth");
-gui
-  .addColor(settings, "backgroundColor")
-  .name("Background Color")
-  .onChange(() => {
-    scene.background.set(settings.backgroundColor);
-  });
-gui
-  .addColor(settings, "textColor")
-  .name("Text Color")
-  .onChange(updateTextColor);
+// Store ripple origins and times
+let rippleOrigins = [];
+let rippleStartTimes = [];
+let rippleStrengths = [];
+let lastRippleOrigin = new THREE.Vector3();
+let movingState = 0; // 0: stopped, 1: moving
 
-// Post-processing setup
-const composer = new EffectComposer(renderer);
-const renderPass = new RenderPass(scene, camera);
-composer.addPass(renderPass);
-
-// Custom shader for grain and black & white effects
-const customShader = {
-  uniforms: {
-    tDiffuse: { value: null },
-    grainSize: { value: params.grainSize },
-    grainIntensity: { value: params.grainIntensity },
-    blackAndWhite: { value: params.blackAndWhite }
-  },
-  vertexShader: `
-    varying vec2 vUv;
-    void main() {
-      vUv = uv;
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-    }
-  `,
-  fragmentShader: `
-    uniform sampler2D tDiffuse;
-    uniform float grainSize;
-    uniform float grainIntensity;
-    uniform bool blackAndWhite;
-    varying vec2 vUv;
-
-    float random(vec2 p) {
-      return fract(sin(dot(p.xy, vec2(12.9898,78.233))) * 43758.5453);
-    }
-
-    void main() {
-      vec4 color = texture2D(tDiffuse, vUv);
-      
-      // Apply grain
-      vec2 grainUv = vUv * grainSize;
-      float grain = random(grainUv) * grainIntensity;
-      color.rgb += vec3(grain);
-      
-      // Apply black and white
-      if (blackAndWhite) {
-        float gray = dot(color.rgb, vec3(0.299, 0.587, 0.114));
-        color.rgb = vec3(gray);
-      }
-      
-      gl_FragColor = color;
-    }
-  `
-};
-
-const customPass = new ShaderPass(customShader);
-composer.addPass(customPass);
-
-function updateEffects() {
-  customPass.uniforms.grainSize.value = params.grainSize;
-  customPass.uniforms.grainIntensity.value = params.grainIntensity;
-  customPass.uniforms.blackAndWhite.value = params.blackAndWhite;
-}
-
-// Updated Parallax Effect Function with Limited Rotation
-function applyParallaxEffect(object, depth, baseStrength, depthMultiplier = 1) {
-  // Calculate normalized mouse positions
-  const normalizedX = mouseX * depth;
-  const normalizedY = mouseY * depth;
-
-  // Adjust position, including depth movement (translateZ)
-  object.position.x += (normalizedX - object.position.x) * baseStrength;
-  object.position.y += (normalizedY - object.position.y) * baseStrength;
-
-  // Fine-tune depth movement (translateZ) with depthMultiplier
-  object.position.z = -0.3 * (normalizedY + normalizedX) * depthMultiplier; // Controls closer/farther effect
-
-  // Calculate and limit rotation based on mouse position
-  const maxRotation = 0.1; // Maximum rotation in radians (~5.7 degrees)
-  object.rotation.y = THREE.MathUtils.clamp(
-    THREE.MathUtils.degToRad(normalizedX * 3),
-    -maxRotation,
-    maxRotation
-  ); // Horizontal rotation limited
-  object.rotation.x = THREE.MathUtils.clamp(
-    THREE.MathUtils.degToRad(normalizedY * 3),
-    -maxRotation,
-    maxRotation
-  ); // Vertical rotation limited
+function calculateRipple(distance, time, strength) {
+  const waveLength = (2 * Math.PI) / guiParams.rippleFrequency;
+  const phase = time * guiParams.rippleSpeed;
+  const amplitude =
+    guiParams.rippleAmplitude *
+    strength *
+    Math.exp(-guiParams.attenuation * distance);
+  return amplitude * Math.sin(2 * Math.PI * (distance / waveLength - phase));
 }
 
 // Animation loop
 function animate() {
   requestAnimationFrame(animate);
+
+  const time = performance.now() * 0.001; // Convert to seconds
+
+  // Smooth out mouse speed for more stable effects
+  lastMouseSpeed = THREE.MathUtils.lerp(lastMouseSpeed, mouseSpeed, 0.1);
+
+  // Calculate velocity factor
+  const velocityFactor = THREE.MathUtils.clamp(
+    (lastMouseSpeed - guiParams.minSpeed) /
+      (guiParams.maxSpeed - guiParams.minSpeed),
+    0,
+    1
+  );
+
+  // Check if mouse has stopped moving
+  const isMouseMoving = performance.now() - lastMouseMoveTime < 16; // Consider stopped if no movement for 1 frame at 60fps
+
+  // Smoothly transition between moving and stopped states
+  movingState = THREE.MathUtils.lerp(
+    movingState,
+    isMouseMoving ? 1 : 0,
+    guiParams.transitionSpeed
+  );
+
+  const mouseWorldPos = getMouseWorldPosition();
+
+  if (
+    movingState > 0.1 &&
+    mouseWorldPos &&
+    (!lastRippleOrigin ||
+      mouseWorldPos.distanceTo(lastRippleOrigin) > guiParams.minRippleDistance)
+  ) {
+    // On mouse interaction, add a new ripple origin
+    rippleOrigins.push(mouseWorldPos.clone());
+    rippleStartTimes.push(time);
+    rippleStrengths.push(1.0 + velocityFactor * guiParams.velocityFactor); // Stronger ripples for faster movement
+    lastRippleOrigin.copy(mouseWorldPos);
+
+    // Limit the number of active ripples
+    if (rippleOrigins.length > guiParams.maxRipples) {
+      rippleOrigins.shift();
+      rippleStartTimes.shift();
+      rippleStrengths.shift();
+    }
+  }
+
+  // Update spheres
+  for (let i = 0; i < spheres.length; i++) {
+    const sphere = spheres[i];
+    const originalPos = originalPositions[i];
+    const position = sphere.position;
+
+    // Calculate cumulative ripple effect from all ripple origins
+    let rippleY = 0;
+    for (let j = 0; j < rippleOrigins.length; j++) {
+      const origin = rippleOrigins[j];
+      const startTime = rippleStartTimes[j];
+      const strength = rippleStrengths[j];
+
+      const elapsedTime = time - startTime;
+      const distance = position.distanceTo(origin);
+
+      if (elapsedTime < guiParams.waveLifetime) {
+        rippleY += calculateRipple(distance, elapsedTime, strength);
+      }
+    }
+
+    // Limit the maximum ripple height
+    rippleY = THREE.MathUtils.clamp(
+      rippleY,
+      -guiParams.maxRippleHeight,
+      guiParams.maxRippleHeight
+    );
+
+    // Apply the ripple effect with smooth transition
+    const transitionFactor =
+      movingState > 0.1 ? guiParams.transitionSpeed : guiParams.returnSpeed;
+    sphere.position.y = THREE.MathUtils.lerp(
+      sphere.position.y,
+      originalPos.y + rippleY * movingState,
+      transitionFactor
+    );
+
+    // Optional: Add some horizontal movement for more realism
+    const horizontalOffset = rippleY * 0.1 * movingState;
+    sphere.position.x = THREE.MathUtils.lerp(
+      sphere.position.x,
+      originalPos.x + horizontalOffset,
+      transitionFactor
+    );
+    sphere.position.z = THREE.MathUtils.lerp(
+      sphere.position.z,
+      originalPos.z + horizontalOffset,
+      transitionFactor
+    );
+  }
+
+  // Remove old ripples
+  const currentTime = time;
+  rippleOrigins = rippleOrigins.filter(
+    (_, index) => currentTime - rippleStartTimes[index] < guiParams.waveLifetime
+  );
+  rippleStartTimes = rippleStartTimes.filter(
+    (startTime) => currentTime - startTime < guiParams.waveLifetime
+  );
+  rippleStrengths = rippleStrengths.filter(
+    (_, index) => currentTime - rippleStartTimes[index] < guiParams.waveLifetime
+  );
+
   controls.update();
-  world.step();
-
-  // Update mouse rigid body translation
-  mouseRigid.setTranslation({ x: mousePos.x * 4, y: mousePos.y * 4, z: 0 });
-
-  // Render background (scene without metaballs)
-  metaballs.visible = false;
-  renderer.setRenderTarget(backgroundRenderTarget);
   renderer.render(scene, camera);
-  renderer.setRenderTarget(null);
-  metaMat.uniforms.tBackground.value = backgroundRenderTarget.texture;
-  metaballs.visible = true;
-
-  // Update metaballs
-  metaballs.reset();
-  bodies.forEach((b) => {
-    const { pos, color } = b.update();
-    metaballs.addBall(pos.x, pos.y, pos.z, 0.5, 10, color.getHex());
-  });
-
-  // Apply enhanced parallax effect to metaballs and text
-  applyParallaxEffect(
-    metaballs,
-    settings.metaballDepth,
-    settings.parallaxStrength * 0.5,
-    0.3
-  ); // Adjust depth sensitivity for metaballs
-  applyParallaxEffect(
-    textMesh,
-    settings.textDepth,
-    settings.parallaxStrength,
-    0.5
-  ); // Text moves more, with higher depth multiplier
-
-  // Render the composer with post-processing
-  composer.render();
 }
 
 animate();
 
 // Handle window resize
-function handleWindowResize() {
+window.addEventListener("resize", () => {
+  renderer.setSize(window.innerWidth, window.innerHeight);
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  composer.setSize(window.innerWidth, window.innerHeight);
-  backgroundRenderTarget.setSize(window.innerWidth, window.innerHeight);
-  metaMat.uniforms.resolution.value.set(window.innerWidth, window.innerHeight);
-}
-window.addEventListener("resize", handleWindowResize, false);
-
-// Handle mouse movement
-function handleMouseMove(evt) {
-  mouseX = (evt.clientX / window.innerWidth) * 2 - 1;
-  mouseY = -(evt.clientY / window.innerHeight) * 2 + 1;
-  mousePos.x = mouseX;
-  mousePos.y = mouseY;
-}
-window.addEventListener("mousemove", handleMouseMove, false);
+});
