@@ -1,347 +1,335 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>LiminalLoop</title>
   <style>
-@import url("https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300&family=Space+Mono&display=swap");
-*, *::after, *::before { box-sizing: border-box; }
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  font-family: serif;
-  background: radial-gradient(circle at 10% 20%, rgb(0, 0, 0) 0%, rgb(10, 10, 20) 90%);
-  color: rgb(230, 230, 230);
-  position: relative;
-  text-align: center;
-}
-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-}
+    *, *::after, *::before { box-sizing: border-box; }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      font-family: serif;
+      background: #aaa;
+      color: #000;
+      position: relative;
+      text-align: center;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+    }
 
-.layout {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  height: 100vh;
-  position: relative;
-  padding: 6rem 2rem;
-  z-index: 100;
-  pointer-events: none;
-}
-.content {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  text-align: center;
-  font-size: 3rem;
-  font-weight: 200;
-  z-index: 100;
-  max-width: 440px;
-  mix-blend-mode: screen;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.content h1 {
-  font-size: 5rem;
-  font-weight: 300;
-  line-height: 1.1;
-  margin: 0;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-.content h1 span {
-  display: block;
-  font-size: 1.5rem;
-}
-.content h1::after {
-  content: "";
-  display: block;
-  width: 50%;
-  height: 1px;
-  background: rgb(230, 230, 230);
-  margin: 1rem auto;
-  opacity: 0.2;
-}
-.content h2 {
-  font-size: 1rem;
-  letter-spacing: 0.2em;
-  margin-top: 1rem;
-  text-transform: uppercase;
-}
+    .layout {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      padding: 6rem 2rem;
+      z-index: 100;
+      pointer-events: none;
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+      font-size: 3rem;
+      font-weight: 200;
+      z-index: 100;
+      max-width: 440px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      mix-blend-mode: normal;
+    }
+    .content h1 {
+      font-size: 5rem;
+      font-weight: 300;
+      line-height: 1.1;
+      margin: 0;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .content h1 span {
+      display: block;
+      font-size: 1.5rem;
+    }
+    .content h1::after {
+      content: "";
+      display: block;
+      width: 50%;
+      height: 1px;
+      background: #000;
+      margin: 1rem auto;
+      opacity: 0.2;
+    }
+    .content h2 {
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      margin-top: 1rem;
+      text-transform: uppercase;
+    }
   </style>
 </head>
 <body>
-<div class="layout">
-  <div class="content">
-    <h1>Exodus Black</h1>
-    <h2>BEYOND THE VEIL, ALL SIGNALS FADE</h2>
+  <div class="layout">
+    <div class="content">
+      <h1>Exodus Black</h1>
+      <h2>BEYOND THE VEIL, ALL SIGNALS FADE</h2>
+    </div>
   </div>
-</div>
 
-<script type="module">
-import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
-import { OrbitControls } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js";
+  <script type="module">
+    import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
+    import { OrbitControls } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js";
 
-// Raycaster for detecting mouse interactions
-const raycaster = new THREE.Raycaster();
-const mouse = new THREE.Vector2();
-let lastMouseMoveTime = 0;
-let lastMousePosition = new THREE.Vector2();
-let mouseSpeed = 0;
-let lastMouseSpeed = 0;
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+    let lastMouseMoveTime = 0;
+    let lastMousePosition = new THREE.Vector2();
+    let mouseSpeed = 0;
+    let lastMouseSpeed = 0;
 
-// Load a matcap texture
-const loader = new THREE.TextureLoader();
-const matcapTexture = loader.load(
-  "https://raw.githubusercontent.com/nidorx/matcaps/master/1024/0A0A0A_A9A9A9_525252_747474.png"
-);
+    const loader = new THREE.TextureLoader();
+    const matcapTexture = loader.load(
+      "https://raw.githubusercontent.com/nidorx/matcaps/master/1024/000000_555555_888888_BBBBBB.png"
+    );
 
-// Scene setup
-const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x000000);
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xaaaaaa);
 
-// Renderer setup with shadow support
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(window.devicePixelRatio);
-document.body.appendChild(renderer.domElement);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    document.body.appendChild(renderer.domElement);
 
-// Camera setup
-const camera = new THREE.PerspectiveCamera(
-  35,
-  window.innerWidth / window.innerHeight,
-  0.1,
-  1000
-);
-camera.position.set(-30, 15, 30);
-camera.lookAt(0, 0, 0);
+    const camera = new THREE.PerspectiveCamera(
+      35,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000
+    );
+    camera.position.set(-30, 15, 30);
+    camera.lookAt(0, 0, 0);
 
-// Orbit controls
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-controls.dampingFactor = 0.1;
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.1;
 
-// Apply the matcap material correctly to the spheres
-const matcapMaterial = new THREE.MeshMatcapMaterial({ matcap: matcapTexture });
+    const matcapMaterial = new THREE.MeshMatcapMaterial({ matcap: matcapTexture });
 
-// Create a grid of spheres
-const gridSize = 80;
-const spacing = 0.4;
-const geometry = new THREE.SphereGeometry(0.15, 32, 32);
+    const gridSize = 80;
+    const spacing = 0.4;
+    const geometry = new THREE.SphereGeometry(0.15, 32, 32);
 
-const spheres = [];
-const originalPositions = [];
+    const spheres = [];
+    const originalPositions = [];
 
-for (let i = -gridSize / 2; i < gridSize / 2; i++) {
-  for (let j = -gridSize / 2; j < gridSize / 2; j++) {
-    const sphere = new THREE.Mesh(geometry, matcapMaterial);
-    const position = new THREE.Vector3(i * spacing, 0, j * spacing);
-    sphere.position.copy(position);
-    scene.add(sphere);
-    spheres.push(sphere);
-    originalPositions.push(position.clone());
-  }
-}
-
-// Mouse tracking
-window.addEventListener("mousemove", onMouseMove);
-
-function onMouseMove(event) {
-  const currentTime = performance.now();
-  const deltaTime = (currentTime - lastMouseMoveTime) / 1000;
-  lastMouseMoveTime = currentTime;
-
-  const rect = renderer.domElement.getBoundingClientRect();
-  if (
-    event.clientX >= rect.left &&
-    event.clientX <= rect.right &&
-    event.clientY >= rect.top &&
-    event.clientY <= rect.bottom
-  ) {
-    const newMouseX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-    const newMouseY = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-
-    const dx = newMouseX - lastMousePosition.x;
-    const dy = newMouseY - lastMousePosition.y;
-    mouseSpeed = Math.sqrt(dx * dx + dy * dy) / deltaTime;
-
-    mouse.x = newMouseX;
-    mouse.y = newMouseY;
-    lastMousePosition.set(newMouseX, newMouseY);
-  } else {
-    mouse.x = -9999;
-  }
-}
-
-function getMouseWorldPosition() {
-  raycaster.setFromCamera(mouse, camera);
-  const intersects = raycaster.intersectObject(plane);
-  if (intersects.length > 0) {
-    return intersects[0].point;
-  }
-  return null;
-}
-
-// Invisible plane
-const planeGeometry = new THREE.PlaneGeometry(500, 500);
-const planeMaterial = new THREE.MeshBasicMaterial({ visible: false });
-const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-plane.rotation.x = -Math.PI / 2;
-scene.add(plane);
-
-// Ripple parameters (fixed, no dat.GUI)
-const guiParams = {
-  rippleSpeed: 1.5,
-  rippleFrequency: 0.95,
-  rippleAmplitude: 0.5,
-  attenuation: 0.15,
-  interactionRadius: 8.0,
-  waveLifetime: 2.0,
-  minSpeed: 0.5,
-  maxSpeed: 10,
-  minRippleDistance: 0.5,
-  maxRippleHeight: 1.0,
-  maxRipples: 15,
-  velocityFactor: 0.7,
-  transitionSpeed: 0.05,
-  returnSpeed: 0.02
-};
-
-let rippleOrigins = [];
-let rippleStartTimes = [];
-let rippleStrengths = [];
-let lastRippleOrigin = new THREE.Vector3();
-let movingState = 0;
-
-function calculateRipple(distance, time, strength) {
-  const waveLength = (2 * Math.PI) / guiParams.rippleFrequency;
-  const phase = time * guiParams.rippleSpeed;
-  const amplitude =
-    guiParams.rippleAmplitude *
-    strength *
-    Math.exp(-guiParams.attenuation * distance);
-  return amplitude * Math.sin(2 * Math.PI * (distance / waveLength - phase));
-}
-
-function animate() {
-  requestAnimationFrame(animate);
-  const time = performance.now() * 0.001;
-
-  lastMouseSpeed = THREE.MathUtils.lerp(lastMouseSpeed, mouseSpeed, 0.1);
-  const velocityFactor = THREE.MathUtils.clamp(
-    (lastMouseSpeed - guiParams.minSpeed) /
-      (guiParams.maxSpeed - guiParams.minSpeed),
-    0,
-    1
-  );
-
-  const isMouseMoving = performance.now() - lastMouseMoveTime < 16;
-  movingState = THREE.MathUtils.lerp(
-    movingState,
-    isMouseMoving ? 1 : 0,
-    guiParams.transitionSpeed
-  );
-
-  const mouseWorldPos = getMouseWorldPosition();
-  if (
-    movingState > 0.1 &&
-    mouseWorldPos &&
-    (!lastRippleOrigin ||
-      mouseWorldPos.distanceTo(lastRippleOrigin) > guiParams.minRippleDistance)
-  ) {
-    rippleOrigins.push(mouseWorldPos.clone());
-    rippleStartTimes.push(time);
-    rippleStrengths.push(1.0 + velocityFactor * guiParams.velocityFactor);
-    lastRippleOrigin.copy(mouseWorldPos);
-
-    if (rippleOrigins.length > guiParams.maxRipples) {
-      rippleOrigins.shift();
-      rippleStartTimes.shift();
-      rippleStrengths.shift();
-    }
-  }
-
-  for (let i = 0; i < spheres.length; i++) {
-    const sphere = spheres[i];
-    const originalPos = originalPositions[i];
-    const position = sphere.position;
-
-    let rippleY = 0;
-    for (let j = 0; j < rippleOrigins.length; j++) {
-      const origin = rippleOrigins[j];
-      const startTime = rippleStartTimes[j];
-      const strength = rippleStrengths[j];
-      const elapsedTime = time - startTime;
-      const distance = position.distanceTo(origin);
-
-      if (elapsedTime < guiParams.waveLifetime) {
-        rippleY += calculateRipple(distance, elapsedTime, strength);
+    for (let i = -gridSize / 2; i < gridSize / 2; i++) {
+      for (let j = -gridSize / 2; j < gridSize / 2; j++) {
+        const sphere = new THREE.Mesh(geometry, matcapMaterial);
+        const position = new THREE.Vector3(i * spacing, 0, j * spacing);
+        sphere.position.copy(position);
+        scene.add(sphere);
+        spheres.push(sphere);
+        originalPositions.push(position.clone());
       }
     }
 
-    rippleY = THREE.MathUtils.clamp(
-      rippleY,
-      -guiParams.maxRippleHeight,
-      guiParams.maxRippleHeight
-    );
+    window.addEventListener("mousemove", onMouseMove);
 
-    const transitionFactor =
-      movingState > 0.1 ? guiParams.transitionSpeed : guiParams.returnSpeed;
-    sphere.position.y = THREE.MathUtils.lerp(
-      sphere.position.y,
-      originalPos.y + rippleY * movingState,
-      transitionFactor
-    );
+    function onMouseMove(event) {
+      const currentTime = performance.now();
+      const deltaTime = (currentTime - lastMouseMoveTime) / 1000;
+      lastMouseMoveTime = currentTime;
 
-    const horizontalOffset = rippleY * 0.1 * movingState;
-    sphere.position.x = THREE.MathUtils.lerp(
-      sphere.position.x,
-      originalPos.x + horizontalOffset,
-      transitionFactor
-    );
-    sphere.position.z = THREE.MathUtils.lerp(
-      sphere.position.z,
-      originalPos.z + horizontalOffset,
-      transitionFactor
-    );
-  }
+      const rect = renderer.domElement.getBoundingClientRect();
+      if (
+        event.clientX >= rect.left &&
+        event.clientX <= rect.right &&
+        event.clientY >= rect.top &&
+        event.clientY <= rect.bottom
+      ) {
+        const newMouseX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+        const newMouseY = -((event.clientY - rect.top) / rect.height) * 2 + 1;
 
-  const currentTime = time;
-  rippleOrigins = rippleOrigins.filter(
-    (_, index) => currentTime - rippleStartTimes[index] < guiParams.waveLifetime
-  );
-  rippleStartTimes = rippleStartTimes.filter(
-    (startTime) => currentTime - startTime < guiParams.waveLifetime
-  );
-  rippleStrengths = rippleStrengths.filter(
-    (_, index) => currentTime - rippleStartTimes[index] < guiParams.waveLifetime
-  );
+        const dx = newMouseX - lastMousePosition.x;
+        const dy = newMouseY - lastMousePosition.y;
+        mouseSpeed = Math.sqrt(dx * dx + dy * dy) / deltaTime;
 
-  controls.update();
-  renderer.render(scene, camera);
-}
+        mouse.x = newMouseX;
+        mouse.y = newMouseY;
+        lastMousePosition.set(newMouseX, newMouseY);
+      } else {
+        mouse.x = -9999;
+      }
+    }
 
-animate();
+    function getMouseWorldPosition() {
+      raycaster.setFromCamera(mouse, camera);
+      const intersects = raycaster.intersectObject(plane);
+      if (intersects.length > 0) {
+        return intersects[0].point;
+      }
+      return null;
+    }
 
-window.addEventListener("resize", () => {
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-});
-</script>
+    const planeGeometry = new THREE.PlaneGeometry(500, 500);
+    const planeMaterial = new THREE.MeshBasicMaterial({ visible: false });
+    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+    plane.rotation.x = -Math.PI / 2;
+    scene.add(plane);
+
+    const guiParams = {
+      rippleSpeed: 1.5,
+      rippleFrequency: 0.95,
+      rippleAmplitude: 0.5,
+      attenuation: 0.15,
+      interactionRadius: 8.0,
+      waveLifetime: 2.0,
+      minSpeed: 0.5,
+      maxSpeed: 10,
+      minRippleDistance: 0.5,
+      maxRippleHeight: 1.0,
+      maxRipples: 15,
+      velocityFactor: 0.7,
+      transitionSpeed: 0.05,
+      returnSpeed: 0.02
+    };
+
+    let rippleOrigins = [];
+    let rippleStartTimes = [];
+    let rippleStrengths = [];
+    let lastRippleOrigin = new THREE.Vector3();
+    let movingState = 0;
+
+    function calculateRipple(distance, time, strength) {
+      const waveLength = (2 * Math.PI) / guiParams.rippleFrequency;
+      const phase = time * guiParams.rippleSpeed;
+      const amplitude =
+        guiParams.rippleAmplitude *
+        strength *
+        Math.exp(-guiParams.attenuation * distance);
+      return amplitude * Math.sin(2 * Math.PI * (distance / waveLength - phase));
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const time = performance.now() * 0.001;
+
+      lastMouseSpeed = THREE.MathUtils.lerp(lastMouseSpeed, mouseSpeed, 0.1);
+      const velocityFactor = THREE.MathUtils.clamp(
+        (lastMouseSpeed - guiParams.minSpeed) /
+          (guiParams.maxSpeed - guiParams.minSpeed),
+        0,
+        1
+      );
+
+      const isMouseMoving = performance.now() - lastMouseMoveTime < 16;
+      movingState = THREE.MathUtils.lerp(
+        movingState,
+        isMouseMoving ? 1 : 0,
+        guiParams.transitionSpeed
+      );
+
+      const mouseWorldPos = getMouseWorldPosition();
+      if (
+        movingState > 0.1 &&
+        mouseWorldPos &&
+        (!lastRippleOrigin ||
+          mouseWorldPos.distanceTo(lastRippleOrigin) > guiParams.minRippleDistance)
+      ) {
+        rippleOrigins.push(mouseWorldPos.clone());
+        rippleStartTimes.push(time);
+        rippleStrengths.push(1.0 + velocityFactor * guiParams.velocityFactor);
+        lastRippleOrigin.copy(mouseWorldPos);
+
+        if (rippleOrigins.length > guiParams.maxRipples) {
+          rippleOrigins.shift();
+          rippleStartTimes.shift();
+          rippleStrengths.shift();
+        }
+      }
+
+      for (let i = 0; i < spheres.length; i++) {
+        const sphere = spheres[i];
+        const originalPos = originalPositions[i];
+        const position = sphere.position;
+
+        let rippleY = 0;
+        for (let j = 0; j < rippleOrigins.length; j++) {
+          const origin = rippleOrigins[j];
+          const startTime = rippleStartTimes[j];
+          const strength = rippleStrengths[j];
+          const elapsedTime = time - startTime;
+          const distance = position.distanceTo(origin);
+
+          if (elapsedTime < guiParams.waveLifetime) {
+            rippleY += calculateRipple(distance, elapsedTime, strength);
+          }
+        }
+
+        rippleY = THREE.MathUtils.clamp(
+          rippleY,
+          -guiParams.maxRippleHeight,
+          guiParams.maxRippleHeight
+        );
+
+        const transitionFactor =
+          movingState > 0.1 ? guiParams.transitionSpeed : guiParams.returnSpeed;
+        sphere.position.y = THREE.MathUtils.lerp(
+          sphere.position.y,
+          originalPos.y + rippleY * movingState,
+          transitionFactor
+        );
+
+        const horizontalOffset = rippleY * 0.1 * movingState;
+        sphere.position.x = THREE.MathUtils.lerp(
+          sphere.position.x,
+          originalPos.x + horizontalOffset,
+          transitionFactor
+        );
+        sphere.position.z = THREE.MathUtils.lerp(
+          sphere.position.z,
+          originalPos.z + horizontalOffset,
+          transitionFactor
+        );
+      }
+
+      const currentTime = time;
+      rippleOrigins = rippleOrigins.filter(
+        (_, index) => currentTime - rippleStartTimes[index] < guiParams.waveLifetime
+      );
+      rippleStartTimes = rippleStartTimes.filter(
+        (startTime) => currentTime - startTime < guiParams.waveLifetime
+      );
+      rippleStrengths = rippleStrengths.filter(
+        (_, index) => currentTime - rippleStartTimes[index] < guiParams.waveLifetime
+      );
+
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    window.addEventListener("resize", () => {
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+    });
+  </script>
 </body>
 </html>
