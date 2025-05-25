@@ -4,111 +4,70 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>LiminalLoop</title>
+  <title>Liminal🏛Loop</title>
   <style>
-:root {
-  --warm-off-white: #f5f5f0;
-  --warm-off-white-dim: #d9d9d0;
-  --text-primary: #f5f5f0;
-  --text-secondary: #d9d9d0;
-  --background-dark: #050505;
-  --background-gradient-1: #1a1a1a;
-  --background-gradient-2: #0a0a0a;
+    *, *:before, *:after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: #aaa;
+      color: black;
+      padding: 2rem;
+    }
+    .links {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+      font-weight: 400;
+      font-size: 1rem;
+    }
+    .link {
+      color:  #d9d9d0;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      padding-left: 0;
+    }
+    .link::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 0;
+      height: 1px;
+      background-color: #f5f5f0;
+      transform: translateY(-50%);
+      transition: width 0.3s ease, opacity 0.3s ease;
+      opacity: 0;
+    }
+    .link:hover {
+      color: #f5f5f0; 
+      padding-left: 1.2rem;
+    }
+    .link:hover::before {
+      width: 0.8rem;
+      opacity: 1;
+    }
 
-  /* Typography */
-  --font-primary: "PP Neue Montreal", sans-serif;
-  --font-secondary: "TheGoodMonolith", sans-serif;
-  --font-size-small: 0.825rem;
-  --font-size-regular: 1rem;
-  --font-size-medium: 1.5rem;
-  --font-size-large: 4rem;
-
-  /* Layout */
-  --spacing-small: 0.5rem;
-  --spacing-medium: 1rem;
-  --spacing-large: 2rem;
-
-  /* Transitions */
-  --transition-fast: 0.3s ease;
-  --transition-medium: 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-}
-
-*, *:before, *:after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  overflow: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: pink;
-  background-color: var(--background-dark);
-  padding: var(--spacing-large);
-}
-
-.links {
-  position: fixed;
-  bottom: var(--spacing-large);
-  left: var(--spacing-large);
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.25rem;
-  font-family: var(--font-primary);
-  font-weight: 400;
-  font-size: var(--font-size-regular);
-}
-.link {
-  color: var(--warm-off-white-dim);
-  text-decoration: none;
-  transition: all var(--transition-fast);
-  position: relative;
-  padding-left: 0;
-}
-.link::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 0;
-  height: 1px;
-  background-color: var(--warm-off-white);
-  transform: translateY(-50%);
-  transition: width var(--transition-fast), opacity var(--transition-fast);
-  opacity: 0;
-}
-.link:hover {
-  color: var(--warm-off-white);
-  padding-left: 1.2rem;
-}
-.link:hover::before {
-  width: 0.8rem;
-  opacity: 1;
-}
-
-/* Coordinates */
-.coordinates {
-  position: fixed;
-  bottom: var(--spacing-large);
-  right: var(--spacing-large);
-  text-align: right;
-  z-index: 10;
-  font-family: var(--font-secondary);
-  font-size: var(--font-size-small);
-  color: var(--text-secondary);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .footer-links {
-    gap: 0.4rem;
-  }
-  .coordinates {
-    font-size: 0.7rem;
-  }
-}
+    .coordinates {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      text-align: right;
+      z-index: 10;
+      font-size: 0.825rem;
+      color: #d9d9d0;
+    }
+    @media (max-width: 768px) {
+      .links { gap: 0.4rem; }
+      .coordinates { font-size: 0.7rem; }
+    }
   </style>
 </head>
 <body>
