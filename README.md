@@ -324,7 +324,6 @@ If the image is used as a background:
 - [ ]  Rethink Sans
 - [ ]  Cousine
 - [ ]  Anonymous Pro
-- [ ]  Smooch Sans
 - [ ]  Ropa Sans
 - [ ]  Inria Sans
 - [ ]  Share
@@ -349,6 +348,7 @@ If the image is used as a background:
 - [ ]  Jura
 - [ ]  Encode Sans Condensed
 - [ ]  Mona Sans
+- [ ]  Stick No Bills
 - [ ]  Funnel Sans
 - [ ]  Thasadith
 - [ ]  Fahkwang
@@ -436,20 +436,16 @@ If the image is used as a background:
 | <img src="https://img.shields.io/badge/■3333ff-3333ff?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■ffffff-ffffff?style=for-the-badge"/> |
 
 - [x] Syncing data under coral-coded skies.
-- [ ] Code Currents
 - [ ] Aquatic Arrays
 - [ ] Binary Tsunami
 - [ ] Digital Sea Breeze
 - [ ] Digital Tidebreaker
 - [ ] Neon Code Reef
 - [ ] Coded Currents
-- [ ] Bytewave Symphony
-- [ ] Pixelated Abyss
 - [ ] Data Depths
 - [ ] Riptide __Renderer__
 - [ ] Coral Code Crusaders
 - [ ] Seas of Syntax
-- [ ] Bluebyte Odyssey
 - [ ] Virtual Tides
 - [ ] Zeroes and Ones: Encryption Odyssey
 - [ ] Cyber Surge
