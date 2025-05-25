@@ -1,14 +1,195 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Threejs Explorations 0510-V03</title>
-  <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
-<link rel="stylesheet" href="./style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>LiminalLoop</title>
+  <style>
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+*, *::after, *::before { box-sizing: border-box; }
+:root {
+  --color-background: rgb(85, 85, 85);
+  --color-foreground: rgb(230, 225, 215);
+  --color-accent: rgb(200, 180, 160);
+  --font-primary: "Manrope", sans-serif;
+  --font-secondary: "IBM Plex Mono", monospace;
+  --margin: 32px;
+  --gutter: 16px;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-primary);
+  background: radial-gradient(circle at 10% 20%, rgb(45, 45, 45) 0%, rgb(5, 5, 5) 90%);
+  color: var(--color--foreground--100);
+  letter-spacing: -0.03em;
+  position: relative;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: transparent
+    url("http://assets.iceable.com/img/noise-transparent.png") repeat 0 0;
+  background-size: 300px 300px;
+  -webkit-animation: noise-animation 0.3s steps(5) infinite;
+          animation: noise-animation 0.3s steps(5) infinite;
+  opacity: 0.9;
+  will-change: transform;
+  z-index: 100;
+  pointer-events: none;
+}
 
+@-webkit-keyframes noise-animation {
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-2%, -3%);
+  }
+  20% {
+    transform: translate(-4%, 2%);
+  }
+  30% {
+    transform: translate(2%, -4%);
+  }
+  40% {
+    transform: translate(-2%, 5%);
+  }
+  50% {
+    transform: translate(-4%, 2%);
+  }
+  60% {
+    transform: translate(3%, 0);
+  }
+  70% {
+    transform: translate(0, 3%);
+  }
+  80% {
+    transform: translate(-3%, 0);
+  }
+  90% {
+    transform: translate(2%, 2%);
+  }
+  100% {
+    transform: translate(1%, 0);
+  }
+}
+
+@keyframes noise-animation {
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-2%, -3%);
+  }
+  20% {
+    transform: translate(-4%, 2%);
+  }
+  30% {
+    transform: translate(2%, -4%);
+  }
+  40% {
+    transform: translate(-2%, 5%);
+  }
+  50% {
+    transform: translate(-4%, 2%);
+  }
+  60% {
+    transform: translate(3%, 0);
+  }
+  70% {
+    transform: translate(0, 3%);
+  }
+  80% {
+    transform: translate(-3%, 0);
+  }
+  90% {
+    transform: translate(2%, 2%);
+  }
+  100% {
+    transform: translate(1%, 0);
+  }
+}
+
+a {
+  color: var(--color-foreground);
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: transparent;
+  z-index: -1;
+}
+
+.navbar {
+  width: 100%;
+  padding: var(--gutter) var(--margin);
+  display: flex;
+  justify-content: space-between;
+  background: transparent;
+  z-index: 101;
+  width: 100%;
+  height: 80px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.text-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  min-height: 100vh;
+  padding: 2rem;
+}
+.text-wrapper h1 {
+  font-size: 6rem;
+  font-weight: 900;
+  color: var(--color-foreground);
+  font-family: var(--font-primary);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  max-width: 20ch;
+  line-height: 0.85;
+}
+.text-wrapper .small-text {
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-family: var(--font-secondary);
+  background-color: var(--color-foreground);
+  color: var(--color-background);
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.dg.ac {
+  z-index: 999 !important;
+}  
+  </style>
 </head>
 <body>
-<!-- partial:index.partial.html -->
 <nav class="navbar">
   <a href="#">Creative Works</a>
   <a href="#">Insights</a>
@@ -28,8 +209,8 @@
 </div>
 
 <input type="text" id="textInput" value="THREE" maxlength="10">
-<!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.3.0/simplex-noise.min.js'></script><script type="module" src="./script.js"></script>
 
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.3.0/simplex-noise.min.js'></script>
+  <script type="module" src="./script.js"></script>
 </body>
 </html>
