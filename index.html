@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>LiminalLoop</title>
   <style>
@@ -15,8 +15,9 @@
       margin: 0;
       padding: 0;
       font-family: serif;
-      background: url('VAPORGRAM72370.png') no-repeat center center fixed;
+      background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80');
       background-size: cover;
+      background-position: center;
       color: rgb(230, 230, 230);
       position: relative;
       text-align: center;
@@ -27,7 +28,9 @@
       left: 0;
       width: 100vw;
       height: 100vh;
+      pointer-events: none;
     }
+
     .layout {
       display: flex;
       flex-direction: column;
@@ -40,19 +43,25 @@
       pointer-events: none;
     }
     .content {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      text-align: center;
-      font-size: 3rem;
-      font-weight: 200;
-      z-index: 100;
-      max-width: 440px;
-      mix-blend-mode: screen;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      max-width: 440px;
+      z-index: 110;
+      text-align: center;
+      font-size: 3rem;
+      font-weight: 200;
+      color: rgb(230, 230, 230);
+      mix-blend-mode: screen;
+      pointer-events: auto;
+      /* Blur overlay behind text */
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 2rem 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
     }
     .content h1 {
       font-size: 5rem;
@@ -95,6 +104,7 @@
     import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
     import { OrbitControls } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js";
 
+    // Raycaster for detecting mouse interactions
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
     let lastMouseMoveTime = 0;
@@ -102,19 +112,23 @@
     let mouseSpeed = 0;
     let lastMouseSpeed = 0;
 
+    // Load a matcap texture
     const loader = new THREE.TextureLoader();
     const matcapTexture = loader.load(
       "https://raw.githubusercontent.com/nidorx/matcaps/master/1024/0A0A0A_A9A9A9_525252_747474.png"
     );
 
+    // Scene setup
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x000000);
+    scene.background = null; // Transparent background so body image shows
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    // Renderer setup with alpha for transparency
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
     document.body.appendChild(renderer.domElement);
 
+    // Camera setup
     const camera = new THREE.PerspectiveCamera(
       35,
       window.innerWidth / window.innerHeight,
@@ -124,12 +138,15 @@
     camera.position.set(-30, 15, 30);
     camera.lookAt(0, 0, 0);
 
+    // Orbit controls
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.1;
 
+    // Apply the matcap material correctly to the spheres
     const matcapMaterial = new THREE.MeshMatcapMaterial({ matcap: matcapTexture });
 
+    // Create a grid of spheres
     const gridSize = 80;
     const spacing = 0.4;
     const geometry = new THREE.SphereGeometry(0.15, 32, 32);
@@ -148,6 +165,7 @@
       }
     }
 
+    // Mouse tracking
     window.addEventListener("mousemove", onMouseMove);
 
     function onMouseMove(event) {
@@ -186,12 +204,14 @@
       return null;
     }
 
+    // Invisible plane
     const planeGeometry = new THREE.PlaneGeometry(500, 500);
     const planeMaterial = new THREE.MeshBasicMaterial({ visible: false });
     const plane = new THREE.Mesh(planeGeometry, planeMaterial);
     plane.rotation.x = -Math.PI / 2;
     scene.add(plane);
 
+    // Ripple parameters (fixed, no dat.GUI)
     const guiParams = {
       rippleSpeed: 1.5,
       rippleFrequency: 0.95,
