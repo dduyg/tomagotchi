@@ -10,20 +10,34 @@
     height: 100vh;
     overflow: hidden;
     font-family: Arial, sans-serif;
+    background-color: #0E1A49;
+    color: white;
   }
+  #bg-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+
   main {
     display: flex;
     height: 100vh;
     gap: 20px;
     padding: 10px;
+    position: relative;
+    z-index: 1; /* ensure it’s above the video */
   }
 
   #left {
     width: 50%;
     height: 100vh;
     overflow-y: auto;
-    border: 1px solid;
     box-sizing: border-box;
+    background: rgba(255,255,255,0.8); /* slight white background to improve readability */
   }
   #right {
     width: 50%;
@@ -31,47 +45,30 @@
     right: 10px;
     top: 0;
     bottom: 0;
-    border: 1px solid;
     box-sizing: border-box;
     padding: 20px;
 
     display: flex;
     flex-direction: column;
-    justify-content: center; /* vertically center */
-    align-items: center;     /* horizontally center */
+    justify-content: center;
+    align-items: center;
     text-align: center;
     overflow-y: auto;
+    background: rgba(255,255,255,0.8);
   }
 </style>
 </head>
 <body>
+  <video autoplay muted loop playsinline id="bg-video">
+    <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/06/CyberCupcake.mp4" type="video/mp4" />
+    <!-- You can add additional formats for better browser support -->
+    Your browser does not support the video tag.
+  </video>
+
   <main>
     <div id="left">
       <p>Left column content scrolls vertically.</p>
-      <p>Keep adding content here to enable scrolling.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non diam vel lacus elementum lobortis. Suspendisse potenti.</p>
-      <p>More content...</p>
-      <p>More content...</p>
-      <p>More content...</p>
-      <p>More content...</p>
-      <p>More content...</p>
-      <p>More content...</p>
-      <p>More content...</p>
-      <p>More content...</p>
-      <p>More content...</p>
-      <p>More content...</p>
-      <p>More content...</p>
-      <p>More content...</p>
-      <p>More content...</p>
-      <p>More content...</p>
-      <p>More content...</p>
-      <p>More content...</p>
-      <p>More content...</p>
-      <p>More content...</p>
-      <p>More content...</p>
-      <p>More content...</p>
-      <p>More content...</p>
-      <p>More content...</p>
+      <!-- your existing content -->
     </div>
     <div id="right">
       <h2>Fixed Right Column</h2>
