@@ -6,8 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>LiminalLoop</title>
   <style>
-@import url("https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300&family=Space+Mono&display=swap");
-*, *::after, *::before { box-sizing: border-box; }
+    *, *::after, *::before { box-sizing: border-box; }
 :root {
   --color-background: rgb(20, 24, 30);
   --color-foreground: rgb(230, 230, 230);
@@ -18,20 +17,13 @@
   --gutter: 16px;
 }
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  font-family: var(--font-primary);
   background: radial-gradient(circle at 10% 20%, rgb(0, 0, 0) 0%, rgb(10, 10, 20) 90%);
   color: var(--color-foreground);
-  letter-spacing: -0.03em;
   position: relative;
-  text-align: center;
 }
-
 canvas {
   position: absolute;
   top: 0;
@@ -52,88 +44,11 @@ canvas {
   pointer-events: none;
 }
 
-.layout__header,
-.layout__footer,
-.layout__middle,
-.layout__bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.layout__header-text,
-.layout__footer-text {
-  font-family: var(--font-mono);
-}
-
-.layout__header-text {
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 30px;
-}
-
-.layout__middle-text {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-}
-
-.layout__middle-text--right {
-  text-align: right;
-  transform: rotate3d(0, 0, 1, 90deg) translate3d(100%, 10px, 0);
-  transform-origin: right;
-  white-space: nowrap;
-  font-family: var(--font-mono);
-  text-transform: uppercase;
-}
-
-.layout__footer-text {
-  font-size: 15rem;
-  line-height: 1em;
-  letter-spacing: -0.05em;
-  margin: 0;
-}
-
-.layout__label {
-  position: absolute;
-  font-size: 0.75rem;
-  line-height: 1;
-  text-transform: uppercase;
-}
-
-.layout__label--top-left {
-  top: var(--margin);
-  left: var(--margin);
-  text-align: left;
-}
-
-.layout__label--top-right {
-  top: var(--margin);
-  right: var(--margin);
-  text-align: right;
-  font-family: var(--font-mono);
-}
-
-.layout__label--bottom-left {
-  bottom: var(--margin);
-  left: var(--margin);
-  text-align: left;
-}
-
-.layout__label--bottom-right {
-  bottom: var(--margin);
-  right: var(--margin);
-  text-align: right;
-  font-family: var(--font-mono);
-}
-
 .layout__text-wrapper {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   text-align: center;
-  font-size: 3rem;
-  font-weight: 200;
   z-index: 100;
   max-width: 440px;
   mix-blend-mode: screen;
@@ -142,7 +57,6 @@ canvas {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 .layout__text-wrapper h1 {
   font-size: 5rem;
   font-weight: 300;
@@ -151,12 +65,10 @@ canvas {
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
-
 .layout__text-wrapper h1 span {
   display: block;
   font-size: 1.5rem;
 }
-
 .layout__text-wrapper h1::after {
   content: "";
   display: block;
@@ -166,7 +78,6 @@ canvas {
   margin: 1rem auto;
   opacity: 0.2;
 }
-
 .layout__text-wrapper h2 {
   font-size: 1rem;
   letter-spacing: 0.2em;
@@ -183,24 +94,6 @@ canvas {
 <div id="canvas-container"></div>
 
 <div class="layout">
-  <div class="layout__middle">
-    <p class="layout__middle-text layout__middle-text--left">|</p>
-    <p class="layout__middle-text layout__middle-text--right">Scanning Coordinates:<br> Uncharted Zone ✶</p>
-  </div>
-
-  <div class="layout__label layout__label--top-left">
-    <span class="layout__label-text">Vessel<br>Oblivion Horizon</span>
-  </div>
-  <div class="layout__label layout__label--top-right">
-    <span class="layout__label-text">Objective<br>Lost Signal Retrieval</span>
-  </div>
-  <div class="layout__label layout__label--bottom-left">
-    Core<br> Anomaly Drive<br> Status: Unknown
-  </div>
-  <div class="layout__label layout__label--bottom-right">
-    <span class="layout__label-text">Alert<br>Dimensional Rift<br> Imminent</span>
-  </div>
-
   <div class="layout__text-wrapper">
     <h2 style="margin-top:200px;">BEYOND THE VEIL, ALL SIGNALS FADE</h2>
   </div>
