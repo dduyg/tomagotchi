@@ -8,43 +8,46 @@
   body, html {
     margin: 0;
     height: 100vh;
-    overflow: hidden; /* prevent body scrolling */
+    overflow: hidden;
     font-family: Arial, sans-serif;
   }
 
   .container {
     display: flex;
     height: 100vh;
-    gap: 20px; /* space between columns */
+    gap: 20px;
     padding: 10px;
   }
 
-  .left-column {
+  .left {
     width: 50%;
     height: 100vh;
-    overflow-y: auto; /* vertical scroll */
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
+    overflow-y: auto;
+    border: 1px solid;
     box-sizing: border-box;
   }
-
-  .right-column {
+  .right {
     width: 50%;
-    position: fixed; /* fixed on screen */
-    right: 10px; /* same as container padding */
-    top: 10px;   /* same as container padding */
-    bottom: 10px;
-    background-color: #d0d0d0;
-    border: 1px solid #999;
+    position: fixed;
+    right: 10px;
+    top: 0;
+    bottom: 0;
+    border: 1px solid;
     box-sizing: border-box;
     padding: 20px;
-    overflow-y: auto; /* optional if right column has scrollable content */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* vertically center */
+    align-items: center;     /* horizontally center */
+    text-align: center;
+    overflow-y: auto;
   }
 </style>
 </head>
 <body>
   <div class="container">
-    <div class="left-column">
+    <div class="left">
       <p>Left column content scrolls vertically.</p>
       <p>Keep adding content here to enable scrolling.</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non diam vel lacus elementum lobortis. Suspendisse potenti.</p>
@@ -58,11 +61,10 @@
       <p>More content...</p>
       <p>More content...</p>
       <p>More content...</p>
-      <p>More content...</p>
     </div>
-    <div class="right-column">
+    <div class="right">
       <h2>Fixed Right Column</h2>
-      <p>This column stays fixed on the screen while you scroll the left column vertically.</p>
+      <p>This column stays fixed and its content is centered vertically and horizontally.</p>
     </div>
   </div>
 </body>
