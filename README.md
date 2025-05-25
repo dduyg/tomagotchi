@@ -374,7 +374,12 @@ If the image is used as a background:
     - https://fontesk.com/bakemono-typeface/
     - https://fontesk.com/ultramono-2-0-typeface/
     - https://fontesk.com/brinky-mono-font/
-    - https://fontesk.com/feature-mono-typeface/
+    - https://fontesk.com/twilio-sans-mono-typeface/
+    - https://fontesk.com/awoof-mono-font/
+    - https://fontesk.com/fifteen-typeface/
+    - https://fontesk.com/lotion-typeface/
+    - https://fontesk.com/maker-mono-font/
+    - https://fontesk.com/eirian-font/
     - https://fontesk.com/manolo-mono-font/
     - https://fontesk.com/lacrimoceras-mono-font/
     - https://fontesk.com/optik-optik-mono-fonts
