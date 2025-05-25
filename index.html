@@ -1,35 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Always Two Columns Side-by-Side</title>
-  <style>
-    #container {
-      display: flex;
-      flex-wrap: nowrap; /* prevent wrapping */
-      border: 1px solid;
-      width: 100%;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Liminal⚾️Loop</title>
+<style>
+  body, html {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden; /* prevent body scrolling */
+    font-family: Arial, sans-serif;
+  }
 
-    .column {
-      box-sizing: border-box;
-      padding: 15px;
-      border: 1px solid;
-      width: 50%;
-      overflow-wrap: break-word;
-    }
-  </style>
+  .container {
+    display: flex;
+    height: 100vh;
+    gap: 20px; /* space between columns */
+    padding: 10px;
+  }
+
+  .left-column {
+    width: 50%;
+    height: 100vh;
+    overflow-y: auto; /* vertical scroll */
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  .right-column {
+    width: 50%;
+    position: fixed; /* fixed on screen */
+    right: 10px; /* same as container padding */
+    top: 10px;   /* same as container padding */
+    bottom: 10px;
+    background-color: #d0d0d0;
+    border: 1px solid #999;
+    box-sizing: border-box;
+    padding: 20px;
+    overflow-y: auto; /* optional if right column has scrollable content */
+  }
+</style>
 </head>
 <body>
-  <div id="container">
-    <div class="column">Content 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-    <div class="column">Content 2: Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
+  <div class="container">
+    <div class="left-column">
+      <p>Left column content scrolls vertically.</p>
+      <p>Keep adding content here to enable scrolling.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non diam vel lacus elementum lobortis. Suspendisse potenti.</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>
+      <p>More content...</p>
+    </div>
+    <div class="right-column">
+      <h2>Fixed Right Column</h2>
+      <p>This column stays fixed on the screen while you scroll the left column vertically.</p>
+    </div>
   </div>
-
-  <script>
-    // No JS needed here for layout because CSS fixes columns at 50% always
-  </script>
 </body>
 </html>
