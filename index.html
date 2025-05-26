@@ -1,420 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>LiminalLoop</title>
-  <style>
-@font-face {
-  src: url("https://fonts.cdnfonts.com/css/pp-neue-montreal") format("woff2");
-  font-family: "PP Neue Montreal", sans-serif;
-  font-weight: 400;
-}
+  <title>[gsap/lenis] ❍ Layout Warp Speed Effect with GSAP and Scroll Trigger Animations</title>
+  <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
+<link rel="stylesheet" href="./style.css">
 
-*, *:before, *:after { margin: 0; padding: 0; box-sizing: border-box; }
-html { font-size: calc(100vw / 1512 * 10); }
-body {
-  font-family: "PP Neue Montreal", sans-serif;
-  font-weight: 500;
-  font-size: 1.8rem;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: black;
-  color: white;
-  position: relative;
-  overflow: hidden;
-}
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1; /* Behind content but still interactive */
-}
-
-/* dat.GUI styling */
-.dg.ac {
-  z-index: 1000 !important; /* Ensure GUI is on top */
-}
-
-/* Stats.js styling */
-#stats {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  z-index: 1000 !important; /* Ensure stats is on top */
-}
-
-/* Background noise effect */
-body::before {
-  content: "";
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: transparent
-    url("http://assets.iceable.com/img/noise-transparent.png") repeat 0 0;
-  background-size: 300px 300px;
-  -webkit-animation: noise-animation 0.3s steps(5) infinite;
-          animation: noise-animation 0.3s steps(5) infinite;
-  opacity: 0.05; /* Reduced opacity for subtlety */
-  will-change: transform;
-  z-index: 2; /* Above canvas but below content */
-  pointer-events: none;
-}
-
-@-webkit-keyframes noise-animation {
-  0% {
-    transform: translate(0, 0);
-  }
-
-  10% {
-    transform: translate(-2%, -3%);
-  }
-
-  20% {
-    transform: translate(-4%, 2%);
-  }
-
-  30% {
-    transform: translate(2%, -4%);
-  }
-
-  40% {
-    transform: translate(-2%, 5%);
-  }
-
-  50% {
-    transform: translate(-4%, 2%);
-  }
-
-  60% {
-    transform: translate(3%, 0);
-  }
-
-  70% {
-    transform: translate(0, 3%);
-  }
-
-  80% {
-    transform: translate(-3%, 0);
-  }
-
-  90% {
-    transform: translate(2%, 2%);
-  }
-
-  100% {
-    transform: translate(1%, 0);
-  }
-}
-
-@keyframes noise-animation {
-  0% {
-    transform: translate(0, 0);
-  }
-
-  10% {
-    transform: translate(-2%, -3%);
-  }
-
-  20% {
-    transform: translate(-4%, 2%);
-  }
-
-  30% {
-    transform: translate(2%, -4%);
-  }
-
-  40% {
-    transform: translate(-2%, 5%);
-  }
-
-  50% {
-    transform: translate(-4%, 2%);
-  }
-
-  60% {
-    transform: translate(3%, 0);
-  }
-
-  70% {
-    transform: translate(0, 3%);
-  }
-
-  80% {
-    transform: translate(-3%, 0);
-  }
-
-  90% {
-    transform: translate(2%, 2%);
-  }
-
-  100% {
-    transform: translate(1%, 0);
-  }
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-h1 {
-  font-size: 18rem;
-  font-weight: 700;
-  color: white;
-  letter-spacing: -0.05em;
-  text-align: center;
-  line-height: 0.85;
-}
-
-p {
-  font-size: 2rem;
-  line-height: 1.3;
-  max-width: 46rem;
-}
-
-a {
-  display: inline-block;
-  color: white;
-  text-decoration: none;
-}
-
-[data-hidden] {
-  opacity: 0;
-  filter: blur(15px);
-}
-
-[data-animation="text-reveal"] {
-  display: block;
-  overflow: hidden;
-}
-
-[data-animation="text-reveal"] > * {
-  display: block;
-  line-height: 1;
-  transform: translateY(100%);
-}
-
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 10; /* Ensure header is above canvas and noise */
-  padding: 1.6rem 3.2rem;
-}
-.header__nav {
-  display: flex;
-  justify-content: space-between;
-}
-
-.intro {
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
-  z-index: 5; /* Above canvas */
-}
-.intro__text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10; /* Ensure text is above everything */
-  width: 100%;
-  text-align: center;
-}
-.intro__title {
-  padding: 0 3.2rem;
-  line-height: 1;
-}
-
-.bottom-content {
-  position: absolute;
-  bottom: 3.2rem;
-  width: 100%;
-  padding: 0 3.2rem;
-  display: flex;
-  justify-content: center;
-  z-index: 10; /* Ensure bottom content is above everything */
-  text-align: center;
-}
-
-.bottom-text {
-  font-size: 1.4rem;
-  opacity: 0.8;
-  letter-spacing: 0.05em;
-}
-
-/* Animation for text reveal */
-@-webkit-keyframes revealText {
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-@keyframes revealText {
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-/* Apply animation to text elements */
-.header__nav [data-animation="text-reveal"] > *,
-.intro__title [data-animation="text-reveal"] > * {
-  -webkit-animation: revealText 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-          animation: revealText 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-}
-
-/* Stagger animation for header items */
-.header__nav div:nth-child(1) [data-animation="text-reveal"] > * {
-  -webkit-animation-delay: 0.2s;
-          animation-delay: 0.2s;
-}
-.header__nav div:nth-child(2) [data-animation="text-reveal"] > * {
-  -webkit-animation-delay: 0.3s;
-          animation-delay: 0.3s;
-}
-.header__nav div:nth-child(3) [data-animation="text-reveal"] > * {
-  -webkit-animation-delay: 0.4s;
-          animation-delay: 0.4s;
-}
-.header__nav div:nth-child(4) [data-animation="text-reveal"] > * {
-  -webkit-animation-delay: 0.5s;
-          animation-delay: 0.5s;
-}
-
-/* Stagger animation for title */
-.intro__title span:nth-child(1) [data-animation="text-reveal"] > * {
-  -webkit-animation-delay: 0.7s;
-          animation-delay: 0.7s;
-}
-.intro__title span:nth-child(2) [data-animation="text-reveal"] > * {
-  -webkit-animation-delay: 0.8s;
-          animation-delay: 0.8s;
-}
-.intro__title span:nth-child(3) [data-animation="text-reveal"] > * {
-  -webkit-animation-delay: 0.9s;
-          animation-delay: 0.9s;
-}
-
-/* Animation for bottom text */
-.bottom-text {
-  -webkit-animation: fadeIn 1.5s ease-out 1.2s forwards;
-          animation: fadeIn 1.5s ease-out 1.2s forwards;
-  opacity: 0;
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0.8;
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0.8;
-  }
-}
-
-/* Media queries for responsiveness */
-@media (max-width: 768px) {
-  html {
-    font-size: calc(100vw / 768 * 10);
-  }
-
-  h1 {
-    font-size: 12rem;
-  }
-
-  .header__nav {
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .header__nav div {
-    margin-right: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  html {
-    font-size: calc(100vw / 480 * 10);
-  }
-
-  h1 {
-    font-size: 8rem;
-  }
-
-  .header {
-    padding: 1rem;
-  }
-
-  .intro__title {
-    padding: 0 1rem;
-  }
-
-  .bottom-content {
-    bottom: 2rem;
-  }
-}
-  </style>
 </head>
 <body>
-<header class="header">
-  <nav class="header__nav">
-    <div data-animation="text-reveal">
-      <a href="">Emptiness</a>
+<!-- partial:index.partial.html -->
+<div class="footer">
+  <div class="container">
+    <div class="nav">
+      <div class="logo-container">
+        <div class="logo-circles">
+          <div class="circle circle-1"></div>
+          <div class="circle circle-2"></div>
+        </div>
+      </div>
     </div>
-    <div data-animation="text-reveal">
-      <a href="">Stillness</a>
-    </div>
-    <div data-animation="text-reveal">
-      <a href="">Surrender</a>
-    </div>
-    <div data-animation="text-reveal">
-      <a href="">Becoming</a>
-    </div>
-  </nav>
-</header>
 
-<section class="intro">
-  <div class="intro__text">
-    <h1 class="intro__title">
-      <span data-animation="text-reveal">
-        <span>LISTEN</span>
-      </span>
-      <span data-animation="text-reveal">
-        <span>TO THE</span>
-      </span>
-      <span data-animation="text-reveal">
-        <span>NOTHING</span>
-      </span>
-    </h1>
-  </div>
-  <div class="bottom-content">
-    <p class="bottom-text">What happens in the void between thoughts is where truth emerges</p>
-  </div>
-</section>
+    <div class="values">
+      <h3>+Menu</h3>
+      <ul>
+        <li><a href="#">Clarity</a></li>
+        <li><a href="#">Simplicity</a></li>
+        <li><a href="#">Creativity</a></li>
+        <li><a href="#">Authenticity</a></li>
+        <li><a href="#">Connect</a></li>
+      </ul>
+    </div>
 
-  <script type="module" src="./script.js"></script>
+    <div class="location-2">
+      <h3>+Location</h3>
+      <p>6357 Selma Ave</p>
+      <p>Los Angeles</p>
+      <p>CA 90028</p>
+    </div>
+
+    <div class="contact">
+      <h3>+Get In Touch</h3>
+      <p>(310) 456-7890</p>
+      <p><a href="mailto:hi@filip.fyi">hi@filip.fyi</a></p>
+    </div>
+
+    <div class="social">
+      <h3>+Social</h3>
+      <ul>
+        <li><a href="https://instagram.com/filipz__">Instagram</a></li>
+        <li><a href="https://x.com/filipz">X / Twitter</a></li>
+        <li><a href="https://linkedin.com/in/filipzrnzevic">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Sticky WebGL container -->
+  <div class="sticky-container" id="stickyContainer">
+    <div class="webgl-section" id="webglSection">
+      <div class="canvas-container" id="canvasContainer">
+        <canvas id="space"></canvas>
+        <div class="animated-text" id="animatedText">
+          CLARITY<br />THROUGH<br />SIMPLICITY
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Additional 100vh section -->
+  <div class="additional-section section-transition" id="additionalSection">
+    <div class="additional-content" id="additionalContent">
+      <h2>THE ART OF REDUCTION</h2>
+      <p>In a world of constant noise and distraction, true creativity emerges from the space between thoughts. The power of simplicity lies not in what is added, but in what is carefully removed.</p>
+      <p>Our approach strips away the unnecessary, revealing the essential core of every project. We believe that when you eliminate the excess, what remains speaks with greater clarity and resonance.</p>
+      <p>This philosophy guides everything we create—from music production to visual design—allowing the authentic voice to emerge without interference.</p>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="coordinates">
+      <p>34.0522° N, 118.2437° W</p>
+    </div>
+
+    <div class="links">
+      <span>Mindfulness</span>
+      <span>Presence</span>
+    </div>
+
+    <div class="info">
+      <p>Est. 2025 • Summer Days</p>
+    </div>
+  </div>
+
+  <div class="dot-grid" id="dotGrid"></div>
+</div>
+<!-- partial -->
+  <script src='https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js'></script><script  src="./script.js"></script>
+
 </body>
 </html>
