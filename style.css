@@ -1,0 +1,130 @@
+/* Import fonts in CSS */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: #000;
+  color: #fff;
+  font-family: "JetBrains Mono", monospace;
+  line-height: 1.4;
+  font-size: 14px;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.content-container {
+  position: relative;
+  width: 100%;
+  height: 500vh;
+  z-index: 1;
+}
+
+.section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 10vw;
+  position: relative;
+  z-index: 2;
+}
+
+.section-content {
+  max-width: 640px;
+  background: transparent;
+}
+
+h1 {
+  font-family: "Inter", sans-serif;
+  font-size: min(5rem, 10vw);
+  font-weight: 500;
+  margin-bottom: 1rem;
+  line-height: 0.85;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-family: "Inter", sans-serif;
+  font-size: min(3rem, 8vw);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.03em;
+}
+
+p {
+  font-size: 0.75rem;
+  margin-bottom: 1rem;
+  max-width: 40rem;
+  opacity: 1;
+  text-transform: uppercase;
+}
+
+.label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.25;
+  margin-bottom: 0.5rem;
+}
+
+.meta-type {
+  color: #64f4ac;
+}
+
+.scroll-indicator {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: white;
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.scroll-indicator.hide {
+  opacity: 0;
+}
+
+/* Section-specific styles */
+#section1 .meta-type {
+  color: #64f4ac;
+}
+
+#section2 .meta-type {
+  color: #23a6d5;
+}
+
+#section3 .meta-type {
+  color: #ee7752;
+}
+
+#section4 .meta-type {
+  color: #e73c7e;
+}
+
+#section5 .meta-type {
+  color: #ff9a8b;
+}
+
+/* Style for dat.gui - position it so it doesn't overlap content */
+.dg.ac {
+  z-index: 10 !important;
+  top: 0 !important;
+  right: 0 !important;
+}
