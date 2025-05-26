@@ -424,7 +424,6 @@ import { UnrealBloomPass } from "https://esm.sh/three@0.175.0/examples/jsm/postp
 
 class App {
   constructor() {
-    // Define gradient presets
     this.gradientPresets = {
       "Realistic Milky": {
         colorA1: [0.98, 0.98, 1.0],
@@ -482,7 +481,6 @@ class App {
       }
     };
 
-    // Initialize settings
     this.settings = {
       damping: 0.98,
       tension: 0.02,
@@ -522,6 +520,8 @@ class App {
 
     this.clock = new THREE.Clock();
 
+    // Removed GUI init
+
     this.tick = this.tick.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
     this.onTouchMove = this.onTouchMove.bind(this);
@@ -530,48 +530,8 @@ class App {
     this.init();
   }
 
-  setResolution(resolution) {
-    if (resolution === this.settings.resolution) return;
-
-    this.settings.resolution = resolution;
-
-    this.initWaterRipple();
-
-    if (this.backgroundMaterial) {
-      this.backgroundMaterial.uniforms.waterTexture.value = this.waterTexture;
-    }
-  }
-
-  updateGradientColors() {
-    if (!this.backgroundMaterial) return;
-
-    const preset = this.gradientPresets[this.settings.gradientPreset];
-
-    this.backgroundMaterial.uniforms.colorA1.value.set(
-      preset.colorA1[0],
-      preset.colorA1[1],
-      preset.colorA1[2]
-    );
-    this.backgroundMaterial.uniforms.colorA2.value.set(
-      preset.colorA2[0],
-      preset.colorA2[1],
-      preset.colorA2[2]
-    );
-    this.backgroundMaterial.uniforms.colorB1.value.set(
-      preset.colorB1[0],
-      preset.colorB1[1],
-      preset.colorB1[2]
-    );
-    this.backgroundMaterial.uniforms.colorB2.value.set(
-      preset.colorB2[0],
-      preset.colorB2[1],
-      preset.colorB2[2]
-    );
-  }
-
   init() {
     this.initWaterRipple();
-
     this.createBackground();
 
     window.addEventListener("mousemove", this.onMouseMove);
@@ -632,26 +592,15 @@ class App {
       uniforms: {
         waterTexture: { value: this.waterTexture },
         rippleStrength: { value: this.settings.rippleStrength },
-        resolution: {
-          value: new THREE.Vector2(window.innerWidth, window.innerHeight)
-        },
+        resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
         time: { value: 0 },
-        colorA1: {
-          value: new THREE.Vector3(preset.colorA1[0], preset.colorA1[1], preset.colorA1[2])
-        },
-        colorA2: {
-          value: new THREE.Vector3(preset.colorA2[0], preset.colorA2[1], preset.colorA2[2])
-        },
-        colorB1: {
-          value: new THREE.Vector3(preset.colorB1[0], preset.colorB1[1], preset.colorB1[2])
-        },
-        colorB2: {
-          value: new THREE.Vector3(preset.colorB2[0], preset.colorB2[1], preset.colorB2[2])
-        }
+        colorA1: { value: new THREE.Vector3(preset.colorA1[0], preset.colorA1[1], preset.colorA1[2]) },
+        colorA2: { value: new THREE.Vector3(preset.colorA2[0], preset.colorA2[1], preset.colorA2[2]) },
+        colorB1: { value: new THREE.Vector3(preset.colorB1[0], preset.colorB1[1], preset.colorB1[2]) },
+        colorB2: { value: new THREE.Vector3(preset.colorB2[0], preset.colorB2[1], preset.colorB2[2]) }
       },
       vertexShader: `
         varying vec2 vUv;
-        
         void main() {
           vUv = uv;
           gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
@@ -672,160 +621,149 @@ class App {
           return smoothstep(a, b, t);
         }
 
-        mat2 Rot(float a) {
-          float s = sin(a);
-          float c = cos(a);
-          return mat2(c, -s, s, c);
-        }
-
-        float noise(vec2 p) {
-          vec2 ip = floor(p);
-          vec2 fp = fract(p);
-          float a = fract(sin(dot(ip, vec2(12.9898, 78.233))) * 43758.5453);
-          float b = fract(sin(dot(ip + vec2(1.0, 0.0), vec2(12.9898, 78.233))) * 43758.5453);
-          float c = fract(sin(dot(ip + vec2(0.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
-          float d = fract(sin(dot(ip + vec2(1.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
-          fp = fp * fp * (3.0 - 2.0 * fp);
-          return mix(mix(a, b, fp.x), mix(c, d, fp.x), fp.y);
-        }
-
         void main() {
-          float waterHeight = texture2D(waterTexture, vUv).r;
-          float step = 1.0 / resolution.x;
-          vec2 distortion = vec2(
-            texture2D(waterTexture, vec2(vUv.x + step, vUv.y)).r - texture2D(waterTexture, vec2(vUv.x - step, vUv.y)).r,
-            texture2D(waterTexture, vec2(vUv.x, vUv.y + step)).r - texture2D(waterTexture, vec2(vUv.x, vUv.y - step)).r
-          ) * rippleStrength * 5.0;
+          vec2 uv = vUv;
 
-          vec2 tuv = vUv + distortion;
-          tuv -= 0.5;
+          // Sample the ripple height from the water texture
+          float ripple = texture2D(waterTexture, uv).r * rippleStrength;
 
-          float ratio = resolution.x / resolution.y;
-          tuv.y *= 1.0 / ratio;
+          // Create a vertical gradient between colorA and colorB with ripple distortion
+          vec3 gradientA = mix(colorA1, colorA2, uv.y + ripple * 0.1);
+          vec3 gradientB = mix(colorB1, colorB2, uv.y + ripple * 0.1);
 
-          vec3 layer1 = mix(colorA1, colorA2, S(-0.3, 0.2, (tuv * Rot(radians(-5.0))).x));
-          vec3 layer2 = mix(colorB1, colorB2, S(-0.3, 0.2, (tuv * Rot(radians(-5.0))).x));
-          vec3 finalComp = mix(layer1, layer2, S(0.5, -0.3, tuv.y));
+          // Combine gradients with ripple effect
+          vec3 color = mix(gradientA, gradientB, uv.x + ripple * 0.1);
 
-          float noiseValue = noise(tuv * 20.0 + time * 0.1) * 0.03;
-          finalComp += vec3(noiseValue);
+          // Optional: add some subtle animated noise or shimmer
+          float shimmer = 0.02 * sin(20.0 * uv.x + time * 3.0) * cos(20.0 * uv.y + time * 3.0);
+          color += shimmer;
 
-          float vignette = 1.0 - smoothstep(0.5, 1.5, length(tuv * 1.5));
-          finalComp *= mix(0.95, 1.0, vignette);
-
-          gl_FragColor = vec4(finalComp, 1.0);
+          gl_FragColor = vec4(color, 1.0);
         }
       `
     };
 
+    this.backgroundMaterial = new THREE.ShaderMaterial(backgroundShader);
     const geometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight);
-    this.backgroundMaterial = new THREE.ShaderMaterial({
-      uniforms: backgroundShader.uniforms,
-      vertexShader: backgroundShader.vertexShader,
-      fragmentShader: backgroundShader.fragmentShader
-    });
-
     const mesh = new THREE.Mesh(geometry, this.backgroundMaterial);
     this.scene.add(mesh);
   }
 
+  onMouseMove(event) {
+    this.throttledRipple(event.clientX, event.clientY, this.settings.mouseIntensity);
+  }
+
+  onTouchMove(event) {
+    event.preventDefault();
+    if (event.touches.length > 0) {
+      const touch = event.touches[0];
+      this.throttledRipple(touch.clientX, touch.clientY, this.settings.mouseIntensity);
+    }
+  }
+
+  throttledRipple(x, y, intensity) {
+    const now = performance.now();
+    if (now - this.mouseThrottleTime > 16) { // ~60fps throttle
+      this.addRipple(x, y, intensity);
+      this.mouseThrottleTime = now;
+    }
+  }
+
   addRipple(x, y, intensity) {
     const resolution = this.settings.resolution;
+
+    // Convert screen coords to ripple texture coords
+    const tx = Math.floor((x / window.innerWidth) * resolution);
+    const ty = Math.floor(((window.innerHeight - y) / window.innerHeight) * resolution);
+
     const radius = this.settings.rippleRadius;
 
-    // Convert screen coords to texture coords (0 to 1)
-    const tx = x / window.innerWidth;
-    const ty = 1.0 - y / window.innerHeight;
+    // Add ripple disturbance in a circular area
+    for (let iy = -radius; iy <= radius; iy++) {
+      for (let ix = -radius; ix <= radius; ix++) {
+        const px = tx + ix;
+        const py = ty + iy;
 
-    const ix = Math.floor(tx * resolution);
-    const iy = Math.floor(ty * resolution);
+        if (px < 0 || px >= resolution || py < 0 || py >= resolution) continue;
 
-    for (let j = -radius; j <= radius; j++) {
-      for (let i = -radius; i <= radius; i++) {
-        const dx = i;
-        const dy = j;
-        if (dx * dx + dy * dy <= radius * radius) {
-          const px = ix + i;
-          const py = iy + j;
-          if (px >= 0 && px < resolution && py >= 0 && py < resolution) {
-            this.waterBuffers.current[py * resolution + px] += intensity;
-          }
-        }
+        const dist = Math.sqrt(ix * ix + iy * iy);
+        if (dist > radius) continue;
+
+        const index = py * resolution + px;
+        const falloff = (1 - dist / radius);
+
+        this.waterBuffers.previous[index] += intensity * falloff;
       }
     }
   }
 
   updateWaterRipple() {
+    const { current, previous } = this.waterBuffers;
     const resolution = this.settings.resolution;
-    const curr = this.waterBuffers.current;
-    const prev = this.waterBuffers.previous;
     const damping = this.settings.damping;
     const tension = this.settings.tension;
 
     for (let y = 1; y < resolution - 1; y++) {
       for (let x = 1; x < resolution - 1; x++) {
-        const idx = y * resolution + x;
-        const neighbors = 
-          prev[idx - 1] +
-          prev[idx + 1] +
-          prev[idx - resolution] +
-          prev[idx + resolution];
-        let value = (neighbors / 2 - curr[idx]) * tension + curr[idx];
-        value *= damping;
-        curr[idx] = value;
+        const index = y * resolution + x;
+
+        // Wave propagation formula
+        current[index] = (
+          (
+            previous[index - 1] +
+            previous[index + 1] +
+            previous[index - resolution] +
+            previous[index + resolution]
+          ) / 2
+        ) - current[index];
+
+        current[index] *= damping;
+
+        // Optional tension effect (can tweak)
+        current[index] += tension * (previous[index] - current[index]);
       }
     }
 
     // Swap buffers
-    let temp = this.waterBuffers.previous;
+    const temp = this.waterBuffers.previous;
     this.waterBuffers.previous = this.waterBuffers.current;
     this.waterBuffers.current = temp;
 
-    // Update texture with the new data
+    // Update texture with current water buffer
     this.waterTexture.image.data = this.waterBuffers.current;
     this.waterTexture.needsUpdate = true;
   }
 
-  onMouseMove(e) {
-    const now = performance.now();
-    if (now - this.mouseThrottleTime > 30) {
-      this.addRipple(e.clientX, e.clientY, this.settings.mouseIntensity);
-      this.mouseThrottleTime = now;
-    }
-  }
-
-  onTouchMove(e) {
-    e.preventDefault();
-    if (e.touches.length > 0) {
-      const touch = e.touches[0];
-      this.addRipple(touch.clientX, touch.clientY, this.settings.mouseIntensity);
-    }
-  }
-
   onResize() {
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.camera.left = -window.innerWidth / 2;
     this.camera.right = window.innerWidth / 2;
     this.camera.top = window.innerHeight / 2;
     this.camera.bottom = -window.innerHeight / 2;
     this.camera.updateProjectionMatrix();
 
-    this.backgroundMaterial.uniforms.resolution.value.set(window.innerWidth, window.innerHeight);
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+
+    if (this.backgroundMaterial) {
+      this.backgroundMaterial.uniforms.resolution.value.set(window.innerWidth, window.innerHeight);
+    }
   }
 
   tick() {
-    const elapsedTime = this.clock.getElapsedTime();
+    const elapsed = this.clock.getElapsedTime();
+
     this.updateWaterRipple();
-    this.backgroundMaterial.uniforms.time.value = elapsedTime;
-    this.backgroundMaterial.uniforms.waterTexture.value = this.waterTexture;
+
+    if (this.backgroundMaterial) {
+      this.backgroundMaterial.uniforms.time.value = elapsed;
+    }
+
     this.renderer.render(this.scene, this.camera);
+
     requestAnimationFrame(this.tick);
   }
 }
 
-window.onload = () => {
-  new App();
-};
+window.app = new App();
 </script>
 </body>
 </html>
