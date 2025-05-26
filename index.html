@@ -9,17 +9,17 @@
     *, *::after, *::before { box-sizing: border-box; }
     html { font-size: calc(100vw / 1512 * 10); }
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
       margin: 0;
       padding: 0;
+      min-height: 100vh;
       font-family: serif;
       background: radial-gradient(circle at 10% 20%, #000 0%, #0a0a14 90%);
       color: #e6e6e6;
-      position: relative;
       text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
     }
     canvas {
       position: absolute;
@@ -33,7 +33,6 @@
       font-size: 18rem;
       font-weight: 700;
       letter-spacing: -0.05em;
-      text-align: center;
       line-height: 0.85;
     }
     p {
@@ -47,20 +46,7 @@
       text-decoration: none;
     }
 
-    [data-hidden] {
-      opacity: 0;
-      filter: blur(15px);
-    }
-    [data-animation="text-reveal"] {
-      display: block;
-      overflow: hidden;
-    }
-    [data-animation="text-reveal"] > * {
-      display: block;
-      line-height: 1;
-      transform: translateY(100%);
-    }
-
+    /* Header Styles */
     .header {
       position: fixed;
       top: 0;
@@ -74,27 +60,27 @@
       justify-content: space-between;
     }
 
+    /* Intro Section */
     .intro {
       position: relative;
       min-height: 100vh;
       overflow: hidden;
       z-index: 5;
-      margin-top: 80px; /* Adjust this value based on the actual header height */
     }
     .intro__text {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      z-index: 10;
       width: 100%;
-      text-align: center;
+      z-index: 10;
     }
     .intro__title {
       padding: 0 3.2rem;
       line-height: 1;
     }
 
+    /* Bottom Text */
     .bottom-content {
       position: absolute;
       bottom: 3.2rem;
@@ -103,81 +89,54 @@
       display: flex;
       justify-content: center;
       z-index: 10;
-      text-align: center;
     }
     .bottom-text {
       font-size: 1.4rem;
-      opacity: 0.8;
       letter-spacing: 0.05em;
+      opacity: 0.8;
+      animation: fadeIn 1.5s ease-out 1.2s forwards;
     }
 
-    @-webkit-keyframes revealText {
-      0% { transform: translateY(100%); }
-      100% { transform: translateY(0); }
+    /* Reveal Animations */
+    [data-hidden] {
+      opacity: 0;
+      filter: blur(15px);
     }
+    [data-animation="text-reveal"] {
+      display: block;
+      overflow: hidden;
+    }
+    [data-animation="text-reveal"] > * {
+      display: block;
+      line-height: 1;
+      transform: translateY(100%);
+      animation: revealText 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    }
+
+    /* Stagger Animation Delays */
+    .header__nav div:nth-child(1) [data-animation="text-reveal"] > * { animation-delay: 0.2s; }
+    .header__nav div:nth-child(2) [data-animation="text-reveal"] > * { animation-delay: 0.3s; }
+    .header__nav div:nth-child(3) [data-animation="text-reveal"] > * { animation-delay: 0.4s; }
+    .header__nav div:nth-child(4) [data-animation="text-reveal"] > * { animation-delay: 0.5s; }
+
+    .intro__title span:nth-child(1) [data-animation="text-reveal"] > * { animation-delay: 0.7s; }
+    .intro__title span:nth-child(2) [data-animation="text-reveal"] > * { animation-delay: 0.8s; }
+    .intro__title span:nth-child(3) [data-animation="text-reveal"] > * { animation-delay: 0.9s; }
+
+    /* Keyframes */
     @keyframes revealText {
       0% { transform: translateY(100%); }
       100% { transform: translateY(0); }
-    }
-
-    .header__nav [data-animation="text-reveal"] > *,
-    .intro__title [data-animation="text-reveal"] > * {
-      -webkit-animation: revealText 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-              animation: revealText 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-    }
-
-    .header__nav div:nth-child(1) [data-animation="text-reveal"] > * {
-      -webkit-animation-delay: 0.2s;
-              animation-delay: 0.2s;
-    }
-    .header__nav div:nth-child(2) [data-animation="text-reveal"] > * {
-      -webkit-animation-delay: 0.3s;
-              animation-delay: 0.3s;
-    }
-    .header__nav div:nth-child(3) [data-animation="text-reveal"] > * {
-      -webkit-animation-delay: 0.4s;
-              animation-delay: 0.4s;
-    }
-    .header__nav div:nth-child(4) [data-animation="text-reveal"] > * {
-      -webkit-animation-delay: 0.5s;
-              animation-delay: 0.5s;
-    }
-
-    .intro__title span:nth-child(1) [data-animation="text-reveal"] > * {
-      -webkit-animation-delay: 0.7s;
-              animation-delay: 0.7s;
-    }
-    .intro__title span:nth-child(2) [data-animation="text-reveal"] > * {
-      -webkit-animation-delay: 0.8s;
-              animation-delay: 0.8s;
-    }
-    .intro__title span:nth-child(3) [data-animation="text-reveal"] > * {
-      -webkit-animation-delay: 0.9s;
-              animation-delay: 0.9s;
-    }
-
-    .bottom-text {
-      -webkit-animation: fadeIn 1.5s ease-out 1.2s forwards;
-      animation: fadeIn 1.5s ease-out 1.2s forwards;
-      opacity: 0;
-    }
-
-    @-webkit-keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 0.8; }
     }
     @keyframes fadeIn {
       0% { opacity: 0; }
       100% { opacity: 0.8; }
     }
 
+    /* Responsive */
     @media (max-width: 768px) {
-      html {
-        font-size: calc(100vw / 768 * 10);
-      }
-      h1 {
-        font-size: 12rem;
-      }
+      html { font-size: calc(100vw / 768 * 10); }
+      h1 { font-size: 12rem; }
       .header__nav {
         flex-wrap: wrap;
         gap: 1rem;
@@ -187,55 +146,30 @@
       }
     }
     @media (max-width: 480px) {
-      html {
-        font-size: calc(100vw / 480 * 10);
-      }
-      h1 {
-        font-size: 8rem;
-      }
-      .header {
-        padding: 1rem;
-      }
-      .intro__title {
-        padding: 0 1rem;
-      }
-
-      .bottom-content {
-        bottom: 2rem;
-      }
+      html { font-size: calc(100vw / 480 * 10); }
+      h1 { font-size: 8rem; }
+      .header { padding: 1rem; }
+      .intro__title { padding: 0 1rem; }
+      .bottom-content { bottom: 2rem; }
     }
   </style>
 </head>
 <body>
   <header class="header">
     <nav class="header__nav">
-      <div data-animation="text-reveal">
-        <a href="">Emptiness</a>
-      </div>
-      <div data-animation="text-reveal">
-        <a href="">Stillness</a>
-      </div>
-      <div data-animation="text-reveal">
-        <a href="">Surrender</a>
-      </div>
-      <div data-animation="text-reveal">
-        <a href="">Becoming</a>
-      </div>
+      <div data-animation="text-reveal"><a href="">Emptiness</a></div>
+      <div data-animation="text-reveal"><a href="">Stillness</a></div>
+      <div data-animation="text-reveal"><a href="">Surrender</a></div>
+      <div data-animation="text-reveal"><a href="">Becoming</a></div>
     </nav>
   </header>
 
   <section class="intro">
     <div class="intro__text">
       <h1 class="intro__title">
-        <span data-animation="text-reveal">
-          <span>LISTEN</span>
-        </span>
-        <span data-animation="text-reveal">
-          <span>TO THE</span>
-        </span>
-        <span data-animation="text-reveal">
-          <span>NOTHING</span>
-        </span>
+        <span data-animation="text-reveal"><span>LISTEN</span></span>
+        <span data-animation="text-reveal"><span>TO THE</span></span>
+        <span data-animation="text-reveal"><span>NOTHING</span></span>
       </h1>
     </div>
     <div class="bottom-content">
@@ -274,10 +208,9 @@
     controls.dampingFactor = 0.1;
 
     const matcapMaterial = new THREE.MeshMatcapMaterial({ matcap: matcapTexture });
-
+    const geometry = new THREE.SphereGeometry(0.15, 32, 32);
     const gridSize = 80;
     const spacing = 0.4;
-    const geometry = new THREE.SphereGeometry(0.15, 32, 32);
 
     const spheres = [];
     const originalPositions = [];
@@ -301,20 +234,12 @@
       lastMouseMoveTime = currentTime;
 
       const rect = renderer.domElement.getBoundingClientRect();
-
-      if (
-        event.clientX >= rect.left &&
-        event.clientX <= rect.right &&
-        event.clientY >= rect.top &&
-        event.clientY <= rect.bottom
-      ) {
+      if (event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom) {
         const newMouseX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
         const newMouseY = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-
         const dx = newMouseX - lastMousePosition.x;
         const dy = newMouseY - lastMousePosition.y;
         mouseSpeed = Math.sqrt(dx * dx + dy * dy) / deltaTime;
-
         mouse.set(newMouseX, newMouseY);
         lastMousePosition.set(newMouseX, newMouseY);
       } else {
@@ -369,33 +294,16 @@
       const time = performance.now() * 0.001;
 
       lastMouseSpeed = THREE.MathUtils.lerp(lastMouseSpeed, mouseSpeed, 0.1);
-
-      const velocityFactor = THREE.MathUtils.clamp(
-        (lastMouseSpeed - guiParams.minSpeed) /
-        (guiParams.maxSpeed - guiParams.minSpeed),
-        0, 1
-      );
-
+      const velocityFactor = THREE.MathUtils.clamp((lastMouseSpeed - guiParams.minSpeed) / (guiParams.maxSpeed - guiParams.minSpeed), 0, 1);
       const isMouseMoving = performance.now() - lastMouseMoveTime < 16;
-
-      movingState = THREE.MathUtils.lerp(
-        movingState,
-        isMouseMoving ? 1 : 0,
-        guiParams.transitionSpeed
-      );
+      movingState = THREE.MathUtils.lerp(movingState, isMouseMoving ? 1 : 0, guiParams.transitionSpeed);
 
       const mouseWorldPos = getMouseWorldPosition();
-
-      if (
-        movingState > 0.1 &&
-        mouseWorldPos &&
-        (!lastRippleOrigin || mouseWorldPos.distanceTo(lastRippleOrigin) > guiParams.minRippleDistance)
-      ) {
+      if (movingState > 0.1 && mouseWorldPos && (!lastRippleOrigin || mouseWorldPos.distanceTo(lastRippleOrigin) > guiParams.minRippleDistance)) {
         rippleOrigins.push(mouseWorldPos.clone());
         rippleStartTimes.push(time);
         rippleStrengths.push(1.0 + velocityFactor * guiParams.velocityFactor);
         lastRippleOrigin.copy(mouseWorldPos);
-
         if (rippleOrigins.length > guiParams.maxRipples) {
           rippleOrigins.shift();
           rippleStartTimes.shift();
@@ -406,15 +314,11 @@
       for (let i = 0; i < spheres.length; i++) {
         const sphere = spheres[i];
         const originalPos = originalPositions[i];
-        const position = sphere.position;
-
         let rippleY = 0;
-
         for (let j = 0; j < rippleOrigins.length; j++) {
           const origin = rippleOrigins[j];
           const elapsedTime = time - rippleStartTimes[j];
-          const distance = position.distanceTo(origin);
-
+          const distance = sphere.position.distanceTo(origin);
           if (elapsedTime < guiParams.waveLifetime) {
             rippleY += calculateRipple(distance, elapsedTime, rippleStrengths[j]);
           }
@@ -424,7 +328,6 @@
         const transitionFactor = movingState > 0.1 ? guiParams.transitionSpeed : guiParams.returnSpeed;
 
         sphere.position.y = THREE.MathUtils.lerp(sphere.position.y, originalPos.y + rippleY * movingState, transitionFactor);
-
         const horizontalOffset = rippleY * 0.1 * movingState;
         sphere.position.x = THREE.MathUtils.lerp(sphere.position.x, originalPos.x + horizontalOffset, transitionFactor);
         sphere.position.z = THREE.MathUtils.lerp(sphere.position.z, originalPos.z + horizontalOffset, transitionFactor);
@@ -432,7 +335,7 @@
 
       const currentTime = time;
       rippleOrigins = rippleOrigins.filter((_, i) => currentTime - rippleStartTimes[i] < guiParams.waveLifetime);
-      rippleStartTimes = rippleStartTimes.filter((startTime) => currentTime - startTime < guiParams.waveLifetime);
+      rippleStartTimes = rippleStartTimes.filter(startTime => currentTime - startTime < guiParams.waveLifetime);
       rippleStrengths = rippleStrengths.filter((_, i) => currentTime - rippleStartTimes[i] < guiParams.waveLifetime);
 
       controls.update();
