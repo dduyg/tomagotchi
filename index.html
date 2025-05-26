@@ -7,19 +7,18 @@
   <title>Liminal🏁Loop</title>
   <style>
     *, *::after, *::before { box-sizing: border-box; }
-    html { font-size: calc(100vw / 1512 * 10); }
     body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      font-family: serif;
-      background: radial-gradient(circle at 10% 20%, #000 0%, #0a0a14 90%);
-      color: #e6e6e6;
-      text-align: center;
       display: flex;
       justify-content: center;
       align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      font-family: serif;
+      background: radial-gradient(circle at 10% 20%, #000 0%, #0a0a14 90%);
+      color: #e6e6e6;
       position: relative;
+      text-align: center;
     }
     canvas {
       position: absolute;
@@ -29,153 +28,68 @@
       height: 100vh;
     }
 
-    h1 {
-      font-size: 18rem;
-      font-weight: 700;
-      letter-spacing: -0.05em;
-      line-height: 0.85;
-    }
-    p {
-      font-size: 2rem;
-      line-height: 1.3;
-      max-width: 46rem;
-    }
-    a {
-      display: inline-block;
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* Header Styles */
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 10;
-      padding: 1.6rem 3.2rem;
-    }
-    .header__nav {
+    .layout {
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-    }
-
-    /* Intro Section */
-    .intro {
+      width: 100%;
+      height: 100vh;
       position: relative;
-      min-height: 100vh;
-      overflow: hidden;
-      z-index: 5;
+      padding: 6rem 2rem;
+      z-index: 100;
+      pointer-events: none;
     }
-    .intro__text {
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+      font-size: 3rem;
+      font-weight: 200;
+      z-index: 100;
+      max-width: 440px;
+      mix-blend-mode: screen;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 100%;
-      z-index: 10;
     }
-    .intro__title {
-      padding: 0 3.2rem;
-      line-height: 1;
+    .content h1 {
+      font-size: 5rem;
+      font-weight: 300;
+      line-height: 1.1;
+      margin: 0;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
     }
-
-    /* Bottom Text */
-    .bottom-content {
-      position: absolute;
-      bottom: 3.2rem;
-      width: 100%;
-      padding: 0 3.2rem;
-      display: flex;
-      justify-content: center;
-      z-index: 10;
-    }
-    .bottom-text {
-      font-size: 1.4rem;
-      letter-spacing: 0.05em;
-      opacity: 0.8;
-      animation: fadeIn 1.5s ease-out 1.2s forwards;
-    }
-
-    /* Reveal Animations */
-    [data-hidden] {
-      opacity: 0;
-      filter: blur(15px);
-    }
-    [data-animation="text-reveal"] {
+    .content h1 span {
       display: block;
-      overflow: hidden;
+      font-size: 1.5rem;
     }
-    [data-animation="text-reveal"] > * {
+    .content h1::after {
+      content: "";
       display: block;
-      line-height: 1;
-      transform: translateY(100%);
-      animation: revealText 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+      width: 50%;
+      height: 5px;
+      background: #e6e6e6;
+      margin: 1rem auto;
+      opacity: 0.2;
     }
-
-    /* Stagger Animation Delays */
-    .header__nav div:nth-child(1) [data-animation="text-reveal"] > * { animation-delay: 0.2s; }
-    .header__nav div:nth-child(2) [data-animation="text-reveal"] > * { animation-delay: 0.3s; }
-    .header__nav div:nth-child(3) [data-animation="text-reveal"] > * { animation-delay: 0.4s; }
-    .header__nav div:nth-child(4) [data-animation="text-reveal"] > * { animation-delay: 0.5s; }
-
-    .intro__title span:nth-child(1) [data-animation="text-reveal"] > * { animation-delay: 0.7s; }
-    .intro__title span:nth-child(2) [data-animation="text-reveal"] > * { animation-delay: 0.8s; }
-    .intro__title span:nth-child(3) [data-animation="text-reveal"] > * { animation-delay: 0.9s; }
-
-    /* Keyframes */
-    @keyframes revealText {
-      0% { transform: translateY(100%); }
-      100% { transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 0.8; }
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      html { font-size: calc(100vw / 768 * 10); }
-      h1 { font-size: 12rem; }
-      .header__nav {
-        flex-wrap: wrap;
-        gap: 1rem;
-      }
-      .header__nav div {
-        margin-right: 1rem;
-      }
-    }
-    @media (max-width: 480px) {
-      html { font-size: calc(100vw / 480 * 10); }
-      h1 { font-size: 8rem; }
-      .header { padding: 1rem; }
-      .intro__title { padding: 0 1rem; }
-      .bottom-content { bottom: 2rem; }
+    .content h2 {
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      margin-top: 1rem;
+      text-transform: uppercase;
     }
   </style>
 </head>
 <body>
-  <header class="header">
-    <nav class="header__nav">
-      <div data-animation="text-reveal"><a href="">Emptiness</a></div>
-      <div data-animation="text-reveal"><a href="">Stillness</a></div>
-      <div data-animation="text-reveal"><a href="">Surrender</a></div>
-      <div data-animation="text-reveal"><a href="">Becoming</a></div>
-    </nav>
-  </header>
-
-  <section class="intro">
-    <div class="intro__text">
-      <h1 class="intro__title">
-        <span data-animation="text-reveal"><span>LISTEN</span></span>
-        <span data-animation="text-reveal"><span>TO THE</span></span>
-        <span data-animation="text-reveal"><span>NOTHING</span></span>
-      </h1>
+  <div class="layout">
+    <div class="content">
+      <h1>Exodus Black</h1>
+      <h2>BEYOND THE VEIL, ALL SIGNALS FADE</h2>
     </div>
-    <div class="bottom-content">
-      <p class="bottom-text">What happens in the void between thoughts is where truth emerges</p>
-    </div>
-  </section>
+  </div>
 
   <script type="module">
     import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
@@ -208,9 +122,10 @@
     controls.dampingFactor = 0.1;
 
     const matcapMaterial = new THREE.MeshMatcapMaterial({ matcap: matcapTexture });
-    const geometry = new THREE.SphereGeometry(0.15, 32, 32);
+
     const gridSize = 80;
     const spacing = 0.4;
+    const geometry = new THREE.SphereGeometry(0.15, 32, 32);
 
     const spheres = [];
     const originalPositions = [];
@@ -234,12 +149,20 @@
       lastMouseMoveTime = currentTime;
 
       const rect = renderer.domElement.getBoundingClientRect();
-      if (event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom) {
+
+      if (
+        event.clientX >= rect.left &&
+        event.clientX <= rect.right &&
+        event.clientY >= rect.top &&
+        event.clientY <= rect.bottom
+      ) {
         const newMouseX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
         const newMouseY = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+
         const dx = newMouseX - lastMousePosition.x;
         const dy = newMouseY - lastMousePosition.y;
         mouseSpeed = Math.sqrt(dx * dx + dy * dy) / deltaTime;
+
         mouse.set(newMouseX, newMouseY);
         lastMousePosition.set(newMouseX, newMouseY);
       } else {
@@ -294,16 +217,33 @@
       const time = performance.now() * 0.001;
 
       lastMouseSpeed = THREE.MathUtils.lerp(lastMouseSpeed, mouseSpeed, 0.1);
-      const velocityFactor = THREE.MathUtils.clamp((lastMouseSpeed - guiParams.minSpeed) / (guiParams.maxSpeed - guiParams.minSpeed), 0, 1);
+
+      const velocityFactor = THREE.MathUtils.clamp(
+        (lastMouseSpeed - guiParams.minSpeed) /
+        (guiParams.maxSpeed - guiParams.minSpeed),
+        0, 1
+      );
+
       const isMouseMoving = performance.now() - lastMouseMoveTime < 16;
-      movingState = THREE.MathUtils.lerp(movingState, isMouseMoving ? 1 : 0, guiParams.transitionSpeed);
+
+      movingState = THREE.MathUtils.lerp(
+        movingState,
+        isMouseMoving ? 1 : 0,
+        guiParams.transitionSpeed
+      );
 
       const mouseWorldPos = getMouseWorldPosition();
-      if (movingState > 0.1 && mouseWorldPos && (!lastRippleOrigin || mouseWorldPos.distanceTo(lastRippleOrigin) > guiParams.minRippleDistance)) {
+
+      if (
+        movingState > 0.1 &&
+        mouseWorldPos &&
+        (!lastRippleOrigin || mouseWorldPos.distanceTo(lastRippleOrigin) > guiParams.minRippleDistance)
+      ) {
         rippleOrigins.push(mouseWorldPos.clone());
         rippleStartTimes.push(time);
         rippleStrengths.push(1.0 + velocityFactor * guiParams.velocityFactor);
         lastRippleOrigin.copy(mouseWorldPos);
+
         if (rippleOrigins.length > guiParams.maxRipples) {
           rippleOrigins.shift();
           rippleStartTimes.shift();
@@ -314,11 +254,15 @@
       for (let i = 0; i < spheres.length; i++) {
         const sphere = spheres[i];
         const originalPos = originalPositions[i];
+        const position = sphere.position;
+
         let rippleY = 0;
+
         for (let j = 0; j < rippleOrigins.length; j++) {
           const origin = rippleOrigins[j];
           const elapsedTime = time - rippleStartTimes[j];
-          const distance = sphere.position.distanceTo(origin);
+          const distance = position.distanceTo(origin);
+
           if (elapsedTime < guiParams.waveLifetime) {
             rippleY += calculateRipple(distance, elapsedTime, rippleStrengths[j]);
           }
@@ -328,6 +272,7 @@
         const transitionFactor = movingState > 0.1 ? guiParams.transitionSpeed : guiParams.returnSpeed;
 
         sphere.position.y = THREE.MathUtils.lerp(sphere.position.y, originalPos.y + rippleY * movingState, transitionFactor);
+
         const horizontalOffset = rippleY * 0.1 * movingState;
         sphere.position.x = THREE.MathUtils.lerp(sphere.position.x, originalPos.x + horizontalOffset, transitionFactor);
         sphere.position.z = THREE.MathUtils.lerp(sphere.position.z, originalPos.z + horizontalOffset, transitionFactor);
@@ -335,7 +280,7 @@
 
       const currentTime = time;
       rippleOrigins = rippleOrigins.filter((_, i) => currentTime - rippleStartTimes[i] < guiParams.waveLifetime);
-      rippleStartTimes = rippleStartTimes.filter(startTime => currentTime - startTime < guiParams.waveLifetime);
+      rippleStartTimes = rippleStartTimes.filter((startTime) => currentTime - startTime < guiParams.waveLifetime);
       rippleStrengths = rippleStrengths.filter((_, i) => currentTime - rippleStartTimes[i] < guiParams.waveLifetime);
 
       controls.update();
