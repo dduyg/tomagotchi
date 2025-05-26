@@ -415,6 +415,377 @@ a {
   </div>
 </section>
 
-  <script type="module" src="./script.js"></script>
+<script type="module">
+import * as THREE from "https://esm.sh/three@0.175.0";
+import { EffectComposer } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/RenderPass.js";
+import { ShaderPass } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/ShaderPass.js";
+import { UnrealBloomPass } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/UnrealBloomPass.js";
+
+// Main App class
+class App {
+  constructor() {
+    // Removed stats initialization and GUI initialization
+
+    // Define gradient presets
+    this.gradientPresets = {
+      "Realistic Milky": {
+        colorA1: [0.98, 0.98, 1.0],
+        colorA2: [0.92, 0.92, 0.95],
+        colorB1: [0.95, 0.95, 0.98],
+        colorB2: [0.85, 0.85, 0.9]
+      },
+      "Deep Abyss": {
+        colorA1: [0.02, 0.02, 0.03],
+        colorA2: [0.04, 0.04, 0.06],
+        colorB1: [0.03, 0.03, 0.05],
+        colorB2: [0.06, 0.05, 0.08]
+      },
+      "Dark Twilight": {
+        colorA1: [0.05, 0.04, 0.08],
+        colorA2: [0.08, 0.06, 0.12],
+        colorB1: [0.04, 0.05, 0.09],
+        colorB2: [0.09, 0.08, 0.14]
+      },
+      "Dark Moody": {
+        colorA1: [0.05, 0.05, 0.08],
+        colorA2: [0.15, 0.15, 0.25],
+        colorB1: [0.1, 0.1, 0.2],
+        colorB2: [0.2, 0.2, 0.3]
+      },
+      "Soft Cream": {
+        colorA1: [0.98, 0.97, 0.95],
+        colorA2: [0.94, 0.92, 0.88],
+        colorB1: [0.96, 0.94, 0.9],
+        colorB2: [0.9, 0.87, 0.82]
+      },
+      Colorful: {
+        colorA1: [0.957, 0.804, 0.623],
+        colorA2: [0.192, 0.384, 0.933],
+        colorB1: [0.91, 0.51, 0.8],
+        colorB2: [0.35, 0.71, 0.953]
+      },
+      Mysterious: {
+        colorA1: [0.1, 0.05, 0.2],
+        colorA2: [0.3, 0.1, 0.4],
+        colorB1: [0.05, 0.1, 0.2],
+        colorB2: [0.2, 0.3, 0.5]
+      },
+      Sunset: {
+        colorA1: [0.8, 0.3, 0.1],
+        colorA2: [0.5, 0.1, 0.3],
+        colorB1: [0.9, 0.6, 0.3],
+        colorB2: [0.6, 0.2, 0.5]
+      },
+      Ocean: {
+        colorA1: [0.0, 0.2, 0.4],
+        colorA2: [0.0, 0.4, 0.6],
+        colorB1: [0.0, 0.3, 0.5],
+        colorB2: [0.1, 0.5, 0.7]
+      }
+    };
+
+    // Initialize settings with defaults (no GUI)
+    this.settings = {
+      damping: 0.98,
+      tension: 0.02,
+      resolution: 1024,
+      rippleStrength: 1.0,
+      gradientPreset: "Realistic Milky",
+      mouseIntensity: 0.3,
+      clickIntensity: 2.0,
+      rippleRadius: 12,
+      autoDrops: true,
+      autoDropInterval: 3000,
+      autoDropIntensity: 1.0,
+      performanceMode: false
+    };
+
+    this.renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      powerPreference: "high-performance"
+    });
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    document.body.appendChild(this.renderer.domElement);
+
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.OrthographicCamera(
+      -window.innerWidth / 2,
+      window.innerWidth / 2,
+      window.innerHeight / 2,
+      -window.innerHeight / 2,
+      0.1,
+      1000
+    );
+    this.camera.position.z = 10;
+
+    this.clock = new THREE.Clock();
+
+    // Bind methods
+    this.tick = this.tick.bind(this);
+    this.onMouseMove = this.onMouseMove.bind(this);
+    this.onTouchMove = this.onTouchMove.bind(this);
+    this.onResize = this.onResize.bind(this);
+
+    this.init();
+  }
+
+  init() {
+    this.initWaterRipple();
+    this.createBackground();
+
+    window.addEventListener("mousemove", this.onMouseMove);
+    window.addEventListener("touchmove", this.onTouchMove, { passive: false });
+    window.addEventListener("resize", this.onResize);
+    window.addEventListener("click", (e) => {
+      const rect = this.renderer.domElement.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      this.addRipple(x, y, this.settings.clickIntensity);
+    });
+
+    this.setupAutoDrops();
+
+    this.tick();
+  }
+
+  setupAutoDrops() {
+    if (this.autoDropsInterval) {
+      clearInterval(this.autoDropsInterval);
+    }
+    if (this.settings.autoDrops) {
+      this.autoDropsInterval = setInterval(() => {
+        if (!this.settings.autoDrops) return;
+
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight;
+        this.addRipple(x, y, this.settings.autoDropIntensity);
+      }, this.settings.autoDropInterval);
+    }
+  }
+
+  initWaterRipple() {
+    const resolution = this.settings.resolution;
+
+    this.waterBuffers = {
+      current: new Float32Array(resolution * resolution),
+      previous: new Float32Array(resolution * resolution)
+    };
+
+    this.waterTexture = new THREE.DataTexture(
+      this.waterBuffers.current,
+      resolution,
+      resolution,
+      THREE.RedFormat,
+      THREE.FloatType
+    );
+    this.waterTexture.minFilter = THREE.LinearFilter;
+    this.waterTexture.magFilter = THREE.LinearFilter;
+    this.waterTexture.needsUpdate = true;
+  }
+
+  createBackground() {
+    const preset = this.gradientPresets[this.settings.gradientPreset];
+
+    const backgroundShader = {
+      uniforms: {
+        waterTexture: { value: this.waterTexture },
+        rippleStrength: { value: this.settings.rippleStrength },
+        resolution: {
+          value: new THREE.Vector2(window.innerWidth, window.innerHeight)
+        },
+        time: { value: 0 },
+        colorA1: {
+          value: new THREE.Vector3(preset.colorA1[0], preset.colorA1[1], preset.colorA1[2])
+        },
+        colorA2: {
+          value: new THREE.Vector3(preset.colorA2[0], preset.colorA2[1], preset.colorA2[2])
+        },
+        colorB1: {
+          value: new THREE.Vector3(preset.colorB1[0], preset.colorB1[1], preset.colorB1[2])
+        },
+        colorB2: {
+          value: new THREE.Vector3(preset.colorB2[0], preset.colorB2[1], preset.colorB2[2])
+        }
+      },
+      vertexShader: `
+        varying vec2 vUv;
+        
+        void main() {
+          vUv = uv;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform sampler2D waterTexture;
+        uniform float rippleStrength;
+        uniform vec2 resolution;
+        uniform float time;
+        uniform vec3 colorA1;
+        uniform vec3 colorA2;
+        uniform vec3 colorB1;
+        uniform vec3 colorB2;
+        varying vec2 vUv;
+
+        float S(float a, float b, float t) {
+          return smoothstep(a, b, t);
+        }
+
+        mat2 Rot(float a) {
+          float s = sin(a);
+          float c = cos(a);
+          return mat2(c, -s, s, c);
+        }
+
+        float noise(vec2 p) {
+          vec2 ip = floor(p);
+          vec2 fp = fract(p);
+          float a = fract(sin(dot(ip, vec2(12.9898, 78.233))) * 43758.5453);
+          float b = fract(sin(dot(ip + vec2(1.0, 0.0), vec2(12.9898, 78.233))) * 43758.5453);
+          float c = fract(sin(dot(ip + vec2(0.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
+          float d = fract(sin(dot(ip + vec2(1.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
+          fp = fp * fp * (3.0 - 2.0 * fp);
+          return mix(mix(a, b, fp.x), mix(c, d, fp.x), fp.y);
+        }
+
+        void main() {
+          float waterHeight = texture2D(waterTexture, vUv).r;
+          float step = 1.0 / resolution.x;
+          vec2 distortion = vec2(
+            texture2D(waterTexture, vec2(vUv.x + step, vUv.y)).r - texture2D(waterTexture, vec2(vUv.x - step, vUv.y)).r,
+            texture2D(waterTexture, vec2(vUv.x, vUv.y + step)).r - texture2D(waterTexture, vec2(vUv.x, vUv.y - step)).r
+          ) * rippleStrength * 5.0;
+
+          vec2 tuv = vUv + distortion;
+          tuv -= 0.5;
+
+          float ratio = resolution.x / resolution.y;
+          tuv.y *= 1.0 / ratio;
+
+          vec3 layer1 = mix(colorA1, colorA2, S(-0.3, 0.2, (tuv * Rot(radians(-5.0))).x));
+          vec3 layer2 = mix(colorB1, colorB2, S(-0.3, 0.2, (tuv * Rot(radians(-5.0))).x));
+          vec3 finalComp = mix(layer1, layer2, S(0.5, -0.3, tuv.y));
+
+          float noiseValue = noise(tuv * 20.0 + time * 0.1) * 0.03;
+          finalComp += vec3(noiseValue);
+
+          float vignette = 1.0 - smoothstep(0.5, 1.5, length(tuv * 1.5));
+          finalComp *= mix(0.95, 1.0, vignette);
+
+          gl_FragColor = vec4(finalComp, 1.0);
+        }
+      `
+    };
+
+    const geometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight);
+    this.backgroundMaterial = new THREE.ShaderMaterial({
+      uniforms: backgroundShader.uniforms,
+      vertexShader: backgroundShader.vertexShader,
+      fragmentShader: backgroundShader.fragmentShader
+    });
+
+    const mesh = new THREE.Mesh(geometry, this.backgroundMaterial);
+    this.scene.add(mesh);
+  }
+
+  addRipple(x, y, intensity) {
+    const resolution = this.settings.resolution;
+    const radius = this.settings.rippleRadius;
+
+    // Convert screen coords to texture coords (0 to 1)
+    const tx = x / window.innerWidth;
+    const ty = 1.0 - y / window.innerHeight;
+
+    const ix = Math.floor(tx * resolution);
+    const iy = Math.floor(ty * resolution);
+
+    for (let j = -radius; j <= radius; j++) {
+      for (let i = -radius; i <= radius; i++) {
+        const dx = i;
+        const dy = j;
+        if (dx * dx + dy * dy <= radius * radius) {
+          const px = ix + i;
+          const py = iy + j;
+          if (px >= 0 && px < resolution && py >= 0 && py < resolution) {
+            this.waterBuffers.current[py * resolution + px] += intensity;
+          }
+        }
+      }
+    }
+  }
+
+  updateWaterRipple() {
+    const resolution = this.settings.resolution;
+    const curr = this.waterBuffers.current;
+    const prev = this.waterBuffers.previous;
+    const damping = this.settings.damping;
+    const tension = this.settings.tension;
+
+    for (let y = 1; y < resolution - 1; y++) {
+      for (let x = 1; x < resolution - 1; x++) {
+        const idx = y * resolution + x;
+        const neighbors = 
+          prev[idx - 1] +
+          prev[idx + 1] +
+          prev[idx - resolution] +
+          prev[idx + resolution];
+        let value = (neighbors / 2 - curr[idx]) * tension + curr[idx];
+        value *= damping;
+        curr[idx] = value;
+      }
+    }
+
+    // Swap buffers
+    let temp = this.waterBuffers.previous;
+    this.waterBuffers.previous = this.waterBuffers.current;
+    this.waterBuffers.current = temp;
+
+    // Update texture with the new data
+    this.waterTexture.image.data = this.waterBuffers.current;
+    this.waterTexture.needsUpdate = true;
+  }
+
+  onMouseMove(e) {
+    const now = performance.now();
+    if (now - this.mouseThrottleTime > 30) {
+      this.addRipple(e.clientX, e.clientY, this.settings.mouseIntensity);
+      this.mouseThrottleTime = now;
+    }
+  }
+
+  onTouchMove(e) {
+    e.preventDefault();
+    if (e.touches.length > 0) {
+      const touch = e.touches[0];
+      this.addRipple(touch.clientX, touch.clientY, this.settings.mouseIntensity);
+    }
+  }
+
+  onResize() {
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.camera.left = -window.innerWidth / 2;
+    this.camera.right = window.innerWidth / 2;
+    this.camera.top = window.innerHeight / 2;
+    this.camera.bottom = -window.innerHeight / 2;
+    this.camera.updateProjectionMatrix();
+
+    this.backgroundMaterial.uniforms.resolution.value.set(window.innerWidth, window.innerHeight);
+  }
+
+  tick() {
+    const elapsedTime = this.clock.getElapsedTime();
+    this.updateWaterRipple();
+    this.backgroundMaterial.uniforms.time.value = elapsedTime;
+    this.backgroundMaterial.uniforms.waterTexture.value = this.waterTexture;
+    this.renderer.render(this.scene, this.camera);
+    requestAnimationFrame(this.tick);
+  }
+}
+
+window.onload = () => {
+  new App();
+};
+</script>
 </body>
 </html>
