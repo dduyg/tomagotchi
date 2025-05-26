@@ -150,228 +150,24 @@ img {
 }
 
 h1 {
-  font-size: 18rem;
+  font-size: 2rem;
   font-weight: 700;
   color: white;
   letter-spacing: -0.05em;
   text-align: center;
   line-height: 0.85;
 }
-
-p {
-  font-size: 2rem;
-  line-height: 1.3;
-  max-width: 46rem;
-}
-
-a {
-  display: inline-block;
-  color: white;
-  text-decoration: none;
-}
-
-[data-hidden] {
-  opacity: 0;
-  filter: blur(15px);
-}
-
-[data-animation="text-reveal"] {
-  display: block;
-  overflow: hidden;
-}
-
-[data-animation="text-reveal"] > * {
-  display: block;
-  line-height: 1;
-  transform: translateY(100%);
-}
-
 .header {
   position: fixed;
-  top: 0;
+  top: 15%;
   left: 0;
-  width: 100%;
   z-index: 10; /* Ensure header is above canvas and noise */
   padding: 1.6rem 3.2rem;
-}
-.header__nav {
-  display: flex;
-  justify-content: space-between;
-}
-
-.intro {
-  position: relative;
-  min-height: 100vh;
-  overflow: hidden;
-  z-index: 5; /* Above canvas */
-}
-.intro__text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10; /* Ensure text is above everything */
-  width: 100%;
-  text-align: center;
-}
-.intro__title {
-  padding: 0 3.2rem;
-  line-height: 1;
-}
-
-.bottom-content {
-  position: absolute;
-  bottom: 3.2rem;
-  width: 100%;
-  padding: 0 3.2rem;
-  display: flex;
-  justify-content: center;
-  z-index: 10; /* Ensure bottom content is above everything */
-  text-align: center;
-}
-
-.bottom-text {
-  font-size: 1.4rem;
-  opacity: 0.8;
-  letter-spacing: 0.05em;
-}
-
-/* Animation for text reveal */
-@-webkit-keyframes revealText {
-  0% { transform: translateY(100%); }
-  100% { transform: translateY(0); }
-}
-@keyframes revealText {
-  0% { transform: translateY(100%); }
-  100% { transform: translateY(0); }
-}
-
-/* Apply animation to text elements */
-.header__nav [data-animation="text-reveal"] > *,
-.intro__title [data-animation="text-reveal"] > * {
-  -webkit-animation: revealText 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-          animation: revealText 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-}
-
-/* Stagger animation for header items */
-.header__nav div:nth-child(1) [data-animation="text-reveal"] > * {
-  -webkit-animation-delay: 0.2s;
-          animation-delay: 0.2s;
-}
-.header__nav div:nth-child(2) [data-animation="text-reveal"] > * {
-  -webkit-animation-delay: 0.3s;
-          animation-delay: 0.3s;
-}
-.header__nav div:nth-child(3) [data-animation="text-reveal"] > * {
-  -webkit-animation-delay: 0.4s;
-          animation-delay: 0.4s;
-}
-.header__nav div:nth-child(4) [data-animation="text-reveal"] > * {
-  -webkit-animation-delay: 0.5s;
-          animation-delay: 0.5s;
-}
-
-/* Stagger animation for title */
-.intro__title span:nth-child(1) [data-animation="text-reveal"] > * {
-  -webkit-animation-delay: 0.7s;
-          animation-delay: 0.7s;
-}
-.intro__title span:nth-child(2) [data-animation="text-reveal"] > * {
-  -webkit-animation-delay: 0.8s;
-          animation-delay: 0.8s;
-}
-.intro__title span:nth-child(3) [data-animation="text-reveal"] > * {
-  -webkit-animation-delay: 0.9s;
-          animation-delay: 0.9s;
-}
-
-/* Animation for bottom text */
-.bottom-text {
-  -webkit-animation: fadeIn 1.5s ease-out 1.2s forwards;
-  animation: fadeIn 1.5s ease-out 1.2s forwards;
-  opacity: 0;
-}
-@-webkit-keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 0.8; }
-}
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 0.8; }
-}
-
-/* Media queries for responsiveness */
-@media (max-width: 768px) {
-  html {
-    font-size: calc(100vw / 768 * 10);
-  }
-  h1 {
-    font-size: 12rem;
-  }
-  .header__nav {
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  .header__nav div {
-    margin-right: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  html {
-    font-size: calc(100vw / 480 * 10);
-  }
-  h1 {
-    font-size: 8rem;
-  }
-  .header {
-    padding: 1rem;
-  }
-  .intro__title {
-    padding: 0 1rem;
-  }
-  .bottom-content {
-    bottom: 2rem;
-  }
 }
   </style>
 </head>
 <body>
-<header class="header">
-  <nav class="header__nav">
-    <div data-animation="text-reveal">
-      <a href="">Emptiness</a>
-    </div>
-    <div data-animation="text-reveal">
-      <a href="">Stillness</a>
-    </div>
-    <div data-animation="text-reveal">
-      <a href="">Surrender</a>
-    </div>
-    <div data-animation="text-reveal">
-      <a href="">Becoming</a>
-    </div>
-  </nav>
-</header>
-
-<section class="intro">
-  <div class="intro__text">
-    <h1 class="intro__title">
-      <span data-animation="text-reveal">
-        <span>LISTEN</span>
-      </span>
-      <span data-animation="text-reveal">
-        <span>TO THE</span>
-      </span>
-      <span data-animation="text-reveal">
-        <span>NOTHING</span>
-      </span>
-    </h1>
-  </div>
-  <div class="bottom-content">
-    <p class="bottom-text">What happens in the void between thoughts is where truth emerges</p>
-  </div>
-</section>
+<header class="header"><h1>Tidebreaker</h1></header>
 
 <script type="module">
 import * as THREE from "https://esm.sh/three@0.175.0";
