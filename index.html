@@ -6,39 +6,30 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>LiminalLoop</title>
   <style>
-@font-face {
-  src: url("https://fonts.cdnfonts.com/css/pp-neue-montreal") format("woff2");
-  font-family: "PP Neue Montreal", sans-serif;
-  font-weight: 400;
-}
-
-*, *:before, *:after { margin: 0; padding: 0; box-sizing: border-box; }
-html { font-size: calc(100vw / 1512 * 10); }
-body {
-  font-family: "PP Neue Montreal", sans-serif;
-  font-weight: 500;
-  font-size: 1.8rem;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: black;
-  color: white;
-  position: relative;
-  overflow: hidden;
-}
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1; /* Behind content but still interactive */
-}
-
-/* Hide dat.GUI & Stats.js */
-.dg.ac, #stats {
-  display: none;
-}
+    *, *:before, *:after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: calc(100vw / 1512 * 10); }
+    body {
+      font-family: "PP Neue Montreal", sans-serif;
+      font-weight: 500;
+      font-size: 1.8rem;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: black;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Behind content but still interactive */
+    }
+    /* Hide dat.GUI & Stats.js */
+    .dg.ac, #stats { display: none; }
 
 /* Background noise effect */
 body::before {
@@ -247,20 +238,12 @@ a {
 
 /* Animation for text reveal */
 @-webkit-keyframes revealText {
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(0); }
 }
 @keyframes revealText {
-  0% {
-    transform: translateY(100%);
-  }
-  100% {
-    transform: translateY(0);
-  }
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(0); }
 }
 
 /* Apply animation to text elements */
@@ -305,26 +288,16 @@ a {
 /* Animation for bottom text */
 .bottom-text {
   -webkit-animation: fadeIn 1.5s ease-out 1.2s forwards;
-          animation: fadeIn 1.5s ease-out 1.2s forwards;
+  animation: fadeIn 1.5s ease-out 1.2s forwards;
   opacity: 0;
 }
-
 @-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0.8;
-  }
+  0% { opacity: 0; }
+  100% { opacity: 0.8; }
 }
-
 @keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0.8;
-  }
+  0% { opacity: 0; }
+  100% { opacity: 0.8; }
 }
 
 /* Media queries for responsiveness */
@@ -332,16 +305,13 @@ a {
   html {
     font-size: calc(100vw / 768 * 10);
   }
-
   h1 {
     font-size: 12rem;
   }
-
   .header__nav {
     flex-wrap: wrap;
     gap: 1rem;
   }
-
   .header__nav div {
     margin-right: 1rem;
   }
@@ -351,19 +321,15 @@ a {
   html {
     font-size: calc(100vw / 480 * 10);
   }
-
   h1 {
     font-size: 8rem;
   }
-
   .header {
     padding: 1rem;
   }
-
   .intro__title {
     padding: 0 1rem;
   }
-
   .bottom-content {
     bottom: 2rem;
   }
