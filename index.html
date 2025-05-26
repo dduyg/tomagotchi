@@ -103,12 +103,17 @@
       mix-blend-mode: difference;
       opacity: 1;
     }
-    .circles { 
+    #badge { 
       margin-left: 15px;
       display: block;
       width: 3rem;
       height: 1.5rem;
       position: relative;
+    }
+    #badge .circles {
+      position: relative;
+      width: 100%;
+      height: 100%;
     }
     .circle {
       position: absolute;
@@ -120,9 +125,9 @@
       top: 50%;
     }
     .circle-1 { left: 0; transform: translate(0, -50%); }
-    .circle-2 { left: 0.8rem; transform: translate(0, -50%); mix-blend-mode: exclusion; }   
-    .circles:hover .circle-1 { transform: translate(-0.5rem, -50%); }
-    .circles:hover .circle-2 { transform: translate(0.5rem, -50%); }
+    .circle-2 { left: 0.8rem; transform: translate(0, -50%); mix-blend-mode: exclusion; }
+    #badge:hover .circle-1 { transform: translate(-0.5rem, -50%); }
+    #badge:hover .circle-2 { transform: translate(0.5rem, -50%); }
     
     /* Reveal Animations */
     [data-hidden] {
@@ -160,9 +165,10 @@
     <header>
       <div data-animation="text-reveal">
     
-        <div class="circles">
-          <div class="circle circle-1"></div>
-          <div class="circle circle-2"></div>
+        <div id="badge">
+          <div class="circles">
+          <div class="circle circle-1"></div><div class="circle circle-2"></div>
+        </div>
         </div>
         
       </div>
