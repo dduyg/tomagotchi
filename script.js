@@ -1,418 +1,683 @@
-import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
-import { OrbitControls } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js";
-import { EffectComposer } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/EffectComposer.js";
-import { RenderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/RenderPass.js";
-import { ShaderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/ShaderPass.js";
-import { GUI } from "https://cdn.skypack.dev/dat.gui";
+import * as THREE from "https://esm.sh/three@0.175.0";
+import { GUI } from "https://esm.sh/dat.gui@0.7.9";
+import Stats from "https://esm.sh/stats.js@0.17.0";
+import { EffectComposer } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/RenderPass.js";
+import { ShaderPass } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/ShaderPass.js";
+import { UnrealBloomPass } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/UnrealBloomPass.js";
 
-let scene, camera, renderer, controls;
-let composer, customPass;
-let outerTorus, middleTorus, innerTorus, mouseSphere;
-let cubeRenderTarget, cubeCamera;
-let backgroundTexture;
-let mouse = new THREE.Vector2();
+// Main App class
+class App {
+  constructor() {
+    // Initialize stats
+    this.stats = new Stats();
+    this.stats.showPanel(0);
+    document.body.appendChild(this.stats.dom);
+    this.stats.dom.style.position = "absolute";
+    this.stats.dom.style.top = "0";
+    this.stats.dom.style.left = "0";
 
-const PARAMS = {
-  material: {
-    color: "#FFFFFF",
-    metalness: 0.0,
-    roughness: 0.1,
-    transmission: 1.0,
-    thickness: 1.0,
-    ior: 1.5,
-    clearcoat: 1,
-    clearcoatRoughness: 0.1
-  },
-  rotationSpeed: 0.5,
-  distortion: {
-    strength: 0.1,
-    radius: 0.2,
-    edgeWidth: 0.03,
-    edgeOpacity: 0.1,
-    chromaticAberration: 0.02,
-    reflectionIntensity: 0.2,
-    waveDistortion: 0.05,
-    waveSpeed: 0.8,
-    lensBlur: 0.1,
-    clearCenterSize: 0.5
-  }
-};
+    // Define gradient presets
+    this.gradientPresets = {
+      "Realistic Milky": {
+        colorA1: [0.98, 0.98, 1.0], // Pure White with slight blue tint
+        colorA2: [0.92, 0.92, 0.95], // Very Light Gray with blue tint
+        colorB1: [0.95, 0.95, 0.98], // Almost White
+        colorB2: [0.85, 0.85, 0.9] // Light Gray
+      },
+      "Deep Abyss": {
+        colorA1: [0.02, 0.02, 0.03], // Nearly Black
+        colorA2: [0.04, 0.04, 0.06], // Very Dark Gray with slight blue tint
+        colorB1: [0.03, 0.03, 0.05], // Almost Black with slight blue
+        colorB2: [0.06, 0.05, 0.08] // Very Dark Purple-Gray
+      },
+      "Dark Twilight": {
+        colorA1: [0.05, 0.04, 0.08], // Very Dark Purple
+        colorA2: [0.08, 0.06, 0.12], // Dark Purple
+        colorB1: [0.04, 0.05, 0.09], // Very Dark Blue
+        colorB2: [0.09, 0.08, 0.14] // Dark Blue-Purple
+      },
+      "Dark Moody": {
+        colorA1: [0.05, 0.05, 0.08], // Almost Black
+        colorA2: [0.15, 0.15, 0.25], // Dark Purple
+        colorB1: [0.1, 0.1, 0.2], // Dark Blue
+        colorB2: [0.2, 0.2, 0.3] // Dark Gray
+      },
+      "Soft Cream": {
+        colorA1: [0.98, 0.97, 0.95], // Warm White
+        colorA2: [0.94, 0.92, 0.88], // Light Cream
+        colorB1: [0.96, 0.94, 0.9], // Soft Cream
+        colorB2: [0.9, 0.87, 0.82] // Light Beige
+      },
+      Colorful: {
+        colorA1: [0.957, 0.804, 0.623], // Yellow
+        colorA2: [0.192, 0.384, 0.933], // Deep Blue
+        colorB1: [0.91, 0.51, 0.8], // Pink
+        colorB2: [0.35, 0.71, 0.953] // Light Blue
+      },
+      Mysterious: {
+        colorA1: [0.1, 0.05, 0.2], // Dark Purple
+        colorA2: [0.3, 0.1, 0.4], // Purple
+        colorB1: [0.05, 0.1, 0.2], // Dark Blue
+        colorB2: [0.2, 0.3, 0.5] // Blue
+      },
+      Sunset: {
+        colorA1: [0.8, 0.3, 0.1], // Orange
+        colorA2: [0.5, 0.1, 0.3], // Red-Purple
+        colorB1: [0.9, 0.6, 0.3], // Light Orange
+        colorB2: [0.6, 0.2, 0.5] // Purple
+      },
+      Ocean: {
+        colorA1: [0.0, 0.2, 0.4], // Deep Blue
+        colorA2: [0.0, 0.4, 0.6], // Medium Blue
+        colorB1: [0.0, 0.3, 0.5], // Blue
+        colorB2: [0.1, 0.5, 0.7] // Light Blue
+      }
+    };
 
-async function init() {
-  const canvas = document.createElement("canvas");
-  document.body.appendChild(canvas);
-  renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(window.devicePixelRatio);
+    // Initialize settings
+    this.settings = {
+      damping: 0.98,
+      tension: 0.02,
+      resolution: 1024,
+      rippleStrength: 1.0,
+      gradientPreset: "Realistic Milky", // Default to Realistic Milky
+      mouseIntensity: 0.3,
+      clickIntensity: 2.0,
+      rippleRadius: 12,
+      autoDrops: true,
+      autoDropInterval: 3000,
+      autoDropIntensity: 1.0,
+      performanceMode: false
+    };
 
-  scene = new THREE.Scene();
+    // Store last mouse position for throttling
+    this.lastMousePosition = { x: 0, y: 0 };
+    this.mouseThrottleTime = 0;
 
-  camera = new THREE.PerspectiveCamera(
-    50,
-    window.innerWidth / window.innerHeight,
-    0.1,
-    1000
-  );
-  camera.position.set(0, 0, 10);
+    // Initialize renderer
+    this.renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      powerPreference: "high-performance"
+    });
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    document.body.appendChild(this.renderer.domElement);
 
-  controls = new OrbitControls(camera, canvas);
-  controls.enableDamping = true;
-  controls.dampingFactor = 0.05;
-
-  await setupBackground();
-  setupLights();
-  createMaterials();
-  createShapes();
-  setupPostProcessing();
-  setupGUI();
-
-  window.addEventListener("resize", onWindowResize, false);
-  document.addEventListener("mousemove", onMouseMove, false);
-
-  animate();
-}
-
-function setupLights() {
-  const ambientLight = new THREE.AmbientLight(0xffffff, 1.0);
-  scene.add(ambientLight);
-
-  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-  directionalLight.position.set(5, 5, 5);
-  scene.add(directionalLight);
-}
-
-async function setupBackground() {
-  const loader = new THREE.TextureLoader();
-  backgroundTexture = await new Promise((resolve) => {
-    loader.load(
-      "https://images.unsplash.com/photo-1493278125710-29e0d5195764?q=80&w=2532&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      resolve
+    // Initialize scene and camera
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.OrthographicCamera(
+      -window.innerWidth / 2,
+      window.innerWidth / 2,
+      window.innerHeight / 2,
+      -window.innerHeight / 2,
+      0.1,
+      1000
     );
-  });
+    this.camera.position.z = 10;
 
-  updateBackgroundSize();
-}
+    // Initialize clock
+    this.clock = new THREE.Clock();
 
-function updateBackgroundSize() {
-  if (backgroundTexture) {
-    const aspect = window.innerWidth / window.innerHeight;
-    const imageAspect =
-      backgroundTexture.image.width / backgroundTexture.image.height;
+    // Initialize GUI
+    this.initGUI();
 
-    let scale;
-    if (aspect > imageAspect) {
-      scale = new THREE.Vector2(1, imageAspect / aspect);
-    } else {
-      scale = new THREE.Vector2(aspect / imageAspect, 1);
+    // Bind methods
+    this.tick = this.tick.bind(this);
+    this.onMouseMove = this.onMouseMove.bind(this);
+    this.onTouchMove = this.onTouchMove.bind(this);
+    this.onResize = this.onResize.bind(this);
+
+    // Initialize everything
+    this.init();
+  }
+
+  initGUI() {
+    const gui = new GUI();
+
+    // Gradient preset selector
+    gui
+      .add(this.settings, "gradientPreset", Object.keys(this.gradientPresets))
+      .name("Gradient")
+      .onChange(() => {
+        this.updateGradientColors();
+      });
+
+    // Ripple controls
+    const rippleFolder = gui.addFolder("Ripple Controls");
+    rippleFolder
+      .add(this.settings, "damping", 0.9, 0.999, 0.001)
+      .name("Damping");
+    // Limit tension to safer values to prevent breaking the simulation
+    rippleFolder
+      .add(this.settings, "tension", 0.01, 0.05, 0.001)
+      .name("Tension");
+    rippleFolder
+      .add(this.settings, "rippleStrength", 0.1, 2.0, 0.1)
+      .name("Strength");
+    rippleFolder
+      .add(this.settings, "mouseIntensity", 0.1, 1.0, 0.1)
+      .name("Mouse Intensity");
+    rippleFolder
+      .add(this.settings, "clickIntensity", 0.5, 3.0, 0.1)
+      .name("Click Intensity");
+    rippleFolder
+      .add(this.settings, "rippleRadius", 6, 20, 1)
+      .name("Ripple Size");
+    rippleFolder.open();
+
+    // Auto drops controls
+    const autoDropsFolder = gui.addFolder("Auto Drops");
+    autoDropsFolder.add(this.settings, "autoDrops").name("Enable Auto Drops");
+    autoDropsFolder
+      .add(this.settings, "autoDropInterval", 500, 10000, 100)
+      .name("Interval (ms)");
+    autoDropsFolder
+      .add(this.settings, "autoDropIntensity", 0.1, 2.0, 0.1)
+      .name("Intensity");
+    autoDropsFolder.open();
+
+    // Performance controls
+    const perfFolder = gui.addFolder("Performance");
+    perfFolder
+      .add(this.settings, "performanceMode")
+      .name("Performance Mode")
+      .onChange((value) => {
+        // Adjust resolution based on performance mode
+        if (value) {
+          this.setResolution(512); // Lower resolution for better performance
+        } else {
+          this.setResolution(1024); // Higher resolution for better quality
+        }
+      });
+  }
+
+  setResolution(resolution) {
+    if (resolution === this.settings.resolution) return;
+
+    this.settings.resolution = resolution;
+
+    // Recreate water simulation with new resolution
+    this.initWaterRipple();
+
+    // Update the background material with the new texture
+    if (this.backgroundMaterial) {
+      this.backgroundMaterial.uniforms.waterTexture.value = this.waterTexture;
+    }
+  }
+
+  updateGradientColors() {
+    if (!this.backgroundMaterial) return;
+
+    const preset = this.gradientPresets[this.settings.gradientPreset];
+
+    this.backgroundMaterial.uniforms.colorA1.value.set(
+      preset.colorA1[0],
+      preset.colorA1[1],
+      preset.colorA1[2]
+    );
+    this.backgroundMaterial.uniforms.colorA2.value.set(
+      preset.colorA2[0],
+      preset.colorA2[1],
+      preset.colorA2[2]
+    );
+    this.backgroundMaterial.uniforms.colorB1.value.set(
+      preset.colorB1[0],
+      preset.colorB1[1],
+      preset.colorB1[2]
+    );
+    this.backgroundMaterial.uniforms.colorB2.value.set(
+      preset.colorB2[0],
+      preset.colorB2[1],
+      preset.colorB2[2]
+    );
+  }
+
+  init() {
+    // Create water ripple simulation
+    this.initWaterRipple();
+
+    // Create background image
+    this.createBackground();
+
+    // Add event listeners
+    window.addEventListener("mousemove", this.onMouseMove);
+    window.addEventListener("touchmove", this.onTouchMove, { passive: false });
+    window.addEventListener("resize", this.onResize);
+    window.addEventListener("click", (e) => {
+      const rect = this.renderer.domElement.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      this.addRipple(x, y, this.settings.clickIntensity);
+    });
+
+    // Setup auto drops
+    this.setupAutoDrops();
+
+    // Start animation loop
+    this.tick();
+  }
+
+  setupAutoDrops() {
+    // Clear any existing interval
+    if (this.autoDropsInterval) {
+      clearInterval(this.autoDropsInterval);
     }
 
-    backgroundTexture.offset.set((1 - scale.x) / 2, (1 - scale.y) / 2);
-    backgroundTexture.repeat.set(scale.x, scale.y);
+    // Set up new interval if enabled
+    if (this.settings.autoDrops) {
+      this.autoDropsInterval = setInterval(() => {
+        if (!this.settings.autoDrops) return;
 
-    scene.background = backgroundTexture;
+        // Add a random drop
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight;
+        this.addRipple(x, y, this.settings.autoDropIntensity);
+      }, this.settings.autoDropInterval);
+    }
+  }
+
+  initWaterRipple() {
+    const resolution = this.settings.resolution;
+
+    // Create buffers for water simulation
+    this.waterBuffers = {
+      current: new Float32Array(resolution * resolution),
+      previous: new Float32Array(resolution * resolution)
+    };
+
+    // Create water texture
+    this.waterTexture = new THREE.DataTexture(
+      this.waterBuffers.current,
+      resolution,
+      resolution,
+      THREE.RedFormat,
+      THREE.FloatType
+    );
+    this.waterTexture.minFilter = THREE.LinearFilter;
+    this.waterTexture.magFilter = THREE.LinearFilter;
+    this.waterTexture.needsUpdate = true;
+  }
+
+  createBackground() {
+    // Get initial colors from the current preset
+    const preset = this.gradientPresets[this.settings.gradientPreset];
+
+    // Create a background with the gradient from the provided shader
+    const backgroundShader = {
+      uniforms: {
+        waterTexture: { value: this.waterTexture },
+        rippleStrength: { value: this.settings.rippleStrength },
+        resolution: {
+          value: new THREE.Vector2(window.innerWidth, window.innerHeight)
+        },
+        time: { value: 0 },
+        colorA1: {
+          value: new THREE.Vector3(
+            preset.colorA1[0],
+            preset.colorA1[1],
+            preset.colorA1[2]
+          )
+        },
+        colorA2: {
+          value: new THREE.Vector3(
+            preset.colorA2[0],
+            preset.colorA2[1],
+            preset.colorA2[2]
+          )
+        },
+        colorB1: {
+          value: new THREE.Vector3(
+            preset.colorB1[0],
+            preset.colorB1[1],
+            preset.colorB1[2]
+          )
+        },
+        colorB2: {
+          value: new THREE.Vector3(
+            preset.colorB2[0],
+            preset.colorB2[1],
+            preset.colorB2[2]
+          )
+        }
+      },
+      vertexShader: `
+        varying vec2 vUv;
+        
+        void main() {
+          vUv = uv;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform sampler2D waterTexture;
+        uniform float rippleStrength;
+        uniform vec2 resolution;
+        uniform float time;
+        uniform vec3 colorA1;
+        uniform vec3 colorA2;
+        uniform vec3 colorB1;
+        uniform vec3 colorB2;
+        varying vec2 vUv;
+        
+        // Helper functions from the provided shader
+        float S(float a, float b, float t) {
+          return smoothstep(a, b, t);
+        }
+        
+        mat2 Rot(float a) {
+          float s = sin(a);
+          float c = cos(a);
+          return mat2(c, -s, s, c);
+        }
+        
+        // Improved 3D look with subtle noise
+        float noise(vec2 p) {
+          vec2 ip = floor(p);
+          vec2 fp = fract(p);
+          float a = fract(sin(dot(ip, vec2(12.9898, 78.233))) * 43758.5453);
+          float b = fract(sin(dot(ip + vec2(1.0, 0.0), vec2(12.9898, 78.233))) * 43758.5453);
+          float c = fract(sin(dot(ip + vec2(0.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
+          float d = fract(sin(dot(ip + vec2(1.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
+          
+          fp = fp * fp * (3.0 - 2.0 * fp);
+          
+          return mix(mix(a, b, fp.x), mix(c, d, fp.x), fp.y);
+        }
+        
+        void main() {
+          // Sample the water height for distortion
+          float waterHeight = texture2D(waterTexture, vUv).r;
+          
+          // Calculate distortion based on water height gradient
+          float step = 1.0 / resolution.x;
+          vec2 distortion = vec2(
+            texture2D(waterTexture, vec2(vUv.x + step, vUv.y)).r - texture2D(waterTexture, vec2(vUv.x - step, vUv.y)).r,
+            texture2D(waterTexture, vec2(vUv.x, vUv.y + step)).r - texture2D(waterTexture, vec2(vUv.x, vUv.y - step)).r
+          ) * rippleStrength * 5.0;
+          
+          // Apply distortion to UV coordinates
+          vec2 tuv = vUv + distortion;
+          
+          // Prepare UVs
+          tuv -= 0.5;
+          
+          // Adjust for aspect ratio
+          float ratio = resolution.x / resolution.y;
+          tuv.y *= 1.0/ratio;
+          
+          // Create the gradient background using the uniform colors
+          vec3 layer1 = mix(colorA1, colorA2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
+          vec3 layer2 = mix(colorB1, colorB2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
+          vec3 finalComp = mix(layer1, layer2, S(0.5, -0.3, tuv.y));
+          
+          // Add subtle noise for more realistic 3D look
+          float noiseValue = noise(tuv * 20.0 + time * 0.1) * 0.03;
+          finalComp += vec3(noiseValue);
+          
+          // Add subtle vignette for depth
+          float vignette = 1.0 - smoothstep(0.5, 1.5, length(tuv * 1.5));
+          finalComp *= mix(0.95, 1.0, vignette);
+          
+          gl_FragColor = vec4(finalComp, 1.0);
+        }
+      `
+    };
+
+    // Create a full-screen quad
+    const geometry = new THREE.PlaneGeometry(
+      window.innerWidth,
+      window.innerHeight
+    );
+    this.backgroundMaterial = new THREE.ShaderMaterial({
+      uniforms: backgroundShader.uniforms,
+      vertexShader: backgroundShader.vertexShader,
+      fragmentShader: backgroundShader.fragmentShader
+    });
+
+    const mesh = new THREE.Mesh(geometry, this.backgroundMaterial);
+    this.scene.add(mesh);
+  }
+
+  updateWaterSimulation() {
+    const { current, previous } = this.waterBuffers;
+    const { damping, tension, resolution } = this.settings;
+
+    // Clamp tension to prevent simulation from breaking
+    const safeTension = Math.min(tension, 0.05);
+
+    // Process the buffer in chunks for better cache utilization
+    const chunkSize = 256;
+
+    for (let chunkY = 1; chunkY < resolution - 1; chunkY += chunkSize) {
+      const endY = Math.min(chunkY + chunkSize, resolution - 1);
+
+      for (let chunkX = 1; chunkX < resolution - 1; chunkX += chunkSize) {
+        const endX = Math.min(chunkX + chunkSize, resolution - 1);
+
+        for (let i = chunkY; i < endY; i++) {
+          for (let j = chunkX; j < endX; j++) {
+            const index = i * resolution + j;
+
+            // Get neighboring heights
+            const top = previous[index - resolution];
+            const bottom = previous[index + resolution];
+            const left = previous[index - 1];
+            const right = previous[index + 1];
+
+            // Calculate new height based on neighbors
+            current[index] = (top + bottom + left + right) / 2 - current[index];
+            current[index] =
+              current[index] * damping + previous[index] * (1 - damping);
+
+            // Apply tension with safety clamping
+            current[index] += (0 - previous[index]) * safeTension;
+
+            // Add stability by clamping extreme values
+            current[index] = Math.max(-1.0, Math.min(1.0, current[index]));
+          }
+        }
+      }
+    }
+
+    // Swap buffers
+    [this.waterBuffers.current, this.waterBuffers.previous] = [
+      this.waterBuffers.previous,
+      this.waterBuffers.current
+    ];
+
+    // Update texture
+    this.waterTexture.image.data = this.waterBuffers.current;
+    this.waterTexture.needsUpdate = true;
+  }
+
+  addRipple(x, y, strength = 1.0) {
+    const { resolution, rippleRadius } = this.settings;
+
+    // IMPORTANT: Fix for coordinate mapping
+    // We need to flip the Y coordinate to match the texture coordinate system
+    // The texture coordinate system has (0,0) at the bottom-left, but screen coordinates have (0,0) at the top-left
+    const normalizedX = x / window.innerWidth;
+    const normalizedY = 1.0 - y / window.innerHeight; // Flip Y coordinate
+
+    // Map to texture coordinates
+    const texX = Math.floor(normalizedX * resolution);
+    const texY = Math.floor(normalizedY * resolution);
+
+    // Add ripple at position
+    const radius = rippleRadius;
+    const rippleStrength = strength;
+
+    // Performance optimization: Pre-calculate squared radius
+    const radiusSquared = radius * radius;
+
+    for (let i = -radius; i <= radius; i++) {
+      for (let j = -radius; j <= radius; j++) {
+        const distanceSquared = i * i + j * j;
+
+        if (distanceSquared <= radiusSquared) {
+          const posX = texX + i;
+          const posY = texY + j;
+
+          if (
+            posX >= 0 &&
+            posX < resolution &&
+            posY >= 0 &&
+            posY < resolution
+          ) {
+            const index = posY * resolution + posX;
+            // Use a smoother falloff for better looking ripples
+            const distance = Math.sqrt(distanceSquared);
+            const rippleValue =
+              Math.cos(((distance / radius) * Math.PI) / 2) * rippleStrength;
+            this.waterBuffers.previous[index] += rippleValue;
+          }
+        }
+      }
+    }
+  }
+
+  onMouseMove(ev) {
+    // Get the exact position relative to the canvas
+    const rect = this.renderer.domElement.getBoundingClientRect();
+    const x = ev.clientX - rect.left;
+    const y = ev.clientY - rect.top;
+
+    // Throttle mouse events for better performance
+    const now = performance.now();
+    if (now - this.mouseThrottleTime < 16) {
+      // Limit to ~60 updates per second
+      return;
+    }
+    this.mouseThrottleTime = now;
+
+    // Calculate distance moved since last event
+    const dx = x - this.lastMousePosition.x;
+    const dy = y - this.lastMousePosition.y;
+    const distSquared = dx * dx + dy * dy;
+
+    // Only create ripples if mouse moved enough
+    if (distSquared > 5) {
+      this.addRipple(x, y, this.settings.mouseIntensity);
+      this.lastMousePosition.x = x;
+      this.lastMousePosition.y = y;
+    }
+  }
+
+  onTouchMove(ev) {
+    ev.preventDefault();
+
+    // Get the exact position relative to the canvas
+    const rect = this.renderer.domElement.getBoundingClientRect();
+    const touch = ev.touches[0];
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+
+    // Throttle touch events for better performance
+    const now = performance.now();
+    if (now - this.mouseThrottleTime < 16) {
+      return;
+    }
+    this.mouseThrottleTime = now;
+
+    // Calculate distance moved since last event
+    const dx = x - this.lastMousePosition.x;
+    const dy = y - this.lastMousePosition.y;
+    const distSquared = dx * dx + dy * dy;
+
+    // Only create ripples if touch moved enough
+    if (distSquared > 5) {
+      this.addRipple(x, y, this.settings.mouseIntensity);
+      this.lastMousePosition.x = x;
+      this.lastMousePosition.y = y;
+    }
+  }
+
+  onResize() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    // Update camera
+    this.camera.left = -width / 2;
+    this.camera.right = width / 2;
+    this.camera.top = height / 2;
+    this.camera.bottom = -height / 2;
+    this.camera.updateProjectionMatrix();
+
+    // Update renderer
+    this.renderer.setSize(width, height);
+
+    // Update background material
+    if (this.backgroundMaterial) {
+      this.backgroundMaterial.uniforms.resolution.value.set(width, height);
+    }
+
+    // Update background mesh
+    if (this.scene.children[0] && this.scene.children[0].geometry) {
+      this.scene.children[0].geometry.dispose();
+      this.scene.children[0].geometry = new THREE.PlaneGeometry(width, height);
+    }
+  }
+
+  render() {
+    // Update water simulation
+    this.updateWaterSimulation();
+
+    // Update shader uniforms
+    if (this.backgroundMaterial) {
+      this.backgroundMaterial.uniforms.rippleStrength.value = this.settings.rippleStrength;
+      this.backgroundMaterial.uniforms.time.value += this.clock.getDelta();
+    }
+
+    // Render scene
+    this.renderer.render(this.scene, this.camera);
+  }
+
+  tick() {
+    this.stats.begin();
+
+    // Track frame count for optimizations
+    this.frameCount = (this.frameCount || 0) + 1;
+
+    this.render();
+
+    this.stats.end();
+    requestAnimationFrame(this.tick);
   }
 }
 
-function createMaterials() {
-  const glassMaterial = new THREE.MeshPhysicalMaterial({
-    color: new THREE.Color(PARAMS.material.color),
-    metalness: PARAMS.material.metalness,
-    roughness: PARAMS.material.roughness,
-    transmission: PARAMS.material.transmission,
-    thickness: PARAMS.material.thickness,
-    ior: PARAMS.material.ior,
-    clearcoat: PARAMS.material.clearcoat,
-    clearcoatRoughness: PARAMS.material.clearcoatRoughness,
-    side: THREE.DoubleSide,
-    transparent: true,
-    envMapIntensity: 1,
-    refractionRatio: 0.98
-  });
+// Start the application
+window.addEventListener("DOMContentLoaded", () => {
+  const app = new App();
 
-  cubeRenderTarget = new THREE.WebGLCubeRenderTarget(256, {
-    format: THREE.RGBAFormat,
-    generateMipmaps: true,
-    minFilter: THREE.LinearMipmapLinearFilter
-  });
-  cubeCamera = new THREE.CubeCamera(0.1, 1000, cubeRenderTarget);
-  glassMaterial.envMap = cubeRenderTarget.texture;
-  glassMaterial.envMap.mapping = THREE.CubeRefractionMapping;
+  // Add initial ripples
+  setTimeout(() => {
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    app.addRipple(centerX, centerY, 1.5);
+  }, 500);
 
-  return glassMaterial;
-}
-
-function createShapes() {
-  const glassMaterial = createMaterials();
-  const outerTorusGeometry = new THREE.TorusGeometry(1.2, 0.3, 64, 64);
-  const middleTorusGeometry = new THREE.TorusGeometry(0.9, 0.25, 64, 64);
-  const innerTorusGeometry = new THREE.TorusGeometry(0.6, 0.2, 64, 64);
-  const sphereGeometry = new THREE.SphereGeometry(0.1, 32, 32);
-
-  outerTorus = new THREE.Mesh(outerTorusGeometry, glassMaterial);
-  middleTorus = new THREE.Mesh(middleTorusGeometry, glassMaterial);
-  innerTorus = new THREE.Mesh(innerTorusGeometry, glassMaterial);
-  mouseSphere = new THREE.Mesh(sphereGeometry, glassMaterial);
-
-  outerTorus.position.x = 0;
-  middleTorus.position.x = 0;
-  innerTorus.position.x = 0;
-
-  scene.add(outerTorus);
-  scene.add(middleTorus);
-  scene.add(innerTorus);
-  scene.add(mouseSphere);
-}
-
-function setupPostProcessing() {
-  composer = new EffectComposer(renderer);
-  composer.addPass(new RenderPass(scene, camera));
-
-  const vertexShader = `
-                varying vec2 vUv;
-                void main() {
-                    vUv = uv;
-                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                }
-            `;
-
-  const fragmentShader = `
-                uniform sampler2D tDiffuse;
-                uniform vec2 uMouse;
-                uniform float uRadius;
-                uniform float uStrength;
-                uniform float uEdgeWidth;
-                uniform float uEdgeOpacity;
-                uniform float uChromaticAberration;
-                uniform float uReflectionIntensity;
-                uniform float uWaveDistortion;
-                uniform float uWaveSpeed;
-                uniform float uLensBlur;
-                uniform float uClearCenterSize;
-                uniform float uAspect;
-                uniform float uTime;
-                varying vec2 vUv;
-
-                vec4 blur(sampler2D image, vec2 uv, vec2 resolution, vec2 direction) {
-                    vec4 color = vec4(0.0);
-                    vec2 off1 = vec2(1.3333333333333333) * direction;
-                    color += texture2D(image, uv) * 0.29411764705882354;
-                    color += texture2D(image, uv + (off1 / resolution)) * 0.35294117647058826;
-                    color += texture2D(image, uv - (off1 / resolution)) * 0.35294117647058826;
-                    return color;
-                }
-
-                void main() {
-                    vec2 center = uMouse;
-                    vec2 adjustedUv = vUv;
-                    adjustedUv.x *= uAspect;
-                    center.x *= uAspect;
-                    float dist = distance(adjustedUv, center);
-                    
-                    if (dist < uRadius) {
-                        float normalizedDist = dist / uRadius;
-                        vec2 direction = normalize(adjustedUv - center);
-                        
-                        float clearArea = uClearCenterSize * uRadius;
-                        float distortionFactor = smoothstep(clearArea, uRadius, dist);
-                        
-                        vec2 distortedUv = adjustedUv - direction * uStrength * distortionFactor * distortionFactor;
-                        
-                        float wave = sin(normalizedDist * 10.0 - uTime * uWaveSpeed) * uWaveDistortion * distortionFactor;
-                        distortedUv += direction * wave;
-                        
-                        distortedUv.x /= uAspect;
-
-                        float aberrationStrength = uChromaticAberration * distortionFactor;
-                        vec2 redUv = distortedUv + direction * aberrationStrength / vec2(uAspect, 1.0);
-                        vec2 blueUv = distortedUv - direction * aberrationStrength / vec2(uAspect, 1.0);
-
-                        vec4 colorR = texture2D(tDiffuse, redUv);
-                        vec4 colorG = texture2D(tDiffuse, distortedUv);
-                        vec4 colorB = texture2D(tDiffuse, blueUv);
-
-                        vec4 reflection = texture2D(tDiffuse, vUv + direction * 0.1 * distortionFactor);
-                        
-                        gl_FragColor = vec4(colorR.r, colorG.g, colorB.b, 1.0);
-                        gl_FragColor = mix(gl_FragColor, reflection, uReflectionIntensity * distortionFactor);
-
-                        float blurAmount = uLensBlur * distortionFactor;
-                        gl_FragColor = mix(gl_FragColor, blur(tDiffuse, distortedUv, vec2(1.0 / uAspect, 1.0), vec2(blurAmount)), distortionFactor);
-
-                        float edgeHighlight = smoothstep(uRadius - uEdgeWidth, uRadius, dist);
-                        gl_FragColor = mix(gl_FragColor, vec4(1.0, 1.0, 1.0, 1.0), edgeHighlight * uEdgeOpacity);
-                    } else {
-                        gl_FragColor = texture2D(tDiffuse, vUv);
-                    }
-                }
-            `;
-
-  customPass = new ShaderPass({
-    uniforms: {
-      tDiffuse: { value: null },
-      uMouse: { value: new THREE.Vector2(0.5, 0.5) },
-      uRadius: { value: PARAMS.distortion.radius },
-      uStrength: { value: PARAMS.distortion.strength },
-      uEdgeWidth: { value: PARAMS.distortion.edgeWidth },
-      uEdgeOpacity: { value: PARAMS.distortion.edgeOpacity },
-      uChromaticAberration: { value: PARAMS.distortion.chromaticAberration },
-      uReflectionIntensity: { value: PARAMS.distortion.reflectionIntensity },
-      uWaveDistortion: { value: PARAMS.distortion.waveDistortion },
-      uWaveSpeed: { value: PARAMS.distortion.waveSpeed },
-      uLensBlur: { value: PARAMS.distortion.lensBlur },
-      uClearCenterSize: { value: PARAMS.distortion.clearCenterSize },
-      uAspect: { value: window.innerWidth / window.innerHeight },
-      uTime: { value: 0 }
-    },
-    vertexShader: vertexShader,
-    fragmentShader: fragmentShader
-  });
-  composer.addPass(customPass);
-}
-
-function setupGUI() {
-  const gui = new GUI();
-  const matFolder = gui.addFolder("Material");
-  matFolder.addColor(PARAMS.material, "color").onChange((value) => {
-    outerTorus.material.color.set(value);
-    middleTorus.material.color.set(value);
-    innerTorus.material.color.set(value);
-    mouseSphere.material.color.set(value);
-  });
-  matFolder.add(PARAMS.material, "metalness", 0, 1).onChange((value) => {
-    outerTorus.material.metalness = value;
-    middleTorus.material.metalness = value;
-    innerTorus.material.metalness = value;
-    mouseSphere.material.metalness = value;
-  });
-  matFolder.add(PARAMS.material, "roughness", 0, 1).onChange((value) => {
-    outerTorus.material.roughness = value;
-    middleTorus.material.roughness = value;
-    innerTorus.material.roughness = value;
-    mouseSphere.material.roughness = value;
-  });
-  matFolder.add(PARAMS.material, "transmission", 0, 1).onChange((value) => {
-    outerTorus.material.transmission = value;
-    middleTorus.material.transmission = value;
-    innerTorus.material.transmission = value;
-    mouseSphere.material.transmission = value;
-  });
-  matFolder.add(PARAMS.material, "thickness", 0, 5).onChange((value) => {
-    outerTorus.material.thickness = value;
-    middleTorus.material.thickness = value;
-    innerTorus.material.thickness = value;
-    mouseSphere.material.thickness = value;
-  });
-  matFolder.add(PARAMS.material, "ior", 1, 2.333).onChange((value) => {
-    outerTorus.material.ior = value;
-    middleTorus.material.ior = value;
-    innerTorus.material.ior = value;
-    mouseSphere.material.ior = value;
-  });
-  matFolder.add(PARAMS.material, "clearcoat", 0, 1).onChange((value) => {
-    outerTorus.material.clearcoat = value;
-    middleTorus.material.clearcoat = value;
-    innerTorus.material.clearcoat = value;
-    mouseSphere.material.clearcoat = value;
-  });
-  matFolder
-    .add(PARAMS.material, "clearcoatRoughness", 0, 1)
-    .onChange((value) => {
-      outerTorus.material.clearcoatRoughness = value;
-      middleTorus.material.clearcoatRoughness = value;
-      innerTorus.material.clearcoatRoughness = value;
-      mouseSphere.material.clearcoatRoughness = value;
+  // Update auto drops settings when they change
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (
+        mutation.type === "attributes" &&
+        mutation.attributeName === "data-value"
+      ) {
+        if (
+          mutation.target.classList.contains("autoDrops") ||
+          mutation.target.classList.contains("autoDropInterval")
+        ) {
+          app.setupAutoDrops();
+        }
+      }
     });
-  matFolder.add(PARAMS, "rotationSpeed", 0, 2);
+  });
 
-  const distFolder = gui.addFolder("Distortion");
-  distFolder
-    .add(PARAMS.distortion, "strength", 0, 1)
-    .onChange((value) => (customPass.uniforms.uStrength.value = value));
-  distFolder
-    .add(PARAMS.distortion, "radius", 0.1, 0.5)
-    .onChange((value) => (customPass.uniforms.uRadius.value = value));
-  distFolder
-    .add(PARAMS.distortion, "edgeWidth", 0, 0.05)
-    .onChange((value) => (customPass.uniforms.uEdgeWidth.value = value));
-  distFolder
-    .add(PARAMS.distortion, "edgeOpacity", 0, 1)
-    .onChange((value) => (customPass.uniforms.uEdgeOpacity.value = value));
-  distFolder
-    .add(PARAMS.distortion, "chromaticAberration", 0, 0.1)
-    .onChange(
-      (value) => (customPass.uniforms.uChromaticAberration.value = value)
-    );
-  distFolder
-    .add(PARAMS.distortion, "reflectionIntensity", 0, 1)
-    .onChange(
-      (value) => (customPass.uniforms.uReflectionIntensity.value = value)
-    );
-  distFolder
-    .add(PARAMS.distortion, "waveDistortion", 0, 0.1)
-    .onChange((value) => (customPass.uniforms.uWaveDistortion.value = value));
-  distFolder
-    .add(PARAMS.distortion, "waveSpeed", 0, 5)
-    .onChange((value) => (customPass.uniforms.uWaveSpeed.value = value));
-  distFolder
-    .add(PARAMS.distortion, "lensBlur", 0, 0.1)
-    .onChange((value) => (customPass.uniforms.uLensBlur.value = value));
-  distFolder
-    .add(PARAMS.distortion, "clearCenterSize", 0, 1)
-    .onChange((value) => (customPass.uniforms.uClearCenterSize.value = value));
-}
-
-function onWindowResize() {
-  const aspect = window.innerWidth / window.innerHeight;
-  camera.aspect = aspect;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  composer.setSize(window.innerWidth, window.innerHeight);
-  customPass.uniforms.uAspect.value = aspect;
-  updateBackgroundSize();
-}
-
-function onMouseMove(event) {
-  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-  customPass.uniforms.uMouse.value.set(
-    event.clientX / window.innerWidth,
-    1 - event.clientY / window.innerHeight
-  );
-}
-
-function animate(time) {
-  requestAnimationFrame(animate);
-
-  // Rotate tori
-  outerTorus.rotation.x += PARAMS.rotationSpeed * 0.01;
-  outerTorus.rotation.y += PARAMS.rotationSpeed * 0.01;
-  middleTorus.rotation.y -= PARAMS.rotationSpeed * 0.015;
-  middleTorus.rotation.z += PARAMS.rotationSpeed * 0.015;
-  innerTorus.rotation.x -= PARAMS.rotationSpeed * 0.02;
-  innerTorus.rotation.z -= PARAMS.rotationSpeed * 0.02;
-
-  // Update mouse sphere position
-  const vector = new THREE.Vector3(mouse.x, mouse.y, 0.5);
-  vector.unproject(camera);
-  const dir = vector.sub(camera.position).normalize();
-  const distance = -camera.position.z / dir.z;
-  const pos = camera.position.clone().add(dir.multiplyScalar(distance));
-  mouseSphere.position.copy(pos);
-
-  // Update cube camera for refraction
-  outerTorus.visible = false;
-  middleTorus.visible = false;
-  innerTorus.visible = false;
-  mouseSphere.visible = false;
-  cubeCamera.update(renderer, scene);
-  outerTorus.visible = true;
-  middleTorus.visible = true;
-  innerTorus.visible = true;
-  mouseSphere.visible = true;
-
-  customPass.uniforms.uTime.value = time * 0.001;
-  controls.update();
-  composer.render();
-}
-
-init();
+  // Start observing the GUI elements after a short delay to ensure they're created
+  setTimeout(() => {
+    document.querySelectorAll(".dg .property-name").forEach((el) => {
+      observer.observe(el, { attributes: true });
+    });
+  }, 1000);
+});
