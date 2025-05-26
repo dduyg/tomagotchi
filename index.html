@@ -3,167 +3,252 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Liminal🏁Loop</title>
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
+    *, *::after, *::before { box-sizing: border-box; }
     html { font-size: calc(100vw / 1512 * 10); }
     body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
       margin: 0;
       padding: 0;
       font-family: serif;
       background: radial-gradient(circle at 10% 20%, #000 0%, #0a0a14 90%);
       color: #e6e6e6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
       position: relative;
+      text-align: center;
     }
     canvas {
-      position: fixed;
+      position: absolute;
       top: 0;
       left: 0;
+
       z-index: 0;
       width: 100vw;
       height: 100vh;
     }
 
-    /* Header Navigation */
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 1.6rem 3.2rem;
-      z-index: 10;
-    }
-    .header__nav {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .nav-item {
-      display: inline-block;
-    }
-    .nav-item a {
-      color: inherit;
-      text-decoration: none;
-      font-size: 1.6rem;
-    }
-
-    /* Hero Section */
-    .hero {
-      position: relative;
-      z-index: 5;
-      min-height: 100vh;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-    .hero__content {
-      z-index: 10;
-    }
-    .hero__title {
+    h1 {
       font-size: 18rem;
       font-weight: 700;
       letter-spacing: -0.05em;
-      line-height: 0.85;
-      padding: 0 3.2rem;
-    }
-    .hero__line {
-      display: block;
-    }
-
-    /* Bottom Text */
-    .hero__bottom {
-      position: absolute;
-      bottom: 3.2rem;
-      width: 100%;
-      padding: 0 3.2rem;
       text-align: center;
-      z-index: 10;
+      line-height: 0.85;
     }
-    .bottom-text {
-      font-size: 1.4rem;
-      opacity: 0.8;
-      letter-spacing: 0.05em;
-      animation: fadeIn 1.5s ease-out 1.2s forwards;
+    p {
+      font-size: 2rem;
+      line-height: 1.3;
+      max-width: 46rem;
+    }
+    a {
+      display: inline-block;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    [data-hidden] {
       opacity: 0;
+      filter: blur(15px);
     }
+[data-animation="text-reveal"] {
+  display: block;
+  overflow: hidden;
+}
+[data-animation="text-reveal"] > * {
+  display: block;
+  line-height: 1;
+  transform: translateY(100%);
+}
 
-    /* Text Reveal Animation */
-    [data-animation="text-reveal"] {
-      display: block;
-      overflow: hidden;
-    }
-    [data-animation="text-reveal"] > * {
-      display: block;
-      transform: translateY(100%);
-      animation: revealText 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-    }
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10; /* Ensure header is above canvas and noise */
+  padding: 1.6rem 3.2rem;
+}
+.header__nav {
+  display: flex;
+  justify-content: space-between;
+}
 
-    .header__nav .nav-item:nth-child(1) [data-animation="text-reveal"] > * { animation-delay: 0.2s; }
-    .header__nav .nav-item:nth-child(2) [data-animation="text-reveal"] > * { animation-delay: 0.3s; }
-    .header__nav .nav-item:nth-child(3) [data-animation="text-reveal"] > * { animation-delay: 0.4s; }
-    .header__nav .nav-item:nth-child(4) [data-animation="text-reveal"] > * { animation-delay: 0.5s; }
+.intro {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  z-index: 5; /* Above canvas */
+}
+.intro__text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10; /* Ensure text is above everything */
+  width: 100%;
+  text-align: center;
+}
+.intro__title {
+  padding: 0 3.2rem;
+  line-height: 1;
+}
 
-    .hero__title span:nth-child(1) [data-animation="text-reveal"] > * { animation-delay: 0.7s; }
-    .hero__title span:nth-child(2) [data-animation="text-reveal"] > * { animation-delay: 0.8s; }
-    .hero__title span:nth-child(3) [data-animation="text-reveal"] > * { animation-delay: 0.9s; }
+.bottom-content {
+  position: absolute;
+  bottom: 3.2rem;
+  width: 100%;
+  padding: 0 3.2rem;
+  display: flex;
+  justify-content: center;
+  z-index: 10; /* Ensure bottom content is above everything */
+  text-align: center;
+}
+.bottom-text {
+  font-size: 1.4rem;
+  opacity: 0.8;
+  letter-spacing: 0.05em;
+}
 
-    @keyframes revealText {
-      from { transform: translateY(100%); }
-      to { transform: translateY(0); }
-    }
+/* Animation for text reveal */
+@-webkit-keyframes revealText {
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(0); }
+}
+@keyframes revealText {
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(0); }
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 0.8; }
-    }
+/* Apply animation to text elements */
+.header__nav [data-animation="text-reveal"] > *,
+.intro__title [data-animation="text-reveal"] > * {
+  -webkit-animation: revealText 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+          animation: revealText 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
 
-    /* Responsive Typography */
-    @media (max-width: 768px) {
-      html { font-size: calc(100vw / 768 * 10); }
-      .hero__title { font-size: 12rem; }
-    }
+/* Stagger animation for header items */
+.header__nav div:nth-child(1) [data-animation="text-reveal"] > * {
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
+}
+.header__nav div:nth-child(2) [data-animation="text-reveal"] > * {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+.header__nav div:nth-child(3) [data-animation="text-reveal"] > * {
+  -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
+}
+.header__nav div:nth-child(4) [data-animation="text-reveal"] > * {
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
 
-    @media (max-width: 480px) {
-      html { font-size: calc(100vw / 480 * 10); }
-      .hero__title { font-size: 8rem; }
-      .header { padding: 1rem; }
-      .hero__title { padding: 0 1rem; }
-      .hero__bottom { bottom: 2rem; }
-    }
+/* Stagger animation for title */
+.intro__title span:nth-child(1) [data-animation="text-reveal"] > * {
+  -webkit-animation-delay: 0.7s;
+          animation-delay: 0.7s;
+}
+.intro__title span:nth-child(2) [data-animation="text-reveal"] > * {
+  -webkit-animation-delay: 0.8s;
+          animation-delay: 0.8s;
+}
+.intro__title span:nth-child(3) [data-animation="text-reveal"] > * {
+  -webkit-animation-delay: 0.9s;
+          animation-delay: 0.9s;
+}
+
+/* Animation for bottom text */
+.bottom-text {
+  -webkit-animation: fadeIn 1.5s ease-out 1.2s forwards;
+  animation: fadeIn 1.5s ease-out 1.2s forwards;
+  opacity: 0;
+}
+
+@-webkit-keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 0.8; }
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 0.8; }
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  html {
+    font-size: calc(100vw / 768 * 10);
+  }
+  h1 {
+    font-size: 12rem;
+  }
+  .header__nav {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .header__nav div {
+    margin-right: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  html {
+    font-size: calc(100vw / 480 * 10);
+  }
+  h1 {
+    font-size: 8rem;
+  }
+  .header {
+    padding: 1rem;
+  }
+  .intro__title {
+    padding: 0 1rem;
+  }
+
+  .bottom-content {
+    bottom: 2rem;
+  }
+}
   </style>
 </head>
 <body>
-  <header class="header">
-    <nav class="header__nav">
-      <div class="nav-item" data-animation="text-reveal"><a href="#">Emptiness</a></div>
-      <div class="nav-item" data-animation="text-reveal"><a href="#">Stillness</a></div>
-      <div class="nav-item" data-animation="text-reveal"><a href="#">Surrender</a></div>
-      <div class="nav-item" data-animation="text-reveal"><a href="#">Becoming</a></div>
-    </nav>
-  </header>
+<header class="header">
+  <nav class="header__nav">
+    <div data-animation="text-reveal">
+      <a href="">Emptiness</a>
+    </div>
+    <div data-animation="text-reveal">
+      <a href="">Stillness</a>
+    </div>
+    <div data-animation="text-reveal">
+      <a href="">Surrender</a>
+    </div>
+    <div data-animation="text-reveal">
+      <a href="">Becoming</a>
+    </div>
+  </nav>
+</header>
 
-  <section class="hero">
-    <div class="hero__content">
-      <h1 class="hero__title">
-        <span data-animation="text-reveal"><span class="hero__line">LISTEN</span></span>
-        <span data-animation="text-reveal"><span class="hero__line">TO THE</span></span>
-        <span data-animation="text-reveal"><span class="hero__line">NOTHING</span></span>
-      </h1>
-    </div>
-    <div class="hero__bottom">
-      <p class="bottom-text">What happens in the void between thoughts is where truth emerges</p>
-    </div>
-  </section>
+<section class="intro">
+  <div class="intro__text">
+    <h1 class="intro__title">
+      <span data-animation="text-reveal">
+        <span>LISTEN</span>
+      </span>
+      <span data-animation="text-reveal">
+        <span>TO THE</span>
+      </span>
+      <span data-animation="text-reveal">
+        <span>NOTHING</span>
+      </span>
+    </h1>
+  </div>
+  <div class="bottom-content">
+    <p class="bottom-text">What happens in the void between thoughts is where truth emerges</p>
+  </div>
+</section>
 
   <script type="module">
     import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
