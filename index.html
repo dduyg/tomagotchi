@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>LiminalLoop</title>
+  <style>
+:root {
+  --color-bg: #111111;
+  --color-text: #ffffff;
+  --color-text-muted: rgba(255, 255, 255, 0.7);
+  --color-text-dim: rgba(255, 255, 255, 0.6);
+  --color-dot: #444;
+  --color-star: rgba(209, 255, 255, 1);
+  /* Typography */
+  --font-body: "TheGoodMonolith", sans-serif;
+  --font-title: "PP Neue Montreal", sans-serif;
+  --font-size-base: 0.75rem;
+  --font-size-h2: 2rem;
+  --font-size-h1: 3rem;
+  --letter-spacing-title: -0.03em;
+  --line-height: 1.4;
+  /* Spacing */
+  --spacing-base: 1rem;
+  --spacing-sm: 0.75rem;
+  --spacing-xs: 0.25rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-medium: 0.3s ease;
+  --transition-slow: 0.8s ease;
+  /* Effects */
+  --blur-amount: 5px;
+}
+
+*, *:before, *:after { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: var(--line-height);
+  margin: 0;
+  font-size: var(--font-size-base);
+  overflow-x: hidden;
+}
+a,
+.links span {
+  position: relative;
+  cursor: pointer;
+  color: var(--color-text);
+  padding: 0;
+  display: inline-block;
+  z-index: 1;
+  text-decoration: none;
+  font-size: var(--font-size-base);
+  opacity: 0.7;
+  transition: color var(--transition-medium);
+}
+a::after,
+.links span::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--color-text);
+  z-index: -1;
+  transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+a:hover::after,
+.links span:hover::after {
+  width: 100%;
+}
+a:hover,
+.links span:hover {
+  color: black;
+  mix-blend-mode: difference;
+  opacity: 1;
+}
+
+/* ===== LAYOUT COMPONENTS ===== */
+.footer {
+  padding: 1rem;
+  width: 100%;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  -moz-column-gap: 4%;
+       column-gap: 4%;
+  width: 100%;
+}
+
+/* Grid column assignments */
+.nav {
+  grid-column: 1 / span 3;
+}
+.values {
+  grid-column: 5 / span 2;
+}
+.location-2 {
+  grid-column: 7 / span 2;
+}
+.contact {
+  grid-column: 9 / span 2;
+}
+.social {
+  grid-column: 11 / span 2;
+  text-align: right;
+}
+
+/* ===== LOGO COMPONENT ===== */
+.logo-container {
+  margin-bottom: var(--spacing-md);
+  display: block;
+  width: 3rem;
+  height: 1.5rem;
+  position: relative;
+}
+.logo-circles {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  transition: transform var(--transition-medium);
+  width: 1.4rem;
+  height: 1.4rem;
+  background-color: var(--color-text);
+  top: 50%;
+}
+.circle-1 {
+  left: 0;
+  transform: translate(0, -50%);
+}
+.circle-2 {
+  left: 0.8rem;
+  transform: translate(0, -50%);
+  mix-blend-mode: exclusion;
+}
+.logo-container:hover .circle-1 {
+  transform: translate(-0.5rem, -50%);
+}
+.logo-container:hover .circle-2 {
+  transform: translate(0.5rem, -50%);
+}
+  </style>
+</head>
+<body>
+<div class="footer">
+  <div class="container">
+    <div class="nav">
+      <div class="logo-container">
+        <div class="logo-circles">
+          <div class="circle circle-1"></div>
+          <div class="circle circle-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="values">
+      <h3>+Menu</h3>
+      <ul>
+        <li><a href="#">Clarity</a></li>
+        <li><a href="#">Simplicity</a></li>
+        <li><a href="#">Creativity</a></li>
+        <li><a href="#">Authenticity</a></li>
+        <li><a href="#">Connect</a></li>
+      </ul>
+    </div>
+
+    <div class="location-2">
+      <h3>+Location</h3>
+      <p>6357 Selma Ave</p>
+      <p>Los Angeles</p>
+      <p>CA 90028</p>
+    </div>
+
+    <div class="contact">
+      <h3>+Get In Touch</h3>
+      <p>(310) 456-7890</p>
+      <p><a href="#">hi@filip.fyi</a></p>
+    </div>
+
+    <div class="social">
+      <h3>+Social</h3>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">X / Twitter</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
