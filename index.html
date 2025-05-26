@@ -168,7 +168,312 @@ p {
 </div>
 
 <div class="scroll-indicator">Scroll to explore</div>
+<script type="module">
+import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
+import { gsap } from "https://cdn.skypack.dev/gsap@3.11.4";
+import { ScrollTrigger } from "https://cdn.skypack.dev/gsap@3.11.4/ScrollTrigger";
 
-<script type="module" src="./script.js"></script>
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
+
+// Use the existing scroll container in the HTML
+const setupScrollContainer = () => {
+  return document.querySelector(".content-container");
+};
+
+// Initialize renderer
+const renderer = new THREE.WebGLRenderer({
+  antialias: true,
+  precision: "highp"
+});
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setClearColor(0x000000, 1);
+document.body.appendChild(renderer.domElement);
+
+// Create scene and camera
+const scene = new THREE.Scene();
+const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+// Settings
+const settings = {
+  metaballCount: 9,
+  metaballRadius: 0.5,
+  metaballType: 4, // Gaussian
+  scrollProgress: 0,
+  spreadFactor: 1.3,
+  blendPower: 1.8,
+  colorIntensity: 0.7,
+  grainAmount: 0.3,
+  lightIntensity: 1.0,
+  specularPower: 0.6,
+  rimLightPower: 0.5,
+  blackAndWhite: false,
+  useTexture: true,
+  textureScale: 10.0,
+  textureStrength: 0.5,
+  useMatcap: true,
+  matcapIntensity: 0.8,
+  renderQuality: 1.0
+};
+
+// Shader material for metaballs
+const metaballShader = new THREE.ShaderMaterial({
+  uniforms: {
+    iResolution: {
+      value: new THREE.Vector2(window.innerWidth, window.innerHeight)
+    },
+    iTime: { value: 0 },
+    iMouse: { value: new THREE.Vector2(0, 0) },
+    metaballCount: { value: settings.metaballCount },
+    metaballType: { value: settings.metaballType },
+    metaballRadius: { value: settings.metaballRadius },
+    scrollProgress: { value: settings.scrollProgress },
+    spreadFactor: { value: settings.spreadFactor },
+    blendPower: { value: settings.blendPower },
+    colorIntensity: { value: settings.colorIntensity },
+    grainAmount: { value: settings.grainAmount },
+    lightIntensity: { value: settings.lightIntensity },
+    specularPower: { value: settings.specularPower },
+    rimLightPower: { value: settings.rimLightPower },
+    blackAndWhite: { value: settings.blackAndWhite ? 1.0 : 0.0 },
+    useTexture: { value: settings.useTexture ? 1.0 : 0.0 },
+    textureScale: { value: settings.textureScale },
+    textureStrength: { value: settings.textureStrength },
+    useMatcap: { value: settings.useMatcap ? 1.0 : 0.0 },
+    matcapIntensity: { value: settings.matcapIntensity },
+    renderQuality: { value: settings.renderQuality }
+  },
+  vertexShader: `
+    varying vec2 vUv;
+    
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  `,
+  fragmentShader: `
+    uniform vec2 iResolution;
+    uniform float iTime;
+    uniform vec2 iMouse;
+    uniform int metaballCount;
+    uniform int metaballType;
+    uniform float metaballRadius;
+    uniform float scrollProgress;
+    uniform float spreadFactor;
+    uniform float blendPower;
+    uniform float colorIntensity;
+    uniform float grainAmount;
+    uniform float lightIntensity;
+    uniform float specularPower;
+    uniform float rimLightPower;
+    uniform float blackAndWhite;
+    uniform float useTexture;
+    uniform float textureScale;
+    uniform float textureStrength;
+    uniform float useMatcap;
+    uniform float matcapIntensity;
+    uniform float renderQuality;
+    
+    varying vec2 vUv;
+    
+    float smin(float a, float b, float k) {
+      float h = clamp(0.5 + 0.5 * (b - a) / k, 0.0, 1.0);
+      return mix(b, a, h) - k * h * (1.0 - h);
+    }
+    
+    float superSmoothstep(float edge0, float edge1, float x) {
+      float t = clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0);
+      return t * t * t * (t * (t * 6.0 - 15.0) + 10.0);
+    }
+    
+    float hash(float n) {
+      return fract(sin(n) * 43758.5453);
+    }
+    
+    float noise(vec2 p) {
+      vec2 i = floor(p);
+      vec2 f = fract(p);
+      f = f * f * (3.0 - 2.0 * f);
+      float n = i.x + i.y * 57.0;
+      return mix(
+        mix(hash(n), hash(n + 1.0), f.x),
+        mix(hash(n + 57.0), hash(n + 58.0), f.x),
+        f.y
+      );
+    }
+    
+    float fbm(vec2 p) {
+      float f = 0.0;
+      float w = 0.5;
+      for (int i = 0; i < 5; i++) {
+        f += w * noise(p);
+        p *= 2.0;
+        w *= 0.5;
+      }
+      return f;
+    }
+    
+    float noise3D(vec3 p) {
+      vec3 i = floor(p);
+      vec3 f = fract(p);
+      f = f * f * (3.0 - 2.0 * f);
+      
+      vec2 uv = i.xy + i.z * vec2(17.0);
+      vec2 uv2 = uv + vec2(17.0);
+      
+      float a = noise(uv);
+      float b = noise(uv + vec2(1.0, 0.0));
+      float c = noise(uv + vec2(0.0, 1.0));
+      float d = noise(uv + vec2(1.0, 1.0));
+      
+      float e = noise(uv2);
+      float g = noise(uv2 + vec2(1.0, 0.0));
+      float h = noise(uv2 + vec2(0.0, 1.0));
+      float i2 = noise(uv2 + vec2(1.0, 1.0));
+      
+      return mix(
+        mix(mix(a, b, f.x), mix(c, d, f.x), f.y),
+        mix(mix(e, g, f.x), mix(h, i2, f.x), f.y),
+        f.z
+      );
+    }
+    
+    float filmGrain(vec2 uv, float time) {
+      float t = floor(time * 24.0) / 24.0;
+      return noise(uv * 500.0 + t * 5.0) * 2.0 - 1.0;
+    }
+    
+    float sdSphere(vec3 p, float r) {
+      return length(p) - r;
+    }
+    
+    float mapMetaballs(vec3 p, float t, float phase) {
+      float globalDist = 100.0;
+      
+      for(int i = 0; i < 16; ++i) {
+        if(i >= metaballCount) break;
+        
+        float fi = float(i);
+        float uniqueSeed = fi * 412.531 + 0.513;
+        float uniqueTime = t * (fract(uniqueSeed) - 0.5) * 2.0;
+        
+        float uniqueSize = mix(0.3, 1.0, fract(uniqueSeed + 0.5124)) * metaballRadius;
+        
+        vec3 offset = vec3(
+          sin(uniqueTime + fi * 52.5126) * spreadFactor,
+          sin(uniqueTime + fi * 64.62744) * spreadFactor,
+          sin(uniqueTime + fi * 37.1234) * spreadFactor * (1.0 + scrollProgress)
+        );
+        
+        float squeeze = sin(scrollProgress * 3.14159);
+        offset *= mix(1.0, 0.3, squeeze);
+        
+        float dist = sdSphere(p - offset, uniqueSize);
+        
+        float blendK = 0.4 * blendPower;
+        globalDist = smin(globalDist, dist, blendK);
+      }
+      
+      return globalDist;
+    }
+    
+    vec3 calcNormal(vec3 p, float t, float phase) {
+      const float eps = 0.002;
+      const vec2 h = vec2(eps, 0.0);
+      
+      return normalize(vec3(
+        mapMetaballs(p + vec3(h.x, h.y, h.y), t, phase) - mapMetaballs(p - vec3(h.x, h.y, h.y), t, phase),
+        mapMetaballs(p + vec3(h.y, h.x, h.y), t, phase) - mapMetaballs(p - vec3(h.y, h.x, h.y), t, phase),
+        mapMetaballs(p + vec3(h.y, h.y, h.x), t, phase) - mapMetaballs(p - vec3(h.y, h.y, h.x), t, phase)
+      ));
+    }
+    
+    void main() {
+      vec2 uv = vUv * 2.0 - 1.0;
+      uv.x *= iResolution.x / iResolution.y;
+      
+      float t = iTime * 0.5;
+      float phase = scrollProgress * 6.283185; // 2*PI
+      
+      vec3 ro = vec3(0.0, 0.0, 3.0);
+      vec3 rd = normalize(vec3(uv, -1.5));
+      
+      float totalDist = 0.0;
+      const float maxDist = 10.0;
+      const float surfaceThreshold = 0.001;
+      
+      float dist;
+      int steps;
+      
+      for(steps = 0; steps < 64; steps++) {
+        vec3 p = ro + rd * totalDist;
+        dist = mapMetaballs(p, t, phase);
+        if(dist < surfaceThreshold) break;
+        totalDist += dist;
+        if(totalDist > maxDist) break;
+      }
+      
+      if(dist < surfaceThreshold) {
+        vec3 p = ro + rd * totalDist;
+        vec3 normal = calcNormal(p, t, phase);
+        
+        vec3 lightDir = normalize(vec3(-0.5, 0.8, 0.6));
+        float diff = max(dot(normal, lightDir), 0.0);
+        
+        vec3 viewDir = normalize(ro - p);
+        vec3 reflectDir = reflect(-lightDir, normal);
+        
+        float spec = pow(max(dot(viewDir, reflectDir), 0.0), 16.0);
+        float rim = pow(1.0 - max(dot(viewDir, normal), 0.0), 4.0);
+        
+        vec3 baseColor = vec3(0.2, 0.5, 1.0) * colorIntensity;
+        if(blackAndWhite > 0.5) baseColor = vec3(dot(baseColor, vec3(0.333)));
+        
+        vec3 color = baseColor * diff * lightIntensity + vec3(spec) * specularPower + rim * rimLightPower;
+        
+        // Add grain noise
+        float grain = filmGrain(gl_FragCoord.xy / iResolution.xy, iTime) * grainAmount;
+        color += grain;
+        
+        gl_FragColor = vec4(color, 1.0);
+      } else {
+        gl_FragColor = vec4(0.0);
+      }
+    }
+  `
+});
+
+// Plane geometry for full screen quad
+const geometry = new THREE.PlaneGeometry(2, 2);
+const mesh = new THREE.Mesh(geometry, metaballShader);
+scene.add(mesh);
+
+// Resize handler
+window.addEventListener("resize", () => {
+  metaballShader.uniforms.iResolution.value.set(window.innerWidth, window.innerHeight);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// Animation loop
+const clock = new THREE.Clock();
+
+function animate() {
+  requestAnimationFrame(animate);
+
+  metaballShader.uniforms.iTime.value = clock.getElapsedTime();
+
+  // Scroll progress from the container
+  const container = setupScrollContainer();
+  if(container) {
+    const scrollTop = container.scrollTop;
+    const scrollHeight = container.scrollHeight - container.clientHeight;
+    metaballShader.uniforms.scrollProgress.value = scrollTop / scrollHeight;
+  }
+
+  renderer.render(scene, camera);
+}
+
+animate();
+</script>
 </body>
 </html>
