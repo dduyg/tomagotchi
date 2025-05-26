@@ -1,14 +1,57 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Elastic Hover Background for Navigation</title>
-  <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
-<link rel="stylesheet" href="./style.css">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>LiminalLoop</title>
+  <style>
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+.nav-menu {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 32px;
+  height: 100vh;
+  box-sizing: border-box;
+  position: relative;
+}
+.card-list_item {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  padding: 20px;
+  z-index: 2;
+}
+.card-list_item-inner {
+  position: relative;
+  z-index: 2;
+}
+.card-list_bg-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+.card-list_bg-path {
+  fill: var(--base-color-neutral--white, #333);
+}
+  </style>
 </head>
 <body>
-<!-- partial:index.partial.html -->
 <nav class="nav-menu">
   <div class="card-list_item">
     <div class="card-list_item-inner">
@@ -38,8 +81,8 @@
     <path d="M 0 0 H 0 Q 0 50 0 100 H 0 V 0 z" class="card-list_bg-path"></path>
   </svg>
 </nav>
-<!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js'></script><script  src="./script.js"></script>
 
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js'></script>
+  <script  src="./script.js"></script>
 </body>
 </html>
