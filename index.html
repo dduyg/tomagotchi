@@ -6,160 +6,117 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>LiminalLoop</title>
   <style>
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono&display=swap");
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  overflow-x: hidden;
-  background-color: #000;
-  color: #fff;
-  font-family: "JetBrains Mono", monospace;
-  line-height: 1.4;
-  font-size: 14px;
-}
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-.content-container {
-  position: relative;
-  width: 100%;
-  height: 500vh;
-  z-index: 1;
-}
-
-.section {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 2rem 10vw;
-  position: relative;
-  z-index: 2;
-}
-.section-content {
-  max-width: 640px;
-  background: transparent;
-}
-
-h1 {
-  font-family: "Inter", sans-serif;
-  font-size: min(5rem, 10vw);
-  font-weight: 500;
-  margin-bottom: 1rem;
-  line-height: 0.85;
-  letter-spacing: -0.03em;
-}
-h2 {
-  font-family: "Inter", sans-serif;
-  font-size: min(3rem, 8vw);
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  letter-spacing: -0.03em;
-}
-p {
-  font-size: 0.75rem;
-  margin-bottom: 1rem;
-  max-width: 40rem;
-  opacity: 1;
-  text-transform: uppercase;
-}
-.label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  opacity: 0.25;
-  margin-bottom: 0.5rem;
-}
-.meta-type {
-  color: #64f4ac;
-}
-
-.scroll-indicator {
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  color: white;
-  font-size: 0.625rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.scroll-indicator.hide {
-  opacity: 0;
-}
-
-/* Section-specific styles */
-#section1 .meta-type {
-  color: #64f4ac;
-}
-
-#section2 .meta-type {
-  color: #23a6d5;
-}
-
-#section3 .meta-type {
-  color: #ee7752;
-}
-
-#section4 .meta-type {
-  color: #e73c7e;
-}
-
-#section5 .meta-type {
-  color: #ff9a8b;
-}
-
-/* Style for dat.gui - position it so it doesn't overlap content */
-.dg.ac {
-  z-index: 10 !important;
-  top: 0 !important;
-  right: 0 !important;
-}
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono&display=swap");
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      overflow-x: hidden;
+      background-color: #000;
+      color: #fff;
+      font-family: "JetBrains Mono", monospace;
+      line-height: 1.4;
+      font-size: 14px;
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    
+    .container {
+      position: relative;
+      width: 100%;
+      height: 500vh;
+      z-index: 1;
+    }    
+    section {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem 10vw;
+      position: relative;
+      z-index: 2;
+    }
+    .content {
+      max-width: 640px;
+      background: transparent;
+    }    
+    h1 {
+      font-family: "Inter", sans-serif;
+      font-size: min(5rem, 10vw);
+      font-weight: 500;
+      margin-bottom: 1rem;
+      line-height: 0.85;
+      letter-spacing: -0.03em;
+    }
+    h2 {
+      font-family: "Inter", sans-serif;
+      font-size: min(3rem, 8vw);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.03em;
+    }
+    p {
+      font-size: 0.75rem;
+      margin-bottom: 1rem;
+      max-width: 40rem;
+      opacity: 1;
+      text-transform: uppercase;
+    }
+    .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.25;
+      margin-bottom: 0.5rem;
+    }
+    .meta-type { color: #64f4ac; }
+    #section1 .meta-type { color: #64f4ac; }
+    #section2 .meta-type { color: #23a6d5; }
+    #section3 .meta-type { color: #ee7752; }
+    #section4 .meta-type { color: #e73c7e; }
+    #section5 .meta-type { color: #ff9a8b; }
   </style>
 </head>
 <body>
-<div class="content-container">
-  <section id="section1" class="section">
-    <div class="section-content">
+<div class="container">
+  <section id="section1">
+    <div class="content">
       <h1>Metaballs <span class="meta-type">Visualization</span></h1>
       <p>Scroll through this interactive experience to see different types of metaballs visualizations. Each type has unique mathematical properties.</p>
     </div>
   </section>
 
-  <section id="section2" class="section">
-    <div class="section-content">
+  <section id="section2">
+    <div class="content">
       <div class="label">Type 01</div>
       <h2>Gaussian <span class="meta-type">Metaballs</span></h2>
       <p>Gaussian metaballs use an exponential squared falloff creating smooth, natural-looking blob formations.</p>
     </div>
   </section>
 
-  <section id="section3" class="section">
-    <div class="section-content">
+  <section id="section3">
+    <div class="content">
       <div class="label">Type 02</div>
       <h2>Exponential <span class="meta-type">Metaballs</span></h2>
       <p>Exponential metaballs use a simple exponential falloff function with slightly sharper edges while maintaining smooth blending.</p>
     </div>
   </section>
 
-  <section id="section4" class="section">
-    <div class="section-content">
+  <section id="section4">
+    <div class="content">
       <div class="label">Type 03</div>
       <h2>Electric Force <span class="meta-type">Metaballs</span></h2>
       <p>Using the inverse square law (1/r²), these metaballs simulate electric force fields with sharper transitions.</p>
     </div>
   </section>
 
-  <section id="section5" class="section">
-    <div class="section-content">
+  <section id="section5">
+    <div class="content">
       <div class="label">Type 04</div>
       <h2>Electric Potential <span class="meta-type">Metaballs</span></h2>
       <p>Based on electric potential physics (1/r), these metaballs have the slowest falloff rate with gradual transitions.</p>
@@ -167,7 +124,6 @@ p {
   </section>
 </div>
 
-<div class="scroll-indicator">Scroll to explore</div>
 <script type="module">
 import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
 import { gsap } from "https://cdn.skypack.dev/gsap@3.11.4";
