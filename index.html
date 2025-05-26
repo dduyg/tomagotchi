@@ -7,6 +7,7 @@
   <title>Liminal🏁Loop</title>
   <style>
     *, *::after, *::before { box-sizing: border-box; }
+    html { font-size: calc(100vw / 1512 * 10); }
     body {
       display: flex;
       justify-content: center;
@@ -26,7 +27,6 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      z-index: 0; /* Ensure canvas is in the background */
     }
 
     h1 {
@@ -79,6 +79,7 @@
       min-height: 100vh;
       overflow: hidden;
       z-index: 5;
+      margin-top: 80px; /* Adjust this value based on the actual header height */
     }
     .intro__text {
       position: absolute;
@@ -171,7 +172,12 @@
     }
 
     @media (max-width: 768px) {
-      h1 { font-size: 12rem; }
+      html {
+        font-size: calc(100vw / 768 * 10);
+      }
+      h1 {
+        font-size: 12rem;
+      }
       .header__nav {
         flex-wrap: wrap;
         gap: 1rem;
@@ -181,6 +187,9 @@
       }
     }
     @media (max-width: 480px) {
+      html {
+        font-size: calc(100vw / 480 * 10);
+      }
       h1 {
         font-size: 8rem;
       }
@@ -190,6 +199,7 @@
       .intro__title {
         padding: 0 1rem;
       }
+
       .bottom-content {
         bottom: 2rem;
       }
@@ -199,19 +209,33 @@
 <body>
   <header class="header">
     <nav class="header__nav">
-      <div data-animation="text-reveal"><a href="">Emptiness</a></div>
-      <div data-animation="text-reveal"><a href="">Stillness</a></div>
-      <div data-animation="text-reveal"><a href="">Surrender</a></div>
-      <div data-animation="text-reveal"><a href="">Becoming</a></div>
+      <div data-animation="text-reveal">
+        <a href="">Emptiness</a>
+      </div>
+      <div data-animation="text-reveal">
+        <a href="">Stillness</a>
+      </div>
+      <div data-animation="text-reveal">
+        <a href="">Surrender</a>
+      </div>
+      <div data-animation="text-reveal">
+        <a href="">Becoming</a>
+      </div>
     </nav>
   </header>
 
   <section class="intro">
     <div class="intro__text">
       <h1 class="intro__title">
-        <span data-animation="text-reveal"><span>LISTEN</span></span>
-        <span data-animation="text-reveal"><span>TO THE</span></span>
-        <span data-animation="text-reveal"><span>NOTHING</span></span>
+        <span data-animation="text-reveal">
+          <span>LISTEN</span>
+        </span>
+        <span data-animation="text-reveal">
+          <span>TO THE</span>
+        </span>
+        <span data-animation="text-reveal">
+          <span>NOTHING</span>
+        </span>
       </h1>
     </div>
     <div class="bottom-content">
