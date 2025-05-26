@@ -416,193 +416,353 @@ a {
 </section>
 
 <script type="module">
-import * as THREE from 'three';
+import * as THREE from "https://esm.sh/three@0.175.0";
+import { EffectComposer } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/RenderPass.js";
+import { ShaderPass } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/ShaderPass.js";
+import { UnrealBloomPass } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/UnrealBloomPass.js";
 
-const vertexShader = `
-  varying vec2 vUv;
-  void main() {
-    vUv = uv;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-  }
-`;
-
-const fragmentShader = `
-  uniform sampler2D uTexture;
-  uniform float uTime;
-  uniform vec2 uResolution;
-  uniform vec2 uRipplePos[10];
-  uniform float uRippleIntensity[10];
-  uniform float uRippleStartTime[10];
-  uniform float uRippleCount;
-  varying vec2 vUv;
-
-  float ripple(vec2 uv, vec2 center, float time, float intensity) {
-    float dist = distance(uv, center);
-    float wave = sin(20.0 * dist - time * 6.0);
-    float attenuation = 1.0 / (1.0 + 30.0 * dist * dist);
-    return wave * attenuation * intensity;
-  }
-
-  void main() {
-    vec2 uv = vUv;
-    float rippleEffect = 0.0;
-
-    for (int i = 0; i < 10; i++) {
-      if (i >= int(uRippleCount)) break;
-      float elapsed = uTime - uRippleStartTime[i];
-      if (elapsed > 0.0 && elapsed < 1.5) {
-        rippleEffect += ripple(uv, uRipplePos[i], elapsed, uRippleIntensity[i] * (1.0 - elapsed / 1.5));
+class App {
+  constructor() {
+    this.gradientPresets = {
+      "Realistic Milky": {
+        colorA1: [0.98, 0.98, 1.0],
+        colorA2: [0.92, 0.92, 0.95],
+        colorB1: [0.95, 0.95, 0.98],
+        colorB2: [0.85, 0.85, 0.9]
+      },
+      "Deep Abyss": {
+        colorA1: [0.02, 0.02, 0.03],
+        colorA2: [0.04, 0.04, 0.06],
+        colorB1: [0.03, 0.03, 0.05],
+        colorB2: [0.06, 0.05, 0.08]
+      },
+      "Dark Twilight": {
+        colorA1: [0.05, 0.04, 0.08],
+        colorA2: [0.08, 0.06, 0.12],
+        colorB1: [0.04, 0.05, 0.09],
+        colorB2: [0.09, 0.08, 0.14]
+      },
+      "Dark Moody": {
+        colorA1: [0.05, 0.05, 0.08],
+        colorA2: [0.15, 0.15, 0.25],
+        colorB1: [0.1, 0.1, 0.2],
+        colorB2: [0.2, 0.2, 0.3]
+      },
+      "Soft Cream": {
+        colorA1: [0.98, 0.97, 0.95],
+        colorA2: [0.94, 0.92, 0.88],
+        colorB1: [0.96, 0.94, 0.9],
+        colorB2: [0.9, 0.87, 0.82]
+      },
+      Colorful: {
+        colorA1: [0.957, 0.804, 0.623],
+        colorA2: [0.192, 0.384, 0.933],
+        colorB1: [0.91, 0.51, 0.8],
+        colorB2: [0.35, 0.71, 0.953]
+      },
+      Mysterious: {
+        colorA1: [0.1, 0.05, 0.2],
+        colorA2: [0.3, 0.1, 0.4],
+        colorB1: [0.05, 0.1, 0.2],
+        colorB2: [0.2, 0.3, 0.5]
+      },
+      Sunset: {
+        colorA1: [0.8, 0.3, 0.1],
+        colorA2: [0.5, 0.1, 0.3],
+        colorB1: [0.9, 0.6, 0.3],
+        colorB2: [0.6, 0.2, 0.5]
+      },
+      Ocean: {
+        colorA1: [0.0, 0.2, 0.4],
+        colorA2: [0.0, 0.4, 0.6],
+        colorB1: [0.0, 0.3, 0.5],
+        colorB2: [0.1, 0.5, 0.7]
       }
-    }
+    };
 
-    vec2 rippleUV = uv + vec2(rippleEffect, rippleEffect);
-    vec4 color = texture2D(uTexture, rippleUV);
-    gl_FragColor = color;
-  }
-`;
+    this.settings = {
+      damping: 0.98,
+      tension: 0.02,
+      resolution: 1024,
+      rippleStrength: 1.0,
+      gradientPreset: "Realistic Milky",
+      mouseIntensity: 0.3,
+      clickIntensity: 2.0,
+      rippleRadius: 12,
+      autoDrops: true,
+      autoDropInterval: 3000,
+      autoDropIntensity: 1.0,
+      performanceMode: false
+    };
 
-class RippleCanvas {
-  constructor(container) {
-    this.container = container;
-    this.width = window.innerWidth;
-    this.height = window.innerHeight;
-
-    this.ripplesMax = 10;
-
+    this.lastMousePosition = { x: 0, y: 0 };
     this.mouseThrottleTime = 0;
 
-    this.ripples = [];
-    this.timeStart = performance.now();
+    this.renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      powerPreference: "high-performance"
+    });
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    document.body.appendChild(this.renderer.domElement);
+
+    this.scene = new THREE.Scene();
+    this.camera = new THREE.OrthographicCamera(
+      -window.innerWidth / 2,
+      window.innerWidth / 2,
+      window.innerHeight / 2,
+      -window.innerHeight / 2,
+      0.1,
+      1000
+    );
+    this.camera.position.z = 10;
+
+    this.clock = new THREE.Clock();
+
+    this.tick = this.tick.bind(this);
+    this.onMouseMove = this.onMouseMove.bind(this);
+    this.onTouchMove = this.onTouchMove.bind(this);
+    this.onResize = this.onResize.bind(this);
 
     this.init();
-    this.addListeners();
-    this.animate();
+  }
+
+  setResolution(resolution) {
+    if (resolution === this.settings.resolution) return;
+    this.settings.resolution = resolution;
+    this.initWaterRipple();
+    if (this.backgroundMaterial) {
+      this.backgroundMaterial.uniforms.waterTexture.value = this.waterTexture;
+    }
+  }
+
+  updateGradientColors() {
+    if (!this.backgroundMaterial) return;
+    const preset = this.gradientPresets[this.settings.gradientPreset];
+    this.backgroundMaterial.uniforms.colorA1.value.set(...preset.colorA1);
+    this.backgroundMaterial.uniforms.colorA2.value.set(...preset.colorA2);
+    this.backgroundMaterial.uniforms.colorB1.value.set(...preset.colorB1);
+    this.backgroundMaterial.uniforms.colorB2.value.set(...preset.colorB2);
   }
 
   init() {
-    this.renderer = new THREE.WebGLRenderer({ antialias: true });
-    this.renderer.setSize(this.width, this.height);
-    this.container.appendChild(this.renderer.domElement);
+    this.initWaterRipple();
+    this.createBackground();
 
-    this.scene = new THREE.Scene();
+    window.addEventListener("mousemove", this.onMouseMove);
+    window.addEventListener("touchmove", this.onTouchMove, { passive: false });
+    window.addEventListener("resize", this.onResize);
+    window.addEventListener("click", (e) => {
+      const rect = this.renderer.domElement.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      this.addRipple(x, y, this.settings.clickIntensity);
+    });
 
-    this.camera = new THREE.OrthographicCamera(0, this.width, this.height, 0, -1000, 1000);
+    this.setupAutoDrops();
+    this.tick();
+  }
 
-    this.texture = new THREE.TextureLoader().load('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80');
-    this.texture.minFilter = THREE.LinearFilter;
+  setupAutoDrops() {
+    if (this.autoDropsInterval) {
+      clearInterval(this.autoDropsInterval);
+    }
+    if (this.settings.autoDrops) {
+      this.autoDropsInterval = setInterval(() => {
+        if (!this.settings.autoDrops) return;
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight;
+        this.addRipple(x, y, this.settings.autoDropIntensity);
+      }, this.settings.autoDropInterval);
+    }
+  }
 
-    this.uniforms = {
-      uTexture: { value: this.texture },
-      uTime: { value: 0 },
-      uResolution: { value: new THREE.Vector2(this.width, this.height) },
-      uRipplePos: { value: new Array(this.ripplesMax).fill(new THREE.Vector2(0, 0)) },
-      uRippleIntensity: { value: new Array(this.ripplesMax).fill(0) },
-      uRippleStartTime: { value: new Array(this.ripplesMax).fill(0) },
-      uRippleCount: { value: 0 }
+  initWaterRipple() {
+    const resolution = this.settings.resolution;
+    this.waterBuffers = {
+      current: new Float32Array(resolution * resolution),
+      previous: new Float32Array(resolution * resolution)
     };
-
-    this.geometry = new THREE.PlaneGeometry(this.width, this.height);
-    this.material = new THREE.ShaderMaterial({
-      vertexShader,
-      fragmentShader,
-      uniforms: this.uniforms
-    });
-
-    this.mesh = new THREE.Mesh(this.geometry, this.material);
-    this.mesh.position.set(this.width / 2, this.height / 2, 0);
-    this.scene.add(this.mesh);
+    this.waterTexture = new THREE.DataTexture(
+      this.waterBuffers.current,
+      resolution,
+      resolution,
+      THREE.RedFormat,
+      THREE.FloatType
+    );
+    this.waterTexture.minFilter = THREE.LinearFilter;
+    this.waterTexture.magFilter = THREE.LinearFilter;
+    this.waterTexture.needsUpdate = true;
   }
 
-  addListeners() {
-    window.addEventListener('resize', () => this.onResize());
-    window.addEventListener('mousemove', (e) => this.onPointerMove(e));
-    window.addEventListener('touchmove', (e) => this.onPointerMove(e));
+  createBackground() {
+    const preset = this.gradientPresets[this.settings.gradientPreset];
+
+    const backgroundShader = {
+      uniforms: {
+        waterTexture: { value: this.waterTexture },
+        rippleStrength: { value: this.settings.rippleStrength },
+        resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+        time: { value: 0 },
+        colorA1: { value: new THREE.Vector3(...preset.colorA1) },
+        colorA2: { value: new THREE.Vector3(...preset.colorA2) },
+        colorB1: { value: new THREE.Vector3(...preset.colorB1) },
+        colorB2: { value: new THREE.Vector3(...preset.colorB2) }
+      },
+      vertexShader: `
+        varying vec2 vUv;
+        void main() {
+          vUv = uv;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform sampler2D waterTexture;
+        uniform float rippleStrength;
+        uniform vec2 resolution;
+        uniform float time;
+
+        uniform vec3 colorA1;
+        uniform vec3 colorA2;
+        uniform vec3 colorB1;
+        uniform vec3 colorB2;
+
+        varying vec2 vUv;
+
+  void main() {
+    // Sample ripple height from the water texture (red channel)
+    float ripple = texture2D(waterTexture, vUv).r;
+
+    // Create a ripple distortion vector
+    vec2 rippleOffset = vec2(
+      sin(ripple * 10.0 + time * 2.0),
+      cos(ripple * 10.0 + time * 2.0)
+    ) * ripple * rippleStrength * 0.03;
+
+    // Distorted UV for gradient sampling
+    vec2 uvDistorted = vUv + rippleOffset;
+
+    // Calculate gradient based on vertical position (y)
+    vec3 topColor = mix(colorA1, colorA2, uvDistorted.y);
+    vec3 bottomColor = mix(colorB1, colorB2, uvDistorted.y);
+
+    // Final color interpolated horizontally
+    vec3 color = mix(bottomColor, topColor, uvDistorted.x);
+
+    gl_FragColor = vec4(color, 1.0);
+  }
+`
+};
+
+    this.backgroundMaterial = new THREE.ShaderMaterial(backgroundShader);
+
+    const plane = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight);
+    const mesh = new THREE.Mesh(plane, this.backgroundMaterial);
+    this.scene.add(mesh);
   }
 
-  onResize() {
-    this.width = window.innerWidth;
-    this.height = window.innerHeight;
-
-    this.renderer.setSize(this.width, this.height);
-
-    this.camera.right = this.width;
-    this.camera.bottom = this.height;
-    this.camera.updateProjectionMatrix();
-
-    this.uniforms.uResolution.value.set(this.width, this.height);
-  }
-
-  onPointerMove(event) {
-    event.preventDefault();
-
-    let x, y;
-
-    if (event.touches && event.touches.length > 0) {
-      x = event.touches[0].clientX;
-      y = event.touches[0].clientY;
-    } else {
-      x = event.clientX;
-      y = event.clientY;
-    }
-
-    // Throttle ripples to ~60fps
+  onMouseMove(event) {
     const now = performance.now();
-    if (now - this.mouseThrottleTime > 16) {
-      this.addRipple(x, this.height - y); // invert Y because of orthographic camera
-      this.mouseThrottleTime = now;
-    }
+    if (now - this.mouseThrottleTime < 16) return; // throttle to ~60fps
+    this.mouseThrottleTime = now;
+
+    this.addRipple(event.clientX, event.clientY, this.settings.mouseIntensity);
   }
 
-  addRipple(x, y) {
-    if (this.ripples.length >= this.ripplesMax) {
-      this.ripples.shift();
-    }
-
-    this.ripples.push({
-      pos: new THREE.Vector2(x, y),
-      intensity: 0.4,
-      startTime: (performance.now() - this.timeStart) / 1000
-    });
-
-    this.updateUniforms();
+  onTouchMove(event) {
+    event.preventDefault();
+    if (event.touches.length === 0) return;
+    const touch = event.touches[0];
+    this.addRipple(touch.clientX, touch.clientY, this.settings.mouseIntensity);
   }
 
-  updateUniforms() {
-    const positions = [];
-    const intensities = [];
-    const startTimes = [];
+  addRipple(x, y, intensity) {
+    const res = this.settings.resolution;
 
-    for (let i = 0; i < this.ripplesMax; i++) {
-      if (i < this.ripples.length) {
-        positions[i] = this.ripples[i].pos;
-        intensities[i] = this.ripples[i].intensity;
-        startTimes[i] = this.ripples[i].startTime;
-      } else {
-        positions[i] = new THREE.Vector2(0, 0);
-        intensities[i] = 0;
-        startTimes[i] = 0;
+    // Convert screen coords to texture coords (0..1)
+    const uvx = x / window.innerWidth;
+    const uvy = 1 - y / window.innerHeight;
+
+    // Convert uv to index in the water buffer
+    const px = Math.floor(uvx * res);
+    const py = Math.floor(uvy * res);
+
+    const radius = this.settings.rippleRadius;
+
+    for (let dy = -radius; dy <= radius; dy++) {
+      for (let dx = -radius; dx <= radius; dx++) {
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist > radius) continue;
+
+        const ix = px + dx;
+        const iy = py + dy;
+        if (ix < 0 || ix >= res || iy < 0 || iy >= res) continue;
+
+        const index = iy * res + ix;
+        const dropValue = intensity * (1 - dist / radius);
+
+        this.waterBuffers.current[index] += dropValue;
       }
     }
-
-    this.uniforms.uRipplePos.value = positions;
-    this.uniforms.uRippleIntensity.value = intensities;
-    this.uniforms.uRippleStartTime.value = startTimes;
-    this.uniforms.uRippleCount.value = this.ripples.length;
   }
 
-  animate() {
-    requestAnimationFrame(() => this.animate());
+  updateWaterRipple() {
+    const { current, previous } = this.waterBuffers;
+    const res = this.settings.resolution;
+    const damping = this.settings.damping;
+    const tension = this.settings.tension;
 
-    this.uniforms.uTime.value = (performance.now() - this.timeStart) / 1000;
+    for (let y = 1; y < res - 1; y++) {
+      for (let x = 1; x < res - 1; x++) {
+        const i = y * res + x;
 
-    this.updateUniforms();
+        // Wave equation: new = ((left + right + up + down) / 2) - previous[i]
+        const neighborsSum =
+          current[i - 1] +
+          current[i + 1] +
+          current[i - res] +
+          current[i + res];
+
+        let newVal = (neighborsSum / 2) - previous[i];
+        newVal *= damping;
+
+        previous[i] = current[i];
+        current[i] = newVal;
+      }
+    }
+  }
+
+  tick() {
+    requestAnimationFrame(this.tick);
+
+    this.updateWaterRipple();
+
+    // Update water texture data
+    this.waterTexture.needsUpdate = true;
+
+    // Update uniforms
+    this.backgroundMaterial.uniforms.time.value = this.clock.getElapsedTime();
 
     this.renderer.render(this.scene, this.camera);
   }
+
+  onResize() {
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+
+    this.camera.left = -window.innerWidth / 2;
+    this.camera.right = window.innerWidth / 2;
+    this.camera.top = window.innerHeight / 2;
+    this.camera.bottom = -window.innerHeight / 2;
+    this.camera.updateProjectionMatrix();
+
+    this.backgroundMaterial.uniforms.resolution.value.set(window.innerWidth, window.innerHeight);
+  }
 }
 
-const container = document.body;
-new RippleCanvas(container);
+window.onload = () => {
+  new App();
+};
 </script>
 </body>
 </html>
