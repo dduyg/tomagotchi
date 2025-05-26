@@ -422,11 +422,8 @@ import { RenderPass } from "https://esm.sh/three@0.175.0/examples/jsm/postproces
 import { ShaderPass } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/ShaderPass.js";
 import { UnrealBloomPass } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/UnrealBloomPass.js";
 
-// Main App class
 class App {
   constructor() {
-    // Removed stats initialization and GUI initialization
-
     // Define gradient presets
     this.gradientPresets = {
       "Realistic Milky": {
@@ -485,7 +482,7 @@ class App {
       }
     };
 
-    // Initialize settings with defaults (no GUI)
+    // Initialize settings
     this.settings = {
       damping: 0.98,
       tension: 0.02,
@@ -500,6 +497,9 @@ class App {
       autoDropIntensity: 1.0,
       performanceMode: false
     };
+
+    this.lastMousePosition = { x: 0, y: 0 };
+    this.mouseThrottleTime = 0;
 
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -522,7 +522,6 @@ class App {
 
     this.clock = new THREE.Clock();
 
-    // Bind methods
     this.tick = this.tick.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
     this.onTouchMove = this.onTouchMove.bind(this);
@@ -531,8 +530,48 @@ class App {
     this.init();
   }
 
+  setResolution(resolution) {
+    if (resolution === this.settings.resolution) return;
+
+    this.settings.resolution = resolution;
+
+    this.initWaterRipple();
+
+    if (this.backgroundMaterial) {
+      this.backgroundMaterial.uniforms.waterTexture.value = this.waterTexture;
+    }
+  }
+
+  updateGradientColors() {
+    if (!this.backgroundMaterial) return;
+
+    const preset = this.gradientPresets[this.settings.gradientPreset];
+
+    this.backgroundMaterial.uniforms.colorA1.value.set(
+      preset.colorA1[0],
+      preset.colorA1[1],
+      preset.colorA1[2]
+    );
+    this.backgroundMaterial.uniforms.colorA2.value.set(
+      preset.colorA2[0],
+      preset.colorA2[1],
+      preset.colorA2[2]
+    );
+    this.backgroundMaterial.uniforms.colorB1.value.set(
+      preset.colorB1[0],
+      preset.colorB1[1],
+      preset.colorB1[2]
+    );
+    this.backgroundMaterial.uniforms.colorB2.value.set(
+      preset.colorB2[0],
+      preset.colorB2[1],
+      preset.colorB2[2]
+    );
+  }
+
   init() {
     this.initWaterRipple();
+
     this.createBackground();
 
     window.addEventListener("mousemove", this.onMouseMove);
@@ -554,6 +593,7 @@ class App {
     if (this.autoDropsInterval) {
       clearInterval(this.autoDropsInterval);
     }
+
     if (this.settings.autoDrops) {
       this.autoDropsInterval = setInterval(() => {
         if (!this.settings.autoDrops) return;
