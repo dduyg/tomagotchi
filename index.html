@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Liminal⚾️Loop</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
+    html { font-size: calc(100vw / 1512 * 10); }
+    @media (max-width: 768px) { html {font-size: calc(100vw / 768 * 10);} }
+    @media (max-width: 480px) { html {font-size: calc(100vw / 480 * 10);} }
     @font-face {
       font-family: '0xPropo';
       src: url('0xPropo.woff2') format('woff2'),
@@ -16,7 +16,6 @@
       font-weight: normal;
       font-style: normal;
     }
-
     body {
       margin: 0;
       padding: 2vw;
@@ -33,30 +32,15 @@
       align-items: stretch; /* equal height columns */
       overflow-x: hidden;
     }
-
-    .title,
-    .content {
+    .title, .content {
       flex: 1;
       min-width: 0;
       display: flex;
       flex-direction: column;
       justify-content: space-between; /* push first and last items top and bottom */
     }
-
-    .title {
-      font-size: clamp(18px, 4vw, 48px);
-      word-break: break-word;
-    }
-
-    .content {
-      font-size: clamp(16px, 3.5vw, 24px);
-      line-height: 1.7;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
     .content p {
+      line-height: 1.7;
       margin-bottom: 1.2em;
     }
   </style>
