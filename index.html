@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Liminal🧊Loop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Viaoda+Libre&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@450&display=swap" rel="stylesheet" />
   <style>
     html, body {
@@ -11,9 +13,12 @@
       padding: 0;
       height: 100%;
       width: 100%;
-      background-color: #040205;
-      color: #B504F3;
-      font-family: "Manrope", sans-serif;
+      background-image: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/dead-reckoning.gif');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #dfe0dc;
+      font-family: "Viaoda Libre", serif;
       overflow: hidden;
     }
 
@@ -26,10 +31,10 @@
       padding: 0;
       margin: 0;
       overflow: hidden;
-      position: relative;
     }
+
     .item {
-      flex: 1 1 0;
+      flex: 1 1 0; /* each item takes equal width */
       max-height: 100vh;
       display: flex;
       align-items: center;
@@ -47,15 +52,15 @@
       z-index: 2;
       text-align: center;
     }
-
     .item_inner h3 {
       font-size: clamp(1rem, 2vw, 1.5rem);
       margin: 0 0 8px 0;
+      line-height: 1.2;
     }
-
     .item_inner p {
       font-size: clamp(0.8rem, 1.5vw, 1rem);
       margin: 0;
+      overflow-wrap: break-word;
       line-height: 1.4;
     }
 
