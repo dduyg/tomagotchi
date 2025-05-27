@@ -11,21 +11,22 @@
       src: url('0xPropo.woff2') format('woff2'),
            url('0xPropo.woff') format('woff');
       font-weight: normal;
-      font-style: normal;  
-    }    
+      font-style: normal;
+    }
     body {
+      margin: 0;
+      padding: 2vw;
       font-family: '0xPropo', monospace;
-      margin: 2vw;
       color: #1B0027;
-      overflow-x: hidden;
+      background: #fff;
     }
 
     .container {
       display: flex;
       gap: 4vw;
-      align-items: stretch;
-      height: 100vh;
-      min-height: 500px;
+      height: 100vh; /* fill viewport height */
+      align-items: stretch; /* equal height columns */
+      overflow-x: hidden;
     }
 
     .title, .content {
@@ -33,22 +34,19 @@
       min-width: 0;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: space-between; /* push first and last items top and bottom */
     }
-
     .title {
-      font-size: clamp(16px, 3vw, 36px);
+      font-size: clamp(18px, 4vw, 48px);
       word-break: break-word;
     }
-
     .content {
-      font-size: clamp(14px, 1.8vw, 16px);
+      font-size: clamp(16px, 3.5vw, 24px);
       line-height: 1.7;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
-
     .content p {
       margin-bottom: 1.2em;
     }
@@ -64,13 +62,13 @@
       <div><strong>METAMORPHOSE</strong></div>
     </section>
     <section class="content">
-      <p> 
+      <p>
         Özgürlük ve bağımsızlık benim karakterimdir.
-        Milletimizin onurunu korumak, bağımsız yaşamakla mümkündür. 
+        Milletimizin onurunu korumak, bağımsız yaşamakla mümkündür.
         Hiçbir zorluk, inançla çalışan bir milleti yolundan döndüremez.
       </p>
       <p>
-        Unutmayın, umut varsa mücadele vardır; mücadele varsa zafer kaçınılmazdır.  
+        Unutmayın, umut varsa mücadele vardır; mücadele varsa zafer kaçınılmazdır.
         Türk milleti, <em>tarih boyunca hür yaşamış ve hür yaşayacaktır</em>.
         <strong>Hürriyet ve istiklâl benim karakterimdir</strong>. Milletin istiklâlini
         yine milletin azim ve kararı kurtaracaktır.
