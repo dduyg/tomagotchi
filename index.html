@@ -30,7 +30,7 @@
       height: 90vh;
       min-height: 500px;
       justify-content: center;
-      align-items: stretch; /* Changed from center to stretch */
+      align-items: flex-start;
       overflow-x: hidden;
     }
 
@@ -38,33 +38,21 @@
     .content {
       flex: 1;
       min-width: 0;
-    }
-
-    .title {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      height: 100%; /* Ensure full height */
+    }
+
+    .title > div {
+      display: flex;
+      align-items: center;
       font-size: clamp(16px, 3vw, 32px);
       word-break: break-word;
     }
 
-    .title div {
-      display: flex;
-      align-items: center; /* Optional: centers text vertically in each block */
-      align-self: stretch;
-    }
-
-    .content {
+    .content > p {
       font-size: clamp(12px, 1.5vw, 14px);
       line-height: 1.7;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .content p {
-      margin-bottom: 1.2em;
+      margin: 0 0 1.2em 0;
     }
   </style>
 </head>
@@ -78,19 +66,32 @@
       <div><strong>METAMORPHOSE</strong></div>
     </section>
     <section class="content">
-      <p>
-        Özgürlük ve bağımsızlık benim karakterimdir.
-        Milletimizin onurunu korumak, bağımsız yaşamakla mümkündür.
-        Hiçbir zorluk, inançla çalışan bir milleti yolundan döndüremez.
-      </p>
-      <p>
-        Unutmayın, umut varsa mücadele vardır; mücadele varsa zafer kaçınılmazdır.
-        Türk milleti, <em>tarih boyunca hür yaşamış ve hür yaşayacaktır</em>.
-        <strong>Hürriyet ve istiklâl benim karakterimdir</strong>. Milletin istiklâlini
-        yine milletin azim ve kararı kurtaracaktır.
-      </p>
+      <p>Özgürlük ve bağımsızlık benim karakterimdir.</p>
+      <p>Milletimizin onurunu korumak, bağımsız yaşamakla mümkündür.</p>
+      <p>Hiçbir zorluk, inançla çalışan bir milleti yolundan döndüremez.</p>
+      <p>Türk milleti, <em>tarih boyunca hür yaşamış ve hür yaşayacaktır</em>.</p>
       <p>İnançla yürüyenler, en karanlık yolları aydınlığa çevirir.</p>
     </section>
   </div>
+
+  <script>
+    function matchHeights() {
+      const titleDivs = document.querySelectorAll(".title > div");
+      const contentParagraphs = document.querySelectorAll(".content > p");
+
+      const count = Math.min(titleDivs.length, contentParagraphs.length);
+
+      // Reset heights
+      titleDivs.forEach(div => div.style.height = '');
+
+      for (let i = 0; i < count; i++) {
+        const pHeight = contentParagraphs[i].offsetHeight;
+        titleDivs[i].style.height = pHeight + "px";
+      }
+    }
+
+    window.addEventListener("load", matchHeights);
+    window.addEventListener("resize", matchHeights);
+  </script>
 </body>
 </html>
