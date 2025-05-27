@@ -1,101 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>LiminalLoop</title>
   <style>
-    body,
-    html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-    }
-
-    .nav-menu {
-      display: flex;              /* horizontal flex layout */
-      flex-direction: row;
-      width: 100vw;               /* full viewport width */
-      height: 100vh;              /* full viewport height */
-      box-sizing: border-box;
-      padding: 0;
-      margin: 0;
-      gap: 0;                    /* no gap, change if you want */
-      overflow: hidden;
-    }
-
-    .card-list_item {
-      flex: 1 1 0;               /* each item takes equal width */
-      max-height: 100vh;         /* max height full viewport */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      box-sizing: border-box;    /* padding included in width/height */
-      cursor: pointer;
-      background-color: transparent;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid #ccc;    /* optional: border to see boundaries */
-    }
-
-    .card-list_item-inner {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-    }
-
-    .card-list_bg-fill {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .card-list_bg-path {
-      fill: var(--base-color-neutral--white, #333);
-    }
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+.nav-menu {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 32px;
+  height: 100vh;
+  box-sizing: border-box;
+  position: relative;
+}
+.card-list_item {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  padding: 20px;
+  z-index: 2;
+}
+.card-list_item-inner {
+  position: relative;
+  z-index: 2;
+}
+.card-list_bg-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+.card-list_bg-path {
+  fill: var(--base-color-neutral--white, #333);
+}
   </style>
 </head>
 <body>
-  <nav class="nav-menu">
-    <div class="card-list_item">
-      <div class="card-list_item-inner">
-        <h3>Menu 1</h3>
-        <p>Description for Menu 1</p>
-      </div>
+<nav class="nav-menu">
+  <div class="card-list_item">
+    <div class="card-list_item-inner">
+      <h3>Menu 1</h3>
+      <p>Description for Menu 1</p>
     </div>
-    <div class="card-list_item">
-      <div class="card-list_item-inner">
-        <h3>Menu 2</h3>
-        <p>Description for Menu 2</p>
-      </div>
+  </div>
+  <div class="card-list_item">
+    <div class="card-list_item-inner">
+      <h3>Menu 2</h3>
+      <p>Description for Menu 2</p>
     </div>
-    <div class="card-list_item">
-      <div class="card-list_item-inner">
-        <h3>Menu 3</h3>
-        <p>Description for Menu 3</p>
-      </div>
+  </div>
+  <div class="card-list_item">
+    <div class="card-list_item-inner">
+      <h3>Menu 3</h3>
+      <p>Description for Menu 3</p>
     </div>
-    <div class="card-list_item">
-      <div class="card-list_item-inner">
-        <h3>Menu 4</h3>
-        <p>Description for Menu 4</p>
-      </div>
+  </div>
+  <div class="card-list_item">
+    <div class="card-list_item-inner">
+      <h3>Menu 4</h3>
+      <p>Description for Menu 4</p>
     </div>
-    <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="card-list_bg-fill">
-      <path d="M 0 0 H 0 Q 0 50 0 100 H 0 V 0 z" class="card-list_bg-path"></path>
-    </svg>
-  </nav>
+  </div>
+  <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="card-list_bg-fill">
+    <path d="M 0 0 H 0 Q 0 50 0 100 H 0 V 0 z" class="card-list_bg-path"></path>
+  </svg>
+</nav>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>  
   <script>
     const navMenu = document.querySelector(".nav-menu");
     const bgPath = document.querySelector(".card-list_bg-path");
@@ -107,12 +94,14 @@
       const navRect = navMenu.getBoundingClientRect();
       return {
         left: ((rect.left - navRect.left) / navRect.width) * 100,
-        right: ((rect.right - navRect.left) / navRect.width) * 100,
+        right: ((rect.right - navRect.left) / navRect.width) * 100
       };
     }
 
     function createPath(left, right, curveStrength = 0) {
-      return `M ${left} 0 H ${right} Q ${right + curveStrength} 50 ${right} 100 H ${left} V 0 Z`;
+      return `M ${left} 0 H ${right} Q ${
+        right + curveStrength
+      } 50 ${right} 100 H ${left} V 0 Z`;
     }
 
     function animateHover(item) {
@@ -129,12 +118,12 @@
         .to(bgPath, {
           attr: { d: midPath },
           duration: 0.2,
-          ease: "power2.out",
+          ease: "power2.out"
         })
         .to(bgPath, {
           attr: { d: finalPath },
           duration: 0.3,
-          ease: "elastic.out(1, 0.3)",
+          ease: "elastic.out(1, 0.3)"
         });
     }
 
@@ -157,12 +146,12 @@
         .to(bgPath, {
           attr: { d: midPath },
           duration: 0.2,
-          ease: "power2.out",
+          ease: "power2.out"
         })
         .to(bgPath, {
           attr: { d: finalPath },
           duration: 0.3,
-          ease: "elastic.out(1, 0.3)",
+          ease: "elastic.out(1, 0.3)"
         });
     }
 
@@ -179,12 +168,12 @@
         .to(bgPath, {
           attr: { d: midPath },
           duration: 0.2,
-          ease: "power2.in",
+          ease: "power2.in"
         })
         .to(bgPath, {
           attr: { d: finalPath },
           duration: 0.3,
-          ease: "power2.inOut",
+          ease: "power2.inOut"
         });
     }
 
