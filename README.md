@@ -317,7 +317,6 @@ If the image is used as a background:
 - [ ]  Sixtyfour
 - [ ]  Michroma
 - [ ]  Pixelify Sans
-- [ ]  Notable
 - [ ]  Limelight
 - [ ]  Plaster
 - [ ]  Fira Sans
