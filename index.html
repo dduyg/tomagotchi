@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Liminal🧊Loop</title>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@450&display=swap" rel="stylesheet" />
   <style>
@@ -13,7 +12,7 @@
       height: 100%;
       width: 100%;
       background-color: #040205;
-      color: #B504F3;
+      color: white;
       font-family: "Manrope", sans-serif;
       overflow: hidden;
     }
@@ -22,47 +21,31 @@
       display: flex;
       width: 100vw;
       height: 100vh;
-    }
-
-    .item {
-      flex: 1 1 0;
       position: relative;
+      z-index: 0;
+    }
+    .item {
+      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      padding: 20px;
+      position: relative;
+      z-index: 2;
       border-right: 1px dotted;
       cursor: pointer;
     }
-
     .item_inner {
-      position: relative;
-      z-index: 3;
       text-align: center;
-      padding: 10px;
     }
-
     .item_inner h3 {
       font-size: clamp(1rem, 2vw, 1.5rem);
-      margin: 0 0 8px;
+      margin: 0 0 8px 0;
     }
-
     .item_inner p {
       font-size: clamp(0.8rem, 1.5vw, 1rem);
       margin: 0;
-    }
-
-    .item-bg {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      z-index: 2;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      line-height: 1.4;
     }
 
     .bg-fill {
@@ -74,48 +57,74 @@
       pointer-events: none;
       z-index: 1;
     }
-
-    .bg-path {
-      fill: var(--base-color-neutral--white, #1203F6);
+    svg defs pattern image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .item.active .item-bg {
-      opacity: 1;
+    .controls {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      z-index: 3;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 6px 12px;
+      border-radius: 6px;
+      color: white;
+      font-size: 0.9rem;
+    }
+    .controls select {
+      background: #000;
+      color: white;
+      border: none;
+      padding: 4px;
+      border-radius: 4px;
     }
   </style>
 </head>
 <body>
+  <div class="controls">
+    <label for="bgType">Background Type:</label>
+    <select id="bgType">
+      <option value="color">Solid Color</option>
+      <option value="image">Image</option>
+    </select>
+  </div>
+
   <nav class="index">
-    <div class="item" data-bg-type="color" data-bg-src="#1203F6">
-      <div class="item-bg"></div>
+    <div class="item">
       <div class="item_inner">
-        <h3>Solid Color</h3>
-        <p>Click to apply color</p>
+        <h3>Menu 1</h3>
+        <p>Description for Menu 1</p>
       </div>
     </div>
-    <div class="item" data-bg-type="image" data-bg-src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/dead-reckoning.gif">
-      <div class="item-bg"></div>
+    <div class="item">
       <div class="item_inner">
-        <h3>GIF</h3>
-        <p>Click to apply gif</p>
+        <h3>Menu 2</h3>
+        <p>Description for Menu 2 with more text for wrapping properly.</p>
       </div>
     </div>
-    <div class="item" data-bg-type="image" data-bg-src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/dead-reckoning.gif">
-      <div class="item-bg"></div>
+    <div class="item">
       <div class="item_inner">
-        <h3>PNG</h3>
-        <p>Click to apply PNG</p>
+        <h3>Menu 3</h3>
+        <p>Description for Menu 3</p>
       </div>
     </div>
-    <div class="item" data-bg-type="none">
-      <div class="item-bg"></div>
+    <div class="item">
       <div class="item_inner">
-        <h3>Clear</h3>
-        <p>Click to remove background</p>
+        <h3>Menu 4</h3>
+        <p>Description for Menu 4</p>
       </div>
     </div>
+
     <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="bg-fill">
-      <path d="M 0 0 H 0 Q 0 50 0 100 H 0 V 0 z" class="bg-path"></path>
+      <defs>
+        <pattern id="patternImage" patternUnits="userSpaceOnUse" width="100%" height="100%">
+          <image id="patternImgEl" href="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/dead-reckoning.gif" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" />
+        </pattern>
+      </defs>
+      <path d="M 0 0 H 0 Q 0 50 0 100 H 0 V 0 z" class="bg-path" fill="#1203F6"></path>
     </svg>
   </nav>
 
@@ -123,8 +132,19 @@
   <script>
     const index = document.querySelector(".index");
     const bgPath = document.querySelector(".bg-path");
-    let currentItem = null;
-    let animation = null;
+    const bgTypeSelect = document.getElementById("bgType");
+    const patternImg = document.getElementById("patternImgEl");
+
+    let useImage = false;
+
+    bgTypeSelect.addEventListener("change", (e) => {
+      useImage = e.target.value === "image";
+      if (useImage) {
+        bgPath.setAttribute("fill", "url(#patternImage)");
+      } else {
+        bgPath.setAttribute("fill", "#1203F6");
+      }
+    });
 
     function getItemDimensions(item) {
       const rect = item.getBoundingClientRect();
@@ -139,6 +159,9 @@
       return `M ${left} 0 H ${right} Q ${right + curveStrength} 50 ${right} 100 H ${left} V 0 Z`;
     }
 
+    let animation = null;
+    let currentItem = null;
+
     function animateHover(item) {
       if (animation) animation.kill();
       const { left, right } = getItemDimensions(item);
@@ -148,16 +171,8 @@
 
       animation = gsap.timeline()
         .set(bgPath, { attr: { d: initialPath } })
-        .to(bgPath, {
-          attr: { d: midPath },
-          duration: 0.2,
-          ease: "power2.out",
-        })
-        .to(bgPath, {
-          attr: { d: finalPath },
-          duration: 0.3,
-          ease: "elastic.out(1, 0.3)",
-        });
+        .to(bgPath, { attr: { d: midPath }, duration: 0.2, ease: "power2.out" })
+        .to(bgPath, { attr: { d: finalPath }, duration: 0.3, ease: "elastic.out(1, 0.3)" });
     }
 
     function animateTransition(fromItem, toItem) {
@@ -174,35 +189,20 @@
       const finalPath = createPath(toDim.left, toDim.right);
 
       animation = gsap.timeline()
-        .to(bgPath, {
-          attr: { d: midPath },
-          duration: 0.2,
-          ease: "power2.out",
-        })
-        .to(bgPath, {
-          attr: { d: finalPath },
-          duration: 0.3,
-          ease: "elastic.out(1, 0.3)",
-        });
+        .to(bgPath, { attr: { d: midPath }, duration: 0.2, ease: "power2.out" })
+        .to(bgPath, { attr: { d: finalPath }, duration: 0.3, ease: "elastic.out(1, 0.3)" });
     }
 
     function animateHoverOut(item) {
       if (animation) animation.kill();
       const { left, right } = getItemDimensions(item);
+      const initialPath = createPath(left, right);
       const midPath = createPath(left, right, 10);
       const finalPath = createPath(left, left);
 
       animation = gsap.timeline()
-        .to(bgPath, {
-          attr: { d: midPath },
-          duration: 0.2,
-          ease: "power2.in",
-        })
-        .to(bgPath, {
-          attr: { d: finalPath },
-          duration: 0.3,
-          ease: "power2.inOut",
-        });
+        .to(bgPath, { attr: { d: midPath }, duration: 0.2, ease: "power2.in" })
+        .to(bgPath, { attr: { d: finalPath }, duration: 0.3, ease: "power2.inOut" });
     }
 
     index.addEventListener("mouseover", (e) => {
@@ -222,30 +222,6 @@
         animateHoverOut(currentItem);
         currentItem = null;
       }
-    });
-
-    document.querySelectorAll('.item').forEach(item => {
-      item.addEventListener('click', () => {
-        const type = item.dataset.bgType;
-        const src = item.dataset.bgSrc;
-        const bg = item.querySelector('.item-bg');
-
-        // Clear all item backgrounds
-        document.querySelectorAll('.item').forEach(i => i.classList.remove('active'));
-
-        if (type === "image") {
-          bg.style.backgroundImage = `url('${src}')`;
-          bg.style.backgroundColor = "";
-          item.classList.add("active");
-        } else if (type === "color") {
-          bg.style.backgroundImage = "";
-          bg.style.backgroundColor = src;
-          item.classList.add("active");
-        } else {
-          bg.style.backgroundImage = "";
-          bg.style.backgroundColor = "transparent";
-        }
-      });
     });
   </script>
 </body>
