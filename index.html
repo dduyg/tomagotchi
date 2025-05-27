@@ -18,6 +18,19 @@
       overflow: hidden;
     }
 
+    .bg-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
     .index {
       display: flex;
       flex-direction: row;
@@ -27,6 +40,8 @@
       padding: 0;
       margin: 0;
       overflow: hidden;
+      position: relative;
+      z-index: 2;
     }
 
     .item {
@@ -43,19 +58,16 @@
       overflow: hidden;
       border-right: 1px dotted;
     }
-
     .item_inner {
       position: relative;
-      z-index: 2;
+      z-index: 3;
       text-align: center;
     }
-
     .item_inner h3 {
       font-size: clamp(1rem, 2vw, 1.5rem);
       margin: 0 0 8px 0;
       line-height: 1.2;
     }
-
     .item_inner p {
       font-size: clamp(0.8rem, 1.5vw, 1rem);
       margin: 0;
@@ -71,54 +83,55 @@
       height: 100%;
       pointer-events: none;
       z-index: 1;
+      transition: opacity 0.5s ease;
     }
-
     .bg-path {
-      /* fill removed; will be handled by JS on click */
+      fill: #1203F6;
     }
   </style>
 </head>
 <body>
+  <!-- Optional background image -->
+  <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/dead-reckoning.gif" class="bg-image" alt="🔰" />
+
+  <!-- Background fill (for solid color) -->
+  <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="bg-fill">
+    <path d="M 0 0 H 0 Q 0 50 0 100 H 0 V 0 z" class="bg-path"></path>
+  </svg>
+
   <nav class="index">
-    <div class="item">
+    <div class="item" data-bg="color">
       <div class="item_inner">
-        <h3>Menu 1</h3>
-        <p>Description for Menu 1</p>
+        <h3>Solid Color</h3>
+        <p>Click for the original background color.</p>
       </div>
     </div>
-    <div class="item">
+    <div class="item" data-bg="image">
       <div class="item_inner">
-        <h3>Menu 2</h3>
-        <p>Description for Menu 2 with even longer text that will naturally wrap and the container will handle overflow gracefully.</p>
+        <h3>Use Image</h3>
+        <p>Click to show the background image (GIF or PNG).</p>
       </div>
     </div>
     <div class="item">
       <div class="item_inner">
         <h3>Menu 3</h3>
-        <p>Description for Menu 3</p>
+        <p>Another menu option.</p>
       </div>
     </div>
     <div class="item">
       <div class="item_inner">
         <h3>Menu 4</h3>
-        <p>Description for Menu 4</p>
+        <p>And one more item here.</p>
       </div>
     </div>
-
-    <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="bg-fill">
-      <defs>
-        <pattern id="bgImagePattern" patternUnits="objectBoundingBox" width="1" height="1">
-          <image href="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/dead-reckoning.gif" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" />
-        </pattern>
-      </defs>
-      <path d="M 0 0 H 0 Q 0 50 0 100 H 0 V 0 z" class="bg-path"></path>
-    </svg>
   </nav>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script>
     const index = document.querySelector(".index");
     const bgPath = document.querySelector(".bg-path");
+    const bgImage = document.querySelector(".bg-image");
+    const bgFill = document.querySelector(".bg-fill");
     let currentItem = null;
     let animation = null;
 
@@ -137,7 +150,6 @@
 
     function animateHover(item) {
       if (animation) animation.kill();
-
       const { left, right } = getItemDimensions(item);
       const initialPath = createPath(left, left);
       const midPath = createPath(left, right, 10);
@@ -145,21 +157,12 @@
 
       animation = gsap.timeline()
         .set(bgPath, { attr: { d: initialPath } })
-        .to(bgPath, {
-          attr: { d: midPath },
-          duration: 0.2,
-          ease: "power2.out",
-        })
-        .to(bgPath, {
-          attr: { d: finalPath },
-          duration: 0.3,
-          ease: "elastic.out(1, 0.3)",
-        });
+        .to(bgPath, { attr: { d: midPath }, duration: 0.2, ease: "power2.out" })
+        .to(bgPath, { attr: { d: finalPath }, duration: 0.3, ease: "elastic.out(1, 0.3)" });
     }
 
     function animateTransition(fromItem, toItem) {
       if (animation) animation.kill();
-
       const fromDim = getItemDimensions(fromItem);
       const toDim = getItemDimensions(toItem);
       const direction = toDim.left > fromDim.left ? 1 : -1;
@@ -172,37 +175,20 @@
       const finalPath = createPath(toDim.left, toDim.right);
 
       animation = gsap.timeline()
-        .to(bgPath, {
-          attr: { d: midPath },
-          duration: 0.2,
-          ease: "power2.out",
-        })
-        .to(bgPath, {
-          attr: { d: finalPath },
-          duration: 0.3,
-          ease: "elastic.out(1, 0.3)",
-        });
+        .to(bgPath, { attr: { d: midPath }, duration: 0.2, ease: "power2.out" })
+        .to(bgPath, { attr: { d: finalPath }, duration: 0.3, ease: "elastic.out(1, 0.3)" });
     }
 
     function animateHoverOut(item) {
       if (animation) animation.kill();
-
       const { left, right } = getItemDimensions(item);
       const initialPath = createPath(left, right);
       const midPath = createPath(left, right, 10);
       const finalPath = createPath(left, left);
 
       animation = gsap.timeline()
-        .to(bgPath, {
-          attr: { d: midPath },
-          duration: 0.2,
-          ease: "power2.in",
-        })
-        .to(bgPath, {
-          attr: { d: finalPath },
-          duration: 0.3,
-          ease: "power2.inOut",
-        });
+        .to(bgPath, { attr: { d: midPath }, duration: 0.2, ease: "power2.in" })
+        .to(bgPath, { attr: { d: finalPath }, duration: 0.3, ease: "power2.inOut" });
     }
 
     index.addEventListener("mouseover", (e) => {
@@ -224,9 +210,17 @@
       }
     });
 
+    // Handle click to toggle between background image or color
     document.querySelectorAll('.item').forEach(item => {
       item.addEventListener('click', () => {
-        bgPath.setAttribute("fill", "url(#bgImagePattern)");
+        const bgType = item.getAttribute('data-bg');
+        if (bgType === 'image') {
+          bgImage.style.opacity = '1';
+          bgFill.style.opacity = '0';
+        } else if (bgType === 'color') {
+          bgImage.style.opacity = '0';
+          bgFill.style.opacity = '1';
+        }
       });
     });
   </script>
