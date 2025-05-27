@@ -5,19 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />    
   <title>Liminal⚾️Loop</title>
-  <style>  
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html {
-      font-size: calc(100vw / 1512 * 10);
+  <style>
+    @font-face {  
+      font-family: '0xPropo';  
+      src: url('0xPropo.woff2') format('woff2'),  
+           url('0xPropo.woff') format('woff');  
+      font-weight: normal;  
+      font-style: normal;  
     }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: "PP Neue Montreal", sans-serif;
-      font-weight: 500;
-      font-size: 1.8rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: '0xPropo', monospace;
+      color: #1B0027;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      color: black;
       position: relative;
       overflow: hidden;
     }
@@ -27,9 +33,9 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1; /* Behind content but still interactive */
+      z-index: -2; /* Behind content but still interactive */
     }
-    body::before { /* Background noise effect */
+    body::before {
       content: "";
       position: fixed;
       top: -50%;
@@ -38,54 +44,72 @@
       height: 200%;
       background: transparent url("http://assets.iceable.com/img/noise-transparent.png") repeat 0 0;
       background-size: 300px 300px;
-      -webkit-animation: noise-animation 0.3s steps(5) infinite;
       animation: noise-animation 0.3s steps(5) infinite;
-      opacity: 0.05; /* Reduced opacity for subtlety */
+      opacity: 0.05;
       will-change: transform;
-      z-index: 2;    /* Above canvas but below content */
+      z-index: -1;
       pointer-events: none;
-    }
-      @-webkit-keyframes noise-animation {
-        0%   { transform: translate(0, 0); }
-        10%  { transform: translate(-2%, -3%); }
-        20%  { transform: translate(-4%, 2%); }
-        30%  { transform: translate(2%, -4%); }
-        40%  { transform: translate(-2%, 5%); }
-        50%  { transform: translate(-4%, 2%); }
-        60%  { transform: translate(3%, 0); }
-        70%  { transform: translate(0, 3%); }
-        80%  { transform: translate(-3%, 0); }
-        90%  { transform: translate(2%, 2%); }
-        100% { transform: translate(1%, 0); }
-      }
-      @keyframes noise-animation {
-        0%   { transform: translate(0, 0); }
-        10%  { transform: translate(-2%, -3%); }
-        20%  { transform: translate(-4%, 2%); }
-        30%  { transform: translate(2%, -4%); }
-        40%  { transform: translate(-2%, 5%); }
-        50%  { transform: translate(-4%, 2%); }
-        60%  { transform: translate(3%, 0); }
-        70%  { transform: translate(0, 3%); }
-        80%  { transform: translate(-3%, 0); }
-        90%  { transform: translate(2%, 2%); }
-        100% { transform: translate(1%, 0); }
-      }
+    } 
+    @keyframes noise-animation {
+      0%   { transform: translate(0, 0); }
+      10%  { transform: translate(-2%, -3%); }
+      20%  { transform: translate(-4%, 2%); }
+      30%  { transform: translate(2%, -4%); }
+      40%  { transform: translate(-2%, 5%); }
+      50%  { transform: translate(-4%, 2%); }
+      60%  { transform: translate(3%, 0); }
+      70%  { transform: translate(0, 3%); }
+      80%  { transform: translate(-3%, 0); }
+      90%  { transform: translate(2%, 2%); }
+      100% { transform: translate(1%, 0); }
+    }    
 
-      header {
-        font-size: 8rem;
-        letter-spacing: -0.05em;
-        line-height: 0.85;
-        position: fixed;
-        top: 35%;
-        left: 10%;
-        z-index: 10; /* Ensure header is above canvas and noise */
-        padding: 1.6rem 3.2rem;
-      }  
+    .assembly {  
+      display: grid;  
+      grid-template-columns: 1fr 2fr;  
+      gap: 4vw;  
+      padding: 3vw;  
+      align-items: start;  
+      z-index: 5;
+      position: relative;
+    }
+    .title {  
+      display: flex;  
+      flex-direction: column;  
+      justify-content: space-between;  
+      height: 100%;  
+      font-size: clamp(16px, 3vw, 32px);  
+      word-break: break-word;  
+    }
+    .title div {
+      align-self: stretch;
+    }
+    .content {
+      font-size: clamp(12px, 1.5vw, 17px);  
+      line-height: 1.7;
+    }
+    .content p {
+      margin-bottom: 1.2em;
+    }
   </style>
 </head>
 <body>
-  <header>Tidebreaker</header>
+  <div class="assembly">  
+    <section class="title">  
+      <div>ENERGY CH∆MBER</div>  
+      <div><em>P</em><strong>lea</strong><em>se Hold</em>.</div>  
+      <div>Rendezvous</div>  
+      <div><em>Function spaces</em></div>  
+      <div><strong>METAMORPHOSE</strong></div>  
+    </section>  
+    <section class="content">  
+      <p>
+        Özgürlük ve bağımsızlık benim karakterimdir.  
+        Milletimizin onurunu korumak, bağımsız yaşamakla mümkündür.  
+        Hiçbir zorluk, inançla çalışan bir milleti yolundan döndüremez.
+      </p>  
+    </section>  
+  </div>
 
   <script type="module">
       import * as THREE from "https://esm.sh/three@0.175.0";
