@@ -23,10 +23,15 @@
       flex-direction: row;
       width: 100vw;
       height: 100vh;
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
     }
 
     .item {
       flex: 1 1 0;
+      max-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -36,57 +41,70 @@
       position: relative;
       overflow: hidden;
       border-right: 1px dotted;
+      background-color: transparent;
+    }
+
+    .item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
-      transition: background 0.4s ease;
+      transition: left 0.6s ease;
+    }
+
+    .item.active::before {
+      left: 0;
     }
 
     .item_inner {
       position: relative;
       z-index: 2;
       text-align: center;
-      background-color: rgba(0, 0, 0, 0.5); /* optional overlay for readability */
-      padding: 10px;
-      border-radius: 10px;
     }
 
     .item_inner h3 {
       font-size: clamp(1rem, 2vw, 1.5rem);
       margin: 0 0 8px 0;
+      line-height: 1.2;
     }
 
     .item_inner p {
       font-size: clamp(0.8rem, 1.5vw, 1rem);
       margin: 0;
+      overflow-wrap: break-word;
       line-height: 1.4;
     }
   </style>
 </head>
 <body>
   <nav class="index">
-    <div class="item" data-bg-type="color" data-bg-src="#1203F6">
+    <div class="item" data-bg="none">
       <div class="item_inner">
-        <h3>Solid Color</h3>
-        <p>Click to set solid background</p>
+        <h3>Menu 1</h3>
+        <p>No background (default)</p>
       </div>
     </div>
-    <div class="item" data-bg-type="image" data-bg-src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/dead-reckoning.gif">
+    <div class="item" data-bg="color:#1203F6">
       <div class="item_inner">
-        <h3>Use GIF</h3>
-        <p>Click to set GIF background</p>
+        <h3>Menu 2</h3>
+        <p>Solid color background</p>
       </div>
     </div>
-    <div class="item" data-bg-type="image" data-bg-src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/dead-reckoning.gif">
+    <div class="item" data-bg="image:https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/dead-reckoning.gif">
       <div class="item_inner">
-        <h3>Use PNG</h3>
-        <p>Click to set PNG background</p>
+        <h3>Menu 3</h3>
+        <p>GIF background image</p>
       </div>
     </div>
-    <div class="item" data-bg-type="none">
+    <div class="item" data-bg="image:https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/dead-reckoning.gif">
       <div class="item_inner">
-        <h3>Clear BG</h3>
-        <p>Click to remove background</p>
+        <h3>Menu 4</h3>
+        <p>PNG background image</p>
       </div>
     </div>
   </nav>
@@ -94,19 +112,75 @@
   <script>
     document.querySelectorAll('.item').forEach(item => {
       item.addEventListener('click', () => {
-        const type = item.getAttribute('data-bg-type');
-        const src = item.getAttribute('data-bg-src');
+        // Remove previous active state
+        document.querySelectorAll('.item').forEach(i => i.classList.remove('active'));
 
-        if (type === 'image') {
-          item.style.backgroundImage = `url('${src}')`;
-          item.style.backgroundColor = '';
-        } else if (type === 'color') {
-          item.style.backgroundColor = src;
-          item.style.backgroundImage = '';
+        const bgData = item.getAttribute('data-bg');
+        const beforeEl = item;
+
+        // Reset all backgrounds
+        document.querySelectorAll('.item').forEach(i => {
+          i.style.setProperty('--dynamic-bg', 'none');
+          i.style.removeProperty('--dynamic-bg');
+          i.style.removeProperty('--bg-url');
+        });
+
+        if (bgData && bgData.startsWith('color:')) {
+          const color = bgData.replace('color:', '').trim();
+          item.style.setProperty('--dynamic-bg', color);
+          item.style.setProperty('--bg-url', 'none');
+          item.style.setProperty('--bg-style', 'none');
+          item.style.setProperty('--before-bg', color);
+          item.style.setProperty('--before-url', 'none');
+          item.querySelector('::before');
+          item.style.setProperty('--before-img', 'none');
+          item.querySelector('::before');
+          item.style.setProperty('--before-bg', color);
+          item.style.setProperty('--before-url', 'none');
+          item.style.setProperty('--before-img', 'none');
+          item.style.setProperty('--before-color', color);
+          item.style.setProperty('--before-image', 'none');
+          item.style.setProperty('--before-background', color);
+          item.style.setProperty('--before-background-image', 'none');
+          item.querySelector('::before');
+          item.style.setProperty('--before-bg-color', color);
+          item.style.setProperty('--before-bg-image', 'none');
+          item.style.setProperty('--before-background', color);
+          item.style.setProperty('--before-background-image', 'none');
+          item.style.setProperty('--before-color', color);
+          item.style.setProperty('--before-image', 'none');
+          item.querySelector('::before');
+          item.style.setProperty('--before-background', color);
+          item.style.setProperty('--before-image', 'none');
+          item.querySelector('::before');
+          item.style.setProperty('--before-bg', color);
+          item.querySelector('::before');
+          item.style.setProperty('--before-image', 'none');
+          item.style.setProperty('--before-background-color', color);
+          item.style.setProperty('--before-background-image', 'none');
+          item.querySelector('::before');
+          item.style.setProperty('--before-image', 'none');
+          item.style.setProperty('--before-background', color);
+          item.querySelector('::before');
+          item.style.setProperty('--before-image', 'none');
+          item.style.setProperty('--before-color', color);
+          item.style.setProperty('--before-bg', color);
+          item.style.setProperty('--before-image', 'none');
+          item.style.setProperty('--before-bg', color);
+          item.querySelector('::before');
+          item.style.setProperty('--before-image', 'none');
+          item.querySelector('::before');
+          item.querySelector('::before').style.background = color;
+
+        } else if (bgData && bgData.startsWith('image:')) {
+          const imageUrl = bgData.replace('image:', '').trim();
+          item.querySelector('::before').style.backgroundImage = `url(${imageUrl})`;
         } else {
-          item.style.backgroundColor = 'transparent';
-          item.style.backgroundImage = '';
+          item.querySelector('::before').style.background = 'none';
         }
+
+        // Add active to trigger slide
+        item.classList.add('active');
       });
     });
   </script>
