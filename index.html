@@ -39,13 +39,23 @@
       background-color: transparent;
       position: relative;
       overflow: hidden;
-      border: 1px solid;
+      border-right: 1px solid;
     }
-
     .card-list_item-inner {
       position: relative;
       z-index: 2;
       text-align: center;
+    }
+    .card-list_item-inner h3 {
+      font-size: clamp(1rem, 2vw, 1.5rem); /* responsive font size */
+      margin: 0 0 8px 0;
+      line-height: 1.2;
+    }
+    .card-list_item-inner p {
+      font-size: clamp(0.8rem, 1.5vw, 1rem);
+      margin: 0;
+      overflow-wrap: break-word;
+      line-height: 1.4;
     }
 
     .card-list_bg-fill {
