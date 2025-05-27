@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<head> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />    
   <title>LiminalLoop</title>
-  <style>
-    *, *:before, *:after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { font-size: calc(100vw / 1512 * 10); }
+  <style>  
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html {
+      font-size: calc(100vw / 1512 * 10);
+    }
     body {
       font-family: "PP Neue Montreal", sans-serif;
       font-weight: 500;
@@ -28,145 +30,73 @@
       height: 100%;
       z-index: -1; /* Behind content but still interactive */
     }
-    /* Hide dat.GUI & Stats.js */
-    .dg.ac, #stats { display: none; }
+    body::before { /* Background noise effect */
+      content: "";
+      position: fixed;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: transparent url("http://assets.iceable.com/img/noise-transparent.png") repeat 0 0;
+      background-size: 300px 300px;
+      -webkit-animation: noise-animation 0.3s steps(5) infinite;
+      animation: noise-animation 0.3s steps(5) infinite;
+      opacity: 0.05; /* Reduced opacity for subtlety */
+      will-change: transform;
+      z-index: 2;    /* Above canvas but below content */
+      pointer-events: none;
+    }
+      @-webkit-keyframes noise-animation {
+        0%   { transform: translate(0, 0); }
+        10%  { transform: translate(-2%, -3%); }
+        20%  { transform: translate(-4%, 2%); }
+        30%  { transform: translate(2%, -4%); }
+        40%  { transform: translate(-2%, 5%); }
+        50%  { transform: translate(-4%, 2%); }
+        60%  { transform: translate(3%, 0); }
+        70%  { transform: translate(0, 3%); }
+        80%  { transform: translate(-3%, 0); }
+        90%  { transform: translate(2%, 2%); }
+        100% { transform: translate(1%, 0); }
+      }
+      @keyframes noise-animation {
+        0%   { transform: translate(0, 0); }
+        10%  { transform: translate(-2%, -3%); }
+        20%  { transform: translate(-4%, 2%); }
+        30%  { transform: translate(2%, -4%); }
+        40%  { transform: translate(-2%, 5%); }
+        50%  { transform: translate(-4%, 2%); }
+        60%  { transform: translate(3%, 0); }
+        70%  { transform: translate(0, 3%); }
+        80%  { transform: translate(-3%, 0); }
+        90%  { transform: translate(2%, 2%); }
+        100% { transform: translate(1%, 0); }
+      }
+      
+    img {   
+      max-width: 100%;   
+      height: auto;
+      object-fit: cover;
+    }
 
-/* Background noise effect */
-body::before {
-  content: "";
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: transparent
-    url("http://assets.iceable.com/img/noise-transparent.png") repeat 0 0;
-  background-size: 300px 300px;
-  -webkit-animation: noise-animation 0.3s steps(5) infinite;
-          animation: noise-animation 0.3s steps(5) infinite;
-  opacity: 0.05; /* Reduced opacity for subtlety */
-  will-change: transform;
-  z-index: 2; /* Above canvas but below content */
-  pointer-events: none;
-}
-
-@-webkit-keyframes noise-animation {
-  0% {
-    transform: translate(0, 0);
-  }
-
-  10% {
-    transform: translate(-2%, -3%);
-  }
-
-  20% {
-    transform: translate(-4%, 2%);
-  }
-
-  30% {
-    transform: translate(2%, -4%);
-  }
-
-  40% {
-    transform: translate(-2%, 5%);
-  }
-
-  50% {
-    transform: translate(-4%, 2%);
-  }
-
-  60% {
-    transform: translate(3%, 0);
-  }
-
-  70% {
-    transform: translate(0, 3%);
-  }
-
-  80% {
-    transform: translate(-3%, 0);
-  }
-
-  90% {
-    transform: translate(2%, 2%);
-  }
-
-  100% {
-    transform: translate(1%, 0);
-  }
-}
-
-@keyframes noise-animation {
-  0% {
-    transform: translate(0, 0);
-  }
-
-  10% {
-    transform: translate(-2%, -3%);
-  }
-
-  20% {
-    transform: translate(-4%, 2%);
-  }
-
-  30% {
-    transform: translate(2%, -4%);
-  }
-
-  40% {
-    transform: translate(-2%, 5%);
-  }
-
-  50% {
-    transform: translate(-4%, 2%);
-  }
-
-  60% {
-    transform: translate(3%, 0);
-  }
-
-  70% {
-    transform: translate(0, 3%);
-  }
-
-  80% {
-    transform: translate(-3%, 0);
-  }
-
-  90% {
-    transform: translate(2%, 2%);
-  }
-
-  100% {
-    transform: translate(1%, 0);
-  }
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-h1 {
-  font-size: 8rem;
-  letter-spacing: -0.05em;
-  text-align: center;
-  line-height: 0.85;
-}
-.header {
-  position: fixed;
-  top: 35%;
-  left: 10%;
-  z-index: 10; /* Ensure header is above canvas and noise */
-  padding: 1.6rem 3.2rem;
-}
+      h1 {
+        font-size: 8rem;
+        letter-spacing: -0.05em;
+        text-align: center;
+        line-height: 0.85;
+      }
+      .header {
+        position: fixed;
+        top: 35%;
+        left: 10%;
+        z-index: 10; /* Ensure header is above canvas and noise */
+        padding: 1.6rem 3.2rem;
+      }  
   </style>
 </head>
 <body>
-<header class="header"><h1>Tidebreaker</h1></header>
+  <header class="header"><h1>Tidebreaker</h1></header>
 
-<script type="module" src="./script.js"></script>
+  <script type="module" src="./script.js"></script> 
 </body>
 </html>
