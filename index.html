@@ -23,34 +23,38 @@
       font-family: '0xPropo', monospace;
       color: #1B0027;
       background: #fff;
+      height: 100vh;
     }
 
     .container {
       display: flex;
       gap: 4vw;
-      height: 100vh;
+      height: 100%;
       align-items: stretch;
       overflow-x: hidden;
     }
 
-    .title, .content {
+    .title,
+    .content {
       flex: 1;
       min-width: 0;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start; /* stack items tightly */
-      gap: 0;
-      /* font-size will be set dynamically */
+      /* natural stacking, no justify-content */
+      font-size: 16px; /* initial base size */
+      line-height: 1.2;
     }
 
     .title > div,
-    .content p {
+    .content > p {
       margin: 0;
-      /* No vertical margin */
+      padding: 0;
+      line-height: 1.2;
     }
 
-    .content {
-      line-height: 1.7;
+    /* small margin between paragraphs */
+    .content > p + p {
+      margin-top: 0.4em;
     }
   </style>
 </head>
@@ -80,34 +84,48 @@
   </div>
 
   <script>
-    function scaleFontSizes() {
+    function scaleToFillHeight(container, elements) {
+      const containerHeight = container.clientHeight;
+      const precision = 0.1;
+      let minFontSize = 10;
+      let maxFontSize = 100;
+      let bestSize = minFontSize;
+
+      while (minFontSize <= maxFontSize) {
+        let mid = (minFontSize + maxFontSize) / 2;
+        elements.forEach(el => {
+          el.style.fontSize = mid + "px";
+          el.style.lineHeight = 1.2;
+        });
+
+        // Wait for styles to apply and measure height
+        const heights = elements.map(el => el.scrollHeight);
+        const maxHeight = Math.max(...heights);
+
+        if (maxHeight > containerHeight) {
+          maxFontSize = mid - precision;
+        } else {
+          bestSize = mid;
+          minFontSize = mid + precision;
+        }
+      }
+
+      // Set best font size finally
+      elements.forEach(el => {
+        el.style.fontSize = bestSize + "px";
+        el.style.lineHeight = 1.2;
+      });
+    }
+
+    function fitText() {
       const container = document.querySelector('.container');
       const title = document.querySelector('.title');
       const content = document.querySelector('.content');
-
-      let fontSize = 12; // start px
-      const maxFontSize = 100; // max px
-
-      while (fontSize < maxFontSize) {
-        title.style.fontSize = fontSize + 'px';
-        content.style.fontSize = fontSize * 0.75 + 'px';
-
-        const titleHeight = title.scrollHeight;
-        const contentHeight = content.scrollHeight;
-        const containerHeight = container.clientHeight;
-
-        if (titleHeight > containerHeight || contentHeight > containerHeight) {
-          fontSize--;
-          title.style.fontSize = fontSize + 'px';
-          content.style.fontSize = fontSize * 0.75 + 'px';
-          break;
-        }
-        fontSize++;
-      }
+      scaleToFillHeight(container, [title, content]);
     }
 
-    window.addEventListener('load', scaleFontSizes);
-    window.addEventListener('resize', scaleFontSizes);
+    window.addEventListener('load', fitText);
+    window.addEventListener('resize', fitText);
   </script>
 </body>
 </html>
