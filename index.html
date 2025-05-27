@@ -23,14 +23,13 @@
       font-family: '0xPropo', monospace;
       color: #1B0027;
       background: #fff;
-      height: 100vh;
     }
 
     .container {
       display: flex;
       gap: 4vw;
-      height: 100%;
-      align-items: stretch;
+      height: 100vh; /* fill viewport height */
+      align-items: stretch; /* equal height columns */
       overflow-x: hidden;
     }
 
@@ -40,21 +39,24 @@
       min-width: 0;
       display: flex;
       flex-direction: column;
-      /* natural stacking, no justify-content */
-      font-size: 16px; /* initial base size */
-      line-height: 1.2;
+      justify-content: space-between; /* push first and last items top and bottom */
     }
 
-    .title > div,
-    .content > p {
-      margin: 0;
-      padding: 0;
-      line-height: 1.2;
+    .title {
+      font-size: clamp(18px, 4vw, 48px);
+      word-break: break-word;
     }
 
-    /* small margin between paragraphs */
-    .content > p + p {
-      margin-top: 0.4em;
+    .content {
+      font-size: clamp(16px, 3.5vw, 24px);
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .content p {
+      margin-bottom: 1.2em;
     }
   </style>
 </head>
@@ -82,50 +84,5 @@
       <p>İnançla yürüyenler, en karanlık yolları aydınlığa çevirir.</p>
     </section>
   </div>
-
-  <script>
-    function scaleToFillHeight(container, elements) {
-      const containerHeight = container.clientHeight;
-      const precision = 0.1;
-      let minFontSize = 10;
-      let maxFontSize = 100;
-      let bestSize = minFontSize;
-
-      while (minFontSize <= maxFontSize) {
-        let mid = (minFontSize + maxFontSize) / 2;
-        elements.forEach(el => {
-          el.style.fontSize = mid + "px";
-          el.style.lineHeight = 1.2;
-        });
-
-        // Wait for styles to apply and measure height
-        const heights = elements.map(el => el.scrollHeight);
-        const maxHeight = Math.max(...heights);
-
-        if (maxHeight > containerHeight) {
-          maxFontSize = mid - precision;
-        } else {
-          bestSize = mid;
-          minFontSize = mid + precision;
-        }
-      }
-
-      // Set best font size finally
-      elements.forEach(el => {
-        el.style.fontSize = bestSize + "px";
-        el.style.lineHeight = 1.2;
-      });
-    }
-
-    function fitText() {
-      const container = document.querySelector('.container');
-      const title = document.querySelector('.title');
-      const content = document.querySelector('.content');
-      scaleToFillHeight(container, [title, content]);
-    }
-
-    window.addEventListener('load', fitText);
-    window.addEventListener('resize', fitText);
-  </script>
 </body>
 </html>
