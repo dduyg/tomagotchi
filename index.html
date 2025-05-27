@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Liminal🧊Loop</title>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@452&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@452&display=swap" rel="stylesheet" />
   <style>
     html, body {
       margin: 0;
@@ -18,7 +18,7 @@
       overflow: hidden;
     }
 
-    .nav-menu {
+    .index {
       display: flex;
       flex-direction: row;
       width: 100vw;
@@ -29,7 +29,7 @@
       overflow: hidden;
     }
 
-    .card-list_item {
+    .item {
       flex: 1 1 0; /* each item takes equal width */
       max-height: 100vh;
       display: flex;
@@ -43,24 +43,24 @@
       overflow: hidden;
       border-right: 1px dotted;
     }
-    .card-list_item-inner {
+    .item_inner {
       position: relative;
       z-index: 2;
       text-align: center;
     }
-    .card-list_item-inner h3 {
+    .item_inner h3 {
       font-size: clamp(1rem, 2vw, 1.5rem); /* responsive font size */
       margin: 0 0 8px 0;
       line-height: 1.2;
     }
-    .card-list_item-inner p {
+    .item_inner p {
       font-size: clamp(0.8rem, 1.5vw, 1rem);
       margin: 0;
       overflow-wrap: break-word;
       line-height: 1.4;
     }
 
-    .card-list_bg-fill {
+    .bg-fill {
       position: absolute;
       top: 0;
       left: 0;
@@ -69,21 +69,21 @@
       pointer-events: none;
       z-index: 1;
     }
-    .card-list_bg-path {
+    .bg-path {
       fill: var(--base-color-neutral--white, #040205);
     }
   </style>
 </head>
 <body>
-  <nav class="nav-menu">
-    <div class="card-list_item">
-      <div class="card-list_item-inner">
+  <nav class="index">
+    <div class="item">
+      <div class="item_inner">
         <h3>Menu 1</h3>
         <p>Description for Menu 1</p>
       </div>
     </div>
-    <div class="card-list_item">
-      <div class="card-list_item-inner">
+    <div class="item">
+      <div class="item_inner">
         <h3>Menu 2</h3>
         <p>
           Description for Menu 2 with even longer text that will naturally wrap and the container will
@@ -91,33 +91,33 @@
         </p>
       </div>
     </div>
-    <div class="card-list_item">
-      <div class="card-list_item-inner">
+    <div class="item">
+      <div class="item_inner">
         <h3>Menu 3</h3>
         <p>Description for Menu 3</p>
       </div>
     </div>
-    <div class="card-list_item">
-      <div class="card-list_item-inner">
+    <div class="item">
+      <div class="item_inner">
         <h3>Menu 4</h3>
         <p>Description for Menu 4</p>
       </div>
     </div>
-    <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="card-list_bg-fill">
-      <path d="M 0 0 H 0 Q 0 50 0 100 H 0 V 0 z" class="card-list_bg-path"></path>
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="bg-fill">
+      <path d="M 0 0 H 0 Q 0 50 0 100 H 0 V 0 z" class="bg-path"></path>
     </svg>
   </nav>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script>
-    const navMenu = document.querySelector(".nav-menu");
-    const bgPath = document.querySelector(".card-list_bg-path");
+    const index = document.querySelector(".index");
+    const bgPath = document.querySelector(".bg-path");
     let currentItem = null;
     let animation = null;
 
     function getItemDimensions(item) {
       const rect = item.getBoundingClientRect();
-      const navRect = navMenu.getBoundingClientRect();
+      const navRect = index.getBoundingClientRect();
       return {
         left: ((rect.left - navRect.left) / navRect.width) * 100,
         right: ((rect.right - navRect.left) / navRect.width) * 100,
@@ -201,8 +201,8 @@
         });
     }
 
-    navMenu.addEventListener("mouseover", (e) => {
-      const item = e.target.closest(".card-list_item");
+    index.addEventListener("mouseover", (e) => {
+      const item = e.target.closest(".item");
       if (item && item !== currentItem) {
         if (currentItem) {
           animateTransition(currentItem, item);
@@ -213,7 +213,7 @@
       }
     });
 
-    navMenu.addEventListener("mouseleave", () => {
+    index.addEventListener("mouseleave", () => {
       if (currentItem) {
         animateHoverOut(currentItem);
         currentItem = null;
