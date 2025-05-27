@@ -12,36 +12,47 @@
       height: 100%;
       width: 100%;
       background-color: #040205;
-      color: white;
+      color: #B504F3;
       font-family: "Manrope", sans-serif;
       overflow: hidden;
     }
 
     .index {
       display: flex;
+      flex-direction: row;
       width: 100vw;
       height: 100vh;
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
       position: relative;
-      z-index: 0;
     }
     .item {
-      flex: 1;
+      flex: 1 1 0;
+      max-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
-      position: relative;
-      z-index: 2;
-      border-right: 1px dotted;
+      box-sizing: border-box;
       cursor: pointer;
+      background-color: transparent;
+      position: relative;
+      overflow: hidden;
+      border-right: 4px dotted;
     }
     .item_inner {
+      position: relative;
+      z-index: 2;
       text-align: center;
     }
+
     .item_inner h3 {
       font-size: clamp(1rem, 2vw, 1.5rem);
       margin: 0 0 8px 0;
     }
+
     .item_inner p {
       font-size: clamp(0.8rem, 1.5vw, 1rem);
       margin: 0;
@@ -62,7 +73,7 @@
       height: 100%;
       object-fit: cover;
     }
-
+    
     .controls {
       position: absolute;
       bottom: 10px;
@@ -102,7 +113,7 @@
     <div class="item">
       <div class="item_inner">
         <h3>Menu 2</h3>
-        <p>Description for Menu 2 with more text for wrapping properly.</p>
+        <p>Description for Menu 2</p>
       </div>
     </div>
     <div class="item">
