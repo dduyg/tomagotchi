@@ -298,7 +298,8 @@ If the image is used as a background:
 - [ ]  Chivo
 - [ ]  Ruda
 - [ ]  Warnes
-- [ ]  Viaoda Libre
+- [ ]  Luxurious Roman
+- [ ]  Philosopher
 - [ ]  Diplomata SC
 - [ ]  Fascinate Inline
 - [ ]  Montserrat Alternates
