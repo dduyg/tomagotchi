@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Liminal🧊Loop</title>
-  <link href="https://fonts.googleapis.com/css2?family=Viaoda+Libre&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@450&display=swap" rel="stylesheet" />
   <style>
     html, body {
@@ -13,12 +12,9 @@
       padding: 0;
       height: 100%;
       width: 100%;
-      background-image: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/dead-reckoning.gif');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      color: #dfe0dc;
-      font-family: "Viaoda Libre", serif;
+      background-color: #040205;
+      color: white;
+      font-family: "Manrope", sans-serif;
       overflow: hidden;
     }
 
@@ -34,7 +30,7 @@
     }
 
     .item {
-      flex: 1 1 0; /* each item takes equal width */
+      flex: 1 1 0;
       max-height: 100vh;
       display: flex;
       align-items: center;
@@ -45,18 +41,21 @@
       background-color: transparent;
       position: relative;
       overflow: hidden;
-      border-right: 5px dotted;
+      border-right: 1px dotted;
     }
+
     .item_inner {
       position: relative;
       z-index: 2;
       text-align: center;
     }
+
     .item_inner h3 {
-      font-size: clamp(1rem, 2vw, 1.5rem); /* responsive font size */
+      font-size: clamp(1rem, 2vw, 1.5rem);
       margin: 0 0 8px 0;
       line-height: 1.2;
     }
+
     .item_inner p {
       font-size: clamp(0.8rem, 1.5vw, 1rem);
       margin: 0;
@@ -73,8 +72,9 @@
       pointer-events: none;
       z-index: 1;
     }
+
     .bg-path {
-      fill: var(--base-color-neutral--white, #d1d3c4);
+      /* fill removed; will be handled by JS on click */
     }
   </style>
 </head>
@@ -82,32 +82,35 @@
   <nav class="index">
     <div class="item">
       <div class="item_inner">
-        <h3>memory layout</h3>
+        <h3>Menu 1</h3>
         <p>Description for Menu 1</p>
       </div>
     </div>
     <div class="item">
       <div class="item_inner">
-        <h3>dope-vector</h3>
-        <p>
-          Description for Menu 2 with even longer text that will naturally wrap and the container will
-          handle overflow gracefully. This ensures usability and readability across devices.  
-        </p>
+        <h3>Menu 2</h3>
+        <p>Description for Menu 2 with even longer text that will naturally wrap and the container will handle overflow gracefully.</p>
       </div>
     </div>
     <div class="item">
       <div class="item_inner">
-        <h3>dead-reckoning</h3>
+        <h3>Menu 3</h3>
         <p>Description for Menu 3</p>
       </div>
     </div>
     <div class="item">
       <div class="item_inner">
-        <h3>block of memory</h3>
+        <h3>Menu 4</h3>
         <p>Description for Menu 4</p>
       </div>
     </div>
+
     <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="bg-fill">
+      <defs>
+        <pattern id="bgImagePattern" patternUnits="objectBoundingBox" width="1" height="1">
+          <image href="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/dead-reckoning.gif" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" />
+        </pattern>
+      </defs>
       <path d="M 0 0 H 0 Q 0 50 0 100 H 0 V 0 z" class="bg-path"></path>
     </svg>
   </nav>
@@ -140,8 +143,7 @@
       const midPath = createPath(left, right, 10);
       const finalPath = createPath(left, right);
 
-      animation = gsap
-        .timeline()
+      animation = gsap.timeline()
         .set(bgPath, { attr: { d: initialPath } })
         .to(bgPath, {
           attr: { d: midPath },
@@ -169,8 +171,7 @@
       );
       const finalPath = createPath(toDim.left, toDim.right);
 
-      animation = gsap
-        .timeline()
+      animation = gsap.timeline()
         .to(bgPath, {
           attr: { d: midPath },
           duration: 0.2,
@@ -191,8 +192,7 @@
       const midPath = createPath(left, right, 10);
       const finalPath = createPath(left, left);
 
-      animation = gsap
-        .timeline()
+      animation = gsap.timeline()
         .to(bgPath, {
           attr: { d: midPath },
           duration: 0.2,
@@ -222,6 +222,12 @@
         animateHoverOut(currentItem);
         currentItem = null;
       }
+    });
+
+    document.querySelectorAll('.item').forEach(item => {
+      item.addEventListener('click', () => {
+        bgPath.setAttribute("fill", "url(#bgImagePattern)");
+      });
     });
   </script>
 </body>
