@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Liminal⚾️Loop</title>
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
     @font-face {
       font-family: '0xPropo';
       src: url('0xPropo.woff2') format('woff2'),
@@ -13,6 +16,7 @@
       font-weight: normal;
       font-style: normal;
     }
+
     body {
       margin: 0;
       padding: 2vw;
@@ -26,29 +30,41 @@
       height: 90vh;
       min-height: 500px;
       justify-content: center;
-      align-items: center;
+      align-items: stretch; /* Changed from center to stretch */
       overflow-x: hidden;
     }
-    .title, .content { 
-      flex: 1;  
-      min-width: 0;  
-    }  
-    .title {  
-      display: flex;  
+
+    .title,
+    .content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .title {
+      display: flex;
       flex-direction: column;
       justify-content: space-between;
-      font-size: clamp(16px, 3vw, 32px);  
-      word-break: break-word;  
+      height: 100%; /* Ensure full height */
+      font-size: clamp(16px, 3vw, 32px);
+      word-break: break-word;
     }
+
     .title div {
+      display: flex;
+      align-items: center; /* Optional: centers text vertically in each block */
       align-self: stretch;
     }
-    .content {  
-      font-size: clamp(12px, 1.5vw, 14px);  
-      line-height: 1.7;  
-    }  
-    .content p {  
-      margin-bottom: 1.2em;  
+
+    .content {
+      font-size: clamp(12px, 1.5vw, 14px);
+      line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .content p {
+      margin-bottom: 1.2em;
     }
   </style>
 </head>
