@@ -16,53 +16,67 @@
     body {
       font-family: '0xPropo', monospace;
       margin: 2vw;
-      display: flex;
-      gap: 4vw;
       color: #1B0027;
       overflow-x: hidden;
+    }
+
+    .container {
+      display: flex;
+      gap: 4vw;
+      align-items: stretch;
+      height: 100vh;
+      min-height: 500px;
     }
 
     .title, .content {
       flex: 1;
       min-width: 0;
-    }
-    .title {
       display: flex;
       flex-direction: column;
-      gap: 2vh;
-      font-size: clamp(16px, 3vw, 32px);
+      justify-content: space-between;
+    }
+
+    .title {
+      font-size: clamp(16px, 3vw, 36px);
       word-break: break-word;
     }
+
     .content {
-      font-size: clamp(12px, 1.5vw, 14px);
+      font-size: clamp(14px, 1.8vw, 16px);
       line-height: 1.7;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
+
     .content p {
       margin-bottom: 1.2em;
     }
   </style>
 </head>
 <body>
-  <section class="title">
-    <div>ENERGY CH∆MBER</div>
-    <div><em>P</em><strong>lea</strong><em>se Hold</em>.</div>
-    <div>Rendezvous</div>
-    <div><em>Function spaces</em></div>
-    <div><strong>METAMORPHOSE</strong></div>
-  </section>
-  <section class="content">
-    <p> 
-      Özgürlük ve bağımsızlık benim karakterimdir.
-      Milletimizin onurunu korumak, bağımsız yaşamakla mümkündür. 
-      Hiçbir zorluk, inançla çalışan bir milleti yolundan döndüremez.
-    </p>
-    <p>
-      Unutmayın, umut varsa mücadele vardır; mücadele varsa zafer kaçınılmazdır.  
-      Türk milleti, <em>tarih boyunca hür yaşamış ve hür yaşayacaktır</em>.
-      <strong>Hürriyet ve istiklâl benim karakterimdir</strong>. Milletin istiklâlini
-      yine milletin azim ve kararı kurtaracaktır.
-    </p>
-    <p>İnançla yürüyenler, en karanlık yolları aydınlığa çevirir.</p>
-  </section>
+  <div class="container">
+    <section class="title">
+      <div>ENERGY CH∆MBER</div>
+      <div><em>P</em><strong>lea</strong><em>se Hold</em>.</div>
+      <div>Rendezvous</div>
+      <div><em>Function spaces</em></div>
+      <div><strong>METAMORPHOSE</strong></div>
+    </section>
+    <section class="content">
+      <p> 
+        Özgürlük ve bağımsızlık benim karakterimdir.
+        Milletimizin onurunu korumak, bağımsız yaşamakla mümkündür. 
+        Hiçbir zorluk, inançla çalışan bir milleti yolundan döndüremez.
+      </p>
+      <p>
+        Unutmayın, umut varsa mücadele vardır; mücadele varsa zafer kaçınılmazdır.  
+        Türk milleti, <em>tarih boyunca hür yaşamış ve hür yaşayacaktır</em>.
+        <strong>Hürriyet ve istiklâl benim karakterimdir</strong>. Milletin istiklâlini
+        yine milletin azim ve kararı kurtaracaktır.
+      </p>
+      <p>İnançla yürüyenler, en karanlık yolları aydınlığa çevirir.</p>
+    </section>
+  </div>
 </body>
 </html>
