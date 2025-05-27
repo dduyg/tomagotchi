@@ -433,6 +433,7 @@ If the image is used as a background:
 | <img src="https://img.shields.io/badge/■330867-330867?style=for-the-badge"/> |  |
 | <img src="https://img.shields.io/badge/■F54931-F54931?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■532FDB-532FDB?style=for-the-badge"/> |
 | <img src="https://img.shields.io/badge/■3333ff-3333ff?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■ffffff-ffffff?style=for-the-badge"/> |
+| <img src="https://img.shields.io/badge/■F20145-F20145?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■1B0027-1B0027?style=for-the-badge"/> |
 
 - [x] Syncing data under coral-coded skies.
 - [ ] Aquatic Arrays
