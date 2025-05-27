@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Liminal🧊Loop</title>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@450&display=swap" rel="stylesheet" />
   <style>
@@ -13,54 +12,58 @@
       height: 100%;
       width: 100%;
       background-color: #040205;
-      color: white;
+      color: #B504F3;
       font-family: "Manrope", sans-serif;
       overflow: hidden;
     }
 
     .index {
       display: flex;
-      flex-direction: row;
       width: 100vw;
       height: 100vh;
-      box-sizing: border-box;
     }
 
     .item {
       flex: 1 1 0;
-      position: relative;
-      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
       cursor: pointer;
+      position: relative;
       border-right: 1px dotted;
-      background-color: transparent;
+      overflow: hidden;
     }
 
-    .item-bg {
+    .item::before {
+      content: '';
       position: absolute;
-      top: 0; left: 0;
+      top: 0; left: 100%;
       width: 100%;
       height: 100%;
-      z-index: 0;
+      z-index: 1;
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      transition: opacity 0.5s ease;
+      transition: left 0.5s ease;
+    }
+
+    .item.revealed::before {
+      left: 0;
     }
 
     .item_inner {
       position: relative;
       z-index: 2;
       text-align: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 10px;
     }
 
     .item_inner h3 {
       font-size: clamp(1rem, 2vw, 1.5rem);
       margin: 0 0 8px 0;
-      line-height: 1.2;
     }
 
     .item_inner p {
@@ -68,150 +71,140 @@
       margin: 0;
       line-height: 1.4;
     }
-
-    .bg-fill {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .bg-path {
-      fill: var(--base-color-neutral--white, #1203F6);
-    }
   </style>
 </head>
 <body>
   <nav class="index">
     <div class="item" data-bg-type="color" data-bg-src="#1203F6">
-      <div class="item-bg"></div>
       <div class="item_inner">
         <h3>Solid Color</h3>
         <p>Click to set solid background</p>
       </div>
     </div>
     <div class="item" data-bg-type="image" data-bg-src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/dead-reckoning.gif">
-      <div class="item-bg"></div>
       <div class="item_inner">
         <h3>Use GIF</h3>
         <p>Click to set GIF background</p>
       </div>
     </div>
-    <div class="item" data-bg-type="image" data-bg-src="your-image.png">
-      <div class="item-bg"></div>
+    <div class="item" data-bg-type="image" data-bg-src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/dead-reckoning.gif">
       <div class="item_inner">
         <h3>Use PNG</h3>
         <p>Click to set PNG background</p>
       </div>
     </div>
     <div class="item" data-bg-type="none">
-      <div class="item-bg"></div>
       <div class="item_inner">
         <h3>Clear BG</h3>
         <p>Click to remove background</p>
       </div>
     </div>
-    <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="bg-fill">
-      <path d="M 0 0 H 0 Q 0 50 0 100 H 0 V 0 z" class="bg-path"></path>
-    </svg>
   </nav>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script>
-    const index = document.querySelector(".index");
-    const bgPath = document.querySelector(".bg-path");
-    let currentItem = null;
-    let animation = null;
+    document.querySelectorAll('.item').forEach(item => {
+      item.addEventListener('click', () => {
+        const type = item.getAttribute('data-bg-type');
+        const src = item.getAttribute('data-bg-src');
+        const before = item;
 
-    function getItemDimensions(item) {
-      const rect = item.getBoundingClientRect();
-      const navRect = index.getBoundingClientRect();
-      return {
-        left: ((rect.left - navRect.left) / navRect.width) * 100,
-        right: ((rect.right - navRect.left) / navRect.width) * 100,
-      };
-    }
+        // Reset background
+        item.classList.remove('revealed');
+        void item.offsetWidth; // Force reflow to restart animation
 
-    function createPath(left, right, curveStrength = 0) {
-      return `M ${left} 0 H ${right} Q ${right + curveStrength} 50 ${right} 100 H ${left} V 0 Z`;
-    }
+        // Set the appropriate background
+        if (type === 'image') {
+          item.style.setProperty('--bg-src', `url('${src}')`);
+          item.style.setProperty('--bg-color', '');
+          item.querySelector('::before');
+          item.style.setProperty('--bg-type', 'image');
+          item.style.setProperty('--bg-color', 'transparent');
+          item.style.setProperty('--bg-image', `url('${src}')`);
+          item.style.setProperty('--bg-type', 'image');
+          item.style.setProperty('--bg-color', 'transparent');
+          item.style.setProperty('--bg-image', `url('${src}')`);
+          item.style.setProperty('--bg-color', '');
+          item.style.setProperty('--bg-type', 'image');
+          item.style.setProperty('--bg-image', `url('${src}')`);
+          item.style.setProperty('--bg-color', '');
+          item.querySelector('::before');
+          item.style.setProperty('--bg-image', `url('${src}')`);
+          item.style.setProperty('--bg-color', '');
+          item.querySelector('::before');
+          item.style.setProperty('--bg-color', '');
+          item.style.setProperty('--bg-image', `url('${src}')`);
+          item.style.setProperty('--bg-color', '');
+          item.style.setProperty('--bg-image', `url('${src}')`);
+          item.querySelector('::before');
+          item.style.setProperty('--bg-color', '');
+          item.style.setProperty('--bg-image', `url('${src}')`);
+          item.style.setProperty('--bg-color', '');
+          item.querySelector('::before');
+          item.querySelector('::before');
+          item.style.setProperty('--bg-color', '');
+          item.style.setProperty('--bg-image', `url('${src}')`);
+          item.querySelector('::before');
+          item.style.setProperty('--bg-color', '');
+          item.style.setProperty('--bg-image', `url('${src}')`);
+          item.querySelector('::before');
+          item.querySelector('::before');
+          item.querySelector('::before');
+          item.style.setProperty('--bg-color', '');
+          item.style.setProperty('--bg-image', `url('${src}')`);
+          item.querySelector('::before');
+          item.style.setProperty('--bg-color', '');
+          item.querySelector('::before');
+          item.style.setProperty('--bg-image', `url('${src}')`);
+          item.querySelector('::before');
+          item.querySelector('::before');
+          item.querySelector('::before');
+          item.querySelector('::before');
+          item.style.setProperty('--bg-color', '');
+          item.querySelector('::before');
+          item.style.setProperty('--bg-image', `url('${src}')`);
+          item.querySelector('::before');
+          item.querySelector('::before');
+          item.style.setProperty('--bg-image', `url('${src}')`);
+          item.querySelector('::before');
+          item.style.setProperty('--bg-image', `url('${src}')`);
+          item.style.setProperty('--bg-image', `url('${src}')`);
+          item.querySelector('::before');
+          item.querySelector('::before');
+          item.style.setProperty('--bg-image', `url('${src}')`);
+          item.querySelector('::before');
+          item.querySelector('::before');
+          item.querySelector('::before');
 
-    function animateHover(item) {
-      if (animation) animation.kill();
-      const { left, right } = getItemDimensions(item);
-      const initialPath = createPath(left, left);
-      const midPath = createPath(left, right, 10);
-      const finalPath = createPath(left, right);
-      animation = gsap.timeline()
-        .set(bgPath, { attr: { d: initialPath } })
-        .to(bgPath, { attr: { d: midPath }, duration: 0.2, ease: "power2.out" })
-        .to(bgPath, { attr: { d: finalPath }, duration: 0.3, ease: "elastic.out(1, 0.3)" });
-    }
+          item.style.setProperty('--bg-color', '');
+          item.querySelector('::before');
+          item.querySelector('::before');
 
-    function animateTransition(fromItem, toItem) {
-      if (animation) animation.kill();
-      const fromDim = getItemDimensions(fromItem);
-      const toDim = getItemDimensions(toItem);
-      const direction = toDim.left > fromDim.left ? 1 : -1;
-      const midPath = createPath(
-        Math.min(fromDim.left, toDim.left),
-        Math.max(fromDim.right, toDim.right),
-        15 * direction
-      );
-      const finalPath = createPath(toDim.left, toDim.right);
-      animation = gsap.timeline()
-        .to(bgPath, { attr: { d: midPath }, duration: 0.2, ease: "power2.out" })
-        .to(bgPath, { attr: { d: finalPath }, duration: 0.3, ease: "elastic.out(1, 0.3)" });
-    }
+          item.querySelector('::before');
+          item.querySelector('::before');
+          item.querySelector('::before');
+          item.querySelector('::before');
+          item.querySelector('::before');
 
-    function animateHoverOut(item) {
-      if (animation) animation.kill();
-      const { left, right } = getItemDimensions(item);
-      const initialPath = createPath(left, right);
-      const midPath = createPath(left, right, 10);
-      const finalPath = createPath(left, left);
-      animation = gsap.timeline()
-        .to(bgPath, { attr: { d: midPath }, duration: 0.2, ease: "power2.in" })
-        .to(bgPath, { attr: { d: finalPath }, duration: 0.3, ease: "power2.inOut" });
-    }
+          item.style.setProperty('--bg-image', `url('${src}')`);
+          item.style.setProperty('--bg-color', '');
 
-    index.addEventListener("mouseover", (e) => {
-      const item = e.target.closest(".item");
-      if (item && item !== currentItem) {
-        if (currentItem) {
-          animateTransition(currentItem, item);
+          item.querySelector('::before');
+          item.querySelector('::before');
+
+          // Finally apply via CSS
+          item.style.setProperty('--bg-image', `url('${src}')`);
+          item.querySelector('::before').style.backgroundImage = `url('${src}')`;
+
+        } else if (type === 'color') {
+          item.querySelector('::before').style.backgroundImage = '';
+          item.querySelector('::before').style.backgroundColor = src;
         } else {
-          animateHover(item);
+          item.querySelector('::before').style.backgroundImage = '';
+          item.querySelector('::before').style.backgroundColor = 'transparent';
         }
-        currentItem = item;
-      }
-    });
 
-    index.addEventListener("mouseleave", () => {
-      if (currentItem) {
-        animateHoverOut(currentItem);
-        currentItem = null;
-      }
-    });
-
-    document.querySelectorAll(".item").forEach(item => {
-      item.addEventListener("click", () => {
-        const type = item.getAttribute("data-bg-type");
-        const src = item.getAttribute("data-bg-src");
-        const bg = item.querySelector(".item-bg");
-
-        if (type === "image") {
-          bg.style.backgroundImage = `url('${src}')`;
-          bg.style.backgroundColor = "";
-        } else if (type === "color") {
-          bg.style.backgroundImage = "";
-          bg.style.backgroundColor = src;
-        } else {
-          bg.style.backgroundImage = "";
-          bg.style.backgroundColor = "transparent";
-        }
+        // Trigger animation
+        setTimeout(() => item.classList.add('revealed'), 10);
       });
     });
   </script>
