@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Liminal➿️Loop</title>
+  <title>Liminal⚜️Loop</title>
   <link href="https://fonts.googleapis.com/css2?family=Viaoda+Libre&display=swap" rel="stylesheet">
   <style>
     html, body {
@@ -77,56 +77,29 @@
       height: 100%;
       object-fit: cover;
     }
-    
-    .controls {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      z-index: 3;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 6px 12px;
-      border-radius: 6px;
-      color: white;
-      font-size: 0.9rem;
-    }
-    .controls select {
-      background: #000;
-      color: white;
-      border: none;
-      padding: 4px;
-      border-radius: 4px;
-    }
   </style>
 </head>
 <body>
-  <div class="controls">
-    <label for="bgType">Background Type:</label>
-    <select id="bgType">
-      <option value="color">Solid Color</option>
-      <option value="image">Image</option>
-    </select>
-  </div>
-
   <nav class="index">
-    <div class="item">
+    <div class="item" data-bg-type="color" data-bg-color="#1203F6">
       <div class="item_inner">
         <h3>01</h3>
         <p>memory layout</p>
       </div>
     </div>
-    <div class="item">
+    <div class="item" data-bg-type="image" data-bg-image="https://media3.giphy.com/media/U1mMsHWGPHpEjBBjNm/giphy.gif">
       <div class="item_inner">
         <h3>02</h3>
         <p>dope-vector</p>
       </div>
     </div>
-    <div class="item">
+    <div class="item" data-bg-type="color" data-bg-color="#FF0055">
       <div class="item_inner">
         <h3>03</h3>
         <p>dead-reckoning</p>
       </div>
     </div>
-    <div class="item">
+    <div class="item" data-bg-type="image" data-bg-image="https://media.giphy.com/media/l0HUpt2s9Pclgt9Vm/giphy.gif">
       <div class="item_inner">
         <h3>04</h3>
         <p>block of memory</p>
@@ -147,19 +120,10 @@
   <script>
     const index = document.querySelector(".index");
     const bgPath = document.querySelector(".bg-path");
-    const bgTypeSelect = document.getElementById("bgType");
     const patternImg = document.getElementById("patternImgEl");
 
-    let useImage = false;
-
-    bgTypeSelect.addEventListener("change", (e) => {
-      useImage = e.target.value === "image";
-      if (useImage) {
-        bgPath.setAttribute("fill", "url(#patternImage)");
-      } else {
-        bgPath.setAttribute("fill", "#1203F6");
-      }
-    });
+    let animation = null;
+    let currentItem = null;
 
     function getItemDimensions(item) {
       const rect = item.getBoundingClientRect();
@@ -173,9 +137,6 @@
     function createPath(left, right, curveStrength = 0) {
       return `M ${left} 0 H ${right} Q ${right + curveStrength} 50 ${right} 100 H ${left} V 0 Z`;
     }
-
-    let animation = null;
-    let currentItem = null;
 
     function animateHover(item) {
       if (animation) animation.kill();
@@ -220,9 +181,23 @@
         .to(bgPath, { attr: { d: finalPath }, duration: 0.3, ease: "power2.inOut" });
     }
 
+    function setBackgroundFromItem(item) {
+      const bgType = item.getAttribute("data-bg-type");
+
+      if (bgType === "image") {
+        const imageUrl = item.getAttribute("data-bg-image");
+        patternImg.setAttribute("href", imageUrl);
+        bgPath.setAttribute("fill", "url(#patternImage)");
+      } else if (bgType === "color") {
+        const color = item.getAttribute("data-bg-color") || "#000000";
+        bgPath.setAttribute("fill", color);
+      }
+    }
+
     index.addEventListener("mouseover", (e) => {
       const item = e.target.closest(".item");
       if (item && item !== currentItem) {
+        setBackgroundFromItem(item);
         if (currentItem) {
           animateTransition(currentItem, item);
         } else {
