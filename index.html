@@ -5,23 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Liminal🪢Loop</title>
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300&display=swap" rel="stylesheet">
-
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1:wght@500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Boldonse&display=swap" rel="stylesheet">
   <style>
-    *, *::after, *::before {box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent;}
-    @font-face { 
+    *, *::after, *::before {
+      box-sizing: border-box;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    @font-face {
       font-family: 'TheGoodMonolith';
       src: url('https://raw.githubusercontent.com/dduyg/LiminalLoop/main/fonts/TheGoodMonolith.woff2') format('woff2');
       font-weight: 500;
       font-style: normal;
     }
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
       margin: 0;
       padding: 0;
       font-family: "M PLUS 1", sans-serif;
@@ -30,22 +28,23 @@
       text-align: center;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      overflow: hidden;
     }
-    body::before {  
+    body::before {
       content: "";
-      position: fixed; 
+      position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
       pointer-events: none;
       background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.03) 1px, transparent 2px, transparent 4px);
       z-index: 10;
       animation: scan 0.3s linear infinite;
     }
-    @keyframes scan {  
+    @keyframes scan {
       0% {background-position: 0 0;}
       100% {background-position: 0 4px;}
     }
 
-    #badge { 
+    #badge {
       position: fixed;
       right: 20%;
       top: 5%;
@@ -73,28 +72,31 @@
     #badge:hover .circle-1 { transform: translate(-0.5rem, -50%); }
     #badge:hover .circle-2 { transform: translate(0.5rem, -50%); }
 
-   .container {
+    .container {
       display: flex;
       width: 100%;
       height: 100vh;
-      padding: 16px;
     }
-   .sidebar {
-     width: 40%;
-     padding: 32px;
-     display: flex;
-     flex-direction: column;
-     justify-content: space-between;
-     text-align: left;
-   }
 
-   .title {      
-     font-size: 1.6rem;
-     line-height: 0.9;
-     color: #6E6663;
-     font-family: "Boldonse", sans-serif;
-     margin-bottom: 1rem;
+    .sidebar {
+      width: 35%;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left;
     }
+
+    .title {
+      font-size: 1.6rem;
+      line-height: 0.9;
+      color: #6E6663;
+      font-family: "Boldonse", sans-serif;
+      margin-bottom: 1rem;
+    }
+
     .description {
       font-size: 0.75rem;
       line-height: 1.2;
@@ -110,9 +112,11 @@
       font-family: 'TheGoodMonolith', sans-serif;
       font-size: 1rem;
     }
+
     @media (max-width: 768px) {
-      .nav-links {gap: 0.4rem;}
+      .nav-links { gap: 0.4rem; }
     }
+
     .nav-links a {
       color: inherit;
       text-decoration: none;
@@ -120,9 +124,10 @@
       position: relative;
       padding-left: 0;
     }
-    .nav-links a::before {  
+
+    .nav-links a::before {
       content: "";
-      position: absolute; 
+      position: absolute;
       left: 0;
       top: 50%;
       width: 0;
@@ -131,59 +136,77 @@
       transform: translateY(-50%);
       transition: width 0.3s ease, opacity 0.3s ease;
       opacity: 0;
-    }   
-    .nav-links a:hover { 
+    }
+
+    .nav-links a:hover {
       color: rgb(205, 205, 0);
       padding-left: 1.2rem;
     }
-    .nav-links a:hover::before { 
+
+    .nav-links a:hover::before {
       width: 0.8rem;
       opacity: 1;
     }
-    
+
     .footer {
       margin-top: 1rem;
       font-size: 0.65rem;
     }
+
     .footer p {
       opacity: 0.5;
     }
 
     .main-content {
+      position: fixed;
+      right: 0;
+      top: 0;
       width: 65%;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       padding: 32px;
       text-transform: uppercase;
+      background-color: #033301;
+      z-index: 5;
     }
   </style>
 </head>
 <body>
-<div id="badge"><div class="circles"><div class="circle circle-1"></div><div class="circle circle-2"></div></div></div>
-  
-<main class="container">
-   <div class="sidebar">
-     <div class="title">🧝🏻‍♀️ @exodus</div>
-     <p class="description">THE ARCHIVE COLLECTS RECORDS OF ABANDONED WORLDS AND LOST TECHNOLOGIES, WAITING TO BE DISCOVERED.</p>
-     <nav class="nav-links">
-       <a href="#">_DATA VAULTS</a>
-       <a href="#">_DEEP SPACE</a>
-       <a href="#">_FORBIDDEN ZONES</a>
-       <a href="#">_EXODUS LOGS</a>
-       <a href="#">_PATHS UNSEEN</a>
-       <a href="#">_UPLINK PENDING</a>
-     </nav>
-     <div class="footer">
-       <p>Err: [404 - SIGNAL LOST]<br>
-         SYSTEM TIME: CYCLE 2187.42</p>
-     </div>
-   </div>
-   <div class="main-content">
-     <p class="signal">
-       ACCESS LEVEL: RESTRICTED.<br>
-       TRACE INITIATED: SOURCE UNKNOWN.</p>
-   </div>
-</main>
+  <div id="badge">
+    <div class="circles">
+      <div class="circle circle-1"></div>
+      <div class="circle circle-2"></div>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="sidebar">
+      <div class="title">🧝🏻‍♀️ @exodus</div>
+      <p class="description">
+        THE ARCHIVE COLLECTS RECORDS OF ABANDONED WORLDS AND LOST TECHNOLOGIES, WAITING TO BE DISCOVERED.
+      </p>
+      <nav class="nav-links">
+        <a href="#">_DATA VAULTS</a>
+        <a href="#">_DEEP SPACE</a>
+        <a href="#">_FORBIDDEN ZONES</a>
+        <a href="#">_EXODUS LOGS</a>
+        <a href="#">_PATHS UNSEEN</a>
+        <a href="#">_UPLINK PENDING</a>
+      </nav>
+      <div class="footer">
+        <p>Err: [404 - SIGNAL LOST]<br>
+          SYSTEM TIME: CYCLE 2187.42</p>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <p class="signal">
+        ACCESS LEVEL: RESTRICTED.<br>
+        TRACE INITIATED: SOURCE UNKNOWN.
+      </p>
+    </div>
+  </main>
 </body>
 </html>
