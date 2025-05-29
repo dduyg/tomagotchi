@@ -17,55 +17,52 @@
       --text-color: rgba(245, 245, 245, 0.9);
       --bg-color: #0a0a0a;
     }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
     body {
       background: var(--bg-color);
       font-family: var(--font-primary);
-      font-size: 1rem;
+      font-size: 11px;
       color: var(--text-color);
       width: 100vw;
       height: 100vh;
       overflow-x: hidden;
-      padding: 2rem;
+    }
+    nav {
+      padding: 5rem;
     }
 
-    .main-nav a {
-      color: var(--text-color);
+    nav a {
+      color: inherit;
       text-decoration: none;
-      font-size: 0.75rem; /* same as 12px if base font is 16px */
       text-transform: uppercase;
       display: inline-block;
       position: relative;
-      padding-left: 1.5em; /* 1.5x the current font size */
+      padding-left: 1em; /* Scales with font-size */
       margin-bottom: 1rem;
     }
-
-    .main-nav a::before {
+    nav a::before {
       content: "";
       position: absolute;
       top: 50%;
       left: 0;
-      width: 0.33em;  /* ~4px if font-size is 12px */
-      height: 0.33em; /* same height to keep it square */
-      background: var(--text-color);
+      width: 0.33em;
+      height: 0.33em;
+      background: currentColor;
       transform: translateY(-50%) scaleX(0);
       transform-origin: left center;
       transition: transform 0.3s ease;
     }
-
-    .main-nav a:hover::before {
+    nav a:hover::before {
       transform: translateY(-50%) scaleX(1);
     }
   </style>
 </head>
 <body>
-  <nav class="main-nav">
+  <nav>
     <a href="#">JOURNEY</a><br />
     <a href="#">ABOUT</a><br />
     <a href="#">SOUND</a>
