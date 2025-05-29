@@ -21,14 +21,13 @@
   --warm-off-white: #f8f5f2;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { height: 100%; }
+
 body {
   background: #0a0a0a;
   font-family: var(--font-primary);
   width: 100vw;
-  height: 700vh;
+  height: 100vh;
   overflow-x: hidden;
-  text-transform: uppercase;
   font-size: 11px;
   color: var(--text-color);
   line-height: 1.2;
@@ -36,89 +35,11 @@ body {
   padding: 0;
 }
 
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 80px;
-  background: transparent;
-  z-index: 100;
-  padding: 0;
-  display: flex;
-  align-items: center;
-}
-
-.header-container {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 1rem;
-  align-items: center;
-  padding: 0 2rem;
-  width: 100%;
-  height: 100%;
-}
-
-.logo-container {
-  grid-column: 1 / 3;
-  position: relative;
-  display: flex;
-  align-items: center;
-  height: 2rem;
-}
-
-.logo-circles {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-.circle {
-  position: absolute;
-  border-radius: 50%;
-  transition: transform 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  width: 1.8rem;
-  height: 1.8rem;
-  background-color: var(--text-color);
-  top: 50%;
-}
-.circle-1 {
-  left: 0;
-  transform: translate(0, -50%);
-}
-.circle-2 {
-  left: 1rem;
-  transform: translate(0, -50%);
-  mix-blend-mode: exclusion;
-}
-.logo-container:hover .circle-1 {
-  transform: translate(-0.5rem, -50%);
-}
-.logo-container:hover .circle-2 {
-  transform: translate(0.5rem, -50%);
-}
-
-.main-nav {
-  grid-column: 4 / 8;
-}
-
-.main-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.main-nav li {
-  position: relative;
-}
-
 .main-nav a {
   color: var(--text-color);
   text-decoration: none;
   font-size: 12px;
-  font-family: var(--font-primary);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
   display: block;
   position: relative;
   padding-left: 8px;
@@ -138,15 +59,6 @@ body {
   </style>
 </head>
 <body>
-<header class="site-header">
-  <div class="header-container">
-    <div class="logo-container">
-      <div class="logo-circles">
-        <div class="circle circle-1"></div>
-        <div class="circle circle-2"></div>
-      </div>
-    </div>
-
     <nav class="main-nav">
       <ul>
         <li>
@@ -163,11 +75,5 @@ body {
         </li>
       </ul>
     </nav>
-
-    <div class="contact-link">
-      <a href="#">+CONNECT</a>
-    </div>
-  </div>
-</header>
 </body>
 </html>
