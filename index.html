@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>LiminalLoop</title>
+  <title>Liminal🏓Loop</title>
   <style>
     @font-face {
       font-family: "PPSupplyMono";
@@ -93,10 +93,10 @@
 
     .content {
       position: relative;
-      padding: 5rem 2rem 2rem;
+      padding: 3rem 2rem 2rem;
       z-index: 1;
       line-height: 1.5;
-      max-width: 600px;
+      max-width: 800px;
     }
     
     footer {
@@ -105,22 +105,31 @@
       gap: 1rem;
       padding: 2rem 1rem;
       z-index: 2;
+      font-size: 0.75rem;
     }
-    .title {
+    footer a {
       color: inherit;
       text-decoration: none;
-      font-size: 10px;
+      text-transform: uppercase;
+      display: inline-block;
       position: relative;
-      transition: color 0.2s ease, transform 0.2s ease;
+      padding-left: 1em; /* Scales with font-size */
+      margin-bottom: 1rem;
     }
-    .title::before {
-      content: "•";
+    footer a::before {
+      content: "";
       position: absolute;
-      left: -12px;
-      opacity: var(--before-opacity, 0);
-      transform: translateX(var(--before-x, -8px));
-      color: #666;
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      top: 50%;
+      left: 0;
+      width: 0.33em;
+      height: 0.33em;
+      background: currentColor;
+      transform: translateY(-50%) scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.3s ease;
+    }
+    footer a:hover::before {
+      transform: translateY(-50%) scaleX(1);
     }
   </style>
 </head>
@@ -161,14 +170,14 @@
 
   <footer>
     <div>
-      <a href="#" class="title">Movement Study</a>
-      <a href="#" class="title">Process Work</a>
-      <a href="#" class="title">Raw Energy</a>
+      <a href="#">Movement Study</a><br>
+      <a href="#">Process Work</a><br>
+      <a href="#">Raw Energy</a>
     </div>
     <div>
-      <a href="#" class="title">Movement Study</a>
-      <a href="#" class="title">Process Work</a>
-      <a href="#" class="title">Raw Energy</a>
+      <a href="#">Movemudy</a><br>
+      <a href="#">Proork</a><br>
+      <a href="#">Raergy</a>
     </div>
     <div>
       <h2>Find clarity<br>in cosmic<br>silence</h2>
