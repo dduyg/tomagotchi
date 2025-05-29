@@ -1,406 +1,808 @@
-let startClickSound,
-  preloaderSound,
-  scrollSound1,
-  scrollSound2,
-  scrollSound3,
-  backgroundMusic;
-let isBackgroundPlaying = true;
-let currentSection = 1;
-let isScrolling = false;
-let circleTransitions = [];
+import * as THREE from "https://esm.sh/three";
+import { Pane } from "https://cdn.skypack.dev/tweakpane@4.0.4";
 
-function setupGeometricBackground() {
-  const gridLinesGroup = document.getElementById("grid-lines");
-  const circlesOutlineGroup = document.getElementById("circles-outline");
-  const circlesFilledGroup = document.querySelector("#circles-filled > g");
-  if (!gridLinesGroup || !circlesOutlineGroup || !circlesFilledGroup) return;
+gsap.registerPlugin(ScrollTrigger);
 
-  const gridSpacing = 48;
-  for (let i = 0; i <= 40; i++) {
-    const vLine = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "line"
-    );
-    vLine.setAttribute("class", "grid-line");
-    vLine.setAttribute("x1", i * gridSpacing);
-    vLine.setAttribute("y1", 0);
-    vLine.setAttribute("x2", i * gridSpacing);
-    vLine.setAttribute("y2", 1080);
-    gridLinesGroup.appendChild(vLine);
-    if (i <= 22) {
-      const hLine = document.createElementNS(
-        "http://www.w3.org/2000/svg",
-        "line"
-      );
-      hLine.setAttribute("class", "grid-line");
-      hLine.setAttribute("x1", 0);
-      hLine.setAttribute("y1", i * gridSpacing);
-      hLine.setAttribute("x2", 1920);
-      hLine.setAttribute("y2", i * gridSpacing);
-      gridLinesGroup.appendChild(hLine);
-    }
+const lenis = new Lenis({
+  duration: 1.2,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  direction: "vertical",
+  gestureDirection: "vertical",
+  smooth: true,
+  mouseMultiplier: 1,
+  smoothTouch: false,
+  touchMultiplier: 2,
+  infinite: false
+});
+
+let scrollVelocity = 0;
+let targetScrollVelocity = 0;
+let scrollTimeout = null;
+let scrollEffectActive = false;
+let allImageEffects = [];
+
+// Optimized resize handling
+const resizeHandlers = new Map();
+let resizeTimeout = null;
+
+function handleGlobalResize() {
+  if (resizeTimeout) clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    resizeHandlers.forEach((handler) => handler());
+  }, 16);
+}
+
+window.addEventListener("resize", handleGlobalResize);
+
+lenis.on("scroll", (data) => {
+  ScrollTrigger.update();
+  targetScrollVelocity = Math.abs(data.velocity) * 0.02;
+
+  if (
+    targetScrollVelocity > settings.scrollTriggerThreshold &&
+    !scrollEffectActive
+  ) {
+    activateScrollEffect();
   }
 
-  const d = 80;
-  const centerX = 960;
-  const centerY = 540;
-  circleTransitions = [
-    {
-      initial: { cx: centerX - 3 * d, cy: centerY, r: d * 0.8 },
-      final: { cx: centerX, cy: centerY, r: 4 * d }
-    },
-    {
-      initial: { cx: centerX + 3 * d, cy: centerY, r: d * 0.8 },
-      final: { cx: centerX, cy: centerY, r: 4 * d }
-    },
-    {
-      initial: { cx: centerX, cy: centerY - 3 * d, r: d * 0.8 },
-      final: { cx: centerX, cy: centerY, r: 4 * d }
-    },
-    {
-      initial: { cx: centerX, cy: centerY + 3 * d, r: d * 0.8 },
-      final: { cx: centerX, cy: centerY, r: 4 * d }
-    },
-    {
-      initial: { cx: centerX - 2 * d, cy: centerY - 2 * d, r: d * 0.6 },
-      final: { cx: centerX, cy: centerY, r: 4 * d }
-    },
-    {
-      initial: { cx: centerX + 2 * d, cy: centerY - 2 * d, r: d * 0.6 },
-      final: { cx: centerX, cy: centerY, r: 4 * d }
-    },
-    {
-      initial: { cx: centerX - 2 * d, cy: centerY + 2 * d, r: d * 0.6 },
-      final: { cx: centerX, cy: centerY, r: 4 * d }
-    },
-    {
-      initial: { cx: centerX + 2 * d, cy: centerY + 2 * d, r: d * 0.6 },
-      final: { cx: centerX, cy: centerY, r: 4 * d }
-    },
-    {
-      initial: { cx: centerX - 4 * d, cy: centerY, r: d * 0.4 },
-      final: { cx: centerX, cy: centerY, r: 4 * d }
-    },
-    {
-      initial: { cx: centerX + 4 * d, cy: centerY, r: d * 0.4 },
-      final: { cx: centerX, cy: centerY, r: 4 * d }
-    },
-    {
-      initial: { cx: centerX, cy: centerY - 4 * d, r: d * 0.4 },
-      final: { cx: centerX, cy: centerY, r: 4 * d }
-    },
-    {
-      initial: { cx: centerX, cy: centerY + 4 * d, r: d * 0.4 },
-      final: { cx: centerX, cy: centerY, r: 4 * d }
-    },
-    {
-      initial: { cx: centerX, cy: centerY, r: d * 0.3 },
-      final: { cx: centerX, cy: centerY, r: 4 * d }
+  if (scrollTimeout) {
+    clearTimeout(scrollTimeout);
+  }
+
+  scrollTimeout = setTimeout(() => {
+    gsap.to(
+      { value: scrollVelocity },
+      {
+        value: 0,
+        duration: 0.5,
+        ease: "power2.out",
+        onUpdate: function () {
+          scrollVelocity = this.targets()[0].value;
+        },
+        onComplete: () => {
+          if (scrollEffectActive && scrollVelocity < 0.02) {
+            deactivateScrollEffect();
+          }
+        }
+      }
+    );
+  }, 50);
+});
+
+function activateScrollEffect() {
+  if (scrollEffectActive) return;
+  scrollEffectActive = true;
+
+  allImageEffects.forEach((effectData) => {
+    if (effectData.effect && !effectData.isHovered) {
+      effectData.effect.startWithIntensity(settings.scrollEffectStrength);
+      gsap.to(effectData.canvas, {
+        opacity: settings.scrollEffectOpacity,
+        duration: 0.3,
+        ease: "power2.out"
+      });
     }
-  ];
-
-  circleTransitions.forEach((transition, index) => {
-    const circleOutline = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "circle"
-    );
-    circleOutline.setAttribute("class", "circle-outline");
-    circleOutline.setAttribute("cx", transition.initial.cx);
-    circleOutline.setAttribute("cy", transition.initial.cy);
-    circleOutline.setAttribute("r", transition.initial.r);
-    circlesOutlineGroup.appendChild(circleOutline);
-
-    const circleFilled = document.createElementNS(
-      "http://www.w3.org/2000/svg",
-      "circle"
-    );
-    circleFilled.setAttribute("class", "circle-filled");
-    circleFilled.setAttribute("cx", transition.initial.cx);
-    circleFilled.setAttribute("cy", transition.initial.cy);
-    circleFilled.setAttribute("r", transition.initial.r);
-    circlesFilledGroup.appendChild(circleFilled);
-
-    transition.outlineCircle = circleOutline;
-    transition.filledCircle = circleFilled;
   });
 }
 
-document.getElementById("enableBtn").onclick = function () {
-  document.body.classList.add("loading-active");
-  startClickSound = document.getElementById("startClickSound");
-  preloaderSound = document.getElementById("preloaderSound");
-  scrollSound1 = document.getElementById("scrollSound1");
-  scrollSound2 = document.getElementById("scrollSound2");
-  scrollSound3 = document.getElementById("scrollSound3");
-  backgroundMusic = document.getElementById("backgroundMusic");
+function deactivateScrollEffect() {
+  if (!scrollEffectActive) return;
+  scrollEffectActive = false;
 
-  if (startClickSound) startClickSound.play().catch((e) => {});
-  document.querySelector(".audio-enable").style.display = "none";
-  document.getElementById("preloader").style.display = "flex";
-  if (preloaderSound) preloaderSound.play().catch((e) => {});
-
-  setTimeout(() => {
-    if (backgroundMusic) {
-      backgroundMusic.volume = 0.5;
-      backgroundMusic.play().catch((e) => {});
+  allImageEffects.forEach((effectData) => {
+    if (effectData.effect && !effectData.isHovered) {
+      effectData.effect.stop();
+      gsap.to(effectData.canvas, {
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.out"
+      });
     }
-  }, 500);
+  });
+}
 
-  let count = 0;
-  const timer = setInterval(() => {
-    count++;
-    document.getElementById(
-      "counter"
-    ).textContent = `[${count.toString().padStart(3, "0")}]`;
-    if (count >= 100) {
-      clearInterval(timer);
-      setTimeout(() => {
-        if (preloaderSound) {
-          preloaderSound.pause();
-          preloaderSound.currentTime = 0;
-        }
-        document.body.classList.remove("loading-active");
-        setupGeometricBackground();
-        startAnimations();
-        setupSectionScrollSounds();
-      }, 500);
+gsap.ticker.add((time) => {
+  lenis.raf(time * 1000);
+
+  scrollVelocity += (targetScrollVelocity - scrollVelocity) * 0.15;
+
+  document.querySelectorAll(".image-box").forEach((box) => {
+    const img = box.querySelector("img");
+    const isHovered = box.matches(":hover");
+
+    if (scrollVelocity > 0.001 && !isHovered) {
+      const strength = Math.min(scrollVelocity * 10, 0.1);
+      img.style.filter = `grayscale(100%) contrast(1.2) 
+                drop-shadow(${strength}px 0 0 #ff0000) 
+                drop-shadow(-${strength}px 0 0 #00ffff)`;
+    } else if (!isHovered) {
+      img.style.filter = "grayscale(100%) contrast(1.2)";
     }
-  }, 50);
+  });
+});
+gsap.ticker.lagSmoothing(0);
+
+const ANIMATION_TIMING = {
+  hover: {
+    duration: 0.64,
+    ease: "cubic-bezier(0.23, 1, 0.32, 1)"
+  },
+  title: {
+    duration: 0.2,
+    ease: "cubic-bezier(0.23, 1, 0.32, 1)"
+  },
+  fisheye: {
+    start: 0.64,
+    stop: 0.64,
+    ease: "cubic-bezier(0.23, 1, 0.32, 1)"
+  },
+  debug: {
+    duration: 0.3,
+    ease: "power2.inOut"
+  }
 };
 
-function setupSectionScrollSounds() {
-  let scrollTimeout;
+const settings = {
+  fisheyeStrength: 1.0,
+  vignetteStart: 0.3,
+  vignetteEnd: 0.8,
+  fisheyeRadius: 0.8,
+  chromaticAberration: 0.015,
+  noiseIntensity: 0.08,
+  vignetteIntensity: 0.32,
+  mouseEffect: 0.02,
+  mouseRadius: 0.3,
+  animationDuration: 0.64,
+  canvasOpacity: 1.0,
+  showVignetteMask: false,
+  scrollEffectStrength: 0.7,
+  scrollEffectOpacity: 0.6,
+  scrollTriggerThreshold: 0.08
+};
 
-  function getCurrentSection() {
-    const scrollY = window.scrollY;
-    const sectionHeight = window.innerHeight * 2;
-    if (scrollY < sectionHeight) return 1;
-    else if (scrollY < sectionHeight * 2) return 2;
-    else return 3;
-  }
+const allEffects = [];
+const pane = new Pane({ title: "Fisheye Controls" });
 
-  function stopAllScrollSounds() {
-    [scrollSound1, scrollSound2, scrollSound3].forEach((sound) => {
-      if (sound && !sound.paused) {
-        sound.pause();
-        sound.currentTime = 0;
-      }
-    });
-  }
+const fisheyeFolder = pane.addFolder({ title: "Fisheye Distortion" });
+fisheyeFolder.addBinding(settings, "fisheyeStrength", {
+  label: "Fisheye Strength",
+  min: 0,
+  max: 1.2,
+  step: 0.1
+});
+fisheyeFolder.addBinding(settings, "vignetteStart", {
+  label: "Vignette Start",
+  min: 0,
+  max: 1,
+  step: 0.05
+});
+fisheyeFolder.addBinding(settings, "vignetteEnd", {
+  label: "Vignette End",
+  min: 0,
+  max: 1,
+  step: 0.05
+});
+fisheyeFolder.addBinding(settings, "fisheyeRadius", {
+  label: "Fisheye Radius",
+  min: 0.1,
+  max: 1.5,
+  step: 0.05
+});
 
-  window.addEventListener("scroll", () => {
-    const newSection = getCurrentSection();
-    isScrolling = true;
-    if (newSection !== currentSection) {
-      stopAllScrollSounds();
-      currentSection = newSection;
+const effectsFolder = pane.addFolder({ title: "Visual Effects" });
+effectsFolder.addBinding(settings, "chromaticAberration", {
+  label: "Chromatic Aberration",
+  min: 0,
+  max: 0.1,
+  step: 0.001
+});
+effectsFolder.addBinding(settings, "noiseIntensity", {
+  label: "Noise Intensity",
+  min: 0,
+  max: 0.15,
+  step: 0.005
+});
+effectsFolder.addBinding(settings, "vignetteIntensity", {
+  label: "Vignette Intensity",
+  min: 0,
+  max: 0.5,
+  step: 0.01
+});
+
+const mouseFolder = pane.addFolder({ title: "Mouse Interaction" });
+mouseFolder.addBinding(settings, "mouseEffect", {
+  label: "Mouse Effect",
+  min: 0,
+  max: 0.1,
+  step: 0.005
+});
+mouseFolder.addBinding(settings, "mouseRadius", {
+  label: "Mouse Radius",
+  min: 0.1,
+  max: 1,
+  step: 0.05
+});
+
+const animationFolder = pane.addFolder({ title: "Animation" });
+animationFolder.addBinding(settings, "animationDuration", {
+  label: "Animation Duration",
+  min: 0.1,
+  max: 2,
+  step: 0.05
+});
+animationFolder.addBinding(settings, "canvasOpacity", {
+  label: "Canvas Opacity",
+  min: 0,
+  max: 1,
+  step: 0.05
+});
+
+const debugFolder = pane.addFolder({ title: "Debug" });
+debugFolder.addBinding(settings, "showVignetteMask", {
+  label: "Show Vignette Mask"
+});
+
+const scrollFolder = pane.addFolder({ title: "Scroll Effects" });
+scrollFolder.addBinding(settings, "scrollEffectStrength", {
+  label: "Scroll Effect Strength",
+  min: 0,
+  max: 1,
+  step: 0.05
+});
+scrollFolder.addBinding(settings, "scrollEffectOpacity", {
+  label: "Scroll Opacity",
+  min: 0,
+  max: 1,
+  step: 0.05
+});
+scrollFolder.addBinding(settings, "scrollTriggerThreshold", {
+  label: "Scroll Trigger Threshold",
+  min: 0.01,
+  max: 0.2,
+  step: 0.01
+});
+
+pane.on("change", () => {
+  allEffects.forEach((effect) => {
+    if (effect && effect.updateSettings) {
+      effect.updateSettings(settings);
     }
-    const currentScrollSound = eval(`scrollSound${currentSection}`);
-    if (currentScrollSound && currentScrollSound.paused) {
-      currentScrollSound.currentTime = 0;
-      currentScrollSound.play().catch((e) => {});
-    }
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-      stopAllScrollSounds();
-      isScrolling = false;
-    }, 150);
-  });
-}
-
-function startAnimations() {
-  gsap.registerPlugin(ScrollTrigger);
-
-  document.querySelectorAll(".main-nav li").forEach((navItem) => {
-    const square = navItem.querySelector(".nav-hover-square");
-    const hoverSound = document.getElementById("hoverSound");
-    navItem.addEventListener("mouseenter", () => {
-      gsap.to(square, { scaleX: 1, duration: 0.3, ease: "power2.out" });
-      if (hoverSound) {
-        hoverSound.currentTime = 0;
-        hoverSound.volume = 0.3;
-        hoverSound.play().catch((e) => {});
-      }
-    });
-    navItem.addEventListener("mouseleave", () => {
-      gsap.to(square, { scaleX: 0, duration: 0.2, ease: "power2.in" });
-    });
   });
 
-  const lenis = new Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    direction: "vertical",
-    gestureDirection: "vertical",
-    smooth: true,
-    mouseMultiplier: 1,
-    smoothTouch: false,
-    touchMultiplier: 2,
-    infinite: false
-  });
+  ANIMATION_TIMING.fisheye.start = settings.animationDuration;
+  ANIMATION_TIMING.fisheye.stop = settings.animationDuration;
 
-  lenis.on("scroll", ScrollTrigger.update);
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000);
-  });
-  gsap.ticker.lagSmoothing(0);
-
-  gsap.to(".gradient-reveal", {
-    y: "-500vh",
-    duration: 2,
-    ease: "power2.inOut",
-    delay: 0.25
-  });
-  gsap.to(".preloader", {
-    y: -50,
-    opacity: 0,
-    duration: 0.8,
-    ease: "power2.inOut",
-    delay: 1.0,
-    onComplete: () => {
-      document.getElementById("preloader").style.display = "none";
+  document.querySelectorAll(".threejs-canvas").forEach((canvas) => {
+    if (canvas.closest(".image-box:hover")) {
+      canvas.style.opacity = settings.canvasOpacity;
     }
   });
+});
 
-  gsap.utils.toArray(".section").forEach((section) => {
-    gsap.to(section, {
-      backgroundPositionY: "50%",
-      ease: "none",
-      scrollTrigger: {
-        trigger: section,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1
+function createVignetteFisheyeDistortion(canvas, imageUrl) {
+  return new Promise((resolve) => {
+    const scene = new THREE.Scene();
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+    let renderer;
+    let material;
+
+    try {
+      renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        alpha: true,
+        premultipliedAlpha: false,
+        antialias: true
+      });
+    } catch (e) {
+      resolve(null);
+      return;
+    }
+
+    function updateCanvasSize() {
+      const container = canvas.parentElement;
+      if (!container) return;
+
+      const rect = container.getBoundingClientRect();
+      const width = Math.max(1, Math.floor(rect.width));
+      const height = Math.max(1, Math.floor(rect.height));
+
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
+      canvas.style.position = "absolute";
+      canvas.style.top = "0";
+      canvas.style.left = "0";
+
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(pixelRatio);
+
+      if (material && material.uniforms) {
+        material.uniforms.uAspectRatio.value = width / height;
       }
-    });
-  });
+    }
 
-  const circle = document.getElementById("glowCircle");
-  const debugLine1 = document.getElementById("debugLine1");
-  const debugLine2 = document.getElementById("debugLine2");
-  const debugLine3 = document.getElementById("debugLine3");
-  const debugLine4 = document.getElementById("debugLine4");
-  if (!circle) return;
+    const textureLoader = new THREE.TextureLoader();
+    textureLoader.crossOrigin = "anonymous";
 
-  let animationFrame;
-  function updateAnimations() {
-    const scrollY = window.scrollY;
-    const maxScroll = document.body.scrollHeight - window.innerHeight;
-    const progress = Math.min(scrollY / maxScroll, 1);
+    textureLoader.load(
+      imageUrl,
+      (texture) => {
+        const geometry = new THREE.PlaneGeometry(2, 2);
 
-    const footerStart =
-      document.querySelector(".site-footer").offsetTop - window.innerHeight;
-    const footerProgress = Math.max(
-      0,
-      (scrollY - footerStart) / (window.innerHeight * 0.5)
+        texture.wrapS = THREE.ClampToEdgeWrapping;
+        texture.wrapT = THREE.ClampToEdgeWrapping;
+        texture.minFilter = THREE.LinearFilter;
+        texture.magFilter = THREE.LinearFilter;
+
+        material = new THREE.ShaderMaterial({
+          uniforms: {
+            uTexture: { value: texture },
+            uTime: { value: 0 },
+            uFisheyeIntensity: { value: 0 },
+            uFisheyeStrength: { value: settings.fisheyeStrength },
+            uVignetteStart: { value: settings.vignetteStart },
+            uVignetteEnd: { value: settings.vignetteEnd },
+            uFisheyeRadius: { value: settings.fisheyeRadius },
+            uChromaticAberration: { value: settings.chromaticAberration },
+            uNoiseIntensity: { value: settings.noiseIntensity },
+            uVignetteIntensity: { value: settings.vignetteIntensity },
+            uMouseEffect: { value: settings.mouseEffect },
+            uMouseRadius: { value: settings.mouseRadius },
+            uShowVignetteMask: { value: settings.showVignetteMask ? 1.0 : 0.0 },
+            uMouse: { value: new THREE.Vector2(0, 0) },
+            uAspectRatio: { value: 1 }
+          },
+          vertexShader: `
+                        varying vec2 vUv;
+                        void main() {
+                            vUv = uv;
+                            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                        }
+                    `,
+          fragmentShader: `
+                        uniform sampler2D uTexture;
+                        uniform float uTime;
+                        uniform float uFisheyeIntensity;
+                        uniform float uFisheyeStrength;
+                        uniform float uVignetteStart;
+                        uniform float uVignetteEnd;
+                        uniform float uFisheyeRadius;
+                        uniform float uChromaticAberration;
+                        uniform float uNoiseIntensity;
+                        uniform float uVignetteIntensity;
+                        uniform float uMouseEffect;
+                        uniform float uMouseRadius;
+                        uniform float uShowVignetteMask;
+                        uniform vec2 uMouse;
+                        uniform float uAspectRatio;
+                        varying vec2 vUv;
+                        
+                        vec4 sampleTextureSafe(sampler2D tex, vec2 uv) {
+                            vec2 clampedUV = clamp(uv, 0.001, 0.999);
+                            if (uv.x < 0.0 || uv.x > 1.0 || uv.y < 0.0 || uv.y > 1.0) {
+                                vec2 edgeUV = clamp(uv, 0.0, 1.0);
+                                vec4 edgeColor = texture2D(tex, edgeUV);
+                                float fadeX = 1.0 - smoothstep(0.0, 0.1, abs(uv.x - clamp(uv.x, 0.0, 1.0)));
+                                float fadeY = 1.0 - smoothstep(0.0, 0.1, abs(uv.y - clamp(uv.y, 0.0, 1.0)));
+                                return edgeColor * fadeX * fadeY;
+                            }
+                            return texture2D(tex, clampedUV);
+                        }
+                        
+                        vec2 fisheyeDistortion(vec2 uv, float intensity) {
+                            vec2 center = vec2(0.5, 0.5);
+                            vec2 delta = uv - center;
+                            delta.x *= uAspectRatio;
+                            float distance = length(delta);
+                            
+                            if (distance < uFisheyeRadius && distance > 0.0) {
+                                float percent = distance / uFisheyeRadius;
+                                float theta = percent * percent * intensity * uFisheyeStrength;
+                                float beta = max(0.00001, distance);
+                                delta = delta / beta * tan(theta) * beta;
+                            }
+                            
+                            delta.x /= uAspectRatio;
+                            return center + delta;
+                        }
+                        
+                        void main() {
+                            vec2 uv = vUv;
+                            vec2 center = vec2(0.5, 0.5);
+                            vec2 delta = uv - center;
+                            delta.x *= uAspectRatio;
+                            float distanceFromCenter = length(delta);
+                            
+                            float vignetteMask = smoothstep(uVignetteStart, uVignetteEnd, distanceFromCenter);
+                            
+                            if (uShowVignetteMask > 0.5) {
+                                gl_FragColor = vec4(vignetteMask, vignetteMask, vignetteMask, 1.0);
+                                return;
+                            }
+                            
+                            vec2 finalUV = uv;
+                            
+                            if (uFisheyeIntensity > 0.001) {
+                                vec2 distortedUV = fisheyeDistortion(uv, uFisheyeIntensity);
+                                finalUV = mix(uv, distortedUV, vignetteMask);
+                                
+                                vec2 mousePos = uMouse * 0.5 + 0.5;
+                                float mouseDist = distance(uv, mousePos);
+                                float mouseEffectStrength = smoothstep(uMouseRadius, 0.0, mouseDist) * uFisheyeIntensity * uMouseEffect;
+                                vec2 mouseDistortion = normalize(uv - mousePos) * mouseEffectStrength;
+                                finalUV += mouseDistortion;
+                            }
+                            
+                            vec3 color;
+                            
+                            if (uFisheyeIntensity > 0.001) {
+                                vec2 direction = normalize(finalUV - vec2(0.5));
+                                float aberrationStrength = uChromaticAberration * uFisheyeIntensity;
+                                
+                                float r = sampleTextureSafe(uTexture, finalUV + direction * aberrationStrength).r;
+                                float g = sampleTextureSafe(uTexture, finalUV).g;
+                                float b = sampleTextureSafe(uTexture, finalUV - direction * aberrationStrength).b;
+                                color = vec3(r, g, b);
+                            } else {
+                                color = sampleTextureSafe(uTexture, finalUV).rgb;
+                            }
+                            
+                            if (uFisheyeIntensity > 0.001) {
+                                float noise = fract(sin(dot(uv * uTime * 0.05, vec2(12.9898, 78.233))) * 43758.5453) * uNoiseIntensity * uFisheyeIntensity;
+                                color += noise;
+                            }
+                            
+                            float vignetteEffect = 1.0 - smoothstep(uVignetteStart, uVignetteEnd, distanceFromCenter) * uVignetteIntensity;
+                            color *= vignetteEffect;
+                            
+                            gl_FragColor = vec4(color, 1.0);
+                        }
+                    `,
+          transparent: true
+        });
+
+        const mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
+
+        updateCanvasSize();
+
+        const resizeHandler = () => updateCanvasSize();
+        resizeHandlers.set(canvas, resizeHandler);
+
+        const resizeObserver = new ResizeObserver((entries) => {
+          for (let entry of entries) {
+            const { width, height } = entry.contentRect;
+            if (width > 0 && height > 0) {
+              updateCanvasSize();
+            }
+          }
+        });
+        resizeObserver.observe(canvas.parentElement || canvas);
+
+        let animationId;
+        let time = 0;
+        let mouseX = 0;
+        let mouseY = 0;
+
+        const effect = {
+          currentTween: null,
+          _fisheyeIntensity: 0,
+          material: material,
+          start() {
+            if (this.currentTween) this.currentTween.kill();
+            this.currentTween = gsap.to(this, {
+              _fisheyeIntensity: 1,
+              duration: ANIMATION_TIMING.fisheye.start,
+              ease: ANIMATION_TIMING.fisheye.ease,
+              onComplete: () => (this.currentTween = null)
+            });
+          },
+          startWithIntensity(intensity) {
+            if (this.currentTween) this.currentTween.kill();
+            this.currentTween = gsap.to(this, {
+              _fisheyeIntensity: intensity,
+              duration: ANIMATION_TIMING.fisheye.start,
+              ease: ANIMATION_TIMING.fisheye.ease,
+              onComplete: () => (this.currentTween = null)
+            });
+          },
+          stop() {
+            if (this.currentTween) this.currentTween.kill();
+            this.currentTween = gsap.to(this, {
+              _fisheyeIntensity: 0,
+              duration: ANIMATION_TIMING.fisheye.stop,
+              ease: ANIMATION_TIMING.fisheye.ease,
+              onComplete: () => (this.currentTween = null)
+            });
+          },
+          updateSettings(newSettings) {
+            this.material.uniforms.uFisheyeStrength.value =
+              newSettings.fisheyeStrength;
+            this.material.uniforms.uVignetteStart.value =
+              newSettings.vignetteStart;
+            this.material.uniforms.uVignetteEnd.value = newSettings.vignetteEnd;
+            this.material.uniforms.uFisheyeRadius.value =
+              newSettings.fisheyeRadius;
+            this.material.uniforms.uChromaticAberration.value =
+              newSettings.chromaticAberration;
+            this.material.uniforms.uNoiseIntensity.value =
+              newSettings.noiseIntensity;
+            this.material.uniforms.uVignetteIntensity.value =
+              newSettings.vignetteIntensity;
+            this.material.uniforms.uMouseEffect.value = newSettings.mouseEffect;
+            this.material.uniforms.uMouseRadius.value = newSettings.mouseRadius;
+            this.material.uniforms.uShowVignetteMask.value = newSettings.showVignetteMask
+              ? 1.0
+              : 0.0;
+          },
+          dispose() {
+            if (this.currentTween) this.currentTween.kill();
+            canvas.removeEventListener("mousemove", handleMouseMove);
+            resizeHandlers.delete(canvas);
+            resizeObserver.disconnect();
+            if (animationId) cancelAnimationFrame(animationId);
+            geometry.dispose();
+            this.material.dispose();
+            texture.dispose();
+            renderer.dispose();
+          }
+        };
+
+        const animate = () => {
+          time += 0.016;
+          material.uniforms.uTime.value = time;
+          material.uniforms.uFisheyeIntensity.value = effect._fisheyeIntensity;
+          material.uniforms.uMouse.value.set(mouseX, mouseY);
+          renderer.render(scene, camera);
+          animationId = requestAnimationFrame(animate);
+        };
+
+        const handleMouseMove = (e) => {
+          const rect = canvas.getBoundingClientRect();
+          mouseX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+          mouseY = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+        };
+
+        canvas.addEventListener("mousemove", handleMouseMove);
+        animate();
+        allEffects.push(effect);
+        resolve(effect);
+      },
+      undefined,
+      (error) => {
+        resolve(null);
+      }
     );
-    const textOpacity = Math.max(0, 1 - footerProgress * 2);
-    document.querySelectorAll(".geometric-text").forEach((text) => {
-      text.style.opacity = textOpacity;
-    });
+  });
+}
 
-    const freq1 = (432 + progress * 108).toFixed(1);
-    const freq2 = (528 - progress * 156).toFixed(1);
-    const energy = (progress * 99.9).toFixed(1);
-    const presence = ((1 - progress) * 100).toFixed(1);
+function toggleDebug() {
+  const overlay = document.getElementById("debugOverlay");
+  const toggle = document.getElementById("debugToggle");
+  const columns = overlay?.querySelectorAll(".debug-column");
 
-    let awarenessState, becomingState, energyState, presenceState;
-    if (progress <= 0.1) {
-      awarenessState = `[${freq1}] AWARENESS: SILENCE`;
-      becomingState = `.${freq2} STATE: VOID`;
-      energyState = `{${energy}} ENERGY: DORMANT`;
-    } else if (progress <= 0.25) {
-      awarenessState = `[${freq1}] AWARENESS: STIRRING`;
-      becomingState = `.${freq2} STATE: EMERGING`;
-      energyState = `{${energy}} ENERGY: AWAKENING`;
-    } else if (progress <= 0.5) {
-      awarenessState = `[${freq1}] AWARENESS: FLOWING`;
-      becomingState = `.${freq2} STATE: EXPANDING`;
-      energyState = `{${energy}} ENERGY: BUILDING`;
-    } else if (progress <= 0.75) {
-      awarenessState = `[${freq1}] AWARENESS: ASCENDING`;
-      becomingState = `.${freq2} STATE: DISSOLVING`;
-      energyState = `{${energy}} ENERGY: RADIATING`;
-    } else if (progress <= 0.9) {
-      awarenessState = `[${freq1}] AWARENESS: TRANSCENDING`;
-      becomingState = `.${freq2} STATE: INFINITE`;
-      energyState = `{${energy}} ENERGY: OVERFLOWING`;
+  if (overlay && toggle && columns) {
+    if (overlay.classList.contains("active")) {
+      gsap.to(columns, {
+        duration: ANIMATION_TIMING.debug.duration,
+        opacity: 0,
+        scaleY: 0,
+        stagger: 0.05,
+        ease: ANIMATION_TIMING.debug.ease,
+        onComplete: function () {
+          overlay.classList.remove("active");
+          toggle.classList.remove("active");
+        }
+      });
     } else {
-      awarenessState = `[${freq1}] AWARENESS: UNITY`;
-      becomingState = `.${freq2} STATE: ETERNAL`;
-      energyState = `{${energy}} ENERGY: PURE`;
+      overlay.classList.add("active");
+      toggle.classList.add("active");
+      gsap.fromTo(
+        columns,
+        { opacity: 0, scaleY: 0, transformOrigin: "top" },
+        {
+          duration: ANIMATION_TIMING.debug.duration + 0.1,
+          opacity: 1,
+          scaleY: 1,
+          stagger: 0.08,
+          ease: "power2.out"
+        }
+      );
     }
+  }
+}
 
-    const presenceIntensity = Math.max(0, 1 - progress);
-    if (presenceIntensity > 0.8) {
-      presenceState = `.${presence} PRESENCE: SOLID`;
-    } else if (presenceIntensity > 0.6) {
-      presenceState = `.${presence} PRESENCE: SOFTENING`;
-    } else if (presenceIntensity > 0.4) {
-      presenceState = `.${presence} PRESENCE: TRANSLUCENT`;
-    } else if (presenceIntensity > 0.2) {
-      presenceState = `.${presence} PRESENCE: ETHEREAL`;
-    } else {
-      presenceState = `.${presence} PRESENCE: VOID`;
+function togglePane() {
+  const paneElement = document.querySelector(".tp-dfwv");
+  if (paneElement) {
+    paneElement.classList.toggle("visible");
+  }
+}
+
+function createHoverAnimation(gridItem) {
+  const img = gridItem.querySelector("img");
+  const canvas = gridItem.querySelector(".threejs-canvas");
+  const title = gridItem.querySelector(".image-title");
+
+  let hoverTimeline = null;
+
+  return {
+    enter() {
+      if (hoverTimeline) hoverTimeline.kill();
+      hoverTimeline = gsap.timeline();
+
+      hoverTimeline
+        .to(
+          img,
+          {
+            opacity: 0,
+            duration: ANIMATION_TIMING.hover.duration,
+            ease: ANIMATION_TIMING.hover.ease
+          },
+          0
+        )
+        .to(
+          canvas,
+          {
+            opacity: 1,
+            duration: ANIMATION_TIMING.hover.duration,
+            ease: ANIMATION_TIMING.hover.ease
+          },
+          0
+        )
+        .to(
+          title,
+          {
+            color: "#666",
+            x: 12,
+            "--before-opacity": 1,
+            "--before-x": "0px",
+            duration: ANIMATION_TIMING.title.duration,
+            ease: ANIMATION_TIMING.title.ease
+          },
+          0
+        );
+    },
+    leave() {
+      if (hoverTimeline) hoverTimeline.kill();
+      hoverTimeline = gsap.timeline();
+
+      hoverTimeline
+        .to(
+          img,
+          {
+            opacity: 1,
+            duration: ANIMATION_TIMING.hover.duration,
+            ease: ANIMATION_TIMING.hover.ease
+          },
+          0
+        )
+        .to(
+          canvas,
+          {
+            opacity: 0,
+            duration: ANIMATION_TIMING.hover.duration,
+            ease: ANIMATION_TIMING.hover.ease
+          },
+          0
+        )
+        .to(
+          title,
+          {
+            color: "#1a1a1a",
+            x: 0,
+            "--before-opacity": 0,
+            "--before-x": "-8px",
+            duration: ANIMATION_TIMING.title.duration,
+            ease: ANIMATION_TIMING.title.ease
+          },
+          0
+        );
     }
+  };
+}
 
-    const scale = 1 + progress * 1.8;
-    const shadowSize = progress * 150;
-    const shadowSpread = progress * 35;
-    const shadowOpacity = progress;
-    circle.style.transform = `scale(${scale})`;
-    circle.style.transformOrigin = "center center";
-    circle.style.boxShadow = `0 0 ${shadowSize}px ${shadowSpread}px rgba(255, 255, 0, ${shadowOpacity})`;
-
-    const gridOpacity = Math.max(0, 0.3 * (1 - progress * 1.5));
-    document.querySelectorAll(".grid-line").forEach((line) => {
-      line.setAttribute("stroke-opacity", gridOpacity);
-    });
-
-    circleTransitions.forEach((transition, index) => {
-      const currentCx =
-        transition.initial.cx +
-        (transition.final.cx - transition.initial.cx) * progress;
-      const currentCy =
-        transition.initial.cy +
-        (transition.final.cy - transition.initial.cy) * progress;
-      const currentR =
-        transition.initial.r +
-        (transition.final.r - transition.initial.r) * progress;
-      const rotation = progress * 360 * (index % 2 === 0 ? 1 : -1);
-      const opacity = Math.max(0.1, 1 - progress * 0.7);
-
-      if (transition.outlineCircle) {
-        transition.outlineCircle.setAttribute("cx", currentCx);
-        transition.outlineCircle.setAttribute("cy", currentCy);
-        transition.outlineCircle.setAttribute("r", currentR);
-        transition.outlineCircle.setAttribute(
-          "transform",
-          `rotate(${rotation} ${currentCx} ${currentCy})`
-        );
-        transition.outlineCircle.setAttribute("stroke-opacity", opacity);
-      }
-      if (transition.filledCircle) {
-        transition.filledCircle.setAttribute("cx", currentCx);
-        transition.filledCircle.setAttribute("cy", currentCy);
-        transition.filledCircle.setAttribute("r", currentR);
-        transition.filledCircle.setAttribute(
-          "transform",
-          `rotate(${rotation} ${currentCx} ${currentCy})`
-        );
-        transition.filledCircle.setAttribute("fill-opacity", opacity * 0.05);
-      }
-    });
-
-    if (debugLine1) debugLine1.textContent = awarenessState;
-    if (debugLine2) debugLine2.textContent = becomingState;
-    if (debugLine3) debugLine3.textContent = energyState;
-    if (debugLine4) debugLine4.textContent = presenceState;
+document.addEventListener("DOMContentLoaded", function () {
+  const debugToggle = document.getElementById("debugToggle");
+  if (debugToggle) {
+    debugToggle.addEventListener("click", toggleDebug);
   }
 
-  window.addEventListener("scroll", () => {
-    if (animationFrame) cancelAnimationFrame(animationFrame);
-    animationFrame = requestAnimationFrame(updateAnimations);
+  const imageBoxes = document.querySelectorAll(".image-box");
+  imageBoxes.forEach(function (box) {
+    const img = box.querySelector("img");
+    const canvas = box.querySelector(".threejs-canvas");
+    const gridItem = box.closest(".grid-item");
+
+    if (img && canvas && gridItem) {
+      let effect = null;
+      let imageLoaded = false;
+      let isHovered = false;
+
+      const hoverAnimation = createHoverAnimation(gridItem);
+
+      const checkImageLoaded = () => {
+        if (img.complete && img.naturalWidth > 0) {
+          imageLoaded = true;
+        } else {
+          img.addEventListener("load", () => (imageLoaded = true), {
+            once: true
+          });
+        }
+      };
+
+      checkImageLoaded();
+
+      const initializeEffect = () => {
+        createVignetteFisheyeDistortion(canvas, img.src).then(
+          (createdEffect) => {
+            effect = createdEffect;
+            if (effect) {
+              allImageEffects.push({
+                effect: effect,
+                canvas: canvas,
+                box: box,
+                isHovered: false
+              });
+            }
+          }
+        );
+      };
+
+      const delay = box.closest(".grid-item-20") ? 150 : 50;
+
+      if (imageLoaded) {
+        setTimeout(initializeEffect, delay);
+      } else {
+        img.addEventListener(
+          "load",
+          () => {
+            setTimeout(initializeEffect, delay);
+          },
+          { once: true }
+        );
+      }
+
+      box.addEventListener("mouseenter", function () {
+        isHovered = true;
+        const effectData = allImageEffects.find((item) => item.box === box);
+        if (effectData) effectData.isHovered = true;
+
+        if (effect) effect.start();
+        hoverAnimation.enter();
+        this.style.zIndex = "20";
+      });
+
+      box.addEventListener("mouseleave", function () {
+        isHovered = false;
+        const effectData = allImageEffects.find((item) => item.box === box);
+        if (effectData) effectData.isHovered = false;
+
+        if (effect) effect.stop();
+        hoverAnimation.leave();
+        this.style.zIndex = "1";
+      });
+    }
   });
-  updateAnimations();
-}
+});
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "d" || e.key === "D") {
+    toggleDebug();
+  } else if (e.key === "h" || e.key === "H") {
+    togglePane();
+  }
+});
+
+window.addEventListener("beforeunload", () => {
+  allEffects.forEach((effect) => {
+    if (effect && effect.dispose) {
+      effect.dispose();
+    }
+  });
+  resizeHandlers.clear();
+});
+
+window.toggleDebug = toggleDebug;
