@@ -49,67 +49,6 @@ body::before {
   pointer-events: none;
 }
 
-.loading-active {
-  overflow: hidden !important;
-}
-
-.audio-enable {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #0a0a0a;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-  font-family: var(--font-primary);
-  font-size: 12px;
-  color: var(--text-color);
-  text-transform: uppercase;
-  gap: 2rem;
-  text-align: center;
-  padding: 1rem;
-}
-
-.enable-button {
-  border: 1px solid var(--text-color);
-  background: transparent;
-  color: var(--text-color);
-  padding: 1rem 2rem;
-  font-family: var(--font-primary);
-  font-size: 12px;
-  text-transform: uppercase;
-  cursor: pointer;
-  letter-spacing: 0.1em;
-  transition: all 0.3s ease;
-}
-
-.enable-button:hover {
-  background: var(--text-color);
-  color: #0a0a0a;
-}
-
-.preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #0a0a0a;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-  font-family: var(--font-primary);
-  font-size: 12px;
-  color: var(--text-color);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
 .site-header {
   position: fixed;
   top: 0;
@@ -146,7 +85,6 @@ body::before {
   width: 100%;
   height: 100%;
 }
-
 .circle {
   position: absolute;
   border-radius: 50%;
@@ -156,22 +94,18 @@ body::before {
   background-color: var(--text-color);
   top: 50%;
 }
-
 .circle-1 {
   left: 0;
   transform: translate(0, -50%);
 }
-
 .circle-2 {
   left: 1rem;
   transform: translate(0, -50%);
   mix-blend-mode: exclusion;
 }
-
 .logo-container:hover .circle-1 {
   transform: translate(-0.5rem, -50%);
 }
-
 .logo-container:hover .circle-2 {
   transform: translate(0.5rem, -50%);
 }
@@ -353,14 +287,7 @@ body::before {
   left: 0;
   width: 100vw;
   height: 500vh;
-  background: linear-gradient(
-    to bottom,
-    #000000 0%,
-    #000000 20%,
-    rgba(0, 0, 0, 0.8) 40%,
-    rgba(0, 0, 0, 0.4) 70%,
-    transparent 100%
-  );
+  background: linear-gradient(to bottom, #000000 0%, #000000 20%, rgba(0, 0, 0, 0.8) 40%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
   z-index: 1500;
   pointer-events: none;
   transform: translateY(0);
@@ -606,25 +533,6 @@ body::before {
     padding: 1rem;
   }
 }
-
-/* Very Small Mobile */
-@media (max-width: 320px) {
-  .main-nav ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .glowing-circle {
-    width: 35px;
-    height: 35px;
-  }
-
-  .footer-left,
-  .footer-right {
-    font-size: 9px;
-  }
-  }
   </style>
 </head>
 <body>
@@ -655,21 +563,12 @@ body::before {
     </nav>
 
     <div class="contact-link">
-      <a href="https://x.com/filipz">+CONNECT</a>
+      <a href="#">+CONNECT</a>
     </div>
   </div>
 </header>
 
 <div class="gradient-reveal"></div>
-
-<div class="audio-enable">
-  <p>ENTER EXPERIENCE<br />WITH AUDIO</p>
-  <button class="enable-button" id="enableBtn">START</button>
-</div>
-
-<div class="preloader" id="preloader">
-  <span id="counter">[000]</span>
-</div>
 
 <div class="geometric-background">
   <svg class="geometric-svg" viewBox="0 0 1920 1080">
@@ -697,34 +596,6 @@ body::before {
     <text class="geometric-text" x="1620" y="995">HEARTBEATS</text>
   </svg>
 </div>
-
-<audio id="startClickSound" preload="auto">
-  <source src="https://assets.codepen.io/7558/preloader-2s-001.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="preloaderSound" preload="auto">
-  <source src="https://assets.codepen.io/7558/preloader-5s-001.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="scrollSound1" loop preload="auto">
-  <source src="https://assets.codepen.io/7558/glitch-fx-001.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="scrollSound2" loop preload="auto">
-  <source src="https://assets.codepen.io/7558/glitch-fx-001.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="scrollSound3" loop preload="auto">
-  <source src="https://assets.codepen.io/7558/glitch-fx-001.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="hoverSound" preload="auto">
-  <source src="https://assets.codepen.io/7558/preloader-2s-001.mp3" type="audio/mpeg">
-</audio>
-
-<audio id="backgroundMusic" loop preload="auto">
-  <source src="https://assets.codepen.io/7558/lxstnght-night-angel.mp3" type="audio/mpeg">
-</audio>
 
 <div class="center-circle">
   <div class="circle-container">
