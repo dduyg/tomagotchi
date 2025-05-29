@@ -13,8 +13,6 @@
   font-family: "PP Neue Montreal", sans-serif;
   font-weight: 400;
 }
-
-/* Variables for easy customization */
 :root {
   --primary-font: "PP Neue Montreal", sans-serif;
   --secondary-font: "Space Mono", mono;
@@ -27,14 +25,8 @@
   --eye-glow-color: #ffff00;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body {
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -43,8 +35,6 @@ body {
   letter-spacing: -0.03em;
   position: relative;
 }
-
-/* Background noise effect with will-change optimization */
 body::before {
   content: "";
   position: fixed;
@@ -52,11 +42,10 @@ body::before {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: transparent
-    url("http://assets.iceable.com/img/noise-transparent.png") repeat 0 0;
+  background: transparent url("http://assets.iceable.com/img/noise-transparent.png") repeat 0 0;
   background-size: 300px 300px;
   -webkit-animation: noise-animation 0.3s steps(5) infinite;
-          animation: noise-animation 0.3s steps(5) infinite;
+  animation: noise-animation 0.3s steps(5) infinite;
   opacity: 1;
   will-change: transform;
   z-index: 100;
@@ -135,7 +124,6 @@ body::before {
   }
 }
 
-/* Content to be revealed */
 .content {
   position: fixed;
   top: 0;
@@ -151,12 +139,10 @@ body::before {
   text-align: center;
   color: var(--primary-color);
 }
-
 .quote-container {
   max-width: 90%;
   overflow: hidden;
 }
-
 .quote {
   font-family: var(--primary-font);
   font-size: var(--quote-size);
@@ -167,7 +153,6 @@ body::before {
   opacity: 1;
   text-transform: uppercase;
 }
-
 .author {
   font-family: var(--secondary-font);
   font-size: var(--author-size);
@@ -175,7 +160,6 @@ body::before {
   margin-top: 2vh;
   text-transform: uppercase;
 }
-
 .book {
   font-family: var(--secondary-font);
   font-size: var(--author-size);
@@ -189,7 +173,7 @@ body::before {
   width: var(--cursor-size);
   height: var(--cursor-size);
   border-radius: 50%;
-  background-color: var(--secondary-color);
+  border: 1px solid #323232;
   transform: translate(-50%, -50%);
   pointer-events: none;
   mix-blend-mode: difference;
@@ -225,60 +209,6 @@ canvas {
   pointer-events: none;
   z-index: 10;
 }
-
-/* Controls panel */
-.dg.ac {
-  z-index: 101 !important; /* Make sure GUI is on top of noise */
-}
-
-.profile-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px;
-  max-width: 300px;
-  width: 100%;
-  position: fixed;
-  bottom: 16px;
-  left: 16px;
-  z-index: 999;
-  color: var(--primary-color);
-  line-height: inherit;
-}
-
-.profile-image {
-  flex-shrink: 0;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.profile-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.profile-name {
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.profile-twitter {
-  font-size: 12px;
-  color: #71717a;
-}
-
-.profile-twitter a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.profile-twitter a:hover {
-  text-decoration: underline;
-}    
   </style>
 </head>
 <body>
@@ -290,16 +220,6 @@ canvas {
 </div>
 
 <div class="custom-cursor"></div>
-
-<div class="profile-card">
-  <img class="profile-image" src="https://filip-zrnzevic-portfolio-2025-v3.vercel.app/_next/image?url=%2Fimages%2Fprofile003.jpg&w=48&q=75" alt="Filip Zrnzević">
-  <div class="profile-info">
-    <p class="profile-name">Filip Zrnzević</p>
-    <p class="profile-twitter">
-      <a href="https://x.com/filipz" target="_blank">@filipz</a>
-    </p>
-  </div>
-</div>
 
   <script type="module" src="./script.js"></script>
 </body>
