@@ -27,25 +27,22 @@
     body {
       background: var(--bg-color);
       font-family: var(--font-primary);
-      font-size: 11px;
+      font-size: 1rem;
       color: var(--text-color);
       width: 100vw;
       height: 100vh;
       overflow-x: hidden;
-    }
-
-    .main-nav {
       padding: 2rem;
     }
 
     .main-nav a {
       color: var(--text-color);
       text-decoration: none;
-      font-size: 12px;
+      font-size: 0.75rem; /* same as 12px if base font is 16px */
       text-transform: uppercase;
       display: inline-block;
       position: relative;
-      padding-left: 12px;
+      padding-left: 1.5em; /* 1.5x the current font size */
       margin-bottom: 1rem;
     }
 
@@ -54,8 +51,8 @@
       position: absolute;
       top: 50%;
       left: 0;
-      width: 4px;
-      height: 4px;
+      width: 0.33em;  /* ~4px if font-size is 12px */
+      height: 0.33em; /* same height to keep it square */
       background: var(--text-color);
       transform: translateY(-50%) scaleX(0);
       transform-origin: left center;
