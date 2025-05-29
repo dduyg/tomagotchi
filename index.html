@@ -65,6 +65,11 @@
       position: relative;
       overflow-x: hidden;
       overflow-y: auto;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none;  /* IE and Edge */
+    }
+    main::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
     }
     #bg {
       position: absolute;
@@ -107,6 +112,7 @@
       z-index: 2;
       align-items: flex-end;
       text-align: right;
+      white-space: nowrap;      
     }
     footer a {
       color: inherit;
