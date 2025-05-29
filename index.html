@@ -8,8 +8,7 @@
   <style>
 @font-face {
   font-family: "PPSupplyMono";
-  src: url("https://assets.codepen.io/7558/PPSupplyMono-Regular.ttf")
-    format("truetype");
+  src: url("https://assets.codepen.io/7558/PPSupplyMono-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -20,7 +19,7 @@
 }
 body {
   background: #fafafa;
-  font-family: "PPSupplyMono", "Courier New", monospace;
+  font-family: "PPSupplyMono", monospace;
   width: 100vw;
   min-height: 100vh;
   overflow-x: hidden;
@@ -28,7 +27,6 @@ body {
   font-size: 12px;
   color: #1a1a1a;
 }
-
 .container {
   width: 100vw;
   padding: 2rem;
@@ -41,9 +39,12 @@ a {
   color: #1a1a1a;
   padding: 0;
   display: inline-block;
+  z-index: 1;
   text-decoration: none;
+  font-size: 12px;
   opacity: 1;
   transition: color 0.3s ease;
+  font-weight: 700;
 }
 a::after {
   content: "";
@@ -65,7 +66,34 @@ a:hover {
   opacity: 1;
 }
 
-.image-title {
+.bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+}
+.column {
+  background: rgba(255, 0, 0, 0.2);
+  border: 1px solid red;
+  min-height: 2000px;
+  position: relative;
+}
+.column::before {
+  content: attr(data-col);
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 10px;
+  color: red;
+  background: white;
+  padding: 2px 4px;
+}
+
+.title {
   margin-top: 8px;
   font-size: 10px;
   color: #1a1a1a;
@@ -76,8 +104,7 @@ a:hover {
   transition: color 0.2s cubic-bezier(0.23, 1, 0.32, 1),
     transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
 }
-
-.image-title::before {
+.title::before {
   content: "•";
   position: absolute;
   left: -12px;
@@ -87,7 +114,7 @@ a:hover {
   color: #666;
   transition: opacity 0.2s cubic-bezier(0.23, 1, 0.32, 1),
     transform 0.2s cubic-bezier(0.23, 1, 0.32, 1);
-}
+} 
   </style>
 </head>
 <body>
@@ -101,12 +128,26 @@ a:hover {
       </div>
   </div>
 
-  <div class="image-box">   
-      <div class="image-title">Deep Focus</div>
-      <div class="image-title">Process Work</div>
-      <div class="image-title">Raw Energy</div>
-      <div class="image-title">Final Take</div>
+  <div class="bg-overlay">
+      <div class="column" data-col="1"></div>
+      <div class="column" data-col="2"></div>
+      <div class="column" data-col="3"></div>
+      <div class="column" data-col="4"></div>
+      <div class="column" data-col="5"></div>
+      <div class="column" data-col="6"></div>
+      <div class="column" data-col="7"></div>
+      <div class="column" data-col="8"></div>
+      <div class="column" data-col="9"></div>
+      <div class="column" data-col="10"></div>
+      <div class="column" data-col="11"></div>
+      <div class="column" data-col="12"></div> 
   </div>
+
+  <footer>
+      <div class="title">Movement Study</div>
+      <div class="title">Process Work</div>
+      <div class="title">Raw Energy</div>
+  </footer>
 </div>
 </body>
 </html>
