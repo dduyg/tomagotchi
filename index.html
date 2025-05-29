@@ -1,77 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LiminalLoop</title>
   <style>
-@font-face {
-  font-family: "PPSupplyMono";
-  src: url("https://assets.codepen.io/7558/PPSupplyMono-Regular.ttf")
-    format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
+    @font-face {
+      font-family: "PPSupplyMono";
+      src: url("https://assets.codepen.io/7558/PPSupplyMono-Regular.ttf") format("truetype");
+      font-weight: normal;
+      font-style: normal;
+    }
 
-:root {
-  --font-primary: "PPSupplyMono", "Courier New", monospace;
-  --text-color: rgba(245, 245, 245, 0.9);
-  --warm-off-black: #1a1917;
-  --warm-off-white: #f8f5f2;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --font-primary: "PPSupplyMono", "Courier New", monospace;
+      --text-color: rgba(245, 245, 245, 0.9);
+      --bg-color: #0a0a0a;
+    }
 
-body {
-  background: #0a0a0a;
-  font-family: var(--font-primary);
-  width: 100vw;
-  height: 100vh;
-  overflow-x: hidden;
-  font-size: 11px;
-  color: var(--text-color);
-  line-height: 1.2;
-  margin: 0;
-  padding: 0;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-.main-nav a {
-  color: var(--text-color);
-  text-decoration: none;
-  font-size: 12px;
-  text-transform: uppercase;
-  display: block;
-  position: relative;
-  padding-left: 8px;
-  transition: color 0.2s ease;
-}
+    body {
+      background: var(--bg-color);
+      font-family: var(--font-primary);
+      font-size: 11px;
+      color: var(--text-color);
+      width: 100vw;
+      height: 100vh;
+      overflow-x: hidden;
+    }
 
-.nav-hover-square {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 4px;
-  height: 4px;
-  background: var(--text-color);
-  transform: translateY(-50%) scaleX(0);
-  transform-origin: left center;
-}
+    .main-nav {
+      padding: 2rem;
+    }
+
+    .main-nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 12px;
+      text-transform: uppercase;
+      display: inline-block;
+      position: relative;
+      padding-left: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .main-nav a::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 4px;
+      height: 4px;
+      background: var(--text-color);
+      transform: translateY(-50%) scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.3s ease;
+    }
+
+    .main-nav a:hover::before {
+      transform: translateY(-50%) scaleX(1);
+    }
   </style>
 </head>
 <body>
-    <nav class="main-nav">
-        <div>
-          <a href="#">JOURNEY</a>
-          <div class="nav-hover-square"></div>
-        </div>
-        <div>
-          <a href="#">ABOUT</a>
-          <div class="nav-hover-square"></div>
-        </div>
-        <div>
-          <a href="#">SOUND</a>
-          <div class="nav-hover-square"></div>
-        </div>
-    </nav>
+  <nav class="main-nav">
+    <a href="#">JOURNEY</a><br />
+    <a href="#">ABOUT</a><br />
+    <a href="#">SOUND</a>
+  </nav>
 </body>
 </html>
