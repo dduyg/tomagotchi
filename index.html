@@ -170,10 +170,10 @@ body::before {
 /* Custom cursor */
 .custom-cursor {
   position: fixed;
-  width: var(--cursor-size);
-  height: var(--cursor-size);
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
-  border: 1px solid #323232;
+  border: 1px solid;
   transform: translate(-50%, -50%);
   pointer-events: none;
   mix-blend-mode: difference;
@@ -208,6 +208,10 @@ canvas {
   border-radius: 3px;
   pointer-events: none;
   z-index: 10;
+}
+
+dg.ac {
+  z-index: 101 !important; /* Make sure GUI is on top of noise */
 }
   </style>
 </head>
