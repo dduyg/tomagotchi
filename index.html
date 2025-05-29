@@ -37,29 +37,15 @@ body {
   padding: 6rem 2rem;
   pointer-events: auto;
 }
-.layout__header,
-.layout__footer,
-.layout__middle,
-.layout__bottom {
+.layout__middle {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-}
-.layout__header-text,
-.layout__footer-text {
-  font-family: var(--font-mono);
-}
-.layout__header-text {
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 30px;
-}
-.layout__middle-text {
   font-size: 0.75rem;
   text-transform: uppercase;
 }
-.layout__middle-text--right {
+.middle {
   text-align: right;
   transform: rotate3d(0, 0, 1, 90deg) translate3d(100%, 10px, 0);
   transform-origin: right;
@@ -67,51 +53,40 @@ body {
   font-family: var(--font-mono);
   text-transform: uppercase;
 }
-.layout__footer-text {
-  font-size: 15rem;
-  line-height: 1em;
-  letter-spacing: -0.05em;
-  margin: 0;
-}
-.layout__label {
+
+section {
   position: absolute;
   font-size: 0.75rem;
   line-height: 1;
   text-transform: uppercase;
 }
-.layout__label--top-left {
+
+.top-left {
   top: var(--margin);
   left: var(--margin);
   text-align: left;
   z-index: 20;
 }
-
-.menu-open .layout__label--top-left {
-  color: var(--font--accent);
-}
-
-.layout__label--top-right {
+.top-right {
   top: var(--margin);
   right: var(--margin);
   text-align: right;
   font-family: var(--font-mono);
 }
-
-.layout__label--bottom-left {
+.bottom-left {
   bottom: var(--margin);
   left: var(--margin);
   text-align: left;
 }
-
-.layout__label--bottom-right {
+.bottom-right {
   bottom: var(--margin);
   right: var(--margin);
   text-align: right;
   font-family: var(--font-mono);
 }
 
-.layout__text-wrapper {
-  display: flex;
+    .statement {
+      display: flex;
   flex-direction: column;
   gap: 1rem;
   text-align: center;
@@ -125,28 +100,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.layout__text-wrapper h1 {
-  font-size: 5rem;
-  font-weight: 300;
-  line-height: 1.1;
-  margin: 0;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-}
-.layout__text-wrapper h1 span {
-  display: block;
-  font-size: 1.5rem;
-}
-.layout__text-wrapper h1::after {
-  content: "";
-  display: block;
-  width: 50%;
-  height: 1px;
-  background: var(--color-foreground);
-  margin: 1rem auto;
-  opacity: 0.2;
-}
-.layout__text-wrapper h2 {
+.statement h2 {
   color: var(--color--accent--100);
   font-size: 1rem;
   letter-spacing: 0.2em;
@@ -160,25 +114,16 @@ body {
 <body>
 <div class="layout">
   <div class="layout__middle">
-    <p class="layout__middle-text layout__middle-text--left">|</p>
-    <p class="layout__middle-text layout__middle-text--right">Scanning Coordinates:<br> Uncharted Zone ✶</p>
+    <p>|</p>
+    <p class="middle">Scanning Coordinates:<br> Uncharted Zone ✶</p>
   </div>
 
-  <div class="layout__label layout__label--top-left">
-    <span class="layout__label-text">Vessel<br>Oblivion Horizon</span>
-  </div>
-  <div class="layout__label layout__label--top-right">
-    🏛
-  </div>
-  <div class="layout__label layout__label--bottom-left">
-    Core<br> Anomaly Drive<br> Status: Unknown
-  </div>
-  <div class="layout__label layout__label--bottom-right">
-    <span class="layout__label-text">Alert<br>Dimensional Rift<br> Imminent</span>
-  </div>
+  <section class="top-left">Vessel<br>Oblivion Horizon</section>
+  <section class="top-right">🏛</section>
+  <section class="bottom-left">Core<br> Anomaly Drive<br> Status: Unknown</section>
+  <section class="bottom-right">Alert<br>Dimensional Rift<br> Imminent</section>
 
-  <div class="layout__text-wrapper">
-    <h1>458876667</h1>
+  <div class="statement">
     <h2>BEYOND THE VEIL, ALL SIGNALS FADE</h2>
   </div>
 </div>
