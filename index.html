@@ -5,22 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>LiminalLoop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant&family=Space+Mono&display=swap" rel="stylesheet">
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;1,300&family=Space+Mono&display=swap");
-    *,
-    *::after,
-    *::before {
-      box-sizing: border-box;
-    }
-    :root {
-      --color-background: rgb(20, 24, 30);
-      --color-foreground: rgb(230, 230, 230);
-      --color-accent: rgb(100, 200, 255);
-      --font-primary: "Cormorant", serif;
-      --font-mono: "Space Mono", monospace;
-      --margin: 32px;
-      --gutter: 16px;
-    }
+    *, *::before, *::after { box-sizing: border-box; }
     body {
       display: flex;
       justify-content: center;
@@ -28,9 +15,9 @@
       min-height: 100vh;
       margin: 0;
       padding: 0;
-      font-family: var(--font-primary);
+      font-family: "Cormorant", serif;
       background: radial-gradient(circle at 10% 20%, rgb(0, 0, 0) 0%, rgb(10, 10, 20) 90%);
-      color: var(--color-foreground);
+      color: rgb(230, 230, 230);
       letter-spacing: -0.03em;
       position: relative;
       text-align: center;
@@ -64,7 +51,7 @@
     }
     .layout__header-text,
     .layout__footer-text {
-      font-family: var(--font-mono);
+      font-family: "Space Mono", monospace;
     }
     .layout__header-text {
       font-size: 2rem;
@@ -80,7 +67,7 @@
       transform: rotate3d(0, 0, 1, 90deg) translate3d(100%, 10px, 0);
       transform-origin: right;
       white-space: nowrap;
-      font-family: var(--font-mono);
+      font-family: "Space Mono", monospace;
       text-transform: uppercase;
     }
     .layout__footer-text {
@@ -96,26 +83,26 @@
       text-transform: uppercase;
     }
     .layout__label--top-left {
-      top: var(--margin);
-      left: var(--margin);
+      top: 32px;
+      left: 32px;
       text-align: left;
     }
     .layout__label--top-right {
-      top: var(--margin);
-      right: var(--margin);
+      top: 32px;
+      right: 32px;
       text-align: right;
-      font-family: var(--font-mono);
+      font-family: "Space Mono", monospace;
     }
     .layout__label--bottom-left {
-      bottom: var(--margin);
-      left: var(--margin);
+      bottom: 32px;
+      left: 32px;
       text-align: left;
     }
     .layout__label--bottom-right {
-      bottom: var(--margin);
-      right: var(--margin);
+      bottom: 32px;
+      right: 32px;
       text-align: right;
-      font-family: var(--font-mono);
+      font-family: "Space Mono", monospace;
     }
     .layout__text-wrapper {
       display: flex;
@@ -149,7 +136,7 @@
       display: block;
       width: 50%;
       height: 1px;
-      background: var(--color-foreground);
+      background: rgb(230, 230, 230);
       margin: 1rem auto;
       opacity: 0.2;
     }
@@ -158,9 +145,6 @@
       letter-spacing: 0.2em;
       margin-top: 1rem;
       text-transform: uppercase;
-    }
-    .dg.ac {
-      z-index: 9999 !important;
     }
   </style>
 </head>
