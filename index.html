@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>[gsap/lenis] ❍ Layout Explorations with Gsap, Lenis and ScrollTrigger N°5</title>
+  <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
+<link rel='stylesheet' href='https://unpkg.com/lenis@1.3.3/dist/lenis.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<header class="site-header">
+  <div class="header-container">
+    <div class="logo-container">
+      <div class="logo-circles">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+      </div>
+    </div>
+
+    <nav class="main-nav">
+      <ul>
+        <li>
+          <a href="#" class="active">CREATIVE JOURNEY</a>
+          <div class="nav-hover-square"></div>
+        </li>
+        <li>
+          <a href="#">ABOUT</a>
+          <div class="nav-hover-square"></div>
+        </li>
+        <li>
+          <a href="#">SOUND</a>
+          <div class="nav-hover-square"></div>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="contact-link">
+      <a href="https://x.com/filipz">+CONNECT</a>
+    </div>
+  </div>
+</header>
+
+<div class="gradient-reveal"></div>
+
+<div class="audio-enable">
+  <p>ENTER EXPERIENCE<br />WITH AUDIO</p>
+  <button class="enable-button" id="enableBtn">START</button>
+</div>
+
+<div class="preloader" id="preloader">
+  <span id="counter">[000]</span>
+</div>
+
+<div class="geometric-background">
+  <svg class="geometric-svg" viewBox="0 0 1920 1080">
+    <g id="grid-lines"></g>
+    <g id="circles-outline"></g>
+    <g id="circles-filled">
+      <clipPath id="right-half">
+        <rect x="960" y="0" width="960" height="1080" />
+      </clipPath>
+      <g clip-path="url(#right-half)"></g>
+    </g>
+
+    <text class="geometric-text" x="100" y="100">THE CREATIVE</text>
+    <text class="geometric-text" x="100" y="115">PROCESS</text>
+
+    <text class="geometric-text" x="1720" y="100">THE ESSENCE</text>
+    <text class="geometric-text" x="1720" y="115">OF SOUND</text>
+
+    <text class="geometric-text" x="100" y="980" id="debugLine1">AWARENESS: SILENCE</text>
+    <text class="geometric-text" x="100" y="995" id="debugLine2">STATE: VOID</text>
+    <text class="geometric-text" x="100" y="1010" id="debugLine3">ENERGY: DORMANT</text>
+    <text class="geometric-text" x="100" y="1025" id="debugLine4">PRESENCE: SOLID</text>
+
+    <text class="geometric-text" x="1620" y="980">BETWEEN THE</text>
+    <text class="geometric-text" x="1620" y="995">HEARTBEATS</text>
+  </svg>
+</div>
+
+<audio id="startClickSound" preload="auto">
+  <source src="https://assets.codepen.io/7558/preloader-2s-001.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="preloaderSound" preload="auto">
+  <source src="https://assets.codepen.io/7558/preloader-5s-001.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="scrollSound1" loop preload="auto">
+  <source src="https://assets.codepen.io/7558/glitch-fx-001.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="scrollSound2" loop preload="auto">
+  <source src="https://assets.codepen.io/7558/glitch-fx-001.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="scrollSound3" loop preload="auto">
+  <source src="https://assets.codepen.io/7558/glitch-fx-001.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="hoverSound" preload="auto">
+  <source src="https://assets.codepen.io/7558/preloader-2s-001.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="backgroundMusic" loop preload="auto">
+  <source src="https://assets.codepen.io/7558/lxstnght-night-angel.mp3" type="audio/mpeg">
+</audio>
+
+<div class="center-circle">
+  <div class="circle-container">
+    <div class="glowing-circle" id="glowCircle"></div>
+  </div>
+</div>
+
+<section class="section section-1">
+  <div class="section-content"></div>
+</section>
+
+<section class="section section-2">
+  <div class="section-content"></div>
+</section>
+
+<section class="section section-3">
+  <div class="section-content"></div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-content-section">
+    <div class="footer-content">
+      <div class="footer-left">
+        <p>THE DARKNESS</p>
+        <p>IS WHERE</p>
+        <p>LIGHT IS BORN</p>
+        <p>EMPTINESS</p>
+        <p>CREATES SPACE</p>
+        <p>FOR HEALING</p>
+      </div>
+      <div class="footer-right">
+        <p>CREATIVITY FLOWS THROUGH</p>
+        <p>INFINITE PATHWAYS</p>
+        <p>CONSCIOUSNESS EXPANDS</p>
+        <p>INTO BOUNDLESS REALMS</p>
+        <p>OF LIGHT AND POSSIBILITY</p>
+        <p>WHERE HEALING BECOMES ART</p>
+      </div>
+    </div>
+    <div class="footer-credits">
+      <p>Sound Design & Music by <a href="https://open.spotify.com/artist/6YXgRMajnjib8j6Cxzcryp?si=iiLnt59BRp6QgKGizkG5Zg" target="_blank">@LXSTNGHT</a></p>
+    </div>
+  </div>
+  <div class="footer-svg-section">
+    <img class="footer-svg" src="https://assets.codepen.io/7558/arrival-text.svg" alt="">
+  </div>
+</footer>
+<!-- partial -->
+  <script src='https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js'></script>
+<script src='https://unpkg.com/lenis@1.3.3/dist/lenis.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
