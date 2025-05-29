@@ -132,6 +132,29 @@
     footer a:hover::before {
       transform: translateY(-50%) scaleX(1);
     }
+    
+    /* Custom scrollbar for main */
+    main::-webkit-scrollbar { width: 1.3em; }
+    main::-webkit-scrollbar-track { background: transparent; }
+    main::-webkit-scrollbar-thumb,
+    main::-webkit-scrollbar-thumb:hover {
+      background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cg id="SVGRepo_bgCarrier" stroke-width="0"%3E%3C/g%3E%3Cg id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"%3E%3C/g%3E%3Cg id="SVGRepo_iconCarrier"%3E%3Cpath opacity="0.1" d="M7 10.32C7 7.58598 7.58598 7 10.32 7H13.68C16.414 7 17 7.58598 17 10.32V13.68C17 16.414 16.414 17 13.68 17H10.32C7.58598 17 7 16.414 7 13.68V10.32Z" fill="%23323232"/%3E%3Cpath d="M21 21L21 3" stroke="%23323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/%3E%3Cpath d="M7 10.32C7 7.58598 7.58598 7 10.32 7H13.68C16.414 7 17 7.58598 17 10.32V13.68C17 16.414 16.414 17 13.68 17H10.32C7.58598 17 7 16.414 7 13.68V10.32Z" stroke="%23323232" stroke-width="2"/%3E%3C/g%3E%3C/svg%3E');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+    @-moz-document url-prefix() { /* Firefox scrollbar */
+      main {
+        scrollbar-color: transparent transparent;
+        scrollbar-width: thin;
+      }
+      main::-webkit-scrollbar-thumb {
+        background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="%23a0a89e" stroke="%23a0a89e" stroke-width="5"%3E%3Cg id="SVGRepo_bgCarrier" stroke-width="0"%3E%3C/g%3E%3Cg id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"%3E%3C/g%3E%3Cg id="SVGRepo_iconCarrier"%3E%3Cdefs%3E%3Cstyle%3E.a{fill:none;stroke:%23a0a89e;stroke-linecap:round;stroke-linejoin:round;}%3C/style%3E%3C/defs%3E%3Ccircle class="a" cx="24" cy="24" r="21.5"/%3E%3Cpath class="a" d="M2.7292,25.253s4.694,1.1769,6.5217,0c5.5212-3.5551.73-17.554,8.1521-17.935C30.024,6.7851,15.83,41.535,29.89,41.557c7.0423-.3815,3.54-13.11,8.7089-16.304,1.8492-1.1429,6.5217,0,6.5217,0"/%3E%3C/g%3E%3C/svg%3E');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+      }
+    }
   </style>
 </head>
 <body>
