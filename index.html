@@ -70,42 +70,13 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
+  justify-content: space-between; 
   height: 100%;
   padding: 6rem 0 2rem;
-}
-.menu__grid {
-  display: grid;
-  width: 100%;
-  height: 100%;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--gutter);
-}
-.menu__column {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  text-align: left;
-}
-.menu__column p {
-  width: 70%;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  line-height: 1.2;
 }
 .menu__nav {
   display: flex;
   flex-direction: column;
-}
-.menu__divider {
-  position: relative;
-  width: 0;
-  opacity: 0;
-  height: 1px;
-  background-color: var(--color--foreground--100);
-  transition: none;
 }
 
 .nav__footer-link {
@@ -310,40 +281,31 @@ a {
 </div>
 
 <div class="menu" id="menu">
-  <div class="menu__content">
-    <div class="menu__grid">
-      <div class="menu__column">
-        <div class="menu__nav">
-          <a href="#" class="nav__footer-link double-hover">
-            <span>Mission Parameters</span>
-            <span>Mission Parameters</span>
-          </a>
-          <a href="#" class="nav__footer-link double-hover">
-            <span>Structural Integrity</span>
-            <span>Structural Integrity</span>
-          </a>
-          <a href="#" class="nav__footer-link double-hover">
-            <span>Core Diagnostics</span>
-            <span>Core Diagnostics</span>
-          </a>
-          <a href="#" class="nav__footer-link double-hover">
-            <span>Life Support Systems</span>
-            <span>Life Support Systems</span>
-          </a>
-        </div>
-        <div class="menu__divider"></div>
-      </div>
-      <div class="menu__column">
-        <p>
-          **"Unknown transmission detected. Origin: uncharted space. Signal interference suggests presence of gravitational anomalies."**
-          <br><br>
-          The faint hum of the ship’s core thrums through the walls, synchronizing with a distant, pulsating signal. Each blip echoes a warning: the veil between dimensions is thinning. Proceed with caution; what lies beyond is not bound by our reality.
-        </p>
-        <div class="menu__divider"></div>
-      </div>
+  <nav class="menu__content">
+    <div class="menu__nav">    
+      <a href="#" class="nav__footer-link double-hover"> 
+        <span>Mission Parameters</span>
+        <span>Mission Parameters</span>   
+      </a>
+      <a href="#" class="nav__footer-link double-hover">  
+        <span>Structural Integrity</span>
+        <span>Structural Integrity</span>
+      </a>
+      <a href="#" class="nav__footer-link double-hover">  
+        <span>Core Diagnostics</span>
+        <span>Core Diagnostics</span>  
+      </a>    
+      <a href="#" class="nav__footer-link double-hover">   
+        <span>Life Support Systems</span>
+        <span>Life Support Systems</span>   
+      </a>
     </div>
-  </div>
-
+    <p>
+       **"Unknown transmission detected. Origin: uncharted space. Signal interference suggests presence of gravitational anomalies."**
+       <br><br>   
+       The faint hum of the ship’s core thrums through the walls, synchronizing with a distant, pulsating signal. Each blip echoes a warning: the veil between dimensions is thinning. Proceed with caution; what lies beyond is not bound by our reality.
+    </p>
+  </nav>
 </div>
 
 <script src='https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js'></script>
