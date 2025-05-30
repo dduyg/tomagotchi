@@ -153,7 +153,7 @@
       pointer-events: none;
     }
 
-    #theme-trigger-text {
+    #theme-trigger {
       color: inherit;
       text-decoration: underline dotted;
       cursor: pointer;
@@ -167,13 +167,13 @@
       transition: color 0.2s;
       display: block;
     }
-    #theme-trigger-text:hover,
-    #theme-trigger-text:focus {
+    #theme-trigger:hover,
+    #theme-trigger:focus {
       color: #fff;
       text-decoration: underline solid;
     }
 
-    .custom-theme-dropdown {
+    .select-menu {
       position: fixed;
       top: 2rem;
       right: 3rem;
@@ -198,34 +198,39 @@
       from { opacity: 0; transform: translateY(-0.5em) scale(0.96);}
       to   { opacity: 1; transform: translateY(0) scale(1);}
     }
-    .custom-theme-list {
-      list-style: none;
+    .select-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
       margin: 0;
       padding: 0;
+      width: 100%;
+      align-items: flex-start;
     }
-    
-    .custom-theme-list li {
+    .option {
       color: white;
       cursor: pointer;
       border: none;
       background: none;
       font-family: inherit;
       font-size: clamp(1.5rem, 2vw + 1rem, 3rem);
-      margin-bottom: 2rem;
       border-left: 5px solid white;
       padding-left: 1em;
-      transition: border-left 0.13s, opacity 0.13s;
+      transition: border-left 0.13s, opacity 0.13s, background 0.1s;
       position: relative;
       text-transform: uppercase;
       outline: none;
       margin: 0;
+      opacity: 1;
+      width: 100%;
     }
-    .custom-theme-list li[aria-selected="true"],
-    .custom-theme-list li:hover,
-    .custom-theme-list li:focus {
+    .option[aria-selected="true"],
+    .option:hover,
+    .option:focus {
       border-left: 10px solid rgb(200, 180, 160);
+      background: rgba(255,255,255,0.05);
     }
-    .custom-theme-list li:active {
+    .option:active {
       opacity: 0.6;
     }
   </style>
@@ -239,7 +244,7 @@
 
   <section class="top-left">Override<br>Mission Parameters</section>
   <section class="top-right">
-    <span id="theme-trigger-text" tabindex="0">Uncharted<br>Pulsating Signal</span>
+    <span id="theme-trigger" tabindex="0">Uncharted<br>Pulsating Signal</span>
   </section>
   <section class="bottom-left">Core<br> Anomaly Drive<br> Status: Unknown</section>
   <section class="bottom-right">Alert<br>Dimensional Rift<br> Imminent</section>
@@ -248,6 +253,8 @@
     <h2>NOT IN FORM, BUT IN INTENTION</h2>
   </div>
 </div>
+
+<div id="theme-menu-container" style="display:none;"></div>
 
 <script type="module">
 import * as THREE from "https://esm.sh/three@0.175.0";
