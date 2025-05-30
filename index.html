@@ -155,8 +155,8 @@
 
     section.top-right {
       cursor: pointer;
+      transition: color 0.2s;
       user-select: none;
-      font-family: inherit;
     }
     section.top-right .theme-trigger-link {
       color: #7ed6ff;
@@ -180,61 +180,64 @@
 
     .custom-theme-dropdown {
       position: fixed;
-      min-width: 180px;
-      right: 2rem;
-      background: rgba(18,20,25,0.98);
-      border: 1px solid #23272f;
-      border-radius: 0.7em;
+      min-width: 170px;
+      background: rgba(15,18,22,0.99);
+      border: 1px solid #222c;
+      border-radius: 0.6em;
       box-shadow: 0 6px 32px 0 rgba(10,12,20,0.19);
-      z-index: 9999;
-      margin-top: 0.5em;
+      z-index: 501;
       padding: 0.3em 0;
       font-family: "Cousine", monospace;
-      font-size: 1.04em;
+      font-size: 1em;
       animation: dropdownIn 0.13s cubic-bezier(.34,1.56,.64,1) 1;
-      transition: opacity 0.13s;
-      opacity: 1;
-      user-select: none;
+      color: #fff;
     }
     @keyframes dropdownIn {
       from { opacity: 0; transform: translateY(-0.5em) scale(0.96);}
       to   { opacity: 1; transform: translateY(0) scale(1);}
     }
-    .custom-theme-list {
+    .custom-theme-dropdown ul {
       list-style: none;
       margin: 0;
       padding: 0;
     }
-    .custom-theme-list li {
-      padding: 0.7em 1.2em 0.7em 1.1em;
-      color: #e0e0e0;
+    .custom-theme-dropdown li {
+      padding: 0.6em 1.2em 0.6em 0.8em;
       cursor: pointer;
-      transition: background 0.13s, color 0.13s;
-      border: none;
-      background: none;
-      font-family: inherit;
+      transition: background 0.12s;
+      border-radius: 0.4em;
       font-size: 1em;
-      outline: none;
-      border-radius: 0.5em;
-      margin: 0;
-      display: block;
+      white-space: nowrap;
+      user-select: none;
     }
-    .custom-theme-list li[aria-selected="true"],
-    .custom-theme-list li:hover,
-    .custom-theme-list li:focus {
-      background: #222e;
-      color: #fff;
-    }
-    .custom-theme-list li:active {
-      background: #333f;
+    .custom-theme-dropdown li.selected,
+    .custom-theme-dropdown li:hover,
+    .custom-theme-dropdown li:focus {
+      background: #222d;
       color: #7ed6ff;
+      outline: none;
+    }
+    .custom-theme-dropdown li.selected {
+      font-weight: bold;
+    }
+    .custom-theme-dropdown li:active {
+      background: #111;
     }
     @media (max-width: 600px) {
       .custom-theme-dropdown {
-        right: 1rem;
-        min-width: 135px;
+        min-width: 130px;
         font-size: 0.97em;
       }
+    }
+    /* Hide scrollbars for dropdown on mobile/desktop */
+    .custom-theme-dropdown ul {
+      max-height: 70vh;
+      overflow-y: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .custom-theme-dropdown ul::-webkit-scrollbar {
+      display: none;
     }
   </style>
 </head>
@@ -261,6 +264,7 @@
 
   <script type="module" src="./script.js"></script>
   <script>
+    // Custom dropdown logic for both desktop and mobile
     const themes = [
       "Dark Moody",
       "Crimson Heat",
@@ -275,41 +279,25 @@
     ];
     let dropdown = null;
 
-    function createThemeDropdown(currentTheme, anchorRect) {
+    function createThemeDropdown(currentTheme) {
       const d = document.createElement("div");
       d.className = "custom-theme-dropdown";
-      d.setAttribute("role", "listbox");
-      d.tabIndex = -1;
 
-      // Make dropdown a list of clickable items
       const ul = document.createElement("ul");
-      ul.className = "custom-theme-list";
-      themes.forEach((theme, idx) => {
+      themes.forEach(theme => {
         const li = document.createElement("li");
         li.textContent = theme;
-        li.setAttribute("role", "option");
-        if (theme === currentTheme) li.setAttribute("aria-selected", "true");
-        li.tabIndex = 0;
+        li.setAttribute("tabindex", "0");
+        if (theme === currentTheme) li.classList.add("selected");
         li.addEventListener("click", () => {
-          if (window.setColorPreset) window.setColorPreset(theme);
+          if (window.setColorPreset) {
+            window.setColorPreset(theme);
+          }
           closeDropdown();
         });
         li.addEventListener("keydown", e => {
-          if (e.key === "Enter" || e.key === " ") {
+          if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
             li.click();
-            e.preventDefault();
-          }
-          // Arrow navigation
-          if (e.key === "ArrowDown" || e.key === "ArrowUp") {
-            const items = Array.from(ul.querySelectorAll("li"));
-            let next = e.key === "ArrowDown" ? idx + 1 : idx - 1;
-            if (next < 0) next = items.length - 1;
-            if (next >= items.length) next = 0;
-            items[next].focus();
-            e.preventDefault();
-          }
-          if (e.key === "Escape") {
-            closeDropdown();
             e.preventDefault();
           }
         });
@@ -317,16 +305,16 @@
       });
       d.appendChild(ul);
 
-      // Prevent dropdown click from bubbling
+      // Prevent click from bubbling to document
       d.addEventListener("mousedown", e => e.stopPropagation());
       d.addEventListener("touchstart", e => e.stopPropagation());
 
-      // Position dropdown below the anchorRect (theme trigger)
-      d.style.position = "fixed";
-      const padding = 2;
-      d.style.top = Math.round(anchorRect.bottom + padding) + "px";
-      // Align right edge
-      d.style.right = (window.innerWidth - anchorRect.right) + "px";
+      // Focus first li for accessibility
+      setTimeout(() => {
+        const selected = ul.querySelector('.selected') || ul.firstChild;
+        if (selected) selected.focus();
+      }, 0);
+
       return d;
     }
 
@@ -339,32 +327,32 @@
 
     document.addEventListener("DOMContentLoaded", function() {
       const trigger = document.getElementById("theme-trigger-text");
+      const triggerSection = document.getElementById("theme-trigger-section");
+
       trigger.addEventListener("click", function(e) {
         e.stopPropagation();
         if (dropdown) { closeDropdown(); return; }
         const currentTheme = window.getCurrentColorPreset ? window.getCurrentColorPreset() : "Crimson Heat";
+        dropdown = createThemeDropdown(currentTheme);
+
+        // Insert dropdown in DOM right after triggerSection
+        triggerSection.parentNode.appendChild(dropdown);
+
+        // Position below .top-right
         const rect = trigger.getBoundingClientRect();
-        dropdown = createThemeDropdown(currentTheme, rect);
-        document.body.appendChild(dropdown);
-        // Focus first selected or first item
-        setTimeout(() => {
-          const selected = dropdown.querySelector('li[aria-selected="true"]');
-          (selected || dropdown.querySelector('li')).focus();
-        }, 1);
+        dropdown.style.top = Math.round(rect.bottom + 2) + "px";
+        dropdown.style.right = (window.innerWidth - rect.right) + "px";
       });
+
+      // Keyboard support for trigger
       trigger.addEventListener("keydown", function(e) {
         if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
           trigger.click();
           e.preventDefault();
         }
-        // Down arrow opens and focuses list
-        if ((e.key === "ArrowDown" || e.key === "ArrowUp") && !dropdown) {
-          trigger.click();
-          e.preventDefault();
-        }
       });
 
-      // Close dropdown on outside click/tap, scroll, or resize
+      // Click/touch outside closes dropdown
       document.addEventListener("mousedown", closeDropdown);
       document.addEventListener("touchstart", closeDropdown);
       window.addEventListener("scroll", closeDropdown, true);
