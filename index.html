@@ -181,10 +181,20 @@
       transition: opacity 0.13s;
       opacity: 1;
       user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     @keyframes dropdownIn {
       from { opacity: 0; transform: translateY(-0.5em) scale(0.96);}
       to   { opacity: 1; transform: translateY(0) scale(1);}
+    }
+    .center-wrapper {
+      width: 100%;
+      max-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .select-list {
       display: flex;
@@ -194,6 +204,8 @@
       padding: 0;
       width: 100%;
       align-items: flex-start;
+      max-height: 100%;
+      overflow-y: auto;
     }
     .option {
       color: white;
