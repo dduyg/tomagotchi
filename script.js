@@ -788,12 +788,42 @@ document.addEventListener("mouseenter", () => {
   cursor.style.display = "block";
 });
 
-// === COLOR PRESET SELECTOR LOGIC ===
-const colorPresetSelect = document.getElementById("colorPreset");
-if (colorPresetSelect) {
-  // Set initial value to match the current parameter
-  colorPresetSelect.value = params.colorPreset;
+// === COLOR PRESET MODAL LOGIC ===
+const modalBackdrop = document.getElementById("themeModalBackdrop");
+const modalThemeOpener = document.getElementById("themeOpener");
+const colorPresetSelect = document.getElementById("colorPresetSelect");
 
+// Set initial value
+if (colorPresetSelect) {
+  colorPresetSelect.value = params.colorPreset;
+}
+
+function closeModal() {
+  if (modalBackdrop) modalBackdrop.classList.remove("active");
+}
+
+if (modalThemeOpener && modalBackdrop) {
+  modalThemeOpener.addEventListener("click", () => {
+    modalBackdrop.classList.add("active");
+    // Set dropdown to current theme on open
+    colorPresetSelect.value = params.colorPreset;
+    // Focus for keyboard accessibility
+    colorPresetSelect.focus();
+  });
+}
+if (modalBackdrop) {
+  // Click outside popup closes modal
+  modalBackdrop.addEventListener("click", evt => {
+    if (evt.target === modalBackdrop) closeModal();
+  });
+}
+// ESC closes modal
+document.addEventListener("keydown", evt => {
+  if (evt.key === "Escape" && modalBackdrop.classList.contains("active")) closeModal();
+});
+
+// Color select logic (closes modal on select)
+if (colorPresetSelect) {
   colorPresetSelect.addEventListener("change", (e) => {
     const selected = e.target.value;
     params.colorPreset = selected;
@@ -805,5 +835,8 @@ if (colorPresetSelect) {
     shaderMaterial.uniforms.primaryColor.value = new THREE.Color().fromArray(params.primaryColor.map(c => c / 255));
     shaderMaterial.uniforms.secondaryColor.value = new THREE.Color().fromArray(params.secondaryColor.map(c => c / 255));
     shaderMaterial.uniforms.accentColor.value = new THREE.Color().fromArray(params.accentColor.map(c => c / 255));
+
+    // Automatically close modal after selection
+    closeModal();
   });
 }
