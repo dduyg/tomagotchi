@@ -153,14 +153,53 @@
       pointer-events: none;
     }
 
-    /* Controls (dat.GUI or similar) */
-    .dg.ac {
-      z-index: 101 !important;
+    /* Add some style for the selector */
+    #colorPreset {
+      padding: 0.2em 0.5em;
+      font-size: 1em;
+      background: #222;
+      color: #fff;
+      border: 1px solid #555;
+      border-radius: 0.3em;
+      margin-left: 0.5em;
+      outline: none;
+    }
+    #colorPreset:focus {
+      border-color: #888;
+    }
+    .color-selector-container {
+      position: fixed;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
+      background: rgba(0,0,0,0.7);
+      padding: 0.5em 1em;
+      border-radius: 1em;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.16);
+      font-family: inherit;
+      font-size: 1em;
+      pointer-events: auto;
+      user-select: none;
     }
   </style>
 </head>
 <body>
-<body>
+<div class="color-selector-container">
+  <label for="colorPreset">Color Theme:</label>
+  <select id="colorPreset">
+    <option value="Dark Moody">Dark Moody</option>
+    <option value="Crimson Heat">Crimson Heat</option>
+    <option value="Ocean Calm">Ocean Calm</option>
+    <option value="Sunset Glow">Sunset Glow</option>
+    <option value="Monochrome">Monochrome</option>
+    <option value="Ethereal Mist">Ethereal Mist</option>
+    <option value="Golden Hour">Golden Hour</option>
+    <option value="Neon Nights">Neon Nights</option>
+    <option value="Electric Pulse">Electric Pulse</option>
+    <option value="Molten Core">Molten Core</option>
+  </select>
+</div>
 <div class="layout">
   <div class="layout__middle">
     <p>|</p>
