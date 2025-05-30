@@ -293,7 +293,6 @@ If the image is used as a background:
 - [ ]  Micro 5
 - [ ]  Jersey 10
 - [ ]  Handjet
-- [ ]  Danfo
 - [ ]  Raleway ♡
 - [ ]  Chivo
 - [ ]  Ruda
