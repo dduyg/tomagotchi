@@ -6,678 +6,1094 @@ import { RenderPass } from "https://esm.sh/three@0.175.0/examples/jsm/postproces
 import { ShaderPass } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/ShaderPass.js";
 import { UnrealBloomPass } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/UnrealBloomPass.js";
 
-// Main App class
-class App {
-  constructor() {
-    // Initialize stats
-    this.stats = new Stats();
-    this.stats.showPanel(0);
-    document.body.appendChild(this.stats.dom);
-    this.stats.dom.style.position = "absolute";
-    this.stats.dom.style.top = "0";
-    this.stats.dom.style.left = "0";
+// Create stats monitor
+const stats = new Stats();
+stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+document.body.appendChild(stats.dom);
 
-    // Define gradient presets
-    this.gradientPresets = {
-      "Realistic Milky": {
-        colorA1: [0.98, 0.98, 1.0], // Pure White with slight blue tint
-        colorA2: [0.92, 0.92, 0.95], // Very Light Gray with blue tint
-        colorB1: [0.95, 0.95, 0.98], // Almost White
-        colorB2: [0.85, 0.85, 0.9] // Light Gray
-      },
-      "Deep Abyss": {
-        colorA1: [0.02, 0.02, 0.03], // Nearly Black
-        colorA2: [0.04, 0.04, 0.06], // Very Dark Gray with slight blue tint
-        colorB1: [0.03, 0.03, 0.05], // Almost Black with slight blue
-        colorB2: [0.06, 0.05, 0.08] // Very Dark Purple-Gray
-      },
-      "Dark Twilight": {
-        colorA1: [0.05, 0.04, 0.08], // Very Dark Purple
-        colorA2: [0.08, 0.06, 0.12], // Dark Purple
-        colorB1: [0.04, 0.05, 0.09], // Very Dark Blue
-        colorB2: [0.09, 0.08, 0.14] // Dark Blue-Purple
-      },
-      "Dark Moody": {
-        colorA1: [0.05, 0.05, 0.08], // Almost Black
-        colorA2: [0.15, 0.15, 0.25], // Dark Purple
-        colorB1: [0.1, 0.1, 0.2], // Dark Blue
-        colorB2: [0.2, 0.2, 0.3] // Dark Gray
-      },
-      "Soft Cream": {
-        colorA1: [0.98, 0.97, 0.95], // Warm White
-        colorA2: [0.94, 0.92, 0.88], // Light Cream
-        colorB1: [0.96, 0.94, 0.9], // Soft Cream
-        colorB2: [0.9, 0.87, 0.82] // Light Beige
-      },
-      Colorful: {
-        colorA1: [0.957, 0.804, 0.623], // Yellow
-        colorA2: [0.192, 0.384, 0.933], // Deep Blue
-        colorB1: [0.91, 0.51, 0.8], // Pink
-        colorB2: [0.35, 0.71, 0.953] // Light Blue
-      },
-      Mysterious: {
-        colorA1: [0.1, 0.05, 0.2], // Dark Purple
-        colorA2: [0.3, 0.1, 0.4], // Purple
-        colorB1: [0.05, 0.1, 0.2], // Dark Blue
-        colorB2: [0.2, 0.3, 0.5] // Blue
-      },
-      Sunset: {
-        colorA1: [0.8, 0.3, 0.1], // Orange
-        colorA2: [0.5, 0.1, 0.3], // Red-Purple
-        colorB1: [0.9, 0.6, 0.3], // Light Orange
-        colorB2: [0.6, 0.2, 0.5] // Purple
-      },
-      Ocean: {
-        colorA1: [0.0, 0.2, 0.4], // Deep Blue
-        colorA2: [0.0, 0.4, 0.6], // Medium Blue
-        colorB1: [0.0, 0.3, 0.5], // Blue
-        colorB2: [0.1, 0.5, 0.7] // Light Blue
-      }
-    };
+// Scene, Camera, Renderer
+const scene = new THREE.Scene();
+const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
+camera.position.z = 1;
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
 
-    // Initialize settings
-    this.settings = {
-      damping: 0.98,
-      tension: 0.02,
-      resolution: 1024,
-      rippleStrength: 1.0,
-      gradientPreset: "Realistic Milky", // Default to Realistic Milky
-      mouseIntensity: 0.3,
-      clickIntensity: 2.0,
-      rippleRadius: 12,
-      autoDrops: true,
-      autoDropInterval: 3000,
-      autoDropIntensity: 1.0,
-      performanceMode: false
-    };
+// Store mouse position and smooth it over time
+const mouse = new THREE.Vector2(0, 0);
+const smoothedMouse = new THREE.Vector2(0, 0);
+let mouseDown = false;
 
-    // Store last mouse position for throttling
-    this.lastMousePosition = { x: 0, y: 0 };
-    this.mouseThrottleTime = 0;
-
-    // Initialize renderer
-    this.renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      powerPreference: "high-performance"
-    });
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    document.body.appendChild(this.renderer.domElement);
-
-    // Initialize scene and camera
-    this.scene = new THREE.Scene();
-    this.camera = new THREE.OrthographicCamera(
-      -window.innerWidth / 2,
-      window.innerWidth / 2,
-      window.innerHeight / 2,
-      -window.innerHeight / 2,
-      0.1,
-      1000
-    );
-    this.camera.position.z = 10;
-
-    // Initialize clock
-    this.clock = new THREE.Clock();
-
-    // Initialize GUI
-    this.initGUI();
-
-    // Bind methods
-    this.tick = this.tick.bind(this);
-    this.onMouseMove = this.onMouseMove.bind(this);
-    this.onTouchMove = this.onTouchMove.bind(this);
-    this.onResize = this.onResize.bind(this);
-
-    // Initialize everything
-    this.init();
+// Color presets
+const colorPresets = {
+  Classic: {
+    primaryColor: [255, 255, 255],
+    secondaryColor: [255, 255, 255],
+    accentColor: [0, 0, 0]
+  },
+  "Dark Moody": {
+    primaryColor: [20, 30, 40],
+    secondaryColor: [40, 50, 70],
+    accentColor: [100, 120, 180]
+  },
+  "Crimson Heat": {
+    primaryColor: [180, 30, 40],
+    secondaryColor: [240, 80, 40],
+    accentColor: [255, 200, 60]
+  },
+  "Neon Dream": {
+    primaryColor: [30, 200, 255],
+    secondaryColor: [180, 30, 255],
+    accentColor: [255, 60, 220]
+  },
+  "Forest Depths": {
+    primaryColor: [20, 80, 40],
+    secondaryColor: [60, 120, 40],
+    accentColor: [200, 230, 60]
+  },
+  "Ocean Calm": {
+    primaryColor: [20, 40, 100],
+    secondaryColor: [40, 100, 180],
+    accentColor: [160, 240, 255]
+  },
+  "Sunset Glow": {
+    primaryColor: [100, 50, 120],
+    secondaryColor: [240, 100, 50],
+    accentColor: [255, 220, 100]
+  },
+  Monochrome: {
+    primaryColor: [0, 0, 0],
+    secondaryColor: [80, 80, 80],
+    accentColor: [200, 200, 200]
+  },
+  // New color presets
+  "Ethereal Mist": {
+    primaryColor: [40, 45, 60],
+    secondaryColor: [90, 95, 120],
+    accentColor: [180, 200, 255]
+  },
+  "Golden Hour": {
+    primaryColor: [255, 200, 100],
+    secondaryColor: [255, 140, 50],
+    accentColor: [255, 230, 180]
+  },
+  // High contrast presets
+  "Neon Nights": {
+    primaryColor: [5, 5, 20],
+    secondaryColor: [80, 10, 100],
+    accentColor: [255, 50, 150]
+  },
+  "Electric Pulse": {
+    primaryColor: [5, 15, 30],
+    secondaryColor: [20, 80, 180],
+    accentColor: [100, 220, 255]
+  },
+  "Molten Core": {
+    primaryColor: [10, 10, 10],
+    secondaryColor: [120, 30, 10],
+    accentColor: [255, 180, 20]
   }
+};
 
-  initGUI() {
-    const gui = new GUI();
+// Parameters for GUI controls
+const params = {
+  effectType: 1, // Default to Fractal Julia
+  colorPreset: "Crimson Heat", // Default color preset
+  primaryColor: [180, 30, 40],
+  secondaryColor: [240, 80, 40],
+  accentColor: [255, 200, 60],
+  fractalScale: 0.83, // Updated per screenshot
+  fractalX: 0,
+  fractalY: 0,
+  fractionalIterations: 8,
+  lightCount: 3, // More lights for dramatic effect
+  lightIntensity: 1.5, // Increased light intensity
+  lightSpeed: 1.0,
+  lightBloomBalance: 0.8, // Light balance with bloom
+  lightLeak: 0.7, // New parameter for light leak effect
+  contrastBoost: 1.2, // New parameter for contrast enhancement
+  mouseProximityEffect: 0.8, // New parameter for mouse interaction intensity
+  // Enhanced grain settings
+  grainStrength: 0.02,
+  grainSpeed: 2.0,
+  grainMean: 0.0,
+  grainVariance: 0.5,
+  grainBlendMode: 1, // Set to Screen (1) per screenshot
+  grainSize: 3.5, // Legacy parameter
+  animationSpeed: 0.02,
+  autoRotate: true,
+  useBloom: true,
+  bloomStrength: 0.1,
+  bloomRadius: 0.4,
+  bloomThreshold: 0.2,
+  // Parameters for new cosmic nebula effect
+  nebulaDensity: 3.0,
+  nebulaWarp: 0.7,
+  nebulaContrast: 1.4,
+  nebulaSpeed: 0.3,
+  nebulaLayers: 3,
+  nebulaGlow: 0.8,
+  // Parameters for new crystal refraction effect
+  crystalFacets: 7,
+  crystalRefraction: 0.6,
+  crystalChroma: 0.4,
+  crystalRotation: 0.2,
+  crystalSharpness: 0.8,
+  crystalGlint: 0.7
+};
 
-    // Gradient preset selector
-    gui
-      .add(this.settings, "gradientPreset", Object.keys(this.gradientPresets))
-      .name("Gradient")
-      .onChange(() => {
-        this.updateGradientColors();
-      });
-
-    // Ripple controls
-    const rippleFolder = gui.addFolder("Ripple Controls");
-    rippleFolder
-      .add(this.settings, "damping", 0.9, 0.999, 0.001)
-      .name("Damping");
-    // Limit tension to safer values to prevent breaking the simulation
-    rippleFolder
-      .add(this.settings, "tension", 0.01, 0.05, 0.001)
-      .name("Tension");
-    rippleFolder
-      .add(this.settings, "rippleStrength", 0.1, 2.0, 0.1)
-      .name("Strength");
-    rippleFolder
-      .add(this.settings, "mouseIntensity", 0.1, 1.0, 0.1)
-      .name("Mouse Intensity");
-    rippleFolder
-      .add(this.settings, "clickIntensity", 0.5, 3.0, 0.1)
-      .name("Click Intensity");
-    rippleFolder
-      .add(this.settings, "rippleRadius", 6, 20, 1)
-      .name("Ripple Size");
-    rippleFolder.open();
-
-    // Auto drops controls
-    const autoDropsFolder = gui.addFolder("Auto Drops");
-    autoDropsFolder.add(this.settings, "autoDrops").name("Enable Auto Drops");
-    autoDropsFolder
-      .add(this.settings, "autoDropInterval", 500, 10000, 100)
-      .name("Interval (ms)");
-    autoDropsFolder
-      .add(this.settings, "autoDropIntensity", 0.1, 2.0, 0.1)
-      .name("Intensity");
-    autoDropsFolder.open();
-
-    // Performance controls
-    const perfFolder = gui.addFolder("Performance");
-    perfFolder
-      .add(this.settings, "performanceMode")
-      .name("Performance Mode")
-      .onChange((value) => {
-        // Adjust resolution based on performance mode
-        if (value) {
-          this.setResolution(512); // Lower resolution for better performance
-        } else {
-          this.setResolution(1024); // Higher resolution for better quality
-        }
-      });
-  }
-
-  setResolution(resolution) {
-    if (resolution === this.settings.resolution) return;
-
-    this.settings.resolution = resolution;
-
-    // Recreate water simulation with new resolution
-    this.initWaterRipple();
-
-    // Update the background material with the new texture
-    if (this.backgroundMaterial) {
-      this.backgroundMaterial.uniforms.waterTexture.value = this.waterTexture;
+// Shader Material
+const shaderMaterial = new THREE.ShaderMaterial({
+  uniforms: {
+    iResolution: {
+      value: new THREE.Vector2(window.innerWidth, window.innerHeight)
+    },
+    iTime: { value: 0.0 },
+    smoothedMouse: { value: new THREE.Vector2(0, 0) },
+    mouseDown: { value: 0 },
+    primaryColor: {
+      value: new THREE.Color().fromArray(
+        params.primaryColor.map((c) => c / 255)
+      )
+    },
+    secondaryColor: {
+      value: new THREE.Color().fromArray(
+        params.secondaryColor.map((c) => c / 255)
+      )
+    },
+    accentColor: {
+      value: new THREE.Color().fromArray(params.accentColor.map((c) => c / 255))
+    },
+    fractalScale: { value: params.fractalScale },
+    fractalOffset: {
+      value: new THREE.Vector2(params.fractalX, params.fractalY)
+    },
+    fractionalIterations: { value: params.fractionalIterations },
+    lightCount: { value: params.lightCount },
+    lightIntensity: { value: params.lightIntensity },
+    lightSpeed: { value: params.lightSpeed },
+    lightBloomBalance: { value: params.lightBloomBalance },
+    lightLeak: { value: params.lightLeak },
+    contrastBoost: { value: params.contrastBoost },
+    mouseProximityEffect: { value: params.mouseProximityEffect },
+    useBloom: { value: params.useBloom ? 1.0 : 0.0 },
+    // Enhanced grain uniforms
+    grainStrength: { value: params.grainStrength },
+    grainSize: { value: params.grainSize },
+    grainSpeed: { value: params.grainSpeed },
+    grainMean: { value: params.grainMean },
+    grainVariance: { value: params.grainVariance },
+    grainBlendMode: { value: params.grainBlendMode },
+    animationSpeed: { value: params.animationSpeed },
+    autoRotate: { value: params.autoRotate ? 1.0 : 0.0 },
+    effectType: { value: params.effectType },
+    // Cosmic nebula parameters
+    nebulaDensity: { value: params.nebulaDensity },
+    nebulaWarp: { value: params.nebulaWarp },
+    nebulaContrast: { value: params.nebulaContrast },
+    nebulaSpeed: { value: params.nebulaSpeed },
+    nebulaLayers: { value: params.nebulaLayers },
+    nebulaGlow: { value: params.nebulaGlow },
+    // Crystal refraction parameters
+    crystalFacets: { value: params.crystalFacets },
+    crystalRefraction: { value: params.crystalRefraction },
+    crystalChroma: { value: params.crystalChroma },
+    crystalRotation: { value: params.crystalRotation },
+    crystalSharpness: { value: params.crystalSharpness },
+    crystalGlint: { value: params.crystalGlint }
+  },
+  vertexShader: `
+    varying vec2 vUv;
+    void main() {
+        vUv = uv;
+        gl_Position = vec4(position, 1.0);
     }
-  }
+  `,
+  fragmentShader: `
+    varying vec2 vUv;
+    uniform vec2 iResolution;
+    uniform float iTime;
+    uniform vec3 primaryColor;
+    uniform vec3 secondaryColor;
+    uniform vec3 accentColor;
+    uniform vec2 smoothedMouse;
+    uniform float mouseDown;
+    uniform float fractalScale;
+    uniform vec2 fractalOffset;
+    uniform int fractionalIterations;
+    uniform int lightCount;
+    uniform float lightIntensity;
+    uniform float lightSpeed;
+    uniform float lightBloomBalance;
+    uniform float lightLeak;
+    uniform float contrastBoost;
+    uniform float mouseProximityEffect;
+    uniform float useBloom;
+    // Enhanced grain uniforms
+    uniform float grainStrength;
+    uniform float grainSize;
+    uniform float grainSpeed;
+    uniform float grainMean;
+    uniform float grainVariance;
+    uniform int grainBlendMode;
+    uniform float animationSpeed;
+    uniform float autoRotate;
+    uniform int effectType;
+    // Cosmic nebula parameters
+    uniform float nebulaDensity;
+    uniform float nebulaWarp;
+    uniform float nebulaContrast;
+    uniform float nebulaSpeed;
+    uniform int nebulaLayers;
+    uniform float nebulaGlow;
+    // Crystal refraction parameters
+    uniform int crystalFacets;
+    uniform float crystalRefraction;
+    uniform float crystalChroma;
+    uniform float crystalRotation;
+    uniform float crystalSharpness;
+    uniform float crystalGlint;
 
-  updateGradientColors() {
-    if (!this.backgroundMaterial) return;
+    #define PI 3.14159265359
 
-    const preset = this.gradientPresets[this.settings.gradientPreset];
-
-    this.backgroundMaterial.uniforms.colorA1.value.set(
-      preset.colorA1[0],
-      preset.colorA1[1],
-      preset.colorA1[2]
-    );
-    this.backgroundMaterial.uniforms.colorA2.value.set(
-      preset.colorA2[0],
-      preset.colorA2[1],
-      preset.colorA2[2]
-    );
-    this.backgroundMaterial.uniforms.colorB1.value.set(
-      preset.colorB1[0],
-      preset.colorB1[1],
-      preset.colorB1[2]
-    );
-    this.backgroundMaterial.uniforms.colorB2.value.set(
-      preset.colorB2[0],
-      preset.colorB2[1],
-      preset.colorB2[2]
-    );
-  }
-
-  init() {
-    // Create water ripple simulation
-    this.initWaterRipple();
-
-    // Create background image
-    this.createBackground();
-
-    // Add event listeners
-    window.addEventListener("mousemove", this.onMouseMove);
-    window.addEventListener("touchmove", this.onTouchMove, { passive: false });
-    window.addEventListener("resize", this.onResize);
-    window.addEventListener("click", (e) => {
-      const rect = this.renderer.domElement.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      this.addRipple(x, y, this.settings.clickIntensity);
-    });
-
-    // Setup auto drops
-    this.setupAutoDrops();
-
-    // Start animation loop
-    this.tick();
-  }
-
-  setupAutoDrops() {
-    // Clear any existing interval
-    if (this.autoDropsInterval) {
-      clearInterval(this.autoDropsInterval);
+    // Hash functions
+    float hash(float n) {
+        return fract(sin(n) * 43758.5453);
+    }
+    
+    float hash(vec2 p) {
+        p = fract(p * vec2(123.34, 456.21));
+        p += dot(p, p + 45.32);
+        return fract(p.x * p.y);
+    }
+    
+    // Vector hash function
+    vec2 hash2(vec2 p) {
+        p = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
+        return fract(sin(p) * 43758.5453);
+    }
+    
+    // Rotation matrix
+    mat2 rot(float a) {
+        float s = sin(a);
+        float c = cos(a);
+        return mat2(c, -s, s, c);
     }
 
-    // Set up new interval if enabled
-    if (this.settings.autoDrops) {
-      this.autoDropsInterval = setInterval(() => {
-        if (!this.settings.autoDrops) return;
-
-        // Add a random drop
-        const x = Math.random() * window.innerWidth;
-        const y = Math.random() * window.innerHeight;
-        this.addRipple(x, y, this.settings.autoDropIntensity);
-      }, this.settings.autoDropInterval);
-    }
-  }
-
-  initWaterRipple() {
-    const resolution = this.settings.resolution;
-
-    // Create buffers for water simulation
-    this.waterBuffers = {
-      current: new Float32Array(resolution * resolution),
-      previous: new Float32Array(resolution * resolution)
-    };
-
-    // Create water texture
-    this.waterTexture = new THREE.DataTexture(
-      this.waterBuffers.current,
-      resolution,
-      resolution,
-      THREE.RedFormat,
-      THREE.FloatType
-    );
-    this.waterTexture.minFilter = THREE.LinearFilter;
-    this.waterTexture.magFilter = THREE.LinearFilter;
-    this.waterTexture.needsUpdate = true;
-  }
-
-  createBackground() {
-    // Get initial colors from the current preset
-    const preset = this.gradientPresets[this.settings.gradientPreset];
-
-    // Create a background with the gradient from the provided shader
-    const backgroundShader = {
-      uniforms: {
-        waterTexture: { value: this.waterTexture },
-        rippleStrength: { value: this.settings.rippleStrength },
-        resolution: {
-          value: new THREE.Vector2(window.innerWidth, window.innerHeight)
-        },
-        time: { value: 0 },
-        colorA1: {
-          value: new THREE.Vector3(
-            preset.colorA1[0],
-            preset.colorA1[1],
-            preset.colorA1[2]
-          )
-        },
-        colorA2: {
-          value: new THREE.Vector3(
-            preset.colorA2[0],
-            preset.colorA2[1],
-            preset.colorA2[2]
-          )
-        },
-        colorB1: {
-          value: new THREE.Vector3(
-            preset.colorB1[0],
-            preset.colorB1[1],
-            preset.colorB1[2]
-          )
-        },
-        colorB2: {
-          value: new THREE.Vector3(
-            preset.colorB2[0],
-            preset.colorB2[1],
-            preset.colorB2[2]
-          )
-        }
-      },
-      vertexShader: `
-        varying vec2 vUv;
+    // Perlin Noise Implementation
+    float noise(vec2 p) {
+        vec2 i = floor(p);
+        vec2 f = fract(p);
         
-        void main() {
-          vUv = uv;
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-        }
-      `,
-      fragmentShader: `
-        uniform sampler2D waterTexture;
-        uniform float rippleStrength;
-        uniform vec2 resolution;
-        uniform float time;
-        uniform vec3 colorA1;
-        uniform vec3 colorA2;
-        uniform vec3 colorB1;
-        uniform vec3 colorB2;
-        varying vec2 vUv;
+        // Smoothed interpolation
+        vec2 u = f * f * (3.0 - 2.0 * f);
         
-        // Helper functions from the provided shader
-        float S(float a, float b, float t) {
-          return smoothstep(a, b, t);
+        float a = hash(i);
+        float b = hash(i + vec2(1.0, 0.0));
+        float c = hash(i + vec2(0.0, 1.0));
+        float d = hash(i + vec2(1.0, 1.0));
+        
+        return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+    }
+
+    // Fractal Brownian Motion (FBM)
+    float fbm(vec2 p, int octaves, float persistence) {
+        float total = 0.0;
+        float amp = 1.0;
+        float freq = 1.0;
+        float totalAmp = 0.0;
+        
+        for(int i = 0; i < 10; i++) {
+            if (i >= octaves) break;
+            
+            total += amp * noise(p * freq);
+            totalAmp += amp;
+            amp *= persistence;
+            freq *= 2.0;
         }
         
-        mat2 Rot(float a) {
-          float s = sin(a);
-          float c = cos(a);
-          return mat2(c, -s, s, c);
+        return total / totalAmp;
+    }
+    
+    // Domain warping
+    vec2 warp(vec2 p, float strength) {
+        vec2 q = vec2(
+            fbm(p + vec2(0.0, 1.0), 4, 0.5),
+            fbm(p + vec2(5.2, 1.3), 4, 0.5)
+        );
+        
+        return p + strength * q;
+    }
+    
+    // Channel mixing utility for blending modes
+    vec3 channel_mix(vec3 a, vec3 b, vec3 w) {
+        return vec3(mix(a.r, b.r, w.r), mix(a.g, b.g, w.g), mix(a.b, b.b, w.b));
+    }
+    
+    // Gaussian distribution function for more natural-looking grain
+    float gaussian(float z, float u, float o) {
+        return (1.0 / (o * sqrt(2.0 * 3.1415))) * exp(-(((z - u) * (z - u)) / (2.0 * (o * o))));
+    }
+    
+    // Blending modes for grain
+    vec3 screen(vec3 a, vec3 b, float w) {
+        return mix(a, vec3(1.0) - (vec3(1.0) - a) * (vec3(1.0) - b), w);
+    }
+    
+    vec3 overlay(vec3 a, vec3 b, float w) {
+        return mix(a, channel_mix(
+            2.0 * a * b,
+            vec3(1.0) - 2.0 * (vec3(1.0) - a) * (vec3(1.0) - b),
+            step(vec3(0.5), a)
+        ), w);
+    }
+    
+    vec3 soft_light(vec3 a, vec3 b, float w) {
+        return mix(a, pow(a, pow(vec3(2.0), 2.0 * (vec3(0.5) - b))), w);
+    }
+    
+    // Apply grain to a color using the selected blend mode
+    vec3 applyGrain(vec3 color, float noiseValue, float intensity) {
+        vec3 grain = vec3(noiseValue) * (1.0 - color);
+        
+        if (grainBlendMode == 0) {
+            // Addition
+            return color + grain * intensity;
+        } else if (grainBlendMode == 1) {
+            // Screen
+            return screen(color, grain, intensity);
+        } else if (grainBlendMode == 2) {
+            // Overlay
+            return overlay(color, grain, intensity);
+        } else if (grainBlendMode == 3) {
+            // Soft Light
+            return soft_light(color, grain, intensity);
+        } else if (grainBlendMode == 4) {
+            // Lighten-Only
+            return max(color, grain * intensity);
         }
         
-        // Improved 3D look with subtle noise
-        float noise(vec2 p) {
-          vec2 ip = floor(p);
-          vec2 fp = fract(p);
-          float a = fract(sin(dot(ip, vec2(12.9898, 78.233))) * 43758.5453);
-          float b = fract(sin(dot(ip + vec2(1.0, 0.0), vec2(12.9898, 78.233))) * 43758.5453);
-          float c = fract(sin(dot(ip + vec2(0.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
-          float d = fract(sin(dot(ip + vec2(1.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
-          
-          fp = fp * fp * (3.0 - 2.0 * fp);
-          
-          return mix(mix(a, b, fp.x), mix(c, d, fp.x), fp.y);
+        return color;
+    }
+    
+    // Get light positions
+    vec3 getLightPosition(int index, float time) {
+        float angle = float(index) * (2.0 * PI / float(lightCount)) + time * lightSpeed;
+        float radius = 1.5;
+        float height = sin(time * lightSpeed * 0.5 + float(index)) * 0.5;
+        
+        return vec3(radius * cos(angle), height, radius * sin(angle));
+    }
+    
+    // Enhanced contrast function
+    vec3 enhanceContrast(vec3 color, float amount) {
+        vec3 avgLuma = vec3(0.299, 0.587, 0.114);
+        float luminance = dot(color, avgLuma);
+        return mix(vec3(luminance), color, amount);
+    }
+    
+    // Nebula generation function
+    float nebulaPattern(vec2 uv, float scale, int layers, float warpStrength) {
+        vec2 p = uv * scale;
+        
+        // Apply domain warping for more organic cloud-like appearance
+        vec2 warped = warp(p, warpStrength);
+        
+        float pattern = 0.0;
+        float amp = 1.0;
+        float totalAmp = 0.0;
+        
+        // Generate layers of fbm for cosmic cloud effect
+        for (int i = 0; i < 5; i++) {
+            if (i >= layers) break;
+            
+            pattern += amp * fbm(warped * (1.0 + float(i) * 0.5), 4, 0.5);
+            totalAmp += amp;
+            amp *= 0.5;
+            
+            // Add some rotation to the coordinates for each layer
+            warped = rot(0.7) * warped;
         }
         
-        void main() {
-          // Sample the water height for distortion
-          float waterHeight = texture2D(waterTexture, vUv).r;
-          
-          // Calculate distortion based on water height gradient
-          float step = 1.0 / resolution.x;
-          vec2 distortion = vec2(
-            texture2D(waterTexture, vec2(vUv.x + step, vUv.y)).r - texture2D(waterTexture, vec2(vUv.x - step, vUv.y)).r,
-            texture2D(waterTexture, vec2(vUv.x, vUv.y + step)).r - texture2D(waterTexture, vec2(vUv.x, vUv.y - step)).r
-          ) * rippleStrength * 5.0;
-          
-          // Apply distortion to UV coordinates
-          vec2 tuv = vUv + distortion;
-          
-          // Prepare UVs
-          tuv -= 0.5;
-          
-          // Adjust for aspect ratio
-          float ratio = resolution.x / resolution.y;
-          tuv.y *= 1.0/ratio;
-          
-          // Create the gradient background using the uniform colors
-          vec3 layer1 = mix(colorA1, colorA2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
-          vec3 layer2 = mix(colorB1, colorB2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
-          vec3 finalComp = mix(layer1, layer2, S(0.5, -0.3, tuv.y));
-          
-          // Add subtle noise for more realistic 3D look
-          float noiseValue = noise(tuv * 20.0 + time * 0.1) * 0.03;
-          finalComp += vec3(noiseValue);
-          
-          // Add subtle vignette for depth
-          float vignette = 1.0 - smoothstep(0.5, 1.5, length(tuv * 1.5));
-          finalComp *= mix(0.95, 1.0, vignette);
-          
-          gl_FragColor = vec4(finalComp, 1.0);
+        pattern /= totalAmp;
+        
+        // Apply contrast adjustment for more defined nebula clouds
+        return pow(pattern, nebulaContrast);
+    }
+    
+    // Crystal refraction function
+    float crystalShape(vec2 uv, float time) {
+        // Center coordinates
+        vec2 p = uv - 0.5;
+        
+        // Rotate over time
+        p = rot(time * crystalRotation) * p;
+        
+        // Convert to polar coordinates
+        float angle = atan(p.y, p.x);
+        float dist = length(p);
+        
+        // Create crystal facets
+        float segments = float(crystalFacets);
+        float segmentAngle = 2.0 * PI / segments;
+        
+        // Calculate angle within segment and distance to segment edge
+        float angleInSegment = mod(angle, segmentAngle);
+        angleInSegment = min(angleInSegment, segmentAngle - angleInSegment);
+        
+        // Crystal facet shape
+        float facet = smoothstep(0.0, 0.1 * crystalSharpness, angleInSegment);
+        
+        // Refraction distortions
+        float distortion = sin(angle * segments + time * 0.5) * 0.1 * crystalRefraction;
+        
+        return facet * (dist + distortion);
+    }
+    
+    // Mouse proximity effect for visual effects
+    float mouseEffect(vec2 uv) {
+        vec2 mousePos = smoothedMouse / iResolution.xy;
+        float dist = length(uv - mousePos);
+        
+        // Get stronger effect when mouse is closer
+        float proximity = smoothstep(0.5, 0.0, dist) * mouseProximityEffect;
+        
+        // Add pulsating effect when mouse is down
+        if (mouseDown > 0.5) {
+            proximity *= 1.0 + 0.3 * sin(iTime * 10.0 * animationSpeed);
         }
-      `
-    };
+        
+        return proximity;
+    }
 
-    // Create a full-screen quad
-    const geometry = new THREE.PlaneGeometry(
-      window.innerWidth,
-      window.innerHeight
-    );
-    this.backgroundMaterial = new THREE.ShaderMaterial({
-      uniforms: backgroundShader.uniforms,
-      vertexShader: backgroundShader.vertexShader,
-      fragmentShader: backgroundShader.fragmentShader
-    });
-
-    const mesh = new THREE.Mesh(geometry, this.backgroundMaterial);
-    this.scene.add(mesh);
-  }
-
-  updateWaterSimulation() {
-    const { current, previous } = this.waterBuffers;
-    const { damping, tension, resolution } = this.settings;
-
-    // Clamp tension to prevent simulation from breaking
-    const safeTension = Math.min(tension, 0.05);
-
-    // Process the buffer in chunks for better cache utilization
-    const chunkSize = 256;
-
-    for (let chunkY = 1; chunkY < resolution - 1; chunkY += chunkSize) {
-      const endY = Math.min(chunkY + chunkSize, resolution - 1);
-
-      for (let chunkX = 1; chunkX < resolution - 1; chunkX += chunkSize) {
-        const endX = Math.min(chunkX + chunkSize, resolution - 1);
-
-        for (let i = chunkY; i < endY; i++) {
-          for (let j = chunkX; j < endX; j++) {
-            const index = i * resolution + j;
-
-            // Get neighboring heights
-            const top = previous[index - resolution];
-            const bottom = previous[index + resolution];
-            const left = previous[index - 1];
-            const right = previous[index + 1];
-
-            // Calculate new height based on neighbors
-            current[index] = (top + bottom + left + right) / 2 - current[index];
-            current[index] =
-              current[index] * damping + previous[index] * (1 - damping);
-
-            // Apply tension with safety clamping
-            current[index] += (0 - previous[index]) * safeTension;
-
-            // Add stability by clamping extreme values
-            current[index] = Math.max(-1.0, Math.min(1.0, current[index]));
-          }
+    void main() {
+        // Normalize UV coordinates
+        vec2 uv = gl_FragCoord.xy / iResolution.xy;
+        
+        // Apply effect based on selected type
+        float shape = 0.0;
+        vec2 effectUV = uv;
+        
+        // Get mouse effect for all visuals
+        float mouseProx = mouseEffect(uv);
+        
+        // Aspect ratio correction
+        vec2 p = (effectUV * 2.0 - 1.0);
+        p.x *= iResolution.x / iResolution.y;
+        
+        // Apply fractal scale and offset
+        p *= fractalScale;
+        p += fractalOffset;
+        
+        // Select effect
+        if (effectType == 0) {
+            // Original orb with enhanced lighting and contrast
+            // Distance from center
+            float d = length(p);
+            float pulse = 0.5 + 0.1 * sin(iTime * animationSpeed * 2.0);
+            
+            // Enhanced orb shape
+            float orbshape = smoothstep(pulse, pulse - (0.1 + mouseProx * 0.1), d);
+            
+            // More intense internal glow
+            float innerGlow = smoothstep(pulse * 0.8, 0.0, d) * (0.5 + mouseProx * 0.3);
+            
+            // More dynamic swirls influenced by mouse
+            float angle = atan(p.y, p.x);
+            float swirl = 0.2 * sin(angle * (8.0 + mouseProx * 4.0) + iTime * 3.0 * animationSpeed);
+            swirl *= smoothstep(pulse, 0.0, d);
+            
+            // Add light leaks
+            float leak = smoothstep(0.8, 0.0, d) * sin(angle * 2.0 + iTime * animationSpeed) * lightLeak;
+            
+            shape = orbshape + innerGlow + swirl + leak;
+        } 
+        else if (effectType == 1) {
+            // Fractal Julia set with enhanced features
+            vec2 c = vec2(
+                0.7885 * cos(iTime * animationSpeed * 0.4),
+                0.7885 * sin(iTime * animationSpeed * 0.4)
+            );
+            
+            vec2 z = p;
+            
+            // Add mouse influence to the Julia set
+            if (mouseProx > 0.05) {
+                c = mix(c, (smoothedMouse / iResolution.xy * 2.0 - 1.0) * 0.8, mouseProx * 0.5);
+            }
+            
+            float iteration = 0.0;
+            
+            for (int i = 0; i < 100; i++) {
+                if (i >= fractionalIterations) break;
+                
+                // z = z² + c
+                z = vec2(z.x * z.x - z.y * z.y, 2.0 * z.x * z.y) + c;
+                
+                if (dot(z, z) > 4.0) break;
+                iteration += 1.0;
+            }
+            
+            // Smooth coloring
+            if (iteration < float(fractionalIterations)) {
+                float log_zn = log(dot(z, z)) * 0.5;
+                float smoothed = iteration + 1.0 - log(log_zn / log(2.0)) / log(2.0);
+                iteration = smoothed;
+            }
+            
+            // Normalize
+            shape = iteration / float(fractionalIterations);
+            
+            // Add light leaks around the edges
+            float d = length(p);
+            float angle = atan(p.y, p.x);
+            float leak = smoothstep(1.0, 0.5, d) * sin(angle * 3.0 + iTime * animationSpeed) * lightLeak * 0.3;
+            shape += leak;
         }
-      }
-    }
-
-    // Swap buffers
-    [this.waterBuffers.current, this.waterBuffers.previous] = [
-      this.waterBuffers.previous,
-      this.waterBuffers.current
-    ];
-
-    // Update texture
-    this.waterTexture.image.data = this.waterBuffers.current;
-    this.waterTexture.needsUpdate = true;
-  }
-
-  addRipple(x, y, strength = 1.0) {
-    const { resolution, rippleRadius } = this.settings;
-
-    // IMPORTANT: Fix for coordinate mapping
-    // We need to flip the Y coordinate to match the texture coordinate system
-    // The texture coordinate system has (0,0) at the bottom-left, but screen coordinates have (0,0) at the top-left
-    const normalizedX = x / window.innerWidth;
-    const normalizedY = 1.0 - y / window.innerHeight; // Flip Y coordinate
-
-    // Map to texture coordinates
-    const texX = Math.floor(normalizedX * resolution);
-    const texY = Math.floor(normalizedY * resolution);
-
-    // Add ripple at position
-    const radius = rippleRadius;
-    const rippleStrength = strength;
-
-    // Performance optimization: Pre-calculate squared radius
-    const radiusSquared = radius * radius;
-
-    for (let i = -radius; i <= radius; i++) {
-      for (let j = -radius; j <= radius; j++) {
-        const distanceSquared = i * i + j * j;
-
-        if (distanceSquared <= radiusSquared) {
-          const posX = texX + i;
-          const posY = texY + j;
-
-          if (
-            posX >= 0 &&
-            posX < resolution &&
-            posY >= 0 &&
-            posY < resolution
-          ) {
-            const index = posY * resolution + posX;
-            // Use a smoother falloff for better looking ripples
-            const distance = Math.sqrt(distanceSquared);
-            const rippleValue =
-              Math.cos(((distance / radius) * Math.PI) / 2) * rippleStrength;
-            this.waterBuffers.previous[index] += rippleValue;
-          }
+        else if (effectType == 2) {
+            // Crystal Refraction
+            // Get the basic crystal shape
+            float crystal = crystalShape(uv, iTime * animationSpeed);
+            
+            // Apply chromatic aberration effect
+            float redShift = crystalShape(uv, iTime * animationSpeed - 0.02 * crystalChroma);
+            float blueShift = crystalShape(uv, iTime * animationSpeed + 0.02 * crystalChroma);
+            
+            // Add dynamic glints based on angle and time
+            vec2 centeredUV = uv - 0.5;
+            float angle = atan(centeredUV.y, centeredUV.x);
+            float dist = length(centeredUV);
+            
+            float glint = pow(abs(sin(angle * float(crystalFacets) * 0.5 + iTime * animationSpeed * 3.0)), 10.0);
+            glint *= smoothstep(1.0, 0.2, dist) * crystalGlint;
+            
+            // Apply mouse proximity for extra glint
+            glint += mouseProx * crystalGlint * 0.5 * smoothstep(0.5, 0.0, length(centeredUV - (smoothedMouse / iResolution.xy - 0.5)));
+            
+            // Combine everything
+            crystal = mix(crystal, (redShift + blueShift) * 0.5, 0.3);
+            shape = crystal + glint;
+            
+            // Add some light leaks
+            float leak = abs(sin(angle * 2.0 + dist * 5.0 + iTime * animationSpeed * 0.5)) * smoothstep(1.0, 0.2, dist) * lightLeak * 0.4;
+            shape += leak;
         }
-      }
+        else if (effectType == 3) {
+            // Cosmic Nebula
+            // Generate base nebula cloud pattern
+            float base = nebulaPattern(uv, nebulaDensity, nebulaLayers, nebulaWarp);
+            
+            // Add parallax layer for depth
+            float timeFactor = iTime * animationSpeed * nebulaSpeed;
+            float parallax = nebulaPattern(uv + vec2(timeFactor * 0.02, timeFactor * 0.03), 
+                                          nebulaDensity * 0.7, 
+                                          nebulaLayers - 1, 
+                                          nebulaWarp * 0.8);
+            
+            // Create some animated swirls and detail
+            vec2 swirledUV = uv + vec2(
+                sin(uv.y * 4.0 + timeFactor) * 0.03,
+                cos(uv.x * 4.0 + timeFactor) * 0.03
+            );
+            float detail = nebulaPattern(swirledUV, nebulaDensity * 2.0, 2, nebulaWarp * 0.5);
+            
+            // Add glow around denser areas
+            float glow = smoothstep(0.4, 0.8, base) * nebulaGlow;
+            
+            // Enhance with mouse interaction
+            if (mouseProx > 0.05) {
+                vec2 mouseUV = smoothedMouse / iResolution.xy;
+                float mouseDist = length(uv - mouseUV);
+                float mouseGlow = smoothstep(0.3, 0.0, mouseDist) * mouseProx;
+                glow += mouseGlow * nebulaGlow;
+                
+                // Create swirl around mouse position
+                vec2 toMouse = normalize(mouseUV - uv);
+                float swirl = length(uv - mouseUV) * 10.0;
+                swirl = sin(swirl - timeFactor * 2.0) * 0.5 + 0.5;
+                swirl *= smoothstep(0.4, 0.0, length(uv - mouseUV));
+                
+                base += swirl * mouseProx * 0.3;
+            }
+            
+            // Combine all elements
+            shape = base * 0.6 + parallax * 0.3 + detail * 0.2 + glow;
+            
+            // Add some subtle stars
+            float stars = step(0.98, hash(uv * 500.0)) * 0.5;
+            stars *= sin(iTime * animationSpeed * 5.0 + hash(uv) * 10.0) * 0.5 + 0.5;
+            shape += stars;
+        }
+        
+        // Calculate light influence with enhanced effects
+        vec2 centeredUV = (uv * 2.0 - 1.0);
+        centeredUV.x *= iResolution.x / iResolution.y;
+        
+        // Convert 2D position to 3D for light calculation
+        vec3 pos = vec3(centeredUV.x, centeredUV.y, 0.0);
+        float totalLight = 0.0;
+        
+        // Add contribution from each light with more dramatic falloff
+        for (int i = 0; i < 10; i++) {
+            if (i >= lightCount) break;
+            
+            vec3 lightPos = getLightPosition(i, iTime);
+            float dist = length(pos - lightPos);
+            
+            // More dramatic light falloff
+            float falloff = 1.0 / (1.0 + dist * dist * 1.5);
+            
+            // Add pulsating effect to lights
+            float pulse = 0.8 + 0.2 * sin(iTime * animationSpeed * 3.0 + float(i) * 1.5);
+            
+            totalLight += lightIntensity * falloff * pulse;
+        }
+        
+        // Add mouse-based light with proximity effect
+        vec2 mousePos = smoothedMouse / iResolution.xy;
+        mousePos = (mousePos * 2.0 - 1.0);
+        mousePos.x *= iResolution.x / iResolution.y;
+        
+        float mouseDist = length(centeredUV - mousePos);
+        float mouseLight = lightIntensity * 2.5 / (1.0 + mouseDist * mouseDist * 3.0);
+        
+        // Make mouse light more dramatic when mouse is down
+        if (mouseDown > 0.5) {
+            mouseLight *= 1.5 + 0.5 * sin(iTime * 20.0 * animationSpeed);
+        }
+        
+        totalLight += mouseLight * mouseProximityEffect;
+        
+        // Add ambient light
+        totalLight += 0.2;
+        
+        // Apply light balance when bloom is active
+        if (useBloom > 0.5) {
+            totalLight *= lightBloomBalance;
+        }
+        
+        // Create a more complex color mix using all three colors
+        vec3 finalColor = mix(primaryColor, secondaryColor, shape);
+        
+        // Add accent color to highlights with more contrast
+        float highlight = pow(shape, 4.0);
+        finalColor = mix(finalColor, accentColor, highlight * 0.7);
+        
+        // Apply light effect
+        finalColor *= totalLight * (shape + 0.3);
+        
+        // Add light leaks based on the light leak parameter
+        float leak = fbm(uv * 2.0 + iTime * animationSpeed * 0.1, 2, 0.5) * lightLeak * 0.3;
+        leak *= smoothstep(1.0, 0.5, length(centeredUV));
+        finalColor += leak * accentColor;
+        
+        // Enhance contrast
+        finalColor = enhanceContrast(finalColor, contrastBoost);
+        
+        // Apply enhanced film grain effect
+        float t = iTime * grainSpeed * animationSpeed;
+        float seed = dot(vUv, vec2(12.9898, 78.233));
+        float noise = fract(sin(seed) * 43758.5453 + t);
+        
+        // Apply gaussian distribution to the noise for more natural look
+        noise = gaussian(noise, grainMean, grainVariance * grainVariance);
+        
+        // Apply the grain using the chosen blend mode
+        finalColor = applyGrain(finalColor, noise, grainStrength);
+        
+        // Set the final color
+        gl_FragColor = vec4(finalColor, 1.0);
     }
-  }
+  `
+});
 
-  onMouseMove(ev) {
-    // Get the exact position relative to the canvas
-    const rect = this.renderer.domElement.getBoundingClientRect();
-    const x = ev.clientX - rect.left;
-    const y = ev.clientY - rect.top;
+// Create a fullscreen plane
+const plane = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), shaderMaterial);
+scene.add(plane);
 
-    // Throttle mouse events for better performance
-    const now = performance.now();
-    if (now - this.mouseThrottleTime < 16) {
-      // Limit to ~60 updates per second
-      return;
-    }
-    this.mouseThrottleTime = now;
+// Setup post-processing
+const composer = new EffectComposer(renderer);
+const renderPass = new RenderPass(scene, camera);
+composer.addPass(renderPass);
 
-    // Calculate distance moved since last event
-    const dx = x - this.lastMousePosition.x;
-    const dy = y - this.lastMousePosition.y;
-    const distSquared = dx * dx + dy * dy;
+// Add bloom effect
+const bloomPass = new UnrealBloomPass(
+  new THREE.Vector2(window.innerWidth, window.innerHeight),
+  params.bloomStrength,
+  params.bloomRadius,
+  params.bloomThreshold
+);
+composer.addPass(bloomPass);
 
-    // Only create ripples if mouse moved enough
-    if (distSquared > 5) {
-      this.addRipple(x, y, this.settings.mouseIntensity);
-      this.lastMousePosition.x = x;
-      this.lastMousePosition.y = y;
-    }
-  }
+// Setup GUI
+const gui = new GUI();
+gui.width = 300;
 
-  onTouchMove(ev) {
-    ev.preventDefault();
+// Effect selection
+const effectFolder = gui.addFolder("Effect Type");
+effectFolder
+  .add(params, "effectType", {
+    "Enhanced Orb": 0,
+    "Fractal Julia": 1,
+    "Crystal Refraction": 2,
+    "Cosmic Nebula": 3
+  })
+  .onChange((value) => {
+    shaderMaterial.uniforms.effectType.value = value;
 
-    // Get the exact position relative to the canvas
-    const rect = this.renderer.domElement.getBoundingClientRect();
-    const touch = ev.touches[0];
-    const x = touch.clientX - rect.left;
-    const y = touch.clientY - rect.top;
+    // Show/hide effect-specific controls based on selected effect
+    updateVisibleControls(value);
+  });
+effectFolder.open();
 
-    // Throttle touch events for better performance
-    const now = performance.now();
-    if (now - this.mouseThrottleTime < 16) {
-      return;
-    }
-    this.mouseThrottleTime = now;
+// Function to show/hide effect-specific controls
+function updateVisibleControls(effectType) {
+  // Hide all special folders first
+  juliaFolder.domElement.style.display = "none";
+  crystalFolder.domElement.style.display = "none";
+  nebulaFolder.domElement.style.display = "none";
 
-    // Calculate distance moved since last event
-    const dx = x - this.lastMousePosition.x;
-    const dy = y - this.lastMousePosition.y;
-    const distSquared = dx * dx + dy * dy;
-
-    // Only create ripples if touch moved enough
-    if (distSquared > 5) {
-      this.addRipple(x, y, this.settings.mouseIntensity);
-      this.lastMousePosition.x = x;
-      this.lastMousePosition.y = y;
-    }
-  }
-
-  onResize() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-
-    // Update camera
-    this.camera.left = -width / 2;
-    this.camera.right = width / 2;
-    this.camera.top = height / 2;
-    this.camera.bottom = -height / 2;
-    this.camera.updateProjectionMatrix();
-
-    // Update renderer
-    this.renderer.setSize(width, height);
-
-    // Update background material
-    if (this.backgroundMaterial) {
-      this.backgroundMaterial.uniforms.resolution.value.set(width, height);
-    }
-
-    // Update background mesh
-    if (this.scene.children[0] && this.scene.children[0].geometry) {
-      this.scene.children[0].geometry.dispose();
-      this.scene.children[0].geometry = new THREE.PlaneGeometry(width, height);
-    }
-  }
-
-  render() {
-    // Update water simulation
-    this.updateWaterSimulation();
-
-    // Update shader uniforms
-    if (this.backgroundMaterial) {
-      this.backgroundMaterial.uniforms.rippleStrength.value = this.settings.rippleStrength;
-      this.backgroundMaterial.uniforms.time.value += this.clock.getDelta();
-    }
-
-    // Render scene
-    this.renderer.render(this.scene, this.camera);
-  }
-
-  tick() {
-    this.stats.begin();
-
-    // Track frame count for optimizations
-    this.frameCount = (this.frameCount || 0) + 1;
-
-    this.render();
-
-    this.stats.end();
-    requestAnimationFrame(this.tick);
+  // Show the relevant folder based on the effect type
+  if (effectType === 1) {
+    juliaFolder.domElement.style.display = "block";
+  } else if (effectType === 2) {
+    crystalFolder.domElement.style.display = "block";
+  } else if (effectType === 3) {
+    nebulaFolder.domElement.style.display = "block";
   }
 }
 
-// Start the application
-window.addEventListener("DOMContentLoaded", () => {
-  const app = new App();
+// Colors
+const colorFolder = gui.addFolder("Colors");
 
-  // Add initial ripples
-  setTimeout(() => {
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
-    app.addRipple(centerX, centerY, 1.5);
-  }, 500);
+// Color presets
+colorFolder
+  .add(params, "colorPreset", Object.keys(colorPresets))
+  .onChange((presetName) => {
+    const preset = colorPresets[presetName];
 
-  // Update auto drops settings when they change
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      if (
-        mutation.type === "attributes" &&
-        mutation.attributeName === "data-value"
-      ) {
-        if (
-          mutation.target.classList.contains("autoDrops") ||
-          mutation.target.classList.contains("autoDropInterval")
-        ) {
-          app.setupAutoDrops();
-        }
-      }
-    });
+    // Update params
+    params.primaryColor = [...preset.primaryColor]; // Clone the array
+    params.secondaryColor = [...preset.secondaryColor];
+    params.accentColor = [...preset.accentColor];
+
+    // Update shader uniforms directly
+    shaderMaterial.uniforms.primaryColor.value.fromArray(
+      preset.primaryColor.map((c) => c / 255)
+    );
+    shaderMaterial.uniforms.secondaryColor.value.fromArray(
+      preset.secondaryColor.map((c) => c / 255)
+    );
+    shaderMaterial.uniforms.accentColor.value.fromArray(
+      preset.accentColor.map((c) => c / 255)
+    );
+
+    // Update GUI controllers - we need to manually update each controller
+    primaryColorController.setValue(params.primaryColor);
+    secondaryColorController.setValue(params.secondaryColor);
+    accentColorController.setValue(params.accentColor);
   });
 
-  // Start observing the GUI elements after a short delay to ensure they're created
-  setTimeout(() => {
-    document.querySelectorAll(".dg .property-name").forEach((el) => {
-      observer.observe(el, { attributes: true });
-    });
-  }, 1000);
+// Individual color controls
+const primaryColorController = colorFolder
+  .addColor(params, "primaryColor")
+  .onChange((value) => {
+    shaderMaterial.uniforms.primaryColor.value.fromArray(
+      value.map((c) => c / 255)
+    );
+  });
+const secondaryColorController = colorFolder
+  .addColor(params, "secondaryColor")
+  .onChange((value) => {
+    shaderMaterial.uniforms.secondaryColor.value.fromArray(
+      value.map((c) => c / 255)
+    );
+  });
+const accentColorController = colorFolder
+  .addColor(params, "accentColor")
+  .onChange((value) => {
+    shaderMaterial.uniforms.accentColor.value.fromArray(
+      value.map((c) => c / 255)
+    );
+  });
+
+// Fractal settings
+const fractalFolder = gui.addFolder("Shape Settings");
+fractalFolder.add(params, "fractalScale", 0.1, 2.0).onChange((value) => {
+  shaderMaterial.uniforms.fractalScale.value = value;
+});
+fractalFolder.add(params, "fractalX", -1.0, 1.0).onChange((value) => {
+  shaderMaterial.uniforms.fractalOffset.value.x = value;
+});
+fractalFolder.add(params, "fractalY", -1.0, 1.0).onChange((value) => {
+  shaderMaterial.uniforms.fractalOffset.value.y = value;
+});
+
+// Create folders for effect-specific controls
+const juliaFolder = gui.addFolder("Julia Set Controls");
+juliaFolder.add(params, "fractionalIterations", 1, 20, 1).onChange((value) => {
+  shaderMaterial.uniforms.fractionalIterations.value = value;
+});
+
+// Crystal refraction controls
+const crystalFolder = gui.addFolder("Crystal Refraction Controls");
+crystalFolder.add(params, "crystalFacets", 3, 20, 1).onChange((value) => {
+  shaderMaterial.uniforms.crystalFacets.value = value;
+});
+crystalFolder.add(params, "crystalRefraction", 0.0, 1.0).onChange((value) => {
+  shaderMaterial.uniforms.crystalRefraction.value = value;
+});
+crystalFolder.add(params, "crystalChroma", 0.0, 1.0).onChange((value) => {
+  shaderMaterial.uniforms.crystalChroma.value = value;
+});
+crystalFolder.add(params, "crystalRotation", 0.0, 1.0).onChange((value) => {
+  shaderMaterial.uniforms.crystalRotation.value = value;
+});
+crystalFolder.add(params, "crystalSharpness", 0.1, 1.0).onChange((value) => {
+  shaderMaterial.uniforms.crystalSharpness.value = value;
+});
+crystalFolder.add(params, "crystalGlint", 0.0, 1.0).onChange((value) => {
+  shaderMaterial.uniforms.crystalGlint.value = value;
+});
+
+// Nebula controls
+const nebulaFolder = gui.addFolder("Cosmic Nebula Controls");
+nebulaFolder.add(params, "nebulaDensity", 1.0, 10.0).onChange((value) => {
+  shaderMaterial.uniforms.nebulaDensity.value = value;
+});
+nebulaFolder.add(params, "nebulaWarp", 0.0, 1.5).onChange((value) => {
+  shaderMaterial.uniforms.nebulaWarp.value = value;
+});
+nebulaFolder.add(params, "nebulaContrast", 0.5, 3.0).onChange((value) => {
+  shaderMaterial.uniforms.nebulaContrast.value = value;
+});
+nebulaFolder.add(params, "nebulaSpeed", 0.0, 1.0).onChange((value) => {
+  shaderMaterial.uniforms.nebulaSpeed.value = value;
+});
+nebulaFolder.add(params, "nebulaLayers", 1, 5, 1).onChange((value) => {
+  shaderMaterial.uniforms.nebulaLayers.value = value;
+});
+nebulaFolder.add(params, "nebulaGlow", 0.0, 1.5).onChange((value) => {
+  shaderMaterial.uniforms.nebulaGlow.value = value;
+});
+
+// Enhanced visual controls
+const enhancedFolder = gui.addFolder("Enhanced Effects");
+enhancedFolder.add(params, "contrastBoost", 0.5, 2.0).onChange((value) => {
+  shaderMaterial.uniforms.contrastBoost.value = value;
+});
+enhancedFolder.add(params, "lightLeak", 0.0, 1.0).onChange((value) => {
+  shaderMaterial.uniforms.lightLeak.value = value;
+});
+enhancedFolder
+  .add(params, "mouseProximityEffect", 0.0, 1.5)
+  .onChange((value) => {
+    shaderMaterial.uniforms.mouseProximityEffect.value = value;
+  });
+
+// Light settings
+const lightFolder = gui.addFolder("Light Settings");
+lightFolder.add(params, "lightCount", 0, 10, 1).onChange((value) => {
+  shaderMaterial.uniforms.lightCount.value = value;
+});
+lightFolder.add(params, "lightIntensity", 0.0, 5.0).onChange((value) => {
+  shaderMaterial.uniforms.lightIntensity.value = value;
+});
+lightFolder.add(params, "lightSpeed", 0.0, 3.0).onChange((value) => {
+  shaderMaterial.uniforms.lightSpeed.value = value;
+});
+lightFolder
+  .add(params, "lightBloomBalance", 0.0, 1.0)
+  .name("Bloom Balance")
+  .onChange((value) => {
+    shaderMaterial.uniforms.lightBloomBalance.value = value;
+  });
+
+// Animation settings
+const animationFolder = gui.addFolder("Animation");
+animationFolder.add(params, "animationSpeed", 0.0, 0.1).onChange((value) => {
+  shaderMaterial.uniforms.animationSpeed.value = value;
+});
+animationFolder.add(params, "autoRotate").onChange((value) => {
+  shaderMaterial.uniforms.autoRotate.value = value ? 1.0 : 0.0;
+});
+
+// Enhanced grain settings
+const grainFolder = gui.addFolder("Film Grain Effect");
+grainFolder
+  .add(params, "grainStrength", 0.0, 0.3)
+  .name("Intensity")
+  .onChange((value) => {
+    shaderMaterial.uniforms.grainStrength.value = value;
+  });
+grainFolder
+  .add(params, "grainSpeed", 0.5, 5.0)
+  .name("Animation Speed")
+  .onChange((value) => {
+    shaderMaterial.uniforms.grainSpeed.value = value;
+  });
+grainFolder
+  .add(params, "grainMean", -0.5, 0.5)
+  .name("Mean")
+  .onChange((value) => {
+    shaderMaterial.uniforms.grainMean.value = value;
+  });
+grainFolder
+  .add(params, "grainVariance", 0.1, 1.0)
+  .name("Variance")
+  .onChange((value) => {
+    shaderMaterial.uniforms.grainVariance.value = value;
+  });
+grainFolder
+  .add(params, "grainBlendMode", {
+    Addition: 0,
+    Screen: 1,
+    Overlay: 2,
+    "Soft Light": 3,
+    "Lighten-Only": 4
+  })
+  .name("Blend Mode")
+  .onChange((value) => {
+    shaderMaterial.uniforms.grainBlendMode.value = value;
+  });
+
+// Post-processing settings
+const postFolder = gui.addFolder("Post Processing");
+postFolder.add(params, "useBloom").onChange((value) => {
+  bloomPass.enabled = value;
+  shaderMaterial.uniforms.useBloom.value = value ? 1.0 : 0.0;
+});
+postFolder.add(params, "bloomStrength", 0.0, 3.0).onChange((value) => {
+  bloomPass.strength = value;
+});
+postFolder.add(params, "bloomRadius", 0.0, 1.0).onChange((value) => {
+  bloomPass.radius = value;
+});
+postFolder.add(params, "bloomThreshold", 0.0, 1.0).onChange((value) => {
+  bloomPass.threshold = value;
+});
+
+// Mouse event listeners
+window.addEventListener("mousemove", (event) => {
+  const mouseX = event.clientX / window.innerWidth;
+  const mouseY = 1.0 - event.clientY / window.innerHeight; // Flip Y axis
+  mouse.set(mouseX, mouseY);
+});
+
+window.addEventListener("mousedown", () => {
+  mouseDown = true;
+  shaderMaterial.uniforms.mouseDown.value = 1.0;
+});
+
+window.addEventListener("mouseup", () => {
+  mouseDown = false;
+  shaderMaterial.uniforms.mouseDown.value = 0.0;
+});
+
+// Animation Loop
+function animate() {
+  stats.begin();
+
+  // Update time uniform
+  const time = performance.now() * 0.001; // Convert to seconds
+  shaderMaterial.uniforms.iTime.value = time;
+
+  // Smooth out the mouse movement
+  smoothedMouse.lerp(mouse, 0.1); // 0.1 controls the smoothness (lower value = smoother)
+  shaderMaterial.uniforms.smoothedMouse.value.set(
+    smoothedMouse.x * window.innerWidth,
+    smoothedMouse.y * window.innerHeight
+  );
+
+  // Render with post-processing
+  if (params.useBloom) {
+    composer.render();
+  } else {
+    renderer.render(scene, camera);
+  }
+
+  stats.end();
+  requestAnimationFrame(animate);
+}
+
+// Start animation
+animate();
+
+// Call once at start to set up initial visibility
+updateVisibleControls(params.effectType);
+
+// Handle Window Resize
+window.addEventListener("resize", () => {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  // Update renderer and composer
+  renderer.setSize(width, height);
+  composer.setSize(width, height);
+
+  // Update shader uniform
+  shaderMaterial.uniforms.iResolution.value.set(width, height);
+});
+
+// Add touch support for mobile devices
+window.addEventListener(
+  "touchmove",
+  (event) => {
+    event.preventDefault();
+    const touch = event.touches[0];
+    const mouseX = touch.clientX / window.innerWidth;
+    const mouseY = 1.0 - touch.clientY / window.innerHeight; // Flip Y axis
+    mouse.set(mouseX, mouseY);
+  },
+  { passive: false }
+);
+
+window.addEventListener("touchstart", (event) => {
+  mouseDown = true;
+  shaderMaterial.uniforms.mouseDown.value = 1.0;
+
+  // Set initial touch position
+  const touch = event.touches[0];
+  const mouseX = touch.clientX / window.innerWidth;
+  const mouseY = 1.0 - touch.clientY / window.innerHeight;
+  mouse.set(mouseX, mouseY);
+});
+
+window.addEventListener("touchend", () => {
+  mouseDown = false;
+  shaderMaterial.uniforms.mouseDown.value = 0.0;
+});
+
+// Optional: Add a custom cursor
+const cursor = document.createElement("div");
+cursor.className = "custom-cursor";
+cursor.style.position = "fixed";
+cursor.style.width = "20px";
+cursor.style.height = "20px";
+cursor.style.borderRadius = "50%";
+cursor.style.border = "2px solid white";
+cursor.style.transform = "translate(-50%, -50%)";
+cursor.style.pointerEvents = "none";
+cursor.style.zIndex = "1000";
+document.body.appendChild(cursor);
+
+// Track cursor with throttling for performance
+let lastCursorUpdate = 0;
+document.addEventListener("mousemove", (e) => {
+  // Throttle cursor updates to approximately 60fps
+  const now = performance.now();
+  if (now - lastCursorUpdate > 16) {
+    cursor.style.left = `${e.clientX}px`;
+    cursor.style.top = `${e.clientY}px`;
+    lastCursorUpdate = now;
+  }
+});
+
+// Hide cursor when mouse leaves window
+document.addEventListener("mouseleave", () => {
+  cursor.style.display = "none";
+});
+
+document.addEventListener("mouseenter", () => {
+  cursor.style.display = "block";
 });
