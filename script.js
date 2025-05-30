@@ -39,7 +39,7 @@ const colorPresets = {
     secondaryColor: [240, 100, 50],
     accentColor: [255, 220, 100]
   },
-  Monochrome: {
+  "Monochrome": {
     primaryColor: [0, 0, 0],
     secondaryColor: [80, 80, 80],
     accentColor: [200, 200, 200]
