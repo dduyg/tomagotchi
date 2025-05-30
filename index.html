@@ -152,65 +152,80 @@
       z-index: 2;
       pointer-events: none;
     }
-
-    .modal-backdrop {
-      display: none;
-      position: fixed;
-      z-index: 9000;
-      left: 0; top: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(0,0,0,0.55);
-      align-items: center;
-      justify-content: center;
-    }
-    .modal-backdrop.active {
-      display: flex;
-    }
-    .modal-popup {
-      background: #222b;
-      border-radius: 1em;
-      box-shadow: 0 6px 32px #000a;
-      padding: 2em 2em 1.5em 2em;
-      min-width: 260px;
-      max-width: 90vw;
-      color: #fff;
-      position: relative;
-      font-size: 1.1em;
-      text-align: center;
-      z-index: 9999;
-      animation: popIn 0.16s cubic-bezier(.4,2,.4,1);
-    }
-    @keyframes popIn {
-      0% { transform: scale(0.85); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    .modal-popup select {
-      padding: 0.4em 1em;
-      font-size: 1em;
-      background: #181c;
-      color: #fff;
-      border: 1px solid #444;
-      border-radius: 0.3em;
-      margin-top: 1.5em;
-      width: 100%;
-      outline: none;
-    }
-    .modal-popup label {
-      font-size: 1.05em;
-      font-weight: bold;
-      letter-spacing: 0.04em;
-      margin-bottom: 0.7em;
-      display: block;
-      color: #fdf6e3;
-    }
-    .top-right {
+      
+    section.top-right {
       cursor: pointer;
+      transition: color 0.2s;
+      user-select: none;
+    }
+    section.top-right .theme-trigger-link {
+      color: #7ed6ff;
       text-decoration: underline dotted;
+      cursor: pointer;
+      font-weight: bold;
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: inherit;
+      font-family: inherit;
+      outline: none;
       transition: color 0.2s;
     }
-    .top-right:hover {
-      color: #ffd0d0;
-    }     
+    section.top-right .theme-trigger-link:hover,
+    section.top-right .theme-trigger-link:focus {
+      color: #fff;
+      text-decoration: underline solid;
+    }
+
+    .custom-theme-dropdown {
+      position: absolute;
+      top: calc(2rem + 2.1em); /* below the .top-right section */
+      right: 2rem;
+      min-width: 180px;
+      background: rgba(18, 20, 25, 0.99);
+      border: 1px solid #222c;
+      border-radius: 0.6em;
+      box-shadow: 0 6px 32px 0 rgba(10,12,20,0.19);
+      z-index: 500;
+      padding: 0.25em 0;
+      font-family: "Cousine", monospace;
+      font-size: 1em;
+      animation: dropdownIn 0.13s cubic-bezier(.34,1.56,.64,1) 1;
+    }
+    @keyframes dropdownIn {
+      from { opacity: 0; transform: translateY(-0.5em) scale(0.96);}
+      to   { opacity: 1; transform: translateY(0) scale(1);}
+    }
+    .custom-theme-dropdown select {
+      display: block;
+      width: 100%;
+      background: none;
+      color: #fff;
+      border: none;
+      font-size: 1em;
+      font-family: inherit;
+      padding: 0.7em 1.2em 0.7em 0.8em;
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+      box-shadow: none;
+      border-radius: 0.5em;
+    }
+    .custom-theme-dropdown select:focus {
+      background: #222b;
+    }
+    .custom-theme-dropdown option {
+      color: #222;
+      background: #e0e0e0;
+      font-family: inherit;
+    }
+    @media (max-width: 600px) {
+      .custom-theme-dropdown {
+        right: 1rem;
+        min-width: 130px;
+        font-size: 0.95em;
+      }
+    }
   </style>
 </head>
 <body>
@@ -221,7 +236,11 @@
   </div>
 
   <section class="top-left">Override<br>Mission Parameters</section>
-  <section class="top-right" id="themeOpener">Uncharted<br>Pulsating Signal</section>
+  <section class="top-right" id="theme-trigger-section">
+    <span id="theme-trigger-text" class="theme-trigger-link" tabindex="0">
+      Uncharted<br>Pulsating Signal
+    </span>
+  </section>
   <section class="bottom-left">Core<br> Anomaly Drive<br> Status: Unknown</section>
   <section class="bottom-right">Alert<br>Dimensional Rift<br> Imminent</section>
 
@@ -230,25 +249,101 @@
   </div>
 </div>
 
-<!-- Modal Popup -->
-<div class="modal-backdrop" id="themeModalBackdrop">
-  <div class="modal-popup">
-    <label for="colorPresetSelect">Select a Color Theme</label>
-    <select id="colorPresetSelect">
-      <option value="Dark Moody">Dark Moody</option>
-      <option value="Crimson Heat">Crimson Heat</option>
-      <option value="Ocean Calm">Ocean Calm</option>
-      <option value="Sunset Glow">Sunset Glow</option>
-      <option value="Monochrome">Monochrome</option>
-      <option value="Ethereal Mist">Ethereal Mist</option>
-      <option value="Golden Hour">Golden Hour</option>
-      <option value="Neon Nights">Neon Nights</option>
-      <option value="Electric Pulse">Electric Pulse</option>
-      <option value="Molten Core">Molten Core</option>
-    </select>
-  </div>
-</div>
+  <script type="module" src="./script.js"></script>
+  <script>
+    // DROPDOWN LOGIC (no dependencies, runs after script.js)
+    const themes = [
+      "Dark Moody",
+      "Crimson Heat",
+      "Ocean Calm",
+      "Sunset Glow",
+      "Monochrome",
+      "Ethereal Mist",
+      "Golden Hour",
+      "Neon Nights",
+      "Electric Pulse",
+      "Molten Core"
+    ];
+    let dropdown = null;
 
-<script type="module" src="./script.js"></script>
+    function createThemeDropdown(currentTheme) {
+      const d = document.createElement("div");
+      d.className = "custom-theme-dropdown";
+      d.style.display = "block";
+      d.tabIndex = -1;
+
+      const s = document.createElement("select");
+      for (let theme of themes) {
+        const o = document.createElement("option");
+        o.value = theme;
+        o.textContent = theme;
+        if (theme === currentTheme) o.selected = true;
+        s.appendChild(o);
+      }
+      d.appendChild(s);
+
+      // Select handler
+      s.addEventListener("change", e => {
+        // Update the theme using script.js logic
+        if (window.setColorPreset) {
+          window.setColorPreset(e.target.value);
+        }
+        closeDropdown();
+      });
+
+      // Prevent click from bubbling to document
+      d.addEventListener("mousedown", e => e.stopPropagation());
+      d.addEventListener("touchstart", e => e.stopPropagation());
+
+      // Keyboard close
+      s.addEventListener("blur", closeDropdown);
+
+      return d;
+    }
+
+    function closeDropdown() {
+      if (dropdown) {
+        dropdown.remove();
+        dropdown = null;
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const trigger = document.getElementById("theme-trigger-text");
+      const triggerSection = document.getElementById("theme-trigger-section");
+
+      trigger.addEventListener("click", function(e) {
+        e.stopPropagation();
+        if (dropdown) { closeDropdown(); return; }
+        // Get current theme from global param (set in script.js)
+        const currentTheme = window.getCurrentColorPreset ? window.getCurrentColorPreset() : "Crimson Heat";
+        dropdown = createThemeDropdown(currentTheme);
+
+        // Insert dropdown in DOM right after triggerSection
+        triggerSection.parentNode.appendChild(dropdown);
+
+        // Position below .top-right
+        const rect = trigger.getBoundingClientRect();
+        dropdown.style.position = "fixed";
+        dropdown.style.top = Math.round(rect.bottom + 2) + "px";
+        dropdown.style.right = (window.innerWidth - rect.right) + "px";
+        dropdown.querySelector("select").focus();
+      });
+
+      // Keyboard support for trigger
+      trigger.addEventListener("keydown", function(e) {
+        if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+          trigger.click();
+          e.preventDefault();
+        }
+      });
+
+      // Click outside closes dropdown
+      document.addEventListener("mousedown", closeDropdown);
+      document.addEventListener("touchstart", closeDropdown);
+      window.addEventListener("scroll", closeDropdown, true);
+      window.addEventListener("resize", closeDropdown, true);
+    });
+  </script>
 </body>
 </html>
