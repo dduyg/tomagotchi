@@ -176,18 +176,16 @@
     .custom-theme-dropdown {
       position: fixed;
       top: 0;
+      left: 50%;
       right: 0;
-      width: 50%;
-      height: 100vh;
+      width: 100%;    
       background-color: rgba(50, 50, 50, 0.8);
       -webkit-backdrop-filter: contrast(0.8) blur(7px) url(#fluted);
       backdrop-filter: contrast(0.8) blur(7px) url(#fluted);
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 3rem 0;
       overflow: hidden;
       z-index: 9999;
       animation: dropdownIn 0.13s cubic-bezier(.34,1.56,.64,1) 1;
@@ -204,18 +202,23 @@
       margin: 0;
       padding: 0;
     }
+    
     .custom-theme-list li {
-      padding: 0.7em 1.2em 0.7em 1.1em;
       color: #e0e0e0;
       cursor: pointer;
       transition: background 0.13s, color 0.13s;
       border: none;
       background: none;
       font-family: inherit;
-      font-size: 1em;
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
       outline: none;
       margin: 0;
       display: block;
+    }
+    @media (max-width: 768px) {     
+      .custom-theme-list li { font-size: 1.5rem; }
     }
     .custom-theme-list li[aria-selected="true"],
     .custom-theme-list li:hover,
@@ -243,7 +246,9 @@
   </div>
 
   <section class="top-left">Override<br>Mission Parameters</section>
-  <section class="top-right" id="theme-trigger-text" tabindex="0">Uncharted<br>Pulsating Signal</section>
+  <section class="top-right">
+    <span id="theme-trigger-text" tabindex="0">Uncharted<br>Pulsating Signal</span>
+  </section>
   <section class="bottom-left">Core<br> Anomaly Drive<br> Status: Unknown</section>
   <section class="bottom-right">Alert<br>Dimensional Rift<br> Imminent</section>
 
