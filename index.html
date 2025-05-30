@@ -259,12 +259,13 @@
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.175.0/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.175.0/examples/js/postprocessing/EffectComposer.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.175.0/examples/js/postprocessing/RenderPass.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.175.0/examples/js/postprocessing/ShaderPass.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.175.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
-<script>
+<script type="module">
+import * as THREE from "https://esm.sh/three@0.175.0";
+import { EffectComposer } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/RenderPass.js";
+import { ShaderPass } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/ShaderPass.js";
+import { UnrealBloomPass } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/UnrealBloomPass.js";
+
 // Scene, Camera, Renderer
 const scene = new THREE.Scene();
 const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
@@ -929,12 +930,12 @@ const plane = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), shaderMaterial);
 scene.add(plane);
 
 // Setup post-processing
-const composer = new THREE.EffectComposer(renderer);
-const renderPass = new THREE.RenderPass(scene, camera);
+const composer = new EffectComposer(renderer);
+const renderPass = new RenderPass(scene, camera);
 composer.addPass(renderPass);
 
 // Add bloom effect
-const bloomPass = new THREE.UnrealBloomPass(
+const bloomPass = new UnrealBloomPass(
   new THREE.Vector2(window.innerWidth, window.innerHeight),
   params.bloomStrength,
   params.bloomRadius,
@@ -1050,7 +1051,7 @@ document.addEventListener("mouseenter", () => {
 });
 
 // === COLOR PRESET DROPDOWN SUPPORT ===
-// Expose functions for dropdown logic
+// Expose functions for dropdown logic in below <script>
 window.setColorPreset = function(selected) {
   params.colorPreset = selected;
   params.primaryColor = colorPresets[selected].primaryColor;
@@ -1064,8 +1065,8 @@ window.setColorPreset = function(selected) {
 };
 window.getCurrentColorPreset = function() {
   return params.colorPreset;
-};  
-</script>
+};    
+</script>  
 <script>
     const themes = [
       "Dark Moody",
