@@ -788,55 +788,19 @@ document.addEventListener("mouseenter", () => {
   cursor.style.display = "block";
 });
 
-// === COLOR PRESET MODAL LOGIC ===
-const modalBackdrop = document.getElementById("themeModalBackdrop");
-const modalThemeOpener = document.getElementById("themeOpener");
-const colorPresetSelect = document.getElementById("colorPresetSelect");
+// === COLOR PRESET DROPDOWN SUPPORT ===
+// Expose functions for dropdown logic in below <script>
+window.setColorPreset = function(selected) {
+  params.colorPreset = selected;
+  params.primaryColor = colorPresets[selected].primaryColor;
+  params.secondaryColor = colorPresets[selected].secondaryColor;
+  params.accentColor = colorPresets[selected].accentColor;
 
-// Set initial value
-if (colorPresetSelect) {
-  colorPresetSelect.value = params.colorPreset;
-}
-
-function closeModal() {
-  if (modalBackdrop) modalBackdrop.classList.remove("active");
-}
-
-if (modalThemeOpener && modalBackdrop) {
-  modalThemeOpener.addEventListener("click", () => {
-    modalBackdrop.classList.add("active");
-    // Set dropdown to current theme on open
-    colorPresetSelect.value = params.colorPreset;
-    // Focus for keyboard accessibility
-    colorPresetSelect.focus();
-  });
-}
-if (modalBackdrop) {
-  // Click outside popup closes modal
-  modalBackdrop.addEventListener("click", evt => {
-    if (evt.target === modalBackdrop) closeModal();
-  });
-}
-// ESC closes modal
-document.addEventListener("keydown", evt => {
-  if (evt.key === "Escape" && modalBackdrop.classList.contains("active")) closeModal();
-});
-
-// Color select logic (closes modal on select)
-if (colorPresetSelect) {
-  colorPresetSelect.addEventListener("change", (e) => {
-    const selected = e.target.value;
-    params.colorPreset = selected;
-    params.primaryColor = colorPresets[selected].primaryColor;
-    params.secondaryColor = colorPresets[selected].secondaryColor;
-    params.accentColor = colorPresets[selected].accentColor;
-
-    // Update shader uniforms
-    shaderMaterial.uniforms.primaryColor.value = new THREE.Color().fromArray(params.primaryColor.map(c => c / 255));
-    shaderMaterial.uniforms.secondaryColor.value = new THREE.Color().fromArray(params.secondaryColor.map(c => c / 255));
-    shaderMaterial.uniforms.accentColor.value = new THREE.Color().fromArray(params.accentColor.map(c => c / 255));
-
-    // Automatically close modal after selection
-    closeModal();
-  });
-}
+  // Update shader uniforms
+  shaderMaterial.uniforms.primaryColor.value = new THREE.Color().fromArray(params.primaryColor.map(c => c / 255));
+  shaderMaterial.uniforms.secondaryColor.value = new THREE.Color().fromArray(params.secondaryColor.map(c => c / 255));
+  shaderMaterial.uniforms.accentColor.value = new THREE.Color().fromArray(params.accentColor.map(c => c / 255));
+};
+window.getCurrentColorPreset = function() {
+  return params.colorPreset;
+};
