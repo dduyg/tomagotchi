@@ -723,6 +723,9 @@ function animate() {
 
 animate();
 
+// Call once at start to set up initial visibility
+updateVisibleControls(params.effectType);
+
 // Handle Window Resize
 window.addEventListener("resize", () => {
   const width = window.innerWidth;
