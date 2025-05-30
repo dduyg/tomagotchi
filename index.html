@@ -153,53 +153,36 @@
       pointer-events: none;
     }
 
-    /* Add some style for the selector */
     #colorPreset {
+      position: fixed;
+      top: 2.5rem;
+      right: 2rem;
+      z-index: 201;
       padding: 0.2em 0.5em;
       font-size: 1em;
       background: #222;
       color: #fff;
       border: 1px solid #555;
       border-radius: 0.3em;
-      margin-left: 0.5em;
       outline: none;
+      display: none; /* Hidden by default */
+      box-shadow: 0 2px 12px rgba(0,0,0,0.16);
     }
     #colorPreset:focus {
       border-color: #888;
     }
-    .color-selector-container {
-      position: fixed;
-      top: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 200;
-      background: rgba(0,0,0,0.7);
-      padding: 0.5em 1em;
-      border-radius: 1em;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.16);
-      font-family: inherit;
-      font-size: 1em;
-      pointer-events: auto;
-      user-select: none;
+    section.top-right {
+      cursor: pointer;
+      transition: background 0.15s;
+      position: relative;
+      z-index: 202;
     }
+    section.top-right:hover {
+      background: rgba(255,255,255,0.05);
+    }  
   </style>
 </head>
 <body>
-<div class="color-selector-container">
-  <label for="colorPreset">Color Theme:</label>
-  <select id="colorPreset">
-    <option value="Dark Moody">Dark Moody</option>
-    <option value="Crimson Heat">Crimson Heat</option>
-    <option value="Ocean Calm">Ocean Calm</option>
-    <option value="Sunset Glow">Sunset Glow</option>
-    <option value="Monochrome">Monochrome</option>
-    <option value="Ethereal Mist">Ethereal Mist</option>
-    <option value="Golden Hour">Golden Hour</option>
-    <option value="Neon Nights">Neon Nights</option>
-    <option value="Electric Pulse">Electric Pulse</option>
-    <option value="Molten Core">Molten Core</option>
-  </select>
-</div>
 <div class="layout">
   <div class="layout__middle">
     <p>|</p>
@@ -207,7 +190,7 @@
   </div>
 
   <section class="top-left">Override<br>Mission Parameters</section>
-  <section class="top-right">Uncharted<br>Pulsating Signal</section>
+  <section class="top-right" id="colorPresetToggle">Uncharted<br>Pulsating Signal</section>
   <section class="bottom-left">Core<br> Anomaly Drive<br> Status: Unknown</section>
   <section class="bottom-right">Alert<br>Dimensional Rift<br> Imminent</section>
 
@@ -216,6 +199,37 @@
   </div>
 </div>
 
-  <script type="module" src="./script.js"></script>
+<!-- The select appears at top-right when toggled -->
+<select id="colorPreset">
+  <option value="Dark Moody">Dark Moody</option>
+  <option value="Crimson Heat">Crimson Heat</option>
+  <option value="Ocean Calm">Ocean Calm</option>
+  <option value="Sunset Glow">Sunset Glow</option>
+  <option value="Monochrome">Monochrome</option>
+  <option value="Ethereal Mist">Ethereal Mist</option>
+  <option value="Golden Hour">Golden Hour</option>
+  <option value="Neon Nights">Neon Nights</option>
+  <option value="Electric Pulse">Electric Pulse</option>
+  <option value="Molten Core">Molten Core</option>
+</select>
+
+<script type="module" src="./script.js"></script>
+<script>
+// This script handles showing/hiding the select menu
+const topRight = document.getElementById('colorPresetToggle');
+const select = document.getElementById('colorPreset');
+
+// Toggle select on click of .top-right
+topRight.addEventListener('click', (e) => {
+  select.style.display = (select.style.display === 'none' || select.style.display === '') ? 'block' : 'none';
+  if (select.style.display === 'block') {
+    select.focus();
+  }
+});
+// Hide select when it loses focus
+select.addEventListener('blur', () => {
+  setTimeout(() => { select.style.display = 'none'; }, 100);
+});
+</script>
 </body>
 </html>
