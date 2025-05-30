@@ -178,15 +178,13 @@
       top: 2rem;
       right: 3rem;
       width: 85%;
-      height: 60vh;
-      padding: 2rem 0;
+      padding: 4rem 0;
+      overflow-y: auto;
       background-color: rgba(50, 50, 50, 0.8);
       -webkit-backdrop-filter: contrast(0.8) blur(7px) url(#fluted);
       backdrop-filter: contrast(0.8) blur(7px) url(#fluted);
       text-shadow: none;
       line-height: 1.4;
-      display: grid;
-      place-items: center;
       z-index: 9999;
       animation: dropdownIn 0.13s cubic-bezier(.34,1.56,.64,1) 1;
       transition: opacity 0.13s;
@@ -201,42 +199,30 @@
       list-style: none;
       margin: 0;
       padding: 0;
-      max-height: 100%;
-      overflow-y: auto;
-      width: 100%;
     }
     
     .custom-theme-list li {
       color: white;
       cursor: pointer;
-      transition: background 0.13s, color 0.13s;
       border: none;
       background: none;
       font-family: inherit;
-      font-size: 3rem;
+      font-size: clamp(1.5rem, 2vw + 1rem, 3rem);
       padding-bottom: 2rem;
+      border-left: 5px solid white;
+      transition: border-left 0.13s, opacity 0.13s;
       position: relative;
       text-transform: uppercase;
       outline: none;
       margin: 0;
     }
-    @media (max-width: 768px) {     
-      .custom-theme-list li { font-size: 1.5rem; }
-    }   
     .custom-theme-list li[aria-selected="true"],
     .custom-theme-list li:hover,
     .custom-theme-list li:focus {
-      text-decoration: line-through white;
-      text-decoration-thickness: 5px;
+      border-left: 8px solid rgb(200, 180, 160);
     }
     .custom-theme-list li:active {
       opacity: 0.6;
-    }    
-    .divider {
-      width: 50%;
-      height: 4px;
-      background-color: rgb(200, 180, 160);
-      margin: 1rem 0;
     }
   </style>
 </head>
