@@ -13,8 +13,8 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // Store mouse position and smooth it over time
-const mouse = new THREE.Vector2(0, 0.5);
-const smoothedMouse = new THREE.Vector2(0, 0.5);
+const mouse = new THREE.Vector2(0.3, 0.5);
+const smoothedMouse = new THREE.Vector2(0.3, 0.5);
 let mouseDown = false;
 
 // Color presets
