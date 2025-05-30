@@ -1018,162 +1018,99 @@ window.addEventListener("touchend", () => {
   shaderMaterial.uniforms.mouseDown.value = 0.0;
 });
 
-// Adding a custom cursor
-const cursor = document.createElement("div");
-cursor.className = "custom-cursor";
-cursor.style.position = "fixed";
-cursor.style.width = "20px";
-cursor.style.height = "20px";
-cursor.style.borderRadius = "50%";
-cursor.style.border = "1px dashed";
-cursor.style.transform = "translate(-50%, -50%)";
-cursor.style.pointerEvents = "none";
-cursor.style.zIndex = "1000";
-document.body.appendChild(cursor);
+// Theme selector logic
+const themeTrigger = document.getElementById('theme-trigger');
+const themeMenuContainer = document.getElementById('theme-menu-container');
 
-let lastCursorUpdate = 0;
-document.addEventListener("mousemove", (e) => {
-  const now = performance.now();
-  if (now - lastCursorUpdate > 16) {
-    cursor.style.left = `${e.clientX}px`;
-    cursor.style.top = `${e.clientY}px`;
-    lastCursorUpdate = now;
+function createThemeMenu(selectedPreset) {
+  const menu = document.createElement('div');
+  menu.className = 'select-menu';
+  menu.tabIndex = 0;
+  const list = document.createElement('div');
+  list.className = 'select-list';
+  Object.keys(colorPresets).forEach((preset, idx) => {
+    const opt = document.createElement('div');
+    opt.className = 'option';
+    opt.textContent = preset;
+    opt.setAttribute('role', 'option');
+    if (preset === selectedPreset) {
+      opt.setAttribute('aria-selected', 'true');
+    } else {
+      opt.setAttribute('aria-selected', 'false');
+    }
+    opt.tabIndex = 0;
+    opt.addEventListener('click', () => {
+      selectPreset(preset);
+      closeThemeMenu();
+    });
+    opt.addEventListener('keydown', (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        selectPreset(preset);
+        closeThemeMenu();
+        e.preventDefault();
+      }
+    });
+    list.appendChild(opt);
+  });
+  menu.appendChild(list);
+  menu.addEventListener('keydown', (e) => {
+    if (e.key === "Escape") closeThemeMenu();
+  });
+  return menu;
+}
+
+function openThemeMenu() {
+  themeMenuContainer.innerHTML = '';
+  themeMenuContainer.style.display = 'block';
+  themeMenuContainer.appendChild(createThemeMenu(params.colorPreset));
+  setTimeout(() => {
+    const firstOption = themeMenuContainer.querySelector('.option');
+    if (firstOption) firstOption.focus();
+  }, 10);
+}
+
+function closeThemeMenu() {
+  themeMenuContainer.innerHTML = '';
+  themeMenuContainer.style.display = 'none';
+  themeTrigger.focus();
+}
+
+function selectPreset(preset) {
+  if (colorPresets[preset]) {
+    params.colorPreset = preset;
+    params.primaryColor = colorPresets[preset].primaryColor;
+    params.secondaryColor = colorPresets[preset].secondaryColor;
+    params.accentColor = colorPresets[preset].accentColor;
+    if (shaderMaterial && shaderMaterial.uniforms) {
+      shaderMaterial.uniforms.primaryColor.value.set(
+        params.primaryColor[0]/255, params.primaryColor[1]/255, params.primaryColor[2]/255
+      );
+      shaderMaterial.uniforms.secondaryColor.value.set(
+        params.secondaryColor[0]/255, params.secondaryColor[1]/255, params.secondaryColor[2]/255
+      );
+      shaderMaterial.uniforms.accentColor.value.set(
+        params.accentColor[0]/255, params.accentColor[1]/255, params.accentColor[2]/255
+      );
+    }
+  }
+}
+themeTrigger.addEventListener('click', () => openThemeMenu());
+themeTrigger.addEventListener('keydown', (e) => {
+  if (e.key === "Enter" || e.key === " ") {
+    openThemeMenu();
+    e.preventDefault();
   }
 });
-document.addEventListener("mouseleave", () => {
-  cursor.style.display = "none";
+document.addEventListener('mousedown', (e) => {
+  if (themeMenuContainer.style.display === 'block' && !themeMenuContainer.contains(e.target) && e.target !== themeTrigger) {
+    closeThemeMenu();
+  }
 });
-document.addEventListener("mouseenter", () => {
-  cursor.style.display = "block";
+document.addEventListener('keydown', (e) => {
+  if (e.key === "Escape" && themeMenuContainer.style.display === 'block') {
+    closeThemeMenu();
+  }
 });
-
-// === COLOR PRESET DROPDOWN SUPPORT ===
-// Expose functions for dropdown logic in below <script>
-window.setColorPreset = function(selected) {
-  params.colorPreset = selected;
-  params.primaryColor = colorPresets[selected].primaryColor;
-  params.secondaryColor = colorPresets[selected].secondaryColor;
-  params.accentColor = colorPresets[selected].accentColor;
-
-  // Update shader uniforms
-  shaderMaterial.uniforms.primaryColor.value = new THREE.Color().fromArray(params.primaryColor.map(c => c / 255));
-  shaderMaterial.uniforms.secondaryColor.value = new THREE.Color().fromArray(params.secondaryColor.map(c => c / 255));
-  shaderMaterial.uniforms.accentColor.value = new THREE.Color().fromArray(params.accentColor.map(c => c / 255));
-};
-window.getCurrentColorPreset = function() {
-  return params.colorPreset;
-};    
-</script>  
-<script>
-    const themes = [
-      "Dark Moody",
-      "Crimson Heat",
-      "Ocean Calm",
-      "Sunset Glow",
-      "Monochrome",
-      "Ethereal Mist",
-      "Golden Hour",
-      "Neon Nights",
-      "Electric Pulse",
-      "Molten Core"
-    ];
-    let dropdown = null;
-
-    function createThemeDropdown(currentTheme, anchorRect) {
-      const d = document.createElement("div");
-      d.className = "custom-theme-dropdown";
-      d.setAttribute("role", "listbox");
-      d.tabIndex = -1;
-
-      // Make dropdown a list of clickable items
-      const ul = document.createElement("ul");
-      ul.className = "custom-theme-list";
-      themes.forEach((theme, idx) => {
-        const li = document.createElement("li");
-        li.textContent = theme;
-        li.setAttribute("role", "option");
-        if (theme === currentTheme) li.setAttribute("aria-selected", "true");
-        li.tabIndex = 0;
-        li.addEventListener("click", () => {
-          if (window.setColorPreset) window.setColorPreset(theme);
-          closeDropdown();
-        });
-        li.addEventListener("keydown", e => {
-          if (e.key === "Enter" || e.key === " ") {
-            li.click();
-            e.preventDefault();
-          }
-          // Arrow navigation
-          if (e.key === "ArrowDown" || e.key === "ArrowUp") {
-            const items = Array.from(ul.querySelectorAll("li"));
-            let next = e.key === "ArrowDown" ? idx + 1 : idx - 1;
-            if (next < 0) next = items.length - 1;
-            if (next >= items.length) next = 0;
-            items[next].focus();
-            e.preventDefault();
-          }
-          if (e.key === "Escape") {
-            closeDropdown();
-            e.preventDefault();
-          }
-        });
-        ul.appendChild(li);
-      });
-      d.appendChild(ul);
-
-      // Prevent dropdown click from bubbling
-      d.addEventListener("mousedown", e => e.stopPropagation());
-      d.addEventListener("touchstart", e => e.stopPropagation());
-
-      // Position dropdown below the anchorRect (theme trigger)
-      d.style.position = "fixed";
-      const padding = 2;
-      d.style.top = Math.round(anchorRect.bottom + padding) + "px";
-      // Align right edge
-      d.style.right = (window.innerWidth - anchorRect.right) + "px";
-      return d;
-    }
-
-    function closeDropdown() {
-      if (dropdown) {
-        dropdown.remove();
-        dropdown = null;
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-      const trigger = document.getElementById("theme-trigger-text");
-      trigger.addEventListener("click", function(e) {
-        e.stopPropagation();
-        if (dropdown) { closeDropdown(); return; }
-        const currentTheme = window.getCurrentColorPreset ? window.getCurrentColorPreset() : "Crimson Heat";
-        const rect = trigger.getBoundingClientRect();
-        dropdown = createThemeDropdown(currentTheme, rect);
-        document.body.appendChild(dropdown);
-        // Focus first selected or first item
-        setTimeout(() => {
-          const selected = dropdown.querySelector('li[aria-selected="true"]');
-          (selected || dropdown.querySelector('li')).focus();
-        }, 1);
-      });
-      trigger.addEventListener("keydown", function(e) {
-        if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
-          trigger.click();
-          e.preventDefault();
-        }
-        // Down arrow opens and focuses list
-        if ((e.key === "ArrowDown" || e.key === "ArrowUp") && !dropdown) {
-          trigger.click();
-          e.preventDefault();
-        }
-      });
-
-      // Close dropdown on outside click/tap, scroll, or resize
-      document.addEventListener("mousedown", closeDropdown);
-      document.addEventListener("touchstart", closeDropdown);
-      window.addEventListener("scroll", closeDropdown, true);
-      window.addEventListener("resize", closeDropdown, true);
-    });
 </script>
 </body>
 </html>
