@@ -787,3 +787,23 @@ document.addEventListener("mouseleave", () => {
 document.addEventListener("mouseenter", () => {
   cursor.style.display = "block";
 });
+
+// === COLOR PRESET SELECTOR LOGIC ===
+const colorPresetSelect = document.getElementById("colorPreset");
+if (colorPresetSelect) {
+  // Set initial value to match the current parameter
+  colorPresetSelect.value = params.colorPreset;
+
+  colorPresetSelect.addEventListener("change", (e) => {
+    const selected = e.target.value;
+    params.colorPreset = selected;
+    params.primaryColor = colorPresets[selected].primaryColor;
+    params.secondaryColor = colorPresets[selected].secondaryColor;
+    params.accentColor = colorPresets[selected].accentColor;
+
+    // Update shader uniforms
+    shaderMaterial.uniforms.primaryColor.value = new THREE.Color().fromArray(params.primaryColor.map(c => c / 255));
+    shaderMaterial.uniforms.secondaryColor.value = new THREE.Color().fromArray(params.secondaryColor.map(c => c / 255));
+    shaderMaterial.uniforms.accentColor.value = new THREE.Color().fromArray(params.accentColor.map(c => c / 255));
+  });
+}
