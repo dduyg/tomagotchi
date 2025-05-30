@@ -153,43 +153,64 @@
       pointer-events: none;
     }
 
-    #colorPreset {
-      position: absolute;
-      top: 100%; /* right below the section */
-      right: 0;
-      z-index: 999;
-      padding: 0.2em 0.5em;
-      font-size: 1em;
-      background: #222;
-      color: #fff;
-      border: 1px solid #555;
-      border-radius: 0.3em;
-      outline: none;
+    .modal-backdrop {
       display: none;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.16);
-      margin-top: 0.5em;
+      position: fixed;
+      z-index: 9000;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.55);
+      align-items: center;
+      justify-content: center;
     }
-    #colorPreset:focus {
-      border-color: #888;
+    .modal-backdrop.active {
+      display: flex;
     }
-    section.top-right {
-      cursor: pointer;
-      transition: background 0.15s;
-      position: absolute;
-      top: 2rem;
-      right: 2rem;
-      text-align: right;
-      z-index: 20;
-      /* Ensure enough width for select */
-      min-width: 180px;
-    }
-    section.top-right:hover {
-      background: rgba(255,255,255,0.05);
-    }
-    .top-right-wrapper {
+    .modal-popup {
+      background: #222b;
+      border-radius: 1em;
+      box-shadow: 0 6px 32px #000a;
+      padding: 2em 2em 1.5em 2em;
+      min-width: 260px;
+      max-width: 90vw;
+      color: #fff;
       position: relative;
-      display: inline-block;
+      font-size: 1.1em;
+      text-align: center;
+      z-index: 9999;
+      animation: popIn 0.16s cubic-bezier(.4,2,.4,1);
     }
+    @keyframes popIn {
+      0% { transform: scale(0.85); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .modal-popup select {
+      padding: 0.4em 1em;
+      font-size: 1em;
+      background: #181c;
+      color: #fff;
+      border: 1px solid #444;
+      border-radius: 0.3em;
+      margin-top: 1.5em;
+      width: 100%;
+      outline: none;
+    }
+    .modal-popup label {
+      font-size: 1.05em;
+      font-weight: bold;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.7em;
+      display: block;
+      color: #fdf6e3;
+    }
+    .top-right {
+      cursor: pointer;
+      text-decoration: underline dotted;
+      transition: color 0.2s;
+    }
+    .top-right:hover {
+      color: #ffd0d0;
+    }     
   </style>
 </head>
 <body>
@@ -200,9 +221,20 @@
   </div>
 
   <section class="top-left">Override<br>Mission Parameters</section>
-  <div class="top-right-wrapper">
-    <section class="top-right" id="colorPresetToggle">Uncharted<br>Pulsating Signal</section>
-    <select id="colorPreset">
+  <section class="top-right" id="themeOpener">Uncharted<br>Pulsating Signal</section>
+  <section class="bottom-left">Core<br> Anomaly Drive<br> Status: Unknown</section>
+  <section class="bottom-right">Alert<br>Dimensional Rift<br> Imminent</section>
+
+  <div class="statement">
+    <h2>NOT IN FORM, BUT IN INTENTION</h2>
+  </div>
+</div>
+
+<!-- Modal Popup -->
+<div class="modal-backdrop" id="themeModalBackdrop">
+  <div class="modal-popup">
+    <label for="colorPresetSelect">Select a Color Theme</label>
+    <select id="colorPresetSelect">
       <option value="Dark Moody">Dark Moody</option>
       <option value="Crimson Heat">Crimson Heat</option>
       <option value="Ocean Calm">Ocean Calm</option>
@@ -215,33 +247,8 @@
       <option value="Molten Core">Molten Core</option>
     </select>
   </div>
-  <section class="bottom-left">Core<br> Anomaly Drive<br> Status: Unknown</section>
-  <section class="bottom-right">Alert<br>Dimensional Rift<br> Imminent</section>
-
-  <div class="statement">
-    <h2>NOT IN FORM, BUT IN INTENTION</h2>
-  </div>
 </div>
 
 <script type="module" src="./script.js"></script>
-<script>
-const topRight = document.getElementById('colorPresetToggle');
-const select = document.getElementById('colorPreset');
-
-topRight.addEventListener('click', (e) => {
-  // Toggle display
-  if (select.style.display === 'none' || select.style.display === '') {
-    select.style.display = 'block';
-    select.focus();
-  } else {
-    select.style.display = 'none';
-  }
-});
-
-// Hide select when it loses focus (and user didn't just click the section again)
-select.addEventListener('blur', () => {
-  setTimeout(() => { select.style.display = 'none'; }, 100);
-});
-</script>
 </body>
 </html>
