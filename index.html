@@ -152,11 +152,13 @@
       z-index: 2;
       pointer-events: none;
     }
-      
+
     section.top-right {
       cursor: pointer;
-      transition: color 0.2s;
       user-select: none;
+      position: relative;
+      z-index: 10;
+      font-family: inherit;
     }
     section.top-right .theme-trigger-link {
       color: #7ed6ff;
@@ -170,6 +172,7 @@
       font-family: inherit;
       outline: none;
       transition: color 0.2s;
+      display: inline-block;
     }
     section.top-right .theme-trigger-link:hover,
     section.top-right .theme-trigger-link:focus {
@@ -178,52 +181,61 @@
     }
 
     .custom-theme-dropdown {
-      position: absolute;
-      top: calc(2rem + 2.1em); /* below the .top-right section */
-      right: 2rem;
+      position: fixed;
       min-width: 180px;
-      background: rgba(18, 20, 25, 0.99);
-      border: 1px solid #222c;
-      border-radius: 0.6em;
+      right: 2rem;
+      background: rgba(18,20,25,0.98);
+      border: 1px solid #23272f;
+      border-radius: 0.7em;
       box-shadow: 0 6px 32px 0 rgba(10,12,20,0.19);
-      z-index: 500;
-      padding: 0.25em 0;
+      z-index: 9999;
+      margin-top: 0.5em;
+      padding: 0.3em 0;
       font-family: "Cousine", monospace;
-      font-size: 1em;
+      font-size: 1.04em;
       animation: dropdownIn 0.13s cubic-bezier(.34,1.56,.64,1) 1;
+      transition: opacity 0.13s;
+      opacity: 1;
+      user-select: none;
     }
     @keyframes dropdownIn {
       from { opacity: 0; transform: translateY(-0.5em) scale(0.96);}
       to   { opacity: 1; transform: translateY(0) scale(1);}
     }
-    .custom-theme-dropdown select {
-      display: block;
-      width: 100%;
-      background: none;
-      color: #fff;
-      border: none;
-      font-size: 1em;
-      font-family: inherit;
-      padding: 0.7em 1.2em 0.7em 0.8em;
-      outline: none;
+    .custom-theme-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .custom-theme-list li {
+      padding: 0.7em 1.2em 0.7em 1.1em;
+      color: #e0e0e0;
       cursor: pointer;
-      appearance: none;
-      box-shadow: none;
-      border-radius: 0.5em;
-    }
-    .custom-theme-dropdown select:focus {
-      background: #222b;
-    }
-    .custom-theme-dropdown option {
-      color: #222;
-      background: #e0e0e0;
+      transition: background 0.13s, color 0.13s;
+      border: none;
+      background: none;
       font-family: inherit;
+      font-size: 1em;
+      outline: none;
+      border-radius: 0.5em;
+      margin: 0;
+      display: block;
+    }
+    .custom-theme-list li[aria-selected="true"],
+    .custom-theme-list li:hover,
+    .custom-theme-list li:focus {
+      background: #222e;
+      color: #fff;
+    }
+    .custom-theme-list li:active {
+      background: #333f;
+      color: #7ed6ff;
     }
     @media (max-width: 600px) {
       .custom-theme-dropdown {
         right: 1rem;
-        min-width: 130px;
-        font-size: 0.95em;
+        min-width: 135px;
+        font-size: 0.97em;
       }
     }
   </style>
@@ -251,7 +263,6 @@
 
   <script type="module" src="./script.js"></script>
   <script>
-    // DROPDOWN LOGIC (no dependencies, runs after script.js)
     const themes = [
       "Dark Moody",
       "Crimson Heat",
@@ -266,38 +277,58 @@
     ];
     let dropdown = null;
 
-    function createThemeDropdown(currentTheme) {
+    function createThemeDropdown(currentTheme, anchorRect) {
       const d = document.createElement("div");
       d.className = "custom-theme-dropdown";
-      d.style.display = "block";
+      d.setAttribute("role", "listbox");
       d.tabIndex = -1;
 
-      const s = document.createElement("select");
-      for (let theme of themes) {
-        const o = document.createElement("option");
-        o.value = theme;
-        o.textContent = theme;
-        if (theme === currentTheme) o.selected = true;
-        s.appendChild(o);
-      }
-      d.appendChild(s);
-
-      // Select handler
-      s.addEventListener("change", e => {
-        // Update the theme using script.js logic
-        if (window.setColorPreset) {
-          window.setColorPreset(e.target.value);
-        }
-        closeDropdown();
+      // Make dropdown a list of clickable items
+      const ul = document.createElement("ul");
+      ul.className = "custom-theme-list";
+      themes.forEach((theme, idx) => {
+        const li = document.createElement("li");
+        li.textContent = theme;
+        li.setAttribute("role", "option");
+        if (theme === currentTheme) li.setAttribute("aria-selected", "true");
+        li.tabIndex = 0;
+        li.addEventListener("click", () => {
+          if (window.setColorPreset) window.setColorPreset(theme);
+          closeDropdown();
+        });
+        li.addEventListener("keydown", e => {
+          if (e.key === "Enter" || e.key === " ") {
+            li.click();
+            e.preventDefault();
+          }
+          // Arrow navigation
+          if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+            const items = Array.from(ul.querySelectorAll("li"));
+            let next = e.key === "ArrowDown" ? idx + 1 : idx - 1;
+            if (next < 0) next = items.length - 1;
+            if (next >= items.length) next = 0;
+            items[next].focus();
+            e.preventDefault();
+          }
+          if (e.key === "Escape") {
+            closeDropdown();
+            e.preventDefault();
+          }
+        });
+        ul.appendChild(li);
       });
+      d.appendChild(ul);
 
-      // Prevent click from bubbling to document
+      // Prevent dropdown click from bubbling
       d.addEventListener("mousedown", e => e.stopPropagation());
       d.addEventListener("touchstart", e => e.stopPropagation());
 
-      // Keyboard close
-      s.addEventListener("blur", closeDropdown);
-
+      // Position dropdown below the anchorRect (theme trigger)
+      d.style.position = "fixed";
+      const padding = 2;
+      d.style.top = Math.round(anchorRect.bottom + padding) + "px";
+      // Align right edge
+      d.style.right = (window.innerWidth - anchorRect.right) + "px";
       return d;
     }
 
@@ -310,35 +341,32 @@
 
     document.addEventListener("DOMContentLoaded", function() {
       const trigger = document.getElementById("theme-trigger-text");
-      const triggerSection = document.getElementById("theme-trigger-section");
-
       trigger.addEventListener("click", function(e) {
         e.stopPropagation();
         if (dropdown) { closeDropdown(); return; }
-        // Get current theme from global param (set in script.js)
         const currentTheme = window.getCurrentColorPreset ? window.getCurrentColorPreset() : "Crimson Heat";
-        dropdown = createThemeDropdown(currentTheme);
-
-        // Insert dropdown in DOM right after triggerSection
-        triggerSection.parentNode.appendChild(dropdown);
-
-        // Position below .top-right
         const rect = trigger.getBoundingClientRect();
-        dropdown.style.position = "fixed";
-        dropdown.style.top = Math.round(rect.bottom + 2) + "px";
-        dropdown.style.right = (window.innerWidth - rect.right) + "px";
-        dropdown.querySelector("select").focus();
+        dropdown = createThemeDropdown(currentTheme, rect);
+        document.body.appendChild(dropdown);
+        // Focus first selected or first item
+        setTimeout(() => {
+          const selected = dropdown.querySelector('li[aria-selected="true"]');
+          (selected || dropdown.querySelector('li')).focus();
+        }, 1);
       });
-
-      // Keyboard support for trigger
       trigger.addEventListener("keydown", function(e) {
         if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
           trigger.click();
           e.preventDefault();
         }
+        // Down arrow opens and focuses list
+        if ((e.key === "ArrowDown" || e.key === "ArrowUp") && !dropdown) {
+          trigger.click();
+          e.preventDefault();
+        }
       });
 
-      // Click outside closes dropdown
+      // Close dropdown on outside click/tap, scroll, or resize
       document.addEventListener("mousedown", closeDropdown);
       document.addEventListener("touchstart", closeDropdown);
       window.addEventListener("scroll", closeDropdown, true);
