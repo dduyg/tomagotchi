@@ -153,22 +153,17 @@
       pointer-events: none;
     }
 
-    section.top-right {
-      cursor: pointer;
-      user-select: none;
-      font-family: inherit;
-    }
     section.top-right .theme-trigger-link {
-      color: #7ed6ff;
+      color: inherit;
       text-decoration: underline dotted;
       cursor: pointer;
-      font-weight: bold;
       background: none;
       border: none;
       padding: 0;
       font-size: inherit;
       font-family: inherit;
       outline: none;
+      user-select: none;
       transition: color 0.2s;
       display: inline-block;
     }
@@ -180,17 +175,13 @@
 
     .custom-theme-dropdown {
       position: fixed;
-      min-width: 180px;
+      width: 80%;
       right: 2rem;
       background: rgba(18,20,25,0.98);
-      border: 1px solid #23272f;
-      border-radius: 0.7em;
-      box-shadow: 0 6px 32px 0 rgba(10,12,20,0.19);
+      border: 2px solid;
       z-index: 9999;
-      margin-top: 0.5em;
+      margin-top: 1em;
       padding: 0.3em 0;
-      font-family: "Cousine", monospace;
-      font-size: 1.04em;
       animation: dropdownIn 0.13s cubic-bezier(.34,1.56,.64,1) 1;
       transition: opacity 0.13s;
       opacity: 1;
@@ -215,7 +206,6 @@
       font-family: inherit;
       font-size: 1em;
       outline: none;
-      border-radius: 0.5em;
       margin: 0;
       display: block;
     }
@@ -228,13 +218,6 @@
     .custom-theme-list li:active {
       background: #333f;
       color: #7ed6ff;
-    }
-    @media (max-width: 600px) {
-      .custom-theme-dropdown {
-        right: 1rem;
-        min-width: 135px;
-        font-size: 0.97em;
-      }
     }
   </style>
 </head>
