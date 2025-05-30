@@ -321,7 +321,7 @@ If the image is used as a background:
 - [ ]  Plaster
 - [ ]  Fira Sans
 - [ ]  Rethink Sans
-- [ ]  Cousine
+- [ ]  Niconne  (*doing uppercase)
 - [ ]  Anonymous Pro
 - [ ]  Ropa Sans
 - [ ]  Inria Sans
