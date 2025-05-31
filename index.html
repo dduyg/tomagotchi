@@ -164,12 +164,15 @@
       top: 3rem;
       right: 3rem;
       width: 85%;
-      padding: 10% 5%;
+      padding: 10px 0;
+      display: grid;
+      place-items: center;
+      height: 100vh;
       background-color: rgba(50, 50, 50, 0.8);
       -webkit-backdrop-filter: contrast(0.8) blur(7px) url(#fluted);
       backdrop-filter: contrast(0.8) blur(7px) url(#fluted);
       text-shadow: none;
-      line-height: 1.7;
+      line-height: 1.5;
       z-index: 9999;
       animation: dropdownIn 0.13s cubic-bezier(.34,1.56,.64,1) 1;
       transition: opacity 0.13s;
@@ -204,14 +207,14 @@
       opacity: 1;
       width: 100%;
     }
-    .option[aria-selected="true"],
-    .option:hover,
-    .option:focus {
+    .option[aria-selected="true"] {
       border-left: 20px solid rgb(255, 140, 0);
       color: rgb(255, 140, 0);
     }
+    .option:hover,
+    .option:focus,
     .option:active {
-      opacity: 0.6;
+      opacity: 0.5;
     }
   </style>
 </head>
