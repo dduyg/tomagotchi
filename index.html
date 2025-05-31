@@ -13,8 +13,6 @@
     html, body {
       width: 100%;
       height: 100%;
-      overflow: hidden;
-      cursor: none;
       background-color: #111;
       color: #e0e0e0;
       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
@@ -166,28 +164,46 @@
       top: 2rem;
       right: 3rem;
       width: 85%;
-      padding: 10% 4%;
-      z-index: 9999;
+      height: 60vh;
+      padding: 10px 0;
+      overflow-y: auto;
+      display: grid;
+      place-content: center;
       background-color: rgba(50, 50, 50, 0.8);
       -webkit-backdrop-filter: contrast(0.8) blur(7px) url(#fluted);
       backdrop-filter: contrast(0.8) blur(7px) url(#fluted);
       text-shadow: none;
-      line-height: 1.7;
+      line-height: 1.4;
+      z-index: 9999;
       animation: dropdownIn 0.13s cubic-bezier(.34,1.56,.64,1) 1;
       transition: opacity 0.13s;
       opacity: 1;
       user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     @keyframes dropdownIn {
       from { opacity: 0; transform: translateY(-0.5em) scale(0.96);}
       to   { opacity: 1; transform: translateY(0) scale(1);}
     }
+    .center-wrapper {
+      width: 100%;
+      max-height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     .select-list {
       display: flex;
       flex-direction: column;
       gap: 2rem;
+      margin: 0;
+      padding: 0;
       width: 100%;
       align-items: flex-start;
+      max-height: 100%;
+      overflow-y: auto;
     }
     .option {
       color: white;
@@ -195,10 +211,10 @@
       border: none;
       background: none;
       font-family: inherit;
-      font-size: clamp(1.5rem, 2vw + 1rem, 4rem);
+      font-size: clamp(1.5rem, 2vw + 1rem, 3rem);
       border-left: 5px solid white;
       padding-left: 1em;
-      transition: border-left 0.13s, border-bottom 0.13s;
+      transition: border-left 0.13s, opacity 0.13s, background 0.1s;
       position: relative;
       text-transform: uppercase;
       outline: none;
@@ -208,10 +224,12 @@
     }
     .option[aria-selected="true"],
     .option:hover,
-    .option:focus,
+    .option:focus {
+      border-left: 10px solid rgb(200, 180, 160);
+      background: rgba(255,255,255,0.05);
+    }
     .option:active {
-      border-left: 15px solid tangerine;
-      border-bottom: 2px solid tangerine;
+      opacity: 0.6;
     }
   </style>
 </head>
