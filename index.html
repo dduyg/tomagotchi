@@ -185,15 +185,15 @@
       flex-direction: column;
       gap: 2rem;
       width: 100%;
-      max-height: 100%;
       align-items: flex-start;
-    }  
+    }
     .option {
       color: white;
       cursor: pointer;
       border: none;
       background: none;
       font-family: inherit;
+      font-size: clamp(1rem, 5vh, 3rem);
       border-left: 5px solid white;
       padding-left: 1em;
       transition: border-left 0.13s, opacity 0.13s, color 0.1s;
@@ -236,15 +236,6 @@
 
 <div id="theme-menu" style="display:none;"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/textfit/textFit.min.js"></script>
-<script>
-  textFit(document.querySelector(".option"), {
-    alignVert: true,
-    maxFontSize: 100,
-    minFontSize: 10,
-    multiLine: true
-  });
-</script>
 <script type="module">
 import * as THREE from "https://esm.sh/three@0.175.0";
 import { EffectComposer } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/EffectComposer.js";
