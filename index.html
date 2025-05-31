@@ -166,20 +166,17 @@
       top: 2rem;
       right: 3rem;
       width: 85%;
-      height: 60vh;
-      padding: 10px 0;
-      overflow-y: auto;
+      padding: 10% 4%;
+      z-index: 9999;
       background-color: rgba(50, 50, 50, 0.8);
       -webkit-backdrop-filter: contrast(0.8) blur(7px) url(#fluted);
       backdrop-filter: contrast(0.8) blur(7px) url(#fluted);
       text-shadow: none;
-      line-height: 1.4;
-      z-index: 9999;
+      line-height: 1.7;
       animation: dropdownIn 0.13s cubic-bezier(.34,1.56,.64,1) 1;
       transition: opacity 0.13s;
       opacity: 1;
       user-select: none;
-      pointer-events: auto;
     }
     @keyframes dropdownIn {
       from { opacity: 0; transform: translateY(-0.5em) scale(0.96);}
@@ -189,8 +186,6 @@
       display: flex;
       flex-direction: column;
       gap: 2rem;
-      margin: auto; /* center horizontally, optional */
-      padding: 0;
       width: 100%;
       align-items: flex-start;
     }
@@ -200,10 +195,10 @@
       border: none;
       background: none;
       font-family: inherit;
-      font-size: clamp(1.5rem, 2vw + 1rem, 3rem);
+      font-size: clamp(1.5rem, 2vw + 1rem, 4rem);
       border-left: 5px solid white;
       padding-left: 1em;
-      transition: border-left 0.13s, opacity 0.13s, background 0.1s;
+      transition: border-left 0.13s, border-bottom 0.13s;
       position: relative;
       text-transform: uppercase;
       outline: none;
@@ -213,12 +208,10 @@
     }
     .option[aria-selected="true"],
     .option:hover,
-    .option:focus {
-      border-left: 10px solid rgb(200, 180, 160);
-      background: rgba(255,255,255,0.05);
-    }
+    .option:focus,
     .option:active {
-      opacity: 0.6;
+      border-left: 15px solid tangerine;
+      border-bottom: 2px solid tangerine;
     }
   </style>
 </head>
