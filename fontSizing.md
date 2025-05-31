@@ -1,11 +1,8 @@
-# ✏️ dynamic font sizing
+> ✏️ **dynamic font sizing** so that the **text always scales to fit within a container of height `100vh`**, making it responsive and as large as possible *without overflowing* — especially important on mobile.
     
-    > **dynamic font sizing** so that the **text always scales to fit within a container of height `100vh`**, making it responsive and as large as possible *without overflowing* — especially important on mobile.
-    > 
+## ✅ Option 1: `clamp()` with `vh` for scalable, responsive text
     
-    ### ✅ Option 1: `clamp()` with `vh` for scalable, responsive text
-    
-    ```html
+```html
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -39,13 +36,13 @@
       </div>
     </body>
     </html>
-    ```
+```
     
-    ### ✅ Option 2: Use JavaScript to calculate and apply font size dynamically (for pixel-perfect fit)
+## ✅ Option 2: Use JavaScript to calculate and apply font size dynamically (for pixel-perfect fit)    
     
-    If you want the **text to *exactly* fill the height**, not just scale roughly, use JavaScript to measure container and scale the text:
+If you want the **text to *exactly* fill the height**, not just scale roughly, use JavaScript to measure container and scale the text:
     
-    ```html
+```html
     <script>
       function fitText() {
         const container = document.querySelector('.container');
@@ -63,4 +60,4 @@
       window.addEventListener('resize', fitText);
       window.addEventListener('load', fitText);
     </script>
-    ```
+```
