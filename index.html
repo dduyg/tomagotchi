@@ -164,7 +164,6 @@
       top: 3rem;
       right: 3rem;
       width: 85%;
-      max-height: 100vh;
       padding: 10% 5%;
       background-color: rgba(50, 50, 50, 0.8);
       -webkit-backdrop-filter: contrast(0.8) blur(7px) url(#fluted);
@@ -186,6 +185,7 @@
       flex-direction: column;
       gap: 2rem;
       width: 100%;
+      max-height: 100vh;
       align-items: flex-start;
     }  
     .option {
@@ -238,7 +238,7 @@
 <div id="theme-menu" style="display:none;"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/fitty@2.3.6/dist/fitty.min.js"></script>
-<script>fitty('.select-list', { minSize: 16, maxSize: 200 });</script>
+<script>fitty('.option', { minSize: 16, maxSize: 200 });</script>
 <script type="module">
 import * as THREE from "https://esm.sh/three@0.175.0";
 import { EffectComposer } from "https://esm.sh/three@0.175.0/examples/jsm/postprocessing/EffectComposer.js";
