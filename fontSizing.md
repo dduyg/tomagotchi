@@ -61,3 +61,50 @@ If you want the **text to *exactly* fill the height**, not just scale roughly, u
       window.addEventListener('load', fitText);
     </script>
 ```
+
+## ✅ Option 3: Using `fitty`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fitty Text Example</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+    }
+
+    .container {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .fit-text {
+      width: 100%;
+      max-width: 90%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="fit-text">Responsive, Fitted Text</h1>
+  </div>
+
+  <!-- Fitty CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/fitty@2.3.6/dist/fitty.min.js"></script>
+
+  <script>
+    fitty('.fit-text', {
+      minSize: 16,
+      maxSize: 200
+    });
+  </script>
+</body>
+</html>
+```
