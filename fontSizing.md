@@ -1,6 +1,4 @@
-# E00r
-
-- ✏️ dynamic font sizing
+# ✏️ dynamic font sizing
     
     > **dynamic font sizing** so that the **text always scales to fit within a container of height `100vh`**, making it responsive and as large as possible *without overflowing* — especially important on mobile.
     > 
