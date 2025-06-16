@@ -181,7 +181,7 @@
         <span class="title">INDEX</span>
         <ul>
           <li onclick="filterItems('all')">All</li>
-          <li onclick="filterItems('product)">Product</li>
+          <li onclick="filterItems('product')">Product</li>
           <li onclick="filterItems('project')">Project</li>
           <li onclick="filterItems('post')">Post</li>
         </ul>
@@ -216,7 +216,7 @@
       const items = document.querySelectorAll('.item');
       items.forEach(item => {
         if (type === 'all' || item.dataset.type === type) {
-          item.style.display = 'block';
+          item.style.display = 'flex';
         } else {
           item.style.display = 'none';
         }
