@@ -33,12 +33,12 @@
       position: fixed;
       inset: 0;
       background: url('https://cdn.sanity.io/images/b1mwlimg/production/bf6ecae27d43dd3573799600490e9210a69f500f-3000x1278.png') center/cover no-repeat;
-      opacity: 0.25;
+      filter: brightness(0.35) contrast(1.2);
+      opacity: 0.8;
       z-index: 0;
       pointer-events: none;
-      filter: brightness(0.9) contrast(1.2);
     }
-    .container {
+    .page-wrapper {
       position: relative;
       display: flex;
       flex-direction: row;
@@ -174,7 +174,7 @@
 
     /* Only one breakpoint for 768px and below */
     @media (max-width: 768px) {
-      .container {
+      .page-wrapper {
         flex-direction: column;
       }
       .left-title {
@@ -218,7 +218,7 @@
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="page-wrapper">
     <div class="left-title">
       SOLANI<br>
       ILLUSTRATION<br>
