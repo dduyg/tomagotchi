@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Liminal🍡Loop</title>
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet">
   <style>
@@ -67,21 +67,23 @@
     nav .title {
       font-size: 2rem;
     }
-    nav .links {
+    
+    nav ul {
+      list-style: none;
+      padding: 0;
       display: flex;
       justify-content: space-between;
       gap: 16px;   
       font-size: 0.9rem;
     }
-    nav .link {
+    nav li {
       color: #999;
-      text-decoration: none;
-      transition: color 0.5s;
+      transition: opacity 0.5s;
       cursor: pointer;
-      border: none;
-      background: transparent;
     }
-    nav .link:hover { opacity: 0.3; }
+    nav li:hover {
+      opacity: 0.3;
+    }
     
     .index {
       margin-top: 50px;
@@ -100,6 +102,9 @@
       flex-direction: row;
       align-items: flex-start;
       gap: 12px;
+      transition: transform 0.3s ease;
+      text-decoration: none;
+      color: inherit;   
     }
     .item::before {
       font-size: 1.16rem;
@@ -112,6 +117,9 @@
       user-select: none;
       content: counter(works);
       counter-increment: works;
+    }
+    .item:hover {
+      transform: translateX(10px);
     }
 
     .content {
@@ -171,37 +179,49 @@
     <main>
       <nav>
         <span class="title">INDEX</span>
-        <div class="links">
-          <button class="link">All</button>
-          <button class="link">Product</button>
-          <button class="link">Project</button>
-          <button class="link">Post</button>
-        </div>
+        <ul>
+          <li onclick="filterItems('all')">All</li>
+          <li onclick="filterItems('product)">Product</li>
+          <li onclick="filterItems('project')">Project</li>
+          <li onclick="filterItems('post')">Post</li>
+        </ul>
       </nav>
   
       <div class="index">
-        <div class="item">
+        <a href="#🍡" class="item" data-type="product">
           <div class="content">
             <div class="name">the tilt of the scales</div>
             <div class="type">Commission</div>
           </div>
-        </div>
-        <div class="item">
+        </a>
+        <a href="#🍡" class="item" data-type="post">
           <div class="content">
             <div class="name">ENigmatic Recollection</div>
             <div class="type">Commission</div>
           </div>
-        </div>
-        <div class="item">
+        </a>
+        <a href="#🍡" class="item" data-type="project">
           <div class="content">
             <div class="name">Liberty</div>
             <div class="type">Commission</div>
           </div>
-        </div>
-        <!-- Add more rows as needed -->
+        </a>  
       </div>
     </main>
   </div>
-<footer><span>(</span> 8-Bit Zen Garden <span>)</span></footer>
+  <footer><span>(</span> 8-Bit Zen Garden <span>)</span></footer>
+
+  <script>
+    function filterItems(type) {
+      const items = document.querySelectorAll('.item');
+      items.forEach(item => {
+        if (type === 'all' || item.dataset.type === type) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
 </body>
 </html>
