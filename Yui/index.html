@@ -34,7 +34,7 @@
       content: "";
       position: fixed;
       inset: 0;
-      background: url('bg-illustration-lines.png');
+      background: url('https://cdn.sanity.io/images/b1mwlimg/production/bf6ecae27d43dd3573799600490e9210a69f500f-3000x1278.png');
       background-size: cover;
       opacity: 0.25;
       z-index: 0;
@@ -173,15 +173,17 @@
       user-select: none;
       cursor: pointer;
     }
-    @media (max-width: 800px) {
+
+    /* Only one breakpoint for 768px and below */
+    @media (max-width: 768px) {
       .container {
         flex-direction: column;
       }
       .left-title {
         flex: none;
         width: 100%;
-        padding: 26px 0 0 24px;
-        font-size: 1.5rem;
+        padding: 16px 0 0 12px;
+        font-size: 1.08rem;
         text-align: left;
       }
       .right-index {
@@ -190,37 +192,15 @@
         padding: 18px 0 0 0;
       }
       .menu-vertical {
-        left: 12px;
+        left: 6px;
         top: unset;
-        bottom: 20px;
+        bottom: 12px;
         writing-mode: horizontal-tb;
-        font-size: 0.9rem;
-      }
-      .projects-nav {
-        padding-left: 0px;
-        font-size: 1.2rem;
-      }
-      .projects-nav .nav-title {
-        font-size: 2rem;
-      }
-      .project-row {
-        font-size: 1.08rem;
-        padding-left: 4px;
-      }
-      .project-title {
-        font-size: 1.2rem;
-      }
-      .project-type {
-        font-size: 0.97rem;
-      }
-    }
-    @media (max-width: 540px) {
-      .left-title {
-        font-size: 1.08rem;
-        padding: 16px 0 0 12px;
+        font-size: 0.78rem;
       }
       .projects-nav {
         font-size: 1rem;
+        padding-left: 0px;
       }
       .projects-nav .nav-title {
         font-size: 1.2rem;
@@ -228,14 +208,13 @@
       .project-row {
         font-size: 0.97rem;
         margin-bottom: 18px;
+        padding-left: 4px;
       }
       .project-title {
         font-size: 1.06rem;
       }
-      .menu-vertical {
-        font-size: 0.78rem;
-        left: 6px;
-        bottom: 12px;
+      .project-type {
+        font-size: 0.97rem;
       }
     }
   </style>
