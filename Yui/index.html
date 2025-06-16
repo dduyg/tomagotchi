@@ -6,46 +6,50 @@
   <title>LiminalLoop</title>
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --font-title: 'Playfair Display', serif;
+      --font-base: 'Playfair Display', serif;
+      --bg-main: #0c0c0c;
+      --text-main: #fff;
+      --text-faded: #c0c0c0;
+      --border-main: #fff;
+      --nav-faded: #999;
+    }
+    * { box-sizing: border-box; } 
     html, body {
-      height: 100%;
       margin: 0;
       padding: 0;
-    }
-    body {
+      background: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-base);
       min-height: 100vh;
-      background: #0c0c0c url('https://cdn.sanity.io/images/b1mwlimg/production/bf6ecae27d43dd3573799600490e9210a69f500f-3000x1278.png') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-      font-family: 'Playfair Display', serif;
-      letter-spacing: 0.02em;
-      position: relative;
-      z-index: 1;
+      width: 100vw;
       overflow-x: hidden;
     }
     body::before {
-      content: '';
+      content: "";
       position: fixed;
-      z-index: 0;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: inherit;
+      inset: 0;
+      background: url('https://cdn.sanity.io/images/b1mwlimg/production/bf6ecae27d43dd3573799600490e9210a69f500f-3000x1278.png') center/cover no-repeat;
       filter: brightness(0.35) contrast(1.2);
-      opacity: 0.8;
+      opacity: 0.8;   
+      z-index: 0;
       pointer-events: none;
     }
-    .page-wrapper {
+    .container {
       position: relative;
       display: flex;
       flex-direction: row;
       min-height: 100vh;
-      z-index: 1;   
+      z-index: 1;
     }
-    
     .left-title {
       flex: 0 0 270px;
       padding: 40px 0 0 36px;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      font-family: var(--font-title);
       font-size: 2.1rem;
       letter-spacing: 0.04em;
       line-height: 1.1;
@@ -67,7 +71,8 @@
       align-items: center;
       gap: 24px;
       font-size: 1.8rem;
-      border-bottom: 2px solid #fff;
+      font-family: var(--font-title);
+      border-bottom: 2px solid var(--border-main);
       padding: 0 0 4px 0;
       margin-bottom: 12px;
     }
@@ -89,8 +94,9 @@
       gap: 18px;
     }
     .projects-nav .nav-link {
-      color: #999;
+      color: var(--nav-faded);
       text-decoration: none;
+      font-family: var(--font-title);
       font-weight: 400;
       transition: color 0.15s;
       cursor: pointer;
@@ -100,8 +106,8 @@
     }
     .projects-nav .nav-link.active,
     .projects-nav .nav-link:hover {
-      color: #fff;
-      border-bottom: 1px solid #fff;
+      color: var(--text-main);
+      border-bottom: 1px solid var(--text-main);
     }
     .project-list {
       margin-top: 12px;
@@ -120,9 +126,10 @@
     .project-number {
       min-width: 28px;
       font-size: 1.15rem;
-      color: #c0c0c0;
+      color: var(--text-faded);
       margin-right: 16px;
       text-align: right;
+      font-family: var(--font-title);
       opacity: 0.7;
       user-select: none;
     }
@@ -131,17 +138,19 @@
       flex-direction: column;
     }
     .project-title {
+      font-family: var(--font-title);
       font-size: 1.5rem;
       line-height: 1.15;
-      color: #fff;
+      color: var(--text-main);
       margin-bottom: 0px;
       font-weight: 400;
       letter-spacing: 0.01em;
     }
     .project-type {
-      color: #c0c0c0;
+      color: var(--text-faded);
       font-size: 1.05rem;
       margin-top: 2px;
+      font-family: var(--font-title);
       font-weight: 400;
       opacity: 0.8;
     }
@@ -152,8 +161,9 @@
       writing-mode: vertical-rl;
       text-orientation: mixed;
       font-size: 1.0rem;
-      color: #fff;
+      color: var(--text-main);
       letter-spacing: 0.04em;
+      font-family: var(--font-title);
       opacity: 0.8;
       z-index: 5;
       user-select: none;
@@ -162,7 +172,7 @@
 
     /* Only one breakpoint for 768px and below */
     @media (max-width: 768px) {
-      .page-wrapper {
+      .container {
         flex-direction: column;
       }
       .left-title {
@@ -206,7 +216,7 @@
   </style>
 </head>
 <body>
-  <div class="page-wrapper">
+  <div class="container">
     <div class="left-title">
       SOLANI<br>
       ILLUSTRATION<br>
