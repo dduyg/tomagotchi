@@ -2,367 +2,381 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LiminalLoop</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
-      background: #0a0a0a url('https://cdn.sanity.io/images/b1mwlimg/production/bf6ecae27d43dd3573799600490e9210a69f500f-3000x1278.png') center/cover no-repeat; /* Replace with actual background image if needed */
-      color: #fff;
-      font-family: 'Playfair Display', Georgia, serif;
-      min-height: 100vh;
-      box-sizing: border-box;
     }
     body {
       min-height: 100vh;
-      width: 100vw;
-      overflow-x: hidden;
-      background-blend-mode: lighten;
+      background: #000 url('https://cdn.sanity.io/images/b1mwlimg/production/bf6ecae27d43dd3573799600490e9210a69f500f-3000x1278.png') no-repeat center center fixed; /* Replace with actual bg or svg if needed */
+      background-size: cover;
+      color: #fff;
+      font-family: 'EB Garamond', Garamond, serif;
+      font-size: 18px;
+      letter-spacing: 0.01em;
       position: relative;
+      overflow-x: hidden;
     }
-    .page-projects-container {
+    .main-container {
       display: flex;
       flex-direction: row;
       height: 100vh;
-      min-height: 100vh;
       width: 100vw;
+      box-sizing: border-box;
       position: relative;
-      z-index: 2;
+      z-index: 1;
     }
     .title-column {
-      flex: 0 0 270px;
+      flex: 0 0 245px;
+      min-width: 180px;
+      max-width: 25vw;
+      background: transparent;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      padding: 32px 0 0 32px;
-      font-size: 2.2rem;
-      line-height: 1.0;
-      letter-spacing: 0.02em;
+      padding: 36px 0 0 32px;
+      font-family: 'EB Garamond', Garamond, serif;
+      font-size: 2.1em;
       font-weight: 400;
-      z-index: 3;
-      min-width: 200px;
+      line-height: 1.0;
+      letter-spacing: 0.01em;
+      z-index: 2;
     }
-    .title-column span {
-      display: block;
-      margin-bottom: 0.2em;
+    .title-text {
+      white-space: pre-line;
+      font-size: 2.1em;
+      font-weight: 400;
+      line-height: 1.07;
+      letter-spacing: 0.01em;
+      margin-bottom: 0;
+      margin-top: 0;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.22);
+      user-select: none;
     }
-
     .index-column {
       flex: 1 1 0;
       display: flex;
       flex-direction: column;
-      padding: 24px 48px 24px 32px;
+      background: transparent;
+      padding: 0 32px;
       min-width: 0;
-      position: relative;
-      z-index: 3;
     }
     .projects-header {
+      margin-top: 38px;
+      margin-bottom: 7px;
       display: flex;
       flex-direction: row;
       align-items: flex-end;
-      margin-bottom: 8px;
-      gap: 24px;
+      position: relative;
+      z-index: 2;
     }
-    .projects-header .projects-title {
-      font-size: 3.2rem;
+    .projects-header .projects-b {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.18em;
+      font-weight: 400;
+      margin-right: 7px;
+      letter-spacing: 0.06em;
+      transform: translateY(-1px);
+      opacity: 0.85;
+    }
+    .projects-title {
+      font-family: 'EB Garamond', serif;
+      font-size: 3.4em;
       font-weight: 400;
       letter-spacing: 0.04em;
+      margin: 0 18px 0 0;
       line-height: 1.0;
-      margin-right: 16px;
-      position: relative;
-    }
-    .projects-header .projects-title::before {
-      content: 'B';
-      position: absolute;
-      left: -1.5em;
-      top: 0.12em;
-      font-size: 1rem;
-      font-family: serif;
-      opacity: 0.8;
-      letter-spacing: 0;
-      font-weight: normal;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.22);
+      display: inline-block;
     }
     .projects-nav {
+      flex: 1 1 auto;
       display: flex;
-      flex-direction: row;
+      justify-content: flex-end;
       align-items: flex-end;
-      gap: 24px;
-      margin-left: auto;
-      font-size: 1.1rem;
-      font-family: inherit;
-      font-weight: 400;
+      gap: 15px;
+      font-size: 1.12em;
+      font-family: 'EB Garamond', serif;
+      margin-bottom: 7px;
     }
     .projects-nav a {
-      color: #fff;
+      color: #ddd;
       text-decoration: none;
-      opacity: 0.7;
-      transition: opacity 0.2s;
-      font-size: 1.05rem;
-      margin-right: 4px;
+      opacity: 0.85;
+      margin-left: 0.7em;
+      font-size: 1em;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      transition: color 0.18s, opacity 0.18s;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 1px;
     }
-    .projects-nav a.selected, .projects-nav a:hover {
+    .projects-nav a.active, .projects-nav a:hover {
+      color: #fff;
       opacity: 1;
-      text-decoration: underline;
+      border-bottom: 2px solid #fff;
     }
-    .projects-separator {
+    .projects-header-underline {
       width: 100%;
-      border: none;
-      border-top: 2px solid #fff;
-      margin: 10px 0 16px 0;
-      opacity: 0.4;
+      height: 2px;
+      background: #fff;
+      opacity: 0.16;
+      margin-top: 7px;
+      margin-bottom: 0.5em;
+      position: relative;
+      z-index: 1;
     }
-    .projects-list {
-      flex: 1 1 0;
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-      overflow-y: auto;
-      /* To allow the list to scroll if it's long */
-      min-height: 0;
+    .project-list {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      list-style: none;
       z-index: 2;
+      position: relative;
     }
     .project-item {
       display: flex;
-      flex-direction: row;
       align-items: flex-start;
-      font-size: 1.7rem;
-      line-height: 1.1;
-      font-family: inherit;
+      margin-bottom: 22px;
+      font-family: 'EB Garamond', serif;
     }
     .project-number {
-      font-size: 1.1rem;
-      font-family: 'Playfair Display', Georgia, serif;
-      opacity: 0.8;
-      width: 2em;
-      flex-shrink: 0;
-      margin-right: 0.8em;
+      width: 2.2em;
+      min-width: 2.2em;
+      font-size: 1.16em;
+      opacity: 0.81;
+      font-family: 'EB Garamond', serif;
       text-align: right;
-      margin-top: 0.12em;
+      padding-right: 0.6em;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      user-select: none;
+      margin-top: 2px;
     }
-    .project-main {
+    .project-info {
       display: flex;
       flex-direction: column;
     }
     .project-title {
-      font-size: inherit;
-      font-family: inherit;
+      font-size: 1.55em;
       font-weight: 400;
-      margin-bottom: 0.05em;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 0.09em;
+      letter-spacing: 0.01em;
     }
     .project-type {
-      font-size: 0.93rem;
-      opacity: 0.8;
-      font-family: inherit;
-      margin-left: 0.05em;
+      font-size: 0.78em;
       font-weight: 400;
-      margin-top: -0.2em;
+      color: #d6d6d6;
+      opacity: 0.98;
+      font-family: 'EB Garamond', serif;
+      letter-spacing: 0.01em;
     }
 
-    /* Scrollbar - subtle, dark */
-    .projects-list {
-      scrollbar-width: thin;
-      scrollbar-color: #333 #111;
-    }
-    .projects-list::-webkit-scrollbar {
-      width: 8px;
-      background: #111;
-    }
-    .projects-list::-webkit-scrollbar-thumb {
-      background: #333;
-      border-radius: 4px;
-    }
-
-    /* Responsive for mobile */
-    @media (max-width: 900px) {
-      .page-projects-container {
+    /* Responsiveness */
+    @media (max-width: 800px) {
+      .main-container {
         flex-direction: column;
-        height: auto;
         min-height: 100vh;
       }
       .title-column {
         flex: none;
+        max-width: none;
         width: 100%;
         min-width: 0;
-        padding: 22px 0 0 16px;
-        font-size: 1.5rem;
-        align-items: flex-start;
-        justify-content: flex-start;
+        padding: 24px 0 0 0;
+        align-items: center;
+        text-align: center;
       }
       .index-column {
-        flex: none;
         width: 100%;
-        min-width: 0;
-        padding: 16px 10px 16px 10px;
+        padding: 0 10px;
       }
-      .projects-header .projects-title {
-        font-size: 2.1rem;
+      .projects-header {
+        margin-top: 23px;
+        margin-bottom: 7px;
+        flex-direction: row;
+        align-items: flex-end;
       }
-      .projects-header .projects-title::before {
-        font-size: 0.85rem;
-        left: -1.1em;
-      }
-      .projects-nav {
-        font-size: 1rem;
-        gap: 14px;
-      }
-      .projects-separator {
-        margin: 7px 0 10px 0;
-      }
-      .project-item {
-        font-size: 1.14rem;
-      }
-      .project-number {
-        font-size: 0.93rem;
-        width: 1.4em;
-        margin-right: 0.5em;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .title-column {
-        font-size: 1.15rem;
-        padding: 12px 0 0 8px;
-      }
-      .index-column {
-        padding: 8px 2vw 8px 2vw;
-      }
-      .projects-header .projects-title {
-        font-size: 1.45rem;
-      }
-      .projects-header .projects-title::before {
-        font-size: 0.6rem;
-        left: -0.7em;
+      .projects-title {
+        font-size: 2.3em;
       }
       .projects-nav {
-        font-size: 0.95rem;
+        font-size: 0.96em;
         gap: 8px;
       }
-      .project-item {
-        font-size: 0.97rem;
+    }
+    @media (max-width: 530px) {
+      .main-container {
+        flex-direction: column;
+        min-height: 100vh;
       }
-      .project-number {
-        font-size: 0.85rem;
-        width: 1.1em;
-        margin-right: 0.35em;
+      .title-column {
+        width: 100%;
+        min-width: 0;
+        max-width: none;
+        padding: 19px 0 0 0;
+        align-items: center;
+        text-align: center;
+        font-size: 1.38em;
       }
+      .index-column {
+        width: 100%;
+        padding: 0 2vw;
+      }
+      .projects-header {
+        margin-top: 15px;
+        margin-bottom: 6px;
+      }
+      .projects-title {
+        font-size: 1.5em;
+      }
+      .projects-nav {
+        font-size: 0.88em;
+        gap: 5px;
+      }
+      .project-title {
+        font-size: 1.15em;
+      }
+    }
+    /* Optional: overlay for background effect as in screenshot */
+    body::before {
+      content:'';
+      position:fixed;
+      top:0;left:0;width:100vw;height:100vh;z-index:0;
+      background:rgba(0,0,0,0.82);
+      pointer-events:none;
+    }
+    /* Hide scrollbars for aesthetic, optional */
+    ::-webkit-scrollbar {width:0;background:transparent;}
+    /* Selection highlight */
+    ::selection {
+      background: #555;
+      color: #fff;
     }
   </style>
 </head>
 <body>
-  <div class="page-projects-container">
+  <div class="main-container">
     <aside class="title-column">
-      <span>SOLANI</span>
-      <span>ILLUSTRATION</span>
-      <span>PORTFOLIO.</span>
+      <div class="title-text">
+        SOLANI<br>
+        ILLUSTRATION<br>
+        PORTFOLIO.
+      </div>
     </aside>
     <main class="index-column">
       <div class="projects-header">
-        <div class="projects-title">PROJECTS</div>
+        <span class="projects-b">B</span>
+        <span class="projects-title">PROJECTS</span>
         <nav class="projects-nav">
-          <a href="#" class="selected">All</a>
+          <a href="#" class="active">All</a>
           <a href="#">Commission</a>
           <a href="#">Personal</a>
           <a href="#">Fan Art</a>
         </nav>
       </div>
-      <hr class="projects-separator">
-      <section class="projects-list">
-        <div class="project-item">
-          <div class="project-number">1</div>
-          <div class="project-main">
-            <div class="project-title">the tilt of the scales</div>
-            <div class="project-type">Commission</div>
+      <div class="projects-header-underline"></div>
+      <ol class="project-list">
+        <li class="project-item">
+          <span class="project-number">1</span>
+          <div class="project-info">
+            <span class="project-title">the tilt of the scales</span>
+            <span class="project-type">Commission</span>
           </div>
-        </div>
-        <div class="project-item">
-          <div class="project-number">2</div>
-          <div class="project-main">
-            <div class="project-title">ENigmatic Recollection</div>
-            <div class="project-type">Commission</div>
+        </li>
+        <li class="project-item">
+          <span class="project-number">2</span>
+          <div class="project-info">
+            <span class="project-title">ENigmatic Recollection</span>
+            <span class="project-type">Commission</span>
           </div>
-        </div>
-        <div class="project-item">
-          <div class="project-number">3</div>
-          <div class="project-main">
-            <div class="project-title">Liberty</div>
-            <div class="project-type">Commission</div>
+        </li>
+        <li class="project-item">
+          <span class="project-number">3</span>
+          <div class="project-info">
+            <span class="project-title">Liberty</span>
+            <span class="project-type">Commission</span>
           </div>
-        </div>
-        <div class="project-item">
-          <div class="project-number">4</div>
-          <div class="project-main">
-            <div class="project-title">Realize</div>
-            <div class="project-type">Commission</div>
+        </li>
+        <li class="project-item">
+          <span class="project-number">4</span>
+          <div class="project-info">
+            <span class="project-title">Realize</span>
+            <span class="project-type">Commission</span>
           </div>
-        </div>
-        <div class="project-item">
-          <div class="project-number">5</div>
-          <div class="project-main">
-            <div class="project-title">Igniters</div>
-            <div class="project-type">Commission</div>
+        </li>
+        <li class="project-item">
+          <span class="project-number">5</span>
+          <div class="project-info">
+            <span class="project-title">Igniters</span>
+            <span class="project-type">Commission</span>
           </div>
-        </div>
-        <div class="project-item">
-          <div class="project-number">6</div>
-          <div class="project-main">
-            <div class="project-title">wheel track</div>
-            <div class="project-type">Commission</div>
+        </li>
+        <li class="project-item">
+          <span class="project-number">6</span>
+          <div class="project-info">
+            <span class="project-title">wheel track</span>
+            <span class="project-type">Commission</span>
           </div>
-        </div>
-        <div class="project-item">
-          <div class="project-number">7</div>
-          <div class="project-main">
-            <div class="project-title">Q&I |</div>
-            <div class="project-type">Commission</div>
+        </li>
+        <li class="project-item">
+          <span class="project-number">7</span>
+          <div class="project-info">
+            <span class="project-title">Q&I |</span>
+            <span class="project-type">Commission</span>
           </div>
-        </div>
-        <div class="project-item">
-          <div class="project-number">8</div>
-          <div class="project-main">
-            <div class="project-title">BRAVERY</div>
-            <div class="project-type">Commission</div>
+        </li>
+        <li class="project-item">
+          <span class="project-number">8</span>
+          <div class="project-info">
+            <span class="project-title">BRAVERY</span>
+            <span class="project-type">Commission</span>
           </div>
-        </div>
-        <div class="project-item">
-          <div class="project-number">9</div>
-          <div class="project-main">
-            <div class="project-title">youth is a ghost</div>
-            <div class="project-type">Commission</div>
+        </li>
+        <li class="project-item">
+          <span class="project-number">9</span>
+          <div class="project-info">
+            <span class="project-title">youth is a ghost</span>
+            <span class="project-type">Commission</span>
           </div>
-        </div>
-        <div class="project-item">
-          <div class="project-number">10</div>
-          <div class="project-main">
-            <div class="project-title">parallèle rendez-vous</div>
-            <div class="project-type">Commission</div>
+        </li>
+        <li class="project-item">
+          <span class="project-number">10</span>
+          <div class="project-info">
+            <span class="project-title">parallèle rendez-vous</span>
+            <span class="project-type">Commission</span>
           </div>
-        </div>
-        <div class="project-item">
-          <div class="project-number">11</div>
-          <div class="project-main">
-            <div class="project-title">Platform5</div>
-            <div class="project-type">Commission</div>
+        </li>
+        <li class="project-item">
+          <span class="project-number">11</span>
+          <div class="project-info">
+            <span class="project-title">Platform5</span>
+            <span class="project-type">Commission</span>
           </div>
-        </div>
-        <div class="project-item">
-          <div class="project-number">12</div>
-          <div class="project-main">
-            <div class="project-title">CLIFFHEART</div>
-            <div class="project-type">Commission</div>
+        </li>
+        <li class="project-item">
+          <span class="project-number">12</span>
+          <div class="project-info">
+            <span class="project-title">CLIFFHEART</span>
+            <span class="project-type">Commission</span>
           </div>
-        </div>
-        <div class="project-item">
-          <div class="project-number">13</div>
-          <div class="project-main">
-            <div class="project-title">Azusagawa KV/02</div>
-            <div class="project-type">Commission</div>
+        </li>
+        <li class="project-item">
+          <span class="project-number">13</span>
+          <div class="project-info">
+            <span class="project-title">Azusagawa KV/02</span>
+            <span class="project-type">Commission</span>
           </div>
-        </div>
-      </section>
+        </li>
+      </ol>
     </main>
   </div>
 </body>
