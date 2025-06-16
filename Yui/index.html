@@ -27,6 +27,7 @@
     }
     .page-wrapper {
       position: relative;
+      padding: 10px;
       display: flex;
       flex-direction: row;
       min-height: 100vh;
@@ -69,7 +70,7 @@
       margin-right: 16px;
     }
     .nav-links {
-      font-size: 1.1rem;
+      font-size: 0.9rem;
       margin-left: 12px;
       display: flex;
       gap: 18px;
@@ -82,9 +83,7 @@
       border: none;
       background: transparent;
     }
-    .nav-link:hover {
-      color: #fff;
-    }
+    .nav-link:hover { color: #fff; }
     
     .project-list {
       margin-top: 12px;
@@ -128,16 +127,14 @@
       font-weight: 400;
       opacity: 0.8;
     }
-    .menu-vertical {
-      position: absolute;
-      left: -42px;
-      top: 58%;
+    .vertical {
+      position: fixed;
+      left: 0;
+      bottom: 0;
       writing-mode: vertical-rl;
       text-orientation: mixed;
       font-size: 1.0rem;
-      color: #fff;
       letter-spacing: 0.04em;
-      opacity: 0.8;
       z-index: 5;
       user-select: none;
       cursor: pointer;
@@ -287,8 +284,8 @@
         </div>
         <!-- Add more project rows as needed -->
       </div>
-      <div class="menu-vertical">MENU</div>
     </main>
   </div>
+<div class="vertical">( MENU )</div>
 </body>
 </html>
