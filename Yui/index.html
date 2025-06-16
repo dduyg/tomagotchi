@@ -1,154 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Solani Illustration Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SoPortfolio</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
     body {
-      background-color: #0a0a0a;
-      color: #fff;
+      margin: 0;
       font-family: 'Georgia', serif;
-      line-height: 1.6;
-      background-image: url('https://cdn.sanity.io/images/b1mwlimg/production/bf6ecae27d43dd3573799600490e9210a69f500f-3000x1278.png'); /* Replace with actual background if needed */
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
+      background-color: black;
+      color: white;
+      overflow-x: hidden;
     }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
     .container {
       display: flex;
       flex-direction: row;
-      min-height: 100vh;
-    }
+  min-height: 100vh;
+}
 
-    .sidebar {
-      flex: 1;
-      padding: 2rem 1rem;
-      font-size: 1.5rem;
-      line-height: 2rem;
-      text-align: left;
-      border-right: 1px solid #333;
-    }
+.title-column {
+  flex: 0 0 200px;
+  padding: 20px;
+  font-size: 1.8em;
+  text-transform: uppercase;
+  line-height: 1.2em;
+  white-space: nowrap;
+}
 
-    .main {
-      flex: 3;
-      padding: 2rem 1.5rem;
-    }
+.content-column {
+  flex-grow: 1;
+  padding: 20px;
+  position: relative;
+}
 
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 1.5rem;
-    }
+.nav {
+  display: flex;
+  gap: 1.5em;
+  border-bottom: 1px solid white;
+  margin-bottom: 20px;
+  font-size: 0.9em;
+}
 
-    .header h1 {
-      font-size: 2rem;
-      font-weight: normal;
-      text-transform: uppercase;
-    }
+.nav a {
+  text-decoration: none;
+  color: white;
+  opacity: 0.7;
+}
 
-    .nav {
-      display: flex;
-      gap: 1rem;
-      font-size: 0.9rem;
-    }
+.nav a:hover, .nav a.active {
+  opacity: 1;
+  font-weight: bold;
+}
 
-    .nav a {
-      text-transform: capitalize;
-      border-bottom: 1px solid transparent;
-    }
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-    .nav a:hover,
-    .nav a.active {
-      border-color: white;
-    }
+.project-list li {
+  margin: 15px 0;
+}
 
-    .project-list {
-      list-style: none;
-      margin-top: 1rem;
-    }
+.project-title {
+  font-size: 1.2em;
+}
 
-    .project-item {
-      margin-bottom: 1rem;
-    }
+.project-type {
+  font-size: 0.85em;
+  opacity: 0.7;
+}
 
-    .project-item span {
-      display: block;
-      font-size: 1rem;
-    }
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
 
-    .project-item .title {
-      font-size: 1.2rem;
-      text-transform: lowercase;
-    }
+  .title-column {
+    text-align: center;
+    border-bottom: 1px solid white;
+  }
 
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-      }
+  .content-column {
+    padding: 10px;
+  }
 
-      .sidebar {
-        border-right: none;
-        border-bottom: 1px solid #333;
-        text-align: center;
-      }
+  .nav {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
 
-      .header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav {
-        flex-wrap: wrap;
-        margin-top: 0.5rem;
-      }
-    }
   </style>
 </head>
 <body>
   <div class="container">
-    <aside class="sidebar">
-      <div>SOLANI<br>ILLUSTRATION<br>PORTFOLIO</div>
-    </aside>
-    <main class="main">
-      <div class="header">
-        <h1>PROJECTS</h1>
-        <nav class="nav">
-          <a href="#" class="active">All</a>
-          <a href="#">Commission</a>
-          <a href="#">Personal</a>
-          <a href="#">Fan Art</a>
-        </nav>
+    <div class="title-column">
+      SOLANI<br>
+      ILLUSTRATION<br>
+      PORTFOLIO
+    </div>
+    <div class="content-column">
+      <h2>PROJECTS</h2>
+      <div class="nav">
+        <a href="#" class="active">All</a>
+        <a href="#">Commission</a>
+        <a href="#">Personal</a>
+        <a href="#">Fan Art</a>
       </div>
       <ul class="project-list">
-        <li class="project-item"><span>1</span><span class="title">the tilt of the scales</span><span>Commission</span></li>
-        <li class="project-item"><span>2</span><span class="title">ENigmatic Recollection</span><span>Commission</span></li>
-        <li class="project-item"><span>3</span><span class="title">Liberty</span><span>Commission</span></li>
-        <li class="project-item"><span>4</span><span class="title">Realize</span><span>Commission</span></li>
-        <li class="project-item"><span>5</span><span class="title">Igniters</span><span>Commission</span></li>
-        <li class="project-item"><span>6</span><span class="title">wheel track</span><span>Commission</span></li>
-        <li class="project-item"><span>7</span><span class="title">Q&I</span><span>Commission</span></li>
-        <li class="project-item"><span>8</span><span class="title">BRAVERY</span><span>Commission</span></li>
-        <li class="project-item"><span>9</span><span class="title">youth is a ghost</span><span>Commission</span></li>
-        <li class="project-item"><span>10</span><span class="title">parallèle rendez-vous</span><span>Commission</span></li>
-        <li class="project-item"><span>11</span><span class="title">Platform5</span><span>Commission</span></li>
-        <li class="project-item"><span>12</span><span class="title">CLIFFHEART</span><span>Commission</span></li>
-        <li class="project-item"><span>13</span><span class="title">Azusagawa KV/02</span><span>Commission</span></li>
+        <li><div class="project-title">1 the tilt of the scales</div><div class="project-type">Commission</div></li>
+        <li><div class="project-title">2 ENigmatic Recollection</div><div class="project-type">Commission</div></li>
+        <li><div class="project-title">3 Liberty</div><div class="project-type">Commission</div></li>
+        <li><div class="project-title">4 Realize</div><div class="project-type">Commission</div></li>
+        <li><div class="project-title">5 Igniters</div><div class="project-type">Commission</div></li>
+        <li><div class="project-title">6 wheel track</div><div class="project-type">Commission</div></li>
+        <li><div class="project-title">7 Q&I</div><div class="project-type">Commission</div></li>
+        <li><div class="project-title">8 BRAVERY</div><div class="project-type">Commission</div></li>
+        <li><div class="project-title">9 youth is a ghost</div><div class="project-type">Commission</div></li>
+        <li><div class="project-title">10 parallèle rendez-vous</div><div class="project-type">Commission</div></li>
+        <li><div class="project-title">11 Platform5</div><div class="project-type">Commission</div></li>
+        <li><div class="project-title">12 CLIFFHEART</div><div class="project-type">Commission</div></li>
+        <li><div class="project-title">13 Azusagawa KV/02</div><div class="project-type">Commission</div></li>
       </ul>
-    </main>
+    </div>
   </div>
 </body>
 </html>
