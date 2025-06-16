@@ -11,19 +11,16 @@ html, body {
   margin: 0;
   padding: 0;
 }
-
 body {
   min-height: 100vh;
-  background: #0a0a0a url('https://cdn.sanity.io/images/b1mwlimg/production/bf6ecae27d43dd3573799600490e9210a69f500f-3000x1278.png') no-repeat center center fixed;
-  background-size: cover;
-  color: #fff;
+  background: #0a0a0a;
+  color: white;
   font-family: 'EB Garamond', serif;
   letter-spacing: 0.02em;
   position: relative;
   z-index: 1;
   overflow-x: hidden;
 }
-
 body::before {
   content: '';
   position: fixed;
@@ -34,26 +31,11 @@ body::before {
   opacity: 0.8;
   pointer-events: none;
 }
-
 .page-wrapper {
   position: relative;
   z-index: 1;
   width: 100vw;
   min-height: 100vh;
-}
-
-.logo {
-  font-family: 'Oswald', sans-serif;
-  font-size: 2.8rem;
-  font-weight: 400;
-  line-height: 0.95;
-  letter-spacing: 0.01em;
-  text-align: left;
-  margin-right: 50px;
-  margin-top: 0;
-  white-space: pre-line;
-  flex-shrink: 0;
-  user-select: none;
 }
 
 .projects-list {
@@ -68,35 +50,20 @@ body::before {
   gap: 34px;
 }
 
-.projects-list {
-  list-style: none;
-  counter-reset: project-counter;
-  padding-left: 0;
-}
-
 .project-entry {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   gap: 12px;
-  position: relative;
-  counter-increment: project-counter;
-  /* Remove default list style */
-  list-style: none;
-  padding-left: 0;
 }
 
-.project-entry::before {
-  content: counter(project-counter);
-  font-family: 'EB Garamond', serif;
+.project-num {
   font-size: 1.16rem;
-  color: #c0c0c0;
+  margin-right: 16px;
   min-width: 18px;
   text-align: right;
   opacity: 0.8;
-  margin-right: 16px;
   margin-top: 6px;
-  display: block;
 }
 
 .project-info {
@@ -105,71 +72,75 @@ body::before {
 }
 
 .project-title {
-  font-family: 'EB Garamond', serif;
   font-size: 2.15rem;
-  font-weight: 400;
-  color: #fff;
   white-space: pre-line;
   line-height: 1.0;
-  margin: 0 0 0 0;
+  margin: 0;
   letter-spacing: 0.01em;
 }
 
 .project-type {
-  font-family: 'EB Garamond', serif;
   font-size: 1.03rem;
-  color: #c0c0c0;
   margin-top: 2px;
   opacity: 0.95;
-  font-weight: 400;
   letter-spacing: 0.03em;
 }
 
-/* Responsive adjustments for screens <= 768px */
-@media (max-width: 768px) {
-  .logo {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
+@media (max-width: 900px) {
   .projects-title {
-    font-size: 1.4rem;
+    font-size: 2.2rem;
   }
   .projects-list {
-    padding: 0 4px;
+    padding: 0 8px;
     max-width: 100vw;
-    gap: 20px;
   }
   .project-title {
-    font-size: 1rem;
-  }
-  .project-type {
-    font-size: 0.9rem;
+    font-size: 1.25rem;
   }
 }
   </style>
 </head>
 <body>
-  <div class="page-wrapper">
-      <div class="logo">
-        SOLANI<br>
-        ILLUSTRATION<br>
-        PORTFOLIO
-      </div>
+  <main class="page-wrapper">
     
-    <ol class="projects-list">
-      <li class="project-entry">
+    <div class="projects-list">
+      <div class="project-entry">
+        <div class="project-num">1</div>
         <div class="project-info">
           <div class="project-title">the tilt of the scales</div>
           <div class="project-type">Commission</div>
         </div>
-      </li>
-      <li class="project-entry">
+      </div>
+      <div class="project-entry">
+        <div class="project-num">2</div>
         <div class="project-info">
-          <div class="project-title">BRAVERY</div>
+          <div class="project-title">ENigmatic Recollection</div>
           <div class="project-type">Commission</div>
         </div>
-      </li>
-    </ol>
-  </div>
+      </div>
+      <div class="project-entry">
+        <div class="project-num">3</div>
+        <div class="project-info">
+          <div class="project-title">Liberty</div>
+          <div class="project-type">Commission</div>
+        </div>
+      </div>
+      <div class="project-entry">
+        <div class="project-num">4</div>
+        <div class="project-info">
+          <div class="project-title">Realize</div>
+          <div class="project-type">Commission</div>
+        </div>
+      </div>
+      <div class="project-entry">
+        <div class="project-num">5</div>
+        <div class="project-info">
+          <div class="project-title">Igniters</div>
+          <div class="project-type">Commission</div>
+        </div>
+      </div>  
+    </div>
+    
+  </main>
 </body>
 </html>
