@@ -2,350 +2,343 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Projects | Solani Illustration Portfolio</title>
+  <title>Solani Illustration Portfolio - Projects</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Use a serif font similar to the screenshot, fallback to Georgia -->
-  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet">
+  <!-- Use a serif font for classical look; swap for your preferred if needed -->
+  <link href="https://fonts.googleapis.com/css?family=EB+Garamond:400,700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --left-col-width: 260px;
-      --gap: 0px;
-      --nav-height: 90px;
-      --font-main: 'Playfair Display', Georgia, serif;
-      --bg-img: url('https://cdn.sanity.io/images/b1mwlimg/production/bf6ecae27d43dd3573799600490e9210a69f500f-3000x1278.png'); /* Set your real background image here */
-    }
-
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
+      font-family: 'EB Garamond', serif;
+      background: #111;
       color: #fff;
-      font-family: var(--font-main);
-      background: #111 url('background.jpg') no-repeat center center fixed;
-      background-size: cover;
       min-height: 100vh;
       box-sizing: border-box;
     }
 
-    body::before {
-      /* This overlays the background with a transparent black to help text stand out */
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.80);
-      z-index: 0;
-      pointer-events: none;
+    body {
+      /* background image: swap for your own or set to none if not needed */
+      background: #111 url('https://cdn.sanity.io/images/b1mwlimg/production/bf6ecae27d43dd3573799600490e9210a69f500f-3000x1278.png') no-repeat center center fixed;
+      background-size: cover;
     }
 
-    .page-container {
-      position: relative;
+    .page-projects-container {
       display: flex;
+      flex-direction: row;
       min-height: 100vh;
-      z-index: 1;
-      width: 100%;
+      width: 100vw;
     }
 
-    .sidebar {
-      flex: 0 0 var(--left-col-width);
-      max-width: var(--left-col-width);
-      min-width: 160px;
+    .side-title-column {
+      flex: 0 0 260px;
       padding: 32px 0 0 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .sidebar-title {
-      font-size: 2.1rem;
-      line-height: 1.05;
+      font-size: 2.3rem;
+      font-weight: normal;
       letter-spacing: 0.01em;
-      font-family: var(--font-main);
-      font-weight: 700;
+      line-height: 1.05;
       text-align: left;
-      margin-bottom: 0;
-      white-space: pre-line;
-      text-shadow: 0 0 2px #000;
-    }
-
-    .main-content {
-      flex: 1 1 0;
-      padding: 30px 32px 32px 32px;
+      z-index: 2;
+      min-width: 180px;
+      max-width: 320px;
+      word-break: break-word;
       display: flex;
       flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      white-space: pre-line;
     }
 
-    /* Top nav and title row */
-    .projects-header {
+    .main-index-column {
+      flex: 1 1 0%;
+      display: flex;
+      flex-direction: column;
+      padding: 0 0 0 0;
+      z-index: 1;
+      min-width: 0;
+      position: relative;
+    }
+
+    .index-header {
+      padding: 32px 0 12px 0;
       display: flex;
       align-items: flex-end;
-      gap: 18px;
-      margin-bottom: 10px;
-      margin-top: 0;
+      border-bottom: 2px solid #444;
       position: relative;
     }
-
-    .projects-header .projects-title {
-      font-size: 3rem;
-      font-weight: 700;
+    .index-header .projects-title {
+      font-size: 3.5rem;
+      font-weight: normal;
       letter-spacing: 0.01em;
-      font-family: var(--font-main);
-      margin: 0;
-      padding: 0;
+      margin-right: 24px;
       line-height: 1;
-      text-shadow: 0 0 2px #000;
+      position: relative;
+      top: 4px;
     }
-
-    .projects-header .projects-icon {
-      font-size: 1.1rem;
-      font-weight: 400;
-      margin-right: 2px;
-      margin-bottom: 6px;
-      font-family: var(--font-main);
-      opacity: 0.8;
+    .index-header .projects-b {
+      font-size: 1.4rem;
+      font-family: inherit;
+      font-weight: normal;
+      margin-right: 6px;
+      position: relative;
+      bottom: 7px;
+      opacity: 0.7;
     }
-
-    .projects-nav {
+    .index-header .project-nav {
       margin-left: auto;
       display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 4px;
-    }
-
-    .projects-nav a {
-      color: #d3d3d3;
-      text-decoration: none;
+      gap: 22px;
       font-size: 1.1rem;
-      font-family: var(--font-main);
-      padding: 0 7px;
-      transition: color 0.15s;
-      opacity: 0.82;
+      align-items: flex-end;
     }
-
-    .projects-nav a.active,
-    .projects-nav a:hover {
+    .index-header .project-nav .nav-link {
+      color: #ccc;
+      text-decoration: none;
+      font-family: inherit;
+      opacity: 0.95;
+      transition: color 0.2s;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+    }
+    .index-header .project-nav .nav-link.active,
+    .index-header .project-nav .nav-link:hover {
       color: #fff;
-      border-bottom: 1px solid #fff;
-      opacity: 1;
+      border-bottom: 2px solid #fff;
     }
 
-    /* Underline separator below nav */
-    .projects-divider {
-      width: 100%;
-      border-bottom: 2px solid #666;
-      margin-bottom: 18px;
-      margin-top: -6px;
-    }
-
-    /* Project index list */
     .project-list {
-      margin: 0;
-      padding: 0;
       list-style: none;
+      margin: 0;
+      padding: 32px 0 32px 0;
+      counter-reset: project-num;
+      width: 100%;
     }
-
     .project-list li {
       display: flex;
       align-items: flex-start;
-      margin-bottom: 24px;
+      font-size: 2.2rem;
+      margin-bottom: 28px;
+      line-height: 1.1;
+      position: relative;
+      counter-increment: project-num;
     }
-
-    .project-number {
-      font-size: 1.1rem;
-      margin-right: 18px;
-      opacity: 0.82;
-      font-family: var(--font-main);
-      min-width: 2.1rem;
+    .project-list li .project-number {
+      font-size: 1.3rem;
+      color: #b6b6b6;
+      width: 32px;
+      min-width: 24px;
+      display: inline-block;
+      margin-right: 10px;
+      font-family: inherit;
+      font-weight: normal;
+      opacity: 0.8;
       text-align: right;
-      margin-top: 3px;
-      letter-spacing: 0.01em;
     }
-    .project-info {
+    .project-list li .project-title-group {
       display: flex;
       flex-direction: column;
     }
-
-    .project-title {
-      font-size: 2rem;
-      font-weight: 400;
-      font-family: var(--font-main);
-      margin: 0 0 0.12em 0;
-      line-height: 1.1;
-      letter-spacing: 0.01em;
+    .project-list li .project-title {
+      color: #fff;
+      font-size: 2.2rem;
+      font-family: inherit;
+      font-weight: normal;
+      margin-bottom: 3px;
     }
-
-    .project-type {
+    .project-list li .project-type {
+      color: #b6b6b6;
       font-size: 1rem;
-      color: #ccc;
-      font-family: var(--font-main);
-      margin: 0 0 0 0;
-      letter-spacing: 0.02em;
-      opacity: 0.85;
+      font-family: inherit;
+      font-weight: normal;
+      margin-left: 2px;
     }
 
     /* Responsive styles */
     @media (max-width: 900px) {
-      :root { --left-col-width: 170px; }
-      .sidebar { padding-left: 16px; }
-      .main-content { padding: 20px 10px 24px 10px; }
-      .projects-header .projects-title { font-size: 2.1rem; }
-      .sidebar-title { font-size: 1.3rem; }
-      .project-title { font-size: 1.15rem; }
-      .project-number { font-size: 1rem; }
+      .side-title-column {
+        font-size: 1.6rem;
+        padding-left: 16px;
+      }
+      .index-header .projects-title {
+        font-size: 2.3rem;
+      }
+      .project-list li .project-title {
+        font-size: 1.4rem;
+      }
+      .project-list li .project-number {
+        font-size: 1rem;
+      }
     }
 
-    @media (max-width: 650px) {
-      .page-container {
+    @media (max-width: 700px) {
+      .page-projects-container {
         flex-direction: column;
       }
-      .sidebar {
+      .side-title-column {
         width: 100%;
-        max-width: 100%;
         min-width: 0;
-        padding: 20px 14px 0 14px;
-        align-items: flex-start;
-        margin-bottom: 0;
-      }
-      .sidebar-title {
+        max-width: none;
         text-align: left;
-        font-size: 1.25rem;
-        margin-bottom: 0;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 16px 0 0 16px;
       }
-      .main-content {
+      .main-index-column {
         width: 100%;
-        padding: 14px 7px 20px 7px;
+        min-width: 0;
+        padding: 0 0 0 0;
       }
-      .projects-header .projects-title {
-        font-size: 2rem;
+      .index-header {
+        padding: 18px 0 10px 0;
+        flex-direction: column;
+        align-items: flex-start;
+        border-width: 1px;
       }
-      .projects-header {
-        gap: 8px;
+      .index-header .project-nav {
+        margin-left: 0;
+        margin-top: 10px;
+        gap: 18px;
       }
-      .projects-nav a {
-        font-size: 1rem;
-        padding: 0 5px;
+      .project-list {
+        padding: 16px 0 24px 0;
       }
-      .project-title { font-size: 1.05rem; }
-      .project-number { font-size: 0.96rem; }
-      .project-list li { margin-bottom: 16px; }
+      .project-list li {
+        font-size: 1.2rem;
+        margin-bottom: 18px;
+      }
+      .project-list li .project-title {
+        font-size: 1.1rem;
+      }
+      .project-list li .project-number {
+        width: 22px;
+        min-width: 18px;
+        font-size: 0.95rem;
+      }
     }
+
+    /* Ensure text shadows for readability on busy backgrounds */
+    .side-title-column,
+    .main-index-column,
+    .project-title,
+    .projects-title {
+      text-shadow: 0 2px 8px rgba(0,0,0,0.37), 0 1px 1px rgba(0,0,0,0.4);
+    }
+
   </style>
 </head>
 <body>
-  <div class="page-container">
-    <aside class="sidebar">
-      <div class="sidebar-title">
-        SOLANI<br>
-        ILLUSTRATION<br>
-        PORTFOLIO.
-      </div>
-    </aside>
-    <main class="main-content">
-      <div class="projects-header">
-        <span class="projects-icon">B</span>
-        <h1 class="projects-title">PROJECTS</h1>
-        <nav class="projects-nav" aria-label="Project Types">
-          <a href="#" class="active">All</a>
-          <a href="#">Commission</a>
-          <a href="#">Personal</a>
-          <a href="#">Fan Art</a>
+  <div class="page-projects-container">
+    <div class="side-title-column">
+      SOLANI<br>
+      ILLUSTRATION<br>
+      PORTFOLIO.
+    </div>
+    <div class="main-index-column">
+      <div class="index-header">
+        <span class="projects-b">B</span>
+        <span class="projects-title">PROJECTS</span>
+        <nav class="project-nav">
+          <a href="#" class="nav-link active">All</a>
+          <a href="#" class="nav-link">Commission</a>
+          <a href="#" class="nav-link">Personal</a>
+          <a href="#" class="nav-link">Fan Art</a>
         </nav>
       </div>
-      <div class="projects-divider"></div>
-      <ol class="project-list">
+      <ul class="project-list">
         <li>
           <span class="project-number">1</span>
-          <span class="project-info">
+          <span class="project-title-group">
             <span class="project-title">the tilt of the scales</span>
             <span class="project-type">Commission</span>
           </span>
         </li>
         <li>
           <span class="project-number">2</span>
-          <span class="project-info">
+          <span class="project-title-group">
             <span class="project-title">ENigmatic Recollection</span>
             <span class="project-type">Commission</span>
           </span>
         </li>
         <li>
           <span class="project-number">3</span>
-          <span class="project-info">
+          <span class="project-title-group">
             <span class="project-title">Liberty</span>
             <span class="project-type">Commission</span>
           </span>
         </li>
         <li>
           <span class="project-number">4</span>
-          <span class="project-info">
+          <span class="project-title-group">
             <span class="project-title">Realize</span>
             <span class="project-type">Commission</span>
           </span>
         </li>
         <li>
           <span class="project-number">5</span>
-          <span class="project-info">
+          <span class="project-title-group">
             <span class="project-title">Igniters</span>
             <span class="project-type">Commission</span>
           </span>
         </li>
         <li>
           <span class="project-number">6</span>
-          <span class="project-info">
+          <span class="project-title-group">
             <span class="project-title">wheel track</span>
             <span class="project-type">Commission</span>
           </span>
         </li>
         <li>
           <span class="project-number">7</span>
-          <span class="project-info">
-            <span class="project-title">Q&l</span>
+          <span class="project-title-group">
+            <span class="project-title">Q&l ]</span>
             <span class="project-type">Commission</span>
           </span>
         </li>
         <li>
           <span class="project-number">8</span>
-          <span class="project-info">
+          <span class="project-title-group">
             <span class="project-title">BRAVERY</span>
             <span class="project-type">Commission</span>
           </span>
         </li>
         <li>
           <span class="project-number">9</span>
-          <span class="project-info">
+          <span class="project-title-group">
             <span class="project-title">youth is a ghost</span>
             <span class="project-type">Commission</span>
           </span>
         </li>
         <li>
           <span class="project-number">10</span>
-          <span class="project-info">
+          <span class="project-title-group">
             <span class="project-title">parallèle rendez-vous</span>
             <span class="project-type">Commission</span>
           </span>
         </li>
         <li>
           <span class="project-number">11</span>
-          <span class="project-info">
+          <span class="project-title-group">
             <span class="project-title">Platform5</span>
             <span class="project-type">Commission</span>
           </span>
         </li>
         <li>
           <span class="project-number">12</span>
-          <span class="project-info">
+          <span class="project-title-group">
             <span class="project-title">CLIFFHEART</span>
             <span class="project-type">Commission</span>
           </span>
         </li>
         <li>
           <span class="project-number">13</span>
-          <span class="project-info">
+          <span class="project-title-group">
             <span class="project-title">Azusagawa KV/02</span>
             <span class="project-type">Commission</span>
           </span>
         </li>
-      </ol>
-    </main>
+      </ul>
+    </div>
   </div>
 </body>
 </html>
