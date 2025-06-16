@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SOLANI ILLUSTRATION PORTFOLIO | PROJECTS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- You can use a Google Fonts serif for best match, e.g. Playfair Display or Georgia fallback -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 16px;
+      font-family: 'Playfair Display', Georgia, 'Times New Roman', Times, serif;
+      color: #fff;
+      background: #0c0c0c url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      min-height: 100vh;
+      min-width: 100vw;
+    }
+    body {
+      /* Use a dark overlay for readability */
+      position: relative;
+      min-height: 100vh;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+    }
+
+    .sidebar {
+      flex: 0 0 260px;
+      padding: 3rem 2rem 0 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      font-size: 2.15rem;
+      line-height: 1.05;
+      letter-spacing: 0.01em;
+      font-weight: 400;
+      min-width: 200px;
+    }
+    .sidebar span {
+      display: block;
+    }
+
+    .main-content {
+      flex: 1 1 0%;
+      padding: 2.5rem 0 2rem 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .nav-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 2rem;
+      padding-left: 0.5rem;
+      margin-bottom: 1.1rem;
+    }
+    .nav-b {
+      font-family: inherit;
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-right: 0.9rem;
+      position: relative;
+      top: -0.25rem;
+      letter-spacing: 0.2em;
+    }
+    .main-title {
+      font-size: 3rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      margin: 0 2rem 0 0;
+      line-height: 1.1;
+      font-family: inherit;
+    }
+    .nav-filters {
+      flex: 1 1 auto;
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-end;
+      font-size: 1.1rem;
+      color: #bcbcbc;
+      font-family: inherit;
+      border-bottom: 2px solid #bcbcbc;
+      padding-bottom: 0.2rem;
+      margin-bottom: -2px;
+    }
+    .nav-filters .active {
+      color: #fff;
+      font-weight: 700;
+    }
+    .nav-filters a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+      cursor: pointer;
+      padding-bottom: 0.1em;
+    }
+    .nav-filters a:hover {
+      color: #fff;
+    }
+
+    .project-list {
+      margin-top: 1.5rem;
+      padding-left: 1rem;
+      list-style: none;
+      counter-reset: project-num;
+    }
+    .project-list li {
+      counter-increment: project-num;
+      margin-bottom: 1.6rem;
+      font-size: 1.65rem;
+      line-height: 1.08;
+      font-family: inherit;
+      position: relative;
+      padding-left: 2.8rem;
+      max-width: 34rem;
+    }
+    .project-list li::before {
+      content: counter(project-num);
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 1.25rem;
+      font-family: inherit;
+      color: #bcbcbc;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+    }
+    .project-title {
+      font-weight: 400;
+      font-size: 1.1em;
+      display: block;
+      margin-bottom: 0.1em;
+      font-family: inherit;
+    }
+    .project-type {
+      font-size: 1rem;
+      color: #bcbcbc;
+      font-family: inherit;
+      font-weight: 400;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 900px) {
+      .sidebar {
+        font-size: 1.5rem;
+        padding: 2rem 1rem 0 1rem;
+        min-width: 120px;
+      }
+      .main-title {
+        font-size: 2.1rem;
+      }
+      .project-list li {
+        font-size: 1.15rem;
+        padding-left: 2rem;
+      }
+    }
+    @media (max-width: 700px) {
+      .container {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+      }
+      .sidebar {
+        flex: none;
+        width: 100vw;
+        min-width: 0;
+        align-items: flex-start;
+        font-size: 1.25rem;
+        padding: 1.2rem 1rem 0.2rem 1rem;
+        border-bottom: 1px solid #222;
+      }
+      .main-content {
+        flex: none;
+        width: 100vw;
+        height: auto;
+        padding: 1.5rem 0 2rem 0;
+      }
+      .nav-row {
+        flex-direction: row;
+        gap: 1.2rem;
+        padding-left: 0.2rem;
+        margin-bottom: 0.7rem;
+      }
+      .main-title {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+      }
+      .project-list {
+        margin-top: 0.8rem;
+        padding-left: 0.3rem;
+      }
+      .project-list li {
+        font-size: 1.05rem;
+        padding-left: 1.4rem;
+      }
+      .project-list li::before {
+        font-size: 1rem;
+      }
+    }
+    @media (max-width: 480px) {
+      html, body {
+        font-size: 15px;
+      }
+      .sidebar {
+        font-size: 1.1rem;
+        padding: 0.8rem 0.5rem 0.2rem 0.6rem;
+      }
+      .main-title {
+        font-size: 1.12rem;
+      }
+      .main-content {
+        padding: 0.9rem 0 1.2rem 0;
+      }
+      .project-list {
+        margin-top: 0.5rem;
+      }
+      .project-list li {
+        font-size: 1rem;
+        padding-left: 1.1rem;
+        margin-bottom: 1.1rem;
+      }
+      .project-list li::before {
+        font-size: 0.93rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <span>SOLANI</span>
+      <span>ILLUSTRATION</span>
+      <span>PORTFOLIO.</span>
+    </aside>
+    <main class="main-content">
+      <div class="nav-row">
+        <span class="nav-b">B</span>
+        <span class="main-title">PROJECTS</span>
+        <nav class="nav-filters">
+          <a class="active" href="#">All</a>
+          <a href="#">Commission</a>
+          <a href="#">Personal</a>
+          <a href="#">Fan Art</a>
+        </nav>
+      </div>
+      <ol class="project-list">
+        <li>
+          <span class="project-title">the tilt of the scales</span>
+          <span class="project-type">Commission</span>
+        </li>
+        <li>
+          <span class="project-title">ENigmatic Recollection</span>
+          <span class="project-type">Commission</span>
+        </li>
+        <li>
+          <span class="project-title">Liberty</span>
+          <span class="project-type">Commission</span>
+        </li>
+        <li>
+          <span class="project-title">Realize</span>
+          <span class="project-type">Commission</span>
+        </li>
+        <li>
+          <span class="project-title">Igniters</span>
+          <span class="project-type">Commission</span>
+        </li>
+        <li>
+          <span class="project-title">wheel track</span>
+          <span class="project-type">Commission</span>
+        </li>
+        <li>
+          <span class="project-title">Q&I |</span>
+          <span class="project-type">Commission</span>
+        </li>
+        <li>
+          <span class="project-title">BRAVERY</span>
+          <span class="project-type">Commission</span>
+        </li>
+        <li>
+          <span class="project-title">youth is a ghost</span>
+          <span class="project-type">Commission</span>
+        </li>
+        <li>
+          <span class="project-title">parallèle rendez-vous</span>
+          <span class="project-type">Commission</span>
+        </li>
+        <li>
+          <span class="project-title">Platform5</span>
+          <span class="project-type">Commission</span>
+        </li>
+        <li>
+          <span class="project-title">CLIFFHEART</span>
+          <span class="project-type">Commission</span>
+        </li>
+        <li>
+          <span class="project-title">Azusagawa KV/02</span>
+          <span class="project-type">Commission</span>
+        </li>
+      </ol>
+    </main>
+  </div>
+</body>
+</html>
