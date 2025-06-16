@@ -17,12 +17,11 @@
     }
     * {
       box-sizing: border-box;
-    }
+    } 
     html, body {
       margin: 0;
       padding: 0;
-      background: var(--bg-main) url('https://cdn.sanity.io/images/b1mwlimg/production/bf6ecae27d43dd3573799600490e9210a69f500f-3000x1278.png') no-repeat center center fixed; /* Placeholder bg image */
-      background-size: cover;
+      background: var(--bg-main);
       color: var(--text-main);
       font-family: var(--font-base);
       min-height: 100vh;
@@ -30,15 +29,14 @@
       overflow-x: hidden;
     }
     body::before {
-      /* Overlay for background illustration lines - use a custom .png/svg for the lines, or fallback to black bg */
       content: "";
       position: fixed;
       inset: 0;
-      background: url('https://cdn.sanity.io/images/b1mwlimg/production/bf6ecae27d43dd3573799600490e9210a69f500f-3000x1278.png');
-      background-size: cover;
+      background: url('https://cdn.sanity.io/images/b1mwlimg/production/bf6ecae27d43dd3573799600490e9210a69f500f-3000x1278.png') center/cover no-repeat;
       opacity: 0.25;
       z-index: 0;
       pointer-events: none;
+      filter: brightness(0.9) contrast(1.2);
     }
     .container {
       position: relative;
