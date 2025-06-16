@@ -42,200 +42,85 @@ body::before {
   min-height: 100vh;
 }
 
-.logo {
-  font-family: 'Oswald', sans-serif;
-  font-size: 2.8rem;
-  font-weight: 400;
-  line-height: 0.95;
-  letter-spacing: 0.01em;
-  text-align: left;
-  margin-right: 50px;
-  margin-top: 0;
-  white-space: pre-line;
-  flex-shrink: 0;
-  user-select: none;
-}
-
-.projects-list {
-  width: 100%;
-  max-width: 700px;
-  margin: 50px auto 0 auto;
-  padding: 0 32px;
-  z-index: 2;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 34px;
-}
-
-.projects-list {
-  list-style: none;
-  counter-reset: project-counter;
-  padding-left: 0;
-}
-
-.project-entry {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 12px;
-  position: relative;
-  counter-increment: project-counter;
-  /* Remove default list style */
-  list-style: none;
-  padding-left: 0;
-}
-
-.project-entry::before {
-  content: counter(project-counter);
-  font-family: 'EB Garamond', serif;
-  font-size: 1.16rem;
-  color: #c0c0c0;
-  min-width: 18px;
-  text-align: right;
-  opacity: 0.8;
-  margin-right: 16px;
-  margin-top: 6px;
-  display: block;
-}
-
-.project-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.project-title {
-  font-family: 'EB Garamond', serif;
-  font-size: 2.15rem;
-  font-weight: 400;
-  color: #fff;
-  white-space: pre-line;
-  line-height: 1.0;
-  margin: 0 0 0 0;
-  letter-spacing: 0.01em;
-}
-
-.project-type {
-  font-family: 'EB Garamond', serif;
-  font-size: 1.03rem;
-  color: #c0c0c0;
-  margin-top: 2px;
-  opacity: 0.95;
-  font-weight: 400;
-  letter-spacing: 0.03em;
-}
-
-/* Responsive adjustments for screens <= 768px */
-@media (max-width: 768px) {
-  .logo {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  .projects-title {
-    font-size: 1.4rem;
-  }
-  .projects-list {
-    padding: 0 4px;
-    max-width: 100vw;
-    gap: 20px;
-  }
-  .project-title {
-    font-size: 1rem;
-  }
-  .project-type {
-    font-size: 0.9rem;
-  }
-}
+.project-list {
+      margin-top: 1.5rem;
+      padding-left: 1rem;
+      list-style: none;
+      counter-reset: project-num;
+    }
+    .project-list li {
+      counter-increment: project-num;
+      margin-bottom: 1.6rem;
+      font-size: 1.65rem;
+      line-height: 1.08;
+      font-family: inherit;
+      position: relative;
+      padding-left: 2.8rem;
+      max-width: 34rem;
+    }
+    .project-list li::before {
+      content: counter(project-num);
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 1.25rem;
+      font-family: inherit;
+      color: #bcbcbc;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+    }
+    .project-title {
+      font-weight: 400;
+      font-size: 1.1em;
+      display: block;
+      margin-bottom: 0.1em;
+      font-family: inherit;
+    }
+    .project-type {
+      font-size: 1rem;
+      color: #bcbcbc;
+      font-family: inherit;
+      font-weight: 400;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    @media (max-width: 700px) {
+      .project-list {
+        margin-top: 0.8rem;
+        padding-left: 0.3rem;
+      }
+      .project-list li {
+        font-size: 1.05rem;
+        padding-left: 1.4rem;
+      }
+      .project-list li::before {
+        font-size: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="page-wrapper">
-      <div class="logo">
-        SOLANI<br>
-        ILLUSTRATION<br>
-        PORTFOLIO
-      </div>
     
-    <ol class="projects-list">
-      <li class="project-entry">
-        <div class="project-info">
-          <div class="project-title">the tilt of the scales</div>
-          <div class="project-type">Commission</div>
-        </div>
-      </li>
-      <li class="project-entry">
-        <div class="project-info">
-          <div class="project-title">ENigmatic Recollection</div>
-          <div class="project-type">Commission</div>
-        </div>
-      </li>
-      <li class="project-entry">
-        <div class="project-info">
-          <div class="project-title">Liberty</div>
-          <div class="project-type">Commission</div>
-        </div>
-      </li>
-      <li class="project-entry">
-        <div class="project-info">
-          <div class="project-title">Realize</div>
-          <div class="project-type">Commission</div>
-        </div>
-      </li>
-      <li class="project-entry">
-        <div class="project-info">
-          <div class="project-title">Igniters</div>
-          <div class="project-type">Commission</div>
-        </div>
-      </li>
-      <li class="project-entry">
-        <div class="project-info">
-          <div class="project-title">wheel track</div>
-          <div class="project-type">Commission</div>
-        </div>
-      </li>
-      <li class="project-entry">
-        <div class="project-info">
-          <div class="project-title">Q&I</div>
-          <div class="project-type">Commission</div>
-        </div>
-      </li>
-      <li class="project-entry">
-        <div class="project-info">
-          <div class="project-title">BRAVERY</div>
-          <div class="project-type">Commission</div>
-        </div>
-      </li>
-      <li class="project-entry">
-        <div class="project-info">
-          <div class="project-title">youth is a ghost</div>
-          <div class="project-type">Commission</div>
-        </div>
-      </li>
-      <li class="project-entry">
-        <div class="project-info">
-          <div class="project-title">parallèle rendez-vous</div>
-          <div class="project-type">Commission</div>
-        </div>
-      </li>
-      <li class="project-entry">
-        <div class="project-info">
-          <div class="project-title">Platform5</div>
-          <div class="project-type">Commission</div>
-        </div>
-      </li>
-      <li class="project-entry">
-        <div class="project-info">
-          <div class="project-title">CLIFFHEART</div>
-          <div class="project-type">Commission</div>
-        </div>
-      </li>
-      <li class="project-entry">
-        <div class="project-info">
-          <div class="project-title">Azusagawa KV/02</div>
-          <div class="project-type">Commission</div>
-        </div>
-      </li>
-    </ol>
+      <ol class="project-list">
+        <li>
+          <span class="project-title">the tilt of the scales</span>
+          <span class="project-type">Commission</span>
+        </li>
+        <li>
+          <span class="project-title">ENigmatic Recollection</span>
+          <span class="project-type">Commission</span>
+        </li>
+        <li>
+          <span class="project-title">Q&I |</span>
+          <span class="project-type">Commission</span>
+        </li>
+        <li>
+          <span class="project-title">BRAVERY</span>
+          <span class="project-type">Commission</span>
+        </li>
+      </ol>
+
   </div>
 </body>
 </html>
