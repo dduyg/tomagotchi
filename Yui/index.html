@@ -6,10 +6,8 @@
   <title>Liminal🍡Loop</title>
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; } 
+    * { box-sizing: border-box; margin: 0; padding: 0; } 
     html, body {
-      margin: 0;
-      padding: 0;
       background: #0c0c0c;
       color: #fff;
       font-family: 'Playfair Display', serif;
@@ -56,7 +54,7 @@
       flex-direction: column;
       z-index: 2;
     }
-    .projects-nav {
+    nav {
       display: flex;
       align-items: center;
       gap: 24px;
@@ -65,38 +63,29 @@
       padding: 0 0 4px 0;
       margin-bottom: 12px;
     }
-    .projects-nav .logo {
-      font-size: 1.2rem;
-      margin-right: 12px;
-      font-weight: bold;
-      letter-spacing: 0.05em;
-    }
-    .projects-nav .nav-title {
+    .nav-title {
       font-size: 2.8rem;
       letter-spacing: 0.04em;
       margin-right: 16px;
     }
-    .projects-nav .nav-links {
+    .nav-links {
       font-size: 1.1rem;
       margin-left: 12px;
       display: flex;
       gap: 18px;
     }
-    .projects-nav .nav-link {
+    .nav-link {
       color: #999;
       text-decoration: none;
-      font-weight: 400;
-      transition: color 0.15s;
+      transition: color 0.5s;
       cursor: pointer;
       border: none;
       background: transparent;
-      padding: 0;
     }
-    .projects-nav .nav-link.active,
-    .projects-nav .nav-link:hover {
+    .nav-link:hover {
       color: #fff;
-      border-bottom: 1px solid #fff;
     }
+    
     .project-list {
       margin-top: 12px;
       overflow-y: auto;
@@ -154,11 +143,8 @@
       cursor: pointer;
     }
 
-    /* Only one breakpoint for 768px and below */
     @media (max-width: 768px) {
-      .page-wrapper {
-        flex-direction: column;
-      }
+      .page-wrapper { flex-direction: column; }
       header {
         flex: none;
         width: 100%;
@@ -182,33 +168,22 @@
         font-size: 1rem;
         padding-left: 0px;
       }
-      .projects-nav .nav-title {
-        font-size: 1.2rem;
-      }
+      .nav-title { font-size: 1.2rem; }
       .project-row {
         font-size: 0.97rem;
         margin-bottom: 18px;
         padding-left: 4px;
       }
-      .project-title {
-        font-size: 1.06rem;
-      }
-      .project-type {
-        font-size: 0.97rem;
-      }
+      .project-title { font-size: 1.06rem; }
+      .project-type { font-size: 0.97rem; }
     }
   </style>
 </head>
 <body>
   <div class="page-wrapper">
-    <header>
-      SOLANI<br>
-      ILLUSTRATION<br>
-      PORTFOLIO
-    </header>
+    <header>SOLANI<br>ILLUSTRATION<br>PORTFOLIO</header>
     <main>
-      <div class="projects-nav">
-        <span class="logo">B</span>
+      <nav>
         <span class="nav-title">PROJECTS</span>
         <div class="nav-links">
           <button class="nav-link active">All</button>
@@ -216,7 +191,8 @@
           <button class="nav-link">Personal</button>
           <button class="nav-link">Fan Art</button>
         </div>
-      </div>
+      </nav>
+  
       <div class="project-list">
         <div class="project-row">
           <div class="project-number">1</div>
