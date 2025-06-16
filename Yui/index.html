@@ -6,20 +6,6 @@
   <meta name="viewport" content="width=700, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <style>
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Oswald:wght@400;700&display=swap');
-
-:root {
-  --font-title: 'EB Garamond', serif;
-  --font-display: 'Oswald', sans-serif;
-  --font-main: 'EB Garamond', serif;
-  --color-bg: #0a0a0a;
-  --color-fg: #fff;
-  --color-sub: #c0c0c0;
-  --color-line: #b5b5b5;
-  --color-filter-tab: #fff;
-  --color-filter-tab-inactive: #bcbcbc;
-  --transition: 0.2s;
-}
-
 html, body {
   height: 100%;
   margin: 0;
@@ -28,10 +14,10 @@ html, body {
 
 body {
   min-height: 100vh;
-  background: var(--color-bg) url('https://cdn.sanity.io/images/b1mwlimg/production/bf6ecae27d43dd3573799600490e9210a69f500f-3000x1278.png') no-repeat center center fixed;
+  background: #0a0a0a url('https://cdn.sanity.io/images/b1mwlimg/production/bf6ecae27d43dd3573799600490e9210a69f500f-3000x1278.png') no-repeat center center fixed;
   background-size: cover;
-  color: var(--color-fg);
-  font-family: var(--font-main);
+  color: #fff;
+  font-family: 'EB Garamond', serif;
   letter-spacing: 0.02em;
   position: relative;
   z-index: 1;
@@ -56,20 +42,8 @@ body::before {
   min-height: 100vh;
 }
 
-.header {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 100%;
-  padding: 24px 36px 0 36px;
-  box-sizing: border-box;
-  z-index: 2;
-  position: relative;
-}
-
 .logo {
-  font-family: var(--font-display);
+  font-family: 'Oswald', sans-serif;
   font-size: 2.8rem;
   font-weight: 400;
   line-height: 0.95;
@@ -80,85 +54,6 @@ body::before {
   white-space: pre-line;
   flex-shrink: 0;
   user-select: none;
-}
-
-.projects-title-block {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.projects-title-row {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  gap: 10px;
-}
-
-.projects-title-lead {
-  font-family: var(--font-title);
-  font-size: 1.1rem;
-  letter-spacing: 0.1em;
-  margin-right: 8px;
-  margin-bottom: 7px;
-  opacity: 0.7;
-}
-
-.projects-title {
-  font-family: var(--font-title);
-  font-size: 3.8rem;
-  font-weight: 400;
-  letter-spacing: 0.0em;
-  margin: 0 0 0 0;
-  line-height: 1.0;
-}
-
-.filter-tabs {
-  display: flex;
-  flex-direction: row;
-  gap: 28px;
-  align-items: baseline;
-  margin-top: 12px;
-  margin-bottom: 0;
-  font-family: var(--font-title);
-  font-size: 1.13rem;
-  letter-spacing: 0.12em;
-  position: relative;
-}
-
-.filter-tab {
-  color: var(--color-filter-tab-inactive);
-  cursor: pointer;
-  transition: color var(--transition);
-  text-decoration: none;
-  border: none;
-  background: none;
-  padding: 0 2px;
-  font-family: inherit;
-  font-size: inherit;
-}
-
-.filter-tab.active {
-  color: var(--color-filter-tab);
-  border-bottom: 2px solid var(--color-line);
-}
-
-.filter-tab + .filter-tab {
-  margin-left: 10px;
-}
-
-.filter-tab:first-child {
-  font-weight: 700;
-  font-size: 1.16rem;
-  letter-spacing: 0.13em;
-}
-
-.divider {
-  border: none;
-  border-top: 2px solid var(--color-line);
-  margin: 10px 0 0 0;
-  width: 100%;
-  opacity: 0.9;
 }
 
 .projects-list {
@@ -193,9 +88,9 @@ body::before {
 
 .project-entry::before {
   content: counter(project-counter);
-  font-family: var(--font-title);
+  font-family: 'EB Garamond', serif;
   font-size: 1.16rem;
-  color: var(--color-sub);
+  color: #c0c0c0;
   min-width: 18px;
   text-align: right;
   opacity: 0.8;
@@ -210,10 +105,10 @@ body::before {
 }
 
 .project-title {
-  font-family: var(--font-title);
+  font-family: 'EB Garamond', serif;
   font-size: 2.15rem;
   font-weight: 400;
-  color: var(--color-fg);
+  color: #fff;
   white-space: pre-line;
   line-height: 1.0;
   margin: 0 0 0 0;
@@ -221,9 +116,9 @@ body::before {
 }
 
 .project-type {
-  font-family: var(--font-title);
+  font-family: 'EB Garamond', serif;
   font-size: 1.03rem;
-  color: var(--color-sub);
+  color: #c0c0c0;
   margin-top: 2px;
   opacity: 0.95;
   font-weight: 400;
@@ -232,11 +127,6 @@ body::before {
 
 /* Responsive adjustments for screens <= 768px */
 @media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 16px 16px 0 16px;
-  }
   .logo {
     font-size: 2rem;
     margin-bottom: 10px;
@@ -260,26 +150,12 @@ body::before {
 </head>
 <body>
   <div class="page-wrapper">
-    <div class="header">
       <div class="logo">
         SOLANI<br>
         ILLUSTRATION<br>
         PORTFOLIO
       </div>
-      <div class="projects-title-block">
-        <div class="projects-title-row">
-          <div class="projects-title-lead">B</div>
-          <div class="projects-title">PROJECTS</div>
-        </div>
-        <hr class="divider">
-        <div class="filter-tabs">
-          <button class="filter-tab active">All</button>
-          <button class="filter-tab">Commission</button>
-          <button class="filter-tab">Personal</button>
-          <button class="filter-tab">Fan Art</button>
-        </div>
-      </div>
-    </div>
+    
     <ol class="projects-list">
       <li class="project-entry">
         <div class="project-info">
