@@ -64,16 +64,16 @@
       padding: 0 5px 4px;
       margin-bottom: 12px;
     }
-    .nav-title {
+    nav .title {
       font-size: 2rem;
     }
-    .nav-links {
+    nav .links {
       display: flex;
       justify-content: space-between;
       gap: 16px;   
       font-size: 0.9rem;
     }
-    .nav-link {
+    nav .link {
       color: #999;
       text-decoration: none;
       transition: color 0.5s;
@@ -81,48 +81,57 @@
       border: none;
       background: transparent;
     }
-    .nav-link:hover { opacity: 0.3; }
+    nav .link:hover { opacity: 0.3; }
     
-    .project-list {
-      margin-top: 12px;
+    .index {
+      margin-top: 50px;
       overflow-y: auto;
+      padding-left: 10%;
       padding-bottom: 32px;
       max-height: calc(100vh - 80px);
+      
+      display: flex;
+      flex-direction: column;
+      gap: 34px;
+      counter-reset: works;
     }
-    .project-row {
+    .item {
       display: flex;
       flex-direction: row;
       align-items: flex-start;
-      font-size: 1.25rem;
-      margin-bottom: 22px;
-      padding-left: 8px;
+      gap: 12px;
     }
-    .project-number {
-      min-width: 28px;
-      font-size: 1.15rem;
-      color: #c0c0c0;
-      margin-right: 16px;
+    .item::before {
+      font-size: 1.16rem;
+      min-width: 18px;
       text-align: right;
-      opacity: 0.7;
+      opacity: 0.8;
+      margin-right: 16px;
+      margin-top: 6px;
+      display: inline-block;
       user-select: none;
+      content: counter(works);
+      counter-increment: works;
     }
-    .project-info {
+
+    .content {
       display: flex;
       flex-direction: column;
     }
-    .project-title {
-      font-size: 1.5rem;
-      line-height: 1.15;
-      color: #fff;
-      margin-bottom: 0px;
+    .name {
+      font-size: 2.15rem;
+      white-space: pre-line;
+      line-height: 1.0;
+      margin: 0;
       letter-spacing: 0.01em;
     }
-    .project-type {
-      color: #c0c0c0;
-      font-size: 1.05rem;
+    .type {
+      font-size: 1.03rem;
       margin-top: 2px;
-      opacity: 0.8;
+      opacity: 0.95;
+      letter-spacing: 0.03em;
     }
+    
     footer {
       position: fixed;
       left: 3px;
@@ -149,14 +158,12 @@
         width: 100%;
         padding-top: 30px;
       }
-      .nav-title { font-size: 1.6rem; }
-      .project-row {
-        font-size: 0.97rem;
-        margin-bottom: 18px;
-        padding-left: 4px;
+      nav .title { font-size: 1.6rem; }
+      .index {
+        padding: 0 8px;
+        max-width: 100vw;
       }
-      .project-title { font-size: 1.06rem; }
-      .project-type { font-size: 0.97rem; }
+      .name { font-size: 1.25rem; }
     }
   </style>
 </head>
@@ -165,108 +172,35 @@
     <header>A soft black<br>&nbsp;&nbsp;&nbsp;&nbsp;mimicking<br>old CRT shadows</header>
     <main>
       <nav>
-        <span class="nav-title">INDEX</span>
-        <div class="nav-links">
-          <button class="nav-link">All</button>
-          <button class="nav-link">Product</button>
-          <button class="nav-link">Project</button>
-          <button class="nav-link">Post</button>
+        <span class="title">INDEX</span>
+        <div class="links">
+          <button class="link">All</button>
+          <button class="link">Product</button>
+          <button class="link">Project</button>
+          <button class="link">Post</button>
         </div>
       </nav>
   
-      <div class="project-list">
-        <div class="project-row">
-          <div class="project-number">1</div>
-          <div class="project-info">
-            <span class="project-title">the tilt of the scales</span>
-            <span class="project-type">Commission</span>
+      <div class="index">
+        <div class="item">
+          <div class="content">
+            <div class="name">the tilt of the scales</div>
+            <div class="type">Commission</div>
           </div>
         </div>
-        <div class="project-row">
-          <div class="project-number">2</div>
-          <div class="project-info">
-            <span class="project-title">ENigmatic Recollection</span>
-            <span class="project-type">Commission</span>
+        <div class="item">
+          <div class="content">
+            <div class="name">ENigmatic Recollection</div>
+            <div class="type">Commission</div>
           </div>
         </div>
-        <div class="project-row">
-          <div class="project-number">3</div>
-          <div class="project-info">
-            <span class="project-title">Liberty</span>
-            <span class="project-type">Commission</span>
+        <div class="item">
+          <div class="content">
+            <div class="name">Liberty</div>
+            <div class="type">Commission</div>
           </div>
         </div>
-        <div class="project-row">
-          <div class="project-number">4</div>
-          <div class="project-info">
-            <span class="project-title">Realize</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </div>
-        <div class="project-row">
-          <div class="project-number">5</div>
-          <div class="project-info">
-            <span class="project-title">Igniters</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </div>
-        <div class="project-row">
-          <div class="project-number">6</div>
-          <div class="project-info">
-            <span class="project-title">wheel track</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </div>
-        <div class="project-row">
-          <div class="project-number">7</div>
-          <div class="project-info">
-            <span class="project-title">Q&I |</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </div>
-        <div class="project-row">
-          <div class="project-number">8</div>
-          <div class="project-info">
-            <span class="project-title">BRAVERY</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </div>
-        <div class="project-row">
-          <div class="project-number">9</div>
-          <div class="project-info">
-            <span class="project-title">youth is a ghost</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </div>
-        <div class="project-row">
-          <div class="project-number">10</div>
-          <div class="project-info">
-            <span class="project-title">parallèle rendez-vous</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </div>
-        <div class="project-row">
-          <div class="project-number">11</div>
-          <div class="project-info">
-            <span class="project-title">Platform5</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </div>
-        <div class="project-row">
-          <div class="project-number">12</div>
-          <div class="project-info">
-            <span class="project-title">CLIFFHEART</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </div>
-        <div class="project-row">
-          <div class="project-number">13</div>
-          <div class="project-info">
-            <span class="project-title">Azusagawa KV/02</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </div>
-        <!-- Add more project rows as needed -->
+        <!-- Add more rows as needed -->
       </div>
     </main>
   </div>
