@@ -5,175 +5,175 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LiminalLoop</title>
   <style>
-    /* Reset and box-sizing */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html {
-      line-height: 1;
-      -webkit-user-drag: none;
-      -webkit-tap-highlight-color: rgba(0,0,0,0);
-    }
-    body {
-      background: #f3f3f3;
-      color: #222;
-      font-family: system-ui, sans-serif;
-    }
-    main {
-      display: block;
-      width: 100%;
+    /* Reset and base styles */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { line-height: 1; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0,0,0,0); }
+    body { background: #f2f2f2; color: #111; font-family: system-ui, sans-serif; }
+
+    /* Main wrapper */
+    main#PageWrapper[data-page="wrapper"] {
       min-height: 100vh;
-      background: var(--c-bg, #f3f3f3);
-      position: relative;
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--c-bg, #f2f2f2);
     }
-    .page {
-      display: block;
+
+    /* Page container for projects */
+    .page.page-projects[data-page="container"][data-page-namespace="project-index"] {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 2px 24px 0 rgba(0,0,0,0.07);
       max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.09);
-    }
-    .page.page-projects {
-      background: #fff;
-      padding: 40px 24px;
-      border-radius: 20px;
-      box-shadow: 0 3px 24px rgba(0,0,0,0.07), 0 1.5px 8px rgba(0,0,0,0.04);
-      overflow: hidden;
-    }
-    .pageHeader {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 32px;
-    }
-    .pageHeader .title {
-      display: flex;
-      align-items: center;
-      font-size: 2.1rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
-    .pageHeader .label {
-      background: #e4e4e7;
-      color: #7a7a7a;
-      border-radius: 6px;
-      padding: 2px 8px;
-      font-size: 1rem;
-      margin-right: 12px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-    }
-    .pageHeader .name {
-      color: #222;
-      font-size: 1.9rem;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-    }
-    .filter {
-      display: flex;
-      gap: 10px;
-    }
-    .filter_item {
-      padding: 6px 16px;
-      background: #f3f3f3;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-      color: #555;
-      transition: background 0.18s, color 0.18s;
-    }
-    .filter_item.on, .filter_item:hover {
-      background: #222;
-      color: #fff;
-    }
-    .projects {
+      width: 100%;
+      margin: 2rem auto;
+      padding: 2.5rem 2.5rem 2rem 2.5rem;
       display: flex;
       flex-direction: column;
-      gap: 32px;
+      gap: 2rem;
+    }
+
+    /* Header styles */
+    .pageHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      gap: 1.5rem;
+    }
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    .title .label {
+      background: #e7e7e7;
+      border-radius: 0.5em;
+      padding: 0.2em 0.7em;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #555;
+      letter-spacing: 0.05em;
+    }
+    .title .name {
+      color: #222;
+      font-weight: 700;
+    }
+
+    /* Filter (category tabs) */
+    .filter {
+      display: flex;
+      align-items: center;
+      gap: 0.8em;
+      margin-left: auto;
+    }
+    .filter_item {
+      padding: 0.3em 1em;
+      border-radius: 18px;
+      background: #ededed;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      color: #555;
+    }
+    .filter_item.on,
+    .filter_item.active {
+      background: #333;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* Projects area */
+    .projects[data-scroll="area"] {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
     }
     .projects_image {
       width: 100%;
-      margin-bottom: 18px;
-      border-radius: 10px;
+      max-width: 440px;
+      margin: 0 auto 1.2rem auto;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 12px 0 rgba(0,0,0,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .projects_image img {
       display: block;
       width: 100%;
-      max-width: 440px;
       height: auto;
-      border-radius: 10px;
-      margin: 0 auto;
+      border-radius: 12px;
+      object-fit: cover;
     }
-    .projects_text {
-      font-size: 1.16rem;
-      color: #444;
-      line-height: 1.6;
-      margin-bottom: 16px;
-      margin-top: 0px;
+
+    /* Project description/content */
+    .projects .project_content {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #222;
+      margin: 1rem 0;
     }
+
+    /* Notice/Legal text */
     .projects_notice {
-      background: #fbe9e7;
-      color: #c62828;
+      margin-top: 2.5rem;
+      text-align: center;
+      color: #888;
       font-size: 1rem;
-      padding: 12px 16px;
-      border-radius: 8px;
-      margin: 20px 0 0 0;
-      text-align: left;
-      line-height: 1.4;
-      font-family: inherit;
     }
-    /* Japanese font for .jp */
-    .f-jp {
-      font-family: "Noto Sans JP", "Yu Gothic", "Meiryo", sans-serif;
+    .projects_notice .jp {
+      font-size: 0.95em;
+      color: #aaa;
+      margin-top: 0.5em;
+      display: block;
     }
-    /* Responsive design */
-    @media (max-width: 700px) {
-      .page,
-      .page.page-projects {
-        padding: 21px 6px;
-        border-radius: 10px;
+
+    /* Responsive styles */
+    @media (max-width: 600px) {
+      .page.page-projects[data-page="container"] {
+        padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+        border-radius: 0;
       }
-      .pageHeader .title {
-        font-size: 1.3rem;
-      }
-      .pageHeader .label {
-        font-size: 0.82rem;
-      }
-      .projects_image img {
+      .projects_image {
         max-width: 100%;
       }
-      .projects {
-        gap: 18px;
+      .title {
+        font-size: 1.2rem;
+      }
+      .filter_item {
+        font-size: 0.92rem;
+        padding: 0.3em 0.7em;
       }
     }
   </style>
 </head>
-<body> 
+<body>
   <main id="PageWrapper" data-page="wrapper">
-    <div class="page page-projects" data-page="container" data-page-namespace="project-index">
+    <div class="page page-projects" data-page="container" data-page-namespace="project-index" x-data="projectIndex">
       <div class="pageHeader">
         <h1 class="title">
           <div class="label">B</div>
           <div class="name">Projects</div>
         </h1>
-        <div class="filter">
-          <div class="filter_item on">All</div>
-          <div class="filter_item">Art</div>
-          <div class="filter_item">Code</div>
+        <div class="filter" x-data>
+          <div class="filter_item on" x-bind="smallTextBtn" @click="changeCat('all')" :class="category === 'all' ? 'on' : ''">All</div>
+          <div class="filter_item" x-bind="smallTextBtn" @click="changeCat('web')" :class="category === 'web' ? 'on' : ''">Web</div>
+          <div class="filter_item" x-bind="smallTextBtn" @click="changeCat('art')" :class="category === 'art' ? 'on' : ''">Art</div>
         </div>
       </div>
       <div class="projects" data-scroll="area">
         <div class="projects_image">
-          <img src="https://cdn.sanity.io/images/b1mwlimg/production/4f1802ebf1f40985bdce89534a34e095ce5b2c8f-2500x3568.jpg?auto=format&q=80&w=840" width="440" height="627" loading="lazy" alt="Project Image" />
+          <div>
+            <img src="https://cdn.sanity.io/images/b1mwlimg/production/4f1802ebf1f40985bdce89534a34e095ce5b2c8f-2500x3568.jpg?auto=format&amp;q=80&amp;w=840" width="440" height="627" alt="Project image"/>
+          </div>
         </div>
-        <div class="projects_text">
-          <p>This is an example project description. You can add more details about your project here.</p>
+        <div class="project_content">
+          <p>This is where the project description or main content goes. You can modify this section with your own project details.</p>
         </div>
         <div class="projects_notice">
           <p>modification of the content<br>
