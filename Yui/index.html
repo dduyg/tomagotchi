@@ -55,15 +55,25 @@ body::before {
   flex-direction: row;
   align-items: flex-start;
   gap: 12px;
+  /* Remove left margin, project num handled in ::before now */
 }
 
-.project-num {
+.project-entry::before {
   font-size: 1.16rem;
-  margin-right: 16px;
   min-width: 18px;
   text-align: right;
   opacity: 0.8;
+  margin-right: 16px;
   margin-top: 6px;
+  display: inline-block;
+  /* Counter for numbering */
+  content: counter(projects);
+  counter-increment: projects;
+}
+
+/* Initialize the counter on the parent */
+.projects-list {
+  counter-reset: projects;
 }
 
 .project-info {
@@ -102,45 +112,38 @@ body::before {
 </head>
 <body>
   <main class="page-wrapper">
-    
     <div class="projects-list">
       <div class="project-entry">
-        <div class="project-num">1</div>
         <div class="project-info">
           <div class="project-title">the tilt of the scales</div>
           <div class="project-type">Commission</div>
         </div>
       </div>
       <div class="project-entry">
-        <div class="project-num">2</div>
         <div class="project-info">
           <div class="project-title">ENigmatic Recollection</div>
           <div class="project-type">Commission</div>
         </div>
       </div>
       <div class="project-entry">
-        <div class="project-num">3</div>
         <div class="project-info">
           <div class="project-title">Liberty</div>
           <div class="project-type">Commission</div>
         </div>
       </div>
       <div class="project-entry">
-        <div class="project-num">4</div>
         <div class="project-info">
           <div class="project-title">Realize</div>
           <div class="project-type">Commission</div>
         </div>
       </div>
       <div class="project-entry">
-        <div class="project-num">5</div>
         <div class="project-info">
           <div class="project-title">Igniters</div>
           <div class="project-type">Commission</div>
         </div>
       </div>  
     </div>
-    
   </main>
 </body>
 </html>
