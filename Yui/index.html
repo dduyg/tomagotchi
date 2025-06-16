@@ -1,382 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LiminalLoop</title>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Solani Illustration Portfolio</title>
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      min-height: 100vh;
-      background: #000 url('https://cdn.sanity.io/images/b1mwlimg/production/bf6ecae27d43dd3573799600490e9210a69f500f-3000x1278.png') no-repeat center center fixed; /* Replace with actual bg or svg if needed */
-      background-size: cover;
-      color: #fff;
-      font-family: 'EB Garamond', Garamond, serif;
-      font-size: 18px;
-      letter-spacing: 0.01em;
-      position: relative;
-      overflow-x: hidden;
-    }
-    .main-container {
-      display: flex;
-      flex-direction: row;
-      height: 100vh;
-      width: 100vw;
+    * {
       box-sizing: border-box;
-      position: relative;
-      z-index: 1;
-    }
-    .title-column {
-      flex: 0 0 245px;
-      min-width: 180px;
-      max-width: 25vw;
-      background: transparent;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      padding: 36px 0 0 32px;
-      font-family: 'EB Garamond', Garamond, serif;
-      font-size: 2.1em;
-      font-weight: 400;
-      line-height: 1.0;
-      letter-spacing: 0.01em;
-      z-index: 2;
-    }
-    .title-text {
-      white-space: pre-line;
-      font-size: 2.1em;
-      font-weight: 400;
-      line-height: 1.07;
-      letter-spacing: 0.01em;
-      margin-bottom: 0;
-      margin-top: 0;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.22);
-      user-select: none;
-    }
-    .index-column {
-      flex: 1 1 0;
-      display: flex;
-      flex-direction: column;
-      background: transparent;
-      padding: 0 32px;
-      min-width: 0;
-    }
-    .projects-header {
-      margin-top: 38px;
-      margin-bottom: 7px;
-      display: flex;
-      flex-direction: row;
-      align-items: flex-end;
-      position: relative;
-      z-index: 2;
-    }
-    .projects-header .projects-b {
-      font-family: 'EB Garamond', serif;
-      font-size: 1.18em;
-      font-weight: 400;
-      margin-right: 7px;
-      letter-spacing: 0.06em;
-      transform: translateY(-1px);
-      opacity: 0.85;
-    }
-    .projects-title {
-      font-family: 'EB Garamond', serif;
-      font-size: 3.4em;
-      font-weight: 400;
-      letter-spacing: 0.04em;
-      margin: 0 18px 0 0;
-      line-height: 1.0;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.22);
-      display: inline-block;
-    }
-    .projects-nav {
-      flex: 1 1 auto;
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
-      gap: 15px;
-      font-size: 1.12em;
-      font-family: 'EB Garamond', serif;
-      margin-bottom: 7px;
-    }
-    .projects-nav a {
-      color: #ddd;
-      text-decoration: none;
-      opacity: 0.85;
-      margin-left: 0.7em;
-      font-size: 1em;
-      font-weight: 400;
-      letter-spacing: 0.01em;
-      transition: color 0.18s, opacity 0.18s;
-      border-bottom: 2px solid transparent;
-      padding-bottom: 1px;
-    }
-    .projects-nav a.active, .projects-nav a:hover {
-      color: #fff;
-      opacity: 1;
-      border-bottom: 2px solid #fff;
-    }
-    .projects-header-underline {
-      width: 100%;
-      height: 2px;
-      background: #fff;
-      opacity: 0.16;
-      margin-top: 7px;
-      margin-bottom: 0.5em;
-      position: relative;
-      z-index: 1;
-    }
-    .project-list {
-      width: 100%;
       margin: 0;
       padding: 0;
-      list-style: none;
-      z-index: 2;
-      position: relative;
-    }
-    .project-item {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 22px;
-      font-family: 'EB Garamond', serif;
-    }
-    .project-number {
-      width: 2.2em;
-      min-width: 2.2em;
-      font-size: 1.16em;
-      opacity: 0.81;
-      font-family: 'EB Garamond', serif;
-      text-align: right;
-      padding-right: 0.6em;
-      font-weight: 400;
-      letter-spacing: 0.04em;
-      user-select: none;
-      margin-top: 2px;
-    }
-    .project-info {
-      display: flex;
-      flex-direction: column;
-    }
-    .project-title {
-      font-size: 1.55em;
-      font-weight: 400;
-      line-height: 1.1;
-      color: #fff;
-      margin-bottom: 0.09em;
-      letter-spacing: 0.01em;
-    }
-    .project-type {
-      font-size: 0.78em;
-      font-weight: 400;
-      color: #d6d6d6;
-      opacity: 0.98;
-      font-family: 'EB Garamond', serif;
-      letter-spacing: 0.01em;
     }
 
-    /* Responsiveness */
-    @media (max-width: 800px) {
-      .main-container {
-        flex-direction: column;
-        min-height: 100vh;
-      }
-      .title-column {
-        flex: none;
-        max-width: none;
-        width: 100%;
-        min-width: 0;
-        padding: 24px 0 0 0;
-        align-items: center;
-        text-align: center;
-      }
-      .index-column {
-        width: 100%;
-        padding: 0 10px;
-      }
-      .projects-header {
-        margin-top: 23px;
-        margin-bottom: 7px;
-        flex-direction: row;
-        align-items: flex-end;
-      }
-      .projects-title {
-        font-size: 2.3em;
-      }
-      .projects-nav {
-        font-size: 0.96em;
-        gap: 8px;
-      }
-    }
-    @media (max-width: 530px) {
-      .main-container {
-        flex-direction: column;
-        min-height: 100vh;
-      }
-      .title-column {
-        width: 100%;
-        min-width: 0;
-        max-width: none;
-        padding: 19px 0 0 0;
-        align-items: center;
-        text-align: center;
-        font-size: 1.38em;
-      }
-      .index-column {
-        width: 100%;
-        padding: 0 2vw;
-      }
-      .projects-header {
-        margin-top: 15px;
-        margin-bottom: 6px;
-      }
-      .projects-title {
-        font-size: 1.5em;
-      }
-      .projects-nav {
-        font-size: 0.88em;
-        gap: 5px;
-      }
-      .project-title {
-        font-size: 1.15em;
-      }
-    }
-    /* Optional: overlay for background effect as in screenshot */
-    body::before {
-      content:'';
-      position:fixed;
-      top:0;left:0;width:100vw;height:100vh;z-index:0;
-      background:rgba(0,0,0,0.82);
-      pointer-events:none;
-    }
-    /* Hide scrollbars for aesthetic, optional */
-    ::-webkit-scrollbar {width:0;background:transparent;}
-    /* Selection highlight */
-    ::selection {
-      background: #555;
+    body {
+      background-color: #0a0a0a;
       color: #fff;
+      font-family: 'Georgia', serif;
+      line-height: 1.6;
+      background-image: url('https://cdn.sanity.io/images/b1mwlimg/production/bf6ecae27d43dd3573799600490e9210a69f500f-3000x1278.png'); /* Replace with actual background if needed */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      flex: 1;
+      padding: 2rem 1rem;
+      font-size: 1.5rem;
+      line-height: 2rem;
+      text-align: left;
+      border-right: 1px solid #333;
+    }
+
+    .main {
+      flex: 3;
+      padding: 2rem 1.5rem;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.5rem;
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      font-weight: normal;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .nav a {
+      text-transform: capitalize;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      border-color: white;
+    }
+
+    .project-list {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .project-item {
+      margin-bottom: 1rem;
+    }
+
+    .project-item span {
+      display: block;
+      font-size: 1rem;
+    }
+
+    .project-item .title {
+      font-size: 1.2rem;
+      text-transform: lowercase;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        border-right: none;
+        border-bottom: 1px solid #333;
+        text-align: center;
+      }
+
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+        margin-top: 0.5rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="main-container">
-    <aside class="title-column">
-      <div class="title-text">
-        SOLANI<br>
-        ILLUSTRATION<br>
-        PORTFOLIO.
-      </div>
+  <div class="container">
+    <aside class="sidebar">
+      <div>SOLANI<br>ILLUSTRATION<br>PORTFOLIO</div>
     </aside>
-    <main class="index-column">
-      <div class="projects-header">
-        <span class="projects-b">B</span>
-        <span class="projects-title">PROJECTS</span>
-        <nav class="projects-nav">
+    <main class="main">
+      <div class="header">
+        <h1>PROJECTS</h1>
+        <nav class="nav">
           <a href="#" class="active">All</a>
           <a href="#">Commission</a>
           <a href="#">Personal</a>
           <a href="#">Fan Art</a>
         </nav>
       </div>
-      <div class="projects-header-underline"></div>
-      <ol class="project-list">
-        <li class="project-item">
-          <span class="project-number">1</span>
-          <div class="project-info">
-            <span class="project-title">the tilt of the scales</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </li>
-        <li class="project-item">
-          <span class="project-number">2</span>
-          <div class="project-info">
-            <span class="project-title">ENigmatic Recollection</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </li>
-        <li class="project-item">
-          <span class="project-number">3</span>
-          <div class="project-info">
-            <span class="project-title">Liberty</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </li>
-        <li class="project-item">
-          <span class="project-number">4</span>
-          <div class="project-info">
-            <span class="project-title">Realize</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </li>
-        <li class="project-item">
-          <span class="project-number">5</span>
-          <div class="project-info">
-            <span class="project-title">Igniters</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </li>
-        <li class="project-item">
-          <span class="project-number">6</span>
-          <div class="project-info">
-            <span class="project-title">wheel track</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </li>
-        <li class="project-item">
-          <span class="project-number">7</span>
-          <div class="project-info">
-            <span class="project-title">Q&I |</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </li>
-        <li class="project-item">
-          <span class="project-number">8</span>
-          <div class="project-info">
-            <span class="project-title">BRAVERY</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </li>
-        <li class="project-item">
-          <span class="project-number">9</span>
-          <div class="project-info">
-            <span class="project-title">youth is a ghost</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </li>
-        <li class="project-item">
-          <span class="project-number">10</span>
-          <div class="project-info">
-            <span class="project-title">parallèle rendez-vous</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </li>
-        <li class="project-item">
-          <span class="project-number">11</span>
-          <div class="project-info">
-            <span class="project-title">Platform5</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </li>
-        <li class="project-item">
-          <span class="project-number">12</span>
-          <div class="project-info">
-            <span class="project-title">CLIFFHEART</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </li>
-        <li class="project-item">
-          <span class="project-number">13</span>
-          <div class="project-info">
-            <span class="project-title">Azusagawa KV/02</span>
-            <span class="project-type">Commission</span>
-          </div>
-        </li>
-      </ol>
+      <ul class="project-list">
+        <li class="project-item"><span>1</span><span class="title">the tilt of the scales</span><span>Commission</span></li>
+        <li class="project-item"><span>2</span><span class="title">ENigmatic Recollection</span><span>Commission</span></li>
+        <li class="project-item"><span>3</span><span class="title">Liberty</span><span>Commission</span></li>
+        <li class="project-item"><span>4</span><span class="title">Realize</span><span>Commission</span></li>
+        <li class="project-item"><span>5</span><span class="title">Igniters</span><span>Commission</span></li>
+        <li class="project-item"><span>6</span><span class="title">wheel track</span><span>Commission</span></li>
+        <li class="project-item"><span>7</span><span class="title">Q&I</span><span>Commission</span></li>
+        <li class="project-item"><span>8</span><span class="title">BRAVERY</span><span>Commission</span></li>
+        <li class="project-item"><span>9</span><span class="title">youth is a ghost</span><span>Commission</span></li>
+        <li class="project-item"><span>10</span><span class="title">parallèle rendez-vous</span><span>Commission</span></li>
+        <li class="project-item"><span>11</span><span class="title">Platform5</span><span>Commission</span></li>
+        <li class="project-item"><span>12</span><span class="title">CLIFFHEART</span><span>Commission</span></li>
+        <li class="project-item"><span>13</span><span class="title">Azusagawa KV/02</span><span>Commission</span></li>
+      </ul>
     </main>
   </div>
 </body>
