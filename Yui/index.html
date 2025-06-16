@@ -38,27 +38,23 @@ body::before {
   min-height: 100vh;
 }
 
-.projects-list {
-  width: 100%;
-  max-width: 700px;
-  margin: 50px auto 0 auto;
+.index {
+  margin-top: 50px;
   padding: 0 32px;
   z-index: 2;
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 34px;
+  counter-reset: works;
 }
-
-.project-entry {
+.item {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   gap: 12px;
-  /* Remove left margin, project num handled in ::before now */
 }
-
-.project-entry::before {
+.item::before {
   font-size: 1.16rem;
   min-width: 18px;
   text-align: right;
@@ -67,29 +63,22 @@ body::before {
   margin-top: 6px;
   display: inline-block;
   /* Counter for numbering */
-  content: counter(projects);
-  counter-increment: projects;
+  content: counter(works);
+  counter-increment: works;
 }
 
-/* Initialize the counter on the parent */
-.projects-list {
-  counter-reset: projects;
-}
-
-.project-info {
+.content {
   display: flex;
   flex-direction: column;
 }
-
-.project-title {
+.name {
   font-size: 2.15rem;
   white-space: pre-line;
   line-height: 1.0;
   margin: 0;
   letter-spacing: 0.01em;
 }
-
-.project-type {
+.type {
   font-size: 1.03rem;
   margin-top: 2px;
   opacity: 0.95;
@@ -97,53 +86,38 @@ body::before {
 }
 
 @media (max-width: 900px) {
-  .projects-title {
-    font-size: 2.2rem;
-  }
-  .projects-list {
+  .index {
     padding: 0 8px;
     max-width: 100vw;
   }
-  .project-title {
-    font-size: 1.25rem;
-  }
+  .name { font-size: 1.25rem; }
 }
   </style>
 </head>
 <body>
   <main class="page-wrapper">
-    <div class="projects-list">
-      <div class="project-entry">
-        <div class="project-info">
-          <div class="project-title">the tilt of the scales</div>
-          <div class="project-type">Commission</div>
+ 
+    <div class="index">
+      <div class="item">
+        <div class="content">
+          <div class="name">the tilt of the scales</div>
+          <div class="type">Commission</div>
         </div>
       </div>
-      <div class="project-entry">
-        <div class="project-info">
-          <div class="project-title">ENigmatic Recollection</div>
-          <div class="project-type">Commission</div>
+      <div class="item">
+        <div class="content">
+          <div class="name">ENigmatic Recollection</div>
+          <div class="type">Commission</div>
         </div>
       </div>
-      <div class="project-entry">
-        <div class="project-info">
-          <div class="project-title">Liberty</div>
-          <div class="project-type">Commission</div>
-        </div>
-      </div>
-      <div class="project-entry">
-        <div class="project-info">
-          <div class="project-title">Realize</div>
-          <div class="project-type">Commission</div>
-        </div>
-      </div>
-      <div class="project-entry">
-        <div class="project-info">
-          <div class="project-title">Igniters</div>
-          <div class="project-type">Commission</div>
+      <div class="item">
+        <div class="content">
+          <div class="name">Liberty</div>
+          <div class="type">Commission</div>
         </div>
       </div>  
     </div>
+    
   </main>
 </body>
 </html>
