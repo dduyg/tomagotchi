@@ -161,7 +161,6 @@ body::before {
   opacity: 0.9;
 }
 
-/* Projects list as ol */
 .projects-list {
   width: 100%;
   max-width: 700px;
@@ -172,8 +171,12 @@ body::before {
   display: flex;
   flex-direction: column;
   gap: 34px;
-  counter-reset: project-num;
+}
+
+.projects-list {
   list-style: none;
+  counter-reset: project-counter;
+  padding-left: 0;
 }
 
 .project-entry {
@@ -181,22 +184,23 @@ body::before {
   flex-direction: row;
   align-items: flex-start;
   gap: 12px;
-  counter-increment: project-num;
+  position: relative;
+  counter-increment: project-counter;
+  /* Remove default list style */
+  list-style: none;
+  padding-left: 0;
 }
 
-.project-num {
+.project-entry::before {
+  content: counter(project-counter);
   font-family: var(--font-title);
   font-size: 1.16rem;
   color: var(--color-sub);
-  margin-right: 16px;
   min-width: 18px;
   text-align: right;
   opacity: 0.8;
+  margin-right: 16px;
   margin-top: 6px;
-}
-/* Automatic numbering using ::before */
-.project-entry .project-num::before {
-  content: counter(project-num);
   display: block;
 }
 
@@ -226,7 +230,7 @@ body::before {
   letter-spacing: 0.03em;
 }
 
-/* Responsive @ 768px instead of 900px */
+/* Responsive adjustments for screens <= 768px */
 @media (max-width: 768px) {
   .header {
     flex-direction: column;
@@ -234,21 +238,24 @@ body::before {
     padding: 16px 16px 0 16px;
   }
   .logo {
-    font-size: 2.1rem;
+    font-size: 2rem;
     margin-bottom: 10px;
   }
   .projects-title {
-    font-size: 2.2rem;
+    font-size: 1.4rem;
   }
   .projects-list {
-    padding: 0 8px;
+    padding: 0 4px;
     max-width: 100vw;
+    gap: 20px;
   }
   .project-title {
-    font-size: 1.25rem;
+    font-size: 1rem;
+  }
+  .project-type {
+    font-size: 0.9rem;
   }
 }
-
   </style>
 </head>
 <body>
@@ -275,91 +282,78 @@ body::before {
     </div>
     <ol class="projects-list">
       <li class="project-entry">
-        <div class="project-num"></div>
         <div class="project-info">
           <div class="project-title">the tilt of the scales</div>
           <div class="project-type">Commission</div>
         </div>
       </li>
       <li class="project-entry">
-        <div class="project-num"></div>
         <div class="project-info">
           <div class="project-title">ENigmatic Recollection</div>
           <div class="project-type">Commission</div>
         </div>
       </li>
       <li class="project-entry">
-        <div class="project-num"></div>
         <div class="project-info">
           <div class="project-title">Liberty</div>
           <div class="project-type">Commission</div>
         </div>
       </li>
       <li class="project-entry">
-        <div class="project-num"></div>
         <div class="project-info">
           <div class="project-title">Realize</div>
           <div class="project-type">Commission</div>
         </div>
       </li>
       <li class="project-entry">
-        <div class="project-num"></div>
         <div class="project-info">
           <div class="project-title">Igniters</div>
           <div class="project-type">Commission</div>
         </div>
       </li>
       <li class="project-entry">
-        <div class="project-num"></div>
         <div class="project-info">
           <div class="project-title">wheel track</div>
           <div class="project-type">Commission</div>
         </div>
       </li>
       <li class="project-entry">
-        <div class="project-num"></div>
         <div class="project-info">
           <div class="project-title">Q&I</div>
           <div class="project-type">Commission</div>
         </div>
       </li>
       <li class="project-entry">
-        <div class="project-num"></div>
         <div class="project-info">
           <div class="project-title">BRAVERY</div>
           <div class="project-type">Commission</div>
         </div>
       </li>
       <li class="project-entry">
-        <div class="project-num"></div>
         <div class="project-info">
           <div class="project-title">youth is a ghost</div>
           <div class="project-type">Commission</div>
         </div>
       </li>
       <li class="project-entry">
-        <div class="project-num"></div>
         <div class="project-info">
           <div class="project-title">parallèle rendez-vous</div>
           <div class="project-type">Commission</div>
         </div>
       </li>
       <li class="project-entry">
-        <div class="project-num"></div>
         <div class="project-info">
           <div class="project-title">Platform5</div>
           <div class="project-type">Commission</div>
         </div>
       </li>
       <li class="project-entry">
-        <div class="project-num"></div>
         <div class="project-info">
           <div class="project-title">CLIFFHEART</div>
           <div class="project-type">Commission</div>
         </div>
       </li>
       <li class="project-entry">
-        <div class="project-num"></div>
         <div class="project-info">
           <div class="project-title">Azusagawa KV/02</div>
           <div class="project-type">Commission</div>
