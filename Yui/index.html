@@ -262,9 +262,9 @@
       const items = document.querySelectorAll('.item');
       items.forEach((item, index) => {
         item.setAttribute('data-index', index + 1);
-        const content = item.querySelector('.content');
+        const nameEl = item.querySelector('.name');
         const font = fonts[index % fonts.length];
-        if (content) content.style.fontFamily = font;
+        if (nameEl) nameEl.style.fontFamily = font;
       });
     });
   </script>
