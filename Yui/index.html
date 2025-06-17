@@ -6,10 +6,25 @@
   <title>Liminal🍡Loop</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
-    html, body {
-      background: #0c0c0c;
-      color: white;
-      font-family: 'Playfair Display', serif;
+    ::selection {
+      background-color: rgba(0, 0, 0, 0);
+      color: hsla(0, 0%, 95%, 0.15);
+     }
+     ::-moz-selection {
+      background-color: rgba(0, 0, 0, 0);
+      color: hsla(0, 0%, 95%, 0.15);
+     }
+     html, body {
+      background: hsl(0, 0%, 0%);
+      color: hsl(0, 0%, 95%);
+      font-family: "Cardinal", serif;
+      font-weight: 500;
+      font-size: 14px;
+      font-feature-settings: "palt";
+      -webkit-text-size-adjust: none;
+      text-size-adjust: none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       height: 100vh;
       width: 100vw;
       overflow: hidden;
@@ -146,6 +161,7 @@
     }
     footer span { font-size: 1.4em; }
     @media (max-width: 768px) {
+      body { font-size: 12px; }
       .page-wrapper { flex-direction: column; }
       header {
         flex: none;
