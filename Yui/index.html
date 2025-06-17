@@ -11,9 +11,9 @@
       background: #0c0c0c;
       color: white;
       font-family: 'Playfair Display', serif;
-      min-height: 100vh;
+      height: 100vh;
       width: 100vw;
-      overflow-x: hidden;
+      overflow: hidden;
     }
     body::before {
       content: "";
@@ -91,6 +91,7 @@
       padding-left: 15%;
       padding-bottom: 32px;
       max-height: calc(100vh - 80px);
+      counter-reset: works;
     }
     .item {
       display: flex;
@@ -99,7 +100,8 @@
       gap: 12px;
       transition: transform 0.3s ease;
       text-decoration: none;
-      color: inherit;   
+      color: inherit;
+      margin-bottom: 34px;
     }
     .item::before {
       font-size: 1.16rem;
