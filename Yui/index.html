@@ -83,12 +83,16 @@
       opacity: 0.3;
     }
     .index {
-      margin-top: 50px;
       overflow-y: auto;
-      padding-left: 15%;
-      padding-bottom: 32px;
+      overflow-x: hidden;
+      padding: 40px 0 20px 20%;
       max-height: calc(100vh - 80px);
       counter-reset: works;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .index::-webkit-scrollbar {
+      display: none;
     }
     .item {
       display: flex;
