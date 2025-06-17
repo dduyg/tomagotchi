@@ -125,17 +125,17 @@
       text-decoration: none;
       color: inherit;
       margin-bottom: 34px;
+      position: relative;
     }
     .item::before {
-      font-size: 1.1em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 20px;
-      height: 100%;
-      user-select: none;
       content: counter(works);
       counter-increment: works;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.1em;
+      user-select: none;      
     }
     .item:hover {
       opacity: 0.25;
