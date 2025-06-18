@@ -2,315 +2,346 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Horizontal Slider Replica</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horizontal Slider</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap');
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
-      background: #111;
-      font-family: 'IBM Plex Mono', monospace;
+      background: #111111;
       color: #fff;
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      box-sizing: border-box;
       overflow: hidden;
     }
+
     .slider-container {
       position: relative;
       width: 100vw;
       height: 100vh;
       overflow: hidden;
       background: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .slider-track {
+
+    .slider {
       display: flex;
       flex-direction: row;
-      width: 300vw;
+      transition: transform 0.6s cubic-bezier(.77,0,.18,1);
+      will-change: transform;
       height: 100vh;
-      transition: transform 0.8s cubic-bezier(.86,0,.07,1);
-    }
-    .slide {
       width: 100vw;
+    }
+
+    .slide {
+      min-width: 100vw;
       height: 100vh;
-      flex-shrink: 0;
+      box-sizing: border-box;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
       align-items: center;
+      justify-content: flex-start;
       background: #111;
       position: relative;
+      padding: 0;
+      overflow: hidden;
     }
+
     .slide-img {
       width: 100vw;
-      height: 60vh;
+      height: 55vh;
       object-fit: cover;
+      object-position: top center;
+      background: #111;
       display: block;
-      user-select: none;
-      pointer-events: none;
-      margin-bottom: 0;
     }
-    .slide-label-bar {
+
+    .slide-content {
+      width: 100vw;
+      box-sizing: border-box;
+      padding: 0 0 0 2vw;
+      position: relative;
+      margin-top: 4vh;
+    }
+
+    .slide-label {
       display: flex;
       align-items: center;
-      margin-top: 20px;
-      margin-left: 20px;
-      height: 38px;
+      font-size: 1.5rem;
+      letter-spacing: 0.04em;
+      font-weight: 400;
+      margin-bottom: 1.2rem;
+      width: max-content;
+      padding: 0;
     }
+
     .slide-label-square {
-      width: 24px;
-      height: 24px;
-      background: #111;
-      border-radius: 2px;
-      margin-right: 10px;
-      border: none;
-      flex-shrink: 0;
+      width: 1.3em;
+      height: 1.3em;
+      margin-right: 0.4em;
       display: inline-block;
+      background: #222;
+      border-radius: 0.1em;
     }
-    .slide-label-text {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 1.45rem;
+
+    .slide-label.apps {
+      background: #e6ff22;
+      color: #111;
+      padding: 0.1em 0.5em 0.1em 0.3em;
+      border-radius: 0.1em;
       font-weight: 400;
-      letter-spacing: 0.05em;
-      margin-right: 12px;
     }
-    .slide-label-bar--apps {
-      background: #E4FF26;
+    .slide-label.apps .slide-label-square { background: #111; }
+
+    .slide-label.compute {
+      background: #5b6fff;
       color: #111;
-      padding: 0 18px 0 8px;
-      border-radius: 2px;
-      min-width: 260px;
+      padding: 0.1em 0.5em 0.1em 0.3em;
+      border-radius: 0.1em;
+      font-weight: 400;
     }
-    .slide-label-bar--compute {
-      background: #5D6DFF;
+    .slide-label.compute .slide-label-square { background: #111; }
+
+    .slide-label.lake {
+      background: #ff4700;
       color: #111;
-      padding: 0 18px 0 8px;
-      border-radius: 2px;
-      min-width: 285px;
+      padding: 0.1em 0.5em 0.1em 0.3em;
+      border-radius: 0.1em;
+      font-weight: 400;
     }
-    .slide-label-bar--lake {
-      background: #FF4A1C;
-      color: #111;
-      padding: 0 18px 0 8px;
-      border-radius: 2px;
-      min-width: 240px;
-    }
-    .slide-description {
-      margin-top: 32px;
-      margin-left: 32px;
-      margin-right: 32px;
-      max-width: 700px;
+    .slide-label.lake .slide-label-square { background: #111; }
+
+    .slide-desc {
+      margin-top: 0.2em;
       font-size: 2rem;
-      line-height: 1.25;
       font-weight: 400;
-      border-left: 4px solid #fff;
-      padding-left: 24px;
+      line-height: 1.28;
+      color: #fff;
+      border-left: 4px solid #bbb;
+      padding-left: 1.2em;
+      max-width: 92vw;
       letter-spacing: 0.01em;
       box-sizing: border-box;
+      margin-bottom: 0;
     }
-    /* Color for descriptions' left border for each slide */
-    .slide--apps .slide-description {
-      border-color: #E4FF26;
-      color: #fff;
-    }
-    .slide--compute .slide-description {
-      border-color: #5D6DFF;
-      color: #fff;
-    }
-    .slide--lake .slide-description {
-      border-color: #FF4A1C;
-      color: #fff;
-    }
-    /* Colored edge cues */
-    .edge-cue {
+
+    /* Colored side dots for indicators on the right */
+    .slide-indicators {
       position: absolute;
-      top: 60vh;
-      width: 18px;
-      height: 18px;
-      border-radius: 2px;
-    }
-    .edge-cue--right {
-      right: 18px;
-    }
-    .edge-cue--left {
-      left: 18px;
-    }
-    .edge-cue--apps { background: #E4FF26; }
-    .edge-cue--compute { background: #5D6DFF; }
-    .edge-cue--lake { background: #FF4A1C; }
-    /* Navigation dots */
-    .slider-dots {
-      position: absolute;
-      bottom: 38px;
-      left: 50%;
-      transform: translateX(-50%);
+      right: 2vw;
+      top: 50%;
+      transform: translateY(-50%);
       display: flex;
-      gap: 18px;
+      flex-direction: column;
+      gap: 2rem;
+      z-index: 12;
     }
-    .slider-dot {
-      width: 13px;
-      height: 13px;
-      border-radius: 50%;
-      background: #222;
-      border: 2px solid #333;
+    .indicator-dot {
+      width: 1.1em;
+      height: 1.1em;
+      border-radius: 0.2em;
+      margin-bottom: 0.2em;
+      opacity: 0.6;
       cursor: pointer;
-      transition: background 0.2s, border-color 0.2s;
+      transition: opacity .23s;
+      border: none;
+      outline: none;
+      background: transparent;
+      position: relative;
+      z-index: 2;
     }
-    .slider-dot.active {
-      background: #fff;
-      border-color: #fff;
-    }
-    /* Arrows */
+    .indicator-dot.active { opacity: 1; }
+
+    .indicator-dot.apps { background: #e6ff22; }
+    .indicator-dot.compute { background: #5b6fff; }
+    .indicator-dot.lake { background: #ff4700; }
+
+    /* Navigation arrows */
     .slider-arrow {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 52px;
-      height: 52px;
-      background: rgba(30,30,30,0.7);
-      color: #fff;
+      width: 2.8em;
+      height: 2.8em;
+      background: rgba(20,20,20,0.4);
       border: none;
+      color: #fff;
       border-radius: 50%;
-      z-index: 10;
+      font-size: 2.2em;
+      z-index: 11;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      font-size: 2rem;
-      transition: background 0.18s;
-      user-select: none;
+      transition: background .2s;
+      outline: none;
     }
-    .slider-arrow:active {
-      background: rgba(80,80,80,0.9);
+    .slider-arrow:hover {
+      background: rgba(255,255,255,0.15);
     }
-    .slider-arrow--left {
-      left: 24px;
+    .slider-arrow.left {
+      left: 1vw;
     }
-    .slider-arrow--right {
-      right: 24px;
+    .slider-arrow.right {
+      right: 1vw;
     }
+
     @media (max-width: 700px) {
-      .slide-description {
-        font-size: 1.1rem;
-        padding-left: 12px;
-        margin-top: 18px;
-        margin-left: 12px;
-        margin-right: 12px;
-      }
-      .slide-label-bar {
-        margin-top: 12px;
-        margin-left: 8px;
-        height: 29px;
-      }
-      .slide-label-text {
-        font-size: 1.0rem;
-      }
-      .slide-img {
-        height: 40vh;
-      }
-      .slider-arrow {
-        width: 36px; height: 36px; font-size: 1.3rem;
-      }
+      .slide-desc { font-size: 1.2rem; padding-left: .7em; }
+      .slide-label { font-size: 1.1rem; }
+      .slide-content { padding-left: 1vw; }
+    }
+    @media (max-width: 480px) {
+      .slide-desc { font-size: 1rem; }
+      .slide-label { font-size: 1rem; }
+      .slide-content { margin-top: 2vh; }
     }
   </style>
 </head>
 <body>
-  <div class="slider-container">
-    <button class="slider-arrow slider-arrow--left" id="arrowLeft" aria-label="Previous slide" style="display:none;">&#8592;</button>
-    <div class="slider-track" id="sliderTrack">
-      <!-- Slide 1 -->
-      <div class="slide slide--apps">
-        <img src="image1" alt="Apps & SDK Slide" class="slide-img" draggable="false">
-        <div class="slide-label-bar slide-label-bar--apps">
+<div class="slider-container">
+  <button class="slider-arrow left" id="arrowLeft" aria-label="Previous Slide">&#8592;</button>
+  <div class="slider" id="slider">
+    <!-- Slide 1 -->
+    <div class="slide">
+      <img src="image1" alt="Apps & SDK" class="slide-img" draggable="false">
+      <div class="slide-content">
+        <div class="slide-label apps">
           <span class="slide-label-square"></span>
-          <span class="slide-label-text">APPS &nbsp; &nbsp;SDK</span>
+          APPS &nbsp; &nbsp;SDK
         </div>
-        <div class="slide-description">
+        <div class="slide-desc">
           Content applications that enable custom workflows at scale, from creation to distribution.
         </div>
-        <div class="edge-cue edge-cue--right edge-cue--compute"></div>
       </div>
-      <!-- Slide 2 -->
-      <div class="slide slide--compute">
-        <img src="image2" alt="Compute + AI Slide" class="slide-img" draggable="false">
-        <div class="slide-label-bar slide-label-bar--compute">
+    </div>
+    <!-- Slide 2 -->
+    <div class="slide">
+      <img src="image2" alt="Compute + AI" class="slide-img" draggable="false">
+      <div class="slide-content">
+        <div class="slide-label compute">
           <span class="slide-label-square"></span>
-          <span class="slide-label-text">COMPUTE  +  AI</span>
+          COMPUTE &nbsp; + &nbsp;AI
         </div>
-        <div class="slide-description">
+        <div class="slide-desc">
           Serverless functions and agent actions, powering your content operations for humans and AI.
         </div>
-        <div class="edge-cue edge-cue--left edge-cue--apps"></div>
-        <div class="edge-cue edge-cue--right edge-cue--lake"></div>
       </div>
-      <!-- Slide 3 -->
-      <div class="slide slide--lake">
-        <img src="image3" alt="Content Lake Slide" class="slide-img" draggable="false">
-        <div class="slide-label-bar slide-label-bar--lake">
+    </div>
+    <!-- Slide 3 -->
+    <div class="slide">
+      <img src="image3" alt="Content Lake" class="slide-img" draggable="false">
+      <div class="slide-content">
+        <div class="slide-label lake">
           <span class="slide-label-square"></span>
-          <span class="slide-label-text">CONTENT &nbsp;&nbsp;LAKE</span>
+          CONTENT &nbsp; LAKE
         </div>
-        <div class="slide-description">
+        <div class="slide-desc">
           The database optimized for content queries, authoring and delivery.
         </div>
-        <div class="edge-cue edge-cue--left edge-cue--compute"></div>
       </div>
     </div>
-    <button class="slider-arrow slider-arrow--right" id="arrowRight" aria-label="Next slide">&#8594;</button>
-    <div class="slider-dots" id="sliderDots">
-      <span class="slider-dot active" data-slide="0"></span>
-      <span class="slider-dot" data-slide="1"></span>
-      <span class="slider-dot" data-slide="2"></span>
-    </div>
   </div>
-  <script>
-    const slides = 3;
-    let current = 0;
-    const sliderTrack = document.getElementById('sliderTrack');
-    const dots = document.querySelectorAll('.slider-dot');
-    const arrowLeft = document.getElementById('arrowLeft');
-    const arrowRight = document.getElementById('arrowRight');
+  <button class="slider-arrow right" id="arrowRight" aria-label="Next Slide">&#8594;</button>
+  <!-- Indicators -->
+  <div class="slide-indicators">
+    <button class="indicator-dot apps active" aria-label="Apps & SDK"></button>
+    <button class="indicator-dot compute" aria-label="Compute + AI"></button>
+    <button class="indicator-dot lake" aria-label="Content Lake"></button>
+  </div>
+</div>
+<script>
+  const slider = document.getElementById('slider');
+  const indicators = document.querySelectorAll('.indicator-dot');
+  const leftArrow = document.getElementById('arrowLeft');
+  const rightArrow = document.getElementById('arrowRight');
+  const slidesCount = 3;
+  let currentSlide = 0;
+  let sliding = false;
 
-    function updateSlider(newIndex) {
-      if(newIndex < 0 || newIndex >= slides) return;
-      sliderTrack.style.transform = `translateX(-${newIndex * 100}vw)`;
-      current = newIndex;
-      // Update dots
-      dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
-      // Hide/show arrows
-      arrowLeft.style.display = current === 0 ? 'none' : '';
-      arrowRight.style.display = current === slides - 1 ? 'none' : '';
+  function setSlide(idx, animate=true) {
+    if (sliding || idx === currentSlide) return;
+    if (idx < 0) idx = 0;
+    if (idx > slidesCount - 1) idx = slidesCount - 1;
+    sliding = true;
+    slider.style.transition = animate ? 'transform 0.6s cubic-bezier(.77,0,.18,1)' : 'none';
+    slider.style.transform = `translateX(${-idx * 100}vw)`;
+    indicators.forEach((dot, i) => {
+      dot.classList.toggle('active', i === idx);
+    });
+    setTimeout(() => { sliding = false; }, animate ? 600 : 0);
+    currentSlide = idx;
+  }
+
+  leftArrow.addEventListener('click', () => {
+    setSlide(currentSlide - 1);
+  });
+  rightArrow.addEventListener('click', () => {
+    setSlide(currentSlide + 1);
+  });
+  indicators.forEach((dot, idx) => {
+    dot.addEventListener('click', () => setSlide(idx));
+  });
+
+  // Keyboard navigation
+  window.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowLeft') setSlide(currentSlide - 1);
+    if (e.key === 'ArrowRight') setSlide(currentSlide + 1);
+  });
+
+  // Touch/drag swipe support
+  let startX = 0, dx = 0, dragging = false;
+  slider.addEventListener('touchstart', function(e) {
+    if (sliding) return;
+    dragging = true;
+    dx = 0;
+    startX = e.touches[0].clientX;
+    slider.style.transition = 'none';
+  });
+  slider.addEventListener('touchmove', function(e) {
+    if (!dragging) return;
+    dx = e.touches[0].clientX - startX;
+    slider.style.transform = `translateX(${-currentSlide * window.innerWidth + dx}px)`;
+  });
+  slider.addEventListener('touchend', function(e) {
+    if (!dragging) return;
+    dragging = false;
+    if (Math.abs(dx) > 60) {
+      if (dx < 0 && currentSlide < slidesCount-1) setSlide(currentSlide + 1);
+      else if (dx > 0 && currentSlide > 0) setSlide(currentSlide - 1);
+      else setSlide(currentSlide);
+    } else {
+      setSlide(currentSlide);
     }
-    arrowLeft.addEventListener('click', () => updateSlider(current - 1));
-    arrowRight.addEventListener('click', () => updateSlider(current + 1));
-    dots.forEach(dot => dot.addEventListener('click', e => {
-      updateSlider(Number(dot.dataset.slide));
-    }));
+  });
 
-    // Touch & swipe support
-    let startX = null;
-    sliderTrack.addEventListener('touchstart', e => {
-      if(e.touches.length === 1) startX = e.touches[0].clientX;
-    });
-    sliderTrack.addEventListener('touchmove', e => {
-      // Prevent scroll while swiping
-      if(startX !== null) e.preventDefault();
-    }, {passive: false});
-    sliderTrack.addEventListener('touchend', e => {
-      if(startX === null) return;
-      const endX = e.changedTouches[0].clientX;
-      if(endX - startX > 50) updateSlider(current - 1);
-      else if(startX - endX > 50) updateSlider(current + 1);
-      startX = null;
-    });
+  // Prevent image drag
+  document.querySelectorAll('.slide-img').forEach(img => {
+    img.addEventListener('dragstart', e => e.preventDefault());
+  });
 
-    // Keyboard navigation
-    window.addEventListener('keydown', e => {
-      if(e.key === 'ArrowLeft') updateSlider(current - 1);
-      if(e.key === 'ArrowRight') updateSlider(current + 1);
-    });
+  // Resize support
+  window.addEventListener('resize', function() {
+    slider.style.transition = 'none';
+    slider.style.transform = `translateX(${-currentSlide * window.innerWidth}px)`;
+    setTimeout(() => {
+      slider.style.transition = '';
+    }, 50);
+  });
 
-    // Initial state
-    updateSlider(0);
-  </script>
+  // Initial position
+  setSlide(0, false);
+</script>
 </body>
-</html>
+</html>   
