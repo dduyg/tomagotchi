@@ -1,135 +1,240 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Animated Slide Label Demo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>COMPUTE + AI</title>
   <style>
-    html, body {
-      background: #111;
-      margin: 0;
-      padding: 0;
-      color: #fff;
-      font-family: 'JetBrains Mono', 'Fira Mono', monospace, Arial, sans-serif;
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      align-items: flex-start;
-      justify-content: flex-start;
-    }
     body {
+      background: #111;
+      color: #fff;
+      font-family: 'JetBrains Mono', 'Fira Mono', monospace, Arial;
+      padding: 40px;
+      min-height: 100vh;
+    }
+    .label-anim-demo-container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      min-width: 100vw;
-    }
-
-    .slide-label-anim-container {
-      position: relative;
-      width: 90vw;
-      max-width: 1000px;
-      margin-top: 80px;
+      align-items: flex-start;
+      gap: 40px;
     }
 
     .slide-label-anim {
-      display: inline-flex;
-      align-items: center;
-      font-family: 'JetBrains Mono', 'Fira Mono', monospace, Arial;
-      font-size: 2.3rem;
-      letter-spacing: 0.07em;
-      font-weight: 400;
       position: relative;
+      display: flex;
+      align-items: center;
+      font-size: 2.4rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      overflow: visible;
+      margin-bottom: 0.5em;
+      /* The label text should always be on top of background bar */
       z-index: 1;
-      height: 48px;
-      padding-left: 8px;
-      padding-right: 36px;
-      /* "background" will be animated via pseudo-element */
-      color: #111;
-      /* Text color animates from white to black as background grows */
-      transition: color 0.35s cubic-bezier(.77,0,.18,1);
     }
+
     .slide-label-anim .icon {
       width: 28px;
       height: 28px;
-      background: #111;
-      border-radius: 2px;
+      border-radius: 3px;
       margin-right: 14px;
-      display: inline-block;
-      box-sizing: border-box;
-      z-index: 2;
-      position: relative;
-      transition: background 0.3s;
+      margin-left: 3px;
+      flex-shrink: 0;
     }
 
-    /* Animated background effect */
-    .slide-label-anim-bg {
+    /* The animated background bar behind the label text */
+    .slide-label-anim .label-bg-bar {
       position: absolute;
       left: 0;
-      top: 0;
-      height: 48px;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 38px;
       border-radius: 2px;
-      background: #6a81ff;
       z-index: 0;
+      /* Start hidden */
+      width: 0%;
       transition: width 0.7s cubic-bezier(.77,0,.18,1);
-      width: 0;
+      /* For demonstration only: box shadow for visibility */
+      box-shadow: 0 1px 12px 0 #23232333;
     }
 
-    /* Animation triggers */
-    .is-animating .slide-label-anim-bg {
-      width: 100%;
+    /* The label text and icon are on top of the bar */
+    .slide-label-anim .label-content {
+      position: relative;
+      display: flex;
+      align-items: center;
+      z-index: 1;
+      color: #111;
     }
-    .is-animating .slide-label-anim {
+    .slide-label-anim .label-text {
+      position: relative;
+      z-index: 1;
+      color: inherit;
+      white-space: pre;
+      padding-right: 50px; /* To match screenshot extra bar space */
+    }
+
+    /* Theme variants */
+    .slide-label-anim.ai .label-bg-bar {
+      background: #6a81ff;
+    }
+    .slide-label-anim.ai .icon {
+      background: #6a81ff;
+    }
+    .slide-label-anim.ai .label-content {
+      color: #111;
+    }
+    .slide-label-anim.sdk .label-bg-bar {
+      background: #e9ff38;
+    }
+    .slide-label-anim.sdk .icon {
+      background: #e9ff38;
+    }
+    .slide-label-anim.sdk .label-content {
+      color: #111;
+    }
+    .slide-label-anim.lake .label-bg-bar {
+      background: #ff4800;
+    }
+    .slide-label-anim.lake .icon {
+      background: #ff4800;
+    }
+    .slide-label-anim.lake .label-content {
       color: #111;
     }
 
-    /* Initial state: only the blue square */
-    .slide-label-anim-bg {
-      width: 0;
-      transition: width 0.7s cubic-bezier(.77,0,.18,1);
+    /* Demo controls */
+    .demo-controls {
+      margin-top: 12px;
+      display: flex;
+      gap: 12px;
     }
+    .demo-controls button {
+      background: #222;
+      color: #fff;
+      border: none;
+      padding: 7px 15px;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .demo-controls button.active,
+    .demo-controls button:active {
+      background: #6a81ff;
+      color: #111;
+    }
+
     /* Responsive */
     @media (max-width: 600px) {
-      .slide-label-anim-container {
-        width: 98vw;
-      }
       .slide-label-anim {
-        font-size: 1.25rem;
-        height: 32px;
-        padding-left: 6px;
-        padding-right: 10px;
-      }
-      .slide-label-anim-bg {
-        height: 32px;
+        font-size: 1.2rem;
       }
       .slide-label-anim .icon {
-        width: 18px;
-        height: 18px;
+        width: 14px;
+        height: 14px;
         margin-right: 7px;
-        border-radius: 2.5px;
+      }
+      .slide-label-anim .label-bg-bar {
+        height: 20px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="slide-label-anim-container" id="label-anim-container">
-    <div class="slide-label-anim-bg"></div>
-    <div class="slide-label-anim">
-      <span class="icon" style="background: #6a81ff;"></span>
-      COMPUTE &nbsp; + &nbsp; AI
+  <h2 style="letter-spacing:0.03em;">Animated Slide Label Demo</h2>
+  <div class="label-anim-demo-container">
+
+    <!-- Animated label (AI variant) -->
+    <div class="slide-label-anim ai" id="slide-label-anim">
+      <div class="label-bg-bar"></div>
+      <span class="label-content">
+        <span class="icon"></span>
+        <span class="label-text">COMPUTE&nbsp; + &nbsp;AI</span>
+      </span>
     </div>
+    <div class="demo-controls">
+      <button onclick="setAnim(0)" id="btn-step0">Step 1 (0%)</button>
+      <button onclick="setAnim(0.33)" id="btn-step1">Step 2 (33%)</button>
+      <button onclick="setAnim(1)" id="btn-step2">Step 3 (100%)</button>
+      <button onclick="playAnim()" id="btn-play">Play</button>
+    </div>
+    <p style="color:#aaa;font-size:1.02rem;">
+      <b>Tip:</b> Try the Play button or step through for a preview matching your screenshots.
+    </p>
   </div>
   <script>
-    // Animation logic: grow the label background from 0% to 100%
-    window.addEventListener('DOMContentLoaded', () => {
-      const container = document.getElementById('label-anim-container');
-      // Start in initial state (0% width)
-      setTimeout(() => {
-        // Add class to trigger CSS transition
-        container.classList.add('is-animating');
-      }, 300); // Small delay to simulate the screenshots' staged effect
+    // Animation control
+    const label = document.getElementById('slide-label-anim');
+    const bar = label.querySelector('.label-bg-bar');
+    const steps = [0, 0.33, 1];
+    let playing = false, animTimeout = null;
+
+    function setAnim(progress) {
+      // Compute target width: 100% = label width plus padding
+      // Get width of label-content (icon+text+right pad)
+      const content = label.querySelector('.label-content');
+      // Add extra to match screenshot's bar length after the text
+      const rightPad = 60;
+      let targetWidth = content.offsetWidth + rightPad;
+      // Total width of parent (full bar): at 100%
+      let fullWidth = label.offsetWidth-3; // fudge for border
+      // Limit the bar width so it doesn't overflow the container
+      if (targetWidth > fullWidth) targetWidth = fullWidth;
+      // Animate bar width with transition
+      let w = Math.round(targetWidth * progress);
+      bar.style.width = w + 'px';
+      // If at 0, hide the bar completely for screenshot 1 effect
+      if (progress === 0) bar.style.width = '0px';
+      // Reset play button
+      playing = false;
+      document.getElementById('btn-play').classList.remove('active');
+      // Highlight active step
+      steps.forEach((s, i) => {
+        document.getElementById('btn-step' + i).classList.toggle('active', s === progress);
+      });
+    }
+
+    // Play animation
+    function playAnim() {
+      if (playing) return;
+      playing = true;
+      document.getElementById('btn-play').classList.add('active');
+      steps.forEach((s, i) => document.getElementById('btn-step' + i).classList.remove('active'));
+      // Bar grows from 0 to 100% smoothly
+      let start = null;
+      let duration = 700;
+      let rightPad = 60;
+      let content = label.querySelector('.label-content');
+      let targetWidth = content.offsetWidth + rightPad;
+      let fullWidth = label.offsetWidth-3;
+      if (targetWidth > fullWidth) targetWidth = fullWidth;
+      function animate(ts) {
+        if (!start) start = ts;
+        let elapsed = ts - start;
+        let progress = Math.min(elapsed / duration, 1);
+        bar.style.width = Math.round(targetWidth * progress) + 'px';
+        if (progress < 1 && playing) {
+          requestAnimationFrame(animate);
+        } else {
+          playing = false;
+          document.getElementById('btn-play').classList.remove('active');
+          steps.forEach((s, i) => document.getElementById('btn-step' + i).classList.remove('active'));
+        }
+      }
+      bar.style.width = '0px';
+      setTimeout(() => requestAnimationFrame(animate), 40);
+    }
+    // Default: at 0%
+    setAnim(0);
+
+    // For demo: resize observer to recalc bar width on window resize
+    window.addEventListener('resize', () => {
+      setTimeout(() => setAnim(steps.find((s,i) =>
+        document.getElementById('btn-step'+i).classList.contains('active')
+      ) ?? 0), 100);
     });
   </script>
 </body>
