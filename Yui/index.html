@@ -3,186 +3,152 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animated Slide</title>
+  <title>Animated Slide Label - Compute + AI</title>
   <style>
     body {
       background: #111;
+      margin: 0;
       min-height: 100vh;
       display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 40px;
+    }
+
+    .label-outer {
+      position: relative;
+      width: 760px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    /* The background "grow" bar */
+    .label-bg-bar {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      height: 100%;
+      width: 0%;
+      background-color: #6a81ff;
+      border-radius: 2px;
+      z-index: 0;
+      transition: width 600ms cubic-bezier(.77,0,.18,1);
+      will-change: width;
+      /* Animation for demo, remove if triggering via JS */
+      /* animation: grow-bar 0.7s cubic-bezier(.77,0,.18,1) forwards; */
+    }
+    @keyframes grow-bar {
+      0% { width: 0%;}
+      100% { width: 100%;}
+    }
+
+    /* Label content */
+    .label-content {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding-left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+
+    /* Colored square */
+    .label-square {
+      position: relative;
+      width: 22px; height: 22px;
+      background: #111;
+      border-radius: 2px;
+      margin-right: 15px;
+      margin-left: 6px;
+      z-index: 2;
+      display: flex;
       align-items: center;
       justify-content: center;
+      /* The colored dot inside */
     }
-    .slide-label-anim {
-      position: relative;
-      display: inline-flex;
+    .label-dot {
+      width: 13px; height: 13px;
+      background: #6a81ff;
+      border-radius: 2px;
+      display: block;
+    }
+
+    /* Text */
+    .label-text {
+      font-family: 'JetBrains Mono', 'Fira Mono', 'Menlo', 'Consolas', monospace;
+      font-size: 2.1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #111;
+      padding-left: 10px;
+      z-index: 2;
+      /* Animate color on bar grow */
+      transition: color 400ms cubic-bezier(.77,0,.18,1);
+      line-height: 44px;
+      height: 44px;
+      display: flex;
       align-items: center;
-      font-family: 'JetBrains Mono', 'Fira Mono', monospace, Arial, sans-serif;
-      font-size: 2.2rem;
-      letter-spacing: 0.07em;
       font-weight: 400;
-      height: 48px;
-      overflow: visible;
-      margin: 0 0 0 0;
-      background: transparent;
-      z-index: 0;
       user-select: none;
     }
-    .slide-label-anim .icon {
-      width: 30px;
-      height: 30px;
-      min-width: 30px;
-      min-height: 30px;
-      margin-right: 18px;
-      border-radius: 2.5px;
-      display: inline-block;
-      background: #111;
-      z-index: 2;
-      border: none;
-    }
-    .slide-label-anim .icon.sdk { background: #111; }
-    .slide-label-anim .icon.ai { background: #111; }
-    .slide-label-anim .icon.lake { background: #111; }
-
-    /* Animated background */
-    .slide-label-anim .bg {
-      position: absolute;
-      left: 0; top: 50%;
-      transform: translateY(-50%);
-      height: 38px;
-      border-radius: 2px;
-      z-index: 1;
-      width: 0%;
-      transition: width 0.7s cubic-bezier(.77,0,.18,1);
-      will-change: width;
-      pointer-events: none;
-    }
-    .slide-label-anim.sdk .bg {
-      background: #e9ff38;
-    }
-    .slide-label-anim.ai .bg {
-      background: #6a81ff;
-    }
-    .slide-label-anim.lake .bg {
-      background: #ff4800;
-    }
-
-    .slide-label-anim .text {
-      position: relative;
-      z-index: 2;
-      color: #111;
-      padding: 0 1.5em 0 0;
-      transition: color 0.2s;
-      background: transparent;
-    }
-    .slide-label-anim .text.sdk {
-      color: #111;
-    }
-    .slide-label-anim .text.ai {
-      color: #111;
-    }
-    .slide-label-anim .text.lake {
-      color: #111;
-    }
-
-    .slide-label-anim:not(.active) .bg {
-      width: 0%;
-      transition: none;
-    }
-    .slide-label-anim:not(.active) .text {
+    .label-outer:not(.active) .label-text {
       color: #fff;
-      transition: color 0.2s;
-    }
-    .slide-label-anim:not(.active) .icon {
-      background: var(--color, #fff);
-      transition: background 0.2s;
+      transition: color 100ms cubic-bezier(.77,0,.18,1);
     }
 
-    /* Active state: animate to 100% */
-    .slide-label-anim.active .bg {
+    /* Initial state: only square and text appear, no bar */
+    .label-outer:not(.active) .label-bg-bar {
+      width: 0%;
+    }
+    .label-outer:not(.active) .label-text {
+      color: #fff;
+    }
+    /* When active, bar grows and text color flips */
+    .label-outer.active .label-bg-bar {
       width: 100%;
-      transition: width 0.7s cubic-bezier(.77,0,.18,1);
+      transition: width 600ms cubic-bezier(.77,0,.18,1);
     }
-    .slide-label-anim.active .text {
+    .label-outer.active .label-text {
       color: #111;
-      transition: color 0.2s 0.2s;
-    }
-    .slide-label-anim.active .icon.sdk {
-      background: #111;
-    }
-    .slide-label-anim.active .icon.ai {
-      background: #111;
-    }
-    .slide-label-anim.active .icon.lake {
-      background: #111;
+      transition: color 400ms cubic-bezier(.77,0,.18,1) 230ms;
     }
 
-    /* Demo controls */
-    .demo-controls {
-      display: flex;
-      gap: 1em;
-      justify-content: center;
-      margin-top: 48px;
-    }
-    .demo-controls button {
-      padding: 6px 20px;
-      background: #222;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .demo-controls button.active {
-      background: #555;
-      color: #fff;
+    /* Responsive */
+    @media (max-width: 800px) {
+      .label-outer {
+        width: 96vw;
+        min-width: 0;
+      }
+      .label-text {
+        font-size: 1.3rem;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Example for COMPUTE + AI -->
-  <div style="width: 80vw; max-width: 800px;">
-    <div class="slide-label-anim ai active" id="demo-label">
-      <span class="bg"></span>
-      <span class="icon ai"></span>
-      <span class="text ai">COMPUTE&nbsp;&nbsp;+&nbsp;&nbsp;AI</span>
-    </div>
-    <div class="demo-controls">
-      <button onclick="setLabelAnim(0)">0%</button>
-      <button onclick="setLabelAnim(1)">50%</button>
-      <button onclick="setLabelAnim(2)">100%</button>
+  <div class="label-outer" id="animatedLabel">
+    <div class="label-bg-bar"></div>
+    <div class="label-content">
+      <span class="label-square"><span class="label-dot"></span></span>
+      <span class="label-text">COMPUTE&nbsp;&nbsp;+&nbsp;&nbsp;AI</span>
     </div>
   </div>
+
   <script>
-    // Animation progress: 0 (no bar), 1 (partial), 2 (full)
-    function setLabelAnim(stage) {
-      const label = document.getElementById('demo-label');
-      const bg = label.querySelector('.bg');
-      const text = label.querySelector('.text');
-      const icon = label.querySelector('.icon');
-      const buttons = document.querySelectorAll('.demo-controls button');
-      buttons.forEach((b, i) => b.classList.toggle('active', i === stage));
-      label.classList.add('active');
-      if (stage === 0) {
-        bg.style.width = '0%';
-        text.style.color = '#fff';
-        icon.style.background = '#6a81ff';
-      } else if (stage === 1) {
-        bg.style.width = '50%';
-        text.style.color = '#fff';
-        icon.style.background = '#6a81ff';
-      } else {
-        bg.style.width = '100%';
-        setTimeout(() => {
-          text.style.color = '#111';
-          icon.style.background = '#111';
-        }, 400);
-      }
-    }
-    // on load, animate in (demo)
-    setLabelAnim(0);
-    setTimeout(() => setLabelAnim(1), 400);
-    setTimeout(() => setLabelAnim(2), 900);
+    // Animation: add .active after a short delay to trigger bar grow
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        document.getElementById('animatedLabel').classList.add('active');
+      }, 200); // slight delay for effect
+    });
+    // To replay animation on click (for demo)
+    document.getElementById('animatedLabel').addEventListener('click', function() {
+      this.classList.remove('active');
+      void this.offsetWidth; // force reflow
+      setTimeout(() => this.classList.add('active'), 10);
+    });
   </script>
 </body>
 </html>
