@@ -653,39 +653,39 @@
     });
 </script>
 <script>
-  const index = document.querySelector('.index');
+  // Slow scroll multiplier (higher = slower)
+  const scrollSpeedFactor = 0.2;
   let currentScroll = 0;
   let targetScroll = 0;
-  let isScrolling = false;
 
-  function smoothScroll() {
-    // Interpolate current position toward the target
-    currentScroll += (targetScroll - currentScroll) * 0.07; // Lower = slower scroll
-    index.scrollTop = currentScroll;
+  const index = document.getElementById('itemIndex');
 
-    // Continue animating if we're not close enough
-    if (Math.abs(targetScroll - currentScroll) > 0.5) {
-      requestAnimationFrame(smoothScroll);
-    } else {
-      isScrolling = false;
-    }
-  }
+  // Disable default scroll
+  index.style.overflow = 'hidden';
+
+  // Use a proxy scroll container
+  const proxy = index.cloneNode(true);
+  proxy.style.position = 'absolute';
+  proxy.style.top = 0;
+  proxy.style.left = 0;
+  proxy.style.width = '100%';
+  proxy.style.pointerEvents = 'none';
+  proxy.style.opacity = 0;
+  index.parentElement.appendChild(proxy);
 
   index.addEventListener('wheel', (e) => {
     e.preventDefault();
-
-    // Adjust target scroll position
-    targetScroll += e.deltaY;
-
-    // Clamp targetScroll to valid range
-    targetScroll = Math.max(0, Math.min(targetScroll, index.scrollHeight - index.clientHeight));
-
-    // Start animation if not already scrolling
-    if (!isScrolling) {
-      isScrolling = true;
-      smoothScroll();
-    }
+    targetScroll += e.deltaY * scrollSpeedFactor;
+    targetScroll = Math.max(0, Math.min(index.scrollHeight - index.clientHeight, targetScroll));
   }, { passive: false });
+
+  function animateScroll() {
+    currentScroll += (targetScroll - currentScroll) * 0.08;
+    index.scrollTop = currentScroll;
+    requestAnimationFrame(animateScroll);
+  }
+
+  animateScroll();
 </script>
 </body>
 </html>
