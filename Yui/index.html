@@ -5,378 +5,384 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LiminalLoop</title>
   <style>
+    /* Reset and base styles */
     html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
-      background: #101010;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      background: #111;
       color: #fff;
-      font-family: 'Inter', 'Roboto', Arial, sans-serif;
-      font-size: 1.1rem;
+      overflow: hidden;
       width: 100vw;
       height: 100vh;
-      overflow: hidden;
     }
+    body {
+      width: 100vw;
+      height: 100vh;
+    }
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Horizontal slider container */
     .slider-container {
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
-      background: #101010;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .slider {
       display: flex;
       flex-direction: row;
+      align-items: stretch;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
       height: 100vh;
       width: 100vw;
-      transition: transform 0.7s cubic-bezier(.77,0,.18,1);
-      will-change: transform;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .slider-container::-webkit-scrollbar {
+      display: none;
     }
     .slide {
-      min-width: 100vw;
+      flex: 0 0 100vw;
+      width: 100vw;
       height: 100vh;
+      min-width: 100vw;
+      min-height: 100vh;
+      scroll-snap-align: start;
       display: flex;
       flex-direction: column;
+      align-items: stretch;
       justify-content: flex-start;
-      align-items: center;
-      box-sizing: border-box;
-      padding: 0;
+      background: #111;
       position: relative;
-      background: #101010;
+      box-sizing: border-box;
+      overflow: hidden;
     }
-    /* Slide image area */
-    .slide-image {
+
+    /* Top graphic (image or SVG) */
+    .slide-graphic {
       width: 100vw;
-      height: 55vh;
+      height: 45vh;
+      min-height: 360px;
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: center;
-      margin: 0 auto 0 auto;
       background: transparent;
-      position: relative;
+      margin-bottom: 2vh;
     }
-    .slide-image img {
-      width: 100vw;
-      height: 55vh;
-      object-fit: cover;
-      object-position: center top;
+    .slide-graphic img {
+      max-width: 80vw;
+      max-height: 40vh;
       display: block;
-      pointer-events: none;
-      user-select: none;
+      margin: auto;
     }
-    /* Description area */
+
+    /* Slide content area */
     .slide-content {
-      width: 100vw;
-      margin-top: 0;
-      padding: 0 0 0 0;
-      box-sizing: border-box;
       display: flex;
       flex-direction: row;
       align-items: flex-start;
-      height: 45vh;
-      position: relative;
-    }
-    .slide-label {
-      display: flex;
-      align-items: center;
-      font-family: 'Menlo', 'Consolas', 'Monaco', monospace;
-      font-weight: 400;
-      font-size: 1.5rem;
-      letter-spacing: 1px;
-      margin-right: 1.5vw;
-      margin-top: 2vh;
-      margin-left: 3vw;
-      height: 2.5rem;
-      min-width: 250px;
-      position: relative;
-      z-index: 2;
-    }
-    .slide-label .label-box {
-      width: 1.25rem;
-      height: 1.25rem;
-      display: inline-block;
-      margin-right: 0.6rem;
-      border-radius: 2px;
-      vertical-align: middle;
-      background: #000;
-      border: 2px solid #000;
-      box-sizing: border-box;
-      position: relative;
-      top: 2px;
-    }
-    .slide-label.apps {
-      background: #e1ff1f;
-      color: #101010;
-      padding: 0 1rem 0 0.3rem;
-      border-radius: 2px;
-      border: none;
-    }
-    .slide-label.apps .label-box {
-      background: #101010;
-      border-color: #101010;
-    }
-    .slide-label.compute {
-      background: #6d7fff;
-      color: #101010;
-      padding: 0 1rem 0 0.3rem;
-      border-radius: 2px;
-      border: none;
-    }
-    .slide-label.compute .label-box {
-      background: #101010;
-      border-color: #101010;
-    }
-    .slide-label.lake {
-      background: #ff4c08;
-      color: #101010;
-      padding: 0 1rem 0 0.3rem;
-      border-radius: 2px;
-      border: none;
-    }
-    .slide-label.lake .label-box {
-      background: #101010;
-      border-color: #101010;
-    }
-    /* Label indicator for next slide (partial) */
-    .slide-label-indicator {
-      display: flex;
-      align-items: center;
-      font-family: 'Menlo', 'Consolas', 'Monaco', monospace;
-      font-size: 1.2rem;
-      opacity: 0.75;
-      margin-top: 2vh;
-      margin-left: 3vw;
-      min-width: 200px;
-      height: 2.5rem;
-      position: absolute;
-      left: 0;
-      top: 0;
-      z-index: 1;
-    }
-    .slide-label-indicator .label-box {
-      width: 1.25rem;
-      height: 1.25rem;
-      display: inline-block;
-      margin-right: 0.6rem;
-      border-radius: 2px;
-      vertical-align: middle;
-      background: #6d7fff;
-      border: 2px solid #6d7fff;
-      box-sizing: border-box;
-      position: relative;
-      top: 2px;
-    }
-    .slide-label-indicator.lake .label-box {
-      background: #ff4c08;
-      border-color: #ff4c08;
-    }
-    /* Content text styling */
-    .slide-desc {
-      margin-top: 2.5rem;
-      margin-left: 3vw;
-      font-size: 1.7rem;
-      font-weight: 400;
-      line-height: 1.22;
-      max-width: 90vw;
-      color: #fff;
-      letter-spacing: 0.01em;
-      border-left: 4px solid #fff;
-      padding-left: 1.2rem;
-      margin-bottom: 0;
-      font-family: 'Inter', Arial, sans-serif;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.12);
-      box-sizing: border-box;
-    }
-    /* Inactive slide look */
-    .slide.inactive .slide-label,
-    .slide.inactive .slide-desc {
-      opacity: 0.35;
-      filter: blur(0.4px);
-    }
-    /* Slide nav buttons */
-    .slider-nav {
-      position: absolute;
-      left: 0; right: 0;
-      bottom: 32px;
+      justify-content: flex-start;
       width: 100vw;
-      display: flex;
-      justify-content: center;
-      z-index: 20;
-      pointer-events: none;
+      min-height: 50vh;
+      padding: 0 0 0 0;
     }
-    .slider-nav-btn {
-      pointer-events: auto;
-      width: 48px;
-      height: 48px;
-      margin: 0 18px;
-      border: none;
-      border-radius: 50%;
-      background: #232323;
-      color: #fff;
-      font-size: 2rem;
+
+    /* Label bar */
+    .slide-label-bar {
       display: flex;
       align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 8px #0006;
-      cursor: pointer;
-      opacity: 0.85;
-      transition: background 0.18s;
+      height: 40px;
+      min-width: 200px;
+      font-size: 1.4rem;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      font-weight: 400;
+      letter-spacing: 1px;
+      border-radius: 0;
+      margin-right: 2vw;
     }
-    .slider-nav-btn:active {
-      background: #fff2;
+    .slide-label-bar .label-square {
+      width: 22px;
+      height: 22px;
+      margin-left: 7px;
+      margin-right: 12px;
+      border-radius: 2px;
+      display: inline-block;
     }
-    /* Responsive */
-    @media (max-width: 700px) {
-      .slide-image {
-        height: 45vh;
+    .slide-label-bar .label-text {
+      letter-spacing: 0.02em;
+      font-size: 1.13em;
+    }
+    /* Slide label backgrounds */
+    .slide.apps .slide-label-bar {
+      background: #d4ff1c;
+      color: #111;
+    }
+    .slide.apps .slide-label-bar .label-square {
+      background: #111;
+    }
+    .slide.apps .slide-label-bar .label-text {
+      color: #111;
+    }
+
+    .slide.ai .slide-label-bar {
+      background: #5a68ff;
+      color: #111;
+    }
+    .slide.ai .slide-label-bar .label-square {
+      background: #111;
+    }
+    .slide.ai .slide-label-bar .label-text {
+      color: #111;
+    }
+
+    .slide.lake .slide-label-bar {
+      background: #ff4a17;
+      color: #111;
+    }
+    .slide.lake .slide-label-bar .label-square {
+      background: #111;
+    }
+    .slide.lake .slide-label-bar .label-text {
+      color: #111;
+    }
+
+    /* Label for preview/peek (partial slide) */
+    .slide-content .peek-label-bar {
+      display: flex;
+      align-items: center;
+      height: 40px;
+      min-width: 200px;
+      margin-left: 2vw;
+    }
+    .slide-content .peek-label-bar .peek-square {
+      width: 22px;
+      height: 22px;
+      border-radius: 2px;
+      display: inline-block;
+      margin-right: 12px;
+    }
+    /* Peek label color backgrounds */
+    .slide.apps .peek-label-bar .peek-square {
+      background: #5a68ff;
+    }
+    .slide.ai .peek-label-bar .peek-square {
+      background: #ff4a17;
+    }
+    .slide.lake .peek-label-bar .peek-square {
+      background: #d4ff1c;
+    }
+    .slide.apps .peek-label-bar .peek-label-text {
+      color: #5a68ff;
+    }
+    .slide.ai .peek-label-bar .peek-label-text {
+      color: #ff4a17;
+    }
+    .slide.lake .peek-label-bar .peek-label-text {
+      color: #d4ff1c;
+    }
+    .peek-label-bar .peek-label-text {
+      color: #fff;
+      font-size: 1.1em;
+      letter-spacing: 0.02em;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      font-weight: 400;
+      opacity: 0.8;
+    }
+
+    /* Description area */
+    .slide-desc {
+      margin-top: 1.8vh;
+      font-size: 1.45em;
+      color: #fff;
+      line-height: 1.22;
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      font-weight: 400;
+      padding: 0 0 0 0;
+      display: flex;
+      align-items: flex-start;
+      max-width: 700px;
+    }
+    .slide-desc .desc-border {
+      border-left: 4px solid #bbb;
+      margin-right: 18px;
+      height: 100%;
+    }
+    .slide.apps .slide-desc .desc-border {
+      border-color: #d4ff1c;
+    }
+    .slide.ai .slide-desc .desc-border {
+      border-color: #5a68ff;
+    }
+    .slide.lake .slide-desc .desc-border {
+      border-color: #ff4a17;
+    }
+    .slide-desc .desc-text {
+      padding: 0 0 0 0;
+      color: #fff;
+      font-size: 1.26em;
+      font-family: inherit;
+      font-weight: inherit;
+    }
+
+    /* Responsive for mobile/portrait */
+    @media (max-width: 800px) {
+      .slide-graphic {
+        min-height: 200px;
+        height: 35vh;
       }
       .slide-content {
-        height: 55vh;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 0 0 0;
       }
-      .slide-desc {
-        font-size: 1.25rem;
-        margin-top: 1.5rem;
-      }
-      .slide-label {
+      .slide-label-bar, .peek-label-bar {
         font-size: 1.1rem;
         min-width: 160px;
       }
-      .slide-label-indicator {
-        font-size: 1rem;
-        min-width: 120px;
+      .slide-desc {
+        font-size: 1.01em;
+        max-width: 95vw;
+        margin-top: 1.5vh;
+      }
+      .slide-graphic img {
+        max-width: 90vw;
+        max-height: 28vh;
       }
     }
   </style>
 </head>
 <body>
-  <div class="slider-container">
-    <div class="slider" id="slider">
-      <!-- Slide 1 -->
-      <div class="slide" data-index="0">
-        <div class="slide-image">
-          <img src="image1" alt="Apps and SDK Illustration"/>
+  <div class="slider-container" id="slider">
+    <!-- Slide 1: APPS & SDK -->
+    <section class="slide apps">
+      <div class="slide-graphic">
+        <img src="image1" alt="Apps & SDK Graphic" />
+      </div>
+      <div class="slide-content">
+        <div class="slide-label-bar">
+          <span class="label-square"></span>
+          <span class="label-text">APPS&nbsp;&nbsp;&amp;&nbsp;SDK</span>
         </div>
-        <div class="slide-content">
-          <div class="slide-label apps">
-            <span class="label-box"></span>APPS &nbsp; &nbsp;SDK
-          </div>
-          <div class="slide-desc">
+        <div class="slide-desc">
+          <span class="desc-border"></span>
+          <span class="desc-text">
             Content applications that enable custom workflows at scale, from creation to distribution.
-          </div>
+          </span>
+        </div>
+        <div class="peek-label-bar" style="margin-left:auto;">
+          <span class="peek-square"></span>
+          <span class="peek-label-text">COMPUTE&nbsp;+&nbsp;AI</span>
         </div>
       </div>
-      <!-- Slide 2 -->
-      <div class="slide" data-index="1">
-        <div class="slide-image">
-          <img src="image2" alt="Compute + AI Illustration"/>
+    </section>
+
+    <!-- Slide 2: APPS & SDK + COMPUTE + AI (Transition/Overlap) -->
+    <section class="slide apps" style="position:relative;">
+      <div class="slide-graphic">
+        <img src="image2" alt="Apps & SDK and Compute + AI Graphic" />
+      </div>
+      <div class="slide-content" style="justify-content: flex-end;">
+        <div class="slide-label-bar" style="background:#d4ff1c; color:#111; min-width:180px;">
+          <span class="label-square" style="background:#111;"></span>
+          <span class="label-text" style="color:#111;">APPS&nbsp;&nbsp;&amp;&nbsp;SDK</span>
         </div>
-        <div class="slide-content">
-          <div class="slide-label-indicator compute">
-            <span class="label-box"></span>COMPUTE &nbsp;+&nbsp; AI
-          </div>
-          <div class="slide-desc" style="color: #b0b0b0;">
+        <div class="peek-label-bar" style="margin-left:2vw;">
+          <span class="peek-square" style="background:#5a68ff;"></span>
+          <span class="peek-label-text" style="color:#5a68ff;">COMPUTE&nbsp;+&nbsp;AI</span>
+        </div>
+      </div>
+      <div class="slide-content" style="margin-top:2vh; justify-content:flex-end;">
+        <div class="slide-desc" style="color:#888;">
+          <span class="desc-border" style="border-color:#d4ff1c;"></span>
+          <span class="desc-text">
+            <span style="opacity:.45;">Serverless functions and agent actions, powering your content operations for humans and AI.</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Slide 3: COMPUTE + AI -->
+    <section class="slide ai">
+      <div class="slide-graphic">
+        <img src="image3" alt="Compute + AI Graphic" />
+      </div>
+      <div class="slide-content">
+        <div class="slide-label-bar">
+          <span class="label-square"></span>
+          <span class="label-text">COMPUTE&nbsp;&nbsp;+&nbsp;AI</span>
+        </div>
+        <div class="slide-desc">
+          <span class="desc-border"></span>
+          <span class="desc-text">
             Serverless functions and agent actions, powering your content operations for humans and AI.
-          </div>
+          </span>
+        </div>
+        <div class="peek-label-bar" style="margin-left:auto;">
+          <span class="peek-square"></span>
+          <span class="peek-label-text">CONTENT&nbsp;&nbsp;LAKE</span>
         </div>
       </div>
-      <!-- Slide 3 -->
-      <div class="slide" data-index="2">
-        <div class="slide-image">
-          <img src="image3" alt="Compute + AI Illustration 2"/>
-        </div>
-        <div class="slide-content">
-          <div class="slide-label compute">
-            <span class="label-box"></span>COMPUTE &nbsp;+&nbsp; AI
-          </div>
-          <div class="slide-desc">
-            Serverless functions and agent actions, powering your content operations for humans and AI.
-          </div>
-        </div>
+    </section>
+
+    <!-- Slide 4: CONTENT LAKE -->
+    <section class="slide lake">
+      <div class="slide-graphic">
+        <img src="image4" alt="Content Lake Graphic" />
       </div>
-      <!-- Slide 4 -->
-      <div class="slide" data-index="3">
-        <div class="slide-image">
-          <img src="image4" alt="Content Lake Illustration"/>
+      <div class="slide-content">
+        <div class="slide-label-bar">
+          <span class="label-square"></span>
+          <span class="label-text">CONTENT&nbsp;&nbsp;LAKE</span>
         </div>
-        <div class="slide-content">
-          <div class="slide-label lake">
-            <span class="label-box"></span>CONTENT&nbsp;&nbsp;LAKE
-          </div>
-          <div class="slide-desc">
+        <div class="slide-desc">
+          <span class="desc-border"></span>
+          <span class="desc-text">
             The database optimized for content queries, authoring and delivery.
-          </div>
+          </span>
         </div>
       </div>
-    </div>
-    <div class="slider-nav">
-      <button class="slider-nav-btn" id="prevBtn" aria-label="Previous">&#8592;</button>
-      <button class="slider-nav-btn" id="nextBtn" aria-label="Next">&#8594;</button>
-    </div>
+    </section>
   </div>
   <script>
-    // Images are referenced as image1, image2, image3, image4 per your context.
-    // You must serve these images or replace src with actual URLs for a live version.
+    // Optional: swipe navigation for mobile devices
+    (function() {
+      let slider = document.getElementById('slider');
+      let isDown = false;
+      let startX;
+      let scrollLeft;
 
-    const slider = document.getElementById('slider');
-    const slides = document.querySelectorAll('.slide');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-
-    let currentIndex = 0;
-    function updateSlider() {
-      slider.style.transform = `translateX(${-currentIndex * 100}vw)`;
-      slides.forEach((slide, idx) => {
-        slide.classList.toggle('inactive', idx !== currentIndex);
+      slider.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
       });
-      prevBtn.style.display = currentIndex === 0 ? 'none' : '';
-      nextBtn.style.display = currentIndex === slides.length-1 ? 'none' : '';
-    }
-    prevBtn.addEventListener('click', () => {
-      if (currentIndex > 0) {
-        currentIndex--;
-        updateSlider();
-      }
-    });
-    nextBtn.addEventListener('click', () => {
-      if (currentIndex < slides.length - 1) {
-        currentIndex++;
-        updateSlider();
-      }
-    });
-
-    let touchStartX = 0, touchEndX = 0;
-    slider.addEventListener('touchstart', e => {
-      touchStartX = e.changedTouches[0].screenX;
-    });
-    slider.addEventListener('touchend', e => {
-      touchEndX = e.changedTouches[0].screenX;
-      if (touchEndX - touchStartX > 45 && currentIndex > 0) {
-        currentIndex--;
-        updateSlider();
-      } else if (touchStartX - touchEndX > 45 && currentIndex < slides.length-1) {
-        currentIndex++;
-        updateSlider();
-      }
-    });
-
-    window.addEventListener('keydown', e => {
-      if (e.key === 'ArrowRight') nextBtn.click();
-      if (e.key === 'ArrowLeft') prevBtn.click();
-    });
-
-    // Initialize
-    updateSlider();
-
-    // For demo: allow resize
-    window.addEventListener('resize', () => {
-      slider.style.transition = 'none';
-      slider.style.transform = `translateX(${-currentIndex * window.innerWidth}px)`;
-      setTimeout(()=>{
-        slider.style.transition = '';
-      },50);
-    });
+      slider.addEventListener('mouseleave', () => isDown = false);
+      slider.addEventListener('mouseup', () => isDown = false);
+      slider.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (startX - x);
+        slider.scrollLeft = scrollLeft + walk;
+      });
+      // Touch events for mobile
+      let touchStartX = null;
+      let touchScroll = null;
+      slider.addEventListener('touchstart', function(e){
+        if(e.touches.length !== 1) return;
+        touchStartX = e.touches[0].pageX;
+        touchScroll = slider.scrollLeft;
+      });
+      slider.addEventListener('touchmove', function(e){
+        if(touchStartX === null) return;
+        let diff = touchStartX - e.touches[0].pageX;
+        slider.scrollLeft = touchScroll + diff;
+      });
+      slider.addEventListener('touchend', function(){
+        touchStartX = null;
+        touchScroll = null;
+      });
+    })();
   </script>
 </body>
 </html>
