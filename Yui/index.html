@@ -2,240 +2,187 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Animated Slide Label Demo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animated Slide</title>
   <style>
     body {
       background: #111;
-      color: #fff;
-      font-family: 'JetBrains Mono', 'Fira Mono', monospace, Arial;
-      padding: 40px;
       min-height: 100vh;
-    }
-    .label-anim-demo-container {
-      width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 40px;
-    }
-
-    .slide-label-anim {
-      position: relative;
       display: flex;
       align-items: center;
-      font-size: 2.4rem;
+      justify-content: center;
+    }
+    .slide-label-anim {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      font-family: 'JetBrains Mono', 'Fira Mono', monospace, Arial, sans-serif;
+      font-size: 2.2rem;
+      letter-spacing: 0.07em;
       font-weight: 400;
-      letter-spacing: 0.06em;
+      height: 48px;
       overflow: visible;
-      margin-bottom: 0.5em;
-      /* The label text should always be on top of background bar */
-      z-index: 1;
+      margin: 0 0 0 0;
+      background: transparent;
+      z-index: 0;
+      user-select: none;
     }
-
     .slide-label-anim .icon {
-      width: 28px;
-      height: 28px;
-      border-radius: 3px;
-      margin-right: 14px;
-      margin-left: 3px;
-      flex-shrink: 0;
+      width: 30px;
+      height: 30px;
+      min-width: 30px;
+      min-height: 30px;
+      margin-right: 18px;
+      border-radius: 2.5px;
+      display: inline-block;
+      background: #111;
+      z-index: 2;
+      border: none;
     }
+    .slide-label-anim .icon.sdk { background: #111; }
+    .slide-label-anim .icon.ai { background: #111; }
+    .slide-label-anim .icon.lake { background: #111; }
 
-    /* The animated background bar behind the label text */
-    .slide-label-anim .label-bg-bar {
+    /* Animated background */
+    .slide-label-anim .bg {
       position: absolute;
-      left: 0;
-      top: 50%;
+      left: 0; top: 50%;
       transform: translateY(-50%);
       height: 38px;
       border-radius: 2px;
-      z-index: 0;
-      /* Start hidden */
+      z-index: 1;
       width: 0%;
       transition: width 0.7s cubic-bezier(.77,0,.18,1);
-      /* For demonstration only: box shadow for visibility */
-      box-shadow: 0 1px 12px 0 #23232333;
+      will-change: width;
+      pointer-events: none;
     }
-
-    /* The label text and icon are on top of the bar */
-    .slide-label-anim .label-content {
-      position: relative;
-      display: flex;
-      align-items: center;
-      z-index: 1;
-      color: #111;
-    }
-    .slide-label-anim .label-text {
-      position: relative;
-      z-index: 1;
-      color: inherit;
-      white-space: pre;
-      padding-right: 50px; /* To match screenshot extra bar space */
-    }
-
-    /* Theme variants */
-    .slide-label-anim.ai .label-bg-bar {
-      background: #6a81ff;
-    }
-    .slide-label-anim.ai .icon {
-      background: #6a81ff;
-    }
-    .slide-label-anim.ai .label-content {
-      color: #111;
-    }
-    .slide-label-anim.sdk .label-bg-bar {
+    .slide-label-anim.sdk .bg {
       background: #e9ff38;
     }
-    .slide-label-anim.sdk .icon {
-      background: #e9ff38;
+    .slide-label-anim.ai .bg {
+      background: #6a81ff;
     }
-    .slide-label-anim.sdk .label-content {
-      color: #111;
-    }
-    .slide-label-anim.lake .label-bg-bar {
+    .slide-label-anim.lake .bg {
       background: #ff4800;
     }
-    .slide-label-anim.lake .icon {
-      background: #ff4800;
-    }
-    .slide-label-anim.lake .label-content {
+
+    .slide-label-anim .text {
+      position: relative;
+      z-index: 2;
       color: #111;
+      padding: 0 1.5em 0 0;
+      transition: color 0.2s;
+      background: transparent;
+    }
+    .slide-label-anim .text.sdk {
+      color: #111;
+    }
+    .slide-label-anim .text.ai {
+      color: #111;
+    }
+    .slide-label-anim .text.lake {
+      color: #111;
+    }
+
+    .slide-label-anim:not(.active) .bg {
+      width: 0%;
+      transition: none;
+    }
+    .slide-label-anim:not(.active) .text {
+      color: #fff;
+      transition: color 0.2s;
+    }
+    .slide-label-anim:not(.active) .icon {
+      background: var(--color, #fff);
+      transition: background 0.2s;
+    }
+
+    /* Active state: animate to 100% */
+    .slide-label-anim.active .bg {
+      width: 100%;
+      transition: width 0.7s cubic-bezier(.77,0,.18,1);
+    }
+    .slide-label-anim.active .text {
+      color: #111;
+      transition: color 0.2s 0.2s;
+    }
+    .slide-label-anim.active .icon.sdk {
+      background: #111;
+    }
+    .slide-label-anim.active .icon.ai {
+      background: #111;
+    }
+    .slide-label-anim.active .icon.lake {
+      background: #111;
     }
 
     /* Demo controls */
     .demo-controls {
-      margin-top: 12px;
       display: flex;
-      gap: 12px;
+      gap: 1em;
+      justify-content: center;
+      margin-top: 48px;
     }
     .demo-controls button {
+      padding: 6px 20px;
       background: #222;
       color: #fff;
       border: none;
-      padding: 7px 15px;
-      font-size: 1rem;
-      border-radius: 6px;
+      border-radius: 4px;
+      font-size: 1.1rem;
       cursor: pointer;
-      transition: background 0.15s;
+      transition: background 0.2s;
     }
-    .demo-controls button.active,
-    .demo-controls button:active {
-      background: #6a81ff;
-      color: #111;
-    }
-
-    /* Responsive */
-    @media (max-width: 600px) {
-      .slide-label-anim {
-        font-size: 1.2rem;
-      }
-      .slide-label-anim .icon {
-        width: 14px;
-        height: 14px;
-        margin-right: 7px;
-      }
-      .slide-label-anim .label-bg-bar {
-        height: 20px;
-      }
+    .demo-controls button.active {
+      background: #555;
+      color: #fff;
     }
   </style>
 </head>
 <body>
-  <h2 style="letter-spacing:0.03em;">Animated Slide Label Demo</h2>
-  <div class="label-anim-demo-container">
-
-    <!-- Animated label (AI variant) -->
-    <div class="slide-label-anim ai" id="slide-label-anim">
-      <div class="label-bg-bar"></div>
-      <span class="label-content">
-        <span class="icon"></span>
-        <span class="label-text">COMPUTE&nbsp; + &nbsp;AI</span>
-      </span>
+  <!-- Example for COMPUTE + AI -->
+  <div style="width: 80vw; max-width: 800px;">
+    <div class="slide-label-anim ai active" id="demo-label">
+      <span class="bg"></span>
+      <span class="icon ai"></span>
+      <span class="text ai">COMPUTE&nbsp;&nbsp;+&nbsp;&nbsp;AI</span>
     </div>
     <div class="demo-controls">
-      <button onclick="setAnim(0)" id="btn-step0">Step 1 (0%)</button>
-      <button onclick="setAnim(0.33)" id="btn-step1">Step 2 (33%)</button>
-      <button onclick="setAnim(1)" id="btn-step2">Step 3 (100%)</button>
-      <button onclick="playAnim()" id="btn-play">Play</button>
+      <button onclick="setLabelAnim(0)">0%</button>
+      <button onclick="setLabelAnim(1)">50%</button>
+      <button onclick="setLabelAnim(2)">100%</button>
     </div>
-    <p style="color:#aaa;font-size:1.02rem;">
-      <b>Tip:</b> Try the Play button or step through for a preview matching your screenshots.
-    </p>
   </div>
   <script>
-    // Animation control
-    const label = document.getElementById('slide-label-anim');
-    const bar = label.querySelector('.label-bg-bar');
-    const steps = [0, 0.33, 1];
-    let playing = false, animTimeout = null;
-
-    function setAnim(progress) {
-      // Compute target width: 100% = label width plus padding
-      // Get width of label-content (icon+text+right pad)
-      const content = label.querySelector('.label-content');
-      // Add extra to match screenshot's bar length after the text
-      const rightPad = 60;
-      let targetWidth = content.offsetWidth + rightPad;
-      // Total width of parent (full bar): at 100%
-      let fullWidth = label.offsetWidth-3; // fudge for border
-      // Limit the bar width so it doesn't overflow the container
-      if (targetWidth > fullWidth) targetWidth = fullWidth;
-      // Animate bar width with transition
-      let w = Math.round(targetWidth * progress);
-      bar.style.width = w + 'px';
-      // If at 0, hide the bar completely for screenshot 1 effect
-      if (progress === 0) bar.style.width = '0px';
-      // Reset play button
-      playing = false;
-      document.getElementById('btn-play').classList.remove('active');
-      // Highlight active step
-      steps.forEach((s, i) => {
-        document.getElementById('btn-step' + i).classList.toggle('active', s === progress);
-      });
-    }
-
-    // Play animation
-    function playAnim() {
-      if (playing) return;
-      playing = true;
-      document.getElementById('btn-play').classList.add('active');
-      steps.forEach((s, i) => document.getElementById('btn-step' + i).classList.remove('active'));
-      // Bar grows from 0 to 100% smoothly
-      let start = null;
-      let duration = 700;
-      let rightPad = 60;
-      let content = label.querySelector('.label-content');
-      let targetWidth = content.offsetWidth + rightPad;
-      let fullWidth = label.offsetWidth-3;
-      if (targetWidth > fullWidth) targetWidth = fullWidth;
-      function animate(ts) {
-        if (!start) start = ts;
-        let elapsed = ts - start;
-        let progress = Math.min(elapsed / duration, 1);
-        bar.style.width = Math.round(targetWidth * progress) + 'px';
-        if (progress < 1 && playing) {
-          requestAnimationFrame(animate);
-        } else {
-          playing = false;
-          document.getElementById('btn-play').classList.remove('active');
-          steps.forEach((s, i) => document.getElementById('btn-step' + i).classList.remove('active'));
-        }
+    // Animation progress: 0 (no bar), 1 (partial), 2 (full)
+    function setLabelAnim(stage) {
+      const label = document.getElementById('demo-label');
+      const bg = label.querySelector('.bg');
+      const text = label.querySelector('.text');
+      const icon = label.querySelector('.icon');
+      const buttons = document.querySelectorAll('.demo-controls button');
+      buttons.forEach((b, i) => b.classList.toggle('active', i === stage));
+      label.classList.add('active');
+      if (stage === 0) {
+        bg.style.width = '0%';
+        text.style.color = '#fff';
+        icon.style.background = '#6a81ff';
+      } else if (stage === 1) {
+        bg.style.width = '50%';
+        text.style.color = '#fff';
+        icon.style.background = '#6a81ff';
+      } else {
+        bg.style.width = '100%';
+        setTimeout(() => {
+          text.style.color = '#111';
+          icon.style.background = '#111';
+        }, 400);
       }
-      bar.style.width = '0px';
-      setTimeout(() => requestAnimationFrame(animate), 40);
     }
-    // Default: at 0%
-    setAnim(0);
-
-    // For demo: resize observer to recalc bar width on window resize
-    window.addEventListener('resize', () => {
-      setTimeout(() => setAnim(steps.find((s,i) =>
-        document.getElementById('btn-step'+i).classList.contains('active')
-      ) ?? 0), 100);
-    });
+    // on load, animate in (demo)
+    setLabelAnim(0);
+    setTimeout(() => setLabelAnim(1), 400);
+    setTimeout(() => setLabelAnim(2), 900);
   </script>
 </body>
 </html>
