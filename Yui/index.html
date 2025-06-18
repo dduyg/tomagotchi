@@ -607,7 +607,7 @@
   </div>
   <footer><span>(</span> 8-Bit Zen Garden <span>)</span></footer>
 
-<script>
+  <script>
     function filterItems(type) {
       const items = document.querySelectorAll('.item');
       items.forEach(item => {
@@ -651,41 +651,6 @@
         if (nameEl) nameEl.style.fontFamily = font;
       });
     });
-</script>
-<script>
-  // Slow scroll multiplier (higher = slower)
-  const scrollSpeedFactor = 0.2;
-  let currentScroll = 0;
-  let targetScroll = 0;
-
-  const index = document.getElementById('itemIndex');
-
-  // Disable default scroll
-  index.style.overflow = 'hidden';
-
-  // Use a proxy scroll container
-  const proxy = index.cloneNode(true);
-  proxy.style.position = 'absolute';
-  proxy.style.top = 0;
-  proxy.style.left = 0;
-  proxy.style.width = '100%';
-  proxy.style.pointerEvents = 'none';
-  proxy.style.opacity = 0;
-  index.parentElement.appendChild(proxy);
-
-  index.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    targetScroll += e.deltaY * scrollSpeedFactor;
-    targetScroll = Math.max(0, Math.min(index.scrollHeight - index.clientHeight, targetScroll));
-  }, { passive: false });
-
-  function animateScroll() {
-    currentScroll += (targetScroll - currentScroll) * 0.08;
-    index.scrollTop = currentScroll;
-    requestAnimationFrame(animateScroll);
-  }
-
-  animateScroll();
-</script>
+  </script>
 </body>
 </html>
