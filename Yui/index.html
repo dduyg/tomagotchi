@@ -608,7 +608,7 @@
   </div>
   <footer><span>(</span> 8-Bit Zen Garden <span>)</span></footer>
 
-  <script>
+<script>
     function filterItems(type) {
       const items = document.querySelectorAll('.item');
       items.forEach(item => {
@@ -652,6 +652,41 @@
         if (nameEl) nameEl.style.fontFamily = font;
       });
     });
-  </script>
+</script>
+<script>
+  const index = document.querySelector('.index');
+  let currentScroll = 0;
+  let targetScroll = 0;
+  let isScrolling = false;
+
+  function smoothScroll() {
+    // Interpolate current position toward the target
+    currentScroll += (targetScroll - currentScroll) * 0.07; // Lower = slower scroll
+    index.scrollTop = currentScroll;
+
+    // Continue animating if we're not close enough
+    if (Math.abs(targetScroll - currentScroll) > 0.5) {
+      requestAnimationFrame(smoothScroll);
+    } else {
+      isScrolling = false;
+    }
+  }
+
+  index.addEventListener('wheel', (e) => {
+    e.preventDefault();
+
+    // Adjust target scroll position
+    targetScroll += e.deltaY;
+
+    // Clamp targetScroll to valid range
+    targetScroll = Math.max(0, Math.min(targetScroll, index.scrollHeight - index.clientHeight));
+
+    // Start animation if not already scrolling
+    if (!isScrolling) {
+      isScrolling = true;
+      smoothScroll();
+    }
+  }, { passive: false });
+</script>
 </body>
 </html>
