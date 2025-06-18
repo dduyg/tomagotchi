@@ -2,387 +2,315 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Horizontal Slider Replica</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LiminalLoop</title>
   <style>
-    /* Reset and base styles */
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap');
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
-      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
       background: #111;
+      font-family: 'IBM Plex Mono', monospace;
       color: #fff;
       overflow: hidden;
-      width: 100vw;
-      height: 100vh;
     }
-    body {
-      width: 100vw;
-      height: 100vh;
-    }
-    * {
-      box-sizing: border-box;
-    }
-
-    /* Horizontal slider container */
     .slider-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: #111;
+    }
+    .slider-track {
       display: flex;
       flex-direction: row;
-      align-items: stretch;
-      overflow-x: auto;
-      overflow-y: hidden;
-      scroll-snap-type: x mandatory;
+      width: 300vw;
       height: 100vh;
-      width: 100vw;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-    .slider-container::-webkit-scrollbar {
-      display: none;
+      transition: transform 0.8s cubic-bezier(.86,0,.07,1);
     }
     .slide {
-      flex: 0 0 100vw;
       width: 100vw;
       height: 100vh;
-      min-width: 100vw;
-      min-height: 100vh;
-      scroll-snap-align: start;
+      flex-shrink: 0;
       display: flex;
       flex-direction: column;
-      align-items: stretch;
       justify-content: flex-start;
+      align-items: center;
       background: #111;
       position: relative;
-      box-sizing: border-box;
-      overflow: hidden;
     }
-
-    /* Top graphic (image or SVG) */
-    .slide-graphic {
+    .slide-img {
       width: 100vw;
-      height: 45vh;
-      min-height: 360px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      margin-bottom: 2vh;
-    }
-    .slide-graphic img {
-      max-width: 80vw;
-      max-height: 40vh;
+      height: 60vh;
+      object-fit: cover;
       display: block;
-      margin: auto;
+      user-select: none;
+      pointer-events: none;
+      margin-bottom: 0;
     }
-
-    /* Slide content area */
-    .slide-content {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      justify-content: flex-start;
-      width: 100vw;
-      min-height: 50vh;
-      padding: 0 0 0 0;
-    }
-
-    /* Label bar */
     .slide-label-bar {
       display: flex;
       align-items: center;
-      height: 40px;
-      min-width: 200px;
-      font-size: 1.4rem;
-      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-      font-weight: 400;
-      letter-spacing: 1px;
-      border-radius: 0;
-      margin-right: 2vw;
+      margin-top: 20px;
+      margin-left: 20px;
+      height: 38px;
     }
-    .slide-label-bar .label-square {
-      width: 22px;
-      height: 22px;
-      margin-left: 7px;
-      margin-right: 12px;
+    .slide-label-square {
+      width: 24px;
+      height: 24px;
+      background: #111;
       border-radius: 2px;
+      margin-right: 10px;
+      border: none;
+      flex-shrink: 0;
       display: inline-block;
     }
-    .slide-label-bar .label-text {
-      letter-spacing: 0.02em;
-      font-size: 1.13em;
+    .slide-label-text {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.45rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      margin-right: 12px;
     }
-    /* Slide label backgrounds */
-    .slide.apps .slide-label-bar {
-      background: #d4ff1c;
+    .slide-label-bar--apps {
+      background: #E4FF26;
       color: #111;
+      padding: 0 18px 0 8px;
+      border-radius: 2px;
+      min-width: 260px;
     }
-    .slide.apps .slide-label-bar .label-square {
-      background: #111;
-    }
-    .slide.apps .slide-label-bar .label-text {
+    .slide-label-bar--compute {
+      background: #5D6DFF;
       color: #111;
+      padding: 0 18px 0 8px;
+      border-radius: 2px;
+      min-width: 285px;
     }
-
-    .slide.ai .slide-label-bar {
-      background: #5a68ff;
+    .slide-label-bar--lake {
+      background: #FF4A1C;
       color: #111;
+      padding: 0 18px 0 8px;
+      border-radius: 2px;
+      min-width: 240px;
     }
-    .slide.ai .slide-label-bar .label-square {
-      background: #111;
+    .slide-description {
+      margin-top: 32px;
+      margin-left: 32px;
+      margin-right: 32px;
+      max-width: 700px;
+      font-size: 2rem;
+      line-height: 1.25;
+      font-weight: 400;
+      border-left: 4px solid #fff;
+      padding-left: 24px;
+      letter-spacing: 0.01em;
+      box-sizing: border-box;
     }
-    .slide.ai .slide-label-bar .label-text {
-      color: #111;
+    /* Color for descriptions' left border for each slide */
+    .slide--apps .slide-description {
+      border-color: #E4FF26;
+      color: #fff;
     }
-
-    .slide.lake .slide-label-bar {
-      background: #ff4a17;
-      color: #111;
+    .slide--compute .slide-description {
+      border-color: #5D6DFF;
+      color: #fff;
     }
-    .slide.lake .slide-label-bar .label-square {
-      background: #111;
+    .slide--lake .slide-description {
+      border-color: #FF4A1C;
+      color: #fff;
     }
-    .slide.lake .slide-label-bar .label-text {
-      color: #111;
+    /* Colored edge cues */
+    .edge-cue {
+      position: absolute;
+      top: 60vh;
+      width: 18px;
+      height: 18px;
+      border-radius: 2px;
     }
-
-    /* Label for preview/peek (partial slide) */
-    .slide-content .peek-label-bar {
+    .edge-cue--right {
+      right: 18px;
+    }
+    .edge-cue--left {
+      left: 18px;
+    }
+    .edge-cue--apps { background: #E4FF26; }
+    .edge-cue--compute { background: #5D6DFF; }
+    .edge-cue--lake { background: #FF4A1C; }
+    /* Navigation dots */
+    .slider-dots {
+      position: absolute;
+      bottom: 38px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 18px;
+    }
+    .slider-dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #222;
+      border: 2px solid #333;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .slider-dot.active {
+      background: #fff;
+      border-color: #fff;
+    }
+    /* Arrows */
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      background: rgba(30,30,30,0.7);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      z-index: 10;
       display: flex;
       align-items: center;
-      height: 40px;
-      min-width: 200px;
-      margin-left: 2vw;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 2rem;
+      transition: background 0.18s;
+      user-select: none;
     }
-    .slide-content .peek-label-bar .peek-square {
-      width: 22px;
-      height: 22px;
-      border-radius: 2px;
-      display: inline-block;
-      margin-right: 12px;
+    .slider-arrow:active {
+      background: rgba(80,80,80,0.9);
     }
-    /* Peek label color backgrounds */
-    .slide.apps .peek-label-bar .peek-square {
-      background: #5a68ff;
+    .slider-arrow--left {
+      left: 24px;
     }
-    .slide.ai .peek-label-bar .peek-square {
-      background: #ff4a17;
+    .slider-arrow--right {
+      right: 24px;
     }
-    .slide.lake .peek-label-bar .peek-square {
-      background: #d4ff1c;
-    }
-    .slide.apps .peek-label-bar .peek-label-text {
-      color: #5a68ff;
-    }
-    .slide.ai .peek-label-bar .peek-label-text {
-      color: #ff4a17;
-    }
-    .slide.lake .peek-label-bar .peek-label-text {
-      color: #d4ff1c;
-    }
-    .peek-label-bar .peek-label-text {
-      color: #fff;
-      font-size: 1.1em;
-      letter-spacing: 0.02em;
-      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-      font-weight: 400;
-      opacity: 0.8;
-    }
-
-    /* Description area */
-    .slide-desc {
-      margin-top: 1.8vh;
-      font-size: 1.45em;
-      color: #fff;
-      line-height: 1.22;
-      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-      font-weight: 400;
-      padding: 0 0 0 0;
-      display: flex;
-      align-items: flex-start;
-      max-width: 700px;
-    }
-    .slide-desc .desc-border {
-      border-left: 4px solid #bbb;
-      margin-right: 18px;
-      height: 100%;
-    }
-    .slide.apps .slide-desc .desc-border {
-      border-color: #d4ff1c;
-    }
-    .slide.ai .slide-desc .desc-border {
-      border-color: #5a68ff;
-    }
-    .slide.lake .slide-desc .desc-border {
-      border-color: #ff4a17;
-    }
-    .slide-desc .desc-text {
-      padding: 0 0 0 0;
-      color: #fff;
-      font-size: 1.26em;
-      font-family: inherit;
-      font-weight: inherit;
-    }
-
-    /* Responsive for mobile/portrait */
-    @media (max-width: 800px) {
-      .slide-graphic {
-        min-height: 200px;
-        height: 35vh;
-      }
-      .slide-content {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0 0 0 0;
-      }
-      .slide-label-bar, .peek-label-bar {
+    @media (max-width: 700px) {
+      .slide-description {
         font-size: 1.1rem;
-        min-width: 160px;
+        padding-left: 12px;
+        margin-top: 18px;
+        margin-left: 12px;
+        margin-right: 12px;
       }
-      .slide-desc {
-        font-size: 1.01em;
-        max-width: 95vw;
-        margin-top: 1.5vh;
+      .slide-label-bar {
+        margin-top: 12px;
+        margin-left: 8px;
+        height: 29px;
       }
-      .slide-graphic img {
-        max-width: 90vw;
-        max-height: 28vh;
+      .slide-label-text {
+        font-size: 1.0rem;
+      }
+      .slide-img {
+        height: 40vh;
+      }
+      .slider-arrow {
+        width: 36px; height: 36px; font-size: 1.3rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="slider-container" id="slider">
-    <!-- Slide 1: APPS & SDK -->
-    <section class="slide apps">
-      <div class="slide-graphic">
-        <img src="image1" alt="Apps & SDK Graphic" />
+  <div class="slider-container">
+    <button class="slider-arrow slider-arrow--left" id="arrowLeft" aria-label="Previous slide" style="display:none;">&#8592;</button>
+    <div class="slider-track" id="sliderTrack">
+      <!-- Slide 1 -->
+      <div class="slide slide--apps">
+        <img src="image1" alt="Apps & SDK Slide" class="slide-img" draggable="false">
+        <div class="slide-label-bar slide-label-bar--apps">
+          <span class="slide-label-square"></span>
+          <span class="slide-label-text">APPS &nbsp; &nbsp;SDK</span>
+        </div>
+        <div class="slide-description">
+          Content applications that enable custom workflows at scale, from creation to distribution.
+        </div>
+        <div class="edge-cue edge-cue--right edge-cue--compute"></div>
       </div>
-      <div class="slide-content">
-        <div class="slide-label-bar">
-          <span class="label-square"></span>
-          <span class="label-text">APPS&nbsp;&nbsp;&amp;&nbsp;SDK</span>
+      <!-- Slide 2 -->
+      <div class="slide slide--compute">
+        <img src="image2" alt="Compute + AI Slide" class="slide-img" draggable="false">
+        <div class="slide-label-bar slide-label-bar--compute">
+          <span class="slide-label-square"></span>
+          <span class="slide-label-text">COMPUTE  +  AI</span>
         </div>
-        <div class="slide-desc">
-          <span class="desc-border"></span>
-          <span class="desc-text">
-            Content applications that enable custom workflows at scale, from creation to distribution.
-          </span>
+        <div class="slide-description">
+          Serverless functions and agent actions, powering your content operations for humans and AI.
         </div>
-        <div class="peek-label-bar" style="margin-left:auto;">
-          <span class="peek-square"></span>
-          <span class="peek-label-text">COMPUTE&nbsp;+&nbsp;AI</span>
-        </div>
+        <div class="edge-cue edge-cue--left edge-cue--apps"></div>
+        <div class="edge-cue edge-cue--right edge-cue--lake"></div>
       </div>
-    </section>
-
-    <!-- Slide 2: APPS & SDK + COMPUTE + AI (Transition/Overlap) -->
-    <section class="slide apps" style="position:relative;">
-      <div class="slide-graphic">
-        <img src="image2" alt="Apps & SDK and Compute + AI Graphic" />
+      <!-- Slide 3 -->
+      <div class="slide slide--lake">
+        <img src="image3" alt="Content Lake Slide" class="slide-img" draggable="false">
+        <div class="slide-label-bar slide-label-bar--lake">
+          <span class="slide-label-square"></span>
+          <span class="slide-label-text">CONTENT &nbsp;&nbsp;LAKE</span>
+        </div>
+        <div class="slide-description">
+          The database optimized for content queries, authoring and delivery.
+        </div>
+        <div class="edge-cue edge-cue--left edge-cue--compute"></div>
       </div>
-      <div class="slide-content" style="justify-content: flex-end;">
-        <div class="slide-label-bar" style="background:#d4ff1c; color:#111; min-width:180px;">
-          <span class="label-square" style="background:#111;"></span>
-          <span class="label-text" style="color:#111;">APPS&nbsp;&nbsp;&amp;&nbsp;SDK</span>
-        </div>
-        <div class="peek-label-bar" style="margin-left:2vw;">
-          <span class="peek-square" style="background:#5a68ff;"></span>
-          <span class="peek-label-text" style="color:#5a68ff;">COMPUTE&nbsp;+&nbsp;AI</span>
-        </div>
-      </div>
-      <div class="slide-content" style="margin-top:2vh; justify-content:flex-end;">
-        <div class="slide-desc" style="color:#888;">
-          <span class="desc-border" style="border-color:#d4ff1c;"></span>
-          <span class="desc-text">
-            <span style="opacity:.45;">Serverless functions and agent actions, powering your content operations for humans and AI.</span>
-          </span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Slide 3: COMPUTE + AI -->
-    <section class="slide ai">
-      <div class="slide-graphic">
-        <img src="image3" alt="Compute + AI Graphic" />
-      </div>
-      <div class="slide-content">
-        <div class="slide-label-bar">
-          <span class="label-square"></span>
-          <span class="label-text">COMPUTE&nbsp;&nbsp;+&nbsp;AI</span>
-        </div>
-        <div class="slide-desc">
-          <span class="desc-border"></span>
-          <span class="desc-text">
-            Serverless functions and agent actions, powering your content operations for humans and AI.
-          </span>
-        </div>
-        <div class="peek-label-bar" style="margin-left:auto;">
-          <span class="peek-square"></span>
-          <span class="peek-label-text">CONTENT&nbsp;&nbsp;LAKE</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Slide 4: CONTENT LAKE -->
-    <section class="slide lake">
-      <div class="slide-graphic">
-        <img src="image4" alt="Content Lake Graphic" />
-      </div>
-      <div class="slide-content">
-        <div class="slide-label-bar">
-          <span class="label-square"></span>
-          <span class="label-text">CONTENT&nbsp;&nbsp;LAKE</span>
-        </div>
-        <div class="slide-desc">
-          <span class="desc-border"></span>
-          <span class="desc-text">
-            The database optimized for content queries, authoring and delivery.
-          </span>
-        </div>
-      </div>
-    </section>
+    </div>
+    <button class="slider-arrow slider-arrow--right" id="arrowRight" aria-label="Next slide">&#8594;</button>
+    <div class="slider-dots" id="sliderDots">
+      <span class="slider-dot active" data-slide="0"></span>
+      <span class="slider-dot" data-slide="1"></span>
+      <span class="slider-dot" data-slide="2"></span>
+    </div>
   </div>
   <script>
-    // Optional: swipe navigation for mobile devices
-    (function() {
-      let slider = document.getElementById('slider');
-      let isDown = false;
-      let startX;
-      let scrollLeft;
+    const slides = 3;
+    let current = 0;
+    const sliderTrack = document.getElementById('sliderTrack');
+    const dots = document.querySelectorAll('.slider-dot');
+    const arrowLeft = document.getElementById('arrowLeft');
+    const arrowRight = document.getElementById('arrowRight');
 
-      slider.addEventListener('mousedown', (e) => {
-        isDown = true;
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
-      });
-      slider.addEventListener('mouseleave', () => isDown = false);
-      slider.addEventListener('mouseup', () => isDown = false);
-      slider.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (startX - x);
-        slider.scrollLeft = scrollLeft + walk;
-      });
-      // Touch events for mobile
-      let touchStartX = null;
-      let touchScroll = null;
-      slider.addEventListener('touchstart', function(e){
-        if(e.touches.length !== 1) return;
-        touchStartX = e.touches[0].pageX;
-        touchScroll = slider.scrollLeft;
-      });
-      slider.addEventListener('touchmove', function(e){
-        if(touchStartX === null) return;
-        let diff = touchStartX - e.touches[0].pageX;
-        slider.scrollLeft = touchScroll + diff;
-      });
-      slider.addEventListener('touchend', function(){
-        touchStartX = null;
-        touchScroll = null;
-      });
-    })();
+    function updateSlider(newIndex) {
+      if(newIndex < 0 || newIndex >= slides) return;
+      sliderTrack.style.transform = `translateX(-${newIndex * 100}vw)`;
+      current = newIndex;
+      // Update dots
+      dots.forEach((dot, i) => dot.classList.toggle('active', i === current));
+      // Hide/show arrows
+      arrowLeft.style.display = current === 0 ? 'none' : '';
+      arrowRight.style.display = current === slides - 1 ? 'none' : '';
+    }
+    arrowLeft.addEventListener('click', () => updateSlider(current - 1));
+    arrowRight.addEventListener('click', () => updateSlider(current + 1));
+    dots.forEach(dot => dot.addEventListener('click', e => {
+      updateSlider(Number(dot.dataset.slide));
+    }));
+
+    // Touch & swipe support
+    let startX = null;
+    sliderTrack.addEventListener('touchstart', e => {
+      if(e.touches.length === 1) startX = e.touches[0].clientX;
+    });
+    sliderTrack.addEventListener('touchmove', e => {
+      // Prevent scroll while swiping
+      if(startX !== null) e.preventDefault();
+    }, {passive: false});
+    sliderTrack.addEventListener('touchend', e => {
+      if(startX === null) return;
+      const endX = e.changedTouches[0].clientX;
+      if(endX - startX > 50) updateSlider(current - 1);
+      else if(startX - endX > 50) updateSlider(current + 1);
+      startX = null;
+    });
+
+    // Keyboard navigation
+    window.addEventListener('keydown', e => {
+      if(e.key === 'ArrowLeft') updateSlider(current - 1);
+      if(e.key === 'ArrowRight') updateSlider(current + 1);
+    });
+
+    // Initial state
+    updateSlider(0);
   </script>
 </body>
 </html>
