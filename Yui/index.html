@@ -5,212 +5,262 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LiminalLoop</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
-
     html, body {
-      height: 100%;
       margin: 0;
       padding: 0;
       background: #101010;
-      font-family: 'Roboto Mono', monospace;
       color: #fff;
+      font-family: 'Inter', 'Roboto', Arial, sans-serif;
+      font-size: 1.1rem;
+      width: 100vw;
+      height: 100vh;
       overflow: hidden;
     }
-
     .slider-container {
       width: 100vw;
       height: 100vh;
-      display: flex;
-      align-items: stretch;
-      justify-content: center;
-      position: relative;
       overflow: hidden;
+      position: relative;
       background: #101010;
-    }
-
-    .slider-track {
       display: flex;
-      height: 100%;
-      transition: transform 0.6s cubic-bezier(.45,.05,.55,.95);
+      align-items: center;
+      justify-content: center;
+    }
+    .slider {
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+      width: 100vw;
+      transition: transform 0.7s cubic-bezier(.77,0,.18,1);
       will-change: transform;
     }
-
-    .slider-slide {
+    .slide {
       min-width: 100vw;
       height: 100vh;
-      box-sizing: border-box;
-      padding: 0;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: flex-start;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 0;
       position: relative;
       background: #101010;
     }
-
-    .slide-img {
+    /* Slide image area */
+    .slide-image {
       width: 100vw;
-      height: 60vh;
-      object-fit: cover;
-      display: block;
-      margin: 0 auto;
-      background: #222;
-    }
-
-    .content-block {
-      margin: 0 auto;
-      width: 92vw;
-      max-width: 700px;
-      margin-top: 1.5rem;
-      position: relative;
+      height: 55vh;
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+      align-items: flex-end;
+      justify-content: center;
+      margin: 0 auto 0 auto;
+      background: transparent;
+      position: relative;
     }
-
-    .label-row {
+    .slide-image img {
+      width: 100vw;
+      height: 55vh;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      pointer-events: none;
+      user-select: none;
+    }
+    /* Description area */
+    .slide-content {
+      width: 100vw;
+      margin-top: 0;
+      padding: 0 0 0 0;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      height: 45vh;
+      position: relative;
+    }
+    .slide-label {
       display: flex;
       align-items: center;
-      margin-bottom: 1.2rem;
-      font-size: 1.65rem;
-      letter-spacing: 0.04em;
-      font-family: 'Roboto Mono', monospace;
+      font-family: 'Menlo', 'Consolas', 'Monaco', monospace;
       font-weight: 400;
-      text-transform: none;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      margin-right: 1.5vw;
+      margin-top: 2vh;
+      margin-left: 3vw;
       height: 2.5rem;
+      min-width: 250px;
+      position: relative;
+      z-index: 2;
     }
-    .label-square {
-      width: 1.25em;
-      height: 1.25em;
-      display: inline-block;
-      margin-right: 0.5em;
-      border-radius: 2px;
-      background: currentColor;
-      vertical-align: middle;
-      box-shadow: 0 1px 4px #0004;
-    }
-    .label-yellow { color: #e6ff2f; }
-    .label-blue { color: #595cff; }
-    .label-orange { color: #ff4d00; }
-
-    .label-bg {
-      position: absolute;
-      left: 0; top: 0;
-      height: 2.2em;
-      width: 100%;
-      z-index: -1;
-      border-radius: 2px;
-      opacity: 1;
-    }
-    .label-bg-yellow { background: #e6ff2f; }
-    .label-bg-blue { background: #595cff; }
-    .label-bg-orange { background: #ff4d00; }
-
-    .slide-desc {
-      font-size: 2rem;
-      font-family: 'Roboto Mono', monospace;
-      margin: 0;
-      margin-bottom: 0;
-      line-height: 1.35;
-      padding-left: 1.1rem;
-      border-left: 4px solid #fff;
-      font-weight: 400;
-      letter-spacing: 0.01em;
-      color: #fff;
-      max-width: 98vw;
-      text-align: left;
-    }
-
-    /* Navigation dots */
-    .slider-nav {
-      position: absolute;
-      right: 2vw;
-      top: 47vh;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      z-index: 20;
-    }
-    .slider-dot {
+    .slide-label .label-box {
       width: 1.25rem;
       height: 1.25rem;
-      border-radius: 3px;
-      background: #222;
-      border: none;
-      cursor: pointer;
-      transition: outline 0.2s, box-shadow 0.2s;
-      outline: 3px solid transparent;
-      box-shadow: 0 0 0 0 #0000;
+      display: inline-block;
+      margin-right: 0.6rem;
+      border-radius: 2px;
+      vertical-align: middle;
+      background: #000;
+      border: 2px solid #000;
+      box-sizing: border-box;
       position: relative;
-      border: 0;
-      padding: 0;
+      top: 2px;
     }
-    .slider-dot.yellow { background: #e6ff2f; }
-    .slider-dot.blue { background: #595cff; }
-    .slider-dot.orange { background: #ff4d00; }
-    .slider-dot.active {
-      outline: 3px solid #fff;
-      box-shadow: 0 0 0 4px #0008;
-    }
-
-    /* Arrows (optional) */
-    .slider-arrows {
-      position: absolute;
-      left: 2vw;
-      top: 47vh;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      z-index: 20;
-    }
-    .slider-arrow {
-      background: #181818;
-      color: #fff;
+    .slide-label.apps {
+      background: #e1ff1f;
+      color: #101010;
+      padding: 0 1rem 0 0.3rem;
+      border-radius: 2px;
       border: none;
-      width: 2.7rem;
-      height: 2.7rem;
+    }
+    .slide-label.apps .label-box {
+      background: #101010;
+      border-color: #101010;
+    }
+    .slide-label.compute {
+      background: #6d7fff;
+      color: #101010;
+      padding: 0 1rem 0 0.3rem;
+      border-radius: 2px;
+      border: none;
+    }
+    .slide-label.compute .label-box {
+      background: #101010;
+      border-color: #101010;
+    }
+    .slide-label.lake {
+      background: #ff4c08;
+      color: #101010;
+      padding: 0 1rem 0 0.3rem;
+      border-radius: 2px;
+      border: none;
+    }
+    .slide-label.lake .label-box {
+      background: #101010;
+      border-color: #101010;
+    }
+    /* Label indicator for next slide (partial) */
+    .slide-label-indicator {
+      display: flex;
+      align-items: center;
+      font-family: 'Menlo', 'Consolas', 'Monaco', monospace;
+      font-size: 1.2rem;
+      opacity: 0.75;
+      margin-top: 2vh;
+      margin-left: 3vw;
+      min-width: 200px;
+      height: 2.5rem;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 1;
+    }
+    .slide-label-indicator .label-box {
+      width: 1.25rem;
+      height: 1.25rem;
+      display: inline-block;
+      margin-right: 0.6rem;
+      border-radius: 2px;
+      vertical-align: middle;
+      background: #6d7fff;
+      border: 2px solid #6d7fff;
+      box-sizing: border-box;
+      position: relative;
+      top: 2px;
+    }
+    .slide-label-indicator.lake .label-box {
+      background: #ff4c08;
+      border-color: #ff4c08;
+    }
+    /* Content text styling */
+    .slide-desc {
+      margin-top: 2.5rem;
+      margin-left: 3vw;
+      font-size: 1.7rem;
+      font-weight: 400;
+      line-height: 1.22;
+      max-width: 90vw;
+      color: #fff;
+      letter-spacing: 0.01em;
+      border-left: 4px solid #fff;
+      padding-left: 1.2rem;
+      margin-bottom: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      box-sizing: border-box;
+    }
+    /* Inactive slide look */
+    .slide.inactive .slide-label,
+    .slide.inactive .slide-desc {
+      opacity: 0.35;
+      filter: blur(0.4px);
+    }
+    /* Slide nav buttons */
+    .slider-nav {
+      position: absolute;
+      left: 0; right: 0;
+      bottom: 32px;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      z-index: 20;
+      pointer-events: none;
+    }
+    .slider-nav-btn {
+      pointer-events: auto;
+      width: 48px;
+      height: 48px;
+      margin: 0 18px;
+      border: none;
       border-radius: 50%;
+      background: #232323;
+      color: #fff;
       font-size: 2rem;
-      box-shadow: 0 2px 12px #0006;
-      cursor: pointer;
-      transition: background 0.2s;
       display: flex;
       align-items: center;
       justify-content: center;
-      opacity: 0.88;
+      box-shadow: 0 2px 8px #0006;
+      cursor: pointer;
+      opacity: 0.85;
+      transition: background 0.18s;
     }
-    .slider-arrow:disabled {
-      opacity: 0.4;
-      cursor: default;
-      background: #222;
+    .slider-nav-btn:active {
+      background: #fff2;
     }
-
-    /* Hide scrollbars on mobile/desktop */
-    ::-webkit-scrollbar { display: none; }
-    body, html { -ms-overflow-style: none; scrollbar-width: none; }
-
-    @media (max-width: 800px) {
-      .slide-desc { font-size: 1.2rem; }
-      .label-row { font-size: 1rem; }
-      .slider-dot, .slider-dot.active {
-        width: 1rem; height: 1rem;
-        border-radius: 2px;
+    /* Responsive */
+    @media (max-width: 700px) {
+      .slide-image {
+        height: 45vh;
       }
-      .slider-arrow { width: 2rem; height: 2rem; font-size: 1.3rem; }
+      .slide-content {
+        height: 55vh;
+      }
+      .slide-desc {
+        font-size: 1.25rem;
+        margin-top: 1.5rem;
+      }
+      .slide-label {
+        font-size: 1.1rem;
+        min-width: 160px;
+      }
+      .slide-label-indicator {
+        font-size: 1rem;
+        min-width: 120px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="slider-container">
-    <div class="slider-track" id="sliderTrack">
+    <div class="slider" id="slider">
       <!-- Slide 1 -->
-      <div class="slider-slide" aria-label="Slide 1">
-        <img class="slide-img" src="image1" alt="Apps & SDK illustration">
-        <div class="content-block">
-          <div class="label-row label-yellow">
-            <span class="label-bg label-bg-yellow"></span>
-            <span class="label-square label-yellow"></span>
-            APPS &nbsp; &nbsp;SDK
+      <div class="slide" data-index="0">
+        <div class="slide-image">
+          <img src="image1" alt="Apps and SDK Illustration"/>
+        </div>
+        <div class="slide-content">
+          <div class="slide-label apps">
+            <span class="label-box"></span>APPS &nbsp; &nbsp;SDK
           </div>
           <div class="slide-desc">
             Content applications that enable custom workflows at scale, from creation to distribution.
@@ -218,27 +268,41 @@
         </div>
       </div>
       <!-- Slide 2 -->
-      <div class="slider-slide" aria-label="Slide 2">
-        <img class="slide-img" src="image2" alt="Compute + AI illustration">
-        <div class="content-block">
-          <div class="label-row label-blue">
-            <span class="label-bg label-bg-blue"></span>
-            <span class="label-square label-blue"></span>
-            COMPUTE &nbsp;+&nbsp; AI
+      <div class="slide" data-index="1">
+        <div class="slide-image">
+          <img src="image2" alt="Compute + AI Illustration"/>
+        </div>
+        <div class="slide-content">
+          <div class="slide-label-indicator compute">
+            <span class="label-box"></span>COMPUTE &nbsp;+&nbsp; AI
+          </div>
+          <div class="slide-desc" style="color: #b0b0b0;">
+            Serverless functions and agent actions, powering your content operations for humans and AI.
+          </div>
+        </div>
+      </div>
+      <!-- Slide 3 -->
+      <div class="slide" data-index="2">
+        <div class="slide-image">
+          <img src="image3" alt="Compute + AI Illustration 2"/>
+        </div>
+        <div class="slide-content">
+          <div class="slide-label compute">
+            <span class="label-box"></span>COMPUTE &nbsp;+&nbsp; AI
           </div>
           <div class="slide-desc">
             Serverless functions and agent actions, powering your content operations for humans and AI.
           </div>
         </div>
       </div>
-      <!-- Slide 3 -->
-      <div class="slider-slide" aria-label="Slide 3">
-        <img class="slide-img" src="image3" alt="Content Lake illustration">
-        <div class="content-block">
-          <div class="label-row label-orange">
-            <span class="label-bg label-bg-orange"></span>
-            <span class="label-square label-orange"></span>
-            CONTENT &nbsp; LAKE
+      <!-- Slide 4 -->
+      <div class="slide" data-index="3">
+        <div class="slide-image">
+          <img src="image4" alt="Content Lake Illustration"/>
+        </div>
+        <div class="slide-content">
+          <div class="slide-label lake">
+            <span class="label-box"></span>CONTENT&nbsp;&nbsp;LAKE
           </div>
           <div class="slide-desc">
             The database optimized for content queries, authoring and delivery.
@@ -246,70 +310,73 @@
         </div>
       </div>
     </div>
-    <!-- Navigation Dots -->
     <div class="slider-nav">
-      <button class="slider-dot yellow active" aria-label="Go to slide 1"></button>
-      <button class="slider-dot blue" aria-label="Go to slide 2"></button>
-      <button class="slider-dot orange" aria-label="Go to slide 3"></button>
-    </div>
-    <!-- Arrow Nav (optional, for keyboard/desktop) -->
-    <div class="slider-arrows">
-      <button class="slider-arrow" id="arrowPrev" aria-label="Previous slide" disabled>&#8593;</button>
-      <button class="slider-arrow" id="arrowNext" aria-label="Next slide">&#8595;</button>
+      <button class="slider-nav-btn" id="prevBtn" aria-label="Previous">&#8592;</button>
+      <button class="slider-nav-btn" id="nextBtn" aria-label="Next">&#8594;</button>
     </div>
   </div>
   <script>
-    // Slider logic
-    const track = document.getElementById('sliderTrack');
-    const dots = document.querySelectorAll('.slider-dot');
-    const slides = document.querySelectorAll('.slider-slide');
-    const arrowPrev = document.getElementById('arrowPrev');
-    const arrowNext = document.getElementById('arrowNext');
-    let current = 0;
-    const slideCount = slides.length;
+    // Images are referenced as image1, image2, image3, image4 per your context.
+    // You must serve these images or replace src with actual URLs for a live version.
 
-    function gotoSlide(idx) {
-      current = Math.max(0, Math.min(idx, slideCount-1));
-      track.style.transform = `translateX(-${current*100}vw)`;
-      dots.forEach((dot,i)=>dot.classList.toggle('active',i===current));
-      arrowPrev.disabled = current === 0;
-      arrowNext.disabled = current === slideCount-1;
+    const slider = document.getElementById('slider');
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let currentIndex = 0;
+    function updateSlider() {
+      slider.style.transform = `translateX(${-currentIndex * 100}vw)`;
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle('inactive', idx !== currentIndex);
+      });
+      prevBtn.style.display = currentIndex === 0 ? 'none' : '';
+      nextBtn.style.display = currentIndex === slides.length-1 ? 'none' : '';
     }
-
-    // Dot navigation
-    dots.forEach((dot,i)=>{
-      dot.addEventListener('click',()=>gotoSlide(i));
-    });
-
-    // Arrow navigation
-    arrowPrev.addEventListener('click', ()=>gotoSlide(current-1));
-    arrowNext.addEventListener('click', ()=>gotoSlide(current+1));
-
-    // Keyboard navigation
-    window.addEventListener('keydown', e=>{
-      if(e.key==='ArrowLeft' || e.key==='ArrowUp') gotoSlide(current-1);
-      if(e.key==='ArrowRight' || e.key==='ArrowDown') gotoSlide(current+1);
-    });
-
-    // Touch navigation
-    let startX = 0, deltaX = 0;
-    track.addEventListener('touchstart', e=>{
-      startX = e.touches[0].clientX;
-      deltaX = 0;
-    });
-    track.addEventListener('touchmove', e=>{
-      deltaX = e.touches[0].clientX - startX;
-    });
-    track.addEventListener('touchend', ()=>{
-      if(Math.abs(deltaX)>40){
-        if(deltaX<0) gotoSlide(current+1);
-        else gotoSlide(current-1);
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateSlider();
       }
-      deltaX=0;
+    });
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex < slides.length - 1) {
+        currentIndex++;
+        updateSlider();
+      }
     });
 
-    // Initial state
-    gotoSlide(0);
+    let touchStartX = 0, touchEndX = 0;
+    slider.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    slider.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchEndX - touchStartX > 45 && currentIndex > 0) {
+        currentIndex--;
+        updateSlider();
+      } else if (touchStartX - touchEndX > 45 && currentIndex < slides.length-1) {
+        currentIndex++;
+        updateSlider();
+      }
+    });
+
+    window.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') nextBtn.click();
+      if (e.key === 'ArrowLeft') prevBtn.click();
+    });
+
+    // Initialize
+    updateSlider();
+
+    // For demo: allow resize
+    window.addEventListener('resize', () => {
+      slider.style.transition = 'none';
+      slider.style.transform = `translateX(${-currentIndex * window.innerWidth}px)`;
+      setTimeout(()=>{
+        slider.style.transition = '';
+      },50);
+    });
   </script>
 </body>
 </html>
