@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horizontal</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #101010;
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      color: #fff;
+      overflow: hidden;
+      width: 100vw;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .slider-container {
+      display: flex;
+      flex-direction: row;
+      width: 100vw;
+      height: 100vh;
+      align-items: stretch;
+      overflow: hidden;
+      position: relative;
+      background: #101010;
+      touch-action: pan-x;
+    }
+
+    .slide {
+      min-width: 100vw;
+      height: 100vh;
+      flex: 0 0 100vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      box-sizing: border-box;
+      background: #101010;
+      transition: background 0.3s;
+      position: relative;
+      padding: 0 0 0 0;
+    }
+
+    .slide-image {
+      width: 100vw;
+      max-width: 100vw;
+      height: 60vh;
+      object-fit: cover;
+      background: #222;
+      margin-top: 0;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .slide-caption {
+      width: 85vw;
+      max-width: 700px;
+      margin: 36px auto 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .slide-label-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .slide-label-block {
+      width: 26px;
+      height: 26px;
+      background: #222;
+      border-radius: 3px;
+      margin-right: 6px;
+      margin-bottom: 2px;
+      display: inline-block;
+    }
+
+    .slide-label-text {
+      font-family: 'IBM Plex Mono', 'Consolas', 'Menlo', monospace;
+      font-size: 1.35rem;
+      letter-spacing: 0.06em;
+      font-weight: 400;
+      padding: 0 10px 0 0;
+      display: inline-block;
+      line-height: 1.2;
+      position: relative;
+      top: 2px;
+    }
+
+    .slide-bar {
+      height: 28px;
+      width: 100%;
+      margin-left: 0;
+      margin-bottom: 10px;
+      border-radius: 2px;
+      margin-right: 0;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .slide-bar .slide-label-block, .slide-bar .slide-label-text {
+      margin-bottom: 0;
+    }
+
+    /* Slide 1 Colors */
+    .slide-1 .slide-bar, .slide-1 .slide-label-block, .slide-1 .slide-label-text {
+      background: #e4ff2a;
+      color: #181818;
+    }
+    .slide-1 .slide-label-block {
+      background: #181818;
+    }
+    .slide-1 .slide-label-text {
+      color: #181818;
+    }
+
+    /* Slide 2 Colors */
+    .slide-2 .slide-bar, .slide-2 .slide-label-block, .slide-2 .slide-label-text {
+      background: #5b6bff;
+      color: #181818;
+    }
+    .slide-2 .slide-label-block {
+      background: #181818;
+    }
+    .slide-2 .slide-label-text {
+      color: #181818;
+    }
+
+    /* Slide 3 Colors */
+    .slide-3 .slide-bar, .slide-3 .slide-label-block, .slide-3 .slide-label-text {
+      background: #ff5100;
+      color: #181818;
+    }
+    .slide-3 .slide-label-block {
+      background: #181818;
+    }
+    .slide-3 .slide-label-text {
+      color: #181818;
+    }
+
+    .slide-desc-row {
+      display: flex;
+      align-items: flex-start;
+      margin-top: 0;
+      width: 100%;
+    }
+
+    .slide-desc-bar {
+      width: 4px;
+      background: #fff;
+      margin-right: 16px;
+      margin-top: 2px;
+      border-radius: 2px;
+      min-height: 78px;
+      height: auto;
+    }
+
+    .slide-desc-text {
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+      color: #fff;
+      font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      margin: 0;
+      margin-bottom: 0;
+      text-align: left;
+      flex: 1;
+    }
+
+    @media (max-width: 900px) {
+      .slide-desc-text {
+        font-size: 1.4rem;
+      }
+      .slide-caption {
+        width: 95vw;
+        max-width: 95vw;
+      }
+    }
+    @media (max-width: 600px) {
+      .slide-desc-text {
+        font-size: 1.1rem;
+      }
+      .slide-caption {
+        width: 99vw;
+        max-width: 99vw;
+      }
+    }
+
+    /* Navigation Dots */
+    .slider-nav {
+      position: absolute;
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 18px;
+      z-index: 9;
+    }
+    .slider-dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #222;
+      border: 2px solid #444;
+      cursor: pointer;
+      transition: background 0.2s, border 0.2s;
+      outline: none;
+    }
+    .slider-dot.active {
+      background: #e4ff2a;
+      border: 2px solid #e4ff2a;
+      box-shadow: 0 0 0 2px #222;
+    }
+    .slider-dot.dot-2.active {
+      background: #5b6bff;
+      border: 2px solid #5b6bff;
+    }
+    .slider-dot.dot-3.active {
+      background: #ff5100;
+      border: 2px solid #ff5100;
+    }
+
+    /* Hide scrollbar for the slider */
+    .slider-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Optional: Hide scroll for all */
+    .slider-container {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="slider-container" id="slider">
+    <!-- Slide 1 -->
+    <div class="slide slide-1">
+      <img src="image1" alt="Apps & SDK Layer" class="slide-image" draggable="false">
+      <div class="slide-caption">
+        <div class="slide-bar">
+          <span class="slide-label-block"></span>
+          <span class="slide-label-text">APPS &nbsp; & SDK</span>
+        </div>
+        <div class="slide-desc-row">
+          <div class="slide-desc-bar"></div>
+          <div class="slide-desc-text">
+            Content applications that enable custom workflows at scale, from creation to distribution.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide 2 -->
+    <div class="slide slide-2">
+      <img src="image2" alt="Compute + AI Layer" class="slide-image" draggable="false">
+      <div class="slide-caption">
+        <div class="slide-bar">
+          <span class="slide-label-block"></span>
+          <span class="slide-label-text">COMPUTE &nbsp; + AI</span>
+        </div>
+        <div class="slide-desc-row">
+          <div class="slide-desc-bar"></div>
+          <div class="slide-desc-text">
+            Serverless functions and agent actions, powering your content operations for humans and AI.
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide 3 -->
+    <div class="slide slide-3">
+      <img src="image3" alt="Content Lake Layer" class="slide-image" draggable="false">
+      <div class="slide-caption">
+        <div class="slide-bar">
+          <span class="slide-label-block"></span>
+          <span class="slide-label-text">CONTENT &nbsp; LAKE</span>
+        </div>
+        <div class="slide-desc-row">
+          <div class="slide-desc-bar"></div>
+          <div class="slide-desc-text">
+            The database optimized for content queries, authoring and delivery.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Navigation dots -->
+  <div class="slider-nav" id="slider-nav">
+    <button class="slider-dot dot-1 active" aria-label="Go to slide 1"></button>
+    <button class="slider-dot dot-2" aria-label="Go to slide 2"></button>
+    <button class="slider-dot dot-3" aria-label="Go to slide 3"></button>
+  </div>
+  <script>
+    // Slider logic
+    const slider = document.getElementById('slider');
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.slider-dot');
+    let currentSlide = 0;
+    let isDragging = false;
+    let startX = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let animationID;
+    let sliderWidth = window.innerWidth;
+
+    function goToSlide(idx) {
+      currentSlide = idx;
+      updateSlider();
+      updateDots();
+    }
+    function updateSlider() {
+      slider.style.transform = `translateX(-${currentSlide * sliderWidth}px)`;
+    }
+    function updateDots() {
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+    }
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        goToSlide(idx);
+      });
+    });
+
+    // Touch drag/swipe for mobile
+    function setPosition() {
+      slider.style.transform = `translateX(${currentTranslate}px)`;
+    }
+    function animation() {
+      setPosition();
+      if (isDragging) requestAnimationFrame(animation);
+    }
+    slider.addEventListener('touchstart', touchStart);
+    slider.addEventListener('touchend', touchEnd);
+    slider.addEventListener('touchmove', touchMove);
+
+    slider.addEventListener('mousedown', touchStart);
+    slider.addEventListener('mouseup', touchEnd);
+    slider.addEventListener('mouseleave', touchEnd);
+    slider.addEventListener('mousemove', touchMove);
+
+    function touchStart(event) {
+      isDragging = true;
+      startX = getPositionX(event);
+      prevTranslate = -currentSlide * sliderWidth;
+      animationID = requestAnimationFrame(animation);
+      slider.classList.add('grabbing');
+    }
+    function touchMove(event) {
+      if (!isDragging) return;
+      const currentPosition = getPositionX(event);
+      const diff = currentPosition - startX;
+      currentTranslate = prevTranslate + diff;
+    }
+    function touchEnd() {
+      if (!isDragging) return;
+      isDragging = false;
+      cancelAnimationFrame(animationID);
+
+      // Snap to nearest slide
+      let movedBy = currentTranslate - prevTranslate;
+      if (movedBy < -50 && currentSlide < slides.length - 1) currentSlide += 1;
+      if (movedBy > 50 && currentSlide > 0) currentSlide -= 1;
+      updateSlider();
+      updateDots();
+      currentTranslate = -currentSlide * sliderWidth;
+      prevTranslate = currentTranslate;
+      slider.classList.remove('grabbing');
+    }
+    function getPositionX(e) {
+      return e.type.startsWith('touch') ? e.touches[0].clientX : e.clientX;
+    }
+    window.addEventListener('resize', () => {
+      sliderWidth = window.innerWidth;
+      updateSlider();
+    });
+
+    // Keyboard navigation
+    window.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {
+        goToSlide(currentSlide + 1);
+      }
+      if (e.key === 'ArrowLeft' && currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+      }
+    });
+
+    // Prevent image dragging
+    document.querySelectorAll('.slide-image').forEach(img => {
+      img.ondragstart = () => false;
+    });
+  </script>
+</body>
+</html>
