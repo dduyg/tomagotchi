@@ -3,120 +3,152 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Content Operating System</title>
+  <title>Content Operating System</title>
   <style>
     body {
       margin: 0;
+      background-color: #000;
       font-family: Arial, sans-serif;
-      background-color: #0f0f0f;
       color: white;
     }
 
-    .hero-section {
-      padding: 96px 48px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 48px;
+    .container {
+      padding: 40px;
       max-width: 1200px;
       margin: 0 auto;
+      position: relative;
     }
 
-    .hero-section h1 {
-      font-size: 72px;
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-      text-align: center;
-      margin: 0;
+    .eyebrow {
+      text-transform: uppercase;
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 10px;
     }
 
-    .hero-content {
+    .heading {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+
+    .stack-section {
       display: flex;
       flex-direction: column;
-      gap: 32px;
-      align-items: center;
+      gap: 40px;
+      margin-bottom: 60px;
     }
 
-    .hero-text {
-      font-size: 28px;
-      line-height: 1.4;
-      max-width: 800px;
+    .stack-card {
+      background-color: #111;
+      border-left: 2px solid #444;
+      padding: 20px 20px 20px 40px;
+      position: relative;
+    }
+
+    .stack-card::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 24px;
+      width: 12px;
+      height: 12px;
+      background-color: currentColor;
+      border-radius: 50%;
+    }
+
+    .card-title {
+      font-size: 14px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .card-description {
+      font-size: 15px;
+      line-height: 1.5;
+      color: #ccc;
+    }
+
+    .stack-card.apps::before {
+      color: #cdea19;
+    }
+
+    .stack-card.compute::before {
+      color: #556bfc;
+    }
+
+    .stack-card.content::before {
+      color: #ff5500;
+    }
+
+    .stack-images {
+      margin-top: 40px;
       text-align: center;
+      opacity: 0.9;
     }
 
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      justify-content: center;
+    .stack-images img {
+      max-width: 90%;
+      height: auto;
+      margin-top: -100px;
+      opacity: 0.35;
     }
 
-    .hero-buttons a,
-    .hero-buttons button {
-      padding: 16px 24px;
-      font-size: 16px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: background-color 0.3s;
-    }
-
-    .btn-primary {
-      background-color: #1e90ff;
-      color: white;
-    }
-
-    .btn-brand {
-      background-color: #ff6600;
-      color: white;
-    }
-
-    .btn-outline {
-      background-color: transparent;
-      border: 2px solid white;
-      color: white;
-    }
-
-    .btn-outline:hover {
-      background-color: white;
-      color: #0f0f0f;
-    }
-
-    .copy-icon {
-      margin-left: 8px;
-      vertical-align: middle;
-    }
-
-    @media (max-width: 768px) {
-      .hero-section h1 {
-        font-size: 48px;
+    @media (min-width: 768px) {
+      .stack-layout {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 60px;
+        align-items: start;
       }
 
-      .hero-text {
-        font-size: 24px;
+      .stack-section {
+        gap: 60px;
+      }
+
+      .stack-images {
+        margin-top: 0;
+      }
+
+      .stack-images img:first-child {
+        opacity: 1;
       }
     }
   </style>
 </head>
 <body>
+  <section class="container">
+    <div class="eyebrow">The Content Operating System</div>
+    <h2 class="heading">Powering all your content applications from a single platform</h2>
 
-  <section class="hero-section">
-    <h1>The Content Operating System</h1>
-    <div class="hero-content">
-      <p class="hero-text">
-        A fully customizable all-code backend for AI, automations, and applications to author and render content.
-      </p>
-      <div class="hero-buttons">
-        <a href="/get-started" class="btn-primary">Start Building</a>
-        <a href="/demo-request-homepage" class="btn-brand">Watch Demo</a>
-        <button class="btn-outline">
-          npm create sanity@latest
-          <span class="copy-icon">📋</span>
-        </button>
+    <div class="stack-layout">
+      <div class="stack-section">
+        <div class="stack-card apps">
+          <div class="card-title">Apps & SDK</div>
+          <div class="card-description">
+            Content applications that enable custom workflows at scale, from creation to distribution.
+          </div>
+        </div>
+        <div class="stack-card compute">
+          <div class="card-title">Compute + AI</div>
+          <div class="card-description">
+            Serverless functions and agent actions, powering your content operations for humans and AI.
+          </div>
+        </div>
+        <div class="stack-card content">
+          <div class="card-title">Content Lake</div>
+          <div class="card-description">
+            The database optimized for content queries, authoring and delivery.
+          </div>
+        </div>
+      </div>
+
+      <div class="stack-images">
+        <img src="/_next/static/media/tile-top.b374f539.svg" alt="Top Tile" />
+        <img src="/_next/static/media/tile-middle.1db02c17.svg" alt="Middle Tile" />
+        <img src="/_next/static/media/tile-bottom.354a76f6.svg" alt="Bottom Tile" />
       </div>
     </div>
   </section>
-
 </body>
 </html>
