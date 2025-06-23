@@ -5,7 +5,6 @@
   <title>Horizontal Slider Replication</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    /* Reset and base styles */
     html, body {
       height: 100%;
       margin: 0;
@@ -24,8 +23,6 @@
       justify-content: center;
       align-items: center;
     }
-
-    /* Slider container */
     .slider-container {
       width: 768px;
       height: 1032px;
@@ -37,7 +34,6 @@
       align-items: center;
       justify-content: center;
     }
-
     .slider {
       display: flex;
       flex-direction: row;
@@ -45,7 +41,6 @@
       height: 100%;
       transition: transform 0.5s cubic-bezier(.77,0,.18,1);
     }
-
     .slide {
       min-width: 100%;
       height: 100%;
@@ -58,7 +53,6 @@
       background: #111;
       position: relative;
     }
-
     .slide-image {
       width: 100%;
       height: 78%;
@@ -68,7 +62,6 @@
       user-select: none;
       pointer-events: none;
     }
-
     .slide-content {
       width: 100%;
       box-sizing: border-box;
@@ -79,7 +72,6 @@
       flex-direction: column;
       align-items: flex-start;
     }
-
     .slide-label {
       display: flex;
       align-items: center;
@@ -135,7 +127,6 @@
     .slide-label.lake .icon {
       background: #111;
     }
-
     .slide-desc-container {
       border-left: 4px solid #fff;
       padding-left: 16px;
@@ -150,82 +141,6 @@
       color: #fff;
       margin: 0;
       letter-spacing: 0.02em;
-    }
-
-    /* Slider navigation dots */
-    .slider-dots {
-      position: absolute;
-      right: 24px;
-      top: calc(80%);
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-    .slider-dot {
-      width: 22px;
-      height: 22px;
-      border-radius: 4px;
-      background: #222;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      border: none;
-      outline: none;
-      transition: box-shadow 0.2s;
-      box-shadow: none;
-      position: relative;
-    }
-    .slider-dot.active {
-      box-shadow: 0 0 0 4px #fff5;
-    }
-    .slider-dot .dot-color {
-      width: 16px;
-      height: 16px;
-      border-radius: 3px;
-      display: inline-block;
-    }
-    .slider-dot.sdk .dot-color {
-      background: #e9ff38;
-    }
-    .slider-dot.ai .dot-color {
-      background: #6a81ff;
-    }
-    .slider-dot.lake .dot-color {
-      background: #ff4800;
-    }
-
-    /* Navigation arrows (optional, for desktop) */
-    .slider-arrows {
-      position: absolute;
-      width: 100%;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-      display: flex;
-      justify-content: space-between;
-      pointer-events: none;
-      z-index: 2;
-    }
-    .slider-arrow {
-      width: 50px;
-      height: 80px;
-      background: rgba(20,20,20,0.5);
-      border: none;
-      color: #fff;
-      font-size: 2.6rem;
-      cursor: pointer;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: auto;
-      transition: background 0.2s;
-      opacity: 0.7;
-      user-select: none;
-    }
-    .slider-arrow:active {
-      background: rgba(80,80,80,0.2);
     }
     @media (max-width: 800px) {
       .slider-container {
@@ -304,48 +219,19 @@
         </div>
       </div>
     </div>
-    <!-- Slider navigation dots -->
-    <div class="slider-dots">
-      <button class="slider-dot sdk active" data-index="0" aria-label="Go to slide 1"><span class="dot-color"></span></button>
-      <button class="slider-dot ai" data-index="1" aria-label="Go to slide 2"><span class="dot-color"></span></button>
-      <button class="slider-dot lake" data-index="2" aria-label="Go to slide 3"><span class="dot-color"></span></button>
-    </div>
-    <!-- Optional: Arrows for desktop -->
-    <div class="slider-arrows">
-      <button class="slider-arrow" id="arrow-left" aria-label="Previous slide">&#8592;</button>
-      <button class="slider-arrow" id="arrow-right" aria-label="Next slide">&#8594;</button>
-    </div>
   </div>
   <script>
     // Responsive initial slider
     const slider = document.getElementById('slider');
     const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.slider-dot');
-    const arrowLeft = document.getElementById('arrow-left');
-    const arrowRight = document.getElementById('arrow-right');
     let currentIndex = 0;
     const totalSlides = slides.length;
 
     function goToSlide(idx) {
       currentIndex = (idx + totalSlides) % totalSlides;
       slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === currentIndex);
-      });
     }
-    // Dots navigation
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        goToSlide(i);
-      });
-    });
-    // Arrow navigation
-    arrowLeft.addEventListener('click', () => {
-      goToSlide(currentIndex - 1);
-    });
-    arrowRight.addEventListener('click', () => {
-      goToSlide(currentIndex + 1);
-    });
+
     // Keyboard navigation
     document.addEventListener('keydown', e => {
       if (e.key === 'ArrowLeft') goToSlide(currentIndex - 1);
