@@ -3,152 +3,149 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Content Operating System</title>
+  <title>The Content Operating System</title>
   <style>
     body {
       margin: 0;
+      font-family: system-ui, sans-serif;
       background-color: #000;
-      font-family: Arial, sans-serif;
-      color: white;
+      color: #fff;
     }
 
     .container {
-      padding: 40px;
       max-width: 1200px;
       margin: 0 auto;
-      position: relative;
+      padding: 3rem 1.5rem;
     }
 
-    .eyebrow {
-      text-transform: uppercase;
-      font-size: 14px;
-      color: #aaa;
-      margin-bottom: 10px;
+    h1 {
+      font-size: 50px;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 2rem;
+      text-align: left;
     }
 
-    .heading {
-      font-size: 32px;
-      font-weight: bold;
-      margin-bottom: 40px;
+    p {
+      font-size: 24px;
+      line-height: 1.4;
+      max-width: 700px;
+      margin-bottom: 2rem;
     }
 
-    .stack-section {
+    .actions {
       display: flex;
       flex-direction: column;
-      gap: 40px;
-      margin-bottom: 60px;
+      gap: 1rem;
     }
 
-    .stack-card {
-      background-color: #111;
-      border-left: 2px solid #444;
-      padding: 20px 20px 20px 40px;
-      position: relative;
+    .actions a,
+    .actions button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+      font-size: 16px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.3s;
     }
 
-    .stack-card::before {
-      content: "";
-      position: absolute;
-      left: 10px;
-      top: 24px;
-      width: 12px;
-      height: 12px;
-      background-color: currentColor;
-      border-radius: 50%;
+    .primary {
+      background-color: #007bff;
+      color: #fff;
     }
 
-    .card-title {
-      font-size: 14px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
+    .primary:hover {
+      background-color: #0056b3;
     }
 
-    .card-description {
-      font-size: 15px;
-      line-height: 1.5;
+    .brand {
+      background-color: #28a745;
+      color: #fff;
+    }
+
+    .brand:hover {
+      background-color: #1e7e34;
+    }
+
+    .outline {
+      border: 2px solid #ccc;
+      background: transparent;
       color: #ccc;
     }
 
-    .stack-card.apps::before {
-      color: #cdea19;
+    .outline:hover {
+      border-color: #fff;
+      color: #fff;
     }
 
-    .stack-card.compute::before {
-      color: #556bfc;
+    .command-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
     }
 
-    .stack-card.content::before {
-      color: #ff5500;
-    }
-
-    .stack-images {
-      margin-top: 40px;
-      text-align: center;
-      opacity: 0.9;
-    }
-
-    .stack-images img {
-      max-width: 90%;
-      height: auto;
-      margin-top: -100px;
-      opacity: 0.35;
+    svg {
+      width: 1em;
+      height: 1em;
+      fill: currentColor;
     }
 
     @media (min-width: 768px) {
-      .stack-layout {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 60px;
-        align-items: start;
+      h1 {
+        font-size: 72px;
+        text-align: center;
       }
 
-      .stack-section {
-        gap: 60px;
+      .actions {
+        flex-direction: row;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      h1 {
+        font-size: 96px;
       }
 
-      .stack-images {
-        margin-top: 0;
-      }
-
-      .stack-images img:first-child {
-        opacity: 1;
+      p {
+        font-size: 32px;
       }
     }
   </style>
 </head>
 <body>
+
   <section class="container">
-    <div class="eyebrow">The Content Operating System</div>
-    <h2 class="heading">Powering all your content applications from a single platform</h2>
-
-    <div class="stack-layout">
-      <div class="stack-section">
-        <div class="stack-card apps">
-          <div class="card-title">Apps & SDK</div>
-          <div class="card-description">
-            Content applications that enable custom workflows at scale, from creation to distribution.
-          </div>
-        </div>
-        <div class="stack-card compute">
-          <div class="card-title">Compute + AI</div>
-          <div class="card-description">
-            Serverless functions and agent actions, powering your content operations for humans and AI.
-          </div>
-        </div>
-        <div class="stack-card content">
-          <div class="card-title">Content Lake</div>
-          <div class="card-description">
-            The database optimized for content queries, authoring and delivery.
-          </div>
-        </div>
-      </div>
-
-      <div class="stack-images">
-        <img src="/_next/static/media/tile-top.b374f539.svg" alt="Top Tile" />
-        <img src="/_next/static/media/tile-middle.1db02c17.svg" alt="Middle Tile" />
-        <img src="/_next/static/media/tile-bottom.354a76f6.svg" alt="Bottom Tile" />
-      </div>
+    <h1>The Content Operating System</h1>
+    <p>
+      A fully customizable all-code backend for AI, automations, and applications to author and render content.
+    </p>
+    <div class="actions">
+      <a class="primary" href="/get-started">Start Building</a>
+      <a class="brand" href="/demo-request-homepage">Watch demo</a>
+      <button class="outline command-btn" onclick="copyCommand()">
+        <span>npm create sanity@latest</span>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 18H8V7h11v16z"/>
+        </svg>
+      </button>
     </div>
   </section>
+
+  <script>
+    function copyCommand() {
+      const command = 'npm create sanity@latest';
+      navigator.clipboard.writeText(command).then(() => {
+        alert('Command copied to clipboard!');
+      }, (err) => {
+        alert('Failed to copy: ' + err);
+      });
+    }
+  </script>
+
 </body>
 </html>
