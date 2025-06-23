@@ -16,28 +16,18 @@
       color: #ccc;
     }
 
-    .container {
-      min-width: 85%;
-      flex-shrink: 0;
-      scroll-snap-align: center;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .content-wrapper {
-      position: relative;
-      height: 100%;
-      max-width: 80vw;
-    }
-
-    .headline-button {
-      position: relative;
-      display: flex;
+    .block-wrapper {
+      margin-bottom: 3rem;
       width: 100%;
+    }
+
+    .cta-button {
+      position: relative;
+      display: flex;
       align-items: center;
+      width: 100%;
       overflow: hidden;
       padding: 1rem 0;
-      margin-bottom: 3rem;
       background: none;
       border: none;
       cursor: pointer;
@@ -64,36 +54,44 @@
       transition: color 600ms ease-in-out;
     }
 
-    @media (min-width: 1024px) {
-      .headline {
-        text-align: right;
-      }
-
-      .separator-line {
-        display: block;
-      }
-    }
-
-    .separator-line {
-      margin-left: 3rem;
+    .line {
       display: none;
+      margin-left: 3rem;
       height: 1px;
       width: 100%;
       background-color: #797979;
     }
 
-    .description-container {
+    @media (min-width: 1024px) {
+      .line {
+        display: block;
+      }
+
+      .headline {
+        text-align: right;
+        width: 100%;
+      }
+    }
+
+    .content-container {
       position: relative;
       border-left: 2px solid #666;
       padding-left: 4rem;
     }
 
-    .timeline-bar {
+    @media (min-width: 1024px) {
+      .content-container {
+        width: 33.333%;
+        border-left: none;
+      }
+    }
+
+    .vertical-line {
       position: absolute;
       left: -2px;
       top: 0;
-      height: 100%;
       width: 2px;
+      height: 100%;
       background-color: white;
       transform-origin: bottom;
       transform: scaleY(1);
@@ -101,7 +99,7 @@
     }
 
     @media (min-width: 1024px) {
-      .timeline-bar {
+      .vertical-line {
         opacity: 0;
       }
     }
@@ -123,19 +121,17 @@
 </head>
 <body>
 
-  <div class="container">
-    <div class="content-wrapper">
-      <button class="headline-button">
-        <div class="dot"></div>
-        <h3 class="headline">Compute + AI</h3>
-        <div class="separator-line"></div>
-      </button>
-      <div class="description-container">
-        <div class="timeline-bar"></div>
-        <p class="description">
-          Serverless functions and agent actions, powering your content operations for humans and AI.
-        </p>
-      </div>
+  <div class="block-wrapper">
+    <button class="cta-button">
+      <div class="dot"></div>
+      <h3 class="headline">Compute + AI</h3>
+      <div class="line"></div>
+    </button>
+    <div class="content-container">
+      <div class="vertical-line"></div>
+      <p class="description">
+        Serverless functions and agent actions, powering your content operations for humans and AI.
+      </p>
     </div>
   </div>
 
