@@ -6,314 +6,482 @@
   <title>Horizontal Slider</title>
   <style>
     html, body {
-      height: 100%;
       margin: 0;
       padding: 0;
       background: #111;
-      font-family: 'Inter', 'Arial', sans-serif;
       color: #fff;
-      overflow: hidden;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
       width: 100vw;
       height: 100vh;
+      overflow: hidden;
     }
-
     body {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 100vw;
-      height: 100vh;
+      min-height: 100vh;
     }
-
-    .slider-container {
+    .slider-outer {
+      width: 480px;
+      height: 100vh;
       position: relative;
-      width: 400px;
-      height: 700px;
-      max-width: 100vw;
-      max-height: 95vh;
       overflow: hidden;
       background: #111;
-      border-radius: 16px;
-      box-shadow: 0 0 24px #090909bb;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      box-sizing: border-box;
     }
-
     .slider {
       display: flex;
-      transition: transform 0.5s cubic-bezier(.87,-0.41,.19,1.44);
+      flex-direction: row;
+      width: 100%;
       height: 100%;
+      transition: transform 0.5s cubic-bezier(0.6,0,0.2,1);
+      will-change: transform;
     }
-
     .slide {
-      min-width: 400px;
-      max-width: 400px;
+      min-width: 100%;
       height: 100%;
       box-sizing: border-box;
-      padding-bottom: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: start;
-      background: #111;
+      justify-content: flex-start;
       position: relative;
+      padding-top: 32px;
+      background: #111;
     }
-
-    .slide-img {
+    .slide-canvas {
       width: 100%;
-      height: 420px;
-      object-fit: contain;
-      margin-top: 0;
-      border-radius: 0 0 0 0;
-      background: #111;
-      box-shadow: none;
-      user-select: none;
+      height: 350px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      margin-bottom: 24px;
     }
-
-    .slide-label-bar {
+    /* Title bar */
+    .slide-title-bar {
       display: flex;
       align-items: center;
-      margin-top: 30px;
-      margin-bottom: 16px;
-      font-size: 1.5rem;
-      font-family: 'JetBrains Mono', 'Fira Mono', 'Menlo', monospace;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      padding: 0;
-      height: 40px;
-      line-height: 40px;
-    }
-
-    .slide-label-bar .dot {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      margin-right: 12px;
-      border-radius: 2px;
-      background: #111;
-      border: 0;
-      vertical-align: middle;
-    }
-
-    .slide-label-bar .label-text {
-      letter-spacing: 0.04em;
-      font-size: 1.13rem;
-      font-family: inherit;
-      font-weight: 500;
-    }
-
-    .slide-label-bar.apps   { background: #e4ff29; color: #111; padding: 0 0 0 8px; }
-    .slide-label-bar.apps .dot { background: #111; }
-    .slide-label-bar.compute { background: #5366ff; color: #111; padding: 0 0 0 8px;}
-    .slide-label-bar.compute .dot { background: #111; }
-    .slide-label-bar.lake   { background: #ff5500; color: #111; padding: 0 0 0 8px;}
-    .slide-label-bar.lake .dot { background: #111; }
-
-    .slide-desc {
       margin: 0 0 0 0;
-      padding: 0 36px 0 24px;
-      font-size: 1.45rem;
+      font-size: 1.5rem;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
       font-weight: 400;
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+      margin-top: 32px;
+    }
+    .slide-title-bar .color-block {
+      width: 30px;
+      height: 30px;
+      background: #000;
+      margin-right: 16px;
+      border-radius: 2px;
+      display: inline-block;
+    }
+    .slide-title-bar .title-text {
+      padding: 3px 0 0 0;
+      font-size: 1.1rem;
+      font-family: inherit;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+    }
+    .slide-title-bar .bar {
+      height: 30px;
+      margin-left: 0.5rem;
+      display: inline-block;
+      vertical-align: middle;
+      border-radius: 2px;
+    }
+
+    /* Description */
+    .slide-description {
+      max-width: 98%;
+      margin: 32px 0 0 0;
+      font-size: 1.5rem;
+      line-height: 1.25;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      font-weight: 400;
+      border-left: 4px solid #888;
+      padding-left: 16px;
       color: #fff;
-      letter-spacing: 0.01em;
-      line-height: 1.3;
-      border-left: 4px solid #fff;
-      min-height: 120px;
-      display: flex;
-      align-items: center;
     }
 
-    /* Border color for each slide */
-    .slide.apps .slide-desc    { border-color: #e4ff29; }
-    .slide.compute .slide-desc { border-color: #5366ff; }
-    .slide.lake .slide-desc    { border-color: #ff5500; }
-
-    /* Slider navigation arrows */
-    .arrow {
+    /* Navigation dots */
+    .slider-nav {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 2;
-      width: 44px;
-      height: 44px;
-      background: rgba(30,30,30,0.75);
-      border: none;
-      color: #fff;
-      font-size: 2.2rem;
-      border-radius: 50%;
-      cursor: pointer;
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%);
       display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.22s;
-      opacity: 0.93;
-      user-select: none;
-    }
-
-    .arrow:hover {
-      background: #fff;
-      color: #111;
-    }
-
-    .arrow.left  { left: 12px; }
-    .arrow.right { right: 12px; }
-
-    /* Dots navigation */
-    .slider-dots {
-      margin: 0;
-      padding: 0;
-      position: absolute;
-      bottom: 22px;
-      left: 0; right: 0;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      z-index: 3;
+      gap: 18px;
+      z-index: 10;
     }
     .slider-dot {
-      width: 14px;
-      height: 14px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
-      background: #333;
-      opacity: 0.55;
-      border: 2px solid #555;
-      transition: background 0.25s, border 0.25s, opacity 0.22s;
+      background: #444;
+      border: none;
+      outline: none;
+      opacity: 0.65;
       cursor: pointer;
+      transition: background 0.2s, opacity 0.2s;
     }
     .slider-dot.active {
       opacity: 1;
       background: #fff;
-      border: 2.5px solid #e4ff29;
-      box-shadow: 0 0 8px #e4ff29;
     }
 
+    /* Arrow buttons */
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 34px;
+      color: #fff;
+      background: rgba(20,20,20,0.7);
+      border: none;
+      width: 50px;
+      height: 80px;
+      cursor: pointer;
+      z-index: 10;
+      border-radius: 0 6px 6px 0;
+      transition: background 0.2s;
+      opacity: 0.8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slider-arrow.right {
+      right: 0;
+      left: unset;
+      border-radius: 6px 0 0 6px;
+    }
+    .slider-arrow.left {
+      left: 0;
+      border-radius: 0 6px 6px 0;
+    }
+    .slider-arrow:active {
+      background: rgba(40,40,40,0.93);
+    }
     @media (max-width: 500px) {
-      .slider-container, .slide {
-        width: 98vw !important;
-        min-width: 98vw !important;
-        max-width: 98vw !important;
+      .slider-outer {
+        width: 100vw;
       }
-      .slide {
-        padding: 0;
-      }
-      .slide-desc {
-        font-size: 1.08rem;
-        padding: 0 12px 0 12px;
-      }
-      .slide-label-bar {
-        font-size: 1.07rem;
+      .slide-description {
+        font-size: 1.1rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="slider-container" id="sliderContainer">
-    <button class="arrow left" id="arrowLeft" aria-label="Previous">&#8592;</button>
+  <div class="slider-outer">
     <div class="slider" id="slider">
       <!-- Slide 1 -->
-      <div class="slide apps">
-        <img src="image1" alt="Apps & SDK graphic" class="slide-img" draggable="false">
-        <div class="slide-label-bar apps">
-          <span class="dot"></span>
-          <span class="label-text">APPS & SDK</span>
+      <div class="slide">
+        <div class="slide-canvas">
+          <!-- SVG illustration for APPS & SDK (yellow) -->
+          <svg width="370" height="320" viewBox="0 0 370 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Dotted grid layer -->
+            <g>
+              <defs>
+                <pattern id="dots" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="1.2" fill="#fff" opacity="0.15"/>
+                </pattern>
+              </defs>
+              <rect x="25" y="25" width="320" height="270" fill="url(#dots)"/>
+            </g>
+            <!-- Middle grid layer -->
+            <g>
+              <g opacity="0.2">
+                <g>
+                  <rect x="55" y="60" width="260" height="200" fill="none" stroke="#fff" stroke-width="1"/>
+                  <!-- grid lines -->
+                  <g>
+                    <g>
+                      <!-- vertical lines -->
+                      <line x1="75" y1="60" x2="75" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="95" y1="60" x2="95" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="115" y1="60" x2="115" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="135" y1="60" x2="135" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="155" y1="60" x2="155" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="175" y1="60" x2="175" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="195" y1="60" x2="195" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="215" y1="60" x2="215" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="235" y1="60" x2="235" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="255" y1="60" x2="255" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="275" y1="60" x2="275" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="295" y1="60" x2="295" y2="260" stroke="#fff" stroke-width="0.7"/>
+                    </g>
+                    <g>
+                      <!-- horizontal lines -->
+                      <line x1="55" y1="80" x2="315" y2="80" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="100" x2="315" y2="100" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="120" x2="315" y2="120" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="140" x2="315" y2="140" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="160" x2="315" y2="160" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="180" x2="315" y2="180" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="200" x2="315" y2="200" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="220" x2="315" y2="220" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="240" x2="315" y2="240" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="260" x2="315" y2="260" stroke="#fff" stroke-width="0.7"/>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+            <!-- Foreground yellow shapes -->
+            <g>
+              <rect x="130" y="40" width="120" height="60" fill="#edff2a"/>
+              <rect x="80" y="110" width="55" height="35" fill="#edff2a"/>
+              <rect x="155" y="100" width="95" height="40" fill="#edff2a"/>
+            </g>
+          </svg>
         </div>
-        <div class="slide-desc">
+        <div class="slide-title-bar">
+          <span class="color-block" style="background:#000"></span>
+          <span class="title-text" style="background:#edff2a; color:#111; padding:0 10px 0 10px; border-radius:2px 0 0 2px; font-size:1.1rem;">
+            APPS &nbsp; & SDK
+          </span>
+          <span class="bar" style="background:#edff2a;width:200px;"></span>
+        </div>
+        <div class="slide-description">
           Content applications that enable custom workflows at scale, from creation to distribution.
         </div>
       </div>
       <!-- Slide 2 -->
-      <div class="slide compute">
-        <img src="image2" alt="Compute + AI graphic" class="slide-img" draggable="false">
-        <div class="slide-label-bar compute">
-          <span class="dot"></span>
-          <span class="label-text">COMPUTE + AI</span>
+      <div class="slide">
+        <div class="slide-canvas">
+          <!-- SVG illustration for COMPUTE + AI (blue) -->
+          <svg width="370" height="320" viewBox="0 0 370 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Dotted grid layer -->
+            <g>
+              <defs>
+                <pattern id="dots2" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="1.2" fill="#fff" opacity="0.15"/>
+                </pattern>
+              </defs>
+              <rect x="25" y="25" width="320" height="270" fill="url(#dots2)"/>
+            </g>
+            <!-- Middle grid layer -->
+            <g>
+              <g opacity="0.2">
+                <g>
+                  <rect x="55" y="60" width="260" height="200" fill="none" stroke="#fff" stroke-width="1"/>
+                  <!-- grid lines -->
+                  <g>
+                    <g>
+                      <!-- vertical lines -->
+                      <line x1="75" y1="60" x2="75" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="95" y1="60" x2="95" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="115" y1="60" x2="115" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="135" y1="60" x2="135" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="155" y1="60" x2="155" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="175" y1="60" x2="175" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="195" y1="60" x2="195" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="215" y1="60" x2="215" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="235" y1="60" x2="235" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="255" y1="60" x2="255" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="275" y1="60" x2="275" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="295" y1="60" x2="295" y2="260" stroke="#fff" stroke-width="0.7"/>
+                    </g>
+                    <g>
+                      <!-- horizontal lines -->
+                      <line x1="55" y1="80" x2="315" y2="80" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="100" x2="315" y2="100" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="120" x2="315" y2="120" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="140" x2="315" y2="140" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="160" x2="315" y2="160" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="180" x2="315" y2="180" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="200" x2="315" y2="200" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="220" x2="315" y2="220" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="240" x2="315" y2="240" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="260" x2="315" y2="260" stroke="#fff" stroke-width="0.7"/>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+            <!-- Foreground blue shapes -->
+            <g>
+              <rect x="140" y="115" width="30" height="30" fill="#5275ff"/>
+              <rect x="200" y="115" width="30" height="30" fill="#5275ff"/>
+              <rect x="140" y="175" width="30" height="30" fill="#5275ff"/>
+              <rect x="200" y="175" width="30" height="30" fill="#5275ff"/>
+              <rect x="170" y="145" width="30" height="30" fill="#5275ff"/>
+            </g>
+          </svg>
         </div>
-        <div class="slide-desc">
+        <div class="slide-title-bar">
+          <span class="color-block" style="background:#000"></span>
+          <span class="title-text" style="background:#5275ff; color:#111; padding:0 10px 0 10px; border-radius:2px 0 0 2px; font-size:1.1rem;">
+            COMPUTE &nbsp;+&nbsp; AI
+          </span>
+          <span class="bar" style="background:#5275ff;width:200px;"></span>
+        </div>
+        <div class="slide-description">
           Serverless functions and agent actions, powering your content operations for humans and AI.
         </div>
       </div>
       <!-- Slide 3 -->
-      <div class="slide lake">
-        <img src="image3" alt="Content Lake graphic" class="slide-img" draggable="false">
-        <div class="slide-label-bar lake">
-          <span class="dot"></span>
-          <span class="label-text">CONTENT LAKE</span>
+      <div class="slide">
+        <div class="slide-canvas">
+          <!-- SVG illustration for CONTENT LAKE (orange/red) -->
+          <svg width="370" height="320" viewBox="0 0 370 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Dotted grid layer -->
+            <g>
+              <defs>
+                <pattern id="dots3" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+                  <circle cx="2" cy="2" r="1.2" fill="#fff" opacity="0.15"/>
+                </pattern>
+              </defs>
+              <rect x="25" y="25" width="320" height="270" fill="url(#dots3)"/>
+            </g>
+            <!-- Middle grid layer -->
+            <g>
+              <g opacity="0.18">
+                <g>
+                  <rect x="55" y="60" width="260" height="200" fill="none" stroke="#fff" stroke-width="1"/>
+                  <!-- grid lines -->
+                  <g>
+                    <g>
+                      <!-- vertical lines -->
+                      <line x1="75" y1="60" x2="75" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="95" y1="60" x2="95" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="115" y1="60" x2="115" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="135" y1="60" x2="135" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="155" y1="60" x2="155" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="175" y1="60" x2="175" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="195" y1="60" x2="195" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="215" y1="60" x2="215" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="235" y1="60" x2="235" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="255" y1="60" x2="255" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="275" y1="60" x2="275" y2="260" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="295" y1="60" x2="295" y2="260" stroke="#fff" stroke-width="0.7"/>
+                    </g>
+                    <g>
+                      <!-- horizontal lines -->
+                      <line x1="55" y1="80" x2="315" y2="80" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="100" x2="315" y2="100" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="120" x2="315" y2="120" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="140" x2="315" y2="140" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="160" x2="315" y2="160" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="180" x2="315" y2="180" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="200" x2="315" y2="200" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="220" x2="315" y2="220" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="240" x2="315" y2="240" stroke="#fff" stroke-width="0.7"/>
+                      <line x1="55" y1="260" x2="315" y2="260" stroke="#fff" stroke-width="0.7"/>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+            <!-- Foreground orange/red shapes -->
+            <g>
+              <rect x="115" y="145" width="45" height="45" fill="#ff6b14"/>
+              <rect x="185" y="120" width="80" height="60" fill="url(#redgrad)"/>
+              <rect x="240" y="185" width="28" height="28" fill="#ff6b14"/>
+              <rect x="85" y="185" width="22" height="22" fill="#ff6b14"/>
+              <defs>
+                <linearGradient id="redgrad" x1="185" y1="120" x2="265" y2="180" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#ff6b14"/>
+                  <stop offset="0.35" stop-color="#ff1d00"/>
+                  <stop offset="1" stop-color="#b70000"/>
+                </linearGradient>
+              </defs>
+            </g>
+          </svg>
         </div>
-        <div class="slide-desc">
+        <div class="slide-title-bar">
+          <span class="color-block" style="background:#000"></span>
+          <span class="title-text" style="background:#ff6b14; color:#111; padding:0 10px 0 10px; border-radius:2px 0 0 2px; font-size:1.1rem;">
+            CONTENT &nbsp; LAKE
+          </span>
+          <span class="bar" style="background:#ff6b14;width:200px;"></span>
+        </div>
+        <div class="slide-description">
           The database optimized for content queries, authoring and delivery.
         </div>
       </div>
     </div>
-    <button class="arrow right" id="arrowRight" aria-label="Next">&#8594;</button>
-    <div class="slider-dots" id="sliderDots">
-      <span class="slider-dot active"></span>
-      <span class="slider-dot"></span>
-      <span class="slider-dot"></span>
+    <!-- Navigation -->
+    <button class="slider-arrow left" id="slide-left" aria-label="Previous Slide">&#8592;</button>
+    <button class="slider-arrow right" id="slide-right" aria-label="Next Slide">&#8594;</button>
+    <div class="slider-nav" id="slider-nav">
+      <button class="slider-dot active" data-slide="0" aria-label="Go to slide 1"></button>
+      <button class="slider-dot" data-slide="1" aria-label="Go to slide 2"></button>
+      <button class="slider-dot" data-slide="2" aria-label="Go to slide 3"></button>
     </div>
   </div>
-
   <script>
-    // Slider logic
     const slider = document.getElementById('slider');
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.slider-dot');
-    const leftArrow = document.getElementById('arrowLeft');
-    const rightArrow = document.getElementById('arrowRight');
+    const btnLeft = document.getElementById('slide-left');
+    const btnRight = document.getElementById('slide-right');
     let current = 0;
+    let sliding = false;
+    const slideCount = slides.length;
 
-    function updateSlider() {
-      slider.style.transform = `translateX(-${current * 400}px)`;
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === current);
-      });
+    function goToSlide(idx, animate=true) {
+      if (sliding) return;
+      if (idx < 0) idx = 0;
+      if (idx >= slideCount) idx = slideCount - 1;
+      sliding = true;
+      slider.style.transition = animate ? 'transform 0.5s cubic-bezier(0.6,0,0.2,1)' : 'none';
+      slider.style.transform = `translateX(-${idx*100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('active', i===idx));
+      current = idx;
+      setTimeout(()=>{ sliding = false; }, 500);
     }
+    btnLeft.onclick = () => goToSlide(current-1);
+    btnRight.onclick = () => goToSlide(current+1);
 
-    rightArrow.onclick = () => {
-      current = (current + 1) % slides.length;
-      updateSlider();
-    };
-    leftArrow.onclick = () => {
-      current = (current - 1 + slides.length) % slides.length;
-      updateSlider();
-    };
-    dots.forEach((dot, i) => {
-      dot.onclick = () => {
-        current = i;
-        updateSlider();
-      };
+    dots.forEach((dot, idx) => {
+      dot.onclick = () => goToSlide(idx);
     });
 
-    // Touch swipe support
-    let startX = null;
-    slider.addEventListener('touchstart', e => {
+    // Touch/drag events for mobile
+    let startX = null, lastX = null, dragging = false;
+    slider.addEventListener('touchstart', function(e) {
+      if (e.touches.length !== 1) return;
       startX = e.touches[0].clientX;
+      lastX = startX;
+      dragging = true;
+      slider.style.transition = 'none';
     });
-    slider.addEventListener('touchend', e => {
-      if (startX === null) return;
-      let endX = e.changedTouches[0].clientX;
-      if (endX - startX > 50) leftArrow.onclick();
-      else if (startX - endX > 50) rightArrow.onclick();
-      startX = null;
+    slider.addEventListener('touchmove', function(e) {
+      if (!dragging) return;
+      let dx = e.touches[0].clientX - startX;
+      slider.style.transform = `translateX(${-current*100 + dx/slider.offsetWidth*100}%)`;
+      lastX = e.touches[0].clientX;
+    });
+    slider.addEventListener('touchend', function(e) {
+      if (!dragging) return;
+      dragging = false;
+      let dx = lastX - startX;
+      if (Math.abs(dx) > 55) {
+        goToSlide(current + (dx < 0 ? 1 : -1));
+      } else {
+        goToSlide(current);
+      }
     });
 
-    // Keyboard arrow support
-    document.addEventListener('keydown', e => {
-      if (e.key === "ArrowLeft") leftArrow.onclick();
-      if (e.key === "ArrowRight") rightArrow.onclick();
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft') goToSlide(current-1);
+      if (e.key === 'ArrowRight') goToSlide(current+1);
     });
 
-    // Responsive slide width
-    function adjustSliderWidth() {
-      let w = Math.min(window.innerWidth, 400);
-      slides.forEach(slide => {
-        slide.style.minWidth = w + 'px';
-        slide.style.maxWidth = w + 'px';
-      });
-      slider.style.transform = `translateX(-${current * w}px)`;
-    }
-    window.addEventListener('resize', adjustSliderWidth);
-    adjustSliderWidth();
+    // Set initial
+    goToSlide(0, false);
+
+    // Prevent double tap zoom on iOS
+    let lastTouch = 0;
+    document.addEventListener('touchend', function(e) {
+      let now = Date.now();
+      if (now - lastTouch <= 300) e.preventDefault();
+      lastTouch = now;
+    }, {passive: false});
   </script>
 </body>
 </html>
