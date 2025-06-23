@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Label Animation</title>
+  <title>Animated Label (No JS)</title>
   <style>
     body {
       background-color: #111;
@@ -13,7 +13,7 @@
     }
 
     .label-wrapper {
-      width: 500px; /* Shared width */
+      width: 500px;
     }
 
     .label {
@@ -23,7 +23,7 @@
       text-transform: uppercase;
       overflow: hidden;
       background-color: transparent;
-      animation: bgExpand 1.5s ease forwards;
+      animation: backgroundGrow 1.5s ease forwards;
     }
 
     .label::before {
@@ -34,9 +34,9 @@
       transform: translateY(-50%);
       width: 12px;
       height: 12px;
-      background-color: #000; /* final color is black */
+      background-color: #ff5500;
       z-index: 2;
-      animation: squareColor 0s linear forwards;
+      animation: squareToBlack 1.5s ease forwards;
     }
 
     .label::after {
@@ -44,13 +44,11 @@
       position: absolute;
       left: 0;
       top: 0;
-      width: 100%;
+      width: 0%;
       height: 100%;
       background-color: #ff5500;
       z-index: 1;
-      transform: scaleX(0);
-      transform-origin: left;
-      animation: fillBg 1.5s ease forwards;
+      animation: bgFill 1.5s ease forwards;
     }
 
     .label span {
@@ -64,24 +62,22 @@
       padding-left: 1rem;
       font-size: 18px;
       line-height: 1.5;
-      max-width: 100%;
     }
 
-    /* Animations */
-    @keyframes fillBg {
-      from { transform: scaleX(0); }
-      to { transform: scaleX(1); }
+    /* Keyframes */
+    @keyframes bgFill {
+      to {
+        width: 100%;
+      }
     }
-    @keyframes squareColor {
-      from { background-color: #ff5500; }
-      to { background-color: #000; }
-    }
-    /* Add delay if you want them to stagger */
-    .label::before {
-      animation-delay: 5s;
-    }
-    .label::after {
-      animation-delay: 5s;
+
+    @keyframes squareToBlack {
+      0% {
+        background-color: #ff5500;
+      }
+      100% {
+        background-color: #000;
+      }
     }
   </style>
 </head>
