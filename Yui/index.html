@@ -7,93 +7,92 @@
   <style>
     body {
       background-color: #111;
-      color: white;
+      color: #fff;
       font-family: monospace;
       padding: 40px;
     }
 
+    .label-wrapper {
+      max-width: 600px;
+    }
+
     .label {
       position: relative;
-      display: inline-flex;
-      align-items: center;
-      padding-left: 24px;
-      padding-right: 24px;
-      padding-top: 12px;
-      padding-bottom: 12px;
+      display: inline-block;
+      padding: 1rem 1rem 1rem 2rem;
       font-size: 14px;
       text-transform: uppercase;
+      color: white;
       overflow: hidden;
+      margin-bottom: 1rem;
     }
 
     .label::before {
-      content: '';
+      content: "";
       position: absolute;
-      left: 8px;
+      left: 0.75rem;
       top: 50%;
       transform: translateY(-50%);
       width: 12px;
       height: 12px;
       background-color: #ff5500;
       z-index: 2;
-      transition: background-color 0.5s ease-in-out 1s;
+      transition: background-color 1s ease 2s;
     }
 
     .label::after {
-      content: '';
+      content: "";
       position: absolute;
-      top: 0;
       left: 0;
+      top: 0;
+      width: 0%;
       height: 100%;
-      width: 100%;
       background-color: #ff5500;
       z-index: 1;
-      transform: translateX(-100%);
-      animation: slideIn 1s ease-in-out forwards;
-      animation-delay: 1s;
+      transition: width 1.5s ease;
     }
 
-    .label-text {
-      position: relative;
-      z-index: 2;
-      letter-spacing: 1px;
+    .label.animate::after {
+      width: 100%;
     }
 
-    @keyframes slideIn {
-      to {
-        transform: translateX(0);
-      }
-    }
-
-    /* Trigger color change after background animation */
-    .label.animated::before {
+    .label.animate::before {
       background-color: #000;
     }
 
-    /* Demo paragraph below the label */
+    .label span {
+      position: relative;
+      z-index: 3;
+      letter-spacing: 2px;
+    }
+
     .description {
-      border-left: 2px solid #fff;
-      padding-left: 16px;
-      margin-top: 16px;
+      border-left: 2px solid white;
+      padding-left: 1rem;
       font-size: 18px;
-      color: #ccc;
+      line-height: 1.5;
+      max-width: 40ch;
     }
   </style>
 </head>
 <body>
 
-  <div class="label" id="contentLabel">
-    <span class="label-text">Content&nbsp;&nbsp;Lake</span>
-  </div>
-
-  <div class="description">
-    The database optimized for content queries, authoring and delivery.
+  <div class="label-wrapper">
+    <div class="label" id="label1">
+      <span>Content&nbsp;&nbsp;Lake</span>
+    </div>
+    <div class="description">
+      The database optimized for content queries, authoring and delivery.
+    </div>
   </div>
 
   <script>
-    // Trigger the color change after delay
-    setTimeout(() => {
-      document.getElementById('contentLabel').classList.add('animated');
-    }, 2000);
+    // Add the animation class after a small delay to simulate the incoming effect
+    window.addEventListener("DOMContentLoaded", () => {
+      setTimeout(() => {
+        document.getElementById("label1").classList.add("animate");
+      }, 500); // delay before animation starts
+    });
   </script>
 
 </body>
