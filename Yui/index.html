@@ -1,161 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Component Demo</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Animated Label</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
+      background-color: #111;
+      color: white;
       font-family: monospace;
-      margin: 0;
-      background-color: #f9f9f9;
-      color: #000;
-    }
-
-    .section {
       padding: 40px;
-      max-width: 800px;
-      margin: auto;
     }
 
-    .entry {
-      margin-bottom: 64px;
-    }
-
-    .entry-button {
+    .label {
       position: relative;
-      display: flex;
+      display: inline-flex;
       align-items: center;
+      padding-left: 24px;
+      padding-right: 24px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      font-size: 14px;
+      text-transform: uppercase;
       overflow: hidden;
-      padding: 16px 0;
-      border: none;
-      background: none;
-      width: 100%;
-      cursor: pointer;
     }
 
-    .entry-button .dot {
+    .label::before {
+      content: '';
       position: absolute;
-      width: 11px;
-      height: 11px;
-      left: 4px;
+      left: 8px;
       top: 50%;
       transform: translateY(-50%);
-      z-index: 10;
+      width: 12px;
+      height: 12px;
+      background-color: #ff5500;
+      z-index: 2;
+      transition: background-color 0.5s ease-in-out 1s;
     }
 
-    .entry-button .bg {
+    .label::after {
+      content: '';
       position: absolute;
-      left: 0;
       top: 0;
-      width: 100%;
+      left: 0;
       height: 100%;
-      opacity: 1;
+      width: 100%;
+      background-color: #ff5500;
       z-index: 1;
+      transform: translateX(-100%);
+      animation: slideIn 1s ease-in-out forwards;
+      animation-delay: 1s;
     }
 
-    .entry-button h3 {
+    .label-text {
       position: relative;
       z-index: 2;
-      padding-left: 20px;
-      font-size: 13px;
-      text-transform: uppercase;
-      line-height: 11px;
-      transition: color 0.6s ease-in-out;
-      margin: 0;
+      letter-spacing: 1px;
     }
 
-    .entry-line {
-      margin-left: 48px;
-      flex-grow: 1;
-      height: 1px;
-      background-color: #797979;
-      display: none;
-    }
-
-    @media (min-width: 1024px) {
-      .entry-line {
-        display: block;
+    @keyframes slideIn {
+      to {
+        transform: translateX(0);
       }
     }
 
-    .entry-content {
-      position: relative;
-      border-left: 2px solid #ccc;
-      padding-left: 64px;
-      margin-top: 8px;
+    /* Trigger color change after background animation */
+    .label.animated::before {
+      background-color: #000;
     }
 
-    .entry-bar {
-      position: absolute;
-      left: -2px;
-      width: 2px;
-      height: 100%;
-      background-color: white;
-      transform: scaleY(0);
-      transform-origin: bottom;
-      transition: transform 8s ease;
-    }
-
-    .entry p {
-      font-size: 15px;
-      line-height: 1.5;
-      margin: 0;
-      transition: all 0.6s ease-in-out;
-    }
-
-    /* Example hover effect */
-    .entry:hover .entry-bar {
-      transform: scaleY(1);
+    /* Demo paragraph below the label */
+    .description {
+      border-left: 2px solid #fff;
+      padding-left: 16px;
+      margin-top: 16px;
+      font-size: 18px;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
 
-  <div class="section">
-    <div class="entry">
-      <button class="entry-button">
-        <div class="dot" style="background-color: #141414;"></div>
-        <div class="bg" style="background-color: #cdea19;"></div>
-        <h3 style="color: black;">Apps & SDK</h3>
-        <div class="entry-line"></div>
-      </button>
-      <div class="entry-content">
-        <div class="entry-bar"></div>
-        <p>Content applications that enable custom workflows at scale, from creation to distribution.</p>
-      </div>
-    </div>
-
-    <div class="entry">
-      <button class="entry-button">
-        <div class="dot" style="background-color: #556bfc;"></div>
-        <div class="bg" style="background-color: transparent;"></div>
-        <h3>Compute + AI</h3>
-        <div class="entry-line"></div>
-      </button>
-      <div class="entry-content">
-        <div class="entry-bar" style="transform: scaleY(1);"></div>
-        <p style="color: #555;">Serverless functions and agent actions, powering your content operations for humans and AI.</p>
-      </div>
-    </div>
-
-    <div class="entry">
-      <button class="entry-button">
-        <div class="dot" style="background-color: #ff5500;"></div>
-        <div class="bg" style="background-color: transparent;"></div>
-        <h3>Content Lake</h3>
-        <div class="entry-line"></div>
-      </button>
-      <div class="entry-content">
-        <div class="entry-bar" style="transform: scaleY(1);"></div>
-        <p style="color: #555;">The database optimized for content queries, authoring and delivery.</p>
-      </div>
-    </div>
+  <div class="label" id="contentLabel">
+    <span class="label-text">Content&nbsp;&nbsp;Lake</span>
   </div>
+
+  <div class="description">
+    The database optimized for content queries, authoring and delivery.
+  </div>
+
+  <script>
+    // Trigger the color change after delay
+    setTimeout(() => {
+      document.getElementById('contentLabel').classList.add('animated');
+    }, 2000);
+  </script>
 
 </body>
 </html>
