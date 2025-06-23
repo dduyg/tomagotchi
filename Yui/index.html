@@ -6,33 +6,36 @@
   <title>Compute + AI</title>
   <style>
     body {
-      background-color: #f9f9f9;
-      padding: 2rem;
+      background: #fff;
+      padding: 40px;
       font-family: sans-serif;
     }
 
     .label {
       position: relative;
       display: inline-block;
-      padding: 6px 20px;
+      padding-left: 24px;
       font-family: monospace;
       font-size: 13px;
       text-transform: uppercase;
-      color: white;
-      z-index: 0;
+      line-height: 1.6;
+      margin: 0;
+      z-index: 10;
     }
 
     .label::before {
       content: "";
       position: absolute;
-      top: 0;
+      top: 50%;
       left: 0;
-      height: 100%;
+      transform: translateY(-50%);
+      height: 11px;
       width: 11px;
       background-color: #556bfc;
       z-index: -1;
       transition: width 1s ease-in-out;
       animation: expandBar 1s ease-in-out 2s forwards;
+      border-radius: 2px;
     }
 
     @keyframes expandBar {
