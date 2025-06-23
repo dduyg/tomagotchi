@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Content Operating System</title>
+  <title>Cstem</title>
   <style>
     body {
       margin: 0;
@@ -19,19 +19,6 @@
       position: relative;
     }
 
-    .eyebrow {
-      text-transform: uppercase;
-      font-size: 14px;
-      color: #aaa;
-      margin-bottom: 10px;
-    }
-
-    .heading {
-      font-size: 32px;
-      font-weight: bold;
-      margin-bottom: 40px;
-    }
-
     .stack-section {
       display: flex;
       flex-direction: column;
@@ -39,14 +26,13 @@
       margin-bottom: 60px;
     }
 
-    .stack-card {
-      background-color: #111;
+    .card {
       border-left: 2px solid #444;
       padding: 20px 20px 20px 40px;
       position: relative;
     }
 
-    .stack-card::before {
+    .card::before {
       content: "";
       position: absolute;
       left: 10px;
@@ -54,101 +40,55 @@
       width: 12px;
       height: 12px;
       background-color: currentColor;
-      border-radius: 50%;
     }
 
-    .card-title {
+    .title {
       font-size: 14px;
       text-transform: uppercase;
       margin-bottom: 10px;
     }
 
-    .card-description {
+    .description {
       font-size: 15px;
       line-height: 1.5;
       color: #ccc;
     }
 
-    .stack-card.apps::before {
+    .card.apps::before {
       color: #cdea19;
     }
-
-    .stack-card.compute::before {
+    .card.compute::before {
       color: #556bfc;
     }
-
-    .stack-card.content::before {
+    .card.content::before {
       color: #ff5500;
-    }
-
-    .stack-images {
-      margin-top: 40px;
-      text-align: center;
-      opacity: 0.9;
-    }
-
-    .stack-images img {
-      max-width: 90%;
-      height: auto;
-      margin-top: -100px;
-      opacity: 0.35;
-    }
-
-    @media (min-width: 768px) {
-      .stack-layout {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 60px;
-        align-items: start;
-      }
-
-      .stack-section {
-        gap: 60px;
-      }
-
-      .stack-images {
-        margin-top: 0;
-      }
-
-      .stack-images img:first-child {
-        opacity: 1;
-      }
     }
   </style>
 </head>
 <body>
   <section class="container">
-    <div class="eyebrow">The Content Operating System</div>
-    <h2 class="heading">Powering all your content applications from a single platform</h2>
-
-    <div class="stack-layout">
+  
       <div class="stack-section">
-        <div class="stack-card apps">
-          <div class="card-title">Apps & SDK</div>
-          <div class="card-description">
+        <div class="card apps">
+          <div class="title">Apps & SDK</div>
+          <div class="description">
             Content applications that enable custom workflows at scale, from creation to distribution.
           </div>
         </div>
-        <div class="stack-card compute">
-          <div class="card-title">Compute + AI</div>
-          <div class="card-description">
+        <div class="card compute">
+          <div class="title">Compute + AI</div>
+          <div class="description">
             Serverless functions and agent actions, powering your content operations for humans and AI.
           </div>
         </div>
-        <div class="stack-card content">
-          <div class="card-title">Content Lake</div>
-          <div class="card-description">
+        <div class="card content">
+          <div class="title">Content Lake</div>
+          <div class="description">
             The database optimized for content queries, authoring and delivery.
           </div>
         </div>
       </div>
 
-      <div class="stack-images">
-        <img src="/_next/static/media/tile-top.b374f539.svg" alt="Top Tile" />
-        <img src="/_next/static/media/tile-middle.1db02c17.svg" alt="Middle Tile" />
-        <img src="/_next/static/media/tile-bottom.354a76f6.svg" alt="Bottom Tile" />
-      </div>
-    </div>
   </section>
 </body>
 </html>
