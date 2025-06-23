@@ -12,21 +12,17 @@
       padding: 40px;
     }
 
-    .label-block {
-      width: 100%;
-      max-width: 600px;
+    .label-wrapper {
+      width: 500px; /* Fixed width for both label and description */
     }
 
     .label {
       position: relative;
-      display: inline-block;
-      width: 100%;
       padding: 1rem 1rem 1rem 2rem;
       font-size: 14px;
       text-transform: uppercase;
-      color: white;
       overflow: hidden;
-      margin-bottom: 1rem;
+      background-color: transparent;
     }
 
     .label::before {
@@ -37,9 +33,9 @@
       transform: translateY(-50%);
       width: 12px;
       height: 12px;
-      background-color: #000; /* Already black at start of animation */
+      background-color: #ff5500;
       z-index: 2;
-      transition: background-color 0.2s ease;
+      transition: background-color 1.5s ease;
     }
 
     .label::after {
@@ -58,6 +54,10 @@
       width: 100%;
     }
 
+    .label.animate::before {
+      background-color: #000; /* Square turns black immediately on animation start */
+    }
+
     .label span {
       position: relative;
       z-index: 3;
@@ -65,18 +65,17 @@
     }
 
     .description {
-      width: 100%;
-      max-width: 600px;
       border-left: 2px solid white;
       padding-left: 1rem;
       font-size: 18px;
       line-height: 1.5;
+      max-width: 100%; /* Now matches label */
     }
   </style>
 </head>
 <body>
 
-  <div class="label-block">
+  <div class="label-wrapper">
     <div class="label" id="label1">
       <span>Content&nbsp;&nbsp;Lake</span>
     </div>
@@ -86,11 +85,11 @@
   </div>
 
   <script>
-    // Trigger animation on load
     window.addEventListener("DOMContentLoaded", () => {
+      // Trigger both background and square color transitions at the same time
       setTimeout(() => {
         document.getElementById("label1").classList.add("animate");
-      }, 500); // adjust delay as needed
+      }, 500);
     });
   </script>
 
