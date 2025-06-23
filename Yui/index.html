@@ -12,13 +12,15 @@
       padding: 40px;
     }
 
-    .label-wrapper {
+    .label-block {
+      width: 100%;
       max-width: 600px;
     }
 
     .label {
       position: relative;
       display: inline-block;
+      width: 100%;
       padding: 1rem 1rem 1rem 2rem;
       font-size: 14px;
       text-transform: uppercase;
@@ -35,9 +37,9 @@
       transform: translateY(-50%);
       width: 12px;
       height: 12px;
-      background-color: #ff5500;
+      background-color: #000; /* Already black at start of animation */
       z-index: 2;
-      transition: background-color 1s ease 2s;
+      transition: background-color 0.2s ease;
     }
 
     .label::after {
@@ -56,10 +58,6 @@
       width: 100%;
     }
 
-    .label.animate::before {
-      background-color: #000;
-    }
-
     .label span {
       position: relative;
       z-index: 3;
@@ -67,17 +65,18 @@
     }
 
     .description {
+      width: 100%;
+      max-width: 600px;
       border-left: 2px solid white;
       padding-left: 1rem;
       font-size: 18px;
       line-height: 1.5;
-      max-width: 40ch;
     }
   </style>
 </head>
 <body>
 
-  <div class="label-wrapper">
+  <div class="label-block">
     <div class="label" id="label1">
       <span>Content&nbsp;&nbsp;Lake</span>
     </div>
@@ -87,11 +86,11 @@
   </div>
 
   <script>
-    // Add the animation class after a small delay to simulate the incoming effect
+    // Trigger animation on load
     window.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => {
         document.getElementById("label1").classList.add("animate");
-      }, 500); // delay before animation starts
+      }, 500); // adjust delay as needed
     });
   </script>
 
