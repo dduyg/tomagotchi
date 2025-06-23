@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Animated Label</title>
+  <title>Label Animation</title>
   <style>
     body {
       background-color: #111;
@@ -13,7 +13,7 @@
     }
 
     .label-wrapper {
-      width: 500px; /* Fixed width for both label and description */
+      width: 500px; /* Shared width */
     }
 
     .label {
@@ -23,6 +23,7 @@
       text-transform: uppercase;
       overflow: hidden;
       background-color: transparent;
+      animation: bgExpand 1.5s ease forwards;
     }
 
     .label::before {
@@ -33,9 +34,9 @@
       transform: translateY(-50%);
       width: 12px;
       height: 12px;
-      background-color: #ff5500;
+      background-color: #000; /* final color is black */
       z-index: 2;
-      transition: background-color 1.5s ease;
+      animation: squareColor 0s linear forwards;
     }
 
     .label::after {
@@ -43,19 +44,13 @@
       position: absolute;
       left: 0;
       top: 0;
-      width: 0%;
+      width: 100%;
       height: 100%;
       background-color: #ff5500;
       z-index: 1;
-      transition: width 1.5s ease;
-    }
-
-    .label.animate::after {
-      width: 100%;
-    }
-
-    .label.animate::before {
-      background-color: #000; /* Square turns black immediately on animation start */
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: fillBg 1.5s ease forwards;
     }
 
     .label span {
@@ -69,29 +64,37 @@
       padding-left: 1rem;
       font-size: 18px;
       line-height: 1.5;
-      max-width: 100%; /* Now matches label */
+      max-width: 100%;
+    }
+
+    /* Animations */
+    @keyframes fillBg {
+      from { transform: scaleX(0); }
+      to { transform: scaleX(1); }
+    }
+    @keyframes squareColor {
+      from { background-color: #ff5500; }
+      to { background-color: #000; }
+    }
+    /* Add delay if you want them to stagger */
+    .label::before {
+      animation-delay: 5s;
+    }
+    .label::after {
+      animation-delay: 5s;
     }
   </style>
 </head>
 <body>
 
   <div class="label-wrapper">
-    <div class="label" id="label1">
+    <div class="label">
       <span>Content&nbsp;&nbsp;Lake</span>
     </div>
     <div class="description">
       The database optimized for content queries, authoring and delivery.
     </div>
   </div>
-
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      // Trigger both background and square color transitions at the same time
-      setTimeout(() => {
-        document.getElementById("label1").classList.add("animate");
-      }, 500);
-    });
-  </script>
 
 </body>
 </html>
