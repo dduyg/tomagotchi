@@ -1,53 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Compute + AI</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Content Operating System</title>
   <style>
     body {
-      font-family: monospace;
-      margin: 40px;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #0f0f0f;
+      color: white;
     }
 
-    .container {
-      position: relative;
+    .hero-section {
+      padding: 96px 48px;
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 48px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-section h1 {
+      font-size: 72px;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      text-align: center;
+      margin: 0;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
       align-items: center;
     }
 
-    .indicator {
-      width: 11px;
-      height: 11px;
-      background-color: #556bfc;
-      position: absolute;
-      left: 0;
-      opacity: 1;
+    .hero-text {
+      font-size: 28px;
+      line-height: 1.4;
+      max-width: 800px;
+      text-align: center;
     }
 
-    .heading {
-      position: relative;
-      z-index: 10;
-      flex-shrink: 0;
-      padding-left: 20px;
-      font-size: 13px;
-      text-transform: uppercase;
-      line-height: 11px;
-      transition: color 600ms ease-in-out;
-      text-align: left;
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
     }
 
-    /* Optional: Align text right on large screens (≥1024px) */
-    @media (min-width: 1024px) {
-      .heading {
-        text-align: right;
+    .hero-buttons a,
+    .hero-buttons button {
+      padding: 16px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .btn-primary {
+      background-color: #1e90ff;
+      color: white;
+    }
+
+    .btn-brand {
+      background-color: #ff6600;
+      color: white;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 2px solid white;
+      color: white;
+    }
+
+    .btn-outline:hover {
+      background-color: white;
+      color: #0f0f0f;
+    }
+
+    .copy-icon {
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    @media (max-width: 768px) {
+      .hero-section h1 {
+        font-size: 48px;
+      }
+
+      .hero-text {
+        font-size: 24px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="indicator"></div>
-    <h3 class="heading">Compute + AI</h3>
-  </div>
+
+  <section class="hero-section">
+    <h1>The Content Operating System</h1>
+    <div class="hero-content">
+      <p class="hero-text">
+        A fully customizable all-code backend for AI, automations, and applications to author and render content.
+      </p>
+      <div class="hero-buttons">
+        <a href="/get-started" class="btn-primary">Start Building</a>
+        <a href="/demo-request-homepage" class="btn-brand">Watch Demo</a>
+        <button class="btn-outline">
+          npm create sanity@latest
+          <span class="copy-icon">📋</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
 </body>
 </html>
