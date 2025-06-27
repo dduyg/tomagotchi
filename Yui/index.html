@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Animated Label</title>
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: monospace;
+      padding: 40px;
+    }
+
+    .label {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      padding-left: 24px;
+      padding-right: 24px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      font-size: 14px;
+      text-transform: uppercase;
+      overflow: hidden;
+    }
+
+    .label::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 12px;
+      height: 12px;
+      background-color: #ff5500;
+      z-index: 2;
+      transition: background-color 0.5s ease-in-out 1s;
+    }
+
+    .label::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #ff5500;
+      z-index: 1;
+      transform: translateX(-100%);
+      animation: slideIn 1s ease-in-out forwards;
+      animation-delay: 1s;
+    }
+
+    .label-text {
+      position: relative;
+      z-index: 2;
+      letter-spacing: 1px;
+    }
+
+    @keyframes slideIn {
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    /* Trigger color change after background animation */
+    .label.animated::before {
+      background-color: #000;
+    }
+
+    /* Demo paragraph below the label */
+    .description {
+      border-left: 2px solid #fff;
+      padding-left: 16px;
+      margin-top: 16px;
+      font-size: 18px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="label" id="contentLabel">
+    <span class="label-text">Content&nbsp;&nbsp;Lake</span>
+  </div>
+
+  <div class="description">
+    The database optimized for content queries, authoring and delivery.
+  </div>
+
+  <script>
+    // Trigger the color change after delay
+    setTimeout(() => {
+      document.getElementById('contentLabel').classList.add('animated');
+    }, 2000);
+  </script>
+
+</body>
+</html>
