@@ -1,77 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Liminal🎱Loop</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Component Demo</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
+      font-family: monospace;
       margin: 0;
-      background-color: #000;
-      font-family: Arial, sans-serif;
-      color: white;
+      background-color: #f9f9f9;
+      color: #000;
+    }
+
+    .section {
       padding: 40px;
+      max-width: 800px;
+      margin: auto;
     }
 
-    .card {
-      padding: 20px 20px 20px 40px;
+    .entry {
+      margin-bottom: 64px;
+    }
+
+    .entry-button {
       position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 16px 0;
+      border: none;
+      background: none;
+      width: 100%;
+      cursor: pointer;
     }
 
-    .card::before {
-      content: "";
+    .entry-button .dot {
       position: absolute;
-      left: 10px;
-      top: 24px;
-      width: 12px;
-      height: 12px;
-      background-color: currentColor;
+      width: 11px;
+      height: 11px;
+      left: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
     }
 
-    .title {
-      font-size: 14px;
+    .entry-button .bg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .entry-button h3 {
+      position: relative;
+      z-index: 2;
+      padding-left: 20px;
+      font-size: 13px;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      line-height: 11px;
+      transition: color 0.6s ease-in-out;
+      margin: 0;
     }
 
-    .description {
-      border-left: 2px solid #444;
+    .entry-line {
+      margin-left: 48px;
+      flex-grow: 1;
+      height: 1px;
+      background-color: #797979;
+      display: none;
+    }
+
+    @media (min-width: 1024px) {
+      .entry-line {
+        display: block;
+      }
+    }
+
+    .entry-content {
+      position: relative;
+      border-left: 2px solid #ccc;
+      padding-left: 64px;
+      margin-top: 8px;
+    }
+
+    .entry-bar {
+      position: absolute;
+      left: -2px;
+      width: 2px;
+      height: 100%;
+      background-color: white;
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 8s ease;
+    }
+
+    .entry p {
       font-size: 15px;
       line-height: 1.5;
-      color: #ccc;
+      margin: 0;
+      transition: all 0.6s ease-in-out;
     }
 
-    .card.apps::before {
-      color: #cdea19;
-    }
-    .card.compute::before {
-      color: #556bfc;
-    }
-    .card.content::before {
-      color: #ff5500;
+    /* Example hover effect */
+    .entry:hover .entry-bar {
+      transform: scaleY(1);
     }
   </style>
 </head>
 <body>
-        <div class="card apps">
-          <div class="title">Apps & SDK</div>
-          <div class="description">
-            Content applications that enable custom workflows at scale, from creation to distribution.
-          </div>
-        </div>
-  
-        <div class="card compute">
-          <div class="title">Compute + AI</div>
-          <div class="description">
-            Serverless functions and agent actions, powering your content operations for humans and AI.
-          </div>
-        </div>
-  
-        <div class="card content">
-          <div class="title">Content Lake</div>
-          <div class="description">
-            The database optimized for content queries, authoring and delivery.
-          </div>
-        </div>
+
+  <div class="section">
+    <div class="entry">
+      <button class="entry-button">
+        <div class="dot" style="background-color: #141414;"></div>
+        <div class="bg" style="background-color: #cdea19;"></div>
+        <h3 style="color: black;">Apps & SDK</h3>
+        <div class="entry-line"></div>
+      </button>
+      <div class="entry-content">
+        <div class="entry-bar"></div>
+        <p>Content applications that enable custom workflows at scale, from creation to distribution.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <button class="entry-button">
+        <div class="dot" style="background-color: #556bfc;"></div>
+        <div class="bg" style="background-color: transparent;"></div>
+        <h3>Compute + AI</h3>
+        <div class="entry-line"></div>
+      </button>
+      <div class="entry-content">
+        <div class="entry-bar" style="transform: scaleY(1);"></div>
+        <p style="color: #555;">Serverless functions and agent actions, powering your content operations for humans and AI.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <button class="entry-button">
+        <div class="dot" style="background-color: #ff5500;"></div>
+        <div class="bg" style="background-color: transparent;"></div>
+        <h3>Content Lake</h3>
+        <div class="entry-line"></div>
+      </button>
+      <div class="entry-content">
+        <div class="entry-bar" style="transform: scaleY(1);"></div>
+        <p style="color: #555;">The database optimized for content queries, authoring and delivery.</p>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
