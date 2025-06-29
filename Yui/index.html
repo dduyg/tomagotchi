@@ -1,161 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Component Demo</title>
+  <title>3 SVGs on Black Background</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: monospace;
+      background: #111;
       margin: 0;
-      background-color: #f9f9f9;
-      color: #000;
-    }
-
-    .section {
-      padding: 40px;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .entry {
-      margin-bottom: 64px;
-    }
-
-    .entry-button {
-      position: relative;
+      min-height: 100vh;
       display: flex;
-      align-items: center;
-      overflow: hidden;
-      padding: 16px 0;
-      border: none;
-      background: none;
-      width: 100%;
-      cursor: pointer;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 30px;
+      padding: 40px 0;
     }
-
-    .entry-button .dot {
-      position: absolute;
-      width: 11px;
-      height: 11px;
-      left: 4px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 10;
+    .svg-container {
+      width: 340px;
+      height: 340px;
+      background: transparent;
     }
-
-    .entry-button .bg {
-      position: absolute;
-      left: 0;
-      top: 0;
+    svg {
+      display: block;
       width: 100%;
       height: 100%;
-      opacity: 1;
-      z-index: 1;
-    }
-
-    .entry-button h3 {
-      position: relative;
-      z-index: 2;
-      padding-left: 20px;
-      font-size: 13px;
-      text-transform: uppercase;
-      line-height: 11px;
-      transition: color 0.6s ease-in-out;
-      margin: 0;
-    }
-
-    .entry-line {
-      margin-left: 48px;
-      flex-grow: 1;
-      height: 1px;
-      background-color: #797979;
-      display: none;
-    }
-
-    @media (min-width: 1024px) {
-      .entry-line {
-        display: block;
-      }
-    }
-
-    .entry-content {
-      position: relative;
-      border-left: 2px solid #ccc;
-      padding-left: 64px;
-      margin-top: 8px;
-    }
-
-    .entry-bar {
-      position: absolute;
-      left: -2px;
-      width: 2px;
-      height: 100%;
-      background-color: white;
-      transform: scaleY(0);
-      transform-origin: bottom;
-      transition: transform 8s ease;
-    }
-
-    .entry p {
-      font-size: 15px;
-      line-height: 1.5;
-      margin: 0;
-      transition: all 0.6s ease-in-out;
-    }
-
-    /* Example hover effect */
-    .entry:hover .entry-bar {
-      transform: scaleY(1);
+      background: transparent;
     }
   </style>
 </head>
 <body>
-
-  <div class="section">
-    <div class="entry">
-      <button class="entry-button">
-        <div class="dot" style="background-color: #141414;"></div>
-        <div class="bg" style="background-color: #cdea19;"></div>
-        <h3 style="color: black;">Apps & SDK</h3>
-        <div class="entry-line"></div>
-      </button>
-      <div class="entry-content">
-        <div class="entry-bar"></div>
-        <p>Content applications that enable custom workflows at scale, from creation to distribution.</p>
-      </div>
-    </div>
-
-    <div class="entry">
-      <button class="entry-button">
-        <div class="dot" style="background-color: #556bfc;"></div>
-        <div class="bg" style="background-color: transparent;"></div>
-        <h3>Compute + AI</h3>
-        <div class="entry-line"></div>
-      </button>
-      <div class="entry-content">
-        <div class="entry-bar" style="transform: scaleY(1);"></div>
-        <p style="color: #555;">Serverless functions and agent actions, powering your content operations for humans and AI.</p>
-      </div>
-    </div>
-
-    <div class="entry">
-      <button class="entry-button">
-        <div class="dot" style="background-color: #ff5500;"></div>
-        <div class="bg" style="background-color: transparent;"></div>
-        <h3>Content Lake</h3>
-        <div class="entry-line"></div>
-      </button>
-      <div class="entry-content">
-        <div class="entry-bar" style="transform: scaleY(1);"></div>
-        <p style="color: #555;">The database optimized for content queries, authoring and delivery.</p>
-      </div>
-    </div>
+  <!-- SVG 1 (blue squares, grids, dots) -->
+  <div class="svg-container">
+    <svg viewBox="0 0 340 340">
+      <!-- Back dots layer -->
+      <g opacity="0.35">
+        <g>
+          <defs>
+            <pattern id="back-dots" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1" fill="#fff" />
+            </pattern>
+          </defs>
+          <rect x="20" y="20" width="300" height="300" transform="rotate(30 170 170)" fill="url(#back-dots)" />
+        </g>
+      </g>
+      <!-- Middle grid layer -->
+      <g>
+        <!-- Grid lines -->
+        <g opacity="0.7">
+          <g>
+            <!-- Horizontal lines -->
+            <g>
+              <line x1="55" y1="170" x2="285" y2="170" stroke="#fff" stroke-width="1" opacity="0.7" />
+              <line x1="55" y1="155" x2="285" y2="155" stroke="#fff" stroke-width="1" opacity="0.7" />
+              <line x1="55" y1="185" x2="285" y2="185" stroke="#fff" stroke-width="1" opacity="0.7" />
+              <line x1="55" y1="140" x2="285" y2="140" stroke="#fff" stroke-width="1" opacity="0.5" />
+              <line x1="55" y1="200" x2="285" y2="200" stroke="#fff" stroke-width="1" opacity="0.5" />
+              <line x1="55" y1="125" x2="285" y2="125" stroke="#fff" stroke-width="1" opacity="0.3" />
+              <line x1="55" y1="215" x2="285" y2="215" stroke="#fff" stroke-width="1" opacity="0.3" />
+            </g>
+            <!-- Vertical lines -->
+            <g>
+              <line y1="55" x1="170" y2="285" x2="170" stroke="#fff" stroke-width="1" opacity="0.7" />
+              <line y1="55" x1="155" y2="285" x2="155" stroke="#fff" stroke-width="1" opacity="0.7" />
+              <line y1="55" x1="185" y2="285" x2="185" stroke="#fff" stroke-width="1" opacity="0.7" />
+              <line y1="55" x1="140" y2="285" x2="140" stroke="#fff" stroke-width="1" opacity="0.5" />
+              <line y1="55" x1="200" y2="285" x2="200" stroke="#fff" stroke-width="1" opacity="0.5" />
+              <line y1="55" x1="125" y2="285" x2="125" stroke="#fff" stroke-width="1" opacity="0.3" />
+              <line y1="55" x1="215" y2="285" x2="215" stroke="#fff" stroke-width="1" opacity="0.3" />
+            </g>
+            <!-- Diagonal lines -->
+            <g opacity="0.6">
+              <line x1="70" y1="270" x2="270" y2="70" stroke="#fff" stroke-width="1" />
+              <line x1="70" y1="70" x2="270" y2="270" stroke="#fff" stroke-width="1" />
+            </g>
+          </g>
+        </g>
+        <!-- Blue squares -->
+        <g>
+          <rect x="160" y="90" width="20" height="20" fill="#599CFF" opacity="0.9" />
+          <rect x="90" y="160" width="20" height="20" fill="#599CFF" opacity="0.9" />
+          <rect x="210" y="160" width="20" height="20" fill="#599CFF" opacity="0.9" />
+          <rect x="160" y="210" width="20" height="20" fill="#599CFF" opacity="0.9" />
+        </g>
+      </g>
+      <!-- Front dots layer -->
+      <g opacity="0.25">
+        <g>
+          <defs>
+            <pattern id="front-dots" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+              <rect x="0.7" y="0.7" width="2" height="2" fill="#fff" />
+            </pattern>
+          </defs>
+          <rect x="40" y="180" width="260" height="120" transform="rotate(-30 170 240)" fill="url(#front-dots)" />
+        </g>
+      </g>
+    </svg>
   </div>
 
+  <!-- SVG 2 (yellow shapes in top layer) -->
+  <div class="svg-container">
+    <svg viewBox="0 0 340 340">
+      <!-- Back dots layer -->
+      <g opacity="0.35">
+        <g>
+          <defs>
+            <pattern id="back-dots-2" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1" fill="#fff" />
+            </pattern>
+          </defs>
+          <rect x="20" y="20" width="300" height="300" transform="rotate(30 170 170)" fill="url(#back-dots-2)" />
+        </g>
+      </g>
+      <!-- Middle grid layer -->
+      <g opacity="0.7">
+        <g>
+          <!-- Grid lines -->
+          <g>
+            <!-- Horizontal lines -->
+            <g>
+              <line x1="55" y1="170" x2="285" y2="170" stroke="#fff" stroke-width="1" opacity="0.7" />
+              <line x1="55" y1="155" x2="285" y2="155" stroke="#fff" stroke-width="1" opacity="0.7" />
+              <line x1="55" y1="185" x2="285" y2="185" stroke="#fff" stroke-width="1" opacity="0.7" />
+            </g>
+            <!-- Vertical lines -->
+            <g>
+              <line y1="55" x1="170" y2="285" x2="170" stroke="#fff" stroke-width="1" opacity="0.7" />
+              <line y1="55" x1="155" y2="285" x2="155" stroke="#fff" stroke-width="1" opacity="0.7" />
+              <line y1="55" x1="185" y2="285" x2="185" stroke="#fff" stroke-width="1" opacity="0.7" />
+            </g>
+          </g>
+        </g>
+      </g>
+      <!-- Top yellow shapes layer -->
+      <g>
+        <rect x="120" y="45" width="120" height="50" fill="#ECFF4E" opacity="0.93" />
+        <rect x="120" y="95" width="50" height="50" fill="#ECFF4E" opacity="0.93" />
+        <rect x="170" y="95" width="70" height="25" fill="#ECFF4E" opacity="0.93" />
+      </g>
+      <!-- Front dots layer -->
+      <g opacity="0.25">
+        <g>
+          <defs>
+            <pattern id="front-dots-2" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+              <rect x="0.7" y="0.7" width="2" height="2" fill="#fff" />
+            </pattern>
+          </defs>
+          <rect x="40" y="180" width="260" height="120" transform="rotate(-30 170 240)" fill="url(#front-dots-2)" />
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <!-- SVG 3 (red/orange squares, face, grids, dots) -->
+  <div class="svg-container">
+    <svg viewBox="0 0 340 340">
+      <!-- Back dots layer -->
+      <g opacity="0.35">
+        <g>
+          <defs>
+            <pattern id="back-dots-3" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+              <circle cx="1.5" cy="1.5" r="1" fill="#fff" />
+            </pattern>
+          </defs>
+          <rect x="20" y="20" width="300" height="300" transform="rotate(30 170 170)" fill="url(#back-dots-3)" />
+        </g>
+      </g>
+      <!-- Middle grid layer -->
+      <g opacity="0.7">
+        <g>
+          <!-- Grid lines -->
+          <g>
+            <!-- Horizontal lines -->
+            <g>
+              <line x1="55" y1="170" x2="285" y2="170" stroke="#fff" stroke-width="1" opacity="0.7" />
+              <line x1="55" y1="155" x2="285" y2="155" stroke="#fff" stroke-width="1" opacity="0.7" />
+              <line x1="55" y1="185" x2="285" y2="185" stroke="#fff" stroke-width="1" opacity="0.7" />
+            </g>
+            <!-- Vertical lines -->
+            <g>
+              <line y1="55" x1="170" y2="285" x2="170" stroke="#fff" stroke-width="1" opacity="0.7" />
+              <line y1="55" x1="155" y2="285" x2="155" stroke="#fff" stroke-width="1" opacity="0.7" />
+              <line y1="55" x1="185" y2="285" x2="185" stroke="#fff" stroke-width="1" opacity="0.7" />
+            </g>
+          </g>
+        </g>
+      </g>
+      <!-- Orange squares and face (use a placeholder for the face, as SVG cannot embed raster) -->
+      <g>
+        <rect x="90" y="200" width="70" height="70" fill="#FF7A29" opacity="0.9" />
+        <rect x="75" y="185" width="30" height="30" fill="#FF7A29" opacity="0.9" />
+        <!-- Face placeholder (red/gradient) -->
+        <defs>
+          <linearGradient id="face-grad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#C00000"/>
+            <stop offset="70%" stop-color="#FF5500"/>
+            <stop offset="100%" stop-color="#FFD9A0"/>
+          </linearGradient>
+        </defs>
+        <rect x="185" y="170" width="70" height="70" fill="url(#face-grad)" opacity="0.85" />
+      </g>
+      <!-- Front dots layer -->
+      <g opacity="0.25">
+        <g>
+          <defs>
+            <pattern id="front-dots-3" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+              <rect x="0.7" y="0.7" width="2" height="2" fill="#fff" />
+            </pattern>
+          </defs>
+          <rect x="40" y="180" width="260" height="120" transform="rotate(-30 170 240)" fill="url(#front-dots-3)" />
+        </g>
+      </g>
+    </svg>
+  </div>
 </body>
 </html>
