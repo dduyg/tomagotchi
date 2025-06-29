@@ -3,118 +3,148 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SVG Layered Illustrations</title>
+  <title>SVG Grid Layered Art</title>
   <style>
     body {
       background: #111;
+      margin: 0;
+      min-height: 100vh;
       display: flex;
       flex-direction: row;
-      gap: 24px;
-      align-items: flex-start;
-      justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-      padding: 24px;
+      align-items: center;
+      justify-content: space-evenly;
+      gap: 0;
     }
     .svg-container {
-      box-shadow: 0 4px 32px rgba(0,0,0,0.7);
-      border-radius: 12px;
-      overflow: hidden;
-      background: #111;
+      width: 440px;
+      height: 440px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+    }
+    @media (max-width: 1400px) {
+      body {
+        flex-direction: column;
+      }
+      .svg-container {
+        margin: 20px 0;
+      }
     }
   </style>
 </head>
 <body>
   <div class="svg-container">
-    <!-- Image 1 SVG -->
-    <svg width="380" height="380" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg">
-      <!-- Top dotted grid -->
-      <g opacity="0.3">
+    <!-- SVG 1 -->
+    <svg width="420" height="420" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Top Layer: Dotted Grid (faded) -->
+      <g opacity="0.22">
         <g>
-          <g transform="rotate(30 210 110)">
+          <g>
+            <!-- 18 x 18 dots -->
             <g>
               <g>
-                <!-- Dots pattern -->
-                <defs>
-                  <pattern id="dotPattern1" width="10" height="10" patternUnits="userSpaceOnUse">
-                    <circle cx="2.5" cy="2.5" r="1.2" fill="#fff"/>
-                  </pattern>
-                </defs>
-                <rect x="40" y="10" width="340" height="170" fill="url(#dotPattern1)" transform="rotate(30 210 110)" />
+                <!-- Dots in top layer -->
+                <g>
+                  <!-- Generate dots -->
+                  <g>
+                    <rect x="70" y="10" width="4" height="4" rx="2" fill="#fff" opacity="0.38"/>
+                    <rect x="90" y="30" width="4" height="4" rx="2" fill="#fff" opacity="0.38"/>
+                    <rect x="50" y="30" width="4" height="4" rx="2" fill="#fff" opacity="0.38"/>
+                  </g>
+                  <!-- dot grid -->
+                  <g>
+                    <!-- Dots at 20px intervals, rotated 45deg -->
+                    <g transform="rotate(45 210 90)">
+                      <g>
+                        <defs>
+                          <pattern id="dotpattern1" width="20" height="20" patternUnits="userSpaceOnUse">
+                            <rect width="2.2" height="2.2" rx="1.1" fill="#fff" opacity="0.15"/>
+                          </pattern>
+                        </defs>
+                        <rect x="50" y="10" width="320" height="320" fill="url(#dotpattern1)" />
+                      </g>
+                    </g>
+                  </g>
+                </g>
               </g>
             </g>
           </g>
         </g>
       </g>
-      <!-- Middle grid lines -->
-      <g>
-        <g transform="rotate(30 210 210)">
-          <!-- Grid lines horizontal -->
-          <g stroke="#fff" stroke-width="1" opacity="0.7">
-            <!-- Horizontal -->
+      <!-- Middle Layer: Crossed Grid -->
+      <g opacity="0.87">
+        <g>
+          <g transform="rotate(45 210 210)">
+            <!-- Main grid lines -->
             <g>
-              <!-- 17 lines -->
-              <line x1="60" y1="60" x2="360" y2="60"/>
-              <line x1="60" y1="80" x2="360" y2="80"/>
-              <line x1="60" y1="100" x2="360" y2="100"/>
-              <line x1="60" y1="120" x2="360" y2="120"/>
-              <line x1="60" y1="140" x2="360" y2="140"/>
-              <line x1="60" y1="160" x2="360" y2="160"/>
-              <line x1="60" y1="180" x2="360" y2="180"/>
-              <line x1="60" y1="200" x2="360" y2="200"/>
-              <line x1="60" y1="220" x2="360" y2="220"/>
-              <line x1="60" y1="240" x2="360" y2="240"/>
-              <line x1="60" y1="260" x2="360" y2="260"/>
-              <line x1="60" y1="280" x2="360" y2="280"/>
-              <line x1="60" y1="300" x2="360" y2="300"/>
-              <line x1="60" y1="320" x2="360" y2="320"/>
-              <line x1="60" y1="340" x2="360" y2="340"/>
-              <line x1="60" y1="360" x2="360" y2="360"/>
-              <line x1="60" y1="380" x2="360" y2="380"/>
-            </g>
-            <!-- Vertical -->
-            <g>
-              <line x1="60" y1="60" x2="60" y2="380"/>
-              <line x1="80" y1="60" x2="80" y2="380"/>
-              <line x1="100" y1="60" x2="100" y2="380"/>
-              <line x1="120" y1="60" x2="120" y2="380"/>
-              <line x1="140" y1="60" x2="140" y2="380"/>
-              <line x1="160" y1="60" x2="160" y2="380"/>
-              <line x1="180" y1="60" x2="180" y2="380"/>
-              <line x1="200" y1="60" x2="200" y2="380"/>
-              <line x1="220" y1="60" x2="220" y2="380"/>
-              <line x1="240" y1="60" x2="240" y2="380"/>
-              <line x1="260" y1="60" x2="260" y2="380"/>
-              <line x1="280" y1="60" x2="280" y2="380"/>
-              <line x1="300" y1="60" x2="300" y2="380"/>
-              <line x1="320" y1="60" x2="320" y2="380"/>
-              <line x1="340" y1="60" x2="340" y2="380"/>
-              <line x1="360" y1="60" x2="360" y2="380"/>
-              <line x1="380" y1="60" x2="380" y2="380"/>
+              <g stroke="#fff" stroke-width="1.2" opacity="0.65">
+                <!-- Vertical lines -->
+                <line x1="60" y1="60" x2="360" y2="60"/>
+                <line x1="60" y1="80" x2="360" y2="80"/>
+                <line x1="60" y1="100" x2="360" y2="100"/>
+                <line x1="60" y1="120" x2="360" y2="120"/>
+                <line x1="60" y1="140" x2="360" y2="140"/>
+                <line x1="60" y1="160" x2="360" y2="160"/>
+                <line x1="60" y1="180" x2="360" y2="180"/>
+                <line x1="60" y1="200" x2="360" y2="200"/>
+                <line x1="60" y1="220" x2="360" y2="220"/>
+                <line x1="60" y1="240" x2="360" y2="240"/>
+                <line x1="60" y1="260" x2="360" y2="260"/>
+                <line x1="60" y1="280" x2="360" y2="280"/>
+                <line x1="60" y1="300" x2="360" y2="300"/>
+                <line x1="60" y1="320" x2="360" y2="320"/>
+                <!-- Horizontal lines -->
+                <line x1="60" y1="60" x2="60" y2="320"/>
+                <line x1="80" y1="60" x2="80" y2="320"/>
+                <line x1="100" y1="60" x2="100" y2="320"/>
+                <line x1="120" y1="60" x2="120" y2="320"/>
+                <line x1="140" y1="60" x2="140" y2="320"/>
+                <line x1="160" y1="60" x2="160" y2="320"/>
+                <line x1="180" y1="60" x2="180" y2="320"/>
+                <line x1="200" y1="60" x2="200" y2="320"/>
+                <line x1="220" y1="60" x2="220" y2="320"/>
+                <line x1="240" y1="60" x2="240" y2="320"/>
+                <line x1="260" y1="60" x2="260" y2="320"/>
+                <line x1="280" y1="60" x2="280" y2="320"/>
+                <line x1="300" y1="60" x2="300" y2="320"/>
+                <line x1="320" y1="60" x2="320" y2="320"/>
+              </g>
             </g>
           </g>
         </g>
       </g>
       <!-- Blue squares -->
       <g>
-        <g transform="rotate(30 210 210)">
-          <rect x="195" y="85" width="30" height="30" fill="#5fa0ff" opacity="0.8"/>
-          <rect x="130" y="165" width="30" height="30" fill="#5fa0ff" opacity="0.8"/>
-          <rect x="260" y="165" width="30" height="30" fill="#5fa0ff" opacity="0.8"/>
-          <rect x="195" y="245" width="30" height="30" fill="#5fa0ff" opacity="0.8"/>
-        </g>
+        <rect x="195" y="110" width="30" height="30" rx="3" fill="#5699FF" opacity="0.95"/>
+        <rect x="115" y="195" width="30" height="30" rx="3" fill="#5699FF" opacity="0.95"/>
+        <rect x="195" y="275" width="30" height="30" rx="3" fill="#5699FF" opacity="0.95"/>
+        <rect x="275" y="195" width="30" height="30" rx="3" fill="#5699FF" opacity="0.95"/>
       </g>
-      <!-- Bottom dotted grid -->
-      <g opacity="0.2">
+      <!-- Diagonal lines inside blue squares -->
+      <g stroke="#fff" stroke-width="2" opacity="0.23">
+        <line x1="195" y1="110" x2="225" y2="140"/>
+        <line x1="225" y1="110" x2="195" y2="140"/>
+        <line x1="115" y1="195" x2="145" y2="225"/>
+        <line x1="145" y1="195" x2="115" y2="225"/>
+        <line x1="195" y1="275" x2="225" y2="305"/>
+        <line x1="225" y1="275" x2="195" y2="305"/>
+        <line x1="275" y1="195" x2="305" y2="225"/>
+        <line x1="305" y1="195" x2="275" y2="225"/>
+      </g>
+      <!-- Bottom Layer: Dotted Grid (faded) -->
+      <g opacity="0.22">
         <g>
-          <g transform="rotate(30 210 310)">
-            <g>
-              <defs>
-                <pattern id="dotPattern2" width="10" height="10" patternUnits="userSpaceOnUse">
-                  <rect x="2.5" y="2.5" width="2" height="2" fill="#fff" opacity="0.7"/>
-                </pattern>
-              </defs>
-              <rect x="40" y="200" width="340" height="170" fill="url(#dotPattern2)" transform="rotate(30 210 310)" />
+          <g>
+            <g transform="rotate(45 210 330)">
+              <g>
+                <defs>
+                  <pattern id="dotpattern2" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <rect width="2.2" height="2.2" rx="1.1" fill="#fff" opacity="0.14"/>
+                  </pattern>
+                </defs>
+                <rect x="50" y="210" width="320" height="320" fill="url(#dotpattern2)" />
+              </g>
             </g>
           </g>
         </g>
@@ -122,186 +152,206 @@
     </svg>
   </div>
   <div class="svg-container">
-    <!-- Image 2 SVG -->
-    <svg width="380" height="380" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg">
-      <!-- Top yellow shapes -->
-      <g>
-        <g transform="rotate(30 210 110)">
-          <rect x="100" y="25" width="140" height="80" fill="#f8ff3e" opacity="0.88"/>
-          <rect x="250" y="25" width="120" height="40" fill="#f8ff3e" opacity="0.88"/>
-          <rect x="250" y="75" width="80" height="30" fill="#f8ff3e" opacity="0.88"/>
-        </g>
-      </g>
-      <!-- Top dotted grid -->
-      <g opacity="0.3">
+    <!-- SVG 2 -->
+    <svg width="420" height="420" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Top Layer: Dotted Grid (bright) -->
+      <g opacity="0.32">
         <g>
-          <g transform="rotate(30 210 110)">
-            <defs>
-              <pattern id="dotPattern3" width="10" height="10" patternUnits="userSpaceOnUse">
-                <circle cx="2.5" cy="2.5" r="1.2" fill="#fff"/>
-              </pattern>
-            </defs>
-            <rect x="40" y="10" width="340" height="170" fill="url(#dotPattern3)" transform="rotate(30 210 110)" />
-          </g>
-        </g>
-      </g>
-      <!-- Middle grid lines -->
-      <g>
-        <g transform="rotate(30 210 210)">
-          <g stroke="#fff" stroke-width="1" opacity="0.45">
-            <!-- Horizontal -->
+          <g>
             <g>
-              <line x1="60" y1="60" x2="360" y2="60"/>
-              <line x1="60" y1="80" x2="360" y2="80"/>
-              <line x1="60" y1="100" x2="360" y2="100"/>
-              <line x1="60" y1="120" x2="360" y2="120"/>
-              <line x1="60" y1="140" x2="360" y2="140"/>
-              <line x1="60" y1="160" x2="360" y2="160"/>
-              <line x1="60" y1="180" x2="360" y2="180"/>
-              <line x1="60" y1="200" x2="360" y2="200"/>
-              <line x1="60" y1="220" x2="360" y2="220"/>
-              <line x1="60" y1="240" x2="360" y2="240"/>
-              <line x1="60" y1="260" x2="360" y2="260"/>
-              <line x1="60" y1="280" x2="360" y2="280"/>
-              <line x1="60" y1="300" x2="360" y2="300"/>
-              <line x1="60" y1="320" x2="360" y2="320"/>
-              <line x1="60" y1="340" x2="360" y2="340"/>
-              <line x1="60" y1="360" x2="360" y2="360"/>
-              <line x1="60" y1="380" x2="360" y2="380"/>
-            </g>
-            <!-- Vertical -->
-            <g>
-              <line x1="60" y1="60" x2="60" y2="380"/>
-              <line x1="80" y1="60" x2="80" y2="380"/>
-              <line x1="100" y1="60" x2="100" y2="380"/>
-              <line x1="120" y1="60" x2="120" y2="380"/>
-              <line x1="140" y1="60" x2="140" y2="380"/>
-              <line x1="160" y1="60" x2="160" y2="380"/>
-              <line x1="180" y1="60" x2="180" y2="380"/>
-              <line x1="200" y1="60" x2="200" y2="380"/>
-              <line x1="220" y1="60" x2="220" y2="380"/>
-              <line x1="240" y1="60" x2="240" y2="380"/>
-              <line x1="260" y1="60" x2="260" y2="380"/>
-              <line x1="280" y1="60" x2="280" y2="380"/>
-              <line x1="300" y1="60" x2="300" y2="380"/>
-              <line x1="320" y1="60" x2="320" y2="380"/>
-              <line x1="340" y1="60" x2="340" y2="380"/>
-              <line x1="360" y1="60" x2="360" y2="380"/>
-              <line x1="380" y1="60" x2="380" y2="380"/>
+              <g>
+                <g>
+                  <g>
+                    <g>
+                      <g>
+                        <g>
+                          <g transform="rotate(45 210 90)">
+                            <g>
+                              <defs>
+                                <pattern id="dotpattern3" width="20" height="20" patternUnits="userSpaceOnUse">
+                                  <rect width="2.2" height="2.2" rx="1.1" fill="#fff" opacity="0.18"/>
+                                </pattern>
+                              </defs>
+                              <rect x="50" y="10" width="320" height="320" fill="url(#dotpattern3)" />
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
             </g>
           </g>
         </g>
       </g>
-      <!-- Bottom dotted grid -->
-      <g opacity="0.2">
+      <!-- Neon yellow rectangles -->
+      <g>
+        <rect x="110" y="50" width="160" height="90" rx="5" fill="#EBFF36" opacity="0.98"/>
+        <rect x="110" y="150" width="60" height="35" rx="5" fill="#EBFF36" opacity="0.98"/>
+        <rect x="180" y="150" width="90" height="35" rx="5" fill="#EBFF36" opacity="0.98"/>
+      </g>
+      <!-- Middle Layer: Crossed Grid (faded) -->
+      <g opacity="0.49">
         <g>
-          <g transform="rotate(30 210 310)">
-            <defs>
-              <pattern id="dotPattern4" width="10" height="10" patternUnits="userSpaceOnUse">
-                <rect x="2.5" y="2.5" width="2" height="2" fill="#fff" opacity="0.7"/>
-              </pattern>
-            </defs>
-            <rect x="40" y="200" width="340" height="170" fill="url(#dotPattern4)" transform="rotate(30 210 310)" />
+          <g transform="rotate(45 210 210)">
+            <!-- Main grid lines -->
+            <g>
+              <g stroke="#fff" stroke-width="1.2" opacity="0.28">
+                <!-- Vertical lines -->
+                <line x1="60" y1="60" x2="360" y2="60"/>
+                <line x1="60" y1="80" x2="360" y2="80"/>
+                <line x1="60" y1="100" x2="360" y2="100"/>
+                <line x1="60" y1="120" x2="360" y2="120"/>
+                <line x1="60" y1="140" x2="360" y2="140"/>
+                <line x1="60" y1="160" x2="360" y2="160"/>
+                <line x1="60" y1="180" x2="360" y2="180"/>
+                <line x1="60" y1="200" x2="360" y2="200"/>
+                <line x1="60" y1="220" x2="360" y2="220"/>
+                <line x1="60" y1="240" x2="360" y2="240"/>
+                <line x1="60" y1="260" x2="360" y2="260"/>
+                <line x1="60" y1="280" x2="360" y2="280"/>
+                <line x1="60" y1="300" x2="360" y2="300"/>
+                <line x1="60" y1="320" x2="360" y2="320"/>
+                <!-- Horizontal lines -->
+                <line x1="60" y1="60" x2="60" y2="320"/>
+                <line x1="80" y1="60" x2="80" y2="320"/>
+                <line x1="100" y1="60" x2="100" y2="320"/>
+                <line x1="120" y1="60" x2="120" y2="320"/>
+                <line x1="140" y1="60" x2="140" y2="320"/>
+                <line x1="160" y1="60" x2="160" y2="320"/>
+                <line x1="180" y1="60" x2="180" y2="320"/>
+                <line x1="200" y1="60" x2="200" y2="320"/>
+                <line x1="220" y1="60" x2="220" y2="320"/>
+                <line x1="240" y1="60" x2="240" y2="320"/>
+                <line x1="260" y1="60" x2="260" y2="320"/>
+                <line x1="280" y1="60" x2="280" y2="320"/>
+                <line x1="300" y1="60" x2="300" y2="320"/>
+                <line x1="320" y1="60" x2="320" y2="320"/>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <!-- Bottom Layer: Dotted Grid (faded) -->
+      <g opacity="0.19">
+        <g>
+          <g>
+            <g transform="rotate(45 210 330)">
+              <g>
+                <defs>
+                  <pattern id="dotpattern4" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <rect width="2.2" height="2.2" rx="1.1" fill="#fff" opacity="0.13"/>
+                  </pattern>
+                </defs>
+                <rect x="50" y="210" width="320" height="320" fill="url(#dotpattern4)" />
+              </g>
+            </g>
           </g>
         </g>
       </g>
     </svg>
   </div>
   <div class="svg-container">
-    <!-- Image 3 SVG -->
-    <svg width="380" height="380" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg">
-      <!-- Top dotted grid -->
-      <g opacity="0.3">
+    <!-- SVG 3 -->
+    <svg width="420" height="420" viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Top Layer: Dotted Grid (faded) -->
+      <g opacity="0.22">
         <g>
-          <g transform="rotate(30 210 110)">
-            <defs>
-              <pattern id="dotPattern5" width="10" height="10" patternUnits="userSpaceOnUse">
-                <circle cx="2.5" cy="2.5" r="1.2" fill="#fff"/>
-              </pattern>
-            </defs>
-            <rect x="40" y="10" width="340" height="170" fill="url(#dotPattern5)" transform="rotate(30 210 110)" />
-          </g>
-        </g>
-      </g>
-      <!-- Middle grid lines -->
-      <g>
-        <g transform="rotate(30 210 210)">
-          <g stroke="#fff" stroke-width="1" opacity="0.45">
-            <!-- Horizontal -->
+          <g>
             <g>
-              <line x1="60" y1="60" x2="360" y2="60"/>
-              <line x1="60" y1="80" x2="360" y2="80"/>
-              <line x1="60" y1="100" x2="360" y2="100"/>
-              <line x1="60" y1="120" x2="360" y2="120"/>
-              <line x1="60" y1="140" x2="360" y2="140"/>
-              <line x1="60" y1="160" x2="360" y2="160"/>
-              <line x1="60" y1="180" x2="360" y2="180"/>
-              <line x1="60" y1="200" x2="360" y2="200"/>
-              <line x1="60" y1="220" x2="360" y2="220"/>
-              <line x1="60" y1="240" x2="360" y2="240"/>
-              <line x1="60" y1="260" x2="360" y2="260"/>
-              <line x1="60" y1="280" x2="360" y2="280"/>
-              <line x1="60" y1="300" x2="360" y2="300"/>
-              <line x1="60" y1="320" x2="360" y2="320"/>
-              <line x1="60" y1="340" x2="360" y2="340"/>
-              <line x1="60" y1="360" x2="360" y2="360"/>
-              <line x1="60" y1="380" x2="360" y2="380"/>
-            </g>
-            <!-- Vertical -->
-            <g>
-              <line x1="60" y1="60" x2="60" y2="380"/>
-              <line x1="80" y1="60" x2="80" y2="380"/>
-              <line x1="100" y1="60" x2="100" y2="380"/>
-              <line x1="120" y1="60" x2="120" y2="380"/>
-              <line x1="140" y1="60" x2="140" y2="380"/>
-              <line x1="160" y1="60" x2="160" y2="380"/>
-              <line x1="180" y1="60" x2="180" y2="380"/>
-              <line x1="200" y1="60" x2="200" y2="380"/>
-              <line x1="220" y1="60" x2="220" y2="380"/>
-              <line x1="240" y1="60" x2="240" y2="380"/>
-              <line x1="260" y1="60" x2="260" y2="380"/>
-              <line x1="280" y1="60" x2="280" y2="380"/>
-              <line x1="300" y1="60" x2="300" y2="380"/>
-              <line x1="320" y1="60" x2="320" y2="380"/>
-              <line x1="340" y1="60" x2="340" y2="380"/>
-              <line x1="360" y1="60" x2="360" y2="380"/>
-              <line x1="380" y1="60" x2="380" y2="380"/>
+              <g>
+                <g>
+                  <g transform="rotate(45 210 90)">
+                    <g>
+                      <defs>
+                        <pattern id="dotpattern5" width="20" height="20" patternUnits="userSpaceOnUse">
+                          <rect width="2.2" height="2.2" rx="1.1" fill="#fff" opacity="0.16"/>
+                        </pattern>
+                      </defs>
+                      <rect x="50" y="10" width="320" height="320" fill="url(#dotpattern5)" />
+                    </g>
+                  </g>
+                </g>
+              </g>
             </g>
           </g>
         </g>
       </g>
-      <!-- Bottom dotted grid -->
-      <g opacity="0.25">
+      <!-- Middle Layer: Crossed Grid (faded) -->
+      <g opacity="0.53">
         <g>
-          <g transform="rotate(30 210 310)">
-            <defs>
-              <pattern id="dotPattern6" width="10" height="10" patternUnits="userSpaceOnUse">
-                <rect x="2.5" y="2.5" width="2" height="2" fill="#fff" opacity="0.7"/>
-              </pattern>
-            </defs>
-            <rect x="40" y="200" width="340" height="170" fill="url(#dotPattern6)" transform="rotate(30 210 310)" />
+          <g transform="rotate(45 210 210)">
+            <!-- Main grid lines -->
+            <g>
+              <g stroke="#fff" stroke-width="1.2" opacity="0.36">
+                <!-- Vertical lines -->
+                <line x1="60" y1="60" x2="360" y2="60"/>
+                <line x1="60" y1="80" x2="360" y2="80"/>
+                <line x1="60" y1="100" x2="360" y2="100"/>
+                <line x1="60" y1="120" x2="360" y2="120"/>
+                <line x1="60" y1="140" x2="360" y2="140"/>
+                <line x1="60" y1="160" x2="360" y2="160"/>
+                <line x1="60" y1="180" x2="360" y2="180"/>
+                <line x1="60" y1="200" x2="360" y2="200"/>
+                <line x1="60" y1="220" x2="360" y2="220"/>
+                <line x1="60" y1="240" x2="360" y2="240"/>
+                <line x1="60" y1="260" x2="360" y2="260"/>
+                <line x1="60" y1="280" x2="360" y2="280"/>
+                <line x1="60" y1="300" x2="360" y2="300"/>
+                <line x1="60" y1="320" x2="360" y2="320"/>
+                <!-- Horizontal lines -->
+                <line x1="60" y1="60" x2="60" y2="320"/>
+                <line x1="80" y1="60" x2="80" y2="320"/>
+                <line x1="100" y1="60" x2="100" y2="320"/>
+                <line x1="120" y1="60" x2="120" y2="320"/>
+                <line x1="140" y1="60" x2="140" y2="320"/>
+                <line x1="160" y1="60" x2="160" y2="320"/>
+                <line x1="180" y1="60" x2="180" y2="320"/>
+                <line x1="200" y1="60" x2="200" y2="320"/>
+                <line x1="220" y1="60" x2="220" y2="320"/>
+                <line x1="240" y1="60" x2="240" y2="320"/>
+                <line x1="260" y1="60" x2="260" y2="320"/>
+                <line x1="280" y1="60" x2="280" y2="320"/>
+                <line x1="300" y1="60" x2="300" y2="320"/>
+                <line x1="320" y1="60" x2="320" y2="320"/>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+      <!-- Bottom Layer: Square Dots (strong) -->
+      <g opacity="0.63">
+        <g>
+          <g>
+            <g transform="rotate(45 210 330)">
+              <g>
+                <defs>
+                  <pattern id="dotpattern6" width="20" height="20" patternUnits="userSpaceOnUse">
+                    <rect width="4" height="4" rx="1.1" fill="#fff" opacity="0.16"/>
+                  </pattern>
+                </defs>
+                <rect x="50" y="210" width="320" height="320" fill="url(#dotpattern6)" />
+              </g>
+            </g>
           </g>
         </g>
       </g>
       <!-- Orange squares -->
       <g>
-        <g transform="rotate(30 210 310)">
-          <rect x="170" y="220" width="60" height="60" fill="#ff7a2b" opacity="0.95"/>
-          <rect x="250" y="220" width="30" height="30" fill="#ff7a2b" opacity="0.95"/>
-        </g>
+        <rect x="110" y="250" width="44" height="44" rx="4" fill="#FF7A21" opacity="0.95"/>
+        <rect x="170" y="310" width="100" height="100" rx="7" fill="#FF7A21" opacity="0.95"/>
       </g>
-      <!-- Red photo-like square (simulate with gradient) -->
+      <!-- Face (simulated with a gradient rect, see note) -->
       <g>
-        <g transform="rotate(30 210 310)">
-          <defs>
-            <linearGradient id="redGradient" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#f00" stop-opacity="1"/>
-              <stop offset="40%" stop-color="#e99a26" stop-opacity="0.8"/>
-              <stop offset="100%" stop-color="#800" stop-opacity="0.8"/>
-            </linearGradient>
-          </defs>
-          <rect x="250" y="250" width="70" height="50" fill="url(#redGradient)" opacity="0.98"/>
-        </g>
+        <defs>
+          <linearGradient id="faceGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#B22121"/>
+            <stop offset="55%" stop-color="#F89C2C"/>
+            <stop offset="100%" stop-color="#800000"/>
+          </linearGradient>
+        </defs>
+        <rect x="235" y="210" width="110" height="70" rx="9" fill="url(#faceGrad)" opacity="0.87"/>
       </g>
     </svg>
   </div>
