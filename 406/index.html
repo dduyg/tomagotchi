@@ -10,8 +10,8 @@
       height: 100%;
       margin: 0;
       padding: 0;
-      background: #f9f9f9;
-      color: #000;
+      background: #141414;
+      color: #fff;
       font-family: "Spline Sans Mono", monospace;
       width: 100vw;
       overflow: hidden;
@@ -25,14 +25,18 @@
       align-items: center;
     }
     .slider-container {
-      width: 768px;
-      height: 1032px;
+      width: 420px;
+      max-width: 98vw;
+      height: 700px;
+      max-height: 98vh;
       overflow: hidden;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #f9f9f9;
+      background: #141414;
+      box-shadow: 0 2px 32px #000c;
+      border-radius: 18px;
     }
     .slider {
       display: flex;
@@ -44,143 +48,107 @@
     .slide {
       min-width: 100%;
       height: 100%;
+      box-sizing: border-box;
+      padding: 0;
       display: flex;
       flex-direction: column;
       align-items: stretch;
       justify-content: flex-start;
-      padding: 0;
-      box-sizing: border-box;
       position: relative;
+      background: #141414;
     }
     .slide img {
       width: 100%;
-      max-height: 60vh;
-      height: auto;
+      height: 340px;
       object-fit: contain;
       display: block;
+      background: #141414;
+      margin-bottom: 0;
+      margin-top: 24px;
+      border-radius: 12px;
+      box-shadow: 0 2px 28px #000d;
       user-select: none;
       pointer-events: none;
-      box-sizing: border-box;
     }
     .slide-content {
       width: 100%;
       box-sizing: border-box;
-      padding: 0 24px 0 24px;
-      margin-top: 0;
-      margin-bottom: 0;
+      padding: 0 0 0 0;
+      margin: 0;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: stretch;
       justify-content: flex-start;
+      gap: 0;
     }
     .label {
       width: 100%;
-      box-sizing: border-box;
-      position: relative;
-      padding: 1rem;
-      font-size: 13px;
-      text-transform: uppercase;
-      line-height: 11px;  
-      overflow: hidden;
-      background-color: transparent;
-      margin-bottom: 0.5rem;
       display: flex;
       align-items: center;
+      background: #ff5500;
+      color: #141414;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.8rem 0 0.8rem 1.8rem;
+      margin: 30px 0 0 0;
+      position: relative;
+      border-radius: 3px;
     }
-    .label::before {
-      content: "";
-      position: absolute;
-      left: 0.75rem;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 11px;
-      height: 11px;
-      background-color: #ff5500;
-      z-index: 2;
-      animation: squareToBlack 0.6s ease forwards;
-      animation-delay: 0.2s;
+    .label .icon {
+      display: inline-block;
+      width: 17px;
+      height: 17px;
+      background: #141414;
+      margin-right: 16px;
       border-radius: 2px;
-    }
-    .label::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 0%;
-      height: 100%;
-      background-color: #ff5500;
-      z-index: 1;
-      animation: bgFill 0.8s ease forwards;
-      animation-delay: 0.4s;
+      flex-shrink: 0;
     }
     .label span {
       position: relative;
       z-index: 3;
-      margin-left: 2rem; /* To give space for the square */
-      width: 100%;
-      display: block;
-      text-align: left;
+      font-weight: 500;
+      font-size: 18px;
+      letter-spacing: 1.2px;
     }
     .description {
-      width: 100%;
-      border-left: 2px solid #ccc;
-      padding-left: 1rem;
-      font-size: 15px;
-      line-height: 1.5;
-      color: #555;
-      box-sizing: border-box;
+      border-left: 3px solid #ff5500;
+      padding-left: 1.1rem;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.3;
+      color: #fff;
+      margin-top: 18px;
+      margin-bottom: 0;
       word-break: break-word;
     }
-    /* Keyframes */
-    @keyframes bgFill {
-      to { width: 100%; }
-    }
-    @keyframes squareToBlack {
-      0% { background-color: #ff5500; }
-      100% { background-color: #141414; }
-    }
-
-    @media (max-width: 900px) {
+    @media (max-width: 520px) {
       .slider-container {
         width: 98vw;
-        height: 96vh;
-        max-width: 100vw;
-        max-height: 100vh;
-      }
-      .slider {
-        width: 100vw;
-        height: 100vh;
+        height: 95vw;
+        min-height: 350px;
+        max-height: 110vw;
+        border-radius: 0;
       }
       .slide img {
-        max-height: 40vh;
+        height: 38vw;
+        min-height: 120px;
+        margin-top: 10vw;
       }
-      .slide-content {
-        padding: 0 10vw 0 6vw;
+      .label {
+        font-size: 14px;
+        padding: 0.7rem 0 0.7rem 1.2rem;
       }
-    }
-    @media (max-width: 600px) {
-      .slider-container {
-        width: 100vw;
-        height: 100vh;
-        max-width: 100vw;
-        max-height: 100vh;
-      }
-      .slider {
-        width: 100vw;
-        height: 100vh;
-      }
-      .slide img {
-        max-height: 32vh;
-      }
-      .slide-content {
-        padding: 0 4vw 0 4vw;
-      }
-      .label span {
-        margin-left: 1.5rem;
+      .label .icon {
+        width: 12px;
+        height: 12px;
+        margin-right: 10px;
       }
       .description {
-        font-size: 14px;
-        padding-left: 0.5rem;
+        font-size: 16px;
+        padding-left: 0.9rem;
+        margin-top: 12px;
       }
     }
   </style>
@@ -192,26 +160,11 @@
       <div class="slide">
         <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/BLOBs/blob-06.png" alt="🍋#cdea19" draggable="false">
         <div class="slide-content">
-          <div class="label"><span>APPS &nbsp; &nbsp; SDK</span></div>
-          <div class="description">Content applications that enable custom workflows at scale, from creation to distribution.</div>    
-        </div>
-      </div>
-      <!-- Slide 2 -->
-      <div class="slide">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/BLOBs/blob-08.png" alt="🫐#556bfc" draggable="false">
-        <div class="slide-content">
-          <div class="label"><span>COMPUTE &nbsp; + &nbsp; AI</span></div>
-          <div class="description">Serverless functions and agent actions, powering your content operations for humans and AI.</div>      
-        </div>
-      </div>
-      <!-- Slide 3 -->
-      <div class="slide">
-        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/BLOBs/blob-07.png" alt="🍊" draggable="false">
-        <div class="slide-content">
-          <div class="label"><span>Content &nbsp; Lake</span></div>
+          <div class="label"><span class="icon"></span><span>CONTENT LAKE</span></div>
           <div class="description">The database optimized for content queries, authoring and delivery.</div>
         </div>
       </div>
+      <!-- Add more slides here following the above structure -->
     </div>
   </div>
   <script>
