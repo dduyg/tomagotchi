@@ -14,9 +14,7 @@
       color: #000;
       font-family: "Spline Sans Mono", monospace;
       width: 100vw;
-      min-width: 100vw;
-      box-sizing: border-box;
-      overflow-x: hidden;
+      overflow: hidden;
     }
     body {
       min-height: 100vh;
@@ -27,14 +25,18 @@
       align-items: center;
     }
     .slider-container {
-      width: 768px;
-      max-width: 100vw;
-      min-height: 100vh;
+      width: 100vw;
+      max-width: 768px;
+      height: 100vh;
+      max-height: 1032px;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: visible;
-      background: #f9f9f9;
+      position: relative;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.03);
+      border-radius: 16px;
     }
     .slider {
       display: flex;
@@ -45,54 +47,52 @@
     }
     .slide {
       min-width: 100%;
+      height: 100%;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
       align-items: stretch;
       justify-content: flex-start;
       position: relative;
-      height: 100vh;
-      background: #fff;
-      overflow: visible;
+      padding: 0;
     }
     .slide img {
-      display: block;
       width: 100%;
-      max-height: 450px;
+      height: 65%;
       object-fit: contain;
+      display: block;
       user-select: none;
       pointer-events: none;
-      margin: 0 auto;
       background: #f9f9f9;
     }
     .slide-content {
       width: 100%;
+      flex: 1;
       box-sizing: border-box;
-      padding: 0;
-      margin: 0;
+      padding: 0 24px 24px 24px;
+      margin-top: 0;
+      margin-bottom: 0;
       display: flex;
       flex-direction: column;
       align-items: stretch;
       justify-content: flex-start;
-      flex: 1 1 auto;
     }
     .label {
       width: 100%;
       position: relative;
-      padding: 1rem 1.5rem;
+      padding: 1rem 0 1rem 1.6rem;
       font-size: 13px;
       text-transform: uppercase;
-      line-height: 1.2;
-      overflow: hidden;
+      line-height: 18px;
       background-color: transparent;
+      margin-bottom: 12px;
       box-sizing: border-box;
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.5px;
+      display: block;
     }
     .label::before {
       content: "";
       position: absolute;
-      left: 1.5rem;
+      left: 0.75rem;
       top: 50%;
       transform: translateY(-50%);
       width: 11px;
@@ -108,32 +108,29 @@
       position: absolute;
       left: 0;
       top: 0;
-      width: 100%;
+      width: 0%;
       height: 100%;
-      background: linear-gradient(90deg, #ff5500 0 60px, transparent 60px 100%);
+      background-color: #ff5500;
       z-index: 1;
-      opacity: 0.07;
-      animation: none;
+      animation: bgFill 0.8s ease forwards;
+      animation-delay: 0.4s;
     }
     .label span {
       position: relative;
       z-index: 3;
-      width: 100%;
-      display: block;
+      padding-left: 0.7rem;
+      letter-spacing: 1px;
     }
     .description {
-      border-left: 2px solid #ff5500;
-      padding: 1rem 1.5rem;
+      border-left: 2px solid #ccc;
+      padding-left: 1rem;
       font-size: 16px;
-      color: #222;
-      background: #f8f8f8;
-      margin-bottom: 1rem;
-      margin-top: 0;
-      min-height: 96px;
       line-height: 1.6;
-      box-sizing: border-box;
+      color: #555;
+      margin-bottom: 0;
+      margin-top: 0;
       width: 100%;
-      word-break: break-word;
+      box-sizing: border-box;
     }
     /* Keyframes */
     @keyframes bgFill {
@@ -147,27 +144,20 @@
     @media (max-width: 768px) {
       .slider-container {
         width: 100vw;
-        min-height: 100vh;
-        height: auto;
-        padding: 0;
+        max-width: 100vw;
+        height: 100vw;
+        max-height: 130vw;
+        border-radius: 0;
       }
       .slider {
         width: 100vw;
-      }
-      .slide {
-        min-width: 100vw;
-        height: auto;
-        padding-bottom: 2rem;
-      }
-      .slide img {
-        max-height: 50vw;
+        height: 100vw;
       }
       .slide-content {
-        padding: 0;
+        padding: 0 8vw 8vw 8vw;
       }
-      .label, .description {
-        padding-left: 1rem;
-        padding-right: 1rem;
+      .description {
+        font-size: 15px;
       }
     }
   </style>
