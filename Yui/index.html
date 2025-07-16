@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Horizontal Slider Replication</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liminal♟️Loop</title>
   <style>
     html, body {
       height: 100%;
@@ -53,7 +53,7 @@
       background: #111;
       position: relative;
     }
-    .slide-image {
+    .slide img {
       width: 100%;
       height: 78%;
       object-fit: cover;
@@ -63,7 +63,7 @@
       pointer-events: none;
     }
     .slide-content {
-      width: 100%;
+      width: 90%;
       box-sizing: border-box;
       padding: 0 0 0 24px;
       margin-top: 0;
@@ -72,76 +72,60 @@
       flex-direction: column;
       align-items: flex-start;
     }
-    .slide-label {
-      display: flex;
-      align-items: center;
-      font-family: 'JetBrains Mono', 'Fira Mono', monospace, Arial;
-      font-size: 2.1rem;
-      letter-spacing: 0.07em;
-      font-weight: 400;
-      margin-bottom: 18px;
-      margin-top: 0;
-      padding: 0;
-      height: 34px;
-      box-sizing: border-box;
+    .label {
+      position: relative;
+      padding: 1rem 1rem 1rem 2rem;
+      font-size: 14px;
+      text-transform: uppercase;
+      overflow: hidden;
+      background-color: transparent;
     }
-    .slide-label .icon {
-      width: 25px;
-      height: 25px;
-      background: #111;
-      border-radius: 3px;
-      display: inline-block;
-      margin-right: 10px;
-      box-sizing: border-box;
+    .label::before {
+      content: "";
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 12px;
+      height: 12px;
+      background-color: #ff5500;
+      z-index: 2;
+      animation: squareToBlack 0.6s ease forwards;
+      animation-delay: 0.2s;
     }
-    .slide-label.sdk {
-      background: #e9ff38;
-      color: #111;
-      padding-left: 10px;
-      padding-right: 54px;
-      height: 34px;
-      border-radius: 2px;
+    .label::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0%;
+      height: 100%;
+      background-color: #ff5500;
+      z-index: 1;
+      animation: bgFill 0.8s ease forwards;
+      animation-delay: 0.4s; /* start background slightly after square changes */
     }
-    .slide-label.sdk .icon {
-      background: #111;
+    .label span {
+      position: relative;
+      z-index: 3;
+      letter-spacing: 2px;
     }
-    .slide-label.ai {
-      background: #6a81ff;
-      color: #111;
-      padding-left: 10px;
-      padding-right: 54px;
-      height: 34px;
-      border-radius: 2px;
+    .description {
+      border-left: 2px solid white;
+      padding-left: 1rem;
+      font-size: 18px;
+      line-height: 1.5;
+      margin-top: 1rem;
     }
-    .slide-label.ai .icon {
-      background: #111;
+    /* Keyframes */
+    @keyframes bgFill {
+      to { width: 100%; }
     }
-    .slide-label.lake {
-      background: #ff4800;
-      color: #111;
-      padding-left: 10px;
-      padding-right: 54px;
-      height: 34px;
-      border-radius: 2px;
+    @keyframes squareToBlack {
+      0% { background-color: #ff5500; }
+      100% { background-color: #000; }
     }
-    .slide-label.lake .icon {
-      background: #111;
-    }
-    .slide-desc-container {
-      border-left: 4px solid #fff;
-      padding-left: 16px;
-      margin-left: 0;
-      box-sizing: border-box;
-      max-width: 98%;
-    }
-    .slide-desc {
-      font-size: 2.1rem;
-      font-weight: 400;
-      line-height: 1.23;
-      color: #fff;
-      margin: 0;
-      letter-spacing: 0.02em;
-    }
+
     @media (max-width: 800px) {
       .slider-container {
         width: 100vw;
@@ -154,20 +138,6 @@
         height: 100vw;
       }
     }
-    @media (max-width: 500px) {
-      .slider-container {
-        width: 100vw;
-        height: 175vw;
-        max-width: 100vw;
-        max-height: 175vw;
-      }
-      .slide-content .slide-label, .slide-desc {
-        font-size: 1.1rem;
-      }
-      .slide-label {
-        height: 20px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -175,47 +145,26 @@
     <div class="slider" id="slider">
       <!-- Slide 1 -->
       <div class="slide">
-        <img src="squaredLemon.png" alt="🍋" class="slide-image" draggable="false">
+        <img src="squaredLemon.png" alt="🍋" draggable="false">
         <div class="slide-content">
-          <div class="slide-label sdk">
-            <span class="icon"></span>
-            APPS &nbsp; &nbsp; SDK
-          </div>
-          <div class="slide-desc-container">
-            <div class="slide-desc">
-              Content applications that enable custom workflows at scale, from creation to distribution.
-            </div>
-          </div>
+          <div class="label"><span>APPS &nbsp; &nbsp; SDK</span></div>
+          <div class="description">Content applications that enable custom workflows at scale, from creation to distribution.</div>    
         </div>
       </div>
       <!-- Slide 2 -->
       <div class="slide">
-        <img src="squaredBlueberries.png" alt="🫐" class="slide-image" draggable="false">
+        <img src="squaredBlueberries.png" alt="🫐" draggable="false">
         <div class="slide-content">
-          <div class="slide-label ai">
-            <span class="icon"></span>
-            COMPUTE &nbsp; + &nbsp; AI
-          </div>
-          <div class="slide-desc-container">
-            <div class="slide-desc">
-              Serverless functions and agent actions, powering your content operations for humans and AI.
-            </div>
-          </div>
+          <div class="label"><span>COMPUTE &nbsp; + &nbsp; AI</span></div>
+          <div class="description">Serverless functions and agent actions, powering your content operations for humans and AI.</div>      
         </div>
       </div>
       <!-- Slide 3 -->
       <div class="slide">
-        <img src="squaredPeach.png" alt="🍊" class="slide-image" draggable="false">
+        <img src="squaredPeach.png" alt="🍊" draggable="false">
         <div class="slide-content">
-          <div class="slide-label lake">
-            <span class="icon"></span>
-            CONTENT &nbsp; LAKE
-          </div>
-          <div class="slide-desc-container">
-            <div class="slide-desc">
-              The database optimized for content queries, authoring and delivery.
-            </div>
-          </div>
+          <div class="label"><span>Content &nbsp; Lake</span></div>
+          <div class="description">The database optimized for content queries, authoring and delivery.</div>
         </div>
       </div>
     </div>
