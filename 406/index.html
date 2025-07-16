@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liminal🎊Loop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Spline+Sans+Mono&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #000;
+      font-family: "Spline Sans Mono", monospace;
+      width: 100vw;
+      overflow: hidden;
+    }
+    body {
+      min-height: 100vh;
+      min-width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .slider-container {
+      width: 768px;
+      height: 1032px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f9f9f9;
+    }
+    .slider {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+    }
+    .slide {
+      min-width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      padding: 0;
+      box-sizing: border-box;
+      position: relative;
+    }
+    .slide img {
+      width: 100%;
+      max-height: 60vh;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      user-select: none;
+      pointer-events: none;
+      box-sizing: border-box;
+    }
+    .slide-content {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0 24px 0 24px;
+      margin-top: 0;
+      margin-bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+    .label {
+      width: 100%;
+      box-sizing: border-box;
+      position: relative;
+      padding: 1rem;
+      font-size: 13px;
+      text-transform: uppercase;
+      line-height: 11px;  
+      overflow: hidden;
+      background-color: transparent;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+    .label::before {
+      content: "";
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 11px;
+      height: 11px;
+      background-color: #ff5500;
+      z-index: 2;
+      animation: squareToBlack 0.6s ease forwards;
+      animation-delay: 0.2s;
+      border-radius: 2px;
+    }
+    .label::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0%;
+      height: 100%;
+      background-color: #ff5500;
+      z-index: 1;
+      animation: bgFill 0.8s ease forwards;
+      animation-delay: 0.4s;
+    }
+    .label span {
+      position: relative;
+      z-index: 3;
+      margin-left: 2rem; /* To give space for the square */
+      width: 100%;
+      display: block;
+      text-align: left;
+    }
+    .description {
+      width: 100%;
+      border-left: 2px solid #ccc;
+      padding-left: 1rem;
+      font-size: 15px;
+      line-height: 1.5;
+      color: #555;
+      box-sizing: border-box;
+      word-break: break-word;
+    }
+    /* Keyframes */
+    @keyframes bgFill {
+      to { width: 100%; }
+    }
+    @keyframes squareToBlack {
+      0% { background-color: #ff5500; }
+      100% { background-color: #141414; }
+    }
+
+    @media (max-width: 900px) {
+      .slider-container {
+        width: 98vw;
+        height: 96vh;
+        max-width: 100vw;
+        max-height: 100vh;
+      }
+      .slider {
+        width: 100vw;
+        height: 100vh;
+      }
+      .slide img {
+        max-height: 40vh;
+      }
+      .slide-content {
+        padding: 0 10vw 0 6vw;
+      }
+    }
+    @media (max-width: 600px) {
+      .slider-container {
+        width: 100vw;
+        height: 100vh;
+        max-width: 100vw;
+        max-height: 100vh;
+      }
+      .slider {
+        width: 100vw;
+        height: 100vh;
+      }
+      .slide img {
+        max-height: 32vh;
+      }
+      .slide-content {
+        padding: 0 4vw 0 4vw;
+      }
+      .label span {
+        margin-left: 1.5rem;
+      }
+      .description {
+        font-size: 14px;
+        padding-left: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="slider-container" id="slider-container">
+    <div class="slider" id="slider">
+      <!-- Slide 1 -->
+      <div class="slide">
+        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/BLOBs/blob-06.png" alt="🍋#cdea19" draggable="false">
+        <div class="slide-content">
+          <div class="label"><span>APPS &nbsp; &nbsp; SDK</span></div>
+          <div class="description">Content applications that enable custom workflows at scale, from creation to distribution.</div>    
+        </div>
+      </div>
+      <!-- Slide 2 -->
+      <div class="slide">
+        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/BLOBs/blob-08.png" alt="🫐#556bfc" draggable="false">
+        <div class="slide-content">
+          <div class="label"><span>COMPUTE &nbsp; + &nbsp; AI</span></div>
+          <div class="description">Serverless functions and agent actions, powering your content operations for humans and AI.</div>      
+        </div>
+      </div>
+      <!-- Slide 3 -->
+      <div class="slide">
+        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/BLOBs/blob-07.png" alt="🍊" draggable="false">
+        <div class="slide-content">
+          <div class="label"><span>Content &nbsp; Lake</span></div>
+          <div class="description">The database optimized for content queries, authoring and delivery.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Responsive initial slider
+    const slider = document.getElementById('slider');
+    const slides = document.querySelectorAll('.slide');
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+
+    function goToSlide(idx) {
+      currentIndex = (idx + totalSlides) % totalSlides;
+      slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') goToSlide(currentIndex - 1);
+      if (e.key === 'ArrowRight') goToSlide(currentIndex + 1);
+    });
+
+    // Touch/swipe navigation
+    let startX = null;
+    slider.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    });
+    slider.addEventListener('touchmove', (e) => {
+      if (startX !== null) {
+        let diff = e.touches[0].clientX - startX;
+        if (Math.abs(diff) > 50) {
+          if (diff > 0) goToSlide(currentIndex - 1);
+          else goToSlide(currentIndex + 1);
+          startX = null;
+        }
+      }
+    });
+    slider.addEventListener('touchend', () => {
+      startX = null;
+    });
+
+    // Ensure first slide is shown
+    goToSlide(0);
+
+    // Prevent image drag
+    document.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', e => e.preventDefault()));
+  </script>
+</body>
+</html>
