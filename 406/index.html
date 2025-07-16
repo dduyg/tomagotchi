@@ -10,11 +10,12 @@
       height: 100%;
       margin: 0;
       padding: 0;
-      background: #141414;
-      color: #fff;
+      background: #f9f9f9;
+      color: #000;
       font-family: "Spline Sans Mono", monospace;
       width: 100vw;
       overflow: hidden;
+      box-sizing: border-box;
     }
     body {
       min-height: 100vh;
@@ -25,18 +26,18 @@
       align-items: center;
     }
     .slider-container {
-      width: 420px;
-      max-width: 98vw;
-      height: 700px;
-      max-height: 98vh;
+      width: 768px;
+      height: 1032px;
+      max-width: 95vw;
+      max-height: 95vh;
       overflow: hidden;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #141414;
-      box-shadow: 0 2px 32px #000c;
-      border-radius: 18px;
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.07);
     }
     .slider {
       display: flex;
@@ -55,100 +56,142 @@
       align-items: stretch;
       justify-content: flex-start;
       position: relative;
-      background: #141414;
     }
     .slide img {
       width: 100%;
-      height: 340px;
-      object-fit: contain;
+      height: auto;
+      max-height: 65vh;
       display: block;
-      background: #141414;
-      margin-bottom: 0;
-      margin-top: 24px;
-      border-radius: 12px;
-      box-shadow: 0 2px 28px #000d;
+      object-fit: contain;
+      margin-bottom: 32px;
       user-select: none;
       pointer-events: none;
+      background: #f7f7f7;
+      border-radius: 12px 12px 0 0;
     }
     .slide-content {
       width: 100%;
       box-sizing: border-box;
-      padding: 0 0 0 0;
-      margin: 0;
+      padding: 0 32px 0 32px;
+      margin-top: 0;
+      margin-bottom: 0;
       display: flex;
       flex-direction: column;
       align-items: stretch;
       justify-content: flex-start;
-      gap: 0;
+      min-height: 220px;
+      gap: 14px;
     }
     .label {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      background: #ff5500;
-      color: #141414;
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 0.8rem 0 0.8rem 1.8rem;
-      margin: 30px 0 0 0;
       position: relative;
-      border-radius: 3px;
+      width: 100%;
+      padding: 18px 18px 18px 42px;
+      font-size: 14.5px;
+      text-transform: uppercase;
+      line-height: 1.2;  
+      overflow: hidden;
+      background-color: transparent;
+      box-sizing: border-box;
+      font-weight: 600;
+      letter-spacing: 1.5px;
     }
-    .label .icon {
-      display: inline-block;
-      width: 17px;
-      height: 17px;
-      background: #141414;
-      margin-right: 16px;
-      border-radius: 2px;
-      flex-shrink: 0;
+    .label::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      background-color: #ff5500;
+      z-index: 2;
+      border-radius: 4px;
+      animation: squareToBlack 0.6s ease forwards;
+      animation-delay: 0.2s;
+    }
+    .label::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0%;
+      height: 100%;
+      background-color: #ff5500;
+      z-index: 1;
+      animation: bgFill 0.8s ease forwards;
+      animation-delay: 0.4s;
+      border-radius: 4px;
     }
     .label span {
       position: relative;
       z-index: 3;
-      font-weight: 500;
-      font-size: 18px;
-      letter-spacing: 1.2px;
+      width: 100%;
+      display: block;
     }
     .description {
-      border-left: 3px solid #ff5500;
-      padding-left: 1.1rem;
-      font-size: 22px;
-      font-weight: 400;
-      line-height: 1.3;
-      color: #fff;
-      margin-top: 18px;
-      margin-bottom: 0;
-      word-break: break-word;
+      border-left: 2px solid #ff5500;
+      padding-left: 1.5rem;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #444;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      min-height: 80px;
+      background: #faf9f6;
+      border-radius: 0 0 10px 10px;
     }
-    @media (max-width: 520px) {
+    @keyframes bgFill {
+      to { width: 100%; }
+    }
+    @keyframes squareToBlack {
+      0% { background-color: #ff5500; }
+      100% { background-color: #141414; }
+    }
+    @media (max-width: 900px) {
       .slider-container {
         width: 98vw;
-        height: 95vw;
-        min-height: 350px;
-        max-height: 110vw;
+        height: auto;
+        max-width: 100vw;
+        max-height: 100vh;
+        min-height: 600px;
+        border-radius: 12px;
+      }
+      .slide img {
+        max-height: 36vh;
+        margin-bottom: 16px;
+      }
+      .slide-content {
+        padding: 0 10vw 0 10vw;
+        min-height: 160px;
+      }
+      .label {
+        padding: 12px 12px 12px 32px;
+        font-size: 13px;
+      }
+    }
+    @media (max-width: 600px) {
+      .slider-container {
+        width: 100vw;
+        height: auto;
+        min-height: 400px;
         border-radius: 0;
       }
       .slide img {
-        height: 38vw;
+        max-height: 22vh;
+        margin-bottom: 10px;
+      }
+      .slide-content {
+        padding: 0 5vw 0 5vw;
         min-height: 120px;
-        margin-top: 10vw;
       }
       .label {
-        font-size: 14px;
-        padding: 0.7rem 0 0.7rem 1.2rem;
-      }
-      .label .icon {
-        width: 12px;
-        height: 12px;
-        margin-right: 10px;
+        padding: 8px 8px 8px 18px;
+        font-size: 12px;
       }
       .description {
-        font-size: 16px;
-        padding-left: 0.9rem;
-        margin-top: 12px;
+        font-size: 14px;
+        min-height: 50px;
+        padding-left: 0.8rem;
       }
     }
   </style>
@@ -160,11 +203,26 @@
       <div class="slide">
         <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/BLOBs/blob-06.png" alt="🍋#cdea19" draggable="false">
         <div class="slide-content">
-          <div class="label"><span class="icon"></span><span>CONTENT LAKE</span></div>
+          <div class="label"><span>APPS &nbsp; &nbsp; SDK</span></div>
+          <div class="description">Content applications that enable custom workflows at scale, from creation to distribution.</div>    
+        </div>
+      </div>
+      <!-- Slide 2 -->
+      <div class="slide">
+        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/BLOBs/blob-08.png" alt="🫐#556bfc" draggable="false">
+        <div class="slide-content">
+          <div class="label"><span>COMPUTE &nbsp; + &nbsp; AI</span></div>
+          <div class="description">Serverless functions and agent actions, powering your content operations for humans and AI.</div>      
+        </div>
+      </div>
+      <!-- Slide 3 -->
+      <div class="slide">
+        <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/BLOBs/blob-07.png" alt="🍊" draggable="false">
+        <div class="slide-content">
+          <div class="label"><span>Content &nbsp; Lake</span></div>
           <div class="description">The database optimized for content queries, authoring and delivery.</div>
         </div>
       </div>
-      <!-- Add more slides here following the above structure -->
     </div>
   </div>
   <script>
