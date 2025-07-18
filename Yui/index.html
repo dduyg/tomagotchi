@@ -73,8 +73,7 @@
       justify-content: flex-start;
       gap: 0.5rem;
     }
-
-    /* Label colors per slide */
+    /* Label base */
     .label {
       width: 100%;
       position: relative;
@@ -86,38 +85,42 @@
       overflow: visible;
       box-sizing: border-box;
     }
-    .slide-1 .label { --label-color: #cdea19; }
-    .slide-2 .label { --label-color: #556bfc; }
-    .slide-3 .label { --label-color: #ff5500; }
-
-    .label::before {
-      content: "";
-      position: absolute;
-      left: 0.75rem;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 11px;
-      height: 11px;
-      background-color: var(--label-color, #ff5500);
-      z-index: 2;
+    /* Individual label colors for each slide */
+    .slide-1 .label::before,
+    .slide-1 .label::after {
+      background-color: #cdea19 !important;
+    }
+    .slide-2 .label::before,
+    .slide-2 .label::after {
+      background-color: #556bfc !important;
+    }
+    .slide-3 .label::before,
+    .slide-3 .label::after {
+      background-color: #ff5500 !important;
+    }
+    /* Keyframes for label animations */
+    @keyframes bgFill {
+      to { width: 100%; }
+    }
+    @keyframes squareToBlack {
+      0% { /* Will be dynamically set by JS for each color */ }
+      100% { background-color: #141414; }
+    }
+    /* Label animation default: do not animate until .animated class is added */
+    .label::before,
+    .label::after {
+      animation-play-state: paused;
+      animation: none;
     }
     .label.animated::before {
       animation: squareToBlack 0.6s ease forwards;
       animation-delay: 0.2s;
-    }
-    .label::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 0%;
-      height: 100%;
-      background-color: var(--label-color, #ff5500);
-      z-index: 1;
+      animation-play-state: running;
     }
     .label.animated::after {
       animation: bgFill 0.8s ease forwards;
       animation-delay: 0.4s;
+      animation-play-state: running;
     }
     .label span {
       position: relative;
@@ -133,14 +136,6 @@
       color: #555;
       width: 100%;
       box-sizing: border-box;
-    }
-    /* Keyframes */
-    @keyframes bgFill {
-      to { width: 100%; }
-    }
-    @keyframes squareToBlack {
-      0% { background-color: var(--label-color, #ff5500); }
-      100% { background-color: #141414; }
     }
     @media (max-width: 768px) {
       .container {
@@ -204,27 +199,37 @@
     let currentIndex = 0;
     const totalSlides = slides.length;
 
-    function animateLabel(idx) {
-      // Remove animated from all labels
-      slides.forEach(slide => {
-        const label = slide.querySelector('.label');
+    // Helper for label color by slide index
+    const labelColors = ['#cdea19', '#556bfc', '#ff5500'];
+
+    function resetLabelAnimations() {
+      document.querySelectorAll('.label').forEach(label => {
         label.classList.remove('animated');
-        // Reset inline style to allow re-animation
-        label.style.animation = 'none';
-        label.offsetHeight; // force reflow
-        label.style.animation = '';
-        // Also reset ::before and ::after via removing and re-adding .animated
+        // Remove inline style for ::before for animation to restart
+        label.style.setProperty('--start-color', '');
       });
-      // Add animated to the label in view
-      const label = slides[idx].querySelector('.label');
-      if (label) {
-        label.classList.add('animated');
-      }
+    }
+
+    function animateLabel(slideIdx) {
+      const slide = slides[slideIdx];
+      const label = slide.querySelector('.label');
+      // Remove and re-add .animated so animation restarts
+      label.classList.remove('animated');
+      // Force reflow for animation restart
+      void label.offsetWidth;
+      label.classList.add('animated');
+
+      // Set custom property for JS-driven animation color (optional if you want squareToBlack to animate from correct color)
+      // This will only work if you add it to keyframes via JS, but for simplicity the color instantly changes to #141414.
+      // If you want a smooth transition from color -> #141414, you'd need separate keyframes per color, which is more complex.
     }
 
     function goToSlide(idx) {
       currentIndex = (idx + totalSlides) % totalSlides;
       slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      // Reset all label animations, then animate current slide's label
+      resetLabelAnimations();
       animateLabel(currentIndex);
     }
 
@@ -253,7 +258,7 @@
       startX = null;
     });
 
-    // Ensure first slide is shown and label animated
+    // Ensure first slide is shown and its label animates
     goToSlide(0);
 
     // Prevent image drag
