@@ -2,15 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Field Line Background</title>
+  <title>Field Background</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
+      background: white;
       overflow: hidden;
-      font-family: sans-serif;
-      color: #000;
     }
 
     canvas {
@@ -23,64 +22,77 @@
     .content {
       position: relative;
       z-index: 1;
-      height: 100%;
       display: flex;
-      align-items: center;
-      justify-content: center;
       flex-direction: column;
-      background-color: rgba(255, 255, 255, 0.6);
-      padding: 2rem;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
       text-align: center;
+      background-color: rgba(255,255,255,0.7); /* Light overlay for text contrast */
+      font-family: sans-serif;
     }
   </style>
 </head>
 <body>
-  <canvas id="backgroundCanvas"></canvas>
+  <canvas id="fieldCanvas"></canvas>
 
   <div class="content">
-    <h1>Field Line Background</h1>
-    <p>This background mimics curved vector/field lines like in the image.</p>
+    <h1>Stylized Field Background</h1>
+    <p>Background generated using canvas to replicate a field-like pattern.</p>
   </div>
 
   <script>
-    const canvas = document.getElementById('backgroundCanvas');
-    const ctx = canvas.getContext('2d');
+    const canvas = document.getElementById("fieldCanvas");
+    const ctx = canvas.getContext("2d");
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      drawFieldLines();
+      drawFieldPattern();
     }
 
-    function drawFieldLines() {
-      const w = canvas.width;
-      const h = canvas.height;
+    function drawFieldPattern() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#000";
+      const cols = 80;
+      const rows = 40;
 
-      ctx.clearRect(0, 0, w, h);
-      ctx.strokeStyle = '#000';
-      ctx.lineWidth = 0.3;
+      for (let i = 0; i < cols; i++) {
+        for (let j = 0; j < rows; j++) {
+          const x = (canvas.width / cols) * i;
+          const y = (canvas.height / rows) * j;
 
-      const centerX = w / 2;
-      const centerY = h / 2;
-      const spacing = 30;
-      const lines = 40;
+          // Create a mirrored parabolic field-like curve
+          const centerX = canvas.width / 2;
+          const centerY = canvas.height / 2;
+          const dx = x - centerX;
+          const dy = y - centerY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
 
-      for (let i = -lines; i <= lines; i++) {
-        ctx.beginPath();
+          const angle = Math.atan2(dy, dx);
+          const wave = Math.sin((dist / 30) - (angle * 5));
 
-        const offsetX = i * spacing;
-        const cp1x = centerX + offsetX * 0.5;
-        const cp1y = centerY - h * 0.4;
-        const cp2x = centerX + offsetX * 0.5;
-        const cp2y = centerY + h * 0.4;
+          // Density control (more in center)
+          const intensity = Math.exp(-dist * 0.002);
 
-        ctx.moveTo(centerX + offsetX, 0);
-        ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, centerX + offsetX, h);
-        ctx.stroke();
+          if (Math.random() < intensity * 0.6 + wave * 0.2) {
+            ctx.font = "10px monospace";
+            ctx.fillText(
+              pickChar(),
+              x + (Math.random() - 0.5) * 2,
+              y + (Math.random() - 0.5) * 2
+            );
+          }
+        }
       }
     }
 
-    window.addEventListener('resize', resizeCanvas);
+    function pickChar() {
+      const chars = ["v", "V", "l", "i", "I", "s", "S", ".", ":", "|", "Y", "E", "M"];
+      return chars[Math.floor(Math.random() * chars.length)];
+    }
+
+    window.addEventListener("resize", resizeCanvas);
     resizeCanvas();
   </script>
 </body>
