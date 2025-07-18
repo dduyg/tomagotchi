@@ -53,12 +53,12 @@
     }
     .slide img {
       width: 100%;
-      height: 60%; /* Reduced from 78% */
-      object-fit: contain; /* ensures full image is visible */
+      height: 60%;
+      object-fit: contain;
       display: block;
       user-select: none;
       pointer-events: none;
-      margin-bottom: 0.5rem; /* space below image */
+      margin-bottom: 0.5rem;
     }
     .slide-content {
       flex: 1 0 auto;
@@ -77,50 +77,53 @@
     .label {
       width: 100%;
       position: relative;
-      padding: 0.5rem 0.5rem 0.5rem 2.5rem; /* left space for icon */
+      padding: 0.5rem 0.5rem 0.5rem 2.5rem;
       font-size: 13px;
       text-transform: uppercase;
-      line-height: 11px;  
+      line-height: 11px;
       background-color: transparent;
       overflow: visible;
       box-sizing: border-box;
     }
-    /* Individual label colors for each slide */
-    .slide-1 .label::before,
-    .slide-1 .label::after {
-      background-color: #cdea19 !important;
+    /* Slide-specific label colors */
+    .label.slide1::before, .label.slide1::after {
+      background-color: #cdea19;
     }
-    .slide-2 .label::before,
-    .slide-2 .label::after {
-      background-color: #556bfc !important;
+    .label.slide2::before, .label.slide2::after {
+      background-color: #556bfc;
     }
-    .slide-3 .label::before,
-    .slide-3 .label::after {
-      background-color: #ff5500 !important;
+    .label.slide3::before, .label.slide3::after {
+      background-color: #ff5500;
     }
-    /* Keyframes for label animations */
-    @keyframes bgFill {
-      to { width: 100%; }
-    }
-    @keyframes squareToBlack {
-      0% { /* Will be dynamically set by JS for each color */ }
-      100% { background-color: #141414; }
-    }
-    /* Label animation default: do not animate until .animated class is added */
-    .label::before,
-    .label::after {
-      animation-play-state: paused;
-      animation: none;
-    }
-    .label.animated::before {
+    /* Animations only if .animate class is present */
+    .label.animate::before {
       animation: squareToBlack 0.6s ease forwards;
       animation-delay: 0.2s;
-      animation-play-state: running;
     }
-    .label.animated::after {
+    .label.animate::after {
       animation: bgFill 0.8s ease forwards;
       animation-delay: 0.4s;
-      animation-play-state: running;
+    }
+    .label::before {
+      content: "";
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 11px;
+      height: 11px;
+      z-index: 2;
+      /* background-color set by slideX class */
+    }
+    .label::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0%;
+      height: 100%;
+      z-index: 1;
+      /* background-color set by slideX class */
     }
     .label span {
       position: relative;
@@ -136,6 +139,13 @@
       color: #555;
       width: 100%;
       box-sizing: border-box;
+    }
+    @keyframes bgFill {
+      to { width: 100%; }
+    }
+    @keyframes squareToBlack {
+      0% { background-color: inherit; }
+      100% { background-color: #141414; }
     }
     @media (max-width: 768px) {
       .container {
@@ -167,26 +177,26 @@
   <div class="container">
     <div id="slider">
       <!-- Slide 1 -->
-      <div class="slide slide-1">
+      <div class="slide">
         <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/BLOBs/blob-06.png" alt="🍋#cdea19" draggable="false">
         <div class="slide-content">
-          <div class="label"><span>Encrypted Data Pipelines</span></div>
+          <div class="label slide1"><span>Encrypted Data Pipelines</span></div>
           <div class="description">Design secure, blockchain-based data workflows for transparent and tamper-proof analytics.</div>    
         </div>
       </div>
       <!-- Slide 2 -->
-      <div class="slide slide-2">
+      <div class="slide">
         <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/BLOBs/blob-08.png" alt="🫐#556bfc" draggable="false">
         <div class="slide-content">
-          <div class="label"><span>Cyber Threat Analysis</span></div>
+          <div class="label slide2"><span>Cyber Threat Analysis</span></div>
           <div class="description">Track anomalies and detect intrusions across neon-lit data highways.</div>      
         </div>
       </div>
       <!-- Slide 3 -->
-      <div class="slide slide-3">
+      <div class="slide">
         <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/BLOBs/blob-07.png" alt="🍊" draggable="false">
         <div class="slide-content">
-          <div class="label"><span>Content Lake</span></div>
+          <div class="label slide3"><span>Content Lake</span></div>
           <div class="description">The database optimized for content queries, authoring and delivery.</div>
         </div>
       </div>
@@ -199,38 +209,25 @@
     let currentIndex = 0;
     const totalSlides = slides.length;
 
-    // Helper for label color by slide index
-    const labelColors = ['#cdea19', '#556bfc', '#ff5500'];
-
-    function resetLabelAnimations() {
-      document.querySelectorAll('.label').forEach(label => {
-        label.classList.remove('animated');
-        // Remove inline style for ::before for animation to restart
-        label.style.setProperty('--start-color', '');
+    // Animation trigger for label in visible slide
+    function triggerLabelAnimation(idx) {
+      slides.forEach((slide, i) => {
+        const lbl = slide.querySelector('.label');
+        if (lbl) {
+          lbl.classList.remove('animate');
+          // Force reflow for restarting animation
+          void lbl.offsetWidth;
+          if (i === idx) {
+            lbl.classList.add('animate');
+          }
+        }
       });
-    }
-
-    function animateLabel(slideIdx) {
-      const slide = slides[slideIdx];
-      const label = slide.querySelector('.label');
-      // Remove and re-add .animated so animation restarts
-      label.classList.remove('animated');
-      // Force reflow for animation restart
-      void label.offsetWidth;
-      label.classList.add('animated');
-
-      // Set custom property for JS-driven animation color (optional if you want squareToBlack to animate from correct color)
-      // This will only work if you add it to keyframes via JS, but for simplicity the color instantly changes to #141414.
-      // If you want a smooth transition from color -> #141414, you'd need separate keyframes per color, which is more complex.
     }
 
     function goToSlide(idx) {
       currentIndex = (idx + totalSlides) % totalSlides;
       slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-      // Reset all label animations, then animate current slide's label
-      resetLabelAnimations();
-      animateLabel(currentIndex);
+      triggerLabelAnimation(currentIndex);
     }
 
     // Keyboard navigation
@@ -258,7 +255,7 @@
       startX = null;
     });
 
-    // Ensure first slide is shown and its label animates
+    // Ensure first slide is shown and animation triggers
     goToSlide(0);
 
     // Prevent image drag
