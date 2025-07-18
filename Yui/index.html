@@ -84,17 +84,15 @@
       overflow: visible;
       box-sizing: border-box;
     }
-    /* Individual label colors */
-    .label.slide1 {
-      --label-color: #cdea19;
-    }
-    .label.slide2 {
-      --label-color: #556bfc;
-    }
-    .label.slide3 {
-      --label-color: #ff5500;
-    }
-    .label::before {
+    /* Per-slide color classes */
+    .label-slide1::before,
+    .label-slide1::after { background-color: #cdea19; }
+    .label-slide2::before,
+    .label-slide2::after { background-color: #556bfc; }
+    .label-slide3::before,
+    .label-slide3::after { background-color: #ff5500; }
+    /* Animated label pseudo styles - only applied when .animate-label is present */
+    .label.animate-label::before {
       content: "";
       position: absolute;
       left: 0.75rem;
@@ -102,20 +100,20 @@
       transform: translateY(-50%);
       width: 11px;
       height: 11px;
-      background-color: var(--label-color, #ff5500);
       z-index: 2;
-      /* Animation is added/removed via JS */
+      animation: squareToBlack 0.6s ease forwards;
+      animation-delay: 0.2s;
     }
-    .label::after {
+    .label.animate-label::after {
       content: "";
       position: absolute;
       left: 0;
       top: 0;
       width: 0%;
       height: 100%;
-      background-color: var(--label-color, #ff5500);
       z-index: 1;
-      /* Animation is added/removed via JS */
+      animation: bgFill 0.8s ease forwards;
+      animation-delay: 0.4s;
     }
     .label span {
       position: relative;
@@ -137,17 +135,8 @@
       to { width: 100%; }
     }
     @keyframes squareToBlack {
-      0% { background-color: var(--label-color, #ff5500); }
-      100% { background-color: #141414; }
-    }
-    /* Animation classes for JS */
-    .animate-label::before {
-      animation: squareToBlack 0.6s ease forwards;
-      animation-delay: 0.2s;
-    }
-    .animate-label::after {
-      animation: bgFill 0.8s ease forwards;
-      animation-delay: 0.4s;
+      0% { filter: brightness(1); }
+      100% { filter: brightness(0.1); }
     }
     @media (max-width: 768px) {
       .container {
@@ -182,7 +171,7 @@
       <div class="slide">
         <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/BLOBs/blob-06.png" alt="🍋#cdea19" draggable="false">
         <div class="slide-content">
-          <div class="label slide1"><span>Encrypted Data Pipelines</span></div>
+          <div class="label label-slide1"><span>Encrypted Data Pipelines</span></div>
           <div class="description">Design secure, blockchain-based data workflows for transparent and tamper-proof analytics.</div>    
         </div>
       </div>
@@ -190,7 +179,7 @@
       <div class="slide">
         <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/BLOBs/blob-08.png" alt="🫐#556bfc" draggable="false">
         <div class="slide-content">
-          <div class="label slide2"><span>Cyber Threat Analysis</span></div>
+          <div class="label label-slide2"><span>Cyber Threat Analysis</span></div>
           <div class="description">Track anomalies and detect intrusions across neon-lit data highways.</div>      
         </div>
       </div>
@@ -198,7 +187,7 @@
       <div class="slide">
         <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/BLOBs/blob-07.png" alt="🍊" draggable="false">
         <div class="slide-content">
-          <div class="label slide3"><span>Content Lake</span></div>
+          <div class="label label-slide3"><span>Content Lake</span></div>
           <div class="description">The database optimized for content queries, authoring and delivery.</div>
         </div>
       </div>
@@ -211,17 +200,15 @@
     let currentIndex = 0;
     const totalSlides = slides.length;
 
-    function resetLabelAnimations() {
-      document.querySelectorAll('.label').forEach(label => {
-        label.classList.remove('animate-label');
-        // Force reflow to allow re-adding
-        void label.offsetWidth;
-      });
-    }
-
-    function animateCurrentLabel(idx) {
+    function animateLabel(idx) {
+      // Remove animation class from all labels
+      document.querySelectorAll('.label').forEach(label => label.classList.remove('animate-label'));
+      // Add animation class to current slide's label
       const label = slides[idx].querySelector('.label');
       if (label) {
+        // Force reflow to restart animation
+        label.classList.remove('animate-label');
+        void label.offsetWidth;
         label.classList.add('animate-label');
       }
     }
@@ -229,8 +216,7 @@
     function goToSlide(idx) {
       currentIndex = (idx + totalSlides) % totalSlides;
       slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-      resetLabelAnimations();
-      animateCurrentLabel(currentIndex);
+      animateLabel(currentIndex);
     }
 
     // Keyboard navigation
@@ -258,7 +244,7 @@
       startX = null;
     });
 
-    // Ensure first slide is shown and animate its label
+    // Ensure first slide is shown and label animated
     goToSlide(0);
 
     // Prevent image drag
