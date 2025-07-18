@@ -242,6 +242,17 @@
       startX = null;
     });
 
+    // Mouse click navigation: left or right half of the container
+    document.querySelector('.container').addEventListener('click', function(e) {
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      if (x < rect.width / 2) {
+        goToSlide(currentIndex - 1);
+      } else {
+        goToSlide(currentIndex + 1);
+      }
+    });
+
     // Ensure first slide is shown and label animated
     goToSlide(0);
 
