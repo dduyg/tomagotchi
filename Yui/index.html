@@ -53,12 +53,12 @@
     }
     .slide img {
       width: 100%;
-      height: 60%;
-      object-fit: contain;
+      height: 60%; /* Reduced from 78% */
+      object-fit: contain; /* ensures full image is visible */
       display: block;
       user-select: none;
       pointer-events: none;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.5rem; /* space below image */
     }
     .slide-content {
       flex: 1 0 auto;
@@ -73,38 +73,26 @@
       justify-content: flex-start;
       gap: 0.5rem;
     }
-    /* Label base */
     .label {
       width: 100%;
       position: relative;
-      padding: 0.5rem 0.5rem 0.5rem 2.5rem;
+      padding: 0.5rem 0.5rem 0.5rem 2.5rem; /* left space for icon */
       font-size: 13px;
       text-transform: uppercase;
-      line-height: 11px;
+      line-height: 11px;  
       background-color: transparent;
       overflow: visible;
       box-sizing: border-box;
     }
-    /* Slide-specific label colors */
-    .label.slide1::before, .label.slide1::after {
-      background-color: #cdea19;
-    }
-    .label.slide2::before, .label.slide2::after {
-      background-color: #556bfc;
-    }
-    .label.slide3::before, .label.slide3::after {
-      background-color: #ff5500;
-    }
-    /* Animations only if .animate class is present */
-    .label.animate::before {
-      animation: squareToBlack 0.6s ease forwards;
-      animation-delay: 0.3s;
-    }
-    .label.animate::after {
-      animation: bgFill 0.8s ease forwards;
-      animation-delay: 0.5s;
-    }
-    .label::before {
+    /* Per-slide color classes */
+    .label-slide1::before,
+    .label-slide1::after { background-color: #cdea19; }
+    .label-slide2::before,
+    .label-slide2::after { background-color: #556bfc; }
+    .label-slide3::before,
+    .label-slide3::after { background-color: #ff5500; }
+    /* Animated label pseudo styles - only applied when .animate-label is present */
+    .label.animate-label::before {
       content: "";
       position: absolute;
       left: 0.75rem;
@@ -113,9 +101,10 @@
       width: 11px;
       height: 11px;
       z-index: 2;
-      /* background-color set by slideX class */
+      animation: squareToBlack 0.6s ease forwards;
+      animation-delay: 0.2s;
     }
-    .label::after {
+    .label.animate-label::after {
       content: "";
       position: absolute;
       left: 0;
@@ -123,7 +112,8 @@
       width: 0%;
       height: 100%;
       z-index: 1;
-      /* background-color set by slideX class */
+      animation: bgFill 0.8s ease forwards;
+      animation-delay: 0.4s;
     }
     .label span {
       position: relative;
@@ -140,12 +130,13 @@
       width: 100%;
       box-sizing: border-box;
     }
+    /* Keyframes */
     @keyframes bgFill {
       to { width: 100%; }
     }
     @keyframes squareToBlack {
-      0% { background-color: inherit; }
-      100% { background-color: #141414; }
+      0% { filter: brightness(1); }
+      100% { filter: brightness(0.1); }
     }
     @media (max-width: 768px) {
       .container {
@@ -180,7 +171,7 @@
       <div class="slide">
         <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/BLOBs/blob-06.png" alt="🍋#cdea19" draggable="false">
         <div class="slide-content">
-          <div class="label slide1"><span>Encrypted Data Pipelines</span></div>
+          <div class="label label-slide1"><span>Encrypted Data Pipelines</span></div>
           <div class="description">Design secure, blockchain-based data workflows for transparent and tamper-proof analytics.</div>    
         </div>
       </div>
@@ -188,7 +179,7 @@
       <div class="slide">
         <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/BLOBs/blob-08.png" alt="🫐#556bfc" draggable="false">
         <div class="slide-content">
-          <div class="label slide2"><span>Cyber Threat Analysis</span></div>
+          <div class="label label-slide2"><span>Cyber Threat Analysis</span></div>
           <div class="description">Track anomalies and detect intrusions across neon-lit data highways.</div>      
         </div>
       </div>
@@ -196,7 +187,7 @@
       <div class="slide">
         <img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/main/06/BLOBs/blob-07.png" alt="🍊" draggable="false">
         <div class="slide-content">
-          <div class="label slide3"><span>Content Lake</span></div>
+          <div class="label label-slide3"><span>Content Lake</span></div>
           <div class="description">The database optimized for content queries, authoring and delivery.</div>
         </div>
       </div>
@@ -209,25 +200,23 @@
     let currentIndex = 0;
     const totalSlides = slides.length;
 
-    // Animation trigger for label in visible slide
-    function triggerLabelAnimation(idx) {
-      slides.forEach((slide, i) => {
-        const lbl = slide.querySelector('.label');
-        if (lbl) {
-          lbl.classList.remove('animate');
-          // Force reflow for restarting animation
-          void lbl.offsetWidth;
-          if (i === idx) {
-            lbl.classList.add('animate');
-          }
-        }
-      });
+    function animateLabel(idx) {
+      // Remove animation class from all labels
+      document.querySelectorAll('.label').forEach(label => label.classList.remove('animate-label'));
+      // Add animation class to current slide's label
+      const label = slides[idx].querySelector('.label');
+      if (label) {
+        // Force reflow to restart animation
+        label.classList.remove('animate-label');
+        void label.offsetWidth;
+        label.classList.add('animate-label');
+      }
     }
 
     function goToSlide(idx) {
       currentIndex = (idx + totalSlides) % totalSlides;
       slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-      triggerLabelAnimation(currentIndex);
+      animateLabel(currentIndex);
     }
 
     // Keyboard navigation
@@ -255,7 +244,7 @@
       startX = null;
     });
 
-    // Ensure first slide is shown and animation triggers
+    // Ensure first slide is shown and label animated
     goToSlide(0);
 
     // Prevent image drag
