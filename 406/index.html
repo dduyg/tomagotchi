@@ -2,98 +2,96 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Field Background</title>
+  <title>ASCII-Style Field Background</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      background: white;
       overflow: hidden;
+      background: #fff;
+      font-family: monospace;
     }
 
     canvas {
       position: fixed;
       top: 0;
       left: 0;
-      z-index: 0;
+      z-index: -1;
     }
 
     .content {
       position: relative;
       z-index: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
       height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
       text-align: center;
-      background-color: rgba(255,255,255,0.7); /* Light overlay for text contrast */
-      font-family: sans-serif;
+      background-color: rgba(255, 255, 255, 0.0); /* Fully transparent for now */
     }
   </style>
 </head>
 <body>
-  <canvas id="fieldCanvas"></canvas>
+  <canvas id="bg-canvas"></canvas>
 
   <div class="content">
-    <h1>Stylized Field Background</h1>
-    <p>Background generated using canvas to replicate a field-like pattern.</p>
+    <h1>ASCII Field Style Background</h1>
+    <p>This background mimics the mirrored vector field pattern.</p>
   </div>
 
   <script>
-    const canvas = document.getElementById("fieldCanvas");
-    const ctx = canvas.getContext("2d");
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      drawFieldPattern();
-    }
+    function drawPattern() {
+      const w = canvas.width = window.innerWidth;
+      const h = canvas.height = window.innerHeight;
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = '#000';
+      ctx.font = '8px monospace';
 
-    function drawFieldPattern() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "#000";
-      const cols = 80;
-      const rows = 40;
+      const cols = 100;
+      const rows = 60;
+      const centerX = w / 2;
+      const centerY = h / 4;
 
-      for (let i = 0; i < cols; i++) {
-        for (let j = 0; j < rows; j++) {
-          const x = (canvas.width / cols) * i;
-          const y = (canvas.height / rows) * j;
+      function drawField(yOffset = 0, flip = 1) {
+        for (let i = 0; i < cols; i++) {
+          for (let j = 0; j < rows / 2; j++) {
+            const x = (w / cols) * i;
+            const y = (h / rows) * j;
 
-          // Create a mirrored parabolic field-like curve
-          const centerX = canvas.width / 2;
-          const centerY = canvas.height / 2;
-          const dx = x - centerX;
-          const dy = y - centerY;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+            const dx = x - centerX;
+            const dy = y - centerY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
 
-          const angle = Math.atan2(dy, dx);
-          const wave = Math.sin((dist / 30) - (angle * 5));
+            const density = Math.exp(-dist * 0.02);
+            const curve = Math.sin(dx * 0.01) * 20;
 
-          // Density control (more in center)
-          const intensity = Math.exp(-dist * 0.002);
-
-          if (Math.random() < intensity * 0.6 + wave * 0.2) {
-            ctx.font = "10px monospace";
-            ctx.fillText(
-              pickChar(),
-              x + (Math.random() - 0.5) * 2,
-              y + (Math.random() - 0.5) * 2
-            );
+            if (Math.random() < density * 0.8) {
+              const char = pickChar();
+              ctx.fillText(char, x, flip * (y + curve) + yOffset);
+            }
           }
         }
       }
+
+      function pickChar() {
+        const chars = ['v', 'V', 'l', '|', 'i', ':', '.', 'Y', 'E', 'M', 'S'];
+        return chars[Math.floor(Math.random() * chars.length)];
+      }
+
+      // Top half
+      drawField(h * 0.25, 1);
+
+      // Bottom mirror
+      drawField(h * 0.75, -1);
     }
 
-    function pickChar() {
-      const chars = ["v", "V", "l", "i", "I", "s", "S", ".", ":", "|", "Y", "E", "M"];
-      return chars[Math.floor(Math.random() * chars.length)];
-    }
-
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
+    window.addEventListener('resize', drawPattern);
+    drawPattern();
   </script>
 </body>
 </html>
