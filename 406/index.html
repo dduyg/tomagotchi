@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Field Line Background</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: sans-serif;
+      color: #000;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background-color: rgba(255, 255, 255, 0.6);
+      padding: 2rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="backgroundCanvas"></canvas>
+
+  <div class="content">
+    <h1>Field Line Background</h1>
+    <p>This background mimics curved vector/field lines like in the image.</p>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('backgroundCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      drawFieldLines();
+    }
+
+    function drawFieldLines() {
+      const w = canvas.width;
+      const h = canvas.height;
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.strokeStyle = '#000';
+      ctx.lineWidth = 0.3;
+
+      const centerX = w / 2;
+      const centerY = h / 2;
+      const spacing = 30;
+      const lines = 40;
+
+      for (let i = -lines; i <= lines; i++) {
+        ctx.beginPath();
+
+        const offsetX = i * spacing;
+        const cp1x = centerX + offsetX * 0.5;
+        const cp1y = centerY - h * 0.4;
+        const cp2x = centerX + offsetX * 0.5;
+        const cp2y = centerY + h * 0.4;
+
+        ctx.moveTo(centerX + offsetX, 0);
+        ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, centerX + offsetX, h);
+        ctx.stroke();
+      }
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+  </script>
+</body>
+</html>
