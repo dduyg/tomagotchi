@@ -13,179 +13,135 @@
     body {
       height: 100vh;
       width: 100vw;
-      font-family: 'Fira Mono', 'Consolas', 'Menlo', 'Monaco', monospace;
-      background: radial-gradient(circle at 70% 55%, #57f0c1 0%, #dbe7e2 35%, #ececec 100%);
-      color: #7ea08e;
-      letter-spacing: 1px;
-      position: relative;
+      margin: 0;
+      padding: 0;
+      font-family: 'IBM Plex Mono', 'Consolas', 'Courier New', monospace;
+      background: radial-gradient(circle at 70% 40%, #3fe0b6 0%, #e9f2eb 55%);
+      background-color: #e9f2eb;
       overflow: hidden;
+      position: relative;
     }
     .container {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      padding: 18px 0 18px 0;
-      box-sizing: border-box;
+      position: relative;
       height: 100vh;
+      padding: 18px 16px 0 16px;
+      box-sizing: border-box;
       width: 100vw;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
-    .top-meta {
-      font-size: 0.95em;
+    .top-meta, .bottom-meta {
+      color: #b9c6c2;
+      font-size: 0.85em;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
       font-family: inherit;
-      opacity: 0.85;
-      letter-spacing: 2px;
-      margin-left: 16px;
-      margin-bottom: 12px;
+      opacity: 0.75;
     }
-    .transcript {
-      width: 90vw;
-      margin: 0 auto;
+    .bottom-meta {
+      margin-top: 10px;
+      font-size: 0.85em;
+    }
+    .bg-text {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      right: 0;
+      z-index: 0;
+      color: #b9c6c2;
+      font-size: 1.08em;
+      letter-spacing: 0.02em;
+      line-height: 1.18em;
       font-family: inherit;
-      font-size: 2.1vw;
-      line-height: 1.12;
-      white-space: pre-line;
-      word-break: break-word;
-      color: #151515;
-      font-weight: 600;
+      user-select: none;
+      white-space: pre;
+      opacity: 0.68;
+    }
+    .main-content {
       position: relative;
       z-index: 2;
-    }
-    .transcript .gray {
-      color: #7ea08e;
-      font-weight: 400;
-      opacity: 0.58;
-    }
-    .transcript .user {
-      color: #151515;
-      font-weight: 700;
-      letter-spacing: 2px;
-    }
-    .transcript .green-dot {
-      display: inline-block;
-      width: 15px;
-      height: 15px;
-      background: #17e29b;
-      border-radius: 50%;
-      margin: 0 2px 1px 2px;
-      vertical-align: middle;
-      box-shadow: 0 0 4px #17e29b88;
-    }
-    .transcript .bullet {
-      color: #7ea08e;
-      font-weight: bold;
-      font-size: 1.1em;
-      margin-right: 2px;
-      vertical-align: middle;
-    }
-    .transcript .newline {
-      display: inline;
-      color: #151515;
-    }
-    .transcript .indent {
-      margin-left: 3em;
-      display: block;
-    }
-    .transcript .bold {
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-    .footer-meta {
-      font-size: 0.93em;
+      font-size: 1.45em;
       font-family: inherit;
-      opacity: 0.69;
-      letter-spacing: 2px;
-      margin-left: 16px;
-      margin-top: 12px;
-      color: #7ea08e;
-      z-index: 2;
+      color: #000;
+      margin-top: 18px;
+      line-height: 1.13em;
+      letter-spacing: 0.02em;
+      font-weight: 500;
+      white-space: pre-line;
     }
-    /* Add faded grid effect in background */
-    .grid-bg {
-      position: absolute;
-      left: 0; top: 0; width: 100vw; height: 100vh;
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.25;
-      background-image:
-        repeating-linear-gradient(0deg, #dbe7e2 0 1px, transparent 1px 30px),
-        repeating-linear-gradient(90deg, #dbe7e2 0 1px, transparent 1px 30px);
+    .green-dot {
+      display: inline-block;
+      vertical-align: middle;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #3fe0b6;
+      margin: 0 3px 0 2px;
+      box-shadow: 0 0 3px #1ac393;
+      position: relative;
+      top: 2px;
     }
-    /* Corner marks for sci-fi look */
-    .corner {
-      position: absolute;
-      width: 28px; height: 10px;
-      border-radius: 3px;
-      border: 2px solid #dbe7e2;
-      opacity: 0.7;
-    }
-    .corner.tl { top: 6px; left: 6px; border-right: none; border-bottom: none;}
-    .corner.bl { bottom: 6px; left: 6px; border-right: none; border-top: none;}
-    .corner.tr { top: 6px; right: 6px; border-left: none; border-bottom: none;}
-    .corner.br { bottom: 6px; right: 6px; border-left: none; border-top: none;}
     @media (max-width: 600px) {
-      .transcript { font-size: 3vw; }
+      .main-content {font-size: 1em;}
+      .bg-text {font-size: 0.8em;}
     }
   </style>
 </head>
 <body>
-  <div class="grid-bg"></div>
-  <div class="corner tl"></div>
-  <div class="corner tr"></div>
-  <div class="corner bl"></div>
-  <div class="corner br"></div>
   <div class="container">
     <div>
       <div class="top-meta">
-        BR-4VD/SIX[DASH]THREE{0017} <br>
-        BASELINE TRANSCRIPT: A. <br>
+        BR-4/KD/SIX[DASH]THREE[DOT]SEVEN,<br>
+        BASELINE TRANSCRIPT: A.<br>
         START.
       </div>
-      <div class="transcript">
-        <span class="gray"><span class="bullet">&#9632;</span> OFFICER K/D/SIX[DASH]THREE{DOT}SEVEN, <br>LET'S BEGIN. READY?</span>
-        <span class="user indent">YES, SIR.<span class="newline">&#8629;</span></span>
-        <span class="gray"> <span class="bullet">&#9632;</span> RECITE YOUR BASELINE.</span>
-        <span class="user indent">A BLOOD BLACK NOTHINGNESS BEGAN TO SPIN. A SYSTEM OF CELLS INTERLINKED WITHIN CELLS INTERLINKED WITHIN CELLS INTERLINKED WITHIN ONE STEM. AND DREADFULLY DISTINCT AGAINST THE DARK, A TALL WHITE FOUNTAIN PLAYED.<span class="newline">&#8629;</span>
-        CELLS.<span class="newline">&#8629;</span><span class="green-dot"></span></span>
-        <span class="gray"> <span class="bullet">&#9632;</span> HAVE YOU EVER BEEN IN AN INSTITUTION? CELLS.</span>
-        <span class="user indent">DO THEY KEEP YOU IN A CELL?<span class="newline">&#8629;</span>
-        CELLS.<span class="newline">&#8629;</span><span class="green-dot"></span></span>
-        <span class="gray"> <span class="bullet">&#9632;</span> WHEN YOU'RE NOT PERFORMING YOUR DUTIES DO THEY KEEP YOU IN A LITTLE BOX?</span>
-        <span class="user indent">CELLS.<span class="newline">&#8629;</span>
-        CELLS.<span class="newline">&#8629;</span><span class="green-dot"></span></span>
-        <span class="gray"> <span class="bullet">&#9632;</span> INTERLINKED.</span>
-        <span class="user indent bold">INTERLINKED.<span class="newline">&#8629;</span></span>
-        <span class="gray"> <span class="bullet">&#9632;</span> INTERLINKED.</span>
-        <span class="user indent bold">INTERLINKED.<span class="newline">&#8629;</span></span>
-        <span class="gray"> <span class="bullet">&#9632;</span> INTERLINKED.</span>
-        <span class="user indent bold">INTERLINKED.<span class="newline">&#8629;</span><span class="green-dot"></span></span>
-        <span class="gray"> <span class="bullet">&#9632;</span> WHAT'S IT LIKE TO HOLD THE HAND OF SOMEONE YOU LOVE?</span>
-        <span class="user indent bold">INTERLINKED.<span class="newline">&#8629;</span></span>
-        <span class="gray"> <span class="bullet">&#9632;</span> INTERLINKED.</span>
-        <span class="user indent bold">INTERLINKED.<span class="newline">&#8629;</span></span>
-        <span class="gray"> <span class="bullet">&#9632;</span> DO THEY TEACH YOU HOW TO FEEL FINGER?</span>
-        <span class="user indent bold">INTERLINKED.<span class="newline">&#8629;</span><span class="green-dot"></span></span>
-        <span class="gray"> <span class="bullet">&#9632;</span> DO YOU LONG FOR HAVING YOUR HEART INTERLINKED?</span>
-        <span class="user indent bold">INTERLINKED.<span class="newline">&#8629;</span></span>
-        <span class="gray"> <span class="bullet">&#9632;</span> DO YOU DREAM ABOUT BEING INTERLINKED?</span>
-        <span class="user indent bold">INTERLINKED.<span class="newline">&#8629;</span><span class="green-dot"></span></span>
-        <span class="gray"> <span class="bullet">&#9632;</span> WHAT'S IT LIKE TO HOLD YOUR CHILD IN YOUR ARMS?</span>
-        <span class="user indent bold">INTERLINKED.<span class="newline">&#8629;</span></span>
-        <span class="gray"> <span class="bullet">&#9632;</span> DO YOU FEEL THAT THERE'S A PART OF YOU THAT'S MISSING?</span>
-        <span class="user indent bold">INTERLINKED.<span class="newline">&#8629;</span><span class="green-dot"></span></span>
-        <span class="user indent bold" style="margin-left:6em;">INTERLINKED.<span class="newline">&#8629;</span><span class="green-dot"></span></span>
-        <span class="gray"> <span class="bullet">&#9632;</span> WHY DON'T YOU SAY THAT THREE TIMES?</span>
-        <span class="user indent bold">WITHIN CELLS INTERLINKED.<span class="newline">&#8629;</span>
-        WITHIN CELLS INTERLINKED.<span class="newline">&#8629;</span>
-        WITHIN CELLS INTERLINKED.<span class="newline">&#8629;</span><span class="green-dot"></span></span>
-        <span class="gray"> <span class="bullet">&#9632;</span> WE'RE DONE. CONSTANT K...</span>
-        <span class="gray">YOU CAN PICK UP YOUR BONUS.</span>
-        <span class="user indent">THANK YOU, SIR.<span class="newline">&#8629;</span><span class="green-dot"></span></span>
+      <div class="bg-text">
+        &#9608; OFFICER K/D/SIX[DASH]THREE[DOT]SEVEN,<br>
+        LET'S BEGIN. READY? <br>
+        &#9608; RECITE YOUR BASELINE.<br>
+        &#9608; HAVE YOU EVER BEEN IN AN INSTITUTION? CELLS.<br>
+        &#9608; DO THEY KEEP YOU IN A CELL?<br>
+        &#9608; WHEN YOU'RE NOT PERFORMING YOUR DUTIES DO THEY KEEP YOU IN A LITTLE BOX? CELLS.<br>
+        &#9608; INTERLINKED.<br>
+        &#9608; WHAT'S IT LIKE TO HOLD THE HAND OF SOMEONE YOU LOVE? INTERLINKED.<br>
+        &#9608; DO THEY TEACH YOU HOW TO FEEL FINGER TO FINGER? INTERLINKED.<br>
+        &#9608; DO YOU LONG FOR HAVING YOUR HEART INTERLINKED? INTERLINKED.<br>
+        &#9608; DO YOU DREAM ABOUT BEING INTERLINKED?<br>
+        &#9608; WHAT'S IT LIKE TO HOLD YOUR CHILD IN YOUR ARMS? INTERLINKED.<br>
+        &#9608; DO YOU FEEL THAT THERE'S A PART OF YOU THAT'S MISSING? INTERLINKED.<br>
+        &#9608; WHY DON'T YOU SAY THAT THREE TIMES? WITHIN CELLS INTERLINKED.<br>
+        &#9608; WE'RE DONE. CONSTANT K...
+      </div>
+      <div class="main-content">
+        YES, SIR.<span class="green-dot"></span>
+        A BLOOD BLACK NOTHINGNESS BEGAN TO SPIN. A SYSTEM OF CELLS INTERLINKED WITHIN CELLS INTERLINKED WITHIN CELLS INTERLINKED WITHIN ONE STEM. AND DREADFULLY DISTINCT AGAINST THE DARK, A TALL WHITE FOUNTAIN PLAYED.<span class="green-dot"></span>
+        CELLS.<span class="green-dot"></span>
+        CELLS.<span class="green-dot"></span>
+        CELLS.<span class="green-dot"></span>
+        CELLS.<span class="green-dot"></span>
+        CELLS.<span class="green-dot"></span>
+        INTERLINKED.<span class="green-dot"></span>
+        INTERLINKED.<span class="green-dot"></span>
+        INTERLINKED.<span class="green-dot"></span>
+        INTERLINKED.<span class="green-dot"></span>
+        INTERLINKED.<span class="green-dot"></span>
+        INTERLINKED.<span class="green-dot"></span>
+        INTERLINKED.<span class="green-dot"></span>
+        INTERLINKED.<span class="green-dot"></span>
+        INTERLINKED.<span class="green-dot"></span>
+        INTERLINKED.<span class="green-dot"></span>
+        INTERLINKED.<span class="green-dot"></span>
+        WITHIN CELLS INTERLINKED.<span class="green-dot"></span>
+        WITHIN CELLS INTERLINKED.<span class="green-dot"></span>
+        WITHIN CELLS INTERLINKED.<span class="green-dot"></span>
+        WITHIN CELLS INTERLINKED.<span class="green-dot"></span>
+        WITHIN CELLS INTERLINKED.<span class="green-dot"></span>
+        YOU CAN PICK UP YOUR BONUS. THANK YOU, SIR.<span class="green-dot"></span>
       </div>
     </div>
-    <div class="footer-meta">
-      BR-4VD/SIX[DASH]THREE{0017} <br>
+    <div class="bottom-meta">
+      BR-4/KD/SIX[DASH]THREE[DOT]SEVEN<br>
       BASELINE TRANSCRIPT: A.<br>
       END.
     </div>
