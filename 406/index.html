@@ -3,212 +3,172 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Baseline Test - Replica</title>
+  <title>Baseline</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-    html, body {
-      height: 100%;
+    body {
       margin: 0;
       padding: 0;
-    }
-    body {
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      font-family: 'Share Tech Mono', monospace;
-      background: radial-gradient(circle at 65% 55%, #44f8be 0%, #e6e6e6 70%);
-      color: #b2bfb4;
-      letter-spacing: 1px;
+      min-height: 100vh;
+      color: #b3bfb3;
+      font-family: 'Share Tech Mono', 'Consolas', 'Courier New', monospace;
+      background: radial-gradient(ellipse at 70% 40%, #68f4c1 0%, #e7f4ed 60%, #e7f4ed 100%);
       position: relative;
+      overflow: hidden;
     }
-    .container {
-      width: 95vw;
-      height: 97vh;
-      margin: 0 auto;
-      padding-top: 25px;
+    .grid {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.12;
+      background-image: 
+        repeating-linear-gradient(to right, #cfe5dc22 0px, #cfe5dc22 1px, transparent 1px, transparent 40px),
+        repeating-linear-gradient(to bottom, #cfe5dc22 0px, #cfe5dc22 1px, transparent 1px, transparent 40px);
+    }
+    main {
+      position: relative;
+      z-index: 1;
+      width: 100vw;
+      min-height: 100vh;
       box-sizing: border-box;
+      padding: 24px 20px 16px 20px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: space-between;
     }
     .header, .footer {
-      font-size: 0.85rem;
-      opacity: 0.7;
-      letter-spacing: 2px;
-      margin-bottom: 10px;
-      margin-top: 10px;
+      font-size: 0.95em;
+      letter-spacing: 0.07em;
+      margin-bottom: 5px;
+      margin-top: 5px;
+      opacity: 0.73;
     }
     .footer {
-      margin-top: 28px;
-      text-align: left;
+      align-self: flex-end;
+      margin-top: 24px;
+      font-size: 0.8em;
     }
-    .main-content {
+    .transcript {
+      white-space: pre-wrap;
+      font-size: 1.25em;
+      letter-spacing: 0.03em;
+      line-height: 1.15em;
+      font-family: inherit;
+      margin-top: 10px;
+      margin-bottom: 10px;
       position: relative;
-      z-index: 2;
     }
-    .fade-bg {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      z-index: 1;
-      pointer-events: none;
+    .gray {
+      color: #b3bfb3;
+      opacity: 0.89;
     }
-    .bold {
-      color: #222;
-      font-weight: bold;
-      font-size: 1.4rem;
-      letter-spacing: 0;
+    .black {
+      color: #232523;
+      font-weight: 600;
+      font-size: 1.21em;
+    }
+    .bigger {
+      font-size: 1.4em;
     }
     .green-dot {
-      color: #18e89c;
-      font-size: 1.3em;
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #00f18c;
       vertical-align: middle;
-      margin-left: 3px;
-      margin-right: 3px;
+      margin: 0 4px 2px 4px;
+      box-shadow: 0 0 6px #09dcb1;
     }
-    .question {
-      opacity: 0.45;
-      font-size: 1.1rem;
+    .prompt {
+      color: #b3bfb3;
       font-weight: 400;
-      margin: 0;
+      font-size: 1.06em;
+      opacity: 0.82;
     }
-    .answer {
-      color: #222;
-      font-weight: bold;
-      font-size: 1.3rem;
-      margin-left: 0.5em;
-      margin-top: 0.2em;
-      margin-bottom: 0.2em;
+    .indent {
+      margin-left: 60px;
+      display: block;
     }
-    .interlinked {
-      font-weight: bold;
-      font-size: 1.3rem;
-      color: #222;
-      margin-top: 0.1em;
-      margin-bottom: 0.1em;
-      margin-left: 3em;
+    .indent2 {
+      margin-left: 120px;
+      display: block;
     }
-    .cells {
-      font-weight: bold;
-      font-size: 1.3rem;
-      color: #222;
-      margin-top: 0.1em;
-      margin-bottom: 0.1em;
-      margin-left: 3em;
+    .indent3 {
+      margin-left: 180px;
+      display: block;
     }
-    .interlinked.center, .cells.center {
-      margin-left: 8em;
-    }
-    .interlinked.right {
-      margin-left: 12em;
-    }
-    .cells.right {
-      margin-left: 12em;
-    }
-    .codeblock {
-      font-family: inherit;
-      color: #222;
-      font-size: 1.15rem;
-      font-weight: bold;
-      margin-top: 0.4em;
-      margin-bottom: 0.4em;
-    }
-    .end {
-      margin-top: 1em;
-      opacity: 0.6;
-    }
-    .bg-text {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      color: #b2bfb4;
-      font-size: 1.18rem;
-      line-height: 1.7;
-      font-family: 'Share Tech Mono', monospace;
-      opacity: 0.31;
-      letter-spacing: 2px;
-      white-space: pre-wrap;
-      user-select: none;
-      pointer-events: none;
-      text-shadow: 0 0 1px #b2bfb4;
-    }
-    @media(max-width: 900px) {
-      .container { width: 99vw; }
-      .interlinked, .cells, .answer { font-size: 1.1rem;}
+    @media (max-width: 600px) {
+      main {font-size: 0.88em;}
+      .transcript{font-size: 1em;}
+      .bigger{font-size: 1.12em;}
+      .indent{margin-left: 20px;}
+      .indent2{margin-left: 40px;}
+      .indent3{margin-left: 60px;}
     }
   </style>
+  <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
+  <div class="grid"></div>
+  <main>
     <div class="header">
-      BR-4VD/SIX[DASH]THREE{0017}<br>
+      BR-4VD/SIX[Dash]THREE[0017]<br>
       BASELINE TRANSCRIPT A.<br>
       START.
     </div>
-    <div class="main-content">
-      <span class="question">
-        <span style="font-size:1.18rem;">&#x25A0;</span> OFFICER K/D/SIX[DASH]THREE[DOT]SEVEN, LET'S BEGIN. READY?
-      </span>
-      <br>
-      <span class="answer">YES, SIR.<span class="green-dot">&#x2023;</span></span>
-      <span class="question">RECITE YOUR BASELINE.</span>
-      <br>
-      <span class="answer">A BLOOD BLACK NOTHINGNESS BEGAN TO SPIN. A SYSTEM OF CELLS INTERLINKED WITHIN CELLS INTERLINKED WITHIN CELLS INTERLINKED WITHIN ONE STEM. AND DREADFULLY DISTINCT AGAINST THE DARK, A TALL WHITE FOUNTAIN PLAYED.<span class="green-dot">&#x2023;</span></span>
-      <span class="cells">CELLS.<span class="green-dot">&#x2023;</span></span>
-      <span class="question">HAVE YOU EVER BEEN IN AN INSTITUTION?</span>
-      <span class="cells">CELLS.<span class="green-dot">&#x2023;</span></span>
-      <span class="question">DO THEY KEEP YOU IN A CELL?</span>
-      <span class="cells">CELLS.<span class="green-dot">&#x2023;</span></span>
-      <span class="question">WHEN YOU'RE NOT PERFORMING YOUR DUTIES DO THEY KEEP YOU IN A LITTLE BOX?</span>
-      <span class="cells center">CELLS.<span class="green-dot">&#x2023;</span></span>
-      <span class="question">INTERLINKED.</span>
-      <span class="interlinked center">INTERLINKED.<span class="green-dot">&#x2023;</span></span>
-      <span class="interlinked right">INTERLINKED.<span class="green-dot">&#x2023;</span></span>
-      <span class="interlinked">INTERLINKED.<span class="green-dot">&#x2023;</span></span>
-      <span class="question">WHAT'S IT LIKE TO HOLD THE HAND OF SOMEONE YOU LOVE?</span>
-      <span class="interlinked">INTERLINKED.<span class="green-dot">&#x2023;</span></span>
-      <span class="question">DO THEY TEACH YOU HOW TO FEEL FINGER TO FINGER?</span>
-      <span class="interlinked">INTERLINKED.<span class="green-dot">&#x2023;</span></span>
-      <span class="question">DO YOU LONG FOR HAVING YOUR HEART INTERLINKED?</span>
-      <span class="interlinked right">INTERLINKED.<span class="green-dot">&#x2023;</span></span>
-      <span class="question">DO YOU DREAM ABOUT BEING INTERLINKED?</span>
-      <span class="interlinked">INTERLINKED.<span class="green-dot">&#x2023;</span></span>
-      <span class="question">WHAT'S IT LIKE TO HOLD YOUR CHILD IN YOUR ARMS?</span>
-      <span class="interlinked">INTERLINKED.<span class="green-dot">&#x2023;</span></span>
-      <span class="question">DO YOU FEEL THAT THERE'S A PART OF YOU THAT'S MISSING?</span>
-      <span class="interlinked center">INTERLINKED.<span class="green-dot">&#x2023;</span></span>
-      <span class="question">WITHIN CELLS INTERLINKED.</span>
-      <span class="interlinked right">WITHIN CELLS INTERLINKED.<span class="green-dot">&#x2023;</span></span>
-      <span class="question">WHY DON'T YOU SAY THAT THREE TIMES?</span>
-      <span class="interlinked">WITHIN CELLS INTERLINKED.<span class="green-dot">&#x2023;</span></span>
-      <span class="interlinked">WITHIN CELLS INTERLINKED.<span class="green-dot">&#x2023;</span></span>
-      <span class="interlinked">WITHIN CELLS INTERLINKED.<span class="green-dot">&#x2023;</span></span>
-      <span class="question codeblock">WE'RE DONE. CONSTANT K... YOU CAN PICK UP YOUR BONUS.</span>
-      <span class="answer">THANK YOU, SIR.<span class="green-dot">&#x2023;</span></span>
+    <div class="transcript">
+      <span class="gray">&#9608; OFFICER K/D/SIX[DASH]THREE[DOT]SEVEN,<br>
+      LET'S BEGIN. READY?</span>
+      <span class="black indent">YES, SIR.<span class="green-dot"></span></span>
+      <span class="prompt">RECITE YOUR BASELINE.</span>
+      <span class="black indent">A BLOOD BLACK NOTHINGNESS BEGAN TO SPIN.<br>
+      A SYSTEM OF CELLS INTERLINKED WITHIN CELLS INTERLINKED WITHIN CELLS INTERLINKED WITHIN ONE STEM.<br>
+      AND DREADFULLY DISTINCT AGAINST THE DARK, A TALL WHITE FOUNTAIN PLAYED.<span class="green-dot"></span></span>
+      <span class="black indent">CELLS.<span class="green-dot"></span></span>
+      <span class="gray">HAVE YOU EVER BEEN IN AN INSTITUTION? CELLS.</span>
+      <span class="black indent">CELLS.<span class="green-dot"></span></span>
+      <span class="gray">DO THEY KEEP YOU IN A CELL?</span>
+      <span class="black indent">CELLS.<span class="green-dot"></span></span>
+      <span class="gray">WHEN YOU'RE NOT PERFORMING YOUR DUTIES DO THEY KEEP YOU IN A LITTLE BOX?</span>
+      <span class="black indent">CELLS.<span class="green-dot"></span></span>
+      <span class="black indent2">CELLS.<span class="green-dot"></span></span>
+      <span class="black indent3">CELLS.<span class="green-dot"></span></span>
+      <span class="black bigger indent2">INTERLINKED.<span class="green-dot"></span></span>
+      <span class="black bigger indent2">INTERLINKED.<span class="green-dot"></span></span>
+      <span class="black bigger indent2">INTERLINKED.<span class="green-dot"></span></span>
+      <span class="gray">WHAT'S IT LIKE TO HOLD THE HAND OF SOMEONE YOU LOVE?</span>
+      <span class="black bigger indent2">INTERLINKED.<span class="green-dot"></span></span>
+      <span class="gray">DO THEY TEACH YOU HOW TO FEEL FINGER TO FINGER?</span>
+      <span class="black bigger indent2">INTERLINKED.<span class="green-dot"></span></span>
+      <span class="gray">DO YOU LONG FOR HAVING YOUR HEART INTERLINKED?</span>
+      <span class="black bigger indent2">INTERLINKED.<span class="green-dot"></span></span>
+      <span class="gray">DO YOU DREAM ABOUT BEING INTERLINKED?</span>
+      <span class="black bigger indent2">INTERLINKED.<span class="green-dot"></span></span>
+      <span class="gray">WHAT'S IT LIKE TO HOLD YOUR CHILD IN YOUR ARMS?</span>
+      <span class="black bigger indent2">INTERLINKED.<span class="green-dot"></span></span>
+      <span class="gray">DO YOU FEEL THAT THERE'S A PART OF YOU THAT'S MISSING?</span>
+      <span class="black bigger indent2">INTERLINKED.<span class="green-dot"></span></span>
+      <span class="black bigger indent2">INTERLINKED.<span class="green-dot"></span></span>
+      <span class="black bigger indent2">INTERLINKED.<span class="green-dot"></span></span>
+      <span class="black bigger indent2">INTERLINKED.<span class="green-dot"></span></span>
+      <span class="black bigger indent2">INTERLINKED.<span class="green-dot"></span></span>
+      <span class="black indent2">WITHIN CELLS INTERLINKED.<span class="green-dot"></span></span>
+      <span class="black indent2">WITHIN CELLS INTERLINKED.<span class="green-dot"></span></span>
+      <span class="black indent2">WITHIN CELLS INTERLINKED.<span class="green-dot"></span></span>
+      <span class="gray">WHY DON'T YOU SAY THAT THREE TIMES?</span>
+      <span class="black indent2">WITHIN CELLS INTERLINKED.<span class="green-dot"></span></span>
+      <span class="black indent2">WITHIN CELLS INTERLINKED.<span class="green-dot"></span></span>
+      <span class="black indent2">WITHIN CELLS INTERLINKED.<span class="green-dot"></span></span>
+      <span class="gray">&#9608; WE'RE DONE. CONSTANT K...</span>
+      <span class="gray">YOU CAN PICK UP YOUR BONUS.</span>
+      <span class="black indent">THANK YOU, SIR.<span class="green-dot"></span></span>
     </div>
-    <div class="footer end">
-      BR-4VD/SIX[DASH]THREE{0017}<br>
+    <div class="footer">
+      BR-4VD/SIX[Dash]THREE[0017]<br>
       BASELINE TRANSCRIPT A.<br>
       END.
     </div>
-    <div class="bg-text">
-■ OFFICER K/D/SIX[DASH]THREE[DOT]SEVEN, LET'S BEGIN. READY? RECITE YOUR BASELINE.
-A BLOOD BLACK NOTHINGNESS BEGAN TO SPIN. A SYSTEM OF CELLS INTERLINKED WITHIN CELLS INTERLINKED WITHIN CELLS INTERLINKED WITHIN ONE STEM. AND DREADFULLY DISTINCT AGAINST THE DARK, A TALL WHITE FOUNTAIN PLAYED.
-CELLS. HAVE YOU EVER BEEN IN AN INSTITUTION? CELLS. DO THEY KEEP YOU IN A CELL? CELLS. WHEN YOU'RE NOT PERFORMING YOUR DUTIES DO THEY KEEP YOU IN A LITTLE BOX? CELLS. INTERLINKED. INTERLINKED. INTERLINKED. INTERLINKED.
-WHAT'S IT LIKE TO HOLD THE HAND OF SOMEONE YOU LOVE? INTERLINKED. DO THEY TEACH YOU HOW TO FEEL FINGER TO FINGER? INTERLINKED. DO YOU LONG FOR HAVING YOUR HEART INTERLINKED? INTERLINKED. DO YOU DREAM ABOUT BEING INTERLINKED? INTERLINKED.
-WHAT'S IT LIKE TO HOLD YOUR CHILD IN YOUR ARMS? INTERLINKED. DO YOU FEEL THAT THERE'S A PART OF YOU THAT'S MISSING? INTERLINKED. WITHIN CELLS INTERLINKED. WITHIN CELLS INTERLINKED. WHY DON'T YOU SAY THAT THREE TIMES?
-WITHIN CELLS INTERLINKED. WITHIN CELLS INTERLINKED. WITHIN CELLS INTERLINKED. WE'RE DONE. CONSTANT K... YOU CAN PICK UP YOUR BONUS. THANK YOU, SIR.
-    </div>
-    <!-- Decorative dots -->
-    <div style="pointer-events:none;position:absolute;left:8vw;top:7vh;font-size:1.35em;color:#18e89c;z-index:10;">●</div>
-    <div style="pointer-events:none;position:absolute;left:18vw;top:13vh;font-size:1.15em;color:#18e89c;z-index:10;">●</div>
-    <div style="pointer-events:none;position:absolute;left:87vw;top:14vh;font-size:1.25em;color:#18e89c;z-index:10;">●</div>
-    <div style="pointer-events:none;position:absolute;left:91vw;top:66vh;font-size:1.1em;color:#18e89c;z-index:10;">●</div>
-    <div style="pointer-events:none;position:absolute;left:24vw;top:93vh;font-size:1.25em;color:#18e89c;z-index:10;">●</div>
-    <div style="pointer-events:none;position:absolute;left:80vw;top:82vh;font-size:1.15em;color:#18e89c;z-index:10;">●</div>
-    <div style="pointer-events:none;position:absolute;left:3vw;top:74vh;font-size:1.15em;color:#18e89c;z-index:10;">●</div>
-  </div>
+  </main>
 </body>
 </html>
