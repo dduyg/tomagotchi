@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>With Stardust</title>
   <style>
     @font-face {
@@ -11,29 +11,26 @@
       font-weight: 400;
       font-style: normal;
     }
-
     html, body {
       margin: 0;
       padding: 0;
-      width: 100%;
       height: 100%;
+      width: 100%;
       overflow: hidden;
       background: white;
       font-family: 'ABC Camera', sans-serif;
     }
 
     .layout-content {
+      width: 100%;
+      height: 100%;
       position: relative;
-      width: 100vw;
-      height: 100vh;
-      height: 100dvh; /* takes precedence where supported */
+      z-index: 2;
       display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 2;
       color: black;
       font-size: 2rem;
-      text-align: center;
     }
 
     .layout-gradients {
@@ -59,39 +56,44 @@
 
     .gradient {
       position: absolute;
-      width: 30vw;
-      height: 30vw;
-      max-width: 500px;
-      max-height: 500px;
+      width: 40vw;
+      height: 40vw;
       border-radius: 50%;
       opacity: 0.6;
-      filter: blur(15vw);
+      filter: blur(150px);
       mix-blend-mode: screen;
-      animation: float 5s infinite ease-in-out alternate;
+      animation: float 20s infinite ease-in-out alternate;
       z-index: 0;
     }
 
+    @media (max-width: 600px) {
+      .gradient {
+        width: 60vw;
+        height: 60vw;
+        filter: blur(100px);
+      }
+    }
+
     @keyframes float {
-      0%   { transform: translateY(0px) translateX(0px); }
+      0% { transform: translateY(0px) translateX(0px); }
       100% { transform: translateY(-5vh) translateX(5vw); }
     }
 
-    /* Adjusted positions with vw/vh for responsiveness */
-    .gradient-1  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); left: 5vw; top: 20vh; }
-    .gradient-2  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); right: 5vw; top: 10vh; }
-    .gradient-3  { background: radial-gradient(circle, #91c9bf 0%, transparent 50%); left: 15vw; bottom: 25vh; }
-    .gradient-4  { background: radial-gradient(circle, #f06423 0%, transparent 50%); right: 10vw; bottom: 10vh; }
-    .gradient-5  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); left: 5vw; bottom: 5vh; }
-    .gradient-6  { background: radial-gradient(circle, #fffe96 0%, transparent 50%); left: 5vw; top: 5vh; }
-    .gradient-7  { background: radial-gradient(circle, #f06423 0%, transparent 50%); left: 10vw; bottom: 10vh; }
-    .gradient-8  { background: radial-gradient(circle, #91c9bf 0%, transparent 50%); right: 10vw; bottom: 15vh; }
-    .gradient-9  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); left: 10vw; top: 10vh; }
-    .gradient-10 { background: radial-gradient(circle, #f06423 0%, transparent 50%); left: 15vw; top: 25vh; }
-    .gradient-11 { background: radial-gradient(circle, #f06423 0%, transparent 50%); left: 25vw; top: 5vh; }
-    .gradient-12 { background: radial-gradient(circle, #91c9bf 0%, transparent 50%); right: 5vw; top: 15vh; }
-    .gradient-13 { background: radial-gradient(circle, #666 0%, transparent 50%); right: 10vw; bottom: 5vh; }
-    .gradient-14 { background: radial-gradient(circle, #fffe96 0%, transparent 50%); left: 20vw; bottom: 10vh; }
-    .gradient-15 { background: radial-gradient(circle, #fffe96 0%, transparent 50%); right: 15vw; top: 30vh; }
+    .gradient-1  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); top: 20vh; left: 0vw; }
+    .gradient-2  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); top: 5vh; right: 0vw; }
+    .gradient-3  { background: radial-gradient(circle, #91c9bf 0%, transparent 50%); bottom: 40vh; left: 20vw; }
+    .gradient-4  { background: radial-gradient(circle, #f06423 0%, transparent 50%); bottom: 5vh; right: 10vw; }
+    .gradient-5  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); bottom: 0vh; left: -30vw; }
+    .gradient-6  { background: radial-gradient(circle, #fffe96 0%, transparent 50%); top: -10vh; left: -5vw; }
+    .gradient-7  { background: radial-gradient(circle, #f06423 0%, transparent 50%); bottom: -30vh; left: 0vw; }
+    .gradient-8  { background: radial-gradient(circle, #91c9bf 0%, transparent 50%); bottom: -40vh; right: -30vw; }
+    .gradient-9  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); top: -35vh; left: -25vw; }
+    .gradient-10 { background: radial-gradient(circle, #f06423 0%, transparent 50%); top: 10vh; left: -25vw; }
+    .gradient-11 { background: radial-gradient(circle, #f06423 0%, transparent 50%); top: -35vh; left: 25vw; }
+    .gradient-12 { background: radial-gradient(circle, #91c9bf 0%, transparent 50%); top: 0vh; right: -20vw; }
+    .gradient-13 { background: radial-gradient(circle, #666 0%, transparent 50%); bottom: -25vh; right: -20vw; }
+    .gradient-14 { background: radial-gradient(circle, #fffe96 0%, transparent 50%); bottom: 5vh; left: 15vw; }
+    .gradient-15 { background: radial-gradient(circle, #fffe96 0%, transparent 50%); top: 30vh; right: -10vw; }
   </style>
 </head>
 <body>
