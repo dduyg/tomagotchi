@@ -1,18 +1,61 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Porsche slide in slide out</title>
-  <link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slide in slide out</title>
+  <style>
+body {
+	display: flex;
+	justify-content: center;
+}
 
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100vw; /* Full viewport width */
+	height: 100vh;
+	position: relative;
+	overflow: hidden; /* Hide car when it's outside the wrapper */
+	background-color: white;
+}
+
+#logo {
+	position: absolute;
+	z-index: 1;
+	width: 90vh;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#car {
+	width: 50vh;
+	position: absolute;
+	z-index: 2;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+	animation: slide-car 5s ease-out forwards;
+}
+
+@keyframes slide-car {
+	0% {
+		left: -60vh; /* Start off screen to the left */
+	}
+	100% {
+		left: 50%; /* center of the wrapper / logo */
+		transform: translate(-50%, -50%);
+	}
+}
+  </style>
 </head>
 <body>
-<!-- partial:index.partial.html -->
 <div class="wrapper">
+	
 	<img id="logo" src="https://images.seeklogo.com/logo-png/31/2/porsche-logo-png_seeklogo-314112.png" alt="porsche logo">
 	<img id="car" src="https://images-porsche.imgix.net/-/media/D89E5C408A434D6E8890B13DAF481EBB_0CA234B7870B45D19EDBDA34BE1B1C0B_911-GT3-sideshot?w=2560&h=760&q=45&crop=faces%2Centropy%2Cedges&auto=format" alt="Porsche car">
-</div>
-<!-- partial -->
-  
+</div>  
 </body>
 </html>
