@@ -1,163 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Blade Runner 2049</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Baseline Test</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
     body {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #e8ecec 60%, #44e5b3 100%);
-      font-family: 'Share Tech Mono', monospace;
-      color: #95a9a6;
-      letter-spacing: 1px;
-      position: relative;
-      overflow-x: hidden;
+      margin: 0;
+      padding: 2rem;
+      font-family: 'Courier New', Courier, monospace;
+      background: linear-gradient(to right, #d9f2e2 0%, #c8f4dd 50%, #38e5ad 100%);
+      color: black;
+      font-size: 1rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
     }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 32px 24px 16px 24px;
-      position: relative;
-    }
-    .header, .footer {
-      font-size: 0.9em;
-      color: #b8d2c3;
-      margin-bottom: 8px;
-      margin-top: 8px;
-      opacity: 0.85;
-    }
-    .footer {
-      text-align: left;
-      margin-top: 32px;
-      margin-bottom: 0;
-    }
-    .baseline {
-      font-size: 1.35em;
-      line-height: 1.11em;
-      color: #95a9a6;
-      font-family: 'Share Tech Mono', monospace;
-      word-break: break-word;
-      white-space: pre-line;
-      position: relative;
-    }
-    .highlight {
-      color: #000;
-      font-weight: bold;
-      font-size: 1.18em;
-    }
-    .right {
-      text-align: right;
-      margin-right: 0;
-    }
-    .dot {
+
+    .green-dot {
       display: inline-block;
-      width: 14px;
-      height: 14px;
-      background: #44e5b3;
-      border-radius: 50%;
-      vertical-align: middle;
-      margin: 0 3px 2px 3px;
-      box-shadow: 0 0 9px #44e5b388;
-    }
-    .dot.small {
       width: 10px;
       height: 10px;
-      margin-bottom: 1px;
-      box-shadow: 0 0 6px #44e5b366;
-    }
-    .icon {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      border-radius: 2px;
-      background: #95a9a6;
-      margin-right: 3px;
-      opacity: 0.6;
+      background-color: #00ff99;
+      border-radius: 50%;
+      margin: 0 5px;
       vertical-align: middle;
     }
-    .icon-square {
-      border-radius: 2px;
-      width: 11px;
-      height: 11px;
-      background: #95a9a6;
-      margin-right: 3px;
-      opacity: 0.6;
-      vertical-align: middle;
-      display: inline-block;
+
+    .transcript {
+      max-width: 800px;
+      margin: auto;
     }
-    /* Subtle overlay scan lines effect */
-    body:after {
-      content: "";
-      position: fixed;
-      left:0;top:0;right:0;bottom:0;
-      pointer-events:none;
-      background: repeating-linear-gradient(
-        to bottom, 
-        rgba(100,255,210,0.08) 0px, 
-        rgba(100,255,210,0.08) 2px, 
-        transparent 2px, 
-        transparent 18px
-      );
-      z-index: 0;
+
+    .officer {
+      color: #888;
     }
-    /* Glowing border effect */
-    .container:before {
-      content: "";
-      position: absolute;
-      left: 16px; top: 16px; right: 16px; bottom: 16px;
-      border: 1.5px dashed #b8d2c3bb;
-      border-radius: 8px;
-      box-shadow: 0 0 24px #44e5b322, 0 0 6px #44e5b366 inset;
-      pointer-events: none;
-      z-index: 1;
+
+    .highlight {
+      font-weight: bold;
+      color: black;
+    }
+
+    .reply {
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="header">
-      BR-4VD/SIX(DASH)THREE{0017}<br>
-      BASELINE TRANSCRIPT A.<br>
-      START.
+  <div class="transcript">
+    <div class="officer">● OFFICER K/D/SIX{DASH}THREE{DOT}SEVEN,</div>
+    <div class="officer">LET’S BEGIN. READY?<span class="reply"> YES, SIR.</span><span class="green-dot"></span></div>
+    <div class="officer">RECITE YOUR BASELINE.</div>
+    <div class="reply">
+      A BLOOD BLACK NOTHINGNESS BEGAN TO SPIN. A SYSTEM OF CELLS<br />
+      INTERLINKED WITHIN CELLS INTERLINKED<br />
+      WITHIN CELLS INTERLINKED WITHIN ONE STEM. AND DREADFULLY DISTINCT AGAINST<br />
+      THE DARK, A TALL WHITE FOUNTAIN PLAYED.<span class="green-dot"></span><br />
+      CELLS.<span class="green-dot"></span><br />
+      CELLS.<span class="green-dot"></span><br />
+      CELLS.<span class="green-dot"></span><br />
+      CELLS.<span class="green-dot"></span><br />
+      INTERLINKED.<br />
+      INTERLINKED.<br />
+      INTERLINKED.<br />
+      INTERLINKED.<span class="green-dot"></span><br />
+      INTERLINKED.<br />
+      INTERLINKED.<span class="green-dot"></span><br />
+      INTERLINKED.<span class="green-dot"></span><br />
+      INTERLINKED.<br />
+      INTERLINKED.<span class="green-dot"></span><br />
+      INTERLINKED.<span class="green-dot"></span><br />
+      INTERLINKED.<span class="green-dot"></span><br />
+      INTERLINKED.<span class="green-dot"></span><br />
+      WITHIN CELLS INTERLINKED.<span class="green-dot"></span><br />
+      WITHIN CELLS INTERLINKED.<br />
+      WITHIN CELLS INTERLINKED.<br />
+      WITHIN CELLS INTERLINKED.<br />
+      WITHIN CELLS INTERLINKED.<br />
     </div>
-    <div class="baseline">
-      <span class="icon-square"></span>OFFICER K/D/SIX(DASH)THREE{DOT}SEVEN,<br>
-      LET'S BEGIN. READY?<br>
-      <span class="right highlight">YES, SIR.<span class="dot"></span></span><br>
-      RECITE YOUR BASELINE.<br>
-      <span class="highlight">A BLOOD BLACK NOTHINGNESS BEGAN TO SPIN. A SYSTEM OF CELLS INTERLINKED WITHIN CELLS INTERLINKED WITHIN CELLS INTERLINKED WITHIN ONE STEM. AND DREADFULLY DISTINCT AGAINST THE DARK, A TALL WHITE FOUNTAIN PLAYED.<span class="dot"></span></span><br>
-      CELLS.<span class="dot"></span><br>
-      <span class="highlight">CELLS.<span class="dot"></span></span><br>
-      CELLS.<span class="dot"></span><br>
-      CELLS.<span class="dot"></span><br>
-      INTERLINKED.<span class="dot"></span><br>
-      <span class="highlight right">INTERLINKED.<span class="dot"></span></span><br>
-      <span class="highlight right">INTERLINKED.<span class="dot"></span></span><br>
-      <span class="highlight right">INTERLINKED.<span class="dot"></span></span><br>
-      <span class="highlight right">INTERLINKED.<span class="dot"></span></span><br>
-      WITHIN CELLS INTERLINKED.<span class="dot"></span><br>
-      <span class="highlight right">WITHIN CELLS INTERLINKED.<span class="dot"></span></span><br>
-      <span class="highlight right">WITHIN CELLS INTERLINKED.<span class="dot"></span></span><br>
-      <span class="highlight right">WITHIN CELLS INTERLINKED.<span class="dot"></span></span><br>
-      <span class="highlight right">WITHIN CELLS INTERLINKED.<span class="dot"></span></span><br>
-      <span class="highlight right">WITHIN CELLS INTERLINKED.<span class="dot"></span></span><br>
-      <span class="highlight right">WITHIN CELLS INTERLINKED.<span class="dot"></span></span><br>
-      <span class="highlight right">WITHIN CELLS INTERLINKED.<span class="dot"></span></span><br>
-      YOU CAN PICK UP YOUR BONUS.<br>
-      <span class="right highlight">THANK YOU, SIR.<span class="dot"></span></span><br>
-    </div>
-    <div class="footer">
-      BR-4VD/SIX(DASH)THREE{0017}<br>
-      BASELINE TRANSCRIPT A.<br>
-      END.
-    </div>
+    <div class="officer">○ WE’RE DONE. CONSTANT K…</div>
+    <div class="officer">YOU CAN PICK UP YOUR BONUS.</div>
+    <div class="reply">THANK YOU, SIR.<span class="green-dot"></span></div>
+    <br />
+    <div class="officer">08-K/D/SIX{DASH}THREE{0017}<br />BASELINE TRANSCRIPT: A,<br />END.</div>
   </div>
 </body>
 </html>
