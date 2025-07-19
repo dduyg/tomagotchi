@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>With Stardust</title>
   <style>
-    @font-face {        
+    @font-face {
       font-family: 'ABC Camera';
-      src: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/ABCCamera-Regular.woff2') format('woff2'); 
+      src: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/ABCCamera-Regular.woff2') format('woff2');
       font-weight: 400;
-      font-style: normal;   
+      font-style: normal;
     }
-    body, html {
+
+    html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
       width: 100%;
+      height: 100%;
       overflow: hidden;
       background: white;
       font-family: 'ABC Camera', sans-serif;
     }
 
     .layout-content {
-      width: 100vw;
-      height: 100vh;
       position: relative;
-      z-index: 2; /* ensure text is on top */
+      width: 100%;
+      height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
+      z-index: 2;
       color: black;
-      font-size: 2em;
+      font-size: 2rem;
+      text-align: center;
     }
 
     .layout-gradients {
@@ -56,36 +58,39 @@
 
     .gradient {
       position: absolute;
-      width: 500px;
-      height: 500px;
+      width: 40vw;
+      height: 40vw;
+      max-width: 500px;
+      max-height: 500px;
       border-radius: 50%;
       opacity: 0.6;
-      filter: blur(150px);
+      filter: blur(15vw);
       mix-blend-mode: screen;
       animation: float 20s infinite ease-in-out alternate;
       z-index: 0;
     }
 
     @keyframes float {
-      0% { transform: translateY(0px) translateX(0px); }
-      100% { transform: translateY(-100px) translateX(100px); }
+      0%   { transform: translateY(0px) translateX(0px); }
+      100% { transform: translateY(-5vh) translateX(5vw); }
     }
 
-    .gradient-1  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); left: 0%; top: 20%; }
-    .gradient-2  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); right: 0; top: 5%; }
-    .gradient-3  { background: radial-gradient(circle, #91c9bf 0%, transparent 50%); left: 20%; bottom: 40%; }
-    .gradient-4  { background: radial-gradient(circle, #f06423 0%, transparent 50%); right: 10%; bottom: 5%; }
-    .gradient-5  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); left: -30%; bottom: 0%; }
-    .gradient-6  { background: radial-gradient(circle, #fffe96 0%, transparent 50%); left: -5%; top: -10%; }
-    .gradient-7  { background: radial-gradient(circle, #f06423 0%, transparent 50%); left: 0%; bottom: -30%; }
-    .gradient-8  { background: radial-gradient(circle, #91c9bf 0%, transparent 50%); right: -30%; bottom: -40%; }
-    .gradient-9  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); left: -25%; top: -35%; }
-    .gradient-10 { background: radial-gradient(circle, #f06423 0%, transparent 50%); left: -25%; top: 10%; }
-    .gradient-11 { background: radial-gradient(circle, #f06423 0%, transparent 50%); left: 25%; top: -35%; }
-    .gradient-12 { background: radial-gradient(circle, #91c9bf 0%, transparent 50%); right: -20%; top: 0%; }
-    .gradient-13 { background: radial-gradient(circle, #666 0%, transparent 50%); right: -20%; bottom: -25%; }
-    .gradient-14 { background: radial-gradient(circle, #fffe96 0%, transparent 50%); left: 15%; bottom: 5%; }
-    .gradient-15 { background: radial-gradient(circle, #fffe96 0%, transparent 50%); right: -10%; top: 30%; }
+    /* Adjusted positions with vw/vh for responsiveness */
+    .gradient-1  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); left: 5vw; top: 20vh; }
+    .gradient-2  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); right: 5vw; top: 10vh; }
+    .gradient-3  { background: radial-gradient(circle, #91c9bf 0%, transparent 50%); left: 15vw; bottom: 25vh; }
+    .gradient-4  { background: radial-gradient(circle, #f06423 0%, transparent 50%); right: 10vw; bottom: 10vh; }
+    .gradient-5  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); left: 5vw; bottom: 5vh; }
+    .gradient-6  { background: radial-gradient(circle, #fffe96 0%, transparent 50%); left: 5vw; top: 5vh; }
+    .gradient-7  { background: radial-gradient(circle, #f06423 0%, transparent 50%); left: 10vw; bottom: 10vh; }
+    .gradient-8  { background: radial-gradient(circle, #91c9bf 0%, transparent 50%); right: 10vw; bottom: 15vh; }
+    .gradient-9  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); left: 10vw; top: 10vh; }
+    .gradient-10 { background: radial-gradient(circle, #f06423 0%, transparent 50%); left: 15vw; top: 25vh; }
+    .gradient-11 { background: radial-gradient(circle, #f06423 0%, transparent 50%); left: 25vw; top: 5vh; }
+    .gradient-12 { background: radial-gradient(circle, #91c9bf 0%, transparent 50%); right: 5vw; top: 15vh; }
+    .gradient-13 { background: radial-gradient(circle, #666 0%, transparent 50%); right: 10vw; bottom: 5vh; }
+    .gradient-14 { background: radial-gradient(circle, #fffe96 0%, transparent 50%); left: 20vw; bottom: 10vh; }
+    .gradient-15 { background: radial-gradient(circle, #fffe96 0%, transparent 50%); right: 15vw; top: 30vh; }
   </style>
 </head>
 <body>
