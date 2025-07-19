@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Baseline Test</title>
   <style>
@@ -9,20 +9,36 @@
       margin: 0;
       padding: 2rem;
       font-family: 'Courier New', Courier, monospace;
-      background: linear-gradient(to right, #d6f3ec, #00e5b0);
+      background: linear-gradient(to right, #c5f2e2, #00e6b8);
       color: black;
-      font-size: 1rem;
+      font-size: 16px;
       line-height: 1.6;
       white-space: pre-wrap;
-      position: relative;
       overflow-x: hidden;
+      position: relative;
     }
 
-    .wrapper {
-      max-width: 800px;
-      margin: auto;
+    .container {
       position: relative;
+      max-width: 800px;
+      margin: 0 auto;
       z-index: 2;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 2rem;
+      right: 2rem;
+      color: rgba(0, 0, 0, 0.15);
+      z-index: 0;
+      white-space: pre-wrap;
+      pointer-events: none;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .bold {
+      font-weight: bold;
     }
 
     .green-dot {
@@ -31,67 +47,63 @@
       height: 9px;
       background-color: #00ff99;
       border-radius: 50%;
-      margin: 0 4px;
       vertical-align: middle;
+      margin: 0 5px;
     }
 
-    .faded-text {
-      color: rgba(0, 0, 0, 0.1);
-      position: absolute;
-      top: 0;
-      left: 2rem;
-      right: 2rem;
-      z-index: 1;
-      pointer-events: none;
-      white-space: pre-wrap;
+    .line {
+      display: block;
     }
 
-    .bold {
+    .reply {
       font-weight: bold;
-    }
-
-    .right {
-      text-align: right;
-    }
-
-    .section {
-      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
+
   <!-- Background faded text -->
-  <div class="faded-text">
+  <div class="overlay">
 ● OFFICER K/D/SIX{DASH}THREE{DOT}SEVEN,
 LET'S BEGIN. READY?
 RECITE YOUR BASELINE.
-CELLS. HAVE YOU EVER BEEN IN AN INSTITUTION? CELLS.
+A BLOOD BLACK NOTHINGNESS BEGAN TO SPIN.
+A SYSTEM OF CELLS INTERLINKED WITHIN CELLS INTERLINKED WITHIN CELLS INTERLINKED WITHIN ONE STEM.
+AND DREADFULLY DISTINCT AGAINST THE DARK, A TALL WHITE FOUNTAIN PLAYED.
+CELLS.
+HAVE YOU EVER BEEN IN AN INSTITUTION? CELLS.
 DO THEY KEEP YOU IN A CELL?
-WHEN YOU'RE NOT PERFORMING YOUR DUTIES DO THEY KEEP YOU IN A LITTLE BOX? CELLS.
+WHEN YOU'RE NOT PERFORMING YOUR DUTIES DO THEY KEEP YOU IN A LITTLE BOX?
+CELLS.
 INTERLINKED.
 WHAT'S IT LIKE TO HOLD THE HAND OF SOMEONE YOU LOVE?
 INTERLINKED.
-DO THEY TEACH YOU HOW TO FEEL FINGER? INTERLINKED.
+DO THEY TEACH YOU HOW TO FEEL FINGER?
+INTERLINKED.
 DO YOU LONG FOR HAVING YOUR HEART INTERLINKED?
 DO YOU DREAM ABOUT BEING INTERLINKED?
 WHAT'S IT LIKE TO HOLD YOUR CHILD IN YOUR ARMS?
 DO YOU FEEL THAT THERE'S A PART OF YOU THAT'S MISSING?
-WHY DON'T YOU SAY THAT THREE TIMES?
+INTERLINKED.
+WITHIN CELLS INTERLINKED.
+WITHIN CELLS INTERLINKED.
 WITHIN CELLS INTERLINKED.
 WITHIN CELLS INTERLINKED.
 WITHIN CELLS INTERLINKED.
   </div>
 
-  <!-- Foreground content -->
-  <div class="wrapper">
-    <div class="section">● OFFICER K/D/SIX{DASH}THREE{DOT}SEVEN,</div>
-    <div class="section">LET'S BEGIN. READY?<span class="bold right"> YES, SIR.</span><span class="green-dot"></span></div>
-    <div class="section bold">
-      RECITE YOUR BASELINE.<br><br>
-      A BLOOD BLACK NOTHINGNESS BEGAN TO SPIN. A SYSTEM OF CELLS<br>
-      INTERLINKED WITHIN CELLS INTERLINKED<br>
+  <!-- Foreground main content -->
+  <div class="container">
+    <div class="line">● OFFICER K/D/SIX{DASH}THREE{DOT}SEVEN,</div>
+    <div class="line">LET'S BEGIN. READY? <span class="reply">YES, SIR.</span><span class="green-dot"></span></div>
+    <div class="line bold">RECITE YOUR BASELINE.</div><br>
+
+    <div class="reply">
+      A BLOOD BLACK NOTHINGNESS BEGAN TO SPIN.<br>
+      A SYSTEM OF CELLS INTERLINKED WITHIN CELLS INTERLINKED<br>
       WITHIN CELLS INTERLINKED WITHIN ONE STEM.<br>
       AND DREADFULLY DISTINCT AGAINST THE DARK, A TALL WHITE FOUNTAIN PLAYED.<span class="green-dot"></span><br><br>
+
       CELLS.<span class="green-dot"></span><br>
       CELLS.<span class="green-dot"></span><br>
       CELLS.<span class="green-dot"></span><br>
@@ -107,7 +119,8 @@ WITHIN CELLS INTERLINKED.
       INTERLINKED.<span class="green-dot"></span><br><br>
 
       INTERLINKED.<span class="green-dot"></span><br>
-      INTERLINKED.<span class="green-dot"></span><br>
+      INTERLINKED.<span class="green-dot"></span><br><br>
+
       INTERLINKED.<br>
       INTERLINKED.<br><br>
 
@@ -116,10 +129,14 @@ WITHIN CELLS INTERLINKED.
       WITHIN CELLS INTERLINKED.<br>
       WITHIN CELLS INTERLINKED.<br><br>
     </div>
-    <div class="section">○ WE'RE DONE. CONSTANT K...<br>YOU CAN PICK UP YOUR BONUS.</div>
-    <div class="section bold">THANK YOU, SIR.<span class="green-dot"></span></div>
-    <br>
-    <div class="section">08-K/D/SIX{DASH}THREE{0017}<br>BASELINE TRANSCRIPT: A,<br>END.</div>
+
+    <div class="line">○ WE’RE DONE. CONSTANT K...</div>
+    <div class="line">YOU CAN PICK UP YOUR BONUS.</div><br>
+    <div class="reply">THANK YOU, SIR.<span class="green-dot"></span></div><br>
+
+    <div class="line">08-K/D/SIX{DASH}THREE{0017}</div>
+    <div class="line">BASELINE TRANSCRIPT: A,</div>
+    <div class="line">END.</div>
   </div>
 </body>
 </html>
