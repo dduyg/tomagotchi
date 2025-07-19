@@ -2,86 +2,124 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Baseline Test</title>
   <style>
     body {
       margin: 0;
       padding: 2rem;
       font-family: 'Courier New', Courier, monospace;
-      background: linear-gradient(to right, #d9f2e2 0%, #c8f4dd 50%, #38e5ad 100%);
+      background: linear-gradient(to right, #d6f3ec, #00e5b0);
       color: black;
       font-size: 1rem;
-      line-height: 1.5;
+      line-height: 1.6;
       white-space: pre-wrap;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .wrapper {
+      max-width: 800px;
+      margin: auto;
+      position: relative;
+      z-index: 2;
     }
 
     .green-dot {
       display: inline-block;
-      width: 10px;
-      height: 10px;
+      width: 9px;
+      height: 9px;
       background-color: #00ff99;
       border-radius: 50%;
-      margin: 0 5px;
+      margin: 0 4px;
       vertical-align: middle;
     }
 
-    .transcript {
-      max-width: 800px;
-      margin: auto;
+    .faded-text {
+      color: rgba(0, 0, 0, 0.1);
+      position: absolute;
+      top: 0;
+      left: 2rem;
+      right: 2rem;
+      z-index: 1;
+      pointer-events: none;
+      white-space: pre-wrap;
     }
 
-    .officer {
-      color: #888;
-    }
-
-    .highlight {
+    .bold {
       font-weight: bold;
-      color: black;
     }
 
-    .reply {
-      font-weight: bold;
+    .right {
+      text-align: right;
+    }
+
+    .section {
+      margin-bottom: 1rem;
     }
   </style>
 </head>
 <body>
-  <div class="transcript">
-    <div class="officer">● OFFICER K/D/SIX{DASH}THREE{DOT}SEVEN,</div>
-    <div class="officer">LET’S BEGIN. READY?<span class="reply"> YES, SIR.</span><span class="green-dot"></span></div>
-    <div class="officer">RECITE YOUR BASELINE.</div>
-    <div class="reply">
-      A BLOOD BLACK NOTHINGNESS BEGAN TO SPIN. A SYSTEM OF CELLS<br />
-      INTERLINKED WITHIN CELLS INTERLINKED<br />
-      WITHIN CELLS INTERLINKED WITHIN ONE STEM. AND DREADFULLY DISTINCT AGAINST<br />
-      THE DARK, A TALL WHITE FOUNTAIN PLAYED.<span class="green-dot"></span><br />
-      CELLS.<span class="green-dot"></span><br />
-      CELLS.<span class="green-dot"></span><br />
-      CELLS.<span class="green-dot"></span><br />
-      CELLS.<span class="green-dot"></span><br />
-      INTERLINKED.<br />
-      INTERLINKED.<br />
-      INTERLINKED.<br />
-      INTERLINKED.<span class="green-dot"></span><br />
-      INTERLINKED.<br />
-      INTERLINKED.<span class="green-dot"></span><br />
-      INTERLINKED.<span class="green-dot"></span><br />
-      INTERLINKED.<br />
-      INTERLINKED.<span class="green-dot"></span><br />
-      INTERLINKED.<span class="green-dot"></span><br />
-      INTERLINKED.<span class="green-dot"></span><br />
-      INTERLINKED.<span class="green-dot"></span><br />
-      WITHIN CELLS INTERLINKED.<span class="green-dot"></span><br />
-      WITHIN CELLS INTERLINKED.<br />
-      WITHIN CELLS INTERLINKED.<br />
-      WITHIN CELLS INTERLINKED.<br />
-      WITHIN CELLS INTERLINKED.<br />
+  <!-- Background faded text -->
+  <div class="faded-text">
+● OFFICER K/D/SIX{DASH}THREE{DOT}SEVEN,
+LET'S BEGIN. READY?
+RECITE YOUR BASELINE.
+CELLS. HAVE YOU EVER BEEN IN AN INSTITUTION? CELLS.
+DO THEY KEEP YOU IN A CELL?
+WHEN YOU'RE NOT PERFORMING YOUR DUTIES DO THEY KEEP YOU IN A LITTLE BOX? CELLS.
+INTERLINKED.
+WHAT'S IT LIKE TO HOLD THE HAND OF SOMEONE YOU LOVE?
+INTERLINKED.
+DO THEY TEACH YOU HOW TO FEEL FINGER? INTERLINKED.
+DO YOU LONG FOR HAVING YOUR HEART INTERLINKED?
+DO YOU DREAM ABOUT BEING INTERLINKED?
+WHAT'S IT LIKE TO HOLD YOUR CHILD IN YOUR ARMS?
+DO YOU FEEL THAT THERE'S A PART OF YOU THAT'S MISSING?
+WHY DON'T YOU SAY THAT THREE TIMES?
+WITHIN CELLS INTERLINKED.
+WITHIN CELLS INTERLINKED.
+WITHIN CELLS INTERLINKED.
+  </div>
+
+  <!-- Foreground content -->
+  <div class="wrapper">
+    <div class="section">● OFFICER K/D/SIX{DASH}THREE{DOT}SEVEN,</div>
+    <div class="section">LET'S BEGIN. READY?<span class="bold right"> YES, SIR.</span><span class="green-dot"></span></div>
+    <div class="section bold">
+      RECITE YOUR BASELINE.<br><br>
+      A BLOOD BLACK NOTHINGNESS BEGAN TO SPIN. A SYSTEM OF CELLS<br>
+      INTERLINKED WITHIN CELLS INTERLINKED<br>
+      WITHIN CELLS INTERLINKED WITHIN ONE STEM.<br>
+      AND DREADFULLY DISTINCT AGAINST THE DARK, A TALL WHITE FOUNTAIN PLAYED.<span class="green-dot"></span><br><br>
+      CELLS.<span class="green-dot"></span><br>
+      CELLS.<span class="green-dot"></span><br>
+      CELLS.<span class="green-dot"></span><br>
+      CELLS.<span class="green-dot"></span><br><br>
+
+      INTERLINKED.<br>
+      INTERLINKED.<br>
+      INTERLINKED.<br>
+      INTERLINKED.<span class="green-dot"></span><br><br>
+
+      INTERLINKED.<br>
+      INTERLINKED.<span class="green-dot"></span><br>
+      INTERLINKED.<span class="green-dot"></span><br><br>
+
+      INTERLINKED.<span class="green-dot"></span><br>
+      INTERLINKED.<span class="green-dot"></span><br>
+      INTERLINKED.<br>
+      INTERLINKED.<br><br>
+
+      WITHIN CELLS INTERLINKED.<br>
+      WITHIN CELLS INTERLINKED.<br>
+      WITHIN CELLS INTERLINKED.<br>
+      WITHIN CELLS INTERLINKED.<br><br>
     </div>
-    <div class="officer">○ WE’RE DONE. CONSTANT K…</div>
-    <div class="officer">YOU CAN PICK UP YOUR BONUS.</div>
-    <div class="reply">THANK YOU, SIR.<span class="green-dot"></span></div>
-    <br />
-    <div class="officer">08-K/D/SIX{DASH}THREE{0017}<br />BASELINE TRANSCRIPT: A,<br />END.</div>
+    <div class="section">○ WE'RE DONE. CONSTANT K...<br>YOU CAN PICK UP YOUR BONUS.</div>
+    <div class="section bold">THANK YOU, SIR.<span class="green-dot"></span></div>
+    <br>
+    <div class="section">08-K/D/SIX{DASH}THREE{0017}<br>BASELINE TRANSCRIPT: A,<br>END.</div>
   </div>
 </body>
 </html>
