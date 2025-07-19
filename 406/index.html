@@ -63,38 +63,33 @@
       max-width: 500px;
       max-height: 500px;
       border-radius: 50%;
-      opacity: 0.6;
       filter: blur(15vw);
       mix-blend-mode: screen;
-      animation: float 20s ease-in-out infinite alternate, pulse 6s ease-in-out infinite;
+      animation: fade 8s ease-in-out infinite;
       z-index: 0;
     }
 
-    @keyframes float {
-      0%   { transform: translateY(0px) translateX(0px) scale(1); }
-      100% { transform: translateY(-5vh) translateX(5vw) scale(1); }
+    @keyframes fade {
+      0%, 100% { opacity: 0.1; }
+      50%      { opacity: 0.6; }
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50%      { transform: scale(1.05); }
-    }
-
-    .gradient-1  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); left: 5vw; top: 20vh; }
-    .gradient-2  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); right: 5vw; top: 10vh; }
-    .gradient-3  { background: radial-gradient(circle, #91c9bf 0%, transparent 50%); left: 15vw; bottom: 25vh; }
-    .gradient-4  { background: radial-gradient(circle, #f06423 0%, transparent 50%); right: 10vw; bottom: 10vh; }
-    .gradient-5  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); left: 5vw; bottom: 5vh; }
-    .gradient-6  { background: radial-gradient(circle, #fffe96 0%, transparent 50%); left: 5vw; top: 5vh; }
-    .gradient-7  { background: radial-gradient(circle, #f06423 0%, transparent 50%); left: 10vw; bottom: 10vh; }
-    .gradient-8  { background: radial-gradient(circle, #91c9bf 0%, transparent 50%); right: 10vw; bottom: 15vh; }
-    .gradient-9  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); left: 10vw; top: 10vh; }
-    .gradient-10 { background: radial-gradient(circle, #f06423 0%, transparent 50%); left: 15vw; top: 25vh; }
-    .gradient-11 { background: radial-gradient(circle, #f06423 0%, transparent 50%); left: 25vw; top: 5vh; }
-    .gradient-12 { background: radial-gradient(circle, #91c9bf 0%, transparent 50%); right: 5vw; top: 15vh; }
-    .gradient-13 { background: radial-gradient(circle, #666 0%, transparent 50%); right: 10vw; bottom: 5vh; }
-    .gradient-14 { background: radial-gradient(circle, #fffe96 0%, transparent 50%); left: 20vw; bottom: 10vh; }
-    .gradient-15 { background: radial-gradient(circle, #fffe96 0%, transparent 50%); right: 15vw; top: 30vh; }
+    /* Add staggered delays for organic motion */
+    .gradient-1  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); left: 5vw; top: 20vh; animation-delay: 0s; }
+    .gradient-2  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); right: 5vw; top: 10vh; animation-delay: 1s; }
+    .gradient-3  { background: radial-gradient(circle, #91c9bf 0%, transparent 50%); left: 15vw; bottom: 25vh; animation-delay: 2s; }
+    .gradient-4  { background: radial-gradient(circle, #f06423 0%, transparent 50%); right: 10vw; bottom: 10vh; animation-delay: 3s; }
+    .gradient-5  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); left: 5vw; bottom: 5vh; animation-delay: 4s; }
+    .gradient-6  { background: radial-gradient(circle, #fffe96 0%, transparent 50%); left: 5vw; top: 5vh; animation-delay: 5s; }
+    .gradient-7  { background: radial-gradient(circle, #f06423 0%, transparent 50%); left: 10vw; bottom: 10vh; animation-delay: 6s; }
+    .gradient-8  { background: radial-gradient(circle, #91c9bf 0%, transparent 50%); right: 10vw; bottom: 15vh; animation-delay: 7s; }
+    .gradient-9  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); left: 10vw; top: 10vh; animation-delay: 1.5s; }
+    .gradient-10 { background: radial-gradient(circle, #f06423 0%, transparent 50%); left: 15vw; top: 25vh; animation-delay: 2.5s; }
+    .gradient-11 { background: radial-gradient(circle, #f06423 0%, transparent 50%); left: 25vw; top: 5vh; animation-delay: 3.5s; }
+    .gradient-12 { background: radial-gradient(circle, #91c9bf 0%, transparent 50%); right: 5vw; top: 15vh; animation-delay: 4.5s; }
+    .gradient-13 { background: radial-gradient(circle, #666 0%, transparent 50%); right: 10vw; bottom: 5vh; animation-delay: 5.5s; }
+    .gradient-14 { background: radial-gradient(circle, #fffe96 0%, transparent 50%); left: 20vw; bottom: 10vh; animation-delay: 6.5s; }
+    .gradient-15 { background: radial-gradient(circle, #fffe96 0%, transparent 50%); right: 15vw; top: 30vh; animation-delay: 7.5s; }
   </style>
 </head>
 <body>
