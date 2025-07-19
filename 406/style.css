@@ -1,0 +1,44 @@
+body {
+	display: flex;
+	justify-content: center;
+}
+
+.wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100vw; /* Full viewport width */
+	height: 100vh;
+	position: relative;
+	overflow: hidden; /* Hide car when it's outside the wrapper */
+	background-color: white;
+}
+
+#logo {
+	position: absolute;
+	z-index: 1;
+	width: 90vh;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#car {
+	width: 50vh;
+	position: absolute;
+	z-index: 2;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+	animation: slide-car 5s ease-out forwards;
+}
+
+@keyframes slide-car {
+	0% {
+		left: -60vh; /* Start off screen to the left */
+	}
+	100% {
+		left: 50%; /* center of the wrapper / logo */
+		transform: translate(-50%, -50%);
+	}
+}
