@@ -2,152 +2,159 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Baseline Test</title>
+  <title>Blade Runner 2049</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
     body {
-      height: 100vh;
-      width: 100vw;
-      font-family: 'Share Tech Mono', 'Consolas', monospace;
-      background: radial-gradient(circle at 65% 40%, #3fffd7 0%, #fff 70%);
-      color: #b7c2be;
-      overflow: hidden;
-      position: relative;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #e8ecec 60%, #44e5b3 100%);
+      font-family: 'Share Tech Mono', monospace;
+      color: #95a9a6;
       letter-spacing: 1px;
+      position: relative;
+      overflow-x: hidden;
     }
     .container {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100vw;
-      height: 100vh;
-      padding: 18px 16px 12px 16px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 32px 24px 16px 24px;
+      position: relative;
     }
-    .top-meta, .bottom-meta {
-      font-size: 13px;
-      letter-spacing: 2px;
-      opacity: 0.8;
-      margin-bottom: 10px;
-      margin-top: 4px;
-      text-shadow: 0 0 2px #fff;
-      font-family: inherit;
-      white-space: pre;
+    .header, .footer {
+      font-size: 0.9em;
+      color: #b8d2c3;
+      margin-bottom: 8px;
+      margin-top: 8px;
+      opacity: 0.85;
     }
-    .bottom-meta {
+    .footer {
       text-align: left;
-      margin-top: 16px;
+      margin-top: 32px;
       margin-bottom: 0;
     }
-    .test-content {
-      position: relative;
-      flex: 1;
-      width: 100%;
-      margin: 0 auto;
-      font-size: 23px;
-      line-height: 1.17;
-      font-family: 'Share Tech Mono', 'Consolas', monospace;
-      letter-spacing: 1px;
+    .baseline {
+      font-size: 1.35em;
+      line-height: 1.11em;
+      color: #95a9a6;
+      font-family: 'Share Tech Mono', monospace;
+      word-break: break-word;
       white-space: pre-line;
-      z-index: 1;
+      position: relative;
     }
-    .overlay-bg {
-      position: absolute;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 0;
+    .highlight {
+      color: #000;
+      font-weight: bold;
+      font-size: 1.18em;
     }
-    /* Green dots styling */
+    .right {
+      text-align: right;
+      margin-right: 0;
+    }
     .dot {
       display: inline-block;
-      width: 15px;
-      height: 15px;
+      width: 14px;
+      height: 14px;
+      background: #44e5b3;
       border-radius: 50%;
-      background: #18e6ae;
-      margin: 0 3px 0 3px;
       vertical-align: middle;
-      box-shadow: 0 0 6px #18e6ae88;
+      margin: 0 3px 2px 3px;
+      box-shadow: 0 0 9px #44e5b388;
     }
-    /* Main text bolded */
-    .main-bold {
-      color: #242424;
-      font-weight: bold;
-      text-shadow: 0 0 1px #18e6ae55, 0 0 4px #fff;
-      font-family: 'Share Tech Mono', 'Consolas', monospace;
+    .dot.small {
+      width: 10px;
+      height: 10px;
+      margin-bottom: 1px;
+      box-shadow: 0 0 6px #44e5b366;
     }
-    /* "INTERLINKED" text extra bolded */
-    .interlinked {
-      font-weight: bold;
-      color: #242424;
-      text-shadow: 0 0 6px #18e6ae44, 0 0 1px #fff;
-      font-family: inherit;
-      letter-spacing: 1px;
+    .icon {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+      background: #95a9a6;
+      margin-right: 3px;
+      opacity: 0.6;
+      vertical-align: middle;
     }
-    /* Responsive font scaling */
-    @media (max-width: 600px) {
-      .test-content { font-size: 16px; }
-      .top-meta, .bottom-meta { font-size: 10px; }
-      .dot { width: 10px; height: 10px; }
+    .icon-square {
+      border-radius: 2px;
+      width: 11px;
+      height: 11px;
+      background: #95a9a6;
+      margin-right: 3px;
+      opacity: 0.6;
+      vertical-align: middle;
+      display: inline-block;
+    }
+    /* Subtle overlay scan lines effect */
+    body:after {
+      content: "";
+      position: fixed;
+      left:0;top:0;right:0;bottom:0;
+      pointer-events:none;
+      background: repeating-linear-gradient(
+        to bottom, 
+        rgba(100,255,210,0.08) 0px, 
+        rgba(100,255,210,0.08) 2px, 
+        transparent 2px, 
+        transparent 18px
+      );
+      z-index: 0;
+    }
+    /* Glowing border effect */
+    .container:before {
+      content: "";
+      position: absolute;
+      left: 16px; top: 16px; right: 16px; bottom: 16px;
+      border: 1.5px dashed #b8d2c3bb;
+      border-radius: 8px;
+      box-shadow: 0 0 24px #44e5b322, 0 0 6px #44e5b366 inset;
+      pointer-events: none;
+      z-index: 1;
     }
   </style>
-  <!-- Mono font import -->
-  <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
-    <div class="top-meta">
-      BR-4VD/SIX[DASH]THREE[0017]<br>
+    <div class="header">
+      BR-4VD/SIX(DASH)THREE{0017}<br>
       BASELINE TRANSCRIPT A.<br>
       START.
     </div>
-    <div class="test-content">
-      <span style="opacity:0.7;">&#9608; OFFICER K/D/SIX[DASH]THREE[DOT]SEVEN,<br>LET'S BEGIN. READY?</span>
-      <br><span class="main-bold">YES, SIR.<span style="font-family: inherit;">&#8617;</span> <span class="dot"></span></span>
-      <br><span class="main-bold">RECITE YOUR BASELINE.</span>
-      <br><span class="main-bold">A BLOOD BLACK NOTHINGNESS BEGAN TO SPIN. A SYSTEM OF CELLS INTERLINKED WITHIN CELLS INTERLINKED WITHIN CELLS INTERLINKED WITHIN ONE STEM. AND DREADFULLY DISTINCT AGAINST THE DARK, A TALL WHITE FOUNTAIN PLAYED.<span style="font-family: inherit;">&#8617;</span></span>
-      <br><span class="main-bold">CELLS.<span style="font-family: inherit;">&#8617;</span> <span class="dot"></span></span>
-      <br><span style="opacity:0.7;">HAVE YOU EVER BEEN IN AN INSTITUTION? CELLS.</span>
-      <br><span style="opacity:0.7;">DO THEY KEEP YOU IN A CELL?</span>
-      <br><span class="main-bold">CELLS.<span style="font-family: inherit;">&#8617;</span> <span class="dot"></span></span>
-      <br><span style="opacity:0.7;">WHEN YOU'RE NOT PERFORMING YOUR DUTIES DO THEY KEEP YOU IN A LITTLE BOX?</span>
-      <br><span class="main-bold">CELLS.<span style="font-family: inherit;">&#8617;</span> <span class="dot"></span></span>
-      <br><span class="main-bold" style="margin-left: 120px;">CELLS.<span style="font-family: inherit;">&#8617;</span></span>
-      <br><span class="main-bold" style="margin-left: 200px;">INTERLINKED.<span style="font-family: inherit;">&#8617;</span></span>
-      <br><span class="main-bold interlinked" style="margin-left: 220px;">INTERLINKED.<span style="font-family: inherit;">&#8617;</span></span>
-      <br><span class="main-bold interlinked" style="margin-left: 220px;">INTERLINKED.<span style="font-family: inherit;">&#8617;</span></span>
-      <br><span style="opacity:0.7;">WHAT'S IT LIKE TO HOLD THE HAND OF SOMEONE YOU LOVE?</span>
-      <br><span class="main-bold interlinked">INTERLINKED.<span style="font-family: inherit;">&#8617;</span> <span class="dot"></span></span>
-      <br><span style="opacity:0.7;">DO THEY TEACH YOU HOW TO FEEL FINGER TO FINGER?</span>
-      <br><span class="main-bold interlinked" style="margin-left: 120px;">INTERLINKED.<span style="font-family: inherit;">&#8617;</span></span>
-      <br><span style="opacity:0.7;">DO YOU LONG FOR HAVING YOUR HEART INTERLINKED?</span>
-      <br><span class="main-bold interlinked" style="margin-left: 120px;">INTERLINKED.<span style="font-family: inherit;">&#8617;</span> <span class="dot"></span></span>
-      <br><span style="opacity:0.7;">DO YOU DREAM ABOUT BEING INTERLINKED?</span>
-      <br><span class="main-bold interlinked" style="margin-left: 120px;">INTERLINKED.<span style="font-family: inherit;">&#8617;</span> <span class="dot"></span></span>
-      <br><span style="opacity:0.7;">WHAT'S IT LIKE TO HOLD YOUR CHILD IN YOUR ARMS?</span>
-      <br><span class="main-bold interlinked" style="margin-left: 120px;">INTERLINKED.<span style="font-family: inherit;">&#8617;</span> <span class="dot"></span></span>
-      <br><span style="opacity:0.7;">DO YOU FEEL THAT THERE'S A PART OF YOU THAT'S MISSING?</span>
-      <br><span class="main-bold interlinked" style="margin-left: 120px;">INTERLINKED.<span style="font-family: inherit;">&#8617;</span> <span class="dot"></span></span>
-      <br><span class="main-bold interlinked" style="margin-left: 220px;">INTERLINKED.<span style="font-family: inherit;">&#8617;</span> <span class="dot"></span></span>
-      <br><span class="main-bold" style="margin-left: 320px;">WITHIN CELLS INTERLINKED.<span style="font-family: inherit;">&#8617;</span></span>
-      <br><span class="main-bold" style="margin-left: 320px;">WITHIN CELLS INTERLINKED.<span style="font-family: inherit;">&#8617;</span> <span class="dot"></span></span>
-      <br><span class="main-bold" style="margin-left: 320px;">WITHIN CELLS INTERLINKED.<span style="font-family: inherit;">&#8617;</span></span>
-      <br><span style="opacity:0.7;">WHY DON'T YOU SAY THAT THREE TIMES?</span>
-      <br><span class="main-bold">WITHIN CELLS INTERLINKED.<span style="font-family: inherit;">&#8617;</span> WITHIN CELLS INTERLINKED.<span style="font-family: inherit;">&#8617;</span> WITHIN CELLS INTERLINKED.<span style="font-family: inherit;">&#8617;</span> <span class="dot"></span></span>
-      <br><span class="main-bold">WE'RE DONE. CONSTANT K... YOU CAN PICK UP YOUR BONUS.</span>
-      <br><span class="main-bold">THANK YOU, SIR.<span style="font-family: inherit;">&#8617;</span> <span class="dot"></span></span>
+    <div class="baseline">
+      <span class="icon-square"></span>OFFICER K/D/SIX(DASH)THREE{DOT}SEVEN,<br>
+      LET'S BEGIN. READY?<br>
+      <span class="right highlight">YES, SIR.<span class="dot"></span></span><br>
+      RECITE YOUR BASELINE.<br>
+      <span class="highlight">A BLOOD BLACK NOTHINGNESS BEGAN TO SPIN. A SYSTEM OF CELLS INTERLINKED WITHIN CELLS INTERLINKED WITHIN CELLS INTERLINKED WITHIN ONE STEM. AND DREADFULLY DISTINCT AGAINST THE DARK, A TALL WHITE FOUNTAIN PLAYED.<span class="dot"></span></span><br>
+      CELLS.<span class="dot"></span><br>
+      <span class="highlight">CELLS.<span class="dot"></span></span><br>
+      CELLS.<span class="dot"></span><br>
+      CELLS.<span class="dot"></span><br>
+      INTERLINKED.<span class="dot"></span><br>
+      <span class="highlight right">INTERLINKED.<span class="dot"></span></span><br>
+      <span class="highlight right">INTERLINKED.<span class="dot"></span></span><br>
+      <span class="highlight right">INTERLINKED.<span class="dot"></span></span><br>
+      <span class="highlight right">INTERLINKED.<span class="dot"></span></span><br>
+      WITHIN CELLS INTERLINKED.<span class="dot"></span><br>
+      <span class="highlight right">WITHIN CELLS INTERLINKED.<span class="dot"></span></span><br>
+      <span class="highlight right">WITHIN CELLS INTERLINKED.<span class="dot"></span></span><br>
+      <span class="highlight right">WITHIN CELLS INTERLINKED.<span class="dot"></span></span><br>
+      <span class="highlight right">WITHIN CELLS INTERLINKED.<span class="dot"></span></span><br>
+      <span class="highlight right">WITHIN CELLS INTERLINKED.<span class="dot"></span></span><br>
+      <span class="highlight right">WITHIN CELLS INTERLINKED.<span class="dot"></span></span><br>
+      <span class="highlight right">WITHIN CELLS INTERLINKED.<span class="dot"></span></span><br>
+      YOU CAN PICK UP YOUR BONUS.<br>
+      <span class="right highlight">THANK YOU, SIR.<span class="dot"></span></span><br>
     </div>
-    <div class="bottom-meta">
-      BR-4VD/SIX[DASH]THREE[0017]<br>
+    <div class="footer">
+      BR-4VD/SIX(DASH)THREE{0017}<br>
       BASELINE TRANSCRIPT A.<br>
       END.
     </div>
