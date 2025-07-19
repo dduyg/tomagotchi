@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Gradient Background</title>
+  <title>Gradient Background with Stardust</title>
   <style>
     body, html {
       margin: 0;
@@ -17,7 +17,7 @@
       width: 100%;
       height: 100%;
       position: relative;
-      z-index: 1;
+      z-index: 2; /* ensure text is on top */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -36,6 +36,16 @@
       z-index: 0;
     }
 
+    .stardust-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/stardust.png');
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 1;
+    }
+
     .gradient {
       position: absolute;
       width: 500px;
@@ -45,6 +55,7 @@
       filter: blur(150px);
       mix-blend-mode: screen;
       animation: float 20s infinite ease-in-out alternate;
+      z-index: 0;
     }
 
     @keyframes float {
@@ -73,6 +84,8 @@
   <div class="layout-content">
     Hello Gradient World
     <div class="layout-gradients">
+      <div class="stardust-overlay"></div>
+
       <div class="gradient gradient-1"></div>
       <div class="gradient gradient-2"></div>
       <div class="gradient gradient-3"></div>
