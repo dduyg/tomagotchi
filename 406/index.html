@@ -66,16 +66,20 @@
       opacity: 0.6;
       filter: blur(15vw);
       mix-blend-mode: screen;
-      animation: float 20s infinite ease-in-out alternate;
+      animation: float 20s ease-in-out infinite alternate, pulse 6s ease-in-out infinite;
       z-index: 0;
     }
 
     @keyframes float {
-      0%   { transform: translateY(0px) translateX(0px); }
-      100% { transform: translateY(-5vh) translateX(5vw); }
+      0%   { transform: translateY(0px) translateX(0px) scale(1); }
+      100% { transform: translateY(-5vh) translateX(5vw) scale(1); }
     }
 
-    /* Adjusted positions with vw/vh for responsiveness */
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.05); }
+    }
+
     .gradient-1  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); left: 5vw; top: 20vh; }
     .gradient-2  { background: radial-gradient(circle, #948aa5 0%, transparent 50%); right: 5vw; top: 10vh; }
     .gradient-3  { background: radial-gradient(circle, #91c9bf 0%, transparent 50%); left: 15vw; bottom: 25vh; }
