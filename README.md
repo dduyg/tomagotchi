@@ -813,20 +813,15 @@ If the image is used as a background:
 - [ ] Digital Tidebreaker
 - [ ] Coded Currents
 - [ ] Riptide __Renderer__
-- [ ] Coral Code Crusaders
 - [ ] Seas of Syntax
 - [ ] Virtual Tides
 - [ ] Virtual Interface
-- [ ] The Cyberspace Cipher
 - [ ] Synthetic Logic
-- [ ] Oceanic Algorithm Architect
 - [ ] Aquatic Data Wrangler
 - [ ] Subaquatic Data Explorer
-- [ ] Neon Dust Sync
 - [ ] Byte Loop Void
 - [ ] Code Warp Grid
 - [ ] Code Wire Loop
-- [ ] Grid Fire Edge
 
 
 # ⌨️
