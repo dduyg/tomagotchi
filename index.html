@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Identity</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LiminalLoop</title>
   <style>
     * { box-sizing: border-box; }
     body {
@@ -11,7 +11,7 @@
       padding: 40px 20px;
       font-family: 'Courier New', Courier, monospace;
       background-color: #f4edf4;
-      color: #7c55c4;
+      color: #6b4fb6;
     }
 
     .container {
@@ -20,54 +20,61 @@
       justify-content: space-between;
       max-width: 1200px;
       margin: auto;
+      gap: 20px;
     }
 
     .column {
       flex: 1 1 30%;
-      padding: 0 20px;
       min-width: 280px;
     }
 
     .section {
-      border-top: 2px solid #b99df6;
+      border-top: 2px solid #c3afff;
       padding-top: 20px;
       margin-bottom: 40px;
     }
 
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
     .label {
       font-size: 12px;
-      color: #a88de5;
+      color: #a08be3;
       letter-spacing: 1px;
-      margin-bottom: 6px;
-      display: inline-block;
+      width: 40%;
     }
 
     .value {
       font-size: 14px;
-      color: #6b4bb4;
+      color: #6b4fb6;
+      width: 60%;
+      text-align: right;
       line-height: 1.5;
     }
 
     .logo {
-      font-family: monospace;
-      font-size: 24px;
+      font-size: 26px;
       font-weight: bold;
-      margin-top: 10px;
-      letter-spacing: 1px;
+      font-family: monospace;
+      letter-spacing: 2px;
+      white-space: nowrap;
     }
 
     .badges {
       display: flex;
       flex-wrap: wrap;
+      justify-content: flex-end;
       gap: 10px;
-      margin-top: 10px;
     }
 
     .badge {
       font-size: 12px;
       padding: 6px 12px;
-      border: 1px solid #b99df6;
-      color: #6b4bb4;
+      border: 1px solid #c3afff;
+      color: #6b4fb6;
       border-radius: 8px;
       white-space: nowrap;
     }
@@ -76,9 +83,19 @@
       .container {
         flex-direction: column;
       }
-      .column {
-        padding: 0;
-        margin-bottom: 30px;
+
+      .row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .label, .value {
+        width: 100%;
+        text-align: left;
+      }
+
+      .badges {
+        justify-content: flex-start;
       }
     }
   </style>
@@ -89,55 +106,69 @@
     <!-- Column 1 -->
     <div class="column">
       <div class="section">
-        <div class="label">TAGLINE</div>
-        <div class="value">
-          Sharing hope through AR<br>
-          artifacts in the age of<br>
-          24/7 news
+        <div class="row">
+          <div class="label">TAGLINE</div>
+          <div class="value">Sharing hope through AR artifacts in the age of 24/7 news</div>
         </div>
       </div>
       <div class="section">
-        <div class="label">LOGO</div>
-        <div class="logo">MARTIN PAS</div>
+        <div class="row">
+          <div class="label">LOGO</div>
+          <div class="value logo">MARTIN PAS</div>
+        </div>
       </div>
     </div>
 
     <!-- Column 2 -->
     <div class="column">
       <div class="section">
-        <div class="label">PROJECT</div>
-        <div class="value">Martin Pas Brand<br>Identity</div>
-        <br>
-        <div class="label">CLIENT</div>
-        <div class="value">Martin Pas Synth Shop</div>
-        <br>
-        <div class="label">YEAR</div>
-        <div class="value">2022</div>
-        <br>
-        <div class="label">CODE</div>
-        <div class="value">ACC-MRP</div>
-        <br>
-        <div class="label">COUNTRY</div>
-        <div class="value">Italy</div>
+        <div class="row">
+          <div class="label">PROJECT</div>
+          <div class="value">Martin Pas Brand Identity</div>
+        </div>
+        <div class="row">
+          <div class="label">CLIENT</div>
+          <div class="value">Martin Pas Synth Shop</div>
+        </div>
+        <div class="row">
+          <div class="label">YEAR</div>
+          <div class="value">2022</div>
+        </div>
+        <div class="row">
+          <div class="label">CODE</div>
+          <div class="value">ACC-MRP</div>
+        </div>
+        <div class="row">
+          <div class="label">COUNTRY</div>
+          <div class="value">Italy</div>
+        </div>
       </div>
     </div>
 
     <!-- Column 3 -->
     <div class="column">
       <div class="section">
-        <div class="label">TAGS</div>
-        <div class="badges">
-          <div class="badge">EXHIBITION DESIGN</div>
-          <div class="badge">SPATIAL DESIGN</div>
-          <div class="badge">FULL-STACK DEVELOPMENT</div>
-          <div class="badge">DATA VISUALIZATION</div>
+        <div class="row">
+          <div class="label">TAGS</div>
+          <div class="value">
+            <div class="badges">
+              <div class="badge">EXHIBITION DESIGN</div>
+              <div class="badge">SPATIAL DESIGN</div>
+              <div class="badge">FULL-STACK DEVELOPMENT</div>
+              <div class="badge">DATA VISUALIZATION</div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="section">
-        <div class="label">AREAS</div>
-        <div class="badges">
-          <div class="badge">RETAINER</div>
-          <div class="badge">ARTS&CULTURE</div>
+        <div class="row">
+          <div class="label">AREAS</div>
+          <div class="value">
+            <div class="badges">
+              <div class="badge">RETAINER</div>
+              <div class="badge">ARTS&CULTURE</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
