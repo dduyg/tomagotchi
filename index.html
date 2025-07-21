@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LiminalLoop</title>
+  <title>Martin Pas Identity</title>
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 40px 20px;
@@ -19,8 +22,7 @@
       flex-wrap: wrap;
       justify-content: space-between;
       max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
+      margin: auto;
     }
 
     .column {
@@ -35,26 +37,33 @@
       margin-bottom: 40px;
     }
 
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
     .label {
       font-size: 12px;
       color: #a088df;
       letter-spacing: 1px;
-      margin-bottom: 6px;
-      display: inline-block;
+      width: 45%;
     }
 
     .value {
       font-size: 14px;
       color: #6b4fb6;
-      line-height: 1.5;
+      width: 55%;
+      text-align: right;
+      line-height: 1.4;
     }
 
     .logo {
       font-size: 26px;
       font-weight: bold;
-      margin-top: 10px;
-      letter-spacing: 2px;
       font-family: monospace;
+      letter-spacing: 2px;
+      margin-top: 10px;
     }
 
     .badges {
@@ -82,64 +91,93 @@
         padding: 0;
         margin-bottom: 30px;
       }
+
+      .row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .value {
+        text-align: left;
+        width: 100%;
+        margin-top: 4px;
+      }
+
+      .label {
+        width: 100%;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    
+
     <!-- Column 1 -->
     <div class="column">
       <div class="section">
-        <div class="label">TAGLINE</div>
-        <div class="value">
-          Sharing hope through AR<br>
-          artifacts in the age of<br>
-          24/7 news
+        <div class="row">
+          <div class="label">TAGLINE</div>
+          <div class="value">Sharing hope through AR artifacts in the age of 24/7 news</div>
         </div>
       </div>
       <div class="section">
-        <div class="label">LOGO</div>
-        <div class="logo">MARTIN PAS</div>
+        <div class="row">
+          <div class="label">LOGO</div>
+          <div class="value logo">MARTIN PAS</div>
+        </div>
       </div>
     </div>
 
     <!-- Column 2 -->
     <div class="column">
       <div class="section">
-        <div class="label">PROJECT</div>
-        <div class="value">Martin Pas Brand<br>Identity</div>
-        <br>
-        <div class="label">CLIENT</div>
-        <div class="value">Martin Pas Synth Shop</div>
-        <br>
-        <div class="label">YEAR</div>
-        <div class="value">2022</div>
-        <br>
-        <div class="label">CODE</div>
-        <div class="value">ACC-MRP</div>
-        <br>
-        <div class="label">COUNTRY</div>
-        <div class="value">Italy</div>
+        <div class="row">
+          <div class="label">PROJECT</div>
+          <div class="value">Martin Pas Brand Identity</div>
+        </div>
+        <div class="row">
+          <div class="label">CLIENT</div>
+          <div class="value">Martin Pas Synth Shop</div>
+        </div>
+        <div class="row">
+          <div class="label">YEAR</div>
+          <div class="value">2022</div>
+        </div>
+        <div class="row">
+          <div class="label">CODE</div>
+          <div class="value">ACC-MRP</div>
+        </div>
+        <div class="row">
+          <div class="label">COUNTRY</div>
+          <div class="value">Italy</div>
+        </div>
       </div>
     </div>
 
     <!-- Column 3 -->
     <div class="column">
       <div class="section">
-        <div class="label">TAGS</div>
-        <div class="badges">
-          <div class="badge">EXHIBITION DESIGN</div>
-          <div class="badge">SPATIAL DESIGN</div>
-          <div class="badge">FULL-STACK DEVELOPMENT</div>
-          <div class="badge">DATA VISUALIZATION</div>
+        <div class="row">
+          <div class="label">TAGS</div>
+          <div class="value">
+            <div class="badges">
+              <div class="badge">EXHIBITION DESIGN</div>
+              <div class="badge">SPATIAL DESIGN</div>
+              <div class="badge">FULL-STACK DEVELOPMENT</div>
+              <div class="badge">DATA VISUALIZATION</div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="section">
-        <div class="label">AREAS</div>
-        <div class="badges">
-          <div class="badge">RETAINER</div>
-          <div class="badge">ARTS&CULTURE</div>
+        <div class="row">
+          <div class="label">AREAS</div>
+          <div class="value">
+            <div class="badges">
+              <div class="badge">RETAINER</div>
+              <div class="badge">ARTS&CULTURE</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
