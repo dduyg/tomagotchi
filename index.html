@@ -16,17 +16,13 @@
       color: black;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-
     .row {
       display: grid;
-      grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr; /* Left 2 + center + right 2 */
+      grid-template-columns: 1fr 1fr 3fr 1fr 1fr; /* Center image column is now 3x wider */
       gap: 20px;
+      padding: 40px 60px; /* Visible left/right padding */
       align-items: start;
+      width: 100%;
     }
 
     .column {
@@ -60,7 +56,7 @@
     @media (max-width: 768px) {
       .row {
         grid-template-columns: 1fr;
-        gap: 30px;
+        padding: 30px 20px;
       }
 
       .column,
@@ -73,42 +69,40 @@
 </head>
 <body>
 
-  <div class="container">
-    <div class="row">
-      
-      <!-- Left Column 1 -->
-      <div class="column">
-        <h4>Name</h4>
-        <p>Tomoya Okada</p>
-      </div>
-
-      <!-- Left Column 2 -->
-      <div class="column">
-        <h4>Information</h4>
-        <p>
-          I'm an engineer by profession, but photography is something I enjoy in my free time. 
-          This site showcases moments I've captured from my daily life.
-        </p>
-      </div>
-
-      <!-- Center Image Column -->
-      <div class="image-column">
-        <img src="https://via.placeholder.com/300x150?text=Your+Photo" alt="Photography Example" />
-      </div>
-
-      <!-- Right Column 1 -->
-      <div class="column">
-        <h4>UseCamera</h4>
-        <p>SigmaFP</p>
-      </div>
-
-      <!-- Right Column 2 -->
-      <div class="column">
-        <h4>Contact</h4>
-        <p>t.design@linkrec.net</p>
-      </div>
-
+  <div class="row">
+    
+    <!-- Left Column 1 -->
+    <div class="column">
+      <h4>Name</h4>
+      <p>Tomoya Okada</p>
     </div>
+
+    <!-- Left Column 2 -->
+    <div class="column">
+      <h4>Information</h4>
+      <p>
+        I'm an engineer by profession, but photography is something I enjoy in my free time. 
+        This site showcases moments I've captured from my daily life.
+      </p>
+    </div>
+
+    <!-- Center Image Column -->
+    <div class="image-column">
+      <img src="https://via.placeholder.com/800x200?text=Your+Photo" alt="Photography Example" />
+    </div>
+
+    <!-- Right Column 1 -->
+    <div class="column">
+      <h4>UseCamera</h4>
+      <p>SigmaFP</p>
+    </div>
+
+    <!-- Right Column 2 -->
+    <div class="column">
+      <h4>Contact</h4>
+      <p>t.design@linkrec.net</p>
+    </div>
+
   </div>
 
 </body>
