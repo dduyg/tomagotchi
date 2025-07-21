@@ -9,25 +9,35 @@
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+      height: 100%;
       font-family: Arial, sans-serif;
       background-color: white;
       color: black;
     }
 
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr 3fr 1fr 1fr; /* Center image column is now 3x wider */
-      gap: 20px;
-      padding: 40px 60px; /* Visible left/right padding */
-      align-items: start;
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 0 40px; /* creates left and right space */
+    }
+
+    .content {
       width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr 2.5fr 1fr 1fr; /* wider center column */
+      gap: 20px;
+      align-items: start;
     }
 
     .column {
       display: flex;
       flex-direction: column;
+      justify-content: flex-start;
     }
 
     .column h4 {
@@ -54,9 +64,13 @@
     }
 
     @media (max-width: 768px) {
-      .row {
+      body {
+        align-items: flex-start;
+        padding: 20px;
+      }
+
+      .content {
         grid-template-columns: 1fr;
-        padding: 30px 20px;
       }
 
       .column,
@@ -69,7 +83,7 @@
 </head>
 <body>
 
-  <div class="row">
+  <div class="content">
     
     <!-- Left Column 1 -->
     <div class="column">
