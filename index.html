@@ -1,50 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Martin Pas Brand Identity</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      padding: 40px;
+      padding: 40px 20px;
       font-family: 'Courier New', Courier, monospace;
       background-color: #f2eaf3;
       color: #5e3e99;
-      display: flex;
-      justify-content: center;
     }
 
     .container {
       display: flex;
-      max-width: 1200px;
-      width: 100%;
+      flex-wrap: wrap;
       justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
     }
 
     .column {
-      flex: 1;
-      margin: 0 20px;
+      flex: 1 1 30%;
+      padding: 0 10px;
+      min-width: 280px;
     }
 
     .section {
       border-top: 2px solid #b99df6;
       padding-top: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
 
     .section p {
-      margin: 8px 0;
+      margin: 10px 0;
+      line-height: 1.5;
     }
 
     .label {
-      font-weight: bold;
+      font-size: 12px;
+      color: #8b6fc7;
       letter-spacing: 1px;
     }
 
     .value {
-      display: inline;
-      margin-left: 10px;
+      display: block;
+      margin-top: 5px;
+      font-size: 14px;
       color: #5e3e99;
     }
 
@@ -56,65 +64,91 @@
       letter-spacing: 2px;
     }
 
-    .tags, .areas {
+    .badges {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
       gap: 10px;
+      margin-top: 10px;
     }
 
-    .tag, .area {
+    .badge {
       border: 1px solid #b99df6;
       color: #5e3e99;
       padding: 6px 12px;
       border-radius: 8px;
-      width: fit-content;
-      font-size: 14px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .column {
+        max-width: 100%;
+        margin-bottom: 30px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
+
     <!-- Column 1 -->
     <div class="column">
       <div class="section">
-        <p><span class="label">TAGLINE</span><br>Sharing hope through AR artifacts in the age of 24/7 news</p>
+        <p><span class="label">TAGLINE</span>
+          <span class="value">Sharing hope through AR<br>artifacts in the age of<br>24/7 news</span>
+        </p>
       </div>
       <div class="section">
         <p><span class="label">LOGO</span></p>
-        <div class="logo">M∆ЯTIИ P∆S</div>
+        <div class="logo">MARTIN PAS</div>
       </div>
     </div>
 
     <!-- Column 2 -->
     <div class="column">
       <div class="section">
-        <p><span class="label">PROJECT</span><br>Martin Pas Brand Identity</p>
-        <p><span class="label">CLIENT</span><br>Martin Pas Synth Shop</p>
-        <p><span class="label">YEAR</span><br>2022</p>
-        <p><span class="label">CODE</span><br>ACC-MRP</p>
-        <p><span class="label">COUNTRY</span><br>Italy</p>
+        <p><span class="label">PROJECT</span>
+          <span class="value">Martin Pas Brand<br>Identity</span>
+        </p>
+        <p><span class="label">CLIENT</span>
+          <span class="value">Martin Pas Synth Shop</span>
+        </p>
+        <p><span class="label">YEAR</span>
+          <span class="value">2022</span>
+        </p>
+        <p><span class="label">CODE</span>
+          <span class="value">ACC-MRP</span>
+        </p>
+        <p><span class="label">COUNTRY</span>
+          <span class="value">Italy</span>
+        </p>
       </div>
     </div>
 
     <!-- Column 3 -->
     <div class="column">
       <div class="section">
-        <p class="label">TAGS</p>
-        <div class="tags">
-          <div class="tag">EXHIBITION DESIGN</div>
-          <div class="tag">SPATIAL DESIGN</div>
-          <div class="tag">FULL-STACK DEVELOPMENT</div>
-          <div class="tag">DATA VISUALIZATION</div>
+        <p><span class="label">TAGS</span></p>
+        <div class="badges">
+          <div class="badge">EXHIBITION DESIGN</div>
+          <div class="badge">SPATIAL DESIGN</div>
+          <div class="badge">FULL-STACK DEVELOPMENT</div>
+          <div class="badge">DATA VISUALIZATION</div>
         </div>
       </div>
       <div class="section">
-        <p class="label">AREAS</p>
-        <div class="areas">
-          <div class="area">RETAINER</div>
-          <div class="area">ARTS&CULTURE</div>
+        <p><span class="label">AREAS</span></p>
+        <div class="badges">
+          <div class="badge">RETAINER</div>
+          <div class="badge">ARTS&CULTURE</div>
         </div>
       </div>
     </div>
+
   </div>
 </body>
 </html>
