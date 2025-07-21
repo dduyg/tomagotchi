@@ -3,23 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tomoya Okada - Photography</title>
+  <title>TomoyaOkada</title>
   <style>
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background-color: white;
-      color: #000;
+      color: black;
     }
 
-    .container {
+    .wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       align-items: flex-start;
-      padding: 40px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
       gap: 40px;
     }
 
@@ -30,43 +34,39 @@
     }
 
     .column h4 {
-      margin-bottom: 10px;
+      margin: 0 0 10px 0;
       font-weight: bold;
     }
 
     .column p {
       margin: 0;
-      line-height: 1.5;
+      line-height: 1.6;
+      word-break: break-word;
     }
 
-    .image-container {
+    .image-box {
       flex: 1 1 300px;
       min-width: 250px;
-      max-width: 300px;
+      max-width: 320px;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    .image-container img {
-      max-width: 100%;
+    .image-box img {
+      width: 100%;
       height: auto;
       display: block;
     }
 
     @media (max-width: 768px) {
-      .container {
+      .grid {
         flex-direction: column;
         align-items: center;
-        gap: 30px;
       }
 
-      .column,
-      .image-container {
+      .column, .image-box {
         max-width: 100%;
-      }
-
-      .column {
         text-align: center;
       }
     }
@@ -74,30 +74,34 @@
 </head>
 <body>
 
-  <div class="container">
-    <div class="column">
-      <h4>Name</h4>
-      <p>Tomoya Okada</p>
-    </div>
+  <div class="wrapper">
+    <div class="grid">
+      
+      <div class="column">
+        <h4>Name</h4>
+        <p>Tomoya Okada</p>
+      </div>
 
-    <div class="column">
-      <h4>Information</h4>
-      <p>
-        I'm an engineer by profession, but photography is something I enjoy in my free time. 
-        This site showcases moments I've captured from my daily life.
-      </p>
-    </div>
+      <div class="column">
+        <h4>Information</h4>
+        <p>
+          I'm an engineer by profession, but photography is something I enjoy in my free time. 
+          This site showcases moments I've captured from my daily life.
+        </p>
+      </div>
 
-    <div class="image-container">
-      <img src="https://via.placeholder.com/300x150?text=Photo" alt="Centered Art" />
-    </div>
+      <div class="image-box">
+        <img src="https://via.placeholder.com/300x150?text=Your+Photo" alt="Photography Example" />
+      </div>
 
-    <div class="column">
-      <h4>UseCamera</h4>
-      <p>SigmaFP</p>
+      <div class="column">
+        <h4>UseCamera</h4>
+        <p>SigmaFP</p>
 
-      <h4 style="margin-top: 20px;">Contact</h4>
-      <p>t.design@linkrec.net</p>
+        <h4 style="margin-top: 20px;">Contact</h4>
+        <p>t.design@linkrec.net</p>
+      </div>
+
     </div>
   </div>
 
