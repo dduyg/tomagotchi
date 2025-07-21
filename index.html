@@ -12,63 +12,83 @@
       padding: 0;
       color: #1a1a1a;
     }
+
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 3rem 1rem;
     }
+
     h1 {
       font-size: 3rem;
       line-height: 1.2;
       font-weight: bold;
     }
+
     .icons {
       display: inline-block;
       margin: 0 0.5rem;
     }
+
     .intro-text {
       font-size: 1.2rem;
-      margin: 2rem 0 1rem 2rem;
+      margin-left: 2rem;
+      margin-top: 2rem;
       max-width: 800px;
     }
+
     hr {
       border: none;
       border-top: 1px solid #ccc;
       margin: 3rem 0;
     }
+
     .grid-3 {
       display: grid;
-      grid-template-columns: 1.2fr 1.6fr 0.8fr;
+      grid-template-columns: 1.2fr 2.8fr;
       gap: 2rem;
       align-items: start;
     }
+
+    .content-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 3rem;
+    }
+
     .card {
       background-color: #000;
       padding: 1rem;
       color: #fff;
       border-radius: 6px;
     }
+
     .card img {
       width: 100%;
       border-radius: 4px;
     }
+
     .overlay-text {
       font-weight: bold;
       font-size: 1.1rem;
       color: #ffd600;
       margin-top: 1rem;
     }
+
     .card-address {
       color: #eee;
       font-size: 0.9rem;
       margin-top: 0.5rem;
     }
+
     .tag-list {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
       margin: 1rem 0;
     }
+
     .tag {
       background-color: #eee;
       padding: 0.25rem 0.5rem;
@@ -76,21 +96,26 @@
       border-radius: 3px;
       font-family: monospace;
     }
+
     .section-label {
       font-family: monospace;
       font-size: 0.9rem;
       color: #555;
       margin-bottom: 0.2rem;
     }
+
     h2 {
       font-size: 2rem;
       margin-bottom: 0.5rem;
     }
+
     .description {
       font-size: 1rem;
       color: #222;
       line-height: 1.6;
+      flex: 1;
     }
+
     .work-label {
       font-size: 0.75rem;
       font-family: monospace;
@@ -98,6 +123,12 @@
       color: #666;
       margin-bottom: 0.5rem;
     }
+
+    .work-links {
+      flex-shrink: 0;
+      text-align: right;
+    }
+
     .work-links a {
       display: block;
       font-size: 0.95rem;
@@ -105,12 +136,21 @@
       text-decoration: none;
       margin-bottom: 0.25rem;
     }
+
     .work-links a:hover {
       text-decoration: underline;
     }
+
     @media (max-width: 1024px) {
       .grid-3 {
         grid-template-columns: 1fr;
+      }
+      .content-row {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .work-links {
+        text-align: left;
       }
     }
   </style>
@@ -134,7 +174,7 @@
 
     <hr />
 
-    <!-- Strategy 3-column Layout -->
+    <!-- Strategy Section -->
     <div class="grid-3">
       <!-- Column 1: Image Card -->
       <div class="card">
@@ -146,7 +186,7 @@
         </div>
       </div>
 
-      <!-- Column 2: Strategy Description -->
+      <!-- Column 2: Strategy Content + Work -->
       <div>
         <div class="section-label">(01)</div>
         <h2>Strategy</h2>
@@ -161,17 +201,16 @@
           <div class="tag">Brand Guides</div>
         </div>
 
-        <p class="description">
-          Our strategy services are designed to carve out a unique space for your brand in the marketplace. We develop a core brand strategy that encapsulates your essence and guides every decision.
-        </p>
-      </div>
-
-      <!-- Column 3: Work Links -->
-      <div>
-        <div class="work-label">WORK</div>
-        <div class="work-links">
-          <a href="#">Under Armour</a>
-          <a href="#">Brave Bison</a>
+        <!-- Flex row: left strategy paragraph + right work links -->
+        <div class="content-row">
+          <p class="description">
+            Our strategy services are designed to carve out a unique space for your brand in the marketplace. We develop a core brand strategy that encapsulates your essence and guides every decision.
+          </p>
+          <div class="work-links">
+            <div class="work-label">WORK</div>
+            <a href="#">Under Armour</a>
+            <a href="#">Brave Bison</a>
+          </div>
         </div>
       </div>
     </div>
