@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LiminalLoop</title>
+  <style>
+    body {
+      background:url(https://images.unsplash.com/photo-1618005198926-1d21ec75e8be?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NDE5NzM0OTl8&ixlib=rb-4.0.3&q=85) no-repeat center;
+      background-size:cover;
+      min-height:100vh;
+      overflow:hidden;
+     &::after{
+    content:'';
+    position:absolute;
+  background: linear-gradient(45deg,  #edff2d 0%,#ff2bf7 43%,#3f14ff 79%,#14d0ff 100%);
+    background-size: 200% 200%;
+    animation: rotateGradient 10s linear infinite;
+    backdrop-filter:blur(3px);
+    mix-blend-mode:darken;
+    opacity:.3;
+    inset:0
+  }
+}
+nav {
+            display: flex;
+  flex-direction:column;
+            gap: 20px;
+            padding: 20px;
+           --text: #fff;
+  margin:12vh auto;
+  width:fit-content;
+    position:relative;
+  z-index:2
+        }
+
+        nav a {
+            display:inline-flex;
+            gap:9px;
+            padding:0 1em 0 0; 
+            text-decoration: none;
+            font-family: "Space Grotesk", sans-serif;
+            font-size:40px; 
+            overflow: hidden;
+            white-space: nowrap;
+          i, span{
+            color:var(--text);
+             transition:all 0.5s ease;
+             text-shadow:0 1.1em 0 var(--text);
+          }
+          span {
+            ;
+            font-weight:600;
+           transition:all 0.4s ease;
+        }
+       &:hover{          
+          filter:drop-shadow(0 0 6px var(--text));
+         & :is(i,span) {
+            color:transparent;
+            transform: translate(0.2em, -1.1em);
+          }
+          }
+        }
+
+@keyframes rotateGradient {
+    0% { background-position: 0% 0%; }
+    25% { background-position: 100% 0%; }
+    50% { background-position: 100% 100%; }
+    75% { background-position: 0% 100%; }
+    100% { background-position: 0% 0%;  }
+}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="#"><i>01</i><span>Agency</span></a>
+  <a href="#"><i>02</i><span>Branding</span></a> 
+  <a href="#"><i>03</i><span>Websites</span></a> 
+  <a href="#"><i>04</i><span>Automation</span></a>
+</nav>  
+</body>
+</html>
