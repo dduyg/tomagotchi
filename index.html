@@ -25,12 +25,12 @@
     section {
       flex: 1;
       min-width: 0; /* Prevent overflow on small screens */
-      border-top: 0.08125rem solid;
+      border-top: 0.09375rem solid;
       margin-bottom: 30px;
       padding-top: 20px;
     }
     .dd {
-       border-top: 0.08125rem solid;
+       border-top: 0.09375rem solid;
        margin-top: 30px;
        padding-top: 20px;
     }
@@ -53,16 +53,18 @@
       width: 60%;
     }
 
-    .badge {
+    .chip {
       display: flex;
       flex-wrap: wrap;
-      gap: 5px;
+      gap: 6px;
     }
-    .badge span {
+    .chip span {
       border: 1px solid;
-      border-radius: 6px;
-      padding: 3px;
-      font-size: 12px;
+      border-radius: 4px; 
+      margin-right: 0;
+      padding: 4px 4px 3px;
+      font-size: 10px;
+      line-height: 100%;
       text-transform: uppercase;
       white-space: nowrap;
     }
@@ -71,10 +73,14 @@
       .arcade { gap: 15px; }
       .entity { font-size: 6px; }
       .value { font-size: 8px; }
-      .badge { justify-content: flex-end; }
-      .badge span {
+      .chip {
+        gap: 4px;
+        justify-content: flex-end;
+      }
+      .chip span {
         font-size: 7px;
-        border-radius: 4px;
+        padding-top: 2px;
+        padding-bottom: 1px;
       }
     }
   </style>
@@ -116,7 +122,7 @@
       <div class="line">    
         <div class="entity">Tags</div>   
         <div class="value">     
-          <div class="badge">
+          <div class="chip">
              <span>The</span>
              <span>Coral</span>
              <span>Code</span>
@@ -127,7 +133,7 @@
       <div class="line dd"> 
         <div class="entity">Areas</div>  
         <div class="value">
-            <div class="badge">
+            <div class="chip">
               <span>Cipher</span>
               <span>Spatial</span>
             </div>     
