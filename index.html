@@ -13,7 +13,7 @@
       color: #1a1a1a;
     }
     .container {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 3rem 1rem;
     }
@@ -26,19 +26,21 @@
       display: inline-block;
       margin: 0 0.5rem;
     }
-    p {
+    .intro-text {
       font-size: 1.2rem;
-      margin-bottom: 1rem;
+      margin: 2rem 0 1rem 2rem;
+      max-width: 800px;
     }
     hr {
       border: none;
       border-top: 1px solid #ccc;
       margin: 3rem 0;
     }
-    .grid {
+    .grid-3 {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.2fr 1.6fr 0.8fr;
       gap: 2rem;
+      align-items: start;
     }
     .card {
       background-color: #000;
@@ -84,12 +86,16 @@
       font-size: 2rem;
       margin-bottom: 0.5rem;
     }
+    .description {
+      font-size: 1rem;
+      color: #222;
+      line-height: 1.6;
+    }
     .work-label {
       font-size: 0.75rem;
       font-family: monospace;
       text-transform: uppercase;
       color: #666;
-      margin-top: 2rem;
       margin-bottom: 0.5rem;
     }
     .work-links a {
@@ -102,12 +108,9 @@
     .work-links a:hover {
       text-decoration: underline;
     }
-    @media (max-width: 768px) {
-      .grid {
+    @media (max-width: 1024px) {
+      .grid-3 {
         grid-template-columns: 1fr;
-      }
-      h1 {
-        font-size: 2.2rem;
       }
     }
   </style>
@@ -121,18 +124,19 @@
       <span class="icons">🪪</span> Authenticity
     </h1>
 
-    <p>
+    <!-- Intro Paragraphs -->
+    <p class="intro-text">
       Our ethos is anchored in the creation of experiences that feel Unmistakably Original.
     </p>
-    <p>
+    <p class="intro-text">
       We believe that true originality stems from a blend of services we offer that deliver creativity, authenticity, and a deep understanding of user's needs and aspirations.
     </p>
 
     <hr />
 
-    <!-- Strategy Section -->
-    <div class="grid">
-      <!-- Left Image Card -->
+    <!-- Strategy 3-column Layout -->
+    <div class="grid-3">
+      <!-- Column 1: Image Card -->
       <div class="card">
         <img src="https://via.placeholder.com/300x500.png?text=Ellesse+Event" alt="Ellesse Event" />
         <div class="overlay-text">Pop-up event for our friends at Ellesse</div>
@@ -142,7 +146,7 @@
         </div>
       </div>
 
-      <!-- Right Text Content -->
+      <!-- Column 2: Strategy Description -->
       <div>
         <div class="section-label">(01)</div>
         <h2>Strategy</h2>
@@ -157,10 +161,13 @@
           <div class="tag">Brand Guides</div>
         </div>
 
-        <p>
+        <p class="description">
           Our strategy services are designed to carve out a unique space for your brand in the marketplace. We develop a core brand strategy that encapsulates your essence and guides every decision.
         </p>
+      </div>
 
+      <!-- Column 3: Work Links -->
+      <div>
         <div class="work-label">WORK</div>
         <div class="work-links">
           <a href="#">Under Armour</a>
