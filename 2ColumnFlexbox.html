@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2-Column Flexbox Layout with Overlay</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%; /* Ensure the body takes full height of the viewport */
+            background-image: url('detail-3.jpg'); /* Background image */
+            background-size: cover; /* Cover the entire viewport */
+            background-position: center; /* Center the image */
+        }
+        main {
+            display: flex;
+            min-height: 100vh; /* Full height for the main container */
+            position: relative; /* Set position for overlay positioning */
+            z-index: 1; /* Ensure main content is above the overlay */
+        }
+        section {
+            padding: 20px;
+            border: 1px solid #ccc; /* Optional: for visual clarity */
+            z-index: 2; /* Ensure sections are above the overlay */
+        }
+        .column-1 {
+            flex: 7;
+            background-color: rgba(255, 255, 255, 0.8); /* White background for readability */
+        }
+        .column-2 {
+            flex: 3;
+            background-color: rgba(255, 255, 255, 0.8); /* White background for readability */
+        }
+        /* Overlay */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+            z-index: 0; /* Overlay below content */
+        }
+    </style>
+</head>
+<body>
+
+<main>
+    <div class="overlay"></div> <!-- Overlay div -->
+    <section class="column-1">
+        <h2>Column 1 (70%)</h2>
+        <p>This is the first column taking 70% of the width.</p>
+    </section>
+
+    <section class="column-2">
+        <h2>Column 2 (30%)</h2>
+        <p>This is the second column taking 30% of the width.</p>
+    </section>
+</main>
+
+</body>
+</html>

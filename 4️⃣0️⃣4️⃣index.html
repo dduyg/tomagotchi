@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4️⃣0️⃣4️⃣</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant&family=Space+Mono&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      font-family: "Cormorant", serif;
+      background: radial-gradient(circle at 10% 20%, rgb(0, 0, 0) 0%, rgb(10, 10, 20) 90%);
+      color: rgb(230, 230, 230);
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      position: relative;
+      text-align: center;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .layout {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      padding: 6rem 2rem;
+      z-index: 100;
+      pointer-events: none;
+    }
+    .layout__middle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+    }
+    .middle {
+      text-align: right;
+      transform: rotate3d(0, 0, 1, 90deg) translate3d(100%, 10px, 0);
+      transform-origin: right;
+      white-space: nowrap;
+      font-family: "Space Mono", monospace;
+    }
+
+    section {
+      position: absolute;
+      font-size: 0.75rem;
+      line-height: 1;
+    }
+    .top-left {
+      top: 32px;
+      left: 32px;
+      text-align: left;
+    }
+    .top-right {
+      top: 32px;
+      right: 32px;
+      text-align: right;
+      font-family: "Space Mono", monospace;
+    }
+    
+    .statement {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+      font-size: 3rem;
+      font-weight: 200;
+      z-index: 100;
+      max-width: 440px;
+      mix-blend-mode: screen;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .statement h2 {
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      margin-top: 200px;
+    }
+  </style>
+</head>
+<body>
+<div id="container"></div>
+  <div class="layout">
+    <div class="layout__middle">
+      <p>|</p>
+      <p class="middle">
+        Scanning Coordinates:<br />
+        Uncharted Zone ✶
+      </p>
+    </div>
+
+    <section class="top-left">Vessel<br />Oblivion Horizon</section>
+    <section class="top-right">Objective<br />Lost Signal Retrieval</section>
+
+    <div class="statement">
+      <h2>BEYOND THE VEIL, ALL SIGNALS FADE</h2>
+    </div>
+  </div>
+
+  <script type="module">
+    import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
+    import { OrbitControls } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js";
+    import { EffectComposer } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/EffectComposer.js";
+    import { RenderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/RenderPass.js";
+    import { ShaderPass } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/postprocessing/ShaderPass.js";
+
+    // Scene setup
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // Background shader uniforms
+    const lightDir = new THREE.Vector3(Math.sqrt(0.05), Math.sqrt(0.2), Math.sqrt(0.2));
+
+    const backgroundShader = {
+      uniforms: { lightDirection: { value: lightDir } },
+      vertexShader: `
+        varying vec3 vWorldPosition;
+        void main() {
+          vec4 worldPosition = modelMatrix * vec4(position, 1.0);
+          vWorldPosition = worldPosition.xyz;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform vec3 lightDirection;
+        varying vec3 vWorldPosition;
+        void main() {
+          vec3 viewDirection = normalize(vWorldPosition - cameraPosition);
+          float light = dot(viewDirection, lightDirection);
+          vec3 color = vec3(max(light * 0.5 + 0.5, 0.0));
+          gl_FragColor = vec4(color, 1.0);
+        }
+      `
+    };
+
+    // Background mesh
+    const backgroundGeo = new THREE.SphereGeometry(500, 60, 40);
+    backgroundGeo.scale(-1, 1, 1);
+    const backgroundMat = new THREE.ShaderMaterial(backgroundShader);
+    const backgroundMesh = new THREE.Mesh(backgroundGeo, backgroundMat);
+    scene.add(backgroundMesh);
+
+    // Ground mesh
+    const groundGeo = new THREE.PlaneGeometry(20, 20, 200, 200);
+    const groundMat = new THREE.MeshStandardMaterial({ color: 0x999999, roughness: 2.8 });
+    const ground = new THREE.Mesh(groundGeo, groundMat);
+    ground.rotation.x = -Math.PI / 2;
+    scene.add(ground);
+
+    // Modify ground vertices for organic shape
+    const pos = ground.geometry.attributes.position;
+    for (let i = 0; i < pos.count; i++) {
+      const x = pos.getX(i);
+      const z = pos.getZ(i);
+      pos.setY(i, Math.sin(x * 0.5) * Math.cos(z * 0.5) * 0.5);
+    }
+    pos.needsUpdate = true;
+
+    // Floating sphere
+    const floatingSphere = new THREE.Mesh(
+      new THREE.SphereGeometry(0.5, 32, 32),
+      new THREE.MeshStandardMaterial({ color: 0xaaaaaa, roughness: 2.3 })
+    );
+    floatingSphere.position.set(0, 3, 0);
+    scene.add(floatingSphere);
+
+    // Submerged sphere
+    const submergedSphere = new THREE.Mesh(
+      new THREE.SphereGeometry(0.7, 32, 32),
+      new THREE.MeshStandardMaterial({ color: 0xa0a0a0, roughness: 2.5 })
+    );
+    submergedSphere.position.set(0, 0.2, 0);
+    scene.add(submergedSphere);
+
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+    scene.add(ambientLight);
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
+    directionalLight.position.copy(lightDir);
+    directionalLight.castShadow = true;
+    directionalLight.shadow.mapSize.width = 1024;
+    directionalLight.shadow.mapSize.height = 1024;
+    directionalLight.shadow.camera.near = 1;
+    directionalLight.shadow.camera.far = 20;
+    directionalLight.shadow.radius = 10;
+    scene.add(directionalLight);
+
+    // Shadows
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    ground.receiveShadow = true;
+    floatingSphere.castShadow = true;
+    submergedSphere.castShadow = true;
+
+    // Camera
+    camera.position.set(0, 5, 10);
+    camera.lookAt(0, 0, 0);
+
+    // Controls
+    const controls = new OrbitControls(camera, renderer.domElement);
+
+    // Postprocessing: film grain shader
+    const composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+
+    const filmGrainShader = {
+      uniforms: {
+        tDiffuse: { value: null },
+        amount: { value: 0.15 },
+        time: { value: 0 }
+      },
+      vertexShader: `
+        varying vec2 vUv;
+        void main() {
+          vUv = uv;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        uniform sampler2D tDiffuse;
+        uniform float amount;
+        uniform float time;
+        varying vec2 vUv;
+        float random(vec2 co) {
+          return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+        }
+        void main() {
+          vec4 color = texture2D(tDiffuse, vUv);
+          vec2 uvRandom = vUv;
+          uvRandom.y *= random(vec2(uvRandom.y, time));
+          color.rgb += random(uvRandom) * amount - (amount / 2.0);
+          gl_FragColor = color;
+        }
+      `
+    };
+
+    const filmGrainPass = new ShaderPass(filmGrainShader);
+    composer.addPass(filmGrainPass);
+
+    function animate(time = 0) {
+      requestAnimationFrame(animate);
+      filmGrainPass.uniforms.time.value = time / 1000;
+      composer.render();
+    }
+
+    animate();
+
+    window.addEventListener("resize", () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      composer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>
