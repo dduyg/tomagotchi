@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Design Process</title>
+  <title>Design Page</title>
   <style>
     * {
       box-sizing: border-box;
@@ -17,25 +17,22 @@
       overflow-x: hidden;
     }
 
-    /* HEADER */
-    .header-container {
-      width: 100vw;
-      display: flex;
-      justify-content: flex-start;
+    /* HEADER (only 70% width, left aligned) */
+    .header-wrapper {
+      width: 70vw;
+      padding: 40px 20px;
     }
 
     .header {
-      width: 70vw;
       display: flex;
       gap: 40px;
-      padding: 40px 20px;
     }
 
     .header img {
       width: 100%;
       max-width: 300px;
       border: 6px solid #aaa;
-      background-color: #fff;
+      background-color: white;
     }
 
     .header-content {
@@ -151,7 +148,10 @@
     @media (max-width: 768px) {
       .header {
         flex-direction: column;
-        width: 100vw;
+      }
+
+      .header-wrapper {
+        width: 100%;
         padding: 20px;
       }
 
@@ -174,8 +174,8 @@
 </head>
 <body>
 
-  <!-- HEADER: 70% width, aligned left -->
-  <div class="header-container">
+  <!-- HEADER WRAPPER: 70% width only -->
+  <div class="header-wrapper">
     <div class="header">
       <div>
         <img src="https://via.placeholder.com/300x450?text=Design+Preview" alt="Preview">
