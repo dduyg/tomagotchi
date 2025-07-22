@@ -28,7 +28,7 @@
     .access-grid {    
       width: 100%;    
       display: grid;    
-      grid-template-columns: 1fr 1fr 2fr 1fr 1fr; /* center column 2fr */    
+      grid-template-columns: 1fr 1fr 2fr 1fr 1fr;    
       gap: 5%;    
       align-items: start;    
     }    
@@ -57,7 +57,6 @@
       padding: 0 6%;    
     }
 
-    /* New class for video cropping */
     .view-clip {
       width: 100%;
       overflow: hidden;
@@ -90,12 +89,12 @@
       .tape { padding: 0; }
 
       .view-clip {
-        height: 65vh; /* Show only top 65% of the video */
+        height: 70vh; /* Show top 70% of the video */
       }
 
       .view-clip video {
-        height: 100vh; /* Make video full height */
-        object-position: top; /* Crop from bottom */
+        height: 100vh; /* Full height, but bottom 30% gets cropped */
+        object-position: top;
       }
     }    
   </style>    
