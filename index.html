@@ -14,6 +14,7 @@
       overflow-x: hidden;
     }
     body {
+      line-height: 1.2;
       padding-bottom: 120px; /* for fixed footer */
     }
 
@@ -21,7 +22,7 @@
       width: 70%;
       display: flex;
       gap: 40px;
-      margin: 40px 0 60px 0;
+      margin: 0 0 60px;
       padding-left: 20px;
     }
     .portrayal {
@@ -38,8 +39,7 @@
       min-width: 250px;
     }
     header .content p {
-      font-size: 16px;
-      line-height: 1.6;
+      font-size: 15px;
     }
 
     button {
@@ -76,6 +76,9 @@
       margin-bottom: 6px;
       padding-right: 24px;
     }
+    .entry .description {
+      margin: 30px 0;
+    }
     .entry .num {
       position: absolute;
       top: -4px;
@@ -85,7 +88,7 @@
     }
     .prepay {
       color: gray;
-      margin-top: 10px;
+      margin-top: 15px;
     }
 
     aside {
@@ -115,15 +118,8 @@
     }
 
     @media (max-width: 768px) {
-      main {
-        grid-template-columns: 1fr;
-      }
-      header {
-        flex-direction: column;
-        width: 100%;
-        padding: 20px;
-      }
-
+      .entry { font-size: 11px; }
+      header .content p { font-size: 12px; }
       aside {
         flex-direction: column;
         align-items: center;
@@ -147,18 +143,12 @@
     <!-- 🌀Row1 -->
     <div class="entry">
       <div class="title">PROTOTYPING AND VISUAL RESEARCH <span class="num">1</span></div>
-      <div>
-        references (design examples)<br>
-        site prototype (structure)
-      </div>
+      <div class="description">references (design examples) site prototype (structure)</div>
       <div class="prepay">prepayment 20%</div>
     </div>
     <div class="entry">
       <div class="title">CONCEPT AND DESIGN <span class="num">2</span></div>
-      <div>
-        concept design development for the main page;<br>
-        design of all other pages to follow upon agreement
-      </div>
+      <div class="description">concept design development for the main page; design of all other pages to follow upon agreement</div>
       <div class="prepay">prepayment 30%</div>
     </div>
     <div><!--EMPTY□ENTRY--></div>
@@ -167,18 +157,15 @@
     <div><!--EMPTY□ENTRY--></div>
     <div class="entry">
       <div class="title">DESKTOP VERSION LAYOUT <span class="num">3</span></div>
-      <div>a functioning html desktop page on low-code platform</div>
+      <div class="description">>a functioning html desktop page on low-code platform</div>
       <div class="prepay">prepayment 30%</div>
     </div>
     <div class="entry">
       <div class="title">ADAPTIVE AND SITE SETTINGS <span class="num">4</span></div>
-      <div>
-        adaptive html page on low-code platform with connected integrations and services
-      </div>
+      <div class="description">adaptive html page on low-code platform with connected integrations and services</div>
       <div class="prepay">prepayment 20%</div>
     </div>
   </main>
-
   <aside>
     <button>Fill Out The Brief →</button>
     <button>Book for Project →</button>
