@@ -10,12 +10,9 @@
       margin: 0;
       padding: 0;
       font-family: monospace;
+      line-height: 1.2;
       background-color: #C1C2BC;
       overflow-x: hidden;
-    }
-    body {
-      line-height: 1.2;
-      padding-bottom: 120px; /* for fixed footer */
     }
 
     header {
@@ -101,20 +98,24 @@
       position: fixed;
       bottom: 0;
       left: 0;
+      width: 100%;
       text-align: left;
-      padding: 10px 20px 2px;
+      padding: 10px 3px 3px;
       font-size: 14px;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: flex-end;
+      flex-direction: column;
     }
-    footer .left {
-      color: black;
-    }
-    footer .right {
+    footer .roar {
       font-size: 48px;
       font-weight: bold;
       line-height: 1;
+    }
+    footer .credits {
+      color: black;
+      display: flex;
+      justify-content: space-between;
     }
 
     @media (max-width: 768px) {
@@ -124,8 +125,8 @@
         flex-direction: column;
         align-items: center;
       }
-      footer { font-size: 12px; }
-      footer .right { font-size: 32px; }
+      footer { font-size: 10px; }
+      footer .roar { font-size: 32px; }
     }
   </style>
 </head>
@@ -167,13 +168,20 @@
     </div>
   </main>
   <aside>
-    <button>Fill Out The Brief →</button>
-    <button>Book for Project →</button>
+    <button>Fill Out The Brief ➜</button>
+    <button>Book for Project ➜</button>
   </aside>
 
   <footer>
-    <div class="left">art direction . visual identity . logo . web design . package . set design</div>
-    <div class="right">.DESIGN</div>
+    <div class="roar">.DESIGN</div>
+    <div class="credits">
+      <div>art direction</div><div>.</div>
+      <div>visual identity</div><div>.</div>
+      <div>logo</div><div>.</div>
+      <div>web design</div><div>.</div>
+      <div>packages</div><div>.</div>
+      <div>set design</div>
+    </div>   
   </footer>
 </body>
 </html>
