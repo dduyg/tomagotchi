@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LiminalLoop</title>
+  <title>Liminal🪼Loop</title>
   <style>
     * { box-sizing: border-box; }
     html, body {
@@ -24,38 +24,39 @@
       margin: 40px 0 60px 0;
       padding-left: 20px;
     }
-    .header-image {
+    .portrayal {
       flex: 1;
       min-width: 250px;
     }
-    .header-image img {
+    .portrayal img {
       width: 100%;
       height: auto;
       border: 8px solid #D9D9D9;
     }
-    .header-content {
+    header .content {
       flex: 1;
       min-width: 250px;
     }
+    header .content p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
 
-    .button {
+    button {
       display: inline-block;
       padding: 6px 16px;
       margin: 10px 10px 10px 0;
       border: 2px solid black;
       border-radius: 30px;
       font-weight: bold;
+      text-transform: uppercase;
       background: none;
       cursor: pointer;
       font-size: 14px;
     }
-    .button.blue {
+    button.blue {
       color: #2015FF;
       border-color: #2015FF;
-    }
-    .header-content p {
-      font-size: 16px;
-      line-height: 1.6;
     }
   
     main {
@@ -65,46 +66,40 @@
       width: 100%;
       padding: 0 20px;
     }
-
-    .step {
+    .entry {
       font-size: 14px;
     }
-    .step-title {
+    .entry .title {
       position: relative;
       font-weight: bold;
       text-transform: uppercase;
       margin-bottom: 6px;
       padding-right: 24px;
     }
-    .step-number {
+    .entry .num {
       position: absolute;
       top: -4px;
       right: 0;
       font-weight: normal;
-      font-size: 14px;
+      font-size: 17px;
     }
     .prepay {
       color: gray;
       margin-top: 10px;
     }
 
-    /* BUTTON GROUP */
-    .buttons {
+    aside {
       margin-top: 40px;
       display: flex;
       gap: 20px;
-      flex-wrap: wrap;
       justify-content: center;
     }
-
     footer {
       position: fixed;
       bottom: 0;
       left: 0;
-      width: 100%;
-      background: #d3d3d3;
       text-align: left;
-      padding: 10px 20px;
+      padding: 10px 20px 2px;
       font-size: 14px;
       display: flex;
       justify-content: space-between;
@@ -129,67 +124,54 @@
         padding: 20px;
       }
 
-      .buttons {
+      aside {
         flex-direction: column;
         align-items: center;
       }
-
-      footer {
-        flex-direction: column;
-        align-items: flex-start;
-        font-size: 12px;
-      }
-      footer .right {
-        font-size: 32px;
-      }
+      footer { font-size: 12px; }
+      footer .right { font-size: 32px; }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="header-image">
-      <img src="4566.gif" alt="🪼">
-    </div>
-    <div class="header-content">
-      <button class="button blue">WEB DESIGN PROCESS</button>
-      <button class="button">IDENTITY PROCESS</button>
+    <div class="portrayal"><img src="jellyfish.gif" alt="🪼"></div>
+    <div class="content">
+      <button class="blue">Web Design Process</button>
+      <button>Identity Process</button>
       <p>Before starting work on a project interview the customer, formulate the technical specifications, determine the deadlines and cost, and sign the contract</p>
     </div>
   </header>
 
   <main>
-    <!-- Row 1 -->
-    <div class="step">
-      <div class="step-title">PROTOTYPING AND VISUAL RESEARCH <span class="step-number">1</span></div>
+    <!-- 🌀Row1 -->
+    <div class="entry">
+      <div class="title">PROTOTYPING AND VISUAL RESEARCH <span class="num">1</span></div>
       <div>
         references (design examples)<br>
         site prototype (structure)
       </div>
       <div class="prepay">prepayment 20%</div>
     </div>
-
-    <div class="step">
-      <div class="step-title">CONCEPT AND DESIGN <span class="step-number">2</span></div>
+    <div class="entry">
+      <div class="title">CONCEPT AND DESIGN <span class="num">2</span></div>
       <div>
         concept design development for the main page;<br>
         design of all other pages to follow upon agreement
       </div>
       <div class="prepay">prepayment 30%</div>
     </div>
+    <div><!--EMPTY□ENTRY--></div>
 
-    <div></div> <!-- Empty Column -->
-
-    <!-- Row 2 -->
-    <div></div> <!-- Empty Column -->
-
-    <div class="step">
-      <div class="step-title">DESKTOP VERSION LAYOUT <span class="step-number">3</span></div>
+    <!-- 🌀Row2 -->
+    <div><!--EMPTY□ENTRY--></div>
+    <div class="entry">
+      <div class="title">DESKTOP VERSION LAYOUT <span class="num">3</span></div>
       <div>a functioning html desktop page on low-code platform</div>
       <div class="prepay">prepayment 30%</div>
     </div>
-
-    <div class="step">
-      <div class="step-title">ADAPTIVE AND SITE SETTINGS <span class="step-number">4</span></div>
+    <div class="entry">
+      <div class="title">ADAPTIVE AND SITE SETTINGS <span class="num">4</span></div>
       <div>
         adaptive html page on low-code platform with connected integrations and services
       </div>
@@ -197,11 +179,10 @@
     </div>
   </main>
 
-  <!-- BUTTONS -->
-  <div class="buttons">
-    <button class="button">FILL OUT THE BRIEF →</button>
-    <button class="button">BOOK FOR PROJECT →</button>
-  </div>
+  <aside>
+    <button>Fill Out The Brief →</button>
+    <button>Book for Project →</button>
+  </aside>
 
   <footer>
     <div class="left">art direction . visual identity . logo . web design . package . set design</div>
