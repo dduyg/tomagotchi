@@ -3,73 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Design Page</title>
+  <title>LiminalLoop</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
+    * { box-sizing: border-box; }
+    html, body {
       margin: 0;
       padding: 0;
       font-family: monospace;
       background-color: #d3d3d3;
       overflow-x: hidden;
     }
-
-    /* HEADER (only 70% width, left aligned) */
-    .header-wrapper {
-      width: 70vw;
-      padding: 40px 20px;
+    body {
+      padding-bottom: 120px; /* for fixed footer */
     }
 
+    /* HEADER */
     .header {
+      width: 70%;
       display: flex;
       gap: 40px;
+      margin: 40px 0 60px 0;
+      padding-left: 20px;
     }
-
-    .header img {
+    .header-image {
+      flex: 1;
+      min-width: 250px;
+    }
+    .header-image img {
       width: 100%;
-      max-width: 300px;
-      border: 6px solid #aaa;
+      height: auto;
+      border: 8px solid #ccc;
       background-color: white;
     }
-
     .header-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
+      flex: 1;
+      min-width: 250px;
     }
 
-    .header-content .button {
+    .button {
       display: inline-block;
-      padding: 8px 20px;
-      margin-bottom: 12px;
+      padding: 6px 16px;
+      margin: 10px 10px 10px 0;
       border: 2px solid black;
-      border-radius: 20px;
-      font-size: 14px;
+      border-radius: 30px;
+      font-weight: bold;
       background: none;
       cursor: pointer;
+      font-size: 14px;
     }
 
     .button.blue {
-      color: blue;
-      border-color: blue;
+      color: #2a4dff;
+      border-color: #2a4dff;
     }
 
     .header-content p {
-      margin-top: 12px;
-      line-height: 1.5;
       font-size: 16px;
+      line-height: 1.6;
     }
 
-    /* MAIN */
+    /* MAIN GRID */
     .main {
-      width: 100%;
-      padding: 40px 20px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 40px;
+      width: 100%;
+      padding: 0 20px;
     }
 
     .step {
@@ -81,48 +80,29 @@
       font-weight: bold;
       text-transform: uppercase;
       margin-bottom: 6px;
-      padding-right: 30px;
+      padding-right: 24px;
     }
 
     .step-number {
       position: absolute;
-      top: -6px;
+      top: -4px;
       right: 0;
       font-weight: normal;
       font-size: 14px;
     }
 
-    .light {
-      color: #666;
-      font-size: 13px;
+    .prepay {
+      color: gray;
       margin-top: 10px;
     }
 
-    /* SECOND ROW */
-    .second-row {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
-      margin-top: 20px;
-    }
-
-    /* BUTTONS */
+    /* BUTTON GROUP */
     .buttons {
-      margin: 40px 20px;
+      margin-top: 40px;
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
-    }
-
-    .buttons .button {
-      padding: 10px 24px;
-      border: 2px solid black;
-      border-radius: 25px;
-      font-size: 14px;
-      font-weight: bold;
-      background: none;
-      cursor: pointer;
+      justify-content: center;
     }
 
     /* FOOTER */
@@ -131,66 +111,68 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      padding: 20px;
       background: #d3d3d3;
-      border-top: 1px solid #999;
+      text-align: left;
+      padding: 10px 20px;
+      font-size: 14px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      font-size: 14px;
+      align-items: flex-end;
+    }
+
+    .footer .left {
+      color: black;
     }
 
     .footer .right {
-      font-size: 32px;
+      font-size: 48px;
       font-weight: bold;
+      line-height: 1;
     }
 
     @media (max-width: 768px) {
-      .header {
-        flex-direction: column;
+      .main {
+        grid-template-columns: 1fr;
       }
 
-      .header-wrapper {
+      .header {
+        flex-direction: column;
         width: 100%;
         padding: 20px;
       }
 
-      .main,
-      .second-row {
-        grid-template-columns: 1fr;
+      .buttons {
+        flex-direction: column;
+        align-items: center;
       }
 
       .footer {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        font-size: 12px;
       }
 
       .footer .right {
-        font-size: 24px;
+        font-size: 32px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER WRAPPER: 70% width only -->
-  <div class="header-wrapper">
-    <div class="header">
-      <div>
-        <img src="https://via.placeholder.com/300x450?text=Design+Preview" alt="Preview">
-      </div>
-      <div class="header-content">
-        <button class="button blue">WEB DESIGN PROCESS</button>
-        <button class="button">IDENTITY PROCESS</button>
-        <p>
-          Before starting work on a project interview the customer, formulate the technical specifications, determine the deadlines and cost, and sign the contract.
-        </p>
-      </div>
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-image">
+      <img src="https://via.placeholder.com/300x450?text=Design+Preview" alt="Mockup">
+    </div>
+    <div class="header-content">
+      <button class="button blue">WEB DESIGN PROCESS</button>
+      <button class="button">IDENTITY PROCESS</button>
+      <p>Before starting work on a project interview the customer, formulate the technical specifications, determine the deadlines and cost, and sign the contract</p>
     </div>
   </div>
 
-  <!-- MAIN CONTENT: full width -->
+  <!-- MAIN GRID -->
   <div class="main">
     <!-- Row 1 -->
     <div class="step">
@@ -199,7 +181,7 @@
         references (design examples)<br>
         site prototype (structure)
       </div>
-      <div class="light">prepayment 20%</div>
+      <div class="prepay">prepayment 20%</div>
     </div>
 
     <div class="step">
@@ -208,26 +190,26 @@
         concept design development for the main page;<br>
         design of all other pages to follow upon agreement
       </div>
-      <div class="light">prepayment 30%</div>
+      <div class="prepay">prepayment 30%</div>
     </div>
 
-    <div></div> <!-- Empty cell -->
+    <div></div> <!-- Empty Column -->
 
     <!-- Row 2 -->
-    <div class="second-row">
-      <div></div> <!-- Empty cell -->
+    <div></div> <!-- Empty Column -->
 
-      <div class="step">
-        <div class="step-title">DESKTOP VERSION LAYOUT <span class="step-number">3</span></div>
-        <div>a functioning html desktop page on low-code platform</div>
-        <div class="light">prepayment 30%</div>
-      </div>
+    <div class="step">
+      <div class="step-title">DESKTOP VERSION LAYOUT <span class="step-number">3</span></div>
+      <div>a functioning html desktop page on low-code platform</div>
+      <div class="prepay">prepayment 30%</div>
+    </div>
 
-      <div class="step">
-        <div class="step-title">ADAPTIVE AND SITE SETTINGS <span class="step-number">4</span></div>
-        <div>adaptive html page on low-code platform with connected integrations and services</div>
-        <div class="light">prepayment 20%</div>
+    <div class="step">
+      <div class="step-title">ADAPTIVE AND SITE SETTINGS <span class="step-number">4</span></div>
+      <div>
+        adaptive html page on low-code platform with connected integrations and services
       </div>
+      <div class="prepay">prepayment 20%</div>
     </div>
   </div>
 
