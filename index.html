@@ -10,29 +10,28 @@
       font-family: 'Courier New', monospace;
       background-color: #c2c2bc;
       color: #000;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
       padding: 40px;
-      gap: 40px;
+      overflow-x: auto;
     }
 
     .container {
       display: flex;
       flex-direction: row;
       gap: 40px;
+      align-items: flex-start;
     }
 
     .mockup {
       width: 300px;
-      height: auto;
-      border: 10px solid #888;
       background-color: white;
+      border: 10px solid #888;
       padding: 10px;
+      box-sizing: border-box;
     }
 
     .mockup img {
       width: 100%;
+      display: block;
     }
 
     .content {
@@ -45,6 +44,7 @@
       font-size: 16px;
       margin-bottom: 10px;
       display: inline-block;
+      cursor: default;
     }
 
     .blue-outline {
@@ -60,17 +60,6 @@
     p {
       font-size: 16px;
       line-height: 1.6;
-    }
-
-    .button + .button {
-      margin-left: 10px;
-    }
-
-    @media screen and (max-width: 768px) {
-      .container {
-        flex-direction: column;
-        align-items: center;
-      }
     }
   </style>
 </head>
