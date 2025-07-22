@@ -18,8 +18,14 @@
     }
 
     /* HEADER */
+    .header-container {
+      width: 100vw;
+      display: flex;
+      justify-content: flex-start;
+    }
+
     .header {
-      width: 70%;
+      width: 70vw;
       display: flex;
       gap: 40px;
       padding: 40px 20px;
@@ -95,7 +101,7 @@
       margin-top: 10px;
     }
 
-    /* SECOND ROW in main grid */
+    /* SECOND ROW */
     .second-row {
       grid-column: 1 / -1;
       display: grid;
@@ -145,7 +151,7 @@
     @media (max-width: 768px) {
       .header {
         flex-direction: column;
-        width: 100%;
+        width: 100vw;
         padding: 20px;
       }
 
@@ -159,26 +165,32 @@
         align-items: flex-start;
         gap: 10px;
       }
+
+      .footer .right {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <div class="header">
-    <div>
-      <img src="https://via.placeholder.com/300x450?text=Design+Preview" alt="Preview">
-    </div>
-    <div class="header-content">
-      <button class="button blue">WEB DESIGN PROCESS</button>
-      <button class="button">IDENTITY PROCESS</button>
-      <p>
-        Before starting work on a project interview the customer, formulate the technical specifications, determine the deadlines and cost, and sign the contract.
-      </p>
+  <!-- HEADER: 70% width, aligned left -->
+  <div class="header-container">
+    <div class="header">
+      <div>
+        <img src="https://via.placeholder.com/300x450?text=Design+Preview" alt="Preview">
+      </div>
+      <div class="header-content">
+        <button class="button blue">WEB DESIGN PROCESS</button>
+        <button class="button">IDENTITY PROCESS</button>
+        <p>
+          Before starting work on a project interview the customer, formulate the technical specifications, determine the deadlines and cost, and sign the contract.
+        </p>
+      </div>
     </div>
   </div>
 
-  <!-- MAIN GRID -->
+  <!-- MAIN CONTENT: full width -->
   <div class="main">
     <!-- Row 1 -->
     <div class="step">
