@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Web Design Process</title>
+  <title>Design Process</title>
   <style>
     * {
       box-sizing: border-box;
     }
 
-    html, body {
+    body {
       margin: 0;
       padding: 0;
       font-family: monospace;
@@ -17,65 +17,56 @@
       overflow-x: hidden;
     }
 
-    body {
-      padding-bottom: 120px; /* for fixed footer */
-    }
-
     /* HEADER */
     .header {
       width: 70%;
       display: flex;
       gap: 40px;
-      margin: 40px 0 60px 0;
-      padding-left: 20px;
+      padding: 40px 20px;
     }
 
-    .header-image {
-      flex: 1;
-      min-width: 250px;
-    }
-
-    .header-image img {
+    .header img {
       width: 100%;
-      height: auto;
-      border: 8px solid #ccc;
-      background-color: white;
+      max-width: 300px;
+      border: 6px solid #aaa;
+      background-color: #fff;
     }
 
     .header-content {
-      flex: 1;
-      min-width: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
 
-    .button {
+    .header-content .button {
       display: inline-block;
-      padding: 6px 16px;
-      margin: 10px 10px 10px 0;
+      padding: 8px 20px;
+      margin-bottom: 12px;
       border: 2px solid black;
-      border-radius: 30px;
-      font-weight: bold;
+      border-radius: 20px;
+      font-size: 14px;
       background: none;
       cursor: pointer;
-      font-size: 14px;
     }
 
     .button.blue {
-      color: #2a4dff;
-      border-color: #2a4dff;
+      color: blue;
+      border-color: blue;
     }
 
     .header-content p {
+      margin-top: 12px;
+      line-height: 1.5;
       font-size: 16px;
-      line-height: 1.6;
     }
 
-    /* MAIN GRID */
+    /* MAIN */
     .main {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 40px;
       width: 100%;
-      padding: 0 20px;
+      padding: 40px 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
     }
 
     .step {
@@ -87,29 +78,48 @@
       font-weight: bold;
       text-transform: uppercase;
       margin-bottom: 6px;
-      padding-right: 24px;
+      padding-right: 30px;
     }
 
     .step-number {
       position: absolute;
-      top: -4px;
+      top: -6px;
       right: 0;
       font-weight: normal;
       font-size: 14px;
     }
 
-    .prepay {
-      color: gray;
+    .light {
+      color: #666;
+      font-size: 13px;
       margin-top: 10px;
     }
 
-    /* BUTTON GROUP */
+    /* SECOND ROW in main grid */
+    .second-row {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 20px;
+    }
+
+    /* BUTTONS */
     .buttons {
-      margin-top: 40px;
+      margin: 40px 20px;
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
-      justify-content: center;
+    }
+
+    .buttons .button {
+      padding: 10px 24px;
+      border: 2px solid black;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: bold;
+      background: none;
+      cursor: pointer;
     }
 
     /* FOOTER */
@@ -118,49 +128,36 @@
       bottom: 0;
       left: 0;
       width: 100%;
+      padding: 20px;
       background: #d3d3d3;
-      text-align: left;
-      padding: 10px 20px;
-      font-size: 14px;
+      border-top: 1px solid #999;
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
-    }
-
-    .footer .left {
-      color: black;
+      align-items: center;
+      font-size: 14px;
     }
 
     .footer .right {
-      font-size: 48px;
+      font-size: 32px;
       font-weight: bold;
-      line-height: 1;
     }
 
     @media (max-width: 768px) {
-      .main {
-        grid-template-columns: 1fr;
-      }
-
       .header {
         flex-direction: column;
         width: 100%;
         padding: 20px;
       }
 
-      .buttons {
-        flex-direction: column;
-        align-items: center;
+      .main,
+      .second-row {
+        grid-template-columns: 1fr;
       }
 
       .footer {
         flex-direction: column;
         align-items: flex-start;
-        font-size: 12px;
-      }
-
-      .footer .right {
-        font-size: 32px;
+        gap: 10px;
       }
     }
   </style>
@@ -169,13 +166,15 @@
 
   <!-- HEADER -->
   <div class="header">
-    <div class="header-image">
-      <img src="https://via.placeholder.com/300x450?text=Design+Preview" alt="Mockup">
+    <div>
+      <img src="https://via.placeholder.com/300x450?text=Design+Preview" alt="Preview">
     </div>
     <div class="header-content">
       <button class="button blue">WEB DESIGN PROCESS</button>
       <button class="button">IDENTITY PROCESS</button>
-      <p>Before starting work on a project interview the customer, formulate the technical specifications, determine the deadlines and cost, and sign the contract</p>
+      <p>
+        Before starting work on a project interview the customer, formulate the technical specifications, determine the deadlines and cost, and sign the contract.
+      </p>
     </div>
   </div>
 
@@ -188,7 +187,7 @@
         references (design examples)<br>
         site prototype (structure)
       </div>
-      <div class="prepay">prepayment 20%</div>
+      <div class="light">prepayment 20%</div>
     </div>
 
     <div class="step">
@@ -197,26 +196,26 @@
         concept design development for the main page;<br>
         design of all other pages to follow upon agreement
       </div>
-      <div class="prepay">prepayment 30%</div>
+      <div class="light">prepayment 30%</div>
     </div>
 
-    <div></div> <!-- Empty Column -->
+    <div></div> <!-- Empty cell -->
 
     <!-- Row 2 -->
-    <div></div> <!-- Empty Column -->
+    <div class="second-row">
+      <div></div> <!-- Empty cell -->
 
-    <div class="step">
-      <div class="step-title">DESKTOP VERSION LAYOUT <span class="step-number">3</span></div>
-      <div>a functioning html desktop page on low-code platform</div>
-      <div class="prepay">prepayment 30%</div>
-    </div>
-
-    <div class="step">
-      <div class="step-title">ADAPTIVE AND SITE SETTINGS <span class="step-number">4</span></div>
-      <div>
-        adaptive html page on low-code platform with connected integrations and services
+      <div class="step">
+        <div class="step-title">DESKTOP VERSION LAYOUT <span class="step-number">3</span></div>
+        <div>a functioning html desktop page on low-code platform</div>
+        <div class="light">prepayment 30%</div>
       </div>
-      <div class="prepay">prepayment 20%</div>
+
+      <div class="step">
+        <div class="step-title">ADAPTIVE AND SITE SETTINGS <span class="step-number">4</span></div>
+        <div>adaptive html page on low-code platform with connected integrations and services</div>
+        <div class="light">prepayment 20%</div>
+      </div>
     </div>
   </div>
 
