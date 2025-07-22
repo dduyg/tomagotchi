@@ -17,9 +17,20 @@
       overflow-x: hidden;
     }
 
-    .container {
+    body {
+      padding-bottom: 100px; /* footer space */
+    }
+
+    .wrapper {
       width: 100%;
-      padding: 40px 20px 140px 20px; /* extra space for fixed footer */
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 70%;
+      max-width: 1000px;
+      padding: 40px 20px;
     }
 
     .header {
@@ -27,19 +38,16 @@
       flex-wrap: wrap;
       gap: 40px;
       margin-bottom: 60px;
-      width: 100%;
-    }
-
-    .header img {
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-      border: 8px solid #ccc;
-      background: white;
     }
 
     .header-image {
       flex: 1 1 300px;
+    }
+
+    .header-image img {
+      width: 100%;
+      border: 8px solid #ccc;
+      background-color: white;
     }
 
     .header-content {
@@ -68,7 +76,6 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 40px;
       margin-bottom: 60px;
-      width: 100%;
     }
 
     .section-title {
@@ -102,7 +109,7 @@
       justify-content: space-between;
       align-items: center;
       border-top: 1px solid #999;
-      z-index: 10;
+      z-index: 1000;
     }
 
     .footer-brand {
@@ -111,12 +118,12 @@
     }
 
     @media (max-width: 768px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
       .header {
         flex-direction: column;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
       }
 
       .fixed-footer {
@@ -124,60 +131,67 @@
         align-items: flex-start;
         gap: 10px;
       }
+
+      .container {
+        width: 90%;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
+  <div class="wrapper">
+    <div class="container">
 
-    <!-- Header Section -->
-    <div class="header">
-      <div class="header-image">
-        <img src="your-image.jpg" alt="Web Design Example" />
+      <!-- Header Section -->
+      <div class="header">
+        <div class="header-image">
+          <img src="your-image.jpg" alt="Web Design Example" />
+        </div>
+        <div class="header-content">
+          <button class="button blue">WEB DESIGN PROCESS</button>
+          <button class="button">IDENTITY PROCESS</button>
+          <p>
+            Before starting work on a project interview the customer, formulate the technical specifications, determine the deadlines and cost, and sign the contract
+          </p>
+        </div>
       </div>
-      <div class="header-content">
-        <button class="button blue">WEB DESIGN PROCESS</button>
-        <button class="button">IDENTITY PROCESS</button>
-        <p>
-          Before starting work on a project interview the customer, formulate the technical specifications, determine the deadlines and cost, and sign the contract
-        </p>
-      </div>
-    </div>
 
-    <!-- Grid Section -->
-    <div class="grid">
-      <!-- Row 1 -->
-      <div>
-        <div class="section-title">PROTOTYPING AND VISUAL RESEARCH</div>
-        <p>references (design examples)<br>site prototype (structure)</p>
-        <div class="light-text">prepayment 20%</div>
-      </div>
-      <div>
-        <div class="section-title">CONCEPT AND DESIGN</div>
-        <p>concept design development for the main page;<br>design of all other pages to follow upon agreement</p>
-        <div class="light-text">prepayment 30%</div>
-      </div>
-      <div></div>
+      <!-- Main Grid Section -->
+      <div class="grid">
+        <!-- Row 1 -->
+        <div>
+          <div class="section-title">PROTOTYPING AND VISUAL RESEARCH</div>
+          <p>references (design examples)<br>site prototype (structure)</p>
+          <div class="light-text">prepayment 20%</div>
+        </div>
+        <div>
+          <div class="section-title">CONCEPT AND DESIGN</div>
+          <p>concept design development for the main page;<br>design of all other pages to follow upon agreement</p>
+          <div class="light-text">prepayment 30%</div>
+        </div>
+        <div></div>
 
-      <!-- Row 2 -->
-      <div></div>
-      <div>
-        <div class="section-title">DESKTOP VERSION LAYOUT</div>
-        <p>a functioning html desktop page on low-code platform</p>
-        <div class="light-text">prepayment 30%</div>
+        <!-- Row 2 -->
+        <div></div>
+        <div>
+          <div class="section-title">DESKTOP VERSION LAYOUT</div>
+          <p>a functioning html desktop page on low-code platform</p>
+          <div class="light-text">prepayment 30%</div>
+        </div>
+        <div>
+          <div class="section-title">ADAPTIVE AND SITE SETTINGS</div>
+          <p>adaptive html page on low-code platform with connected integrations and services</p>
+          <div class="light-text">prepayment 20%</div>
+        </div>
       </div>
-      <div>
-        <div class="section-title">ADAPTIVE AND SITE SETTINGS</div>
-        <p>adaptive html page on low-code platform with connected integrations and services</p>
-        <div class="light-text">prepayment 20%</div>
-      </div>
-    </div>
 
-    <!-- Buttons -->
-    <div class="action-buttons">
-      <button class="button">FILL OUT THE BRIEF →</button>
-      <button class="button">BOOK FOR PROJECT →</button>
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button class="button">FILL OUT THE BRIEF →</button>
+        <button class="button">BOOK FOR PROJECT →</button>
+      </div>
+
     </div>
   </div>
 
