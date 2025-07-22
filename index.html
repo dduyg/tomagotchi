@@ -19,10 +19,10 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      padding: 0 40px; /* left and right space */
+      padding: 0 10%;
     }
 
-    .content {
+    .grid {
       width: 100%;
       display: grid;
       grid-template-columns: 1fr 1fr 2fr 1fr 1fr; /* center column 2fr */
@@ -35,12 +35,10 @@
       flex-direction: column;
       justify-content: flex-start;
     }
-
     .column h4 {
       margin: 0 0 10px;
       font-weight: bold;
     }
-
     .column p {
       margin: 0;
       line-height: 1.6;
@@ -52,7 +50,6 @@
       justify-content: center;
       align-items: center;
     }
-
     .image-column img {
       width: 100%;
       height: auto;
@@ -61,33 +58,29 @@
 
     @media (max-width: 768px) {
       body {
-        /* Center content vertically & horizontally */
         justify-content: center;
         align-items: center;
         padding: 20px;
-        height: 100vh; /* ensure full viewport height */
+        height: 100vh;
       }
-
-      .content {
+      .grid {
         grid-template-columns: 1fr;
         gap: 15px;
         width: 100%;
-        max-width: 400px; /* optional: limit max width on mobile */
         align-items: center;
       }
     }
   </style>
 </head>
 <body>
-  <div class="content">
+  <div class="grid">
     
-    <!-- Left Column 1 -->
+    <!-- Left 1 -->
     <div class="column">
       <h4>Name</h4>
       <p>Tomoya Okada</p>
     </div>
-
-    <!-- Left Column 2 -->
+    <!-- Left 2 -->
     <div class="column">
       <h4>Information</h4>
       <p>
@@ -96,18 +89,17 @@
       </p>
     </div>
 
-    <!-- Center Image Column -->
+    <!-- Center Image -->
     <div class="image-column">
-      <img src="VAPORGRAM_3.png" alt="🎱" />
+      <img src="VAPORGRAM_1.png" alt="🎱" />
     </div>
 
-    <!-- Right Column 1 -->
+    <!-- Right 1 -->
     <div class="column">
       <h4>UseCamera</h4>
       <p>SigmaFP</p>
     </div>
-
-    <!-- Right Column 2 -->
+    <!-- Right 2 -->
     <div class="column">
       <h4>Contact</h4>
       <p>t.design@linkrec.net</p>
