@@ -3,158 +3,112 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Design Process</title>
+  <title>Wocess</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      margin: 0;
-      padding: 0;
       font-family: monospace;
       background-color: #d3d3d3;
-      overflow-x: hidden;
+      margin: 0;
+      padding-bottom: 100px; /* space for fixed footer */
     }
 
-    /* HEADER */
-    .header {
-      width: 70%;
-      display: flex;
-      gap: 40px;
+    .container {
+      max-width: 1200px;
+      margin: auto;
       padding: 40px 20px;
     }
 
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
     .header img {
-      width: 100%;
-      max-width: 300px;
-      border: 6px solid #aaa;
-      background-color: #fff;
+      max-width: 100%;
+      border: 1px solid #999;
     }
 
     .header-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
+      flex: 1;
+      min-width: 280px;
     }
 
-    .header-content .button {
+    .button {
       display: inline-block;
-      padding: 8px 20px;
-      margin-bottom: 12px;
-      border: 2px solid black;
+      padding: 6px 14px;
+      margin: 10px 10px 10px 0;
+      border: 1px solid black;
       border-radius: 20px;
-      font-size: 14px;
+      font-weight: bold;
       background: none;
       cursor: pointer;
     }
 
     .button.blue {
-      color: blue;
-      border-color: blue;
+      color: #2a4dff;
+      border-color: #2a4dff;
     }
 
-    .header-content p {
-      margin-top: 12px;
-      line-height: 1.5;
-      font-size: 16px;
-    }
-
-    /* MAIN */
-    .main {
-      width: 100%;
-      padding: 40px 20px;
+    .grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 40px;
+      margin-bottom: 60px;
     }
 
-    .step {
-      font-size: 14px;
+    .grid > div {
+      background: none;
     }
 
-    .step-title {
-      position: relative;
+    .section-title {
       font-weight: bold;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-      padding-right: 30px;
+      margin-bottom: 8px;
     }
 
-    .step-number {
-      position: absolute;
-      top: -6px;
-      right: 0;
-      font-weight: normal;
+    .light-text {
+      color: #999;
       font-size: 14px;
-    }
-
-    .light {
-      color: #666;
-      font-size: 13px;
       margin-top: 10px;
     }
 
-    /* SECOND ROW in main grid */
-    .second-row {
-      grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
-      margin-top: 20px;
-    }
-
-    /* BUTTONS */
-    .buttons {
-      margin: 40px 20px;
+    .action-buttons {
       display: flex;
-      gap: 20px;
       flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 120px;
     }
 
-    .buttons .button {
-      padding: 10px 24px;
-      border: 2px solid black;
-      border-radius: 25px;
-      font-size: 14px;
-      font-weight: bold;
-      background: none;
-      cursor: pointer;
-    }
-
-    /* FOOTER */
-    .footer {
+    .fixed-footer {
       position: fixed;
       bottom: 0;
       left: 0;
-      width: 100%;
+      right: 0;
+      background-color: #d3d3d3;
       padding: 20px;
-      background: #d3d3d3;
-      border-top: 1px solid #999;
+      font-size: 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 14px;
+      border-top: 1px solid #999;
     }
 
-    .footer .right {
-      font-size: 32px;
+    .footer-brand {
       font-weight: bold;
+      font-size: 24px;
     }
 
     @media (max-width: 768px) {
-      .header {
-        flex-direction: column;
-        width: 100%;
-        padding: 20px;
-      }
-
-      .main,
-      .second-row {
+      .grid {
         grid-template-columns: 1fr;
       }
 
-      .footer {
+      .header {
+        flex-direction: column;
+      }
+
+      .fixed-footer {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
@@ -164,73 +118,61 @@
 </head>
 <body>
 
-  <!-- HEADER -->
-  <div class="header">
-    <div>
-      <img src="https://via.placeholder.com/300x450?text=Design+Preview" alt="Preview">
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-image">
+        <img src="your-image.jpg" alt="Web Design Example">
+      </div>
+      <div class="header-content">
+        <button class="button blue">WEB DESIGN PROCESS</button>
+        <button class="button">IDENTITY PROCESS</button>
+        <p>
+          Before starting work on a project interview the customer, formulate the technical specifications, determine the deadlines and cost, and sign the contract
+        </p>
+      </div>
     </div>
-    <div class="header-content">
-      <button class="button blue">WEB DESIGN PROCESS</button>
-      <button class="button">IDENTITY PROCESS</button>
-      <p>
-        Before starting work on a project interview the customer, formulate the technical specifications, determine the deadlines and cost, and sign the contract.
-      </p>
-    </div>
-  </div>
 
-  <!-- MAIN GRID -->
-  <div class="main">
-    <!-- Row 1 -->
-    <div class="step">
-      <div class="step-title">PROTOTYPING AND VISUAL RESEARCH <span class="step-number">1</span></div>
+    <!-- Grid Sections -->
+    <div class="grid">
+      <!-- Row 1 -->
       <div>
-        references (design examples)<br>
-        site prototype (structure)
+        <div class="section-title">PROTOTYPING AND VISUAL RESEARCH</div>
+        <p>references (design examples)<br>site prototype (structure)</p>
+        <div class="light-text">prepayment 20%</div>
       </div>
-      <div class="light">prepayment 20%</div>
-    </div>
-
-    <div class="step">
-      <div class="step-title">CONCEPT AND DESIGN <span class="step-number">2</span></div>
       <div>
-        concept design development for the main page;<br>
-        design of all other pages to follow upon agreement
+        <div class="section-title">CONCEPT AND DESIGN</div>
+        <p>concept design development for the main page;<br>design of all other pages to follow upon agreement</p>
+        <div class="light-text">prepayment 30%</div>
       </div>
-      <div class="light">prepayment 30%</div>
+      <div></div>
+
+      <!-- Row 2 -->
+      <div></div>
+      <div>
+        <div class="section-title">DESKTOP VERSION LAYOUT</div>
+        <p>a functioning html desktop page on low-code platform</p>
+        <div class="light-text">prepayment 30%</div>
+      </div>
+      <div>
+        <div class="section-title">ADAPTIVE AND SITE SETTINGS</div>
+        <p>adaptive html page on low-code platform with connected integrations and services</p>
+        <div class="light-text">prepayment 20%</div>
+      </div>
     </div>
 
-    <div></div> <!-- Empty cell -->
-
-    <!-- Row 2 -->
-    <div class="second-row">
-      <div></div> <!-- Empty cell -->
-
-      <div class="step">
-        <div class="step-title">DESKTOP VERSION LAYOUT <span class="step-number">3</span></div>
-        <div>a functioning html desktop page on low-code platform</div>
-        <div class="light">prepayment 30%</div>
-      </div>
-
-      <div class="step">
-        <div class="step-title">ADAPTIVE AND SITE SETTINGS <span class="step-number">4</span></div>
-        <div>adaptive html page on low-code platform with connected integrations and services</div>
-        <div class="light">prepayment 20%</div>
-      </div>
+    <!-- Call to Action Buttons -->
+    <div class="action-buttons">
+      <button class="button">FILL OUT THE BRIEF →</button>
+      <button class="button">BOOK FOR PROJECT →</button>
     </div>
   </div>
 
-  <!-- BUTTONS -->
-  <div class="buttons">
-    <button class="button">FILL OUT THE BRIEF →</button>
-    <button class="button">BOOK FOR PROJECT →</button>
-  </div>
-
-  <!-- FOOTER -->
-  <div class="footer">
-    <div class="left">
-      art direction . visual identity . logo . web design . package . set design
-    </div>
-    <div class="right">.DESIGN</div>
+  <!-- Fixed Footer -->
+  <div class="fixed-footer">
+    <span>art direction . visual identity . logo . web design . package . set design</span>
+    <span class="footer-brand">.DESIGN</span>
   </div>
 
 </body>
