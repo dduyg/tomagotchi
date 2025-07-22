@@ -1,140 +1,243 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-  <meta charset="UTF-8" />  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
-  <title>Liminal🤺Loop</title>  
-  <link href="https://fonts.googleapis.com/css2?family=Asta+Sans:wght@452&display=swap" rel="stylesheet">  
-  <style>  
-    * { box-sizing: border-box; }  
-    html, body {  
-      margin: 0;  
-      padding: 0;  
-      height: 100%;  
-      font-family: "Asta Sans", sans-serif;  
-      font-size: 0.9rem;  
-      background-color: #F0F0F0;  
-      color: #161616;  
-      line-height: 1.2;  
-    }  
-    body {  
-      display: flex;  
-      justify-content: center;  
-      align-items: center;  
-      height: 100vh;  
-      padding: 0 10%;  
-    }  
-  
-    .access-grid {  
-      width: 100%;  
-      display: grid;  
-      grid-template-columns: 1fr 1fr 2fr 1fr 1fr; /* center column 2fr */  
-      gap: 5%;  
-      align-items: start;  
-    }  
-    .input {  
-      display: flex;  
-      flex-direction: column;  
-      justify-content: flex-start;  
-    }  
-    .input h4 {  
-      margin: 0 0 4px;  
-      color: black;  
-      font-weight: bold;  
-    }  
-    .input p {  
-      margin: 0; padding: 0;  
-      word-break: break-word;  
-    }  
-  
-    .tape {  
-      display: flex;  
-      justify-content: center;  
-      align-items: center;  
-      padding: 0 6%;  
-    }  
-  
-    @media (max-width: 768px) {  
-      body {  
-        justify-content: center;  
-        align-items: center;  
-        padding: 20px;  
-        height: 100vh;  
-      }  
-      .access-grid {  
-        grid-template-columns: 1fr;  
-        gap: 25px;  
-        width: 100%;  
-        align-items: center;  
-      }  
-      .tape {padding: 0;}  
-    }  
-  </style>  
-</head>  
-<body>  
-  <div class="access-grid">  
-      
-    <!-- ♟️Left1 -->  
-    <div class="input">  
-      <h4>Name</h4>  
-      <p>Touch the Void</p>  
-    </div>  
-    <!-- ♟️Left2 -->  
-    <div class="input">  
-      <h4>Concept</h4>  
-      <p>  
-        This synthetic data generation idea involves producing artificial datasets   
-        mimicking real-world cyberpunk city environments for testing algorithms.  
-      </p>  
-    </div>  
-  
-    <!-- 🦹🏼‍♂️Center [《》] -->  
-    <div class="tape">  
-      <video id="myVideo" width="100%" height="auto" autoplay loop playsinline style="border: 1px double;">   
-        <source id="videoSource" src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/tell-Me.mp4" type="video/mp4" />  
-        Your browser does not support the video tag.  
-      </video>  
-    </div>  
-  
-    <!-- ♟️Right1 -->  
-    <div class="input">  
-      <h4>Waveform</h4>  
-      <p>.csv, .xml, .log</p>  
-    </div>  
-    <!-- ♟️Right2 -->  
-    <div class="input">  
-      <h4>Terminal Access</h4>  
-      <p>shigunaru@message.node</p>  
-    </div>  
-  
-  </div>  
-  <script>  
-    const video = document.getElementById('myVideo');  
-    const source = document.getElementById('videoSource');
-
-    function updateVideoSource() {
-      const smallScreenSrc = 'https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/tell-Me_small.mp4';
-      const largeScreenSrc = 'https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/tell-Me.mp4';
-      
-      const newSrc = window.innerWidth <= 768 ? smallScreenSrc : largeScreenSrc;
-
-      if (source.getAttribute('src') !== newSrc) {
-        source.src = newSrc;
-        video.load();
-        video.play();
-      }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LiminalLoop</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: monospace;
+      background-color: #d3d3d3;
+      overflow-x: hidden;
     }
 
-    // Initial source update
-    updateVideoSource();
+    /* HEADER (only 70% width, left aligned) */
+    .header-wrapper {
+      width: 70vw;
+      padding: 40px 20px;
+    }
 
-    // Update source on window resize
-    window.addEventListener('resize', updateVideoSource);
+    .header {
+      display: flex;
+      gap: 40px;
+    }
+    .header img {
+      width: 100%;
+      max-width: 300px;
+      border: 6px solid #aaa;
+      background-color: white;
+    }
+    .header-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .header-content .button {
+      display: inline-block;
+      padding: 8px 20px;
+      margin-bottom: 12px;
+      border: 2px solid black;
+      border-radius: 20px;
+      font-size: 14px;
+      background: none;
+      cursor: pointer;
+    }
 
-    // Toggle play/pause on click
-    video.addEventListener('click', function () {  
-      video.paused ? video.play() : video.pause();  
-    });  
-  </script>  
-</body>  
+    .button.blue {
+      color: blue;
+      border-color: blue;
+    }
+
+    .header-content p {
+      margin-top: 12px;
+      line-height: 1.5;
+      font-size: 16px;
+    }
+
+    /* MAIN */
+    .main {
+      width: 100%;
+      padding: 40px 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .step {
+      font-size: 14px;
+    }
+
+    .step-title {
+      position: relative;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      padding-right: 30px;
+    }
+
+    .step-number {
+      position: absolute;
+      top: -6px;
+      right: 0;
+      font-weight: normal;
+      font-size: 14px;
+    }
+
+    .light {
+      color: #666;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    /* SECOND ROW */
+    .second-row {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 20px;
+    }
+
+    /* BUTTONS */
+    .buttons {
+      margin: 40px 20px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .buttons .button {
+      padding: 10px 24px;
+      border: 2px solid black;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: bold;
+      background: none;
+      cursor: pointer;
+    }
+
+    /* FOOTER */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px;
+      background: #d3d3d3;
+      border-top: 1px solid #999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .footer .right {
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+      }
+
+      .header-wrapper {
+        width: 100%;
+        padding: 20px;
+      }
+
+      .main,
+      .second-row {
+        grid-template-columns: 1fr;
+      }
+
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .footer .right {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER WRAPPER: 70% width only -->
+  <div class="header-wrapper">
+    <div class="header">
+      <div>
+        <img src="https://via.placeholder.com/300x450?text=Design+Preview" alt="Preview">
+      </div>
+      <div class="header-content">
+        <button class="button blue">WEB DESIGN PROCESS</button>
+        <button class="button">IDENTITY PROCESS</button>
+        <p>
+          Before starting work on a project interview the customer, formulate the technical specifications, determine the deadlines and cost, and sign the contract.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT: full width -->
+  <div class="main">
+    <!-- Row 1 -->
+    <div class="step">
+      <div class="step-title">PROTOTYPING AND VISUAL RESEARCH <span class="step-number">1</span></div>
+      <div>
+        references (design examples)<br>
+        site prototype (structure)
+      </div>
+      <div class="light">prepayment 20%</div>
+    </div>
+
+    <div class="step">
+      <div class="step-title">CONCEPT AND DESIGN <span class="step-number">2</span></div>
+      <div>
+        concept design development for the main page;<br>
+        design of all other pages to follow upon agreement
+      </div>
+      <div class="light">prepayment 30%</div>
+    </div>
+
+    <div></div> <!-- Empty cell -->
+
+    <!-- Row 2 -->
+    <div class="second-row">
+      <div></div> <!-- Empty cell -->
+
+      <div class="step">
+        <div class="step-title">DESKTOP VERSION LAYOUT <span class="step-number">3</span></div>
+        <div>a functioning html desktop page on low-code platform</div>
+        <div class="light">prepayment 30%</div>
+      </div>
+
+      <div class="step">
+        <div class="step-title">ADAPTIVE AND SITE SETTINGS <span class="step-number">4</span></div>
+        <div>adaptive html page on low-code platform with connected integrations and services</div>
+        <div class="light">prepayment 20%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="buttons">
+    <button class="button">FILL OUT THE BRIEF →</button>
+    <button class="button">BOOK FOR PROJECT →</button>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="left">
+      art direction . visual identity . logo . web design . package . set design
+    </div>
+    <div class="right">.DESIGN</div>
+  </div>
+
+</body>
 </html>
