@@ -1,122 +1,156 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Liminal🤺Loop</title>
-  <link href="https://fonts.googleapis.com/css2?family=Asta+Sans:wght@452&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; }
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: "Asta Sans", sans-serif;
-      font-size: 0.9rem;
-      background-color: #F0F0F0;
-      color: #161616;
-      line-height: 1.2;
-    }
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      padding: 0 10%;
-    }
-
-    .access-grid {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr 2fr 1fr 1fr; /* center column 2fr */
-      gap: 5%;
-      align-items: start;
-    }
-    .input {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-    .input h4 {
-      margin: 0 0 4px;
-      color: black;
-      font-weight: bold;
-    }
-    .input p {
-      margin: 0; padding: 0;
-      word-break: break-word;
-    }
-
-    .tape {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0 6%;
-    }
-
-    @media (max-width: 768px) {
-      body {
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-        height: 100vh;
-      }
-      .access-grid {
-        grid-template-columns: 1fr;
-        gap: 25px;
-        width: 100%;
-        align-items: center;
-      }
-      .tape {padding: 0;}
-    }
-  </style>
-</head>
-<body>
-  <div class="access-grid">
+<!DOCTYPE html>    
+<html lang="en">    
+<head>    
+  <meta charset="UTF-8" />    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>    
+  <title>Liminal🤺Loop</title>    
+  <link href="https://fonts.googleapis.com/css2?family=Asta+Sans:wght@452&display=swap" rel="stylesheet">    
+  <style>    
+    * { box-sizing: border-box; }    
+    html, body {    
+      margin: 0;    
+      padding: 0;    
+      height: 100%;    
+      font-family: "Asta Sans", sans-serif;    
+      font-size: 0.9rem;    
+      background-color: #F0F0F0;    
+      color: #161616;    
+      line-height: 1.2;    
+    }    
+    body {    
+      display: flex;    
+      justify-content: center;    
+      align-items: center;    
+      height: 100vh;    
+      padding: 0 10%;    
+    }    
     
-    <!-- ♟️Left1 -->
-    <div class="input">
-      <h4>Name</h4>
-      <p>Touch the Void</p>
-    </div>
-    <!-- ♟️Left2 -->
-    <div class="input">
-      <h4>Concept</h4>
-      <p>
-        This synthetic data generation idea involves producing artificial datasets 
-        mimicking real-world cyberpunk city environments for testing algorithms.
-      </p>
-    </div>
+    .access-grid {    
+      width: 100%;    
+      display: grid;    
+      grid-template-columns: 1fr 1fr 2fr 1fr 1fr; /* center column 2fr */    
+      gap: 5%;    
+      align-items: start;    
+    }    
+    
+    .input {    
+      display: flex;    
+      flex-direction: column;    
+      justify-content: flex-start;    
+    }    
+    
+    .input h4 {    
+      margin: 0 0 4px;    
+      color: black;    
+      font-weight: bold;    
+    }    
+    
+    .input p {    
+      margin: 0; padding: 0;    
+      word-break: break-word;    
+    }    
+    
+    .tape {    
+      display: flex;    
+      justify-content: center;    
+      align-items: center;    
+      padding: 0 6%;    
+    }
 
-    <!-- 🦹🏼‍♂️Center [《》] -->
-    <div class="tape">
-      <video id="myVideo" width="100%" height="auto" autoplay loop playsinline style="border: 1px double;"> 
-        <source src="tell-Me.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-    </div>
+    /* New class for video cropping */
+    .view-clip {
+      width: 100%;
+      overflow: hidden;
+      border: 1px double;
+    }
 
-    <!-- ♟️Right1 -->
-    <div class="input">
-      <h4>Waveform</h4>
-      <p>.csv, .xml, .log</p>
-    </div>
-    <!-- ♟️Right2 -->
-    <div class="input">
-      <h4>Terminal Access</h4>
-      <p>shigunaru@message.node</p>
-    </div>
+    .view-clip video {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      object-position: center top;
+    }
 
-  </div>
-  <script>
-    const video = document.getElementById('myVideo');
-    video.addEventListener('click', function () {
-      if (video.paused) {
-        video.play();
-      } else {
-        video.pause();
+    @media (max-width: 768px) {    
+      body {    
+        justify-content: center;    
+        align-items: center;    
+        padding: 20px;    
+        height: 100vh;    
+      }    
+    
+      .access-grid {    
+        grid-template-columns: 1fr;    
+        gap: 25px;    
+        width: 100%;    
+        align-items: center;    
+      }    
+    
+      .tape { padding: 0; }
+
+      .view-clip {
+        height: 65vh; /* Show only top 65% of the video */
       }
-    });
-  </script>
-</body>
+
+      .view-clip video {
+        height: 100vh; /* Make video full height */
+        object-position: top; /* Crop from bottom */
+      }
+    }    
+  </style>    
+</head>    
+<body>    
+  <div class="access-grid">    
+        
+    <!-- ♟️Left1 -->    
+    <div class="input">    
+      <h4>Name</h4>    
+      <p>Touch the Void</p>    
+    </div>    
+
+    <!-- ♟️Left2 -->    
+    <div class="input">    
+      <h4>Concept</h4>    
+      <p>    
+        This synthetic data generation idea involves producing artificial datasets     
+        mimicking real-world cyberpunk city environments for testing algorithms.    
+      </p>    
+    </div>    
+    
+    <!-- 🦹🏼‍♂️Center [《》] -->    
+    <div class="tape">    
+      <div class="view-clip">
+        <video id="myVideo" autoplay loop playsinline muted>
+          <source src="tell-Me.mp4" type="video/mp4" />    
+          Your browser does not support the video tag.    
+        </video>
+      </div>  
+    </div>    
+    
+    <!-- ♟️Right1 -->    
+    <div class="input">    
+      <h4>Waveform</h4>    
+      <p>.csv, .xml, .log</p>    
+    </div>    
+
+    <!-- ♟️Right2 -->    
+    <div class="input">    
+      <h4>Terminal Access</h4>    
+      <p>shigunaru@message.node</p>    
+    </div>    
+    
+  </div>    
+    
+  <script>    
+    const video = document.getElementById('myVideo');    
+    video.addEventListener('click', function () {    
+      if (video.paused) {    
+        video.play();    
+      } else {    
+        video.pause();    
+      }    
+    });    
+  </script>    
+</body>    
 </html>
