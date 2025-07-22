@@ -91,7 +91,7 @@
     <!-- 🦹🏼‍♂️Center [《》] -->  
     <div class="tape">  
       <video id="myVideo" width="100%" height="auto" autoplay loop playsinline style="border: 1px double;">   
-        <source id="videoSource" src="tell-Me.mp4" type="video/mp4" />  
+        <source id="videoSource" src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/tell-Me.mp4" type="video/mp4" />  
         Your browser does not support the video tag.  
       </video>  
     </div>  
@@ -113,13 +113,16 @@
     const source = document.getElementById('videoSource');
 
     function updateVideoSource() {
-      if (window.innerWidth <= 768) {
-        source.src = 'tell-Me_small.mp4';
-      } else {
-        source.src = 'tell-Me.mp4';
+      const smallScreenSrc = 'https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/tell-Me_small.mp4';
+      const largeScreenSrc = 'https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/tell-Me.mp4';
+      
+      const newSrc = window.innerWidth <= 768 ? smallScreenSrc : largeScreenSrc;
+
+      if (source.getAttribute('src') !== newSrc) {
+        source.src = newSrc;
+        video.load();
+        video.play();
       }
-      video.load();  // reload video with new source
-      video.play();
     }
 
     // Initial source update
@@ -130,11 +133,7 @@
 
     // Toggle play/pause on click
     video.addEventListener('click', function () {  
-      if (video.paused) {  
-        video.play();  
-      } else {  
-        video.pause();  
-      }  
+      video.paused ? video.play() : video.pause();  
     });  
   </script>  
 </body>  
