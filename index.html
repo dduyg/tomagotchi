@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Liminal🎱Loop</title>
   <style>
-    * {   box-sizing: border-box; }
+    * { box-sizing: border-box; }
     html, body {
       margin: 0;
       padding: 0;
@@ -19,13 +19,13 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      padding: 0 40px; /* creates left and right space */
+      padding: 0 40px; /* left and right space */
     }
 
     .content {
       width: 100%;
       display: grid;
-      grid-template-columns: 1fr 1fr 2.5fr 1fr 1fr; /* wider center column */
+      grid-template-columns: 1fr 1fr 2fr 1fr 1fr; /* center column 2fr */
       gap: 20px;
       align-items: start;
     }
@@ -61,11 +61,19 @@
 
     @media (max-width: 768px) {
       body {
-        align-items: flex-start;
+        /* Center content vertically & horizontally */
+        justify-content: center;
+        align-items: center;
         padding: 20px;
+        height: 100vh; /* ensure full viewport height */
       }
+
       .content {
         grid-template-columns: 1fr;
+        gap: 15px;
+        width: 100%;
+        max-width: 400px; /* optional: limit max width on mobile */
+        align-items: center;
       }
     }
   </style>
@@ -90,7 +98,7 @@
 
     <!-- Center Image Column -->
     <div class="image-column">
-      <img src="VAPORGRAM_4.png" alt="🎱" />
+      <img src="VAPORGRAM_3.png" alt="🎱" />
     </div>
 
     <!-- Right Column 1 -->
