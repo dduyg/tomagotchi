@@ -15,8 +15,11 @@
     }
     * { box-sizing: border-box; }
     html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
+      display: flex;
+      flex-direction: column;
       background-color: #C1C2BC;
       font-family: 'Fliege Mono', monospace;
       font-variation-settings: 'wght' 400;
@@ -54,7 +57,6 @@
       margin-bottom: 2px;
       text-align: right;
     }
-
     header .content {
       width: 60%;
       display: flex;
@@ -65,8 +67,8 @@
       font-size: 15px;
       max-width: 500px;
     }
-
-    header .content .button {  
+    
+    header .content .button {
       align-self: flex-start;
     }
     .button {
@@ -89,10 +91,10 @@
 
     main {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
       gap: 40px;
-      width: 100%;
       padding: 0 20px;
+      flex-grow: 1;
     }
     .entry {
       font-size: 14px;
@@ -124,13 +126,10 @@
       display: flex;
       justify-content: center;
     }
+
     footer {
-      position: absolute;
-      bottom: 0;
-      right: 0;
       text-align: right;
       padding: 60px 3px 3px;
-      overflow: hidden;
     }
     footer .roar {
       font-size: 48px;
@@ -139,11 +138,12 @@
       font-family: "Bebas Neue", sans-serif;
     }
     footer .services {
-      font-size: 14px;    
+      font-size: 14px;
       white-space: nowrap;
     }
 
     @media (max-width: 768px) {
+      main { gap: 20px; }
       .entry { font-size: 11px; }
       .text-block { font-size: 12px; }
       aside {
@@ -160,7 +160,7 @@
     <div class="portrayal">
       <div class="title">Data Product Workflow</div>
       <div>
-        <div class="sub">step by step</div> 
+        <div class="sub">step by step</div>
         <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/jellyfish.gif" alt="🪼">
       </div>
     </div>
@@ -207,7 +207,7 @@
 
   <footer>
     <div class="roar">.BUILD</div>
-    <div class="services">data contracts . real-time systems . RAG dev process . prompt pipelines . feature stores . vector search</div>  
+    <div class="services">data contracts . real-time systems . RAG dev process . prompt pipelines . feature stores . vector search</div>
   </footer>
 </body>
 </html>
