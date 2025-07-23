@@ -125,17 +125,12 @@
       justify-content: center;
     }
     footer {
-      position: fixed;
+      position: absolute;
       bottom: 0;
-      left: 0;
-      width: 100%;
-      text-align: left;
-      padding: 10px 3px 3px;
-      font-size: 14px;
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
-      flex-direction: column;
+      right: 0;
+      text-align: right;
+      padding: 60px 3px 3px;
+      overflow: hidden;
     }
     footer .roar {
       font-size: 48px;
@@ -144,10 +139,8 @@
       font-family: "Bebas Neue", sans-serif;
     }
     footer .credits {
-      color: black;
-      width: 100vw;
-      display: flex;
-      justify-content: space-between;
+      font-size: 14px;    
+      white-space: nowrap;
     }
 
     @media (max-width: 768px) {
@@ -157,7 +150,7 @@
         flex-direction: column;
         align-items: center;
       }
-      footer { font-size: 10px; }
+      footer .credits { font-size: 8px; }
       footer .roar { font-size: 32px; }
     }
   </style>
