@@ -24,15 +24,18 @@
     }    
 
     header {
-      width: 70%;
+      width: 70vw;
       display: flex;
-      gap: 40px;
+      gap: 0;
       margin: 0 0 60px;
       padding-left: 20px;
     }
+
     .portrayal {
-      flex: 1;
-      min-width: 0;
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       background-color: #D9D9D9;
       padding: 7px;
     }
@@ -41,18 +44,32 @@
       height: auto;
       border: 7px solid #61656E;
     }
+    .portrayal .title {
+      font-weight: bold;
+      font-size: 16px;
+      text-transform: uppercase;
+    }
+    .portrayal .sub {
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
     header .content {
-      flex: 1;
-      min-width: 0;
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
     }
     .text-block {
       font-size: 15px;
-      white-space: pre-line;
-      margin-top: 20px;
       max-width: 500px;
     }
 
-    button {
+    .empty-space {
+      width: 30%;
+    }
+
+    a.button {
       display: inline-block;
       font-family: "Bebas Neue", sans-serif;
       padding: 6px 16px;
@@ -63,8 +80,10 @@
       background: none;
       cursor: pointer;
       font-size: 12px;
+      text-decoration: none;
+      color: black;
     }
-    button.blue {
+    a.button.blue {
       color: #2015FF;
       border-color: #2015FF;
     }
@@ -124,11 +143,13 @@
       font-size: 48px;
       font-weight: bold;
       line-height: 1;
+      font-family: "Bebas Neue", sans-serif;
     }
     footer .credits {
       color: black;
       display: flex;
-      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 5px;
     }
 
     @media (max-width: 768px) {
@@ -148,22 +169,16 @@
     <div class="portrayal">
       <div class="title">Web Design Process</div>
       <div>
-        <div class="title">step by step</div> 
+        <div class="sub">step by step</div> 
         <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/jellyfish.gif" alt="🪼">
       </div>
     </div>
     <div class="content">
-      <button class="blue">Web Design Process</button>
-      <button>Identity Process</button>
-      <div class="text-block">
-Before starting work
-on a project interview the
-customer, formulate the
-technical specifications,
-determine the deadlines and
-cost, and sign the contract
-      </div>
+      <a href="#" class="button blue">Web Design Process</a>
+      <a href="#" class="button">Identity Process</a>
+      <div class="text-block">Before starting work on a project interview the customer, formulate the technical specifications, determine the deadlines and cost, and sign the contract</div>
     </div>
+    <div class="empty-space"></div>
   </header>
 
   <main>
@@ -193,9 +208,10 @@ cost, and sign the contract
       <div class="prepay">prepayment 20%</div>
     </div>
   </main>
+
   <aside>
-    <button>Fill Out The Brief ➜</button>
-    <button>Book for Project ➜</button>
+    <a href="#" class="button">Fill Out The Brief ➜</a>
+    <a href="#" class="button">Book for Project ➜</a>
   </aside>
 
   <footer>
@@ -210,4 +226,4 @@ cost, and sign the contract
     </div>   
   </footer>
 </body>
-</html>    
+</html>
