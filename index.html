@@ -14,7 +14,7 @@
       font-display: swap;
     }
     * { box-sizing: border-box; }
-    html { font-size: 15px; }
+    html { font-size: clamp(13px, 1.1vw, 15px); }
     html, body {
       height: 100%;
       margin: 0;
@@ -127,6 +127,8 @@
       display: flex;
       justify-content: center;
       flex-direction: column;
+      
+      align-items: center;
     }
 
     footer {
@@ -145,9 +147,9 @@
     }
 
     @media (max-width: 768px) {
-      html { font-size: 13px; }
-      main { gap: 20px; }
-      aside { align-items: center; }
+      main { 
+        gap: 20px;
+      }
     }
   </style>
 </head>
