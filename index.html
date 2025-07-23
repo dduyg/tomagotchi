@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LiminalLoop</title>
   <style>
     body {
-      background: url('https://media0.giphy.com/media/I5zpnMMAS0XEozLhqT/giphy.gif') no-repeat center center;
+      background: url('https://media0.giphy.com/media/I5zpnMMAS0XEozLhqT/giphy.gif') no-repeat center;
       background-size: cover;
       min-height: 100vh;
       overflow: hidden;
@@ -16,19 +16,13 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        45deg,
-        #C3C795 0%,
-        #B7827E 43%,
-        #9DC7DF 79%,
-        #E6B29A 100%
-      );
+      background: linear-gradient(45deg, #C3C795 0%, #B7827E 43%, #9DC7DF 79%, #E6B29A 100%);
       background-size: 200% 200%;
       animation: rotateGradient 10s linear infinite;
       backdrop-filter: blur(3px);
       mix-blend-mode: darken;
       opacity: 0.3;
-      z-index: 0;
+      z-index: 1;
     }
 
     nav {
@@ -36,27 +30,29 @@
       flex-direction: column;
       gap: 20px;
       padding: 20px;
+      --text: #fff;
       margin: 12vh auto;
       width: fit-content;
       position: relative;
       z-index: 2;
-      --text: #fff;
     }
     nav a {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      padding-right: 1em;
+      padding: 0 1em 0 0;
       text-decoration: none;
       font-family: "Space Grotesk", sans-serif;
       font-size: 40px;
+      overflow: hidden;
       white-space: nowrap;
-      transition: filter 0.3s ease;
+      transition: filter 0.5s ease;
+      color: var(--text);
     }
     nav a i, nav a span {
       color: var(--text);
-      transition: all 0.5s ease;
       text-shadow: 0 1.1em 0 var(--text);
+      transition: all 0.5s ease;
     }
     nav a span {
       font-weight: 600;
