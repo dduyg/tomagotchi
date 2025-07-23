@@ -2,18 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Liminal🪼Loop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
+    @font-face {
+      font-family: 'Fliege Mono';
+      src: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop/fonts/FliegeMonoVF.woff2') format('woff2');
+      font-weight: 100 900; /* variable font range */
+      font-style: normal; 
+      font-display: swap;
+    }    
     * { box-sizing: border-box; }
     html, body {
       margin: 0;
       padding: 0;
-      font-family: monospace;
-      line-height: 1.2;
       background-color: #C1C2BC;
-      overflow-x: hidden;
-    }
+      font-family: 'Fliege Mono', monospace;
+      font-variation-settings: 'wght' 400;
+      line-height: 1.2;
+    }    
 
     header {
       width: 70%;
@@ -25,31 +33,36 @@
     .portrayal {
       flex: 1;
       min-width: 0;
+      background-color: #D9D9D9;
+      padding: 7px;
     }
     .portrayal img {
       width: 100%;
       height: auto;
-      border: 8px solid #D9D9D9;
+      border: 7px solid #61656E;
     }
     header .content {
       flex: 1;
       min-width: 0;
     }
-    header .content p {
+    .text-block {
       font-size: 15px;
+      white-space: pre-line;
+      margin-top: 20px;
+      max-width: 500px;
     }
 
     button {
       display: inline-block;
+      font-family: "Bebas Neue", sans-serif;
       padding: 6px 16px;
       margin: 10px 10px 10px 0;
       border: 2px solid black;
       border-radius: 30px;
-      font-weight: bold;
       text-transform: uppercase;
       background: none;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 12px;
     }
     button.blue {
       color: #2015FF;
@@ -120,7 +133,7 @@
 
     @media (max-width: 768px) {
       .entry { font-size: 11px; }
-      header .content p { font-size: 12px; }
+      .text-block { font-size: 12px; }
       aside {
         flex-direction: column;
         align-items: center;
@@ -132,11 +145,24 @@
 </head>
 <body>
   <header>
-    <div class="portrayal"><img src="jellyfish.gif" alt="🪼"></div>
+    <div class="portrayal">
+      <div class="title">Web Design Process</div>
+      <div>
+        <div class="title">step by step</div> 
+        <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/jellyfish.gif" alt="🪼">
+      </div>
+    </div>
     <div class="content">
       <button class="blue">Web Design Process</button>
       <button>Identity Process</button>
-      <p>Before starting work on a project interview the customer, formulate the technical specifications, determine the deadlines and cost, and sign the contract</p>
+      <div class="text-block">
+Before starting work
+on a project interview the
+customer, formulate the
+technical specifications,
+determine the deadlines and
+cost, and sign the contract
+      </div>
     </div>
   </header>
 
@@ -184,4 +210,4 @@
     </div>   
   </footer>
 </body>
-</html>
+</html>    
