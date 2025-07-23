@@ -818,10 +818,8 @@ If the image is used as a background:
 - [ ] Virtual Interface
 - [ ] Synthetic Logic
 - [ ] Aquatic Data Wrangler
-- [ ] Subaquatic Data Explorer
 - [ ] Byte Loop Void
 - [ ] Code Warp Grid
-- [ ] Code Wire Loop
 
 
 # ⌨️
