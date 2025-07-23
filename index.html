@@ -3,125 +3,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Web Design Process</title>
+  <title>Web Design Process Page</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Courier New', Courier, monospace;
+      padding: 40px;
+      font-family: 'Courier New', monospace;
       background-color: #c5c5c0;
       display: flex;
-      flex-direction: row;
+      gap: 60px;
       justify-content: center;
       align-items: flex-start;
-      gap: 40px;
-      padding: 40px;
     }
 
-    .left-panel {
-      background-color: #fff;
-      padding: 20px;
-      width: 350px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    .left {
+      width: 320px;
+      background-color: white;
+      border: 12px solid #888;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
 
-    .product-image {
+    .left img {
       width: 100%;
-      height: auto;
-      border: 1px solid #ccc;
+      display: block;
     }
 
-    .thumbnails, .gallery {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 10px;
-    }
-
-    .thumbnails img, .gallery img {
-      width: 70px;
-      height: auto;
-      border: 1px solid #aaa;
-    }
-
-    .footer {
-      background-color: black;
-      color: white;
-      padding: 20px;
-      text-align: center;
-      font-size: 14px;
-      margin-top: 20px;
-    }
-
-    .right-panel {
-      max-width: 400px;
+    .right {
+      max-width: 500px;
+      color: black;
     }
 
     .button {
       display: inline-block;
       padding: 10px 20px;
-      margin: 10px 0;
-      font-family: 'Courier New', Courier, monospace;
+      margin-bottom: 10px;
       font-size: 16px;
-      border-radius: 20px;
+      font-weight: bold;
+      border-radius: 25px;
+      font-family: 'Courier New', monospace;
       border: 2px solid black;
-      cursor: pointer;
       text-align: center;
       text-decoration: none;
+      cursor: default;
     }
 
     .button.blue {
-      border-color: blue;
       color: blue;
+      border-color: blue;
     }
 
     .button.black {
-      background-color: #c5c5c0;
+      background-color: transparent;
       color: black;
     }
 
-    .content-text {
-      margin-top: 20px;
+    .text-block {
       font-size: 16px;
       line-height: 1.6;
+      margin-top: 20px;
+      white-space: pre-line;
     }
   </style>
 </head>
 <body>
-  <div class="left-panel">
-    <img src="https://via.placeholder.com/300x400?text=Main+Product" alt="Main Product" class="product-image" />
 
-    <div class="thumbnails">
-      <img src="https://via.placeholder.com/70x100?text=1" alt="thumb1" />
-      <img src="https://via.placeholder.com/70x100?text=2" alt="thumb2" />
-      <img src="https://via.placeholder.com/70x100?text=3" alt="thumb3" />
-      <img src="https://via.placeholder.com/70x100?text=4" alt="thumb4" />
-    </div>
+  <!-- Left panel (image) -->
+  <div class="left">
+    <img src="https://via.placeholder.com/320x700.png?text=Product+Page+Mockup" alt="Product Page" />
+  </div>
 
-    <div class="gallery">
-      <img src="https://via.placeholder.com/70x100?text=G1" alt="gallery1" />
-      <img src="https://via.placeholder.com/70x100?text=G2" alt="gallery2" />
-      <img src="https://via.placeholder.com/70x100?text=G3" alt="gallery3" />
-      <img src="https://via.placeholder.com/70x100?text=G4" alt="gallery4" />
-    </div>
+  <!-- Right panel (content) -->
+  <div class="right">
+    <div class="button blue">WEB DESIGN PROCESS</div><br>
+    <div class="button black">IDENTITY PROCESS</div>
 
-    <div class="footer">
-      <p>DON'T KILL MY VIBE</p>
-      <p>Terms & Conditions | Privacy Policy</p>
+    <div class="text-block">
+      Before starting work
+      on a project interview the
+      customer, formulate the
+      technical specifications,
+      determine the deadlines and
+      cost, and sign the contract
     </div>
   </div>
 
-  <div class="right-panel">
-    <div>
-      <div class="button blue">WEB DESIGN PROCESS</div>
-      <div class="button black">IDENTITY PROCESS</div>
-    </div>
-
-    <div class="content-text">
-      <p>
-        Before starting work on a project interview the customer,
-        formulate the technical specifications, determine the
-        deadlines and cost, and sign the contract
-      </p>
-    </div>
-  </div>
 </body>
 </html>
