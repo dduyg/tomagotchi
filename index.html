@@ -31,7 +31,7 @@
     header {
       width: 70vw;
       display: flex;
-      gap: 3%;
+      gap: 20px;
       padding-left: 20px;
       margin-bottom: 60px;
     }
@@ -68,7 +68,7 @@
       font-size: 0.9375rem;
       max-width: 500px;
     }
-
+    
     header .content .button {
       align-self: flex-start;
     }
@@ -93,32 +93,29 @@
     main {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 4%;
+      gap: 40px;
       padding: 0 20px;
       flex-grow: 1;
     }
     .entry {
-      position: relative;
-      font-size: 0.875rem;
-      padding-top: 1.5rem;
-    }
-    .entry::after {
-      content: attr(data-num);
-      position: absolute;
-      top: 0;
-      right: 0;
-      font-weight: bold;
-      font-size: 1.1rem;
-      background-color: #C1C2BC;
-      padding: 2px 6px;
+      font-size: clamp(0.85rem, 1vw + 0.5rem, 1rem);
     }
     .entry .title {
+      position: relative;
       font-weight: bold;
       text-transform: uppercase;
       margin-bottom: 6px;
+      padding-right: 24px;
     }
     .entry .description {
       margin: 30px 0;
+    }
+    .entry .num {
+      position: absolute;
+      top: -4px;
+      right: 0;
+      font-weight: normal;
+      font-size: 1.1rem;
     }
     .prepay {
       color: gray;
@@ -149,8 +146,8 @@
     }
 
     @media (max-width: 768px) {
-      main {
-        gap: 4%;
+      main { 
+        gap: 20px;
       }
     }
   </style>
@@ -174,13 +171,13 @@
 
   <main>
     <!-- 🌀Row1 -->
-    <div class="entry" data-num="1">
-      <div class="title">DATA DISCOVERY & RESEARCH</div>
+    <div class="entry">
+      <div class="title">DATA DISCOVERY & RESEARCH <span class="num">1</span></div>
       <div class="description">define data sources, assess quality, and gather stakeholder needs</div>
       <div class="prepay">prepayment 20%</div>
     </div>
-    <div class="entry" data-num="2">
-      <div class="title">ARCHITECTURE & DESIGN</div>
+    <div class="entry">
+      <div class="title">ARCHITECTURE & DESIGN <span class="num">2</span></div>
       <div class="description">select tools, design data models, schemas, and system architecture</div>
       <div class="prepay">prepayment 30%</div>
     </div>
@@ -188,13 +185,13 @@
 
     <!-- 🌀Row2 -->
     <div><!--EMPTY□ENTRY--></div>
-    <div class="entry" data-num="3">
-      <div class="title">DEVELOPMENT & CODING</div>
+    <div class="entry">
+      <div class="title">DEVELOPMENT & CODING <span class="num">3</span></div>
       <div class="description">build pipelines & automated workflows; version control and review</div>
       <div class="prepay">prepayment 30%</div>
     </div>
-    <div class="entry" data-num="4">
-      <div class="title">DEPLOYMENT & MONITORING</div>
+    <div class="entry">
+      <div class="title">DEPLOYMENT & MONITORING <span class="num">4</span></div>
       <div class="description">deploy data product, configure monitoring, and set alerts</div>
       <div class="prepay">prepayment 20%</div>
     </div>
