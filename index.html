@@ -67,6 +67,39 @@
       margin: 0 0.2rem;
     }
 
+    .section {
+      width: 100%;
+      max-width: 1000px;
+      padding: 2rem 1rem;
+      box-sizing: border-box;
+    }
+
+    .row {
+      display: flex;
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+
+    .row.title-row .title {
+      width: 55%;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .row.title-row .empty {
+      width: 45%;
+    }
+
+    .row.text-row .left-empty {
+      width: 25%;
+    }
+
+    .row.text-row .text {
+      width: 75%;
+      font-size: 1rem;
+      line-height: 1.6rem;
+    }
+
     .footer {
       font-size: 1rem;
       margin: 2rem 0;
@@ -82,6 +115,21 @@
         width: 30px;
         height: 30px;
       }
+
+      .row {
+        flex-direction: column;
+      }
+
+      .row.title-row .title,
+      .row.title-row .empty,
+      .row.text-row .left-empty,
+      .row.text-row .text {
+        width: 100%;
+      }
+
+      .row.title-row .title {
+        margin-bottom: 1rem;
+      }
     }
   </style>
 </head>
@@ -90,7 +138,7 @@
   <div class="header">
     <div class="logo-box">
       <div>VITA</div>
-      <div class="symbol">▭</div> <!-- Placeholder logo box -->
+      <div class="symbol">▭</div>
     </div>
     <div class="menu">Menu</div>
   </div>
@@ -107,6 +155,24 @@
       enhancing the lifestyle of users.
     </p>
   </div>
+
+  <!-- New Section -->
+  <section class="section">
+    <!-- First Row: Title and empty space -->
+    <div class="row title-row">
+      <div class="title">Our Design Philosophy</div>
+      <div class="empty"></div>
+    </div>
+
+    <!-- Second Row: Empty + Text -->
+    <div class="row text-row">
+      <div class="left-empty"></div>
+      <div class="text">
+        At VITA, we believe that architecture is more than aesthetics — it's about creating
+        environments that respond to the needs, emotions, and well-being of those who live and work within them.
+      </div>
+    </div>
+  </section>
 
   <!-- Footer -->
   <div class="footer">1 / 12</div>
