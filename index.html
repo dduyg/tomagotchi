@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Liminal🦙Loop</title>
   <style>
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     @font-face {
       font-family: 'Hatton';
       src: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/Hatton-Light.woff2') format('woff2');
@@ -29,8 +29,6 @@
       font-weight: 400;
       background-color: #FAF6EF;
       color: #0D0D0E;
-      margin: 0;
-      padding: 0;
     }
     .animate-in {
       opacity: 0;
@@ -89,21 +87,32 @@
     }
     
     main {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
       padding: 3rem 1rem;
+      display: flex;
+      width: 100%;
     }
-    .card {
-      background-color: #000;
+    main .card {
+      width: 40%;
+      background-color: bl000;
       padding: 1rem;
-      color: #fff;
       border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .card img {
-      width: 100%;
-      border-radius: 4px;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 4px;      
     }
+    main .content {
+      width: 60%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0 20px;
+    }    
     .block-list {
       display: flex;
       flex-wrap: wrap;
@@ -178,28 +187,30 @@
  
   <main>  
     <div class="card"><img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/ping-pong.gif" alt="🏓"></div>
-    <div>   
-      <h2><em style="font-size: 0.9rem; vertical-align: top;">(01)</em><em>Strategy</em></h2>  
-      <div class="list">
-        <em>Python</em>
-        <em>Django</em>
-        <em>Positioning</em>
-        <em>Node.js</em>
-        <em>Naming</em>
-        <em>Vue</em>
-        <em>React</em>    
-      </div>
   
-      <p>    
-        Our strategy services are designed to carve out a unique space for your brand in the 
-        marketplace. We develop a core brand strategy that encapsulates your essence and guides every decision.
-      </p>
-     
-      <div class="work-label">WORK</div>  
-      <div class="work-links">  
-        <a href="#">Under Armour</a> 
-        <a href="#">Brave Bison</a>  
-      </div> 
+    <div class="content">
+      <section>     
+        <h2><em style="font-size: 0.9rem; vertical-align: top;">(01)</em><em>Strategy</em></h2>
+        <div class="list">
+          <em>Python</em>
+          <em>Django</em>
+          <em>Node.js</em>
+          <em>Vue</em>
+          <em>React</em> 
+        </div>
+      </section>
+      <section>
+        <p>Dizginleri rüzgâra verdim,
+           yüreğim savrulur dağlara —
+           aşkın yolunda ne durak var,
+           ne de geri adım bana.
+        </p>
+        <div class="work-label">WORK</div>  
+        <div class="work-links">
+          <a href="#">Under Armour</a> 
+          <a href="#">Brave Bison</a>
+        </div>    
+      </section>
     </div> 
   </main>
     
