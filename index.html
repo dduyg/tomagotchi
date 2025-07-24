@@ -205,28 +205,28 @@
     
   <script>
     // Customize which elements to animate with staggered delay
-    const animateTags = ['header', 'aside', 'h2', 'main', 'p', 'em', 'div'];
+    const animateSelectors = [
+      'div, 'aside, 'h2', 'em', 'p'
+    ];
 
-    // Automatically add .animate-in to all matching elements
-    animateTags.forEach(tag => {
-      document.querySelectorAll(tag).forEach(el => {
+    animateSelectors.forEach(selector => {
+      document.querySelectorAll(selector).forEach(el => {
         el.classList.add('animate-in');
       });
     });
 
-    // Use IntersectionObserver to animate on scroll
-    const observer = new IntersectionObserver((entries) => {
+    // Intersection Observer setup
+    const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('in-view');
-          observer.unobserve(entry.target); // animate once
+          observer.unobserve(entry.target); // Only animate once
         }
       });
     }, {
-      threshold: 0.1
+      threshold: 0.2
     });
 
-    // Observe all elements with .animate-in
     document.querySelectorAll('.animate-in').forEach(el => {
       observer.observe(el);
     });
