@@ -8,106 +8,97 @@
     body {
       margin: 0;
       font-family: 'Georgia', serif;
-      background: white;
+      background-color: white;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
+      align-items: center;
     }
 
-    /* Header */
     .header {
-      background: linear-gradient(135deg, #fd8f63, #dc2de1);
+      width: 100%;
+      background: linear-gradient(to right, #f97316, #d946ef);
       color: black;
-      padding: 20px 30px;
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
+      padding: 1rem 2rem;
+      box-sizing: border-box;
     }
 
     .logo {
-      font-size: 24px;
-      font-weight: 600;
-      line-height: 1.2;
+      display: flex;
+      flex-direction: column;
+      font-weight: bold;
     }
 
-    .logo-icon {
-      width: 40px;
-      height: 40px;
-      border: 2px solid black;
-      margin-top: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .logo span {
+      font-size: 1.5rem;
+      letter-spacing: 2px;
     }
 
     .menu {
-      font-size: 18px;
-      font-weight: 500;
-      padding-top: 10px;
+      font-size: 1.1rem;
     }
 
-    /* Main content */
     .content {
-      padding: 60px 20px;
-      text-align: center;
-      font-size: 32px;
-      line-height: 1.8;
       max-width: 800px;
-      margin: 0 auto;
-      font-family: 'Georgia', serif;
+      text-align: center;
+      font-size: 2rem;
+      line-height: 2.8rem;
+      margin: 3rem 1rem;
+      position: relative;
     }
 
-    .inline-img {
-      width: 36px;
-      height: 36px;
+    .content img.inline {
+      width: 40px;
+      height: 40px;
       object-fit: cover;
       vertical-align: middle;
+      margin: 0 0.3rem;
       border-radius: 4px;
-      margin: 0 4px;
     }
 
-    /* Footer */
-    .footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 16px;
-      background: #f7f7f7;
+    .pagination {
+      font-size: 1rem;
+      color: black;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        font-size: 1.5rem;
+        line-height: 2.2rem;
+      }
+
+      .content img.inline {
+        width: 30px;
+        height: 30px;
+      }
     }
   </style>
 </head>
 <body>
-
-  <!-- Header -->
   <div class="header">
-    <div>
-      <div class="logo">VITA</div>
-      <div class="logo-icon">▭</div>
+    <div class="logo">
+      <span>VITA</span>
+      <img src="https://via.placeholder.com/40x40?text=Logo" alt="VITA Logo" style="width: 40px; height: 40px; margin-top: 0.5rem;">
     </div>
     <div class="menu">Menu</div>
   </div>
 
-  <!-- Main content -->
   <div class="content">
-    We
-    <img src="https://via.placeholder.com/36?text=1" alt="img1" class="inline-img" />
-    care about<br>
-    creating beautiful<br>
-    architecture,
-    <img src="https://via.placeholder.com/36?text=2" alt="img2" class="inline-img" />
-    developing<br>
-    projects
-    <img src="https://via.placeholder.com/36?text=3" alt="img3" class="inline-img" />
-    that are individual,<br>
-    inspiring, and
-    <img src="https://via.placeholder.com/36?text=4" alt="img4" class="inline-img" />
-    enhancing<br>
-    the lifestyle of users.
+    <p>
+      We <img src="https://via.placeholder.com/40" alt="image" class="inline"/> care about<br>
+      creating beautiful <br>
+      architecture, <img src="https://via.placeholder.com/40" alt="image" class="inline"/> developing<br>
+      projects <img src="https://via.placeholder.com/40" alt="image" class="inline"/> that are individual,<br>
+      inspiring, and <img src="https://via.placeholder.com/40" alt="image" class="inline"/> enhancing<br>
+      the lifestyle of users.
+    </p>
   </div>
 
-  <!-- Footer -->
-  <div class="footer">
+  <div class="pagination">
     1 / 12
   </div>
-
 </body>
 </html>
