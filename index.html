@@ -36,14 +36,16 @@
 .symbol-line {
   position: relative;
   border: none;
-  border-bottom: 1px solid #83827E;
   margin: 3rem 0;
+  height: 1px;
+  background-color: #83827E;
 }
 .symbol-line::before {
   content: '♅';
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   left: 0;
-  top: -20px; /* shifts it above the line to match visual */
   width: 40px;
   height: 40px;
   font-size: 39px;
@@ -53,8 +55,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white; /* ensures it's not blending with line */
-  overflow: hidden;
+  background: white;
+  box-sizing: border-box;
 }
 
     header {
