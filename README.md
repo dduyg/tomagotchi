@@ -696,7 +696,6 @@ If the image is used as a background:
 - [ ]  Fira Sans
 - [ ]  Rethink Sans
 - [ ]  Niconne  (*doing uppercase)
-- [ ]  Anonymous Pro
 - [ ]  Ropa Sans
 - [ ]  Inria Sans
 - [ ]  Share
@@ -709,7 +708,6 @@ If the image is used as a background:
 - [ ]  Barlow Condensed
 - [ ]  Arimo
 - [ ]  Rubik
-- [ ]  Work Sans
 - [ ]  Albert Sans
 - [ ]  Onest
 - [ ]  Inclusive Sans
