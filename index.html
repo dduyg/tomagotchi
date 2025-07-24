@@ -32,14 +32,15 @@
       margin: 0;
       padding: 0;
     }
-    body * {
+    .animate-in {
       opacity: 0;
       transform: translateY(96px);
-      transition: transform 0.4s cubic-bezier(0.130, 0.470, 0.130, 0.980), opacity 0.4s ease;
+      transition: transform 0.6s cubic-bezier(0.130, 0.470, 0.130, 0.980), opacity 0.6s ease;
+      will-change: transform, opacity;
     }
     .in-view {
-      opacity: 1 !important;
-      transform: translateY(0) !important;
+      opacity: 1;
+      transform: translateY(0);
     }
   
     header {
@@ -203,12 +204,31 @@
   </main>
     
   <script>
-    // Animate elements with staggered delay
-    const allElements = document.querySelectorAll('body *');
-    allElements.forEach((el, index) => {
-      setTimeout(() => {
-        el.classList.add('in-view');
-      }, index * 100); // 100ms stagger per element
+    // Customize which elements to animate with staggered delay
+    const animateTags = ['header', 'aside', 'h2', 'main', 'p', 'em', 'div'];
+
+    // Automatically add .animate-in to all matching elements
+    animateTags.forEach(tag => {
+      document.querySelectorAll(tag).forEach(el => {
+        el.classList.add('animate-in');
+      });
+    });
+
+    // Use IntersectionObserver to animate on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target); // animate once
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    // Observe all elements with .animate-in
+    document.querySelectorAll('.animate-in').forEach(el => {
+      observer.observe(el);
     });
   </script>
 </body>
