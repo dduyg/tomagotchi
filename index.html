@@ -94,24 +94,28 @@
       width: 100%;
       border-radius: 4px;
     }
-    .list {
+    .block-list {
       display: flex;
       flex-wrap: wrap;
       gap: 4px;
       margin: 1rem 0;
+      font-size: 0.75rem;
+      font-family: monospace;
     }
     em {
       font-style: normal;
+      display: inline-block;
       background-color: #f1ede7;
       padding: 0.25rem 0.5rem;
       border-radius: 2px;
-      margin: 4px;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.130, 0.470, 0.130, 0.980), opacity 0.4s ease;
       user-select: none;
     }
-    .tag {
-      font-size: 0.85rem;
-      font-family: monospace;
-      display: inline-block;
+    em.in-view {
+      opacity: 1;
+      transform: translateY(0);
     }
     h2 {
       font-size: 2rem;
@@ -174,13 +178,13 @@
     <div>   
       <h2><em style="font-size: 0.9rem; vertical-align: top;">(01)</em><em>Strategy</em></h2>  
       <div class="list">
-        <em class="tag">By Strategy</em>
-        <em class="tag">Contegy</em>
-        <em class="tag">Workshops</em>
-        <em class="tag">Positioning</em>
-        <em class="tag">Naming</em>
-        <em class="tag">Tone of Voice</em>
-        <em class="tag">Brand Guides</em>    
+        <em>Python</em>
+        <em>Django</em>
+        <em>Positioning</em>
+        <em>Node.js</em>
+        <em>Naming</em>
+        <em>Vue</em>
+        <em>React</em>    
       </div>
   
       <p>    
@@ -195,5 +199,15 @@
       </div> 
     </div> 
   </main>
+    
+  <script>
+    // Animate blocks with staggered delay
+    const blocks = document.querySelectorAll('em');
+    blocks.forEach((el, i) => {
+      setTimeout(() => {
+        el.classList.add('in-view');
+      }, i * 150); // 150ms stagger
+    });  
+  </script>
 </body>
 </html>
