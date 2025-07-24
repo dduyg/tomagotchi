@@ -36,15 +36,14 @@
 .symbol-line {
   position: relative;
   border: none;
-  margin: 3rem 0;
   height: 1px;
   background-color: #83827E;
+  margin: 3rem 0;
 }
 .symbol-line::before {
   content: '♅';
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: -20px; /* half of height to center vertically */
   left: 0;
   width: 40px;
   height: 40px;
@@ -55,7 +54,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
+  background-color: white;
   box-sizing: border-box;
 }
 
@@ -100,7 +99,7 @@
   </style>
 </head>
 <body>
-  <hr class="symbol-line" />
+  <hr class="symbol-line">
   <header>     
     <div class="title">environments that respond to the needs</div>
     <div class="desc">
