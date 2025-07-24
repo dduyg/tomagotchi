@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: 'Georgia', serif;
-      background-color: white;
+      background-color: #ffffff;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -16,37 +16,46 @@
 
     .header {
       width: 100%;
-      background: linear-gradient(to right, #f97316, #d946ef);
-      color: black;
+      background: linear-gradient(to right, #ff6a00, #c800ff);
+      padding: 1.5rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
       box-sizing: border-box;
     }
 
-    .logo {
+    .logo-box {
       display: flex;
       flex-direction: column;
+      color: black;
+      font-size: 1.5rem;
       font-weight: bold;
     }
 
-    .logo span {
-      font-size: 1.5rem;
-      letter-spacing: 2px;
+    .logo-box .symbol {
+      width: 50px;
+      height: 50px;
+      border: 2px solid black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 0.5rem;
+      font-size: 1rem;
     }
 
     .menu {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: black;
     }
 
     .content {
       max-width: 800px;
       text-align: center;
       font-size: 2rem;
-      line-height: 2.8rem;
-      margin: 3rem 1rem;
-      position: relative;
+      line-height: 3rem;
+      padding: 4rem 1rem;
+      font-family: 'Georgia', serif;
     }
 
     .content img.inline {
@@ -54,19 +63,18 @@
       height: 40px;
       object-fit: cover;
       vertical-align: middle;
-      margin: 0 0.3rem;
       border-radius: 4px;
+      margin: 0 0.2rem;
     }
 
-    .pagination {
+    .footer {
       font-size: 1rem;
-      color: black;
-      margin-bottom: 2rem;
+      margin: 2rem 0;
     }
 
     @media (max-width: 768px) {
       .content {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         line-height: 2.2rem;
       }
 
@@ -78,27 +86,29 @@
   </style>
 </head>
 <body>
+  <!-- Header -->
   <div class="header">
-    <div class="logo">
-      <span>VITA</span>
-      <img src="https://via.placeholder.com/40x40?text=Logo" alt="VITA Logo" style="width: 40px; height: 40px; margin-top: 0.5rem;">
+    <div class="logo-box">
+      <div>VITA</div>
+      <div class="symbol">▭</div> <!-- Placeholder logo box -->
     </div>
     <div class="menu">Menu</div>
   </div>
 
+  <!-- Main Content -->
   <div class="content">
     <p>
-      We <img src="https://via.placeholder.com/40" alt="image" class="inline"/> care about<br>
-      creating beautiful <br>
-      architecture, <img src="https://via.placeholder.com/40" alt="image" class="inline"/> developing<br>
-      projects <img src="https://via.placeholder.com/40" alt="image" class="inline"/> that are individual,<br>
-      inspiring, and <img src="https://via.placeholder.com/40" alt="image" class="inline"/> enhancing<br>
-      the lifestyle of users.
+      We <img src="https://via.placeholder.com/40?text=1" alt="" class="inline" />
+      care about creating beautiful<br />
+      architecture, <img src="https://via.placeholder.com/40?text=2" alt="" class="inline" />
+      developing projects <img src="https://via.placeholder.com/40?text=3" alt="" class="inline" />
+      that are individual,<br />
+      inspiring, and <img src="https://via.placeholder.com/40?text=4" alt="" class="inline" />
+      enhancing the lifestyle of users.
     </p>
   </div>
 
-  <div class="pagination">
-    1 / 12
-  </div>
+  <!-- Footer -->
+  <div class="footer">1 / 12</div>
 </body>
 </html>
