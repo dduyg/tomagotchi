@@ -32,12 +32,17 @@
       padding: 0;
       color: black;
     }
-    aside {
-      width: 100%;
+    hr {
+      border: none;
       border-bottom: 1px solid #83827E;
       margin: 3rem 0;
+      position: relative;
     }
-    .symbol {
+    hr::before {
+      content: '♅';
+      position: absolute;
+      left: 0;
+      top: -20px; /* adjust to vertically align as needed */
       width: 40px;
       height: 40px;
       border: 1px solid #83827E;
@@ -91,8 +96,7 @@
   </style>
 </head>
 <body>
-  <aside><div class="symbol">♅</div></aside>
-
+  <hr>
   <header>     
     <div class="title">environments that respond to the needs</div>
     <div class="desc">
