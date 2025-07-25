@@ -14,9 +14,8 @@
     .marquee {
       width: 100vw;
       overflow: hidden;
-      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     }
+
     .track {
       display: inline-block;
       white-space: nowrap;
@@ -25,19 +24,22 @@
       animation-iteration-count: infinite;
       animation-name: marquee-left;
     }
+
     .track.reverse {
       animation-name: marquee-right;
     }
+
     .marquee:hover .track {
       animation-play-state: paused;
     }
 
     @keyframes marquee-left {
-      0%   { transform: translateX(0); }
+      0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
+
     @keyframes marquee-right {
-      0%   { transform: translateX(-50%); }
+      0% { transform: translateX(-50%); }
       100% { transform: translateX(0); }
     }
   </style>
@@ -45,24 +47,24 @@
 <body>
 
   <div class="marquee">
-    <div class="track" data-text="🌀 This is an infinite left marquee — add more text to fill it"></div>
+    <div class="track" data-text="🌀 Liminal Loop — This is the headline marquee"></div>
   </div>
 
   <div class="marquee">
-    <div class="track reverse" data-text="🚀 This is an infinite right marquee — add more text to fill it"></div>
+    <div class="track reverse" data-text="🚀 Welcome to the infinite scroll of presence"></div>
   </div>
 
   <script>
     function setupMarquee(track) {
       const text = track.dataset.text;
 
-      // Set dynamic font size based on screen width (JavaScript approach)
-      const baseFontSize = window.innerWidth * 0.08; // 8% of viewport width
-      track.style.fontSize = `${baseFontSize}px`;
+      // ✅ Hero-style font size: 15% of viewport width
+      const heroFontSize = window.innerWidth * 0.15;
+      track.style.fontSize = `${heroFontSize}px`;
       track.style.fontWeight = 'bold';
       track.style.color = 'black';
 
-      // Measure text width
+      // Measure content width
       const span = document.createElement('span');
       span.style.visibility = 'hidden';
       span.style.whiteSpace = 'nowrap';
@@ -78,16 +80,16 @@
 
       document.body.removeChild(span);
 
-      // Set repeated content
+      // Repeat the content
       let fullText = '';
       for (let i = 0; i < repeatCount; i++) {
         fullText += text + ' ';
       }
       track.textContent = fullText.trim();
 
-      // Dynamic speed (longer = slower)
+      // ✅ Set scroll speed: slower for longer content
       const totalWidth = textWidth * repeatCount;
-      const pxPerSecond = 100; // speed: pixels per second
+      const pxPerSecond = 100; // Adjust this for global speed
       const duration = totalWidth / pxPerSecond;
 
       track.style.animationDuration = `${duration}s`;
