@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Liminal🎣Loop</title>
+  <title>Liminal Loop</title>
   <style>
     html, body {
       margin: 0;
@@ -15,31 +15,31 @@
       width: 100vw;
       overflow: hidden;
     }
-
     .track {
       display: inline-block;
       white-space: nowrap;
+      font-size: 80px;
+      font-weight: bold;
+      color: black;
       will-change: transform;
       animation-timing-function: linear;
       animation-iteration-count: infinite;
       animation-name: marquee-left;
     }
-
     .track.reverse {
       animation-name: marquee-right;
     }
-
     .marquee:hover .track {
       animation-play-state: paused;
     }
 
     @keyframes marquee-left {
-      0% { transform: translateX(0); }
+      0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
 
     @keyframes marquee-right {
-      0% { transform: translateX(-50%); }
+      0%   { transform: translateX(-50%); }
       100% { transform: translateX(0); }
     }
   </style>
@@ -47,29 +47,23 @@
 <body>
 
   <div class="marquee">
-    <div class="track" data-text="🌀 Liminal Loop — This is the headline marquee"></div>
+    <div class="track" data-text="🌀 Liminal Loop — The left marquee scrolls infinitely"></div>
   </div>
 
   <div class="marquee">
-    <div class="track reverse" data-text="🚀 Welcome to the infinite scroll of presence"></div>
+    <div class="track reverse" data-text="🚀 The right marquee flows the other way"></div>
   </div>
 
   <script>
     function setupMarquee(track) {
       const text = track.dataset.text;
 
-      // ✅ Hero-style font size: 15% of viewport width
-      const heroFontSize = window.innerWidth * 0.15;
-      track.style.fontSize = `${heroFontSize}px`;
-      track.style.fontWeight = 'bold';
-      track.style.color = 'black';
-
-      // Measure content width
+      // Create temp span to measure width
       const span = document.createElement('span');
       span.style.visibility = 'hidden';
       span.style.whiteSpace = 'nowrap';
-      span.style.fontSize = track.style.fontSize;
-      span.style.fontWeight = 'bold';
+      span.style.fontSize = getComputedStyle(track).fontSize;
+      span.style.fontWeight = getComputedStyle(track).fontWeight;
       span.style.position = 'absolute';
       span.innerText = text + ' ';
       document.body.appendChild(span);
@@ -77,30 +71,25 @@
       const textWidth = span.offsetWidth;
       const viewportWidth = window.innerWidth;
       const repeatCount = Math.ceil((viewportWidth * 2) / textWidth);
-
       document.body.removeChild(span);
 
-      // Repeat the content
-      let fullText = '';
-      for (let i = 0; i < repeatCount; i++) {
-        fullText += text + ' ';
-      }
-      track.textContent = fullText.trim();
+      // Fill with repeated content
+      track.textContent = Array(repeatCount).fill(text).join(' ');
 
-      // ✅ Set scroll speed: slower for longer content
+      // Dynamic speed: pixels per second
       const totalWidth = textWidth * repeatCount;
-      const pxPerSecond = 100; // Adjust this for global speed
+      const pxPerSecond = 100; // adjust this for global speed
       const duration = totalWidth / pxPerSecond;
 
       track.style.animationDuration = `${duration}s`;
     }
 
-    function setupAll() {
+    function setupAllMarquees() {
       document.querySelectorAll('.track').forEach(setupMarquee);
     }
 
-    setupAll();
-    window.addEventListener('resize', setupAll);
+    setupAllMarquees();
+    window.addEventListener('resize', setupAllMarquees);
   </script>
 </body>
 </html>
