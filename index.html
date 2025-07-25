@@ -5,28 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Liminal🎣Loop</title>
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
-      color: black;
-      font-size: 90px;
+      background: white;
+    }
+
+    body {
+      font-size: clamp(24px, 8vw, 90px); /* ✅ Responsive font scaling */
       font-weight: bold;
+      color: black;
     }
 
     .marquee {
       width: 100vw;
-      overflow-x: hidden;
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); /* ✅ Fade edges */
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     }
 
     .track {
       display: inline-block;
       white-space: nowrap;
       will-change: transform;
-      animation: marquee-left 32s linear infinite;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-name: marquee-left;
     }
 
     .track.reverse {
-      animation: marquee-right 32s linear infinite;
+      animation-name: marquee-right;
+    }
+
+    .marquee:hover .track {
+      animation-play-state: paused; /* ✅ Pause on hover */
     }
 
     @keyframes marquee-left {
@@ -43,22 +55,50 @@
 <body>
 
   <div class="marquee">
-    <div class="track">
-      🌀 This is an infinite left marquee — add more text to fill it
-    </div>
+    <div class="track" data-text="🌀 This is an infinite left marquee — add more text to fill it"></div>
   </div>
 
   <div class="marquee">
-    <div class="track reverse">
-      🚀 This is an infinite right marquee — add more text to fill it
-    </div>
+    <div class="track reverse" data-text="🚀 This is an infinite right marquee — add more text to fill it"></div>
   </div>
 
   <script>
-    document.querySelectorAll('.track').forEach(track => {
-      const original = track.innerHTML;
-      track.innerHTML = original + ' ' + original;
+    function setupMarquee(track) {
+      const text = track.dataset.text;
+      const tempSpan = document.createElement('span');
+      tempSpan.style.whiteSpace = 'nowrap';
+      tempSpan.style.visibility = 'hidden';
+      tempSpan.innerText = text + " ";
+      document.body.appendChild(tempSpan);
+
+      const textWidth = tempSpan.offsetWidth;
+      const viewportWidth = window.innerWidth;
+
+      const repeatCount = Math.ceil((viewportWidth * 2) / textWidth);
+      document.body.removeChild(tempSpan);
+
+      // Set repeated content
+      let repeatedText = "";
+      for (let i = 0; i < repeatCount; i++) {
+        repeatedText += text + " ";
+      }
+      track.textContent = repeatedText.trim();
+
+      // Set dynamic speed: longer content scrolls slower
+      const totalWidth = textWidth * repeatCount;
+      const speedPerPixel = 0.015; // Adjust this to speed up/slow down globally
+      const duration = totalWidth * speedPerPixel;
+
+      track.style.animationDuration = `${duration}s`;
+    }
+
+    document.querySelectorAll('.track').forEach(setupMarquee);
+
+    // Optional: re-setup on resize
+    window.addEventListener('resize', () => {
+      document.querySelectorAll('.track').forEach(setupMarquee);
     });
   </script>
+
 </body>
 </html>
