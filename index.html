@@ -34,7 +34,7 @@
     .animate-in {
       opacity: 0;
       transform: translateY(96px);
-      transition: transform 0.6s cubic-bezier(0.130, 0.470, 0.130, 0.980), opacity 0.6s ease;
+      transition: transform 1s cubic-bezier(0.130, 0.470, 0.130, 0.980), opacity 1s ease;
       will-change: transform, opacity;
     }
     .in-view {
@@ -43,7 +43,7 @@
     }
 
     header {
-      padding: 120px 1rem 7rem;
+      padding: 150px 1rem 7rem;
       max-width: 800px;
       text-align: center;
       font-size: 2.6rem;
@@ -53,7 +53,7 @@
       font-weight: 400;
     }
     header img {
-      width: 1.1em;
+      width: 1.2em;
       height: auto;
       vertical-align: middle;
       margin: 0 0.2rem;
@@ -238,7 +238,7 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('in-view');
-          observer.unobserve(entry.target); // Only animate once
+          observer.unobserve(entry.target);
         }
       });
     }, {
