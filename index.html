@@ -11,19 +11,12 @@
       background: white;
     }
 
-    body {
-      font-size: clamp(24px, 8vw, 90px); /* ✅ Responsive font scaling */
-      font-weight: bold;
-      color: black;
-    }
-
     .marquee {
       width: 100vw;
       overflow: hidden;
-      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); /* ✅ Fade edges */
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
       -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     }
-
     .track {
       display: inline-block;
       white-space: nowrap;
@@ -32,22 +25,19 @@
       animation-iteration-count: infinite;
       animation-name: marquee-left;
     }
-
     .track.reverse {
       animation-name: marquee-right;
     }
-
     .marquee:hover .track {
-      animation-play-state: paused; /* ✅ Pause on hover */
+      animation-play-state: paused;
     }
 
     @keyframes marquee-left {
-      0% { transform: translateX(0); }
+      0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-
     @keyframes marquee-right {
-      0% { transform: translateX(-50%); }
+      0%   { transform: translateX(-50%); }
       100% { transform: translateX(0); }
     }
   </style>
@@ -65,40 +55,50 @@
   <script>
     function setupMarquee(track) {
       const text = track.dataset.text;
-      const tempSpan = document.createElement('span');
-      tempSpan.style.whiteSpace = 'nowrap';
-      tempSpan.style.visibility = 'hidden';
-      tempSpan.innerText = text + " ";
-      document.body.appendChild(tempSpan);
 
-      const textWidth = tempSpan.offsetWidth;
+      // Set dynamic font size based on screen width (JavaScript approach)
+      const baseFontSize = window.innerWidth * 0.08; // 8% of viewport width
+      track.style.fontSize = `${baseFontSize}px`;
+      track.style.fontWeight = 'bold';
+      track.style.color = 'black';
+
+      // Measure text width
+      const span = document.createElement('span');
+      span.style.visibility = 'hidden';
+      span.style.whiteSpace = 'nowrap';
+      span.style.fontSize = track.style.fontSize;
+      span.style.fontWeight = 'bold';
+      span.style.position = 'absolute';
+      span.innerText = text + ' ';
+      document.body.appendChild(span);
+
+      const textWidth = span.offsetWidth;
       const viewportWidth = window.innerWidth;
-
       const repeatCount = Math.ceil((viewportWidth * 2) / textWidth);
-      document.body.removeChild(tempSpan);
+
+      document.body.removeChild(span);
 
       // Set repeated content
-      let repeatedText = "";
+      let fullText = '';
       for (let i = 0; i < repeatCount; i++) {
-        repeatedText += text + " ";
+        fullText += text + ' ';
       }
-      track.textContent = repeatedText.trim();
+      track.textContent = fullText.trim();
 
-      // Set dynamic speed: longer content scrolls slower
+      // Dynamic speed (longer = slower)
       const totalWidth = textWidth * repeatCount;
-      const speedPerPixel = 0.015; // Adjust this to speed up/slow down globally
-      const duration = totalWidth * speedPerPixel;
+      const pxPerSecond = 100; // speed: pixels per second
+      const duration = totalWidth / pxPerSecond;
 
       track.style.animationDuration = `${duration}s`;
     }
 
-    document.querySelectorAll('.track').forEach(setupMarquee);
-
-    // Optional: re-setup on resize
-    window.addEventListener('resize', () => {
+    function setupAll() {
       document.querySelectorAll('.track').forEach(setupMarquee);
-    });
-  </script>
+    }
 
+    setupAll();
+    window.addEventListener('resize', setupAll);
+  </script>
 </body>
 </html>
