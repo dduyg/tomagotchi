@@ -14,27 +14,22 @@
     }
 
     .marquee {
-      position: relative;
       width: 100vw;
       overflow-x: hidden;
     }
-
     .track {
       display: inline-block;
       white-space: nowrap;
       will-change: transform;
       animation: marquee-left 32s linear infinite;
     }
-
     .track.reverse {
       animation: marquee-right 32s linear infinite;
     }
-
     @keyframes marquee-left {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-
     @keyframes marquee-right {
       0% { transform: translateX(-50%); }
       100% { transform: translateX(0); }
