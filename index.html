@@ -7,7 +7,7 @@
   <style>
     html, body {
       margin: 0;
-      padding: 1rem;
+      padding: 0;
       background: white;
     }
 
@@ -37,10 +37,15 @@
       0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-
     @keyframes marquee-right {
       0%   { transform: translateX(-50%); }
       100% { transform: translateX(0); }
+    }
+
+    hr {
+      border: none;
+      border-bottom: 1px solid black;
+      margin: 0 5%;
     }
   </style>
 </head>
@@ -49,10 +54,12 @@
   <div class="marquee">
     <div class="track" data-text="🌀 Liminal Loop — The left marquee scrolls infinitely"></div>
   </div>
+  <hr />
 
   <div class="marquee">
     <div class="track reverse" data-text="🚀 The right marquee flows the other way"></div>
   </div>
+  <hr />
 
   <script>
     function setupMarquee(track) {
