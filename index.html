@@ -129,22 +129,35 @@
       font-family: 'FK Raster Grotesk', sans-serif;
       margin-bottom: 0.5rem;
     }
+
+    .content > section:nth-of-type(2) {
+      display: flex;
+    }
+    .desc {
+      width: 55%;
+      font-size: 0.8rem;
+    }
+    .links {
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-left: 5%;
+    }    
     .work-label {
       font-size: 0.75rem;
       font-family: monospace;
       text-transform: uppercase;
       color: #666;
-      margin-top: 2rem;
-      margin-bottom: 0.5rem;
     }
-    .work-links a {
+    a {
       display: block;
-      font-size: 0.95rem;
-      color: #000;
+      font-size: 0.7rem;
+      color: inherit;
       text-decoration: none;
       margin-bottom: 0.25rem;
     }
-    .work-links a:hover {
+    a:hover {
       text-decoration: underline;
     }
     @media (max-width: 768px) {
@@ -196,18 +209,20 @@
           <em>React</em> 
         </div>
       </section>
-      <section>
-        <p>
+      <section> 
+        <div class="desc">
           Dizginleri rüzgara verdim,<br>
           yüreğim savrulur dağlara —<br>
           aşkın yolunda ne durak var,<br>
           ne de geri adım bana.
-        </p>
-        <div class="work-label">WORK</div>  
-        <div class="work-links">
-          <a href="#">Under Armour</a> 
-          <a href="#">Brave Bison</a>
-        </div>    
+        </div>
+        <div class="links">
+          <div class="label">WORK</div>  
+          <div>
+            <a href="#">Under Armour</a> 
+            <a href="#">Brave Bison</a>
+          </div>
+        </div>
       </section>
     </div> 
   </main>
