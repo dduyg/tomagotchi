@@ -13,38 +13,39 @@
       font-style: normal;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
-    body {     
-        font-family: 'FKYukikov006', sans-serif;
-        background-color: #ACA3A4;
-        color: #222;
-        padding: 120px 0 0;
+    body {
+      font-family: 'FKYukikov006', sans-serif;
+      background-color: #ACA3A4;
+      color: #222;
+      padding: 120px 0 0;
     }
-    
     header {
-        position: relative;
-        width: 100%;
-        min-height: 60vh; /* adjust as you like */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        padding: 5% 0;  
-    }   
-    header::after {  
-        content: "";
-        position: absolute;
-        inset: 0; /* top:0; right:0; bottom:0; left:0 */
-        background: url("https://media3.giphy.com/media/ZyYLd0d6Lhbgc/giphy.gif") center / cover no-repeat;
-        opacity: 0.3; 
-        pointer-events: none; /* make sure it doesn't block clicks */ 
-        z-index: 0; 
+      position: relative;
+      width: 100%;
+      min-height: 60vh; /* adjust as you like */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 5% 0;
+      --bg-image: url("https://media3.giphy.com/media/ZyYLd0d6Lhbgc/giphy.gif");
     }
-    /* Put real header content above the pseudo-element */   
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0; /* top:0; right:0; bottom:0; left:0 */
+      background: var(--bg-image) center / cover no-repeat;
+      opacity: 0.3;
+      transition: background-image 0.6s ease-in-out, opacity 1s ease-in-out;
+      pointer-events: none; /* make sure it doesn't block clicks */
+      z-index: 0;
+    }
+    /* Put real header content above the pseudo-element */    
     header > * {
-        position: relative;
-        z-index: 1;
+      position: relative;
+      z-index: 1;
     }
-    
+
     .marquee {
       width: 100vw;
       overflow: hidden;
@@ -66,11 +67,11 @@
       animation-play-state: paused;
     }
     @keyframes marquee-left {
-      0%   { transform: translateX(0); }
+      0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
     @keyframes marquee-right {
-      0%   { transform: translateX(-50%); }
+      0% { transform: translateX(-50%); }
       100% { transform: translateX(0); }
     }
     hr {
@@ -78,6 +79,7 @@
       border-bottom: 0.094rem solid;
       margin: 28px 6%;
     }
+
     .circle {
       width: 120px;
       height: 100px;
@@ -87,24 +89,24 @@
       align-items: center;
       justify-content: center;
       margin-top: 2rem;
-    }    
+    }
     .circle svg {
       width: 60%;
       height: 60%;
     }
-  </style>  
-</head>  
+  </style>
+</head>
 <body>
   <header>
     <div>
-       <div class="marquee">
-         <div class="track" data-text="Legends never die, they become a part of you. Every time you bleed for reaching greatness."></div>
-       </div><hr />
+      <div class="marquee">
+        <div class="track" data-text="Legends never die, they become a part of you. Every time you bleed for reaching greatness."></div>
+      </div><hr />
       <div class="marquee">
         <div class="track reverse" data-text="Can you hear them screaming out your name?"></div>
       </div><hr />
-    </div>   
-  
+    </div>
+
     <div class="circle">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 302">
         <path transform="translate(0,302) scale(0.050000,-0.050000)"
@@ -128,16 +130,16 @@
           -1384 -23 l-1392 2 0 1364 c0 1536 -4 1480 160 1900 114 292 477 890 541 893
           6 0 61 -101 122 -225z m4329 60 c266 -359 435 -711 529 -1105 36 -150 39 -248
           39 -1525 l0 -1365 -1391 0 c-1104 0 -1391 5 -1385 25 3 14 420 848 925 1855
-          505 1007 967 1931 1028 2055 61 124 116 225 122 225 6 -1 66 -75 133 -165z"/>
+          505 1007 967 1931 1028 2055 61 124 116 225 122 225 6 -1 66 -75 133 -165z" />
       </svg>
     </div>
   </header>
 
   <script>
+    // Marquee logic
     function setupMarquee(track) {
       const text = track.dataset.text;
 
-      // Create temp span to measure width
       const span = document.createElement('span');
       span.style.visibility = 'hidden';
       span.style.whiteSpace = 'nowrap';
@@ -152,7 +154,6 @@
       const repeatCount = Math.ceil((viewportWidth * 2) / textWidth);
       document.body.removeChild(span);
 
-      // Fill with repeated content
       track.textContent = Array(repeatCount).fill(text).join(' ');
 
       // Dynamic speed: pixels per second
@@ -169,6 +170,21 @@
 
     setupAllMarquees();
     window.addEventListener('resize', setupAllMarquees);
+
+    // Background image switch logic
+    const header = document.querySelector('header');
+    const images = [
+      'url("https://media3.giphy.com/media/ZyYLd0d6Lhbgc/giphy.gif")',
+      'url("https://media1.giphy.com/media/XvggUDZ35Aqt2/giphy.gif")'
+    ];
+    let current = 0;
+
+    function switchBackground() {
+      current = (current + 1) % images.length;
+      header.style.setProperty('--bg-image', images[current]);
+    }
+
+    setInterval(switchBackground, 10000); // change every 10s
   </script>
 </body>
 </html>
