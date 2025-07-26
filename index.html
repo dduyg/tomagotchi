@@ -25,10 +25,10 @@
       src: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/FKRasterGrotesk.woff2') format('woff2');
       font-weight: 400;
       font-style: normal;
-    }  
-    html {font-size: 16px;}
+    }
+    html { font-size: 16px; }
     @media (max-width: 768px) {
-      html {font-size: 9.85px;}
+      html { font-size: 9.85px; }
     }
     body {
       font-family: "Work Sans", sans-serif;
@@ -61,6 +61,7 @@
       height: auto;
       vertical-align: middle;
       margin: 0 0.2rem;
+      cursor: pointer;
     }
 
     aside { border-bottom: 1px solid #83827E; }
@@ -98,7 +99,7 @@
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
-      border-radius: 4px;      
+      border-radius: 4px;
     }
     main .content {
       width: 60%;
@@ -130,7 +131,7 @@
       font-family: 'FK Raster Grotesk', sans-serif;
       margin-bottom: 2rem;
     }
-   .num {
+    .num {
       font-size: 0.7em;
       vertical-align: top;
       margin-right: 5px;
@@ -149,7 +150,7 @@
       flex-direction: column;
       justify-content: space-between;
       padding-left: 5%;
-    }    
+    }
     h3 {
       font-size: 1rem;
       text-transform: uppercase;
@@ -166,17 +167,38 @@
     a:hover {
       text-decoration: underline;
     }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    }
   </style>
 </head>
 <body>
   <header>
     Environments <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/virtualWater.png" alt="🚰">
     that respond <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/sahanePazar.gif" alt="🍷">
-    to the needs, shaping   
-    futures <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/quiverCities.gif" alt="🌆">    
+    to the needs, shaping
+    futures <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/quiverCities.gif" alt="🌆">
     with gentle <img src="weWill.jpg" alt="🦹‍♀️">
     speeds, places of peace
-    where <img src="surprisingly.jpg" alt="🎊">   
+    where <img src="surprisingly.jpg" alt="🎊">
     the spirit feeds.
   </header>
 
@@ -193,11 +215,10 @@
     </div>
   </aside>
 
-  <main>  
+  <main>
     <div class="card"><img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/ping-pong.gif" alt="🏓"></div>
-
     <div class="content">
-      <section>     
+      <section>
         <h2><em class="num">(01)</em><em>Strategy</em></h2>
         <div class="block-list">
           <em>#perfectl00p</em>
@@ -210,36 +231,37 @@
           <em>#sublayer</em>
         </div>
       </section>
-      <section> 
+      <section>
         <div class="desc">
           Dizginleri saldım düşe,<br>
           Koştum rüzgârın peşine,<br>
           Ne son belli ne de dönüşe.
         </div>
         <div class="arcade">
-          <h3>Arcade</h3>  
+          <h3>Arcade</h3>
           <div>
-            <a href="#📻"><em>Under Armour</em></a> 
+            <a href="#📻"><em>Under Armour</em></a>
             <a href="#📻"><em>SYNTH://Stream</em></a>
           </div>
         </div>
       </section>
-    </div> 
+    </div>
   </main>
-    
-  <script>
-    // Customize which elements to animate with staggered delay
-    const animateSelectors = [
-      'header', 'img', 'aside', 'div', 'section', 'h2', 'h3', 'em', 'p'
-    ];
 
+  <!-- Image Modal -->
+  <div id="imgModal" class="modal">
+    <img class="modal-content" id="modalImage" alt="">
+  </div>
+
+  <script>
+    // Animate-in logic
+    const animateSelectors = ['header', 'img', 'aside', 'div', 'section', 'h2', 'h3', 'em', 'p'];
     animateSelectors.forEach(selector => {
       document.querySelectorAll(selector).forEach(el => {
         el.classList.add('animate-in');
       });
     });
 
-    // Intersection Observer setup
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -247,12 +269,28 @@
           observer.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.2
-    });
+    }, { threshold: 0.2 });
 
     document.querySelectorAll('.animate-in').forEach(el => {
       observer.observe(el);
+    });
+
+    // Modal logic
+    const modal = document.getElementById("imgModal");
+    const modalImg = document.getElementById("modalImage");
+
+    document.querySelectorAll("header img").forEach(img => {
+      img.addEventListener("click", () => {
+        modal.style.display = "flex";
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+      });
+    });
+
+    modal.addEventListener("click", (e) => {
+      if (e.target !== modalImg) {
+        modal.style.display = "none";
+      }
     });
   </script>
 </body>
