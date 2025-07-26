@@ -169,8 +169,8 @@
       text-decoration: underline;
     }
 
-    /* modal styles */
-    #lightbox {
+    /* Modal styles */
+    #modal {
       position: fixed;
       top: 0;
       left: 0;
@@ -184,12 +184,12 @@
       opacity: 0;
       transition: opacity 0.3s ease;
     }
-    #lightbox.show {
+    #modal.show {
       display: flex;
       opacity: 1;
     }
 
-    .lightbox-box {
+    .modalBox {
       background: #E7E7E7;
       padding: 1rem;
       margin: 5px;
@@ -206,12 +206,12 @@
       from { transform: scale(0.9); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
     }
-    .lightbox-image {
+    .modalIMG {
       max-width: 100%;
       max-height: 70vh;
       object-fit: contain;
     }
-    .lightbox-overlay {
+    .modalOverlay {
       position: fixed;
       top: 0;
       left: 0;
@@ -280,11 +280,11 @@
     </div>
   </main>
 
-  <!-- Lightbox Modal -->
-  <div id="lightbox">
-    <div class="lightbox-overlay"></div>
-    <div class="lightbox-box">
-      <img class="lightbox-image" src="" alt="Popup Image">
+  <!-- Modal -->
+  <div id="modal">
+    <div class="modalOverlay"></div>
+    <div class="modalBox">
+      <img class="modalIMG" src="" alt="🔲">
     </div>
   </div>
 
@@ -293,13 +293,11 @@
     const animateSelectors = [
       'header', 'img', 'aside', 'div', 'section', 'h2', 'h3', 'em', 'p'
     ];
-
     animateSelectors.forEach(selector => {
       document.querySelectorAll(selector).forEach(el => {
         el.classList.add('animate-in');
       });
     });
-
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -310,43 +308,41 @@
     }, {
       threshold: 0.2
     });
-
     document.querySelectorAll('.animate-in').forEach(el => {
       observer.observe(el);
     });
 
-    // Lightbox popup
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = lightbox.querySelector('.lightbox-image');
-    const overlay = lightbox.querySelector('.lightbox-overlay');
+    // Modal popup
+    const modal = document.getElementById('modal');
+    const modalImg = modal.querySelector('.modalIMG');
+    const overlay = modal.querySelector('.modalOverlay');
 
     document.querySelectorAll('header img').forEach(img => {
       img.addEventListener('click', () => {
-        lightboxImg.src = img.src;
-        lightbox.classList.add('show');
+        modalImg.src = img.src;
+        modal.classList.add('show');
       });
     });
 
-    function closeLightbox() {
-      lightbox.classList.remove('show');
+    function closeModal() {
+      modal.classList.remove('show');
       setTimeout(() => {
-        lightbox.style.display = 'none';
-        lightboxImg.src = '';
+        modal.style.display = 'none';
+        modalImg.src = '';
       }, 300);
     }
 
-    overlay.addEventListener('click', closeLightbox);
+    overlay.addEventListener('click', closeModal);
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'Escape') closeModal();
     });
 
-    // Reset display on show
     const displayObserver = new MutationObserver(() => {
-      if (lightbox.classList.contains('show')) {
-        lightbox.style.display = 'flex';
+      if (modal.classList.contains('show')) {
+        modal.style.display = 'flex';
       }
     });
-    displayObserver.observe(lightbox, { attributes: true });
+    displayObserver.observe(modal, { attributes: true });
   </script>
 </body>
 </html>
