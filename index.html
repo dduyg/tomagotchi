@@ -169,7 +169,7 @@
       text-decoration: underline;
     }
 
-    /* Lightbox venster (modal) styles */
+    /* modal styles */
     #lightbox {
       position: fixed;
       top: 0;
@@ -184,15 +184,15 @@
       opacity: 0;
       transition: opacity 0.3s ease;
     }
-
     #lightbox.show {
       display: flex;
       opacity: 1;
     }
 
     .lightbox-box {
-      background: #fff;
+      background: #E7E7E7;
       padding: 1rem;
+      margin: 5px;
       border-radius: 12px;
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
       max-width: 600px;
@@ -200,21 +200,17 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      animation: popup-in 0.3s ease;
+      animation: popup-in 1s ease;
     }
-
     @keyframes popup-in {
       from { transform: scale(0.9); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
     }
-
     .lightbox-image {
       max-width: 100%;
       max-height: 70vh;
-      border-radius: 8px;
       object-fit: contain;
     }
-
     .lightbox-overlay {
       position: fixed;
       top: 0;
