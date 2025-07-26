@@ -168,25 +168,37 @@
       text-decoration: underline;
     }
 
-    /* Modal Styles */
-    .modal {
-      display: none;
+    /* Lightbox styles */
+    #lightbox {
       position: fixed;
-      z-index: 1000;
-      left: 0;
       top: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.85);
-      display: flex;
-      align-items: center;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(13, 13, 14, 0.85);
+      display: none;
       justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
-    .modal-content {
+    #lightbox.show {
+      display: flex;
+      opacity: 1;
+    }
+    .lightbox-image {
       max-width: 90%;
       max-height: 90%;
       border-radius: 8px;
-      box-shadow: 0 0 40px rgba(0,0,0,0.8);
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease;
+    }
+    .lightbox-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -217,6 +229,7 @@
 
   <main>
     <div class="card"><img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/ping-pong.gif" alt="🏓"></div>
+
     <div class="content">
       <section>
         <h2><em class="num">(01)</em><em>Strategy</em></h2>
@@ -248,14 +261,18 @@
     </div>
   </main>
 
-  <!-- Image Modal -->
-  <div id="imgModal" class="modal">
-    <img class="modal-content" id="modalImage" alt="">
+  <!-- Lightbox Modal -->
+  <div id="lightbox">
+    <div class="lightbox-overlay"></div>
+    <img class="lightbox-image" src="" alt="Popup Image">
   </div>
 
   <script>
-    // Animate-in logic
-    const animateSelectors = ['header', 'img', 'aside', 'div', 'section', 'h2', 'h3', 'em', 'p'];
+    // Animate elements on scroll
+    const animateSelectors = [
+      'header', 'img', 'aside', 'div', 'section', 'h2', 'h3', 'em', 'p'
+    ];
+
     animateSelectors.forEach(selector => {
       document.querySelectorAll(selector).forEach(el => {
         el.classList.add('animate-in');
@@ -269,29 +286,46 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.2 });
+    }, {
+      threshold: 0.2
+    });
 
     document.querySelectorAll('.animate-in').forEach(el => {
       observer.observe(el);
     });
 
-    // Modal logic
-    const modal = document.getElementById("imgModal");
-    const modalImg = document.getElementById("modalImage");
+    // Lightbox popup
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('.lightbox-image');
+    const overlay = lightbox.querySelector('.lightbox-overlay');
 
-    document.querySelectorAll("header img").forEach(img => {
-      img.addEventListener("click", () => {
-        modal.style.display = "flex";
-        modalImg.src = img.src;
-        modalImg.alt = img.alt;
+    document.querySelectorAll('header img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add('show');
       });
     });
 
-    modal.addEventListener("click", (e) => {
-      if (e.target !== modalImg) {
-        modal.style.display = "none";
+    function closeLightbox() {
+      lightbox.classList.remove('show');
+      setTimeout(() => {
+        lightbox.style.display = 'none';
+        lightboxImg.src = '';
+      }, 300);
+    }
+
+    overlay.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Reset display on show
+    const observerForDisplay = new MutationObserver(() => {
+      if (lightbox.classList.contains('show')) {
+        lightbox.style.display = 'flex';
       }
     });
+    observerForDisplay.observe(lightbox, { attributes: true });
   </script>
 </body>
 </html>
