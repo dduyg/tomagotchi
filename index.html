@@ -6,7 +6,7 @@
   <title>Liminal⚙️Loop</title>
   <link rel="shortcut icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/favicons/pinkCircle.ico">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
       height: 100vh;
       overflow: hidden;
@@ -22,9 +22,8 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      height: 100%;
-      padding: 6% 5% 20%;
-      gap: 20px;
+      justify-content: space-between;
+      padding: 6% 5% 15vh;
     }
 
     .top, .bottom {
@@ -32,50 +31,46 @@
       justify-content: space-between;
       font-weight: bold;
       font-size: 0.95rem;
+      width: 100%;
       flex-shrink: 0;
     }
+    .top div:nth-child(2),
+    .bottom div:nth-child(2) {
+      text-align: right;
+    }
+    
     .middle {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       gap: 20px;
       flex: 1;
       min-height: 0;
     }
-
+    
     .rot-text {
       font-size: 3rem;
       font-weight: 900;
       letter-spacing: -2px;
-      white-space: nowrap;
     }
     .gear {
       width: 100px;
       height: 100px;
       object-fit: contain;
-      flex-shrink: 0;
     }
     .inquiry {
       text-align: right;
       font-size: 1rem;
       font-weight: bold;
       line-height: 1.5;
-      flex-shrink: 1;
-      white-space: nowrap;
     }
 
     @media (max-width: 600px) {
-      .wrapper {
-        gap: 10px;
+      .rot-text {
+        font-size: 2.3rem;
       }
       .top, .bottom {
         font-size: 0.75rem;
-      }
-      .rot-text {
-        font-size: 2rem;
-      }
-      .inquiry {
-        font-size: 0.8rem;
       }
     }
   </style>
@@ -88,16 +83,16 @@
         A MULTIDISCIPLINARY<br>
         CREATIVE STUDIO
       </div>
-      <div style="text-align: right;">
-        CONSTRUCTING VISUAL WORLDS<br>
-        ACROSS DIGITAL AND PHYSICAL SPACE
+      <div>
+        CONSTRUCTING WORLDS<br>
+        ACROSS DIGITAL SPACEs
       </div>
     </div>
 
     <!-- Middle Section -->
     <div class="middle">
       <div class="rot-text">ROT</div>
-      <img src="https://media4.giphy.com/media/W2ucMW3PtKYSOolAHd/giphy.gif" alt="⚙️" class="gear" />
+      <img src="https://media4.giphy.com/media/W2ucMW3PtKYSOolAHd/giphy.gif" alt="⚙️" class="gear"/>
       <div class="inquiry">
         INQUIRIES<br>
         ROT WITH US<br>
@@ -111,7 +106,7 @@
         CONTACT@ROT.WORLD<br>
         @R__O__T
       </div>
-      <div style="text-align: right;">
+      <div>
         BASED IN<br>
         LOS ANGELES, CA
       </div>
