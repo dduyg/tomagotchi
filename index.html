@@ -5,105 +5,121 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LiminalLoop</title>
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      margin: 0;
-      padding: 40px 20px;
       font-family: Arial, Helvetica, sans-serif;
-      background-color: #f9f9f9;
+      background-color: #f4f4f4;
       color: #000;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      height: 100vh;
+      padding: 20px;
     }
 
-    .top-row,
-    .bottom-row {
+    .row {
       display: flex;
       justify-content: space-between;
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      font-weight: bold;
       font-size: 14px;
+      font-weight: bold;
       text-transform: uppercase;
     }
 
     .center-content {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
       flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      position: relative;
     }
 
     .logo-line {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 20px;
     }
 
-    .logo-text {
-      font-size: 60px;
+    .rot-text {
+      font-size: 80px;
       font-weight: bold;
       letter-spacing: -2px;
+      margin-right: 10px;
     }
 
-    .gear-image {
+    .gear {
       width: 100px;
-      height: auto;
+      height: 100px;
+      object-fit: contain;
     }
 
     .inquiries {
-      margin-top: 10px;
+      position: absolute;
+      right: 0;
+      text-align: right;
       font-size: 16px;
       font-weight: bold;
+      line-height: 1.6;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    .bottom {
+      font-size: 13px;
+      line-height: 1.5;
     }
 
-    @media (max-width: 600px) {
-      .logo-text {
-        font-size: 40px;
+    @media (max-width: 768px) {
+      .rot-text {
+        font-size: 60px;
       }
-      .gear-image {
-        width: 70px;
+      .gear {
+        width: 80px;
+        height: 80px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="top-row">
-    <div>A Multidisciplinary<br/>Creative Studio</div>
-    <div>Constructing Visual Worlds<br/>Across Digital and Physical Space</div>
+
+  <!-- Top Row -->
+  <div class="row top">
+    <div>
+      A MULTIDISCIPLINARY<br>
+      CREATIVE STUDIO
+    </div>
+    <div>
+      CONSTRUCTING VISUAL WORLDS<br>
+      ACROSS DIGITAL AND PHYSICAL SPACE
+    </div>
   </div>
 
+  <!-- Center Content -->
   <div class="center-content">
     <div class="logo-line">
-      <div class="logo-text">ROT</div>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Cogwheel.svg" alt="Gear Icon" class="gear-image"/>
+      <div class="rot-text">ROT</div>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Gear_icon.svg/1024px-Gear_icon.svg.png" alt="Gear Icon" class="gear" />
     </div>
     <div class="inquiries">
-      Inquiries<br/>
-      ROT With Us<br/>
+      INQUIRIES<br>
+      ROT WITH US<br>
       ©2025
     </div>
   </div>
 
-  <div class="bottom-row">
+  <!-- Bottom Row -->
+  <div class="row bottom">
     <div>
-      contact@rot.world<br/>
-      @r__o__t
+      CONTACT@ROT.WORLD<br>
+      @R__O__T
     </div>
     <div>
-      Based In<br/>
-      Los Angeles, CA
+      BASED IN<br>
+      LOS ANGELES, CA
     </div>
   </div>
+
 </body>
 </html>
