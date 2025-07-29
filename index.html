@@ -6,11 +6,19 @@
   <title>Liminal⚙️Loop</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background-color: #f6f6f6;
-      font-family: Arial, sans-serif;
-      color: #000;
+    html, body {
       height: 100vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background-color: #f6f6f6;
+      color: #000;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+    .wrapper {
+      flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -23,82 +31,89 @@
       font-weight: bold;
       font-size: 0.95rem;
       width: 100%;
-      gap: 20px;
+      flex-shrink: 0;
     }
-
     .middle {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 20px;
+      flex: 1;
+      min-height: 0;
     }
-
+    
     .rot-text {
       font-size: 3rem;
       font-weight: 900;
       letter-spacing: -2px;
     }
-
     .gear {
-      width: 100px;
-      height: 100px;
+      width: 90px;
+      height: 90px;
       object-fit: contain;
     }
-
     .inquiry {
       text-align: right;
       font-size: 1rem;
       font-weight: bold;
       line-height: 1.5;
     }
-
     .copyright {
       margin-top: 5px;
     }
 
     @media (max-width: 600px) {
-      body {
+      .wrapper {
         padding: 20px;
       }
       .rot-text {
-        font-size: 2.5rem;
+        font-size: 2.3rem;
+      }
+      .gear {
+        width: 70px;
+        height: 70px;
+      }
+      .top, .bottom {
+        font-size: 0.8rem;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Top Section -->
-  <div class="top">
-    <div>
-      A MULTIDISCIPLINARY<br>
-      CREATIVE STUDIO
+  <div class="wrapper">
+    <!-- Top Section -->
+    <div class="top">
+      <div>
+        A MULTIDISCIPLINARY<br>
+        CREATIVE STUDIO
+      </div>
+      <div style="text-align: right;">
+        CONSTRUCTING VISUAL WORLDS<br>
+        ACROSS DIGITAL AND PHYSICAL SPACE
+      </div>
     </div>
-    <div style="text-align: right;">
-      CONSTRUCTING WORLDS<br>
-      ACROSS DIGITAL SPACES
-    </div>
-  </div>
 
-  <!-- Middle Section -->
-  <div class="middle">
-    <div class="rot-text">ROT</div>
-    <img src="https://media4.giphy.com/media/W2ucMW3PtKYSOolAHd/giphy.gif" alt="⚙️" class="gear"/>
-    <div class="inquiry">
-      INQUIRIES<br>
-      ROT WITH US<br>
-      <div class="copyright">&copy;2025</div>
+    <!-- Middle Section -->
+    <div class="middle">
+      <div class="rot-text">ROT</div>
+      <img src="https://media4.giphy.com/media/W2ucMW3PtKYSOolAHd/giphy.gif" alt="⚙️" class="gear"/>
+      <div class="inquiry">
+        INQUIRIES<br>
+        ROT WITH US<br>
+        <div class="copyright">&copy;2025</div>
+      </div>
     </div>
-  </div>
 
-  <!-- Bottom Section -->
-  <div class="bottom">
-    <div>
-      CONTACT@ROT.WORLD<br>
-      @R__O__T
-    </div>
-    <div style="text-align: right;">
-      BASED IN<br>
-      LOS ANGELES, CA
+    <!-- Bottom Section -->
+    <div class="bottom">
+      <div>
+        CONTACT@ROT.WORLD<br>
+        @R__O__T
+      </div>
+      <div style="text-align: right;">
+        BASED IN<br>
+        LOS ANGELES, CA
+      </div>
     </div>
   </div>
 </body>
