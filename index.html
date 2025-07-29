@@ -20,8 +20,16 @@
     .top, .bottom {
       display: flex;
       justify-content: space-between;
+      align-items: flex-start;
       font-weight: bold;
       font-size: 0.95rem;
+      width: 100%;
+      gap: 20px;
+    }
+    .top > div,
+    .bottom > div {
+      flex: 1;
+      min-width: 0;
     }
 
     .middle {
@@ -58,6 +66,17 @@
       body {
         padding: 20px;
       }
+      .rot-text {
+        font-size: 2.5rem;
+      }
+      .gear {
+        width: 80px;
+        height: 80px;
+      }
+      .inquiry {
+        text-align: center;
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -68,7 +87,7 @@
       A MULTIDISCIPLINARY<br>
       CREATIVE STUDIO
     </div>
-    <div>
+    <div style="text-align: right;">
       CONSTRUCTING WORLDS<br>
       ACROSS DIGITAL SPACES
     </div>
@@ -91,7 +110,7 @@
       CONTACT@ROT.WORLD<br>
       @R__O__T
     </div>
-    <div>
+    <div style="text-align: right;">
       BASED IN<br>
       LOS ANGELES, CA
     </div>
