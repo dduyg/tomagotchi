@@ -5,16 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LiminalLoop</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      background-color: #f5f5f5;
-      color: #000;
+      background-color: #f9f9f9;
       font-family: Arial, sans-serif;
+      color: #000;
       height: 100vh;
       display: flex;
       flex-direction: column;
@@ -25,59 +20,52 @@
     .top, .bottom {
       display: flex;
       justify-content: space-between;
-      font-weight: bold;
       font-size: 0.95rem;
+      font-weight: bold;
     }
 
     .center {
-      flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
-      text-align: center;
+      flex-direction: row;
+      flex-wrap: wrap;
+      text-align: left;
     }
 
-    .logo-line {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      margin-bottom: 10px;
-    }
-
-    .rot-text {
-      font-size: 3.5rem;
+    .logo-left {
+      font-size: 3.8rem;
       font-weight: 900;
+      margin-right: 15px;
       letter-spacing: -2px;
     }
 
     .gear {
-      width: 80px;
-      height: 80px;
+      width: 100px;
+      height: 100px;
       object-fit: contain;
     }
 
-    .inquiry-text {
+    .right-text {
       font-weight: bold;
       font-size: 1rem;
+      margin-left: 15px;
       line-height: 1.5;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    .right-text .copyright {
+      margin-top: 5px;
     }
 
     @media (max-width: 600px) {
-      .center {
-        padding: 20px 0;
+      body {
+        padding: 20px;
       }
     }
   </style>
 </head>
 <body>
-
-  <!-- Top Text -->
+  <!-- Top Section -->
   <div class="top">
     <div>
       A MULTIDISCIPLINARY<br>
@@ -89,20 +77,18 @@
     </div>
   </div>
 
-  <!-- Center Logo and Message -->
+  <!-- Center Section -->
   <div class="center">
-    <div class="logo-line">
-      <div class="rot-text">ROT</div>
-      <img src="https://media4.giphy.com/media/W2ucMW3PtKYSOolAHd/giphy.gif" alt="Gear" class="gear" />
-    </div>
-    <div class="inquiry-text">
+    <div class="logo-left">ROT</div>
+    <img src="https://media4.giphy.com/media/W2ucMW3PtKYSOolAHd/giphy.gif" alt="Gear" class="gear" />
+    <div class="right-text">
       INQUIRIES<br>
       ROT WITH US<br>
-      &copy;2025
+      <div class="copyright">&copy;2025</div>
     </div>
   </div>
 
-  <!-- Bottom Text -->
+  <!-- Bottom Section -->
   <div class="bottom">
     <div>
       CONTACT@ROT.WORLD<br>
