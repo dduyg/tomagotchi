@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Header-Main-Footer Layout</title>
+  <title>Fixed 100vh Layout</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     html, body {
       margin: 0;
       padding: 0;
@@ -13,42 +17,41 @@
     }
 
     body {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-rows: 20vh 1fr 20vh;
+      height: 100vh;
+      overflow: hidden;
     }
 
     header, footer {
       background-size: cover;
       background-position: center;
       color: white;
-      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
     }
 
     header {
-      background-image: url('VAPORGRAM_3.png');
-      height: 20vh;
-      flex-shrink: 0;
+      background-image: url('https://via.placeholder.com/1200x200?text=Header+Background');
     }
 
     footer {
-      background-image: url('VAPORGRAM_2.png');
-      height: 20vh;
-      flex-shrink: 0;
+      background-image: url('https://via.placeholder.com/1200x150?text=Footer+Background');
     }
 
     main {
-      flex: 1;
       display: flex;
-      justify-content: center;
       align-items: center;
-      background: #f0f0f0;
+      justify-content: center;
+      background: #f4f4f4;
       text-align: center;
+      padding: 1rem;
     }
 
-    main .content {
+    .content {
       max-width: 600px;
-      padding: 1rem;
     }
   </style>
 </head>
@@ -56,12 +59,14 @@
   <header>
     <h1>My Header</h1>
   </header>
+
   <main>
     <div class="content">
-      <h2>Welcome</h2>
-      <p>This is the main content area centered between the header and footer.</p>
+      <h2>Main Content</h2>
+      <p>This is the main area centered between header and footer.</p>
     </div>
   </main>
+
   <footer>
     <p>My Footer</p>
   </footer>
