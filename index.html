@@ -2,50 +2,46 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Highlight.js with base16-papercolor-dark theme</title>
-  <!-- Highlight.js base16-papercolor-dark theme CSS -->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/base16-papercolor-dark.min.css"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Highlight.js - PaperColor Dark Theme</title>
+
+  <!-- Load Highlight.js PaperColor Dark Theme CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/papercolor-dark.min.css">
+
   <style>
     body {
-      background-color: #1e1e1e;
+      background-color: #1c1c1c;
       color: #ccc;
-      font-family: Consolas, Monaco, 'Courier New', monospace;
+      font-family: monospace;
       padding: 2rem;
     }
     pre {
       padding: 1rem;
-      border-radius: 5px;
+      border-radius: 8px;
       overflow-x: auto;
     }
   </style>
 </head>
 <body>
 
-<h1>Highlight.js Example - base16-papercolor-dark Theme</h1>
-
-<pre><code class="javascript">
-// Sample JavaScript code to highlight
+  <h2>Example Highlighted Code (JavaScript)</h2>
+  <pre><code class="language-javascript">
+// Say hello to someone
 function greet(name) {
   console.log(`Hello, ${name}!`);
 }
-
 greet('World');
-</code></pre>
+  </code></pre>
 
-<!-- Highlight.js library -->
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/highlight.min.js"></script>
-<script>
-  // Initialize highlighting on page load
-  document.addEventListener('DOMContentLoaded', (event) => {
-    document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightElement(block);
-    });
-  });
-</script>
+  <!-- Highlight.js core library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
 
+  <!-- Optional: Load specific language if you want lighter build -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/javascript.min.js"></script>
+
+  <script>
+    // Initialize highlight.js
+    hljs.highlightAll();
+  </script>
 </body>
 </html>
