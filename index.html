@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Highlight.js with base16-papercolor-dark theme</title>
+  <!-- Highlight.js base16-papercolor-dark theme CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/base16-papercolor-dark.min.css"
+  />
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #ccc;
+      font-family: Consolas, Monaco, 'Courier New', monospace;
+      padding: 2rem;
+    }
+    pre {
+      padding: 1rem;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Highlight.js Example - base16-papercolor-dark Theme</h1>
+
+<pre><code class="javascript">
+// Sample JavaScript code to highlight
+function greet(name) {
+  console.log(`Hello, ${name}!`);
+}
+
+greet('World');
+</code></pre>
+
+<!-- Highlight.js library -->
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/highlight.min.js"></script>
+<script>
+  // Initialize highlighting on page load
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightElement(block);
+    });
+  });
+</script>
+
+</body>
+</html>
