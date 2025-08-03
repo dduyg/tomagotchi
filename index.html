@@ -59,19 +59,13 @@
       display: flex;
       align-items: center;
       text-align: right;
+      gap: 0.6em;
     }
-    .toggle::before {
-      content: '';
-      display: inline-block;
+    .toggle svg {
       width: 2em;
       height: 2em;
-      margin-right: 0.6em;
-      background-image: url("data:image/svg+xml,%3Csvg fill='currentColor' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23,23a7,7,0,1,1,7-7A7.0078,7.0078,0,0,1,23,23Zm0-12a5,5,0,1,0,5,5A5.0055,5.0055,0,0,0,23,11Z'/%3E%3Ccircle cx='9' cy='16' r='7'/%3E%3C/svg%3E");
-      background-size: contain;
-      background-repeat: no-repeat;
+      fill: currentColor;
       flex-shrink: 0;
-      align-self: center;
-      color: inherit;
     }
 
     main {
@@ -132,7 +126,13 @@
   <div class="wrapper">
     <header>
       <div>Syncing data under<br>coral-coded skies</div>
-      <div class="toggle">Romance<br>Settings</div>
+      <div class="toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+          <path d="M23,23a7,7,0,1,1,7-7A7.0078,7.0078,0,0,1,23,23Zm0-12a5,5,0,1,0,5,5A5.0055,5.0055,0,0,0,23,11Z"/>
+          <circle cx="9" cy="16" r="7"/>
+        </svg>
+        <span>Romance<br>Settings</span>
+      </div>
     </header>
 
     <main id="main">
