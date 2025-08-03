@@ -10,10 +10,14 @@
     @font-face {
       font-family: 'Eklips';
       src: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop/fonts/Eklips.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
     }
     @font-face {
       font-family: 'Diatype';
       src: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop/fonts/Diatype-Regular.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
     }
     html, body {
       height: 100vh;
@@ -36,16 +40,18 @@
       justify-content: space-between;
       padding: 6% 5% 15vh;
     }
-
     header {
       display: flex;
       justify-content: space-between;
       font-size: 0.95rem;
+      width: 100%;
+      flex-shrink: 0;
     }
     footer {
       display: flex;
       gap: 15%;
       font-size: 0.95rem;
+      flex-shrink: 0;
     }
     .toggle {
       display: flex;
@@ -61,68 +67,55 @@
       background-image: url("data:image/svg+xml,%3Csvg fill='black' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23,23a7,7,0,1,1,7-7A7.0078,7.0078,0,0,1,23,23Zm0-12a5,5,0,1,0,5,5A5.0055,5.0055,0,0,0,23,11Z'/%3E%3Ccircle cx='9' cy='16' r='7'/%3E%3C/svg%3E");
       background-size: contain;
       background-repeat: no-repeat;
+      flex-shrink: 0;
+      align-self: center;
     }
-
     main {
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
       flex: 1;
-      position: relative;
-      cursor: pointer;
+      min-height: 0;
       font-family: 'Eklips', sans-serif;
+      position: relative;
+      overflow: hidden;
     }
-
-    .title {
+    main .title {
       font-size: 3rem;
       font-weight: 900;
       letter-spacing: -2px;
-      margin-bottom: 1rem;
+      position: absolute;
+      top: 0;
+      left: 5%;
     }
-
-    .desc {
-      margin-top: 1rem;
-      font-size: 1rem;
-      text-align: right;
-    }
-
-    .image-wrapper {
-      position: relative;
+    .image-container {
+      position: absolute;
       width: 100px;
       height: 100px;
-      overflow: hidden;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
     }
-
-    .image-wrapper img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
+    .image-container img {
+      width: 100px;
+      height: 100px;
       object-fit: contain;
+      position: absolute;
       top: 0;
       left: 0;
-      transition: transform 0.6s ease-in-out;
     }
-
-    .slide-up {
-      transform: translateY(-100%);
+    main .desc {
+      text-align: right;
+      font-size: 1rem;
+      position: absolute;
+      bottom: 0;
+      right: 5%;
     }
-
-    .slide-in {
-      transform: translateY(100%);
-      animation: slideInFromBottom 0.6s forwards;
-    }
-
-    @keyframes slideInFromBottom {
-      from { transform: translateY(100%); }
-      to { transform: translateY(0%); }
-    }
-
     @media (max-width: 600px) {
       header, footer {
         font-size: 0.75rem;
       }
-      .title {
+      main .title {
         font-size: 2.3rem;
       }
     }
@@ -135,10 +128,10 @@
       <div class="toggle">Romance<br>Settings</div>
     </header>
 
-    <main id="main">
+    <main>
       <div class="title">DMRNH</div>
-      <div class="image-wrapper" id="imageWrapper">
-        <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/DMRNH-1.png" id="currentImage">
+      <div class="image-container">
+        <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/DMRNH-1.png" alt="⚙️" id="main-image">
       </div>
       <div class="desc">Cehennemler<br>kudursa, ölmez<br>nigahbanıyız.</div>
     </main>
@@ -150,7 +143,7 @@
   </div>
 
   <script>
-    const images = [
+    const imageUrls = [
       "https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/DMRNH-1.png",
       "https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/DMRNH-2.png",
       "https://media4.giphy.com/media/W2ucMW3PtKYSOolAHd/giphy.gif",
@@ -158,26 +151,35 @@
     ];
 
     let currentIndex = 0;
-    const main = document.getElementById("main");
-    const imageWrapper = document.getElementById("imageWrapper");
+    const imageContainer = document.querySelector('.image-container');
+    const currentImage = document.getElementById('main-image');
+    const main = document.querySelector('main');
 
-    main.addEventListener("click", () => {
-      const oldImage = document.getElementById("currentImage");
-      oldImage.classList.add("slide-up");
+    main.addEventListener('click', () => {
+      const nextIndex = (currentIndex + 1) % imageUrls.length;
 
-      const nextIndex = (currentIndex + 1) % images.length;
-      const newImage = document.createElement("img");
-      newImage.src = images[nextIndex];
-      newImage.className = "slide-in";
-      newImage.id = "nextImage";
+      // Create next image
+      const nextImage = document.createElement('img');
+      nextImage.src = imageUrls[nextIndex];
+      nextImage.style.top = '100%';
+      nextImage.style.transition = 'top 0.6s ease-in-out';
+      currentImage.style.transition = 'top 0.6s ease-in-out';
 
-      imageWrapper.appendChild(newImage);
+      imageContainer.appendChild(nextImage);
 
+      // Animate both
+      requestAnimationFrame(() => {
+        currentImage.style.top = '-100%';
+        nextImage.style.top = '0';
+      });
+
+      // Cleanup and update
       setTimeout(() => {
-        imageWrapper.removeChild(oldImage);
-        newImage.id = "currentImage";
+        imageContainer.removeChild(currentImage);
+        nextImage.removeAttribute('id'); // Remove ID from old
+        nextImage.id = 'main-image'; // Set new ID
         currentIndex = nextIndex;
-      }, 600);
+      }, 650);
     });
   </script>
 </body>
