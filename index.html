@@ -68,9 +68,13 @@
       fill: currentColor;
       flex-shrink: 0;
     }
-.toggle:hover {
-  transform: translateY(-2px) skewX(-3deg);
-  transition: transform 0.2s ease;
+.toggle:hover svg {
+  animation: spin 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(12deg); }
 }
 
     main {
