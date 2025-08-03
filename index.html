@@ -28,6 +28,7 @@
       text-transform: uppercase;
       font-weight: bold;
       line-height: 1;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
     body {
       display: flex;
@@ -185,6 +186,37 @@
         newImg.id = 'active-img';
         currentIndex = nextIndex;
       }, 850);
+    });
+
+    // Theme switching
+    const themes = [
+      { bg: '#E9DAF1', color: '#E92BFF' },
+      { bg: '#C27D30', color: '#DEFFE2' },
+      { bg: '#FFF9ED', color: '#AA7600' },
+      { bg: '#f6f6f6', color: '#20B43C' },
+      { bg: '#E2E6EF', color: '#FE3263' }
+    ];
+
+    let currentThemeIndex = 0;
+    const toggle = document.querySelector('.toggle');
+
+    toggle.addEventListener('click', () => {
+      let newIndex;
+      do {
+        newIndex = Math.floor(Math.random() * themes.length);
+      } while (newIndex === currentThemeIndex);
+
+      currentThemeIndex = newIndex;
+      const newTheme = themes[newIndex];
+
+      document.documentElement.style.backgroundColor = newTheme.bg;
+      document.body.style.backgroundColor = newTheme.bg;
+      document.body.style.color = newTheme.color;
+
+      // Update SVG color
+      document.querySelectorAll('svg').forEach(svg => {
+        svg.style.color = newTheme.color;
+      });
     });
   </script>
 </body>
