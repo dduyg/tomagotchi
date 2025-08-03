@@ -68,16 +68,13 @@
       fill: currentColor;
       flex-shrink: 0;
     }
-.toggle {
-  perspective: 600px;
-}
-.toggle span {
-  display: inline-block;
-  transition: transform 0.5s;
-  transform-style: preserve-3d;
-}
 .toggle:hover span {
-  transform: rotateY(180deg);
+  animation: typeflicker 0.4s steps(2, end) infinite;
+}
+
+@keyframes typeflicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
 }
 
     main {
