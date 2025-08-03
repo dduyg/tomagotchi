@@ -82,6 +82,7 @@
       font-family: 'Eklips', sans-serif;
       position: relative;
       z-index: 2;
+      gap: 2rem;
     }
 
     main .title {
@@ -92,6 +93,13 @@
 
     main .desc {
       font-size: 1rem;
+      text-align: right;
+    }
+
+    .middle-placeholder {
+      width: 120px;
+      height: 100px;
+      flex-shrink: 0;
     }
 
     @media (max-width: 600px) {
@@ -134,6 +142,7 @@
 
     <main id="main">
       <div class="title">DMRNH</div>
+      <div class="middle-placeholder"></div>
       <div class="desc">Cehennemler<br>kudursa, ölmez<br>nigahbanıyız.</div>
     </main>
 
@@ -165,20 +174,17 @@
       const oldImg = document.getElementById('active-img');
       const nextIndex = (currentIndex + 1) % imageUrls.length;
 
-      // Create next image and place below screen
       const newImg = document.createElement('img');
       newImg.src = imageUrls[nextIndex];
       newImg.style.transform = 'translateY(100vh)';
       reel.appendChild(newImg);
 
-      // Force layout flush
+      // Force reflow
       newImg.offsetHeight;
 
-      // Animate both
       oldImg.style.transform = 'translateY(-120vh)';
       newImg.style.transform = 'translateY(0)';
 
-      // Clean up
       setTimeout(() => {
         reel.removeChild(oldImg);
         newImg.id = 'active-img';
