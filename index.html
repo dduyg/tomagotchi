@@ -68,14 +68,18 @@
       fill: currentColor;
       flex-shrink: 0;
     }
-.toggle:hover svg {
-  animation: spin 0.8s ease-in-out infinite alternate;
+.toggle:hover {
+  animation: glitch 0.3s steps(2, end) infinite;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(12deg); }
-}
+@keyframes glitch {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-2px, 1px); }
+  40% { transform: translate(2px, -1px); }
+  60% { transform: translate(-1px, -2px); }
+  80% { transform: translate(1px, 2px); }
+  100% { transform: translate(0, 0); }
+        }
 
     main {
       display: flex;
