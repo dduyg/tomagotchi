@@ -68,13 +68,17 @@
       fill: currentColor;
       flex-shrink: 0;
     }
-.toggle:hover span {
-  animation: typeflicker 0.4s steps(2, end) infinite;
+.toggle {
+  position: relative;
 }
-
-@keyframes typeflicker {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
+.toggle::before {
+  content: "Romance Settings";
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  color: currentColor;
+  opacity: 0.2;
+  filter: blur(1px);
 }
 
     main {
