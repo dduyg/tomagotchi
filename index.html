@@ -72,6 +72,7 @@
       flex-shrink: 0;
       align-self: center;
     }
+
     main {
       display: flex;
       align-items: center;
@@ -81,22 +82,20 @@
       font-family: 'Eklips', sans-serif;
       position: relative;
       z-index: 2;
+      text-align: center;
+      gap: 2rem;
     }
+
     main .title {
       font-size: 3rem;
       font-weight: 900;
       letter-spacing: -2px;
-      position: absolute;
-      top: 0;
-      left: 5%;
     }
+
     main .desc {
-      text-align: right;
       font-size: 1rem;
-      position: absolute;
-      bottom: 0;
-      right: 5%;
     }
+
     @media (max-width: 600px) {
       header, footer {
         font-size: 0.75rem;
@@ -106,17 +105,18 @@
       }
     }
 
-    /* Slot machine reel container */
+    /* SLOT MACHINE REEL */
     .reel {
       position: fixed;
-      top: 0;
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translate(-50%, -50%);
       width: 100px;
       height: 100px;
       pointer-events: none;
       z-index: 999;
     }
+
     .reel img {
       position: absolute;
       width: 100px;
@@ -145,6 +145,7 @@
     </footer>
   </div>
 
+  <!-- REEL -->
   <div class="reel" id="reel">
     <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/DMRNH-1.png" id="active-img" />
   </div>
@@ -166,20 +167,20 @@
       const oldImg = document.getElementById('active-img');
       const nextIndex = (currentIndex + 1) % imageUrls.length;
 
-      // Create new image
+      // Create next image and place below screen
       const newImg = document.createElement('img');
       newImg.src = imageUrls[nextIndex];
       newImg.style.transform = 'translateY(100vh)';
       reel.appendChild(newImg);
 
-      // Force reflow to apply initial position
+      // Force layout flush
       newImg.offsetHeight;
 
       // Animate both
       oldImg.style.transform = 'translateY(-120vh)';
       newImg.style.transform = 'translateY(0)';
 
-      // Cleanup
+      // Clean up
       setTimeout(() => {
         reel.removeChild(oldImg);
         newImg.id = 'active-img';
