@@ -68,18 +68,19 @@
       fill: currentColor;
       flex-shrink: 0;
     }
-.toggle:hover {
-  animation: glitch 0.3s steps(2, end) infinite;
+.toggle:hover::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background: currentColor;
+  animation: blinkline 0.6s infinite alternate;
+  margin-top: 4px;
 }
 
-@keyframes glitch {
-  0% { transform: translate(0, 0); }
-  20% { transform: translate(-2px, 1px); }
-  40% { transform: translate(2px, -1px); }
-  60% { transform: translate(-1px, -2px); }
-  80% { transform: translate(1px, 2px); }
-  100% { transform: translate(0, 0); }
-        }
+@keyframes blinkline {
+  0% { width: 0; opacity: 0.5; }
+  100% { width: 100%; opacity: 1; }
+}
 
     main {
       display: flex;
