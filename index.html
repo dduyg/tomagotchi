@@ -68,11 +68,22 @@
       fill: currentColor;
       flex-shrink: 0;
     }
-.toggle {
-  transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
 .toggle:hover {
-  transform: scale(1.1) skewY(2deg);
+  background-image: repeating-linear-gradient(
+    0deg,
+    currentColor 0px,
+    currentColor 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  background-size: 100% 10px;
+  animation: gridFlash 0.6s infinite linear;
+  color: #000;
+}
+
+@keyframes gridFlash {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 10px; }
 }
 
     main {
