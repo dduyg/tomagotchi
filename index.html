@@ -10,10 +10,14 @@
     @font-face {
       font-family: 'Eklips';
       src: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop/fonts/Eklips.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
     }
     @font-face {
       font-family: 'Diatype';
       src: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop/fonts/Diatype-Regular.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
     }
     html, body {
       height: 100vh;
@@ -35,9 +39,8 @@
       flex-direction: column;
       justify-content: space-between;
       padding: 6% 5% 15vh;
-      z-index: 1;
-      position: relative;
     }
+
     header {
       display: flex;
       justify-content: space-between;
@@ -48,9 +51,9 @@
     footer {
       display: flex;
       gap: 15%;
-      font-size: 0.95rem;
+      font-size: 0.95rem; 
       flex-shrink: 0;
-    }
+    }     
     .toggle {
       display: flex;
       align-items: center;
@@ -68,6 +71,7 @@
       flex-shrink: 0;
       align-self: center;
     }
+    
     main {
       display: flex;
       align-items: center;
@@ -75,63 +79,42 @@
       flex: 1;
       min-height: 0;
       font-family: 'Eklips', sans-serif;
-      position: relative;
-      z-index: 2;
-    }
+    }    
     main .title {
       font-size: 3rem;
       font-weight: 900;
       letter-spacing: -2px;
-      position: absolute;
-      top: 0;
-      left: 5%;
+    }
+    main img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
     }
     main .desc {
       text-align: right;
       font-size: 1rem;
-      position: absolute;
-      bottom: 0;
-      right: 5%;
     }
+
     @media (max-width: 600px) {
       header, footer {
         font-size: 0.75rem;
       }
       main .title {
-        font-size: 2.3rem;
-      }
-    }
-
-    /* Slot machine reel container */
-    .reel {
-      position: fixed;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 100px;
-      pointer-events: none;
-      z-index: 999;
-    }
-    .reel img {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      object-fit: contain;
-      left: 0;
-      transition: transform 0.8s ease-in-out;
+        font-size: 2.3rem;    
+      }    
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
+ <div class="wrapper">
     <header>
       <div>Syncing data under<br>coral-coded skies</div>
       <div class="toggle">Romance<br>Settings</div>
     </header>
 
-    <main id="main">
+    <main>
       <div class="title">DMRNH</div>
+      <img src="https://media4.giphy.com/media/W2ucMW3PtKYSOolAHd/giphy.gif" alt="⚙️">
       <div class="desc">Cehennemler<br>kudursa, ölmez<br>nigahbanıyız.</div>
     </main>
 
@@ -140,48 +123,5 @@
       <div>neoninject in<br>Virtual Tides</div>
     </footer>
   </div>
-
-  <div class="reel" id="reel">
-    <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/DMRNH-1.png" id="active-img" />
-  </div>
-
-  <script>
-    const imageUrls = [
-      "https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/DMRNH-1.png",
-      "https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/DMRNH-2.png",
-      "https://media4.giphy.com/media/W2ucMW3PtKYSOolAHd/giphy.gif",
-      "https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/DMRNH-4.png"
-    ];
-
-    let currentIndex = 0;
-
-    const reel = document.getElementById('reel');
-    const main = document.getElementById('main');
-
-    main.addEventListener('click', () => {
-      const oldImg = document.getElementById('active-img');
-      const nextIndex = (currentIndex + 1) % imageUrls.length;
-
-      // Create new image
-      const newImg = document.createElement('img');
-      newImg.src = imageUrls[nextIndex];
-      newImg.style.transform = 'translateY(100vh)';
-      reel.appendChild(newImg);
-
-      // Force reflow to apply initial position
-      newImg.offsetHeight;
-
-      // Animate both
-      oldImg.style.transform = 'translateY(-120vh)';
-      newImg.style.transform = 'translateY(0)';
-
-      // Cleanup
-      setTimeout(() => {
-        reel.removeChild(oldImg);
-        newImg.id = 'active-img';
-        currentIndex = nextIndex;
-      }, 850);
-    });
-  </script>
 </body>
 </html>
