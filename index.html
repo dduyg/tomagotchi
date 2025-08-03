@@ -10,14 +10,10 @@
     @font-face {
       font-family: 'Eklips';
       src: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop/fonts/Eklips.woff2') format('woff2');
-      font-weight: normal;
-      font-style: normal;
     }
     @font-face {
       font-family: 'Diatype';
       src: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop/fonts/Diatype-Regular.woff2') format('woff2');
-      font-weight: normal;
-      font-style: normal;
     }
     html, body {
       height: 100vh;
@@ -39,6 +35,8 @@
       flex-direction: column;
       justify-content: space-between;
       padding: 6% 5% 15vh;
+      z-index: 1;
+      position: relative;
     }
     header {
       display: flex;
@@ -78,7 +76,7 @@
       min-height: 0;
       font-family: 'Eklips', sans-serif;
       position: relative;
-      overflow: hidden;
+      z-index: 2;
     }
     main .title {
       font-size: 3rem;
@@ -87,22 +85,6 @@
       position: absolute;
       top: 0;
       left: 5%;
-    }
-    .image-container {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    .image-container img {
-      width: 100px;
-      height: 100px;
-      object-fit: contain;
-      position: absolute;
-      top: 0;
-      left: 0;
     }
     main .desc {
       text-align: right;
@@ -119,6 +101,26 @@
         font-size: 2.3rem;
       }
     }
+
+    /* Slot machine reel container */
+    .reel {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 100px;
+      pointer-events: none;
+      z-index: 999;
+    }
+    .reel img {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      left: 0;
+      transition: transform 0.8s ease-in-out;
+    }
   </style>
 </head>
 <body>
@@ -128,11 +130,8 @@
       <div class="toggle">Romance<br>Settings</div>
     </header>
 
-    <main>
+    <main id="main">
       <div class="title">DMRNH</div>
-      <div class="image-container">
-        <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/DMRNH-1.png" alt="⚙️" id="main-image">
-      </div>
       <div class="desc">Cehennemler<br>kudursa, ölmez<br>nigahbanıyız.</div>
     </main>
 
@@ -140,6 +139,10 @@
       <div>Rainy<br>Scene</div>
       <div>neoninject in<br>Virtual Tides</div>
     </footer>
+  </div>
+
+  <div class="reel" id="reel">
+    <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/DMRNH-1.png" id="active-img" />
   </div>
 
   <script>
@@ -151,35 +154,33 @@
     ];
 
     let currentIndex = 0;
-    const imageContainer = document.querySelector('.image-container');
-    const currentImage = document.getElementById('main-image');
-    const main = document.querySelector('main');
+
+    const reel = document.getElementById('reel');
+    const main = document.getElementById('main');
 
     main.addEventListener('click', () => {
+      const oldImg = document.getElementById('active-img');
       const nextIndex = (currentIndex + 1) % imageUrls.length;
 
-      // Create next image
-      const nextImage = document.createElement('img');
-      nextImage.src = imageUrls[nextIndex];
-      nextImage.style.top = '100%';
-      nextImage.style.transition = 'top 0.6s ease-in-out';
-      currentImage.style.transition = 'top 0.6s ease-in-out';
+      // Create new image
+      const newImg = document.createElement('img');
+      newImg.src = imageUrls[nextIndex];
+      newImg.style.transform = 'translateY(100vh)';
+      reel.appendChild(newImg);
 
-      imageContainer.appendChild(nextImage);
+      // Force reflow to apply initial position
+      newImg.offsetHeight;
 
       // Animate both
-      requestAnimationFrame(() => {
-        currentImage.style.top = '-100%';
-        nextImage.style.top = '0';
-      });
+      oldImg.style.transform = 'translateY(-120vh)';
+      newImg.style.transform = 'translateY(0)';
 
-      // Cleanup and update
+      // Cleanup
       setTimeout(() => {
-        imageContainer.removeChild(currentImage);
-        nextImage.removeAttribute('id'); // Remove ID from old
-        nextImage.id = 'main-image'; // Set new ID
+        reel.removeChild(oldImg);
+        newImg.id = 'active-img';
         currentIndex = nextIndex;
-      }, 650);
+      }, 850);
     });
   </script>
 </body>
