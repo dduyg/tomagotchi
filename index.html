@@ -69,16 +69,15 @@
       flex-shrink: 0;
     }
 .toggle {
-  position: relative;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              filter 0.2s ease;
+  will-change: transform;
 }
-.toggle::before {
-  content: "Romance Settings";
-  position: absolute;
-  left: 2px;
-  top: 2px;
-  color: currentColor;
-  opacity: 0.2;
-  filter: blur(1px);
+
+.toggle:hover {
+  transform: scale(0.95, 0.92);
+  filter: brightness(1.2);
+  cursor: pointer;
 }
 
     main {
