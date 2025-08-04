@@ -17,29 +17,40 @@
       grid-template-columns: repeat(6, 1fr);
       text-align: center;
       margin-bottom: 2em;
+      gap: 0.5em;
+    }
+
+    .grid-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .label {
       font-family: monospace;
       font-size: 1.2em;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.1em;
       margin-bottom: 0.3em;
     }
 
-    .color-stack {
+    .color-row {
       display: flex;
       height: 20px;
       width: 100%;
     }
 
-    .color-half {
-      height: 50%;
+    .segment {
+      height: 100%;
     }
 
     .red { background-color: #d22; }
     .blue { background-color: #5ca6e0; }
     .blue2 { background-color: #2b4aa1; }
     .green { background-color: #19a868; }
+
+    /* Set segment width ratios */
+    .short { flex: 1; }
+    .long  { flex: 2; }
 
     .section {
       font-size: 2em;
@@ -71,53 +82,53 @@
 </head>
 <body>
 
-  <!-- Top Grid: Labels + Colored Stacked Blocks -->
+  <!-- Grid of labels + horizontal color bars -->
   <div class="grid-container">
-    <div>
+    <div class="grid-item">
       <div class="label">OPH</div>
-      <div class="color-stack">
-        <div class="color-half red"></div>
-        <div class="color-half blue"></div>
+      <div class="color-row">
+        <div class="segment red short"></div>
+        <div class="segment blue long"></div>
       </div>
     </div>
-    <div>
+    <div class="grid-item">
       <div class="label">EL</div>
-      <div class="color-stack">
-        <div class="color-half red"></div>
-        <div class="color-half blue"></div>
+      <div class="color-row">
+        <div class="segment red short"></div>
+        <div class="segment blue long"></div>
       </div>
     </div>
-    <div>
+    <div class="grid-item">
       <div class="label">IA</div>
-      <div class="color-stack">
-        <div class="color-half blue2"></div>
-        <div class="color-half red"></div>
+      <div class="color-row">
+        <div class="segment blue2 short"></div>
+        <div class="segment red long"></div>
       </div>
     </div>
-    <div>
+    <div class="grid-item">
       <div class="label">GA</div>
-      <div class="color-stack">
-        <div class="color-half green"></div>
-        <div class="color-half blue2"></div>
+      <div class="color-row">
+        <div class="segment green short"></div>
+        <div class="segment blue2 long"></div>
       </div>
     </div>
-    <div>
+    <div class="grid-item">
       <div class="label">ME</div>
-      <div class="color-stack">
-        <div class="color-half green"></div>
-        <div class="color-half blue2"></div>
+      <div class="color-row">
+        <div class="segment green short"></div>
+        <div class="segment blue2 long"></div>
       </div>
     </div>
-    <div>
+    <div class="grid-item">
       <div class="label"></div>
-      <div class="color-stack">
-        <div class="color-half blue2"></div>
-        <div class="color-half blue2"></div>
+      <div class="color-row">
+        <div class="segment blue2 short"></div>
+        <div class="segment blue2 long"></div>
       </div>
     </div>
   </div>
 
-  <!-- Text Sections -->
+  <!-- Text sections -->
   <div class="section">reading between the<br>lines</div>
   <div class="lines"></div>
 
