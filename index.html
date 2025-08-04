@@ -94,13 +94,19 @@
     #thePopup {
       display: none;
       position: fixed;
-      top: 45%;
+      top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       border: 1px dashed #b54e78;
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      width: 90vw;
+      max-width: 800px;
       z-index: 1000;
     }
+    #thePopup img {width: 100%;
+  height: auto;
+  display: block;
+                  }
   </style>
 </head>
 <body>
@@ -147,7 +153,7 @@
   <article>where is my body</article>
   <article id="popup">experiments with text</article>
 
-<div id="thePopup"><img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/04/highfalutin.png" style="width: 85%;" /></div>
+<div id="thePopup"><img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/04/highfalutin.png"></div>
 <script>
   const trigger = document.getElementById('popup');
   const popup = document.getElementById('thePopup');
