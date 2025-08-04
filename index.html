@@ -88,6 +88,26 @@
         transparent 12px,
         transparent 15px);
       */
+    
+    #thePopup {
+      display: none;
+      position: fixed;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border: 2px solid #333;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      padding: 1em;
+      z-index: 1000;
+    }
+    #thePopup::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.3);
+      z-index: -1;
+    }
   </style>
 </head>
 <body>
@@ -132,6 +152,23 @@
   <!-- Articles with ::after lines -->
   <article>reading between the lines</article>
   <article>where is my body</article>
-  <article>experiments with text</article>
+  <article id="popup">experiments with text</article>
+
+<div id="thePopup"><img src="VAPORGRAM_4.jpg" style="max-width: 100%; height: auto;" /></div>
+<script>
+  const trigger = document.getElementById('popup');
+  const popup = document.getElementById('thePopup');
+
+  trigger.addEventListener('click', (e) => {
+    popup.style.display = 'block';
+    e.stopPropagation();
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!popup.contains(e.target) && e.target !== trigger) {
+      popup.style.display = 'none';
+    }
+  });
+</script>
 </body>
 </html>
