@@ -91,22 +91,23 @@
         transparent 15px);
       */
     
-    #thePopup {
+    #popupContent {
       display: none;
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      border: 1px dashed #b54e78;
+      border: 1px dashed black;
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
       width: 90vw;
       max-width: 800px;
       z-index: 1000;
     }
-    #thePopup img {width: 100%;
-  height: auto;
-  display: block;
-                  }
+    #popupContent img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -153,10 +154,10 @@
   <article>where is my body</article>
   <article id="popup">experiments with text</article>
 
-<div id="thePopup"><img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/04/highfalutin.png"></div>
+<div id="popupContent"><img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/04/highfalutin.png"></div>
 <script>
   const trigger = document.getElementById('popup');
-  const popup = document.getElementById('thePopup');
+  const popup = document.getElementById('popupContent');
 
   trigger.addEventListener('click', (e) => {
     popup.style.display = 'block';
