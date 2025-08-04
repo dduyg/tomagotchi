@@ -12,35 +12,41 @@
       padding: 2em;
     }
 
-    .header {
-      display: flex;
-      justify-content: space-around;
-      font-family: monospace;
-      font-size: 1.2em;
-      letter-spacing: 0.5em;
-      margin-bottom: 0.5em;
-    }
-
-    .color-bar {
-      display: flex;
-      height: 20px;
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      text-align: center;
       margin-bottom: 2em;
     }
 
-    .color-bar div {
-      width: 50px;
+    .label {
+      font-family: monospace;
+      font-size: 1.2em;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.3em;
     }
 
-    .red { background: #d22; }
-    .blue { background: #5ca6e0; }
-    .blue2 { background: #2b4aa1; }
-    .green { background: #19a868; }
+    .color-stack {
+      display: flex;
+      flex-direction: column;
+      height: 20px;
+      width: 100%;
+    }
+
+    .color-half {
+      height: 50%;
+    }
+
+    .red { background-color: #d22; }
+    .blue { background-color: #5ca6e0; }
+    .blue2 { background-color: #2b4aa1; }
+    .green { background-color: #19a868; }
 
     .section {
       font-size: 2em;
       font-weight: bold;
       margin-bottom: 0.3em;
-      position: relative;
+      line-height: 1.2;
     }
 
     .section + .lines {
@@ -66,23 +72,53 @@
 </head>
 <body>
 
-  <div class="header">
-    <span>OPH</span>
-    <span>EL</span>
-    <span>IA</span>
-    <span>GA</span>
-    <span>ME</span>
+  <!-- Top Grid: Labels + Colored Stacked Blocks -->
+  <div class="grid-container">
+    <div>
+      <div class="label">OPH</div>
+      <div class="color-stack">
+        <div class="color-half red"></div>
+        <div class="color-half blue"></div>
+      </div>
+    </div>
+    <div>
+      <div class="label">EL</div>
+      <div class="color-stack">
+        <div class="color-half red"></div>
+        <div class="color-half blue"></div>
+      </div>
+    </div>
+    <div>
+      <div class="label">IA</div>
+      <div class="color-stack">
+        <div class="color-half blue2"></div>
+        <div class="color-half red"></div>
+      </div>
+    </div>
+    <div>
+      <div class="label">GA</div>
+      <div class="color-stack">
+        <div class="color-half green"></div>
+        <div class="color-half blue2"></div>
+      </div>
+    </div>
+    <div>
+      <div class="label">ME</div>
+      <div class="color-stack">
+        <div class="color-half green"></div>
+        <div class="color-half blue2"></div>
+      </div>
+    </div>
+    <div>
+      <div class="label"></div>
+      <div class="color-stack">
+        <div class="color-half blue2"></div>
+        <div class="color-half blue2"></div>
+      </div>
+    </div>
   </div>
 
-  <div class="color-bar">
-    <div class="red"></div>
-    <div class="blue"></div>
-    <div class="red"></div>
-    <div class="blue2"></div>
-    <div class="green"></div>
-    <div class="blue2"></div>
-  </div>
-
+  <!-- Text Sections -->
   <div class="section">reading between the<br>lines</div>
   <div class="lines"></div>
 
