@@ -21,7 +21,7 @@
     .grid-item {
       display: flex;
       flex-direction: column;
-      align-items: flex-start; /* ⬅ Align contents to the left */
+      align-items: flex-start;
     }
 
     .label {
@@ -53,15 +53,22 @@
     .oph-red { flex: 1.5; } /* custom longer red for OPH */
     .oph-blue { flex: 1.5; }
 
-    .section {
+    /* Section with ::after lines */
+    section {
       font-size: 2em;
       font-weight: bold;
-      margin-bottom: 0.3em;
+      margin-bottom: 2em;
       line-height: 1.2;
+      position: relative;
+      padding-bottom: 2.5em;
     }
-
-    .section + .lines {
+    section::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
       height: 35px;
+      width: 100%;
       background-image: repeating-linear-gradient(
         to bottom,
         #b54e78,
@@ -77,13 +84,12 @@
         transparent 12px,
         transparent 15px
       );
-      margin-bottom: 1.5em;
     }
   </style>
 </head>
 <body>
 
-  <!-- Grid with left-aligned labels and horizontal color blocks -->
+  <!-- Grid: labels + color blocks -->
   <div class="grid-container">
     <div class="grid-item">
       <div class="label">OPH</div>
@@ -122,15 +128,10 @@
     </div>
   </div>
 
-  <!-- Text sections -->
-  <div class="section">reading between the<br>lines</div>
-  <div class="lines"></div>
-
-  <div class="section">where is my body</div>
-  <div class="lines"></div>
-
-  <div class="section">experiments with text</div>
-  <div class="lines"></div>
+  <!-- Text sections w/ lines -->
+  <section>reading between the<br>lines</section>
+  <section>where is my body</section>
+  <section>experiments with text</section>
 
 </body>
 </html>
