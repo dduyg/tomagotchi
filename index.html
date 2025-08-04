@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hover Effects Preview</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #111;
+      color: #fff;
+      padding: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .toggle {
+      padding: 1rem 1.5rem;
+      border: 2px solid currentColor;
+      color: #E92BFF;
+      background: none;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    /* 1. Pulse */
+    .toggle-1:hover {
+      animation: pulse 0.6s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0.6; transform: scale(1.05); }
+    }
+
+    /* 2. Translate + Skew */
+    .toggle-2:hover {
+      transform: translateY(-2px) skewX(-3deg);
+      transition: transform 0.2s ease;
+    }
+
+    /* 3. Glitch */
+    .toggle-3:hover {
+      animation: glitch 0.3s steps(2, end) infinite;
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0, 0); }
+      20% { transform: translate(-2px, 1px); }
+      40% { transform: translate(2px, -1px); }
+      60% { transform: translate(-1px, -2px); }
+      80% { transform: translate(1px, 2px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    /* 4. Blink Line Under */
+    .toggle-4:hover::after {
+      content: "";
+      display: block;
+      height: 2px;
+      background: currentColor;
+      animation: blinkline 0.6s infinite alternate;
+      margin-top: 4px;
+    }
+
+    @keyframes blinkline {
+      0% { width: 0; opacity: 0.5; }
+      100% { width: 100%; opacity: 1; }
+    }
+
+    /* 5. Chromatic Aberration */
+    .toggle-5:hover {
+      color: #fff;
+    }
+
+    .toggle-5:hover::before,
+    .toggle-5:hover::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: red;
+      z-index: -1;
+      transform: translate(1px, 0);
+      opacity: 0.7;
+    }
+
+    .toggle-5:hover::after {
+      color: blue;
+      transform: translate(-1px, 0);
+    }
+
+    /* 6. Noise Overlay (Text-clip) */
+    .toggle-6:hover {
+      background-image: url('https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif');
+      background-size: cover;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    /* 7. Grid Flash Background */
+    .toggle-7:hover {
+      background-image: repeating-linear-gradient(
+        0deg,
+        currentColor 0px,
+        currentColor 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      background-size: 100% 10px;
+      animation: gridFlash 0.6s infinite linear;
+      color: #000;
+    }
+
+    @keyframes gridFlash {
+      0% { background-position: 0 0; }
+      100% { background-position: 0 10px; }
+    }
+
+    /* 8. Flip (3D Rotate) */
+    .toggle-8 {
+      perspective: 600px;
+    }
+
+    .toggle-8 span {
+      display: inline-block;
+      transition: transform 0.5s;
+      transform-style: preserve-3d;
+    }
+
+    .toggle-8:hover span {
+      transform: rotateY(180deg);
+    }
+
+    /* 9. Squish */
+    .toggle-9 {
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                  filter 0.2s ease;
+      will-change: transform;
+    }
+
+    .toggle-9:hover {
+      transform: scale(0.95, 0.92);
+      filter: brightness(1.2);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle toggle-1">Pulse</button>
+  <button class="toggle toggle-2">Translate Skew</button>
+  <button class="toggle toggle-3">Glitch</button>
+  <button class="toggle toggle-4">Blink Line</button>
+  <button class="toggle toggle-5" data-text="Chromatic">Chromatic</button>
+  <button class="toggle toggle-6">Noise Text</button>
+  <button class="toggle toggle-7">Grid Flash</button>
+  <button class="toggle toggle-8"><span>Flip Text</span></button>
+  <button class="toggle toggle-9">Squish</button>
+
+</body>
+</html>
