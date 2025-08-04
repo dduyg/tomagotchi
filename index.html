@@ -6,16 +6,31 @@
   <title>Liminal🦹‍♀️Loop</title>
   <link href="https://fonts.googleapis.com/css2?family=Marmelad&display=swap" rel="stylesheet">
   <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: "Marmelad", sans-serif;
-      background: #EDEDED;
-      color: #9D00FF;
-      margin: 0;
-      padding: 0;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      position: relative;
+      background: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/detail-18.png') no-repeat center center / cover;
+      font-family: "Marmelad", sans-serif;
+      z-index: 0;
+      color: white;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3); /* Dark overlay */
+      z-index: 1;
+      pointer-events: none; /* optional: allows clicking through overlay */
+    }
+    main {
+      position: relative;
+      z-index: 2;
+      padding: 20px;
+      max-width: 600px;
     }
 
     .toggle {
