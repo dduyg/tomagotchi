@@ -68,16 +68,13 @@
       fill: currentColor;
       flex-shrink: 0;
     }
-.toggle {
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
-              filter 0.2s ease;
-  will-change: transform;
+.toggle:hover svg {
+  animation: spin 0.8s ease-in-out infinite alternate;
 }
 
-.toggle:hover {
-  transform: scale(0.95, 0.92);
-  filter: brightness(1.2);
-  cursor: pointer;
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(12deg); }
 }
 
     main {
