@@ -13,31 +13,27 @@
       padding: 2em;
     }
 
-    .grid-container {
+    header {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      margin-bottom: 2em;
+      margin-bottom: 5em;
     }
-
-    .grid-item {
+    .item {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
     }
-
     .label {
       font-family: monospace;
       font-size: 1.2em;
       letter-spacing: 0.1em;
       margin-bottom: 0.3em;
     }
-
-    .color-row {
+    .blocks {
       display: flex;
       height: 20px;
       width: 100%;
     }
-
     .segment {
       height: 100%;
     }
@@ -52,10 +48,9 @@
     .short { flex: 1; }
     .long  { flex: 2; }
     .oph-red { flex: 1.5; } /* custom longer red for OPH */
-    .oph-blue { flex: 1.5; }
+    .oph-blue { flex: 1.5; }    
 
-    /* Section with ::after lines */
-    section {
+    article {
       font-size: 2em;
       font-weight: bold;
       margin-bottom: 2em;
@@ -63,7 +58,7 @@
       position: relative;
       padding-bottom: 40px; /* match or exceed ::after height */
     }
-    section::after {
+    article::after {
       content: "";
       position: absolute;
       bottom: 0;
@@ -75,8 +70,7 @@
         #b54e78 0px, #b54e78 3px,
         #19a868 3px, #19a868 6px,
         #2b4aa1 6px, #2b4aa1 9px);
-    }
-       
+    }       
      /* With gaps:
       background-image: repeating-linear-gradient(
         to bottom,
@@ -96,50 +90,47 @@
   </style>
 </head>
 <body>
-
-  <!-- Grid: labels + color blocks -->
-  <div class="grid-container">
-    <div class="grid-item">
-      <div class="label">OPH</div>
-      <div class="color-row">
+  <header>
+    <div class="item">
+      <div class="label">hig</div>   
+      <div class="blocks">
         <div class="segment red oph-red"></div>
         <div class="segment blue oph-blue"></div>
       </div>
     </div>
-    <div class="grid-item">
-      <div class="label">EL</div>
-      <div class="color-row">
+    <div class="item">
+      <div class="label">hf</div> 
+      <div class="blocks">
         <div class="segment red short"></div>
         <div class="segment blue long"></div>
       </div>
     </div>
-    <div class="grid-item">
-      <div class="label">IA</div>
-      <div class="color-row">
+    <div class="item">
+      <div class="label">al</div> 
+      <div class="blocks">
         <div class="segment blue2 short"></div>
         <div class="segment red long"></div>
       </div>
     </div>
-    <div class="grid-item">
-      <div class="label">GA</div>
-      <div class="color-row">
+    <div class="item">
+      <div class="label">ut</div>
+      <div class="blocks">
         <div class="segment green short"></div>
         <div class="segment blue2 long"></div>
       </div>
     </div>
-    <div class="grid-item">
-      <div class="label">ME</div>
-      <div class="color-row">
+    <div class="item">
+      <div class="label">in</div>
+      <div class="blocks">
         <div class="segment green short"></div>
         <div class="segment blue2 long"></div>
       </div>
     </div>
-  </div>
+  </header>
 
-  <!-- Text sections w/ lines -->
-  <section>reading between the lines</section>
-  <section>where is my body</section>
-  <section>experiments with text</section>
-
+  <!-- Articles with ::after lines -->
+  <article>reading between the lines</article>
+  <article>where is my body</article>
+  <article>experiments with text</article>
 </body>
 </html>
