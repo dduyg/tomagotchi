@@ -203,17 +203,29 @@
       opacity: 1;
     }
 
-    /* 15. Outline Stroke Fill Reveal */
+    /* 15. Orbiting Dot Halo */
     .link-15 {
-      color: transparent;
-      -webkit-text-stroke: 1px white;
-      text-stroke: 1px white;
+      position: relative;
     }
-    .link-15:hover {
-      color: white;
-      -webkit-text-stroke: 0;
-      text-stroke: 0; 
-      transition: all 0.3s ease;
+    .link-15::before {
+      content: "";
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: currentColor;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(0deg) translateX(1.5em);
+      animation: orbit 1s linear infinite;
+      opacity: 0;
+    }
+    .link-15:hover::before {
+      opacity: 1;
+    }
+    @keyframes orbit {
+      0%   { transform: translate(-50%, -50%) rotate(0deg) translateX(1.5em); }
+      100% { transform: translate(-50%, -50%) rotate(360deg) translateX(1.5em); }
     }
   </style>
 </head>
@@ -233,7 +245,7 @@
     <div class="link link-12">Slide Shine</div>
     <div class="link link-13"><span>Fly-In</span></div>
     <div class="link link-14">Matrix Flicker</div>
-    <div class="link link-15">Outline Stroke</div>
+    <div class="link link-15">Orbiting Dot</div>
   </main>
 
   
