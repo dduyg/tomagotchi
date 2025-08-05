@@ -251,18 +251,21 @@
     .link-18::after {
       content: '';
       position: absolute;
+      left: 50%;
+      top: 50%;
       background: currentColor;
       border-radius: 50%;
-      width: 15px;
-      height: 15px;
+      width: 10px;
+      height: 10px;
       opacity: 0;
+      transform: scale(0);
+      transform-origin: center;
       pointer-events: none;
-      transition: opacity 0.3s ease;
+      transition: transform 0.4s ease, opacity 0.4s ease;
     }
     .link-18:hover::after {
       opacity: 0.5;
-      left: 50%;
-      top: 50%;
+      transform: scale(20); /* Bigger circle that expands from the center */
     }
   </style>
 </head>
