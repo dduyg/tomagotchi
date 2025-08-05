@@ -25,19 +25,19 @@
       background: rgba(0, 0, 0, 0.3);
       z-index: -1;
     }
-    main {
+    .wrapper {
       display: flex;
       height: 100vh;
       gap: 20px;
       padding: 10px;
     }
-    #left {
+    main {
       width: 60%;
       height: 100vh;
       overflow-y: auto;
       padding: 10vh 4% 0;
     }
-    #right {
+    footer {
       width: 40%;
       position: fixed;
       right: 10px;
@@ -563,8 +563,8 @@
 </style>
 </head>
 <body>
-  <main>
-    <div id="left">
+  <div class="wrapper">
+    <main>
         <div class="link link-1">Pulse</div>
         <div class="link link-2">Translate Skew</div>
         <div class="link link-3">Glitch</div>
@@ -601,13 +601,12 @@
         <div class="link link-34">Flip Y</div>
         <div class="link link-35">Blurred Reveal</div>
         <div class="link link-36">Morph Uppercase</div>
-
-      <br><br><br><br><br><br><br>
-    </div>
-    <div id="right">
-      <h3>→PASTEL OVERDRIVE</h3>
-    </div>
-  </main>
+<br><br><br><br><br><br><br>
+    </main>
+    <footer>
+      <h3>PASTEL OVERDRIVE</h3>
+    </footer>
+  </div>
 
   <svg height="0" width="0" style="position: absolute;">
     <filter id="waveFilter">
