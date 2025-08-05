@@ -535,31 +535,26 @@
     }
   
     /* Custom scrollbar */
-main::-webkit-scrollbar {
-    width: 1.3em;
-}
-main::-webkit-scrollbar-track {
-    background: transparent;
-}
-main::-webkit-scrollbar-thumb,
-main::-webkit-scrollbar-thumb:hover {
-    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M6 16h4v4h-4v-4zM6 28h4v-4h-4v4zM14 28h4v-4h-4v4zM6 4v8h20v-8h-20zM22 20h4v-4h-4v4zM22 28h4v-4h-4v4zM14 20h4v-4h-4v4z" fill="%23b2868e"/%3E%3C/svg%3E');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-@-moz-document url-prefix() { /* Firefox scrollbar */
-    main {
+    main::-webkit-scrollbar { width: 1.3em; }
+    main::-webkit-scrollbar-track { background: transparent; }
+    main::-webkit-scrollbar-thumb, main::-webkit-scrollbar-thumb:hover {
+      background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M6 16h4v4h-4v-4zM6 28h4v-4h-4v4zM14 28h4v-4h-4v4zM6 4v8h20v-8h-20zM22 20h4v-4h-4v4zM22 28h4v-4h-4v4zM14 20h4v-4h-4v4z" fill="%23ffffff"/%3E%3C/svg%3E');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+    @-moz-document url-prefix() { /* Firefox scrollbar */
+      main {
         scrollbar-color: transparent transparent;
         scrollbar-width: thin;
-    }
-    main::-webkit-scrollbar-thumb {
-        background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M6 16h4v4h-4v-4zM6 28h4v-4h-4v4zM14 28h4v-4h-4v4zM6 4v8h20v-8h-20zM22 20h4v-4h-4v4zM22 28h4v-4h-4v4zM14 20h4v-4h-4v4z" fill="%23b2868e"/%3E%3C/svg%3E');
+      }
+      main::-webkit-scrollbar-thumb {
+        background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M6 16h4v4h-4v-4zM6 28h4v-4h-4v4zM14 28h4v-4h-4v4zM6 4v8h20v-8h-20zM22 20h4v-4h-4v4zM22 28h4v-4h-4v4zM14 20h4v-4h-4v4z" fill="%23ffffff"/%3E%3C/svg%3E');
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center center;
+      }
     }
-}
 </style>
 </head>
 <body>
