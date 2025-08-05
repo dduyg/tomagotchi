@@ -202,6 +202,18 @@
       transform: translateY(-10px) scale(1.05);
       opacity: 1;
     }
+
+    /* 14. Outline Stroke Fill Reveal */
+    .link-14 {
+      color: transparent;
+      -webkit-text-stroke: 1px currentColor;
+      position: relative;
+    }
+    .link-14:hover {
+      color: currentColor;
+      -webkit-text-stroke: 0;
+      transition: all 0.3s ease;
+    }
   </style>
 </head>
 <body>
@@ -219,30 +231,7 @@
   <div class="link link-11">Neon Pulse</div>
   <div class="link link-12">Slide Shine</div>
   <div class="link link-13">Fly-In</div>
-  <div class="link link-14">Matrix Flicker</div>
+  <div class="link link-14">Outline Stroke</div>
 </main>
-
-  <script>
-    const toggle = document.querySelector('.link-14:hover');
-    const originalText = toggle.textContent;
-
-    toggle.addEventListener('mouseover', () => {
-      let iteration = 0;
-      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-      const interval = setInterval(() => {
-        toggle.textContent = originalText
-          .split("")
-          .map((letter, index) => {
-            if (index < iteration) return originalText[index];
-            return letters[Math.floor(Math.random() * 26)];
-          })
-          .join("");
-
-        if (iteration >= originalText.length) clearInterval(interval);
-        iteration += 1;
-      }, 30);
-    });
-  </script>
 </body>
 </html>
