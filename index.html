@@ -67,22 +67,26 @@
     .link-28:hover {
       font-weight: 900;
     }
-    /* 29. Inner Letter Slide-Up */
-    .link-29 span {
-      display: inline-block;
-      transform: translateY(0);
-      transition: transform 0.3s ease;
+    /* 29. Slide Up Color Fill */
+    .link-29 {
+      position: relative;
+      color: transparent;
+      -webkit-text-stroke: 1px #fff;
+      text-stroke: 1px #fff;
     }
-    .link-29:hover span {   
-      transform: translateY(-10%);
+    .link-29::before {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 100%;
+      color: #8FA1A3;
+      opacity: 0;
+      transition: top 0.3s ease, opacity 0.3s ease;    
     }
-    .link-29:hover span:nth-child(1) { transition-delay: 0s; }
-    .link-29:hover span:nth-child(2) { transition-delay: 0.05s; }
-    .link-29:hover span:nth-child(3) { transition-delay: 0.1s; }
-    .link-29:hover span:nth-child(4) { transition-delay: 0.15s; }
-    .link-29:hover span:nth-child(5) { transition-delay: 0.2s; }
-    .link-29:hover span:nth-child(6) { transition-delay: 0.25s; }
-    .link-29:hover span:nth-child(7) { transition-delay: 0.3s; }    
+    .link-29:hover::before {
+      top: 0;
+      opacity: 1;
+    }  
     /* 30. Underline Expand */
     .link-30 {
       position: relative;
@@ -174,34 +178,14 @@
       text-transform: uppercase;
       letter-spacing: 2px;
     }
-    /* 37. Slide Up Color Fill */
-    .link-37 {
-      position: relative;
-      color: transparent;
-      -webkit-text-stroke: 1px #fff;
-      text-stroke: 1px #fff;
-    }
-    .link-37::before {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      top: 100%;
-      color: #0ff;
-      opacity: 0;
-      transition: top 0.3s ease, opacity 0.3s ease;    
-    }
-    .link-37:hover::before {
-      top: 0;
-      opacity: 1;
-    }
   </style>
 </head>
 <body>
   <main>
     <div class="link link-26"><span>L</span><span>e</span><span>t</span><span>t</span><span>e</span><span>r</span> <span>S</span><span>t</span><span>r</span><span>e</span><span>t</span><span>c</span><span>h</span></div>     
     <div class="link link-27"><span>B</span><span>o</span><span>u</span><span>n</span><span>c</span><span>e</span> <span>L</span><span>e</span><span>t</span><span>t</span><span>e</span><span>r</span><span>s</span></div> 
-    <div class="link link-28">Font Weight Jump</div>   
-    <div class="link link-29"><span>I</span><span>n</span><span>n</span><span>e</span><span>r</span> <span>U</span><span>p</span></div>
+    <div class="link link-28">Font Weight Jump</div>
+    <div class="link link-29" data-text="Slide Up Fill">Slide Up Fill</div>   
     <div class="link link-30">Underline Expand</div>
     <div class="link link-31"><span>D</span><span>e</span><span>c</span><span>a</span><span>y</span> <span>F</span><span>a</span><span>d</span><span>e</span></div>   
     <div class="link link-32"><span>Flip Rotation</span></div>
@@ -209,9 +193,6 @@
     <div class="link link-34">Flip Y</div>
     <div class="link link-35">Blurred Reveal</div>
     <div class="link link-36">Morph Uppercase</div>
-
-    
-    <div class="link link-37" data-text="Slide Up Fill">Slide Up Fill</div>
   </main>
 </body>
 </html>
