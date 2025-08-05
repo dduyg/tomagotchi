@@ -227,6 +227,16 @@
       0%   { transform: translate(-50%, -50%) rotate(0deg) translateX(1.5em); }
       100% { transform: translate(-50%, -50%) rotate(360deg) translateX(1.5em); }
     }
+
+    /* 16. Stretch + Snapback */
+    .link-16:hover {
+      animation: stretchSnap 0.4s ease-in-out;
+    }
+    @keyframes stretchSnap {
+      0%   { transform: scale(1, 1); }
+      50%  { transform: scale(1.3, 0.7); }
+      100% { transform: scale(1, 1); }
+    }
   </style>
 </head>
 <body>
@@ -246,8 +256,8 @@
     <div class="link link-13"><span>Fly-In</span></div>
     <div class="link link-14">Matrix Flicker</div>
     <div class="link link-15">Orbiting Dot</div>
+    <div class="link link-16">Stretch+Snapback</div>
   </main>
-
   
   <script> /* 14. Matrix Flicker (Randomized characters) */
     const toggle = document.querySelector('.link-14');
