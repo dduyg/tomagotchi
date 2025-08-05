@@ -338,11 +338,11 @@
     }
 
     /* 25. Line Through Slash */
-    .link-25 {
+    .link-25 span {
       position: relative;
       display: inline-block;
     }
-    .link-25::before {
+    .link-25::before span {
       content: "";
       position: absolute;
       width: 100%;
@@ -354,37 +354,19 @@
       transform-origin: right;
       transition: transform 0.3s ease;
     }
-    .link-25:hover::before {
+    .link-25:hover::before span {
       transform: scaleX(1);
       transform-origin: left;
     }
 
-    /* 26. Diagonal Clip Text */
+    /* 26. DiagText */
     .link-26 {
-      background: linear-gradient(135deg, #fff 50%, transparent 50%);
-      -webkit-background-clip: text;
-      color: transparent;
-      transition: background-position 0.4s;
-    }
-    .link-26:hover {
-      background-position: 100% 100%;
+      color: red;
     }
 
-    /* 27. Noise Overlay */
+    /* 27. Nlay */
     .link-27 {
-      position: relative;
-    }
-    .link-27::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: url('https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif');
-      mix-blend-mode: screen;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .link-27:hover::after {
-      opacity: 0.2;
+      color: red;
     }
 
     /* 28. Font Weight Jump */
@@ -396,13 +378,9 @@
       font-weight: 900;
     }
 
-    /* 29. Glow on Hover */
+    /* 29. Gver */
     .link-29 {
-      text-shadow: 0 0 0 transparent;
-      transition: text-shadow 0.3s;
-    }
-    .link-29:hover {
-      text-shadow: 0 0 10px #0ff;
+      color: red;
     }
 
     /* 30. Elastic Scale */
@@ -572,7 +550,7 @@
 
   <div class="link link-23">Circle Reveal</div>
   <div class="link link-24"><span>Text Skew</span></div>
-  <div class="link link-25">Line Slash</div>
+  <div class="link link-25"><span>Line Slash</span></div>
   <div class="link link-26">Diagonal Clip</div>
   <div class="link link-27">Noise Overlay</div>
   <div class="link link-28">Font Weight Jump</div>
