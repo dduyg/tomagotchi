@@ -161,14 +161,35 @@
     }
 
     /* 11. Neon Pulse */
-    .link-11:hover {  text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
-  animation: neonGlow 1s ease-in-out infinite alternate;
-}
+    .link-11:hover {
+      text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+      animation: neonGlow 1s ease-in-out infinite alternate;
+    }
+    @keyframes neonGlow {
+      from { filter: brightness(1.2); }
+      to   { filter: brightness(1.5); }
+    }
 
-@keyframes neonGlow {
-  from { filter: brightness(1.2); }
-  to   { filter: brightness(1.5); }
-}
+    /* 12. Slide Shine (Glass reflection) */
+    .link-12 {
+      position: relative;
+      overflow: hidden;
+    }
+    .link-12::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+      transform: skewX(-20deg);
+    }
+    .link-12:hover::after {
+      animation: shine 0.75s ease-in-out;
+    }
+    @keyframes shine {
+      100% { left: 125%; }}
   </style>
 </head>
 <body>
@@ -184,6 +205,7 @@
   <div class="link link-9">Squish</div>
   <div class="link link-10">Jelly Bounce</div>
   <div class="link link-11">Neon Pulse</div>
+  <div class="link link-12">Slide Shine</div>
 </main>
 </body>
 </html>
