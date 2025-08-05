@@ -189,7 +189,13 @@
       animation: shine 0.75s ease-in-out;
     }
     @keyframes shine {
-      100% { left: 125%; }}
+      100% { left: 125%; }
+    }
+
+    /* 13. Morph / Gooey Distort */
+    .link-13 {
+      filter: url(#goo);
+    }
   </style>
 </head>
 <body>
@@ -206,6 +212,19 @@
   <div class="link link-10">Jelly Bounce</div>
   <div class="link link-11">Neon Pulse</div>
   <div class="link link-12">Slide Shine</div>
+  <div class="link link-13">Gooey Distort</div>
 </main>
+
+<svg style="display: none;">
+  <filter id="goo">
+    <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+    <feColorMatrix in="blur" mode="matrix"
+      values="1 0 0 0 0  
+              0 1 0 0 0  
+              0 0 1 0 0  
+              0 0 0 20 -10" result="goo" />
+    <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+  </filter>
+</svg>
 </body>
 </html>
