@@ -376,38 +376,32 @@
       transform-origin: left;
     }
 
-    /* 26. Liquid Fill Hover */
-    .link-26 {
+    /* 26. Ghost Fade-Out */
+  .link-26 {
     position: relative;
+    transition: color 0.4s ease;
+  }
+  .link-26:hover {
     color: transparent;
-    text-stroke: 1px white;
-    -webkit-text-stroke: 1px white;
-  }
-  .link-26::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    top: 100%;
-    width: 100%;
-    height: 100%;
-    color: white;
-    transition: top 0.5s ease;
-    overflow: hidden;
-  }
-  .link-26:hover::after {
-    top: 0;
+    -webkit-text-stroke: 1px #fff;
   }
 
-    /* 27. Color Burn Text */
-  .link-27 {
-    background: linear-gradient(to right, red, orange);
-    -webkit-background-clip: text;
-    color: transparent;
-    transition: filter 0.3s ease;
-    filter: brightness(0.5);
+    /* 27. Bounce In Letters */
+  .link-27 span {
+    display: inline-block;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
   }
-  .link-27:hover {
-    filter: brightness(1.2);
+  .link-27:hover span {
+    animation: bounceLetters 0.5s ease forwards;
+  }
+  .link-27:hover span:nth-child(1) { animation-delay: 0s; }
+  .link-27:hover span:nth-child(2) { animation-delay: 0.05s; }
+  .link-27:hover span:nth-child(3) { animation-delay: 0.1s; }
+  @keyframes bounceLetters {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
   }
 
     /* 28. Font Weight Jump */
@@ -419,10 +413,28 @@
       font-weight: 900;
     }
 
-    /* 29. Gver */
+    /* 29. Dot Flicker Underline */
     .link-29 {
-      color: red;
+      position: relative;
     }
+  .link-29::after {
+    content: '⠿⠿⠿⠿⠿';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    font-size: 0.8em;
+    letter-spacing: 2px;
+    opacity: 0;
+    animation: flickerDots 0.8s infinite alternate;
+    transition: opacity 0.3s;
+  }
+  .link-29:hover::after {
+    opacity: 1;
+  }
+  @keyframes flickerDots {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+  }
 
     /* 30. Elastic Scale */
     .link-30 {
@@ -575,12 +587,16 @@
     <div class="link link-24"><span>Text Skew</span></div>
     <div class="link link-25">Line Slash</div>
 
-   <div class="link link-26" data-text="LIQUID">LIQUID</div>
-   <div class="link link-27">COLOR BURN</div>
+   <div class="link link-26">GHOST</div>
+   <div class="link link-27"><span>B</span><span>O</span><span>U</span><span>N</span><span>C</span><span>E</span></div>
         
     <div class="link link-28">Font Weight Jump</div>
-  <div class="link link-29">Glow Text</div>
-  <div class="link link-30">Elastic Scale</div>
+ 
+    
+    <div class="link link-29">Dot Flicker</div>
+    
+    
+    <div class="link link-30">Elastic Scale</div>
   <div class="link link-31">Shadow Slide</div>
   <div class="link link-32">Underline Expand</div>
   <div class="link link-33"><span>L</span><span>e</span><span>t</span><span>t</span><span>e</span><span>r</span> Stretch</div>
