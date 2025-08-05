@@ -237,6 +237,22 @@
       50%  { transform: scale(1.3, 0.7); }
       100% { transform: scale(1, 1); }
     }
+
+    /* 17. Text Reveal Through Mask */
+    .link-17 {
+      position: relative;
+      overflow: hidden;
+      color: transparent;
+      background: linear-gradient(to right, currentColor 50%, transparent 50%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      transition: background-position 0.4s ease;
+      background-size: 200% 100%;
+      background-position: 100% 0;
+    }
+    .link-17:hover {
+      background-position: 0 0;
+    }
   </style>
 </head>
 <body>
@@ -257,6 +273,7 @@
     <div class="link link-14">Matrix Flicker</div>
     <div class="link link-15">Orbiting Dot</div>
     <div class="link link-16">Stretch+Snapback</div>
+    <div class="link link-17">Through Mask</div>
   </main>
   
   <script> /* 14. Matrix Flicker (Randomized characters) */
