@@ -34,16 +34,15 @@
       max-width: 600px;
     }
 
-    .toggle {
+    .link {
       margin: 2rem 0;
       text-transform: uppercase;
       font-size: 1.2rem;
-      transition: all 0.3s ease;
-      position: relative;
+      cursor: pointer;
     }
 
     /* 1. Pulse */
-    .toggle-1:hover {
+    .link-1:hover {
       animation: pulse 0.6s infinite alternate;
     }
     @keyframes pulse {
@@ -52,13 +51,13 @@
     }
 
     /* 2. Translate + Skew */
-    .toggle-2:hover {
+    .link-2:hover {
       transform: translateY(-2px) skewX(-3deg);
       transition: transform 0.2s ease;
     }
 
     /* 3. Glitch */
-    .toggle-3:hover {
+    .link-3:hover {
       animation: glitch 0.3s steps(2, end) infinite;
     }
     @keyframes glitch {
@@ -71,7 +70,7 @@
     }
 
     /* 4. Blink Line Under */
-    .toggle-4:hover::after {
+    .link-4:hover::after {
       content: "";
       display: block;
       height: 2px;
@@ -85,11 +84,12 @@
     }
 
     /* 5. Chromatic Aberration */
-    .toggle-5:hover {
+    .link-5:hover {
+      position: relative;
       color: #fff;
     }
-    .toggle-5:hover::before,
-    .toggle-5:hover::after {
+    .link-5:hover::before,
+    .link-5:hover::after {
       content: attr(data-text);
       position: absolute;
       left: 0;
@@ -99,13 +99,13 @@
       transform: translate(1px, 0);
       opacity: 0.7;
     }
-    .toggle-5:hover::after {
+    .link-5:hover::after {
       color: blue;
       transform: translate(-1px, 0);
     }
 
     /* 6. Noise Overlay (Text-clip) */
-    .toggle-6:hover {
+    .link-6:hover {
       background-image: url('https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif');
       background-size: cover;
       -webkit-background-clip: text;
@@ -113,17 +113,11 @@
     }
 
     /* 7. Grid Flash Background */
-    .toggle-7:hover {
-      background-image: repeating-linear-gradient(
-        0deg,
-        currentColor 0px,
-        currentColor 1px,
-        transparent 1px,
-        transparent 3px
-      );
+    .link-7:hover {
+      background-image: repeating-linear-gradient(0deg, currentColor 0px, currentColor 1px, transparent 1px, transparent 3px);  
       background-size: 100% 10px;
       animation: gridFlash 0.6s infinite linear;
-      color: #000;
+      color: #ADADAD;
     }
     @keyframes gridFlash {
       0% { background-position: 0 0; }
@@ -131,42 +125,40 @@
     }
 
     /* 8. Flip (3D Rotate) */
-    .toggle-8 {
+    .link-8 {
       perspective: 600px;
     }
-    .toggle-8 span {
+    .link-8 span {
       display: inline-block;
       transition: transform 0.5s;
       transform-style: preserve-3d;
     }
-    .toggle-8:hover span {
+    .link-8:hover span {
       transform: rotateY(180deg);
     }
 
     /* 9. Squish */
-    .toggle-9 {
-      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
-                  filter 0.2s ease;
+    .link-9 {
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s ease;
       will-change: transform;
     }
-    .toggle-9:hover {
+    .link-9:hover {
       transform: scale(0.95, 0.92);
       filter: brightness(1.2);
-      cursor: pointer;
     }
   </style>
 </head>
 <body>
 <main>
-  <div class="toggle toggle-1">Pulse</div>
-  <div class="toggle toggle-2">Translate Skew</div>
-  <div class="toggle toggle-3">Glitch</div>
-  <div class="toggle toggle-4">Blink Line</div>
-  <div class="toggle toggle-5" data-text="Chromatic">Chromatic</div>
-  <div class="toggle toggle-6">Noise Text</div>
-  <div class="toggle toggle-7">Grid Flash</div>
-  <div class="toggle toggle-8"><span>Flip Text</span></div>
-  <div class="toggle toggle-9">Squish</div>
+  <div class="link link-1">Pulse</div>
+  <div class="link link-2">Translate Skew</div>
+  <div class="link link-3">Glitch</div>
+  <div class="link link-4">Blink Line</div>
+  <div class="link link-5" data-text="Chromatic">Chromatic</div>
+  <div class="link link-6">Noise Text</div>
+  <div class="link link-7">Grid Flash</div>
+  <div class="link link-8"><span>Flip Text</span></div>
+  <div class="link link-9">Squish</div>
 </main>
 </body>
 </html>
