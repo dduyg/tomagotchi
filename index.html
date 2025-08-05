@@ -238,14 +238,10 @@
       100% { transform: scale(1, 1); }
     }
 
-    /* 17. Plasma Border Glow */
-    .link-17 {
-      box-shadow: 0 0 0 transparent;
-      transition: box-shadow 0.3s ease;
-    }
+    /* 17. Distorted Mirror */
     .link-17:hover {
-      box-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
-    } 
+      filter: url(#waveFilter);
+    }
   </style>
 </head>
 <body>
@@ -266,8 +262,15 @@
     <div class="link link-14">Matrix Flicker</div>
     <div class="link link-15">Orbiting Dot</div>
     <div class="link link-16">Stretch+Snapback</div>
-    <div class="link link-17">Plasma Border</div>
+    <div class="link link-17">Distorted Mirror</div>
   </main>
+
+  <svg height="0" width="0" style="position: absolute;">
+    <filter id="waveFilter">
+      <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="1" result="turbulence"/>
+     <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="10" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
   
   <script> /* 14. Matrix Flicker (Randomized characters) */
     const toggle = document.querySelector('.link-14');
