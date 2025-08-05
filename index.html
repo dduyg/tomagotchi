@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LiminalLoop</title>
+<style>
+  body, html {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    line-height: 1.4;
+  }
+  #bg-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+  main {
+    display: flex;
+    height: 100vh;
+    gap: 20px;
+    padding: 10px;
+    position: relative;
+    z-index: 1; /* ensure it’s above the video */
+  }
+  #left {
+    width: 55%;
+    height: 100vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 10vh 3% 0;
+  }
+  #right {
+    width: 45%;
+    position: fixed;
+    right: 10px;
+    top: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    padding: 20px 20px 10vh;  
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: right;
+    overflow-y: auto;
+  }
+
+/* Custom scrollbar */
+#left::-webkit-scrollbar {
+    width: 1.3em;
+}
+#left::-webkit-scrollbar-track {
+    background: transparent;
+}
+#left::-webkit-scrollbar-thumb,
+#left::-webkit-scrollbar-thumb:hover {
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="%23a0a89e" stroke="%23a0a89e" stroke-width="5"%3E%3Cg id="SVGRepo_bgCarrier" stroke-width="0"%3E%3C/g%3E%3Cg id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"%3E%3C/g%3E%3Cg id="SVGRepo_iconCarrier"%3E%3Cdefs%3E%3Cstyle%3E.a{fill:none;stroke:%23a0a89e;stroke-linecap:round;stroke-linejoin:round;}%3C/style%3E%3C/defs%3E%3Ccircle class="a" cx="24" cy="24" r="21.5"/%3E%3Cpath class="a" d="M2.7292,25.253s4.694,1.1769,6.5217,0c5.5212-3.5551.73-17.554,8.1521-17.935C30.024,6.7851,15.83,41.535,29.89,41.557c7.0423-.3815,3.54-13.11,8.7089-16.304,1.8492-1.1429,6.5217,0,6.5217,0"/%3E%3C/g%3E%3C/svg%3E');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+@-moz-document url-prefix() { /* Firefox scrollbar */
+    #left {
+        scrollbar-color: transparent transparent;
+        scrollbar-width: thin;
+    }
+    #left::-webkit-scrollbar-thumb {
+        background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="%23a0a89e" stroke="%23a0a89e" stroke-width="5"%3E%3Cg id="SVGRepo_bgCarrier" stroke-width="0"%3E%3C/g%3E%3Cg id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"%3E%3C/g%3E%3Cg id="SVGRepo_iconCarrier"%3E%3Cdefs%3E%3Cstyle%3E.a{fill:none;stroke:%23a0a89e;stroke-linecap:round;stroke-linejoin:round;}%3C/style%3E%3C/defs%3E%3Ccircle class="a" cx="24" cy="24" r="21.5"/%3E%3Cpath class="a" d="M2.7292,25.253s4.694,1.1769,6.5217,0c5.5212-3.5551.73-17.554,8.1521-17.935C30.024,6.7851,15.83,41.535,29.89,41.557c7.0423-.3815,3.54-13.11,8.7089-16.304,1.8492-1.1429,6.5217,0,6.5217,0"/%3E%3C/g%3E%3C/svg%3E');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+}
+</style>
+</head>
+<body>
+  <main>
+    <div id="left">
+      <p>Korkuyorlar, korkacaklar, korksunlar<br />
+      ıslıkta sen</p>
+ <br><br><br><br><br><br><br>
+    </div>
+    <div id="right">
+      <h3>→PASTEL OVERDRIVE</h3>
+    </div>
+  </main>
+</body>
+</html>
