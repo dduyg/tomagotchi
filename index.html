@@ -300,16 +300,22 @@
     }
       
     /* 22. Outline Stroke Fill Reveal */
-    .link-22 svg text {
-      font-size: 1.2rem;
-      font-family: "Marmelad", sans-serif;
-      text-transform: uppercase;
-      fill: transparent;
-      stroke: #fff;
-      stroke-width: 1.2px;
+    .link-22 {
+      display: inline-block;
+    }
+    .link-22 svg {
+      width: 1em;
+      height: 1em;
+      display: block;
+    }
+    .link-22 text {
+      font-size: 1em;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.1px;
       transition: all 0.3s ease;
     }
-    .link-22 svg text:hover {
+    .link-22 text:hover {
       fill: #fff;
       stroke: none;
     }
@@ -339,7 +345,7 @@
     <div class="link link-20">Overshoot Bounce</div>
     <div class="link link-21">Swipe Mask</div>
     <div class="link link-22">
-      <svg viewBox="0 0 600 100" width="600" height="100">
+      <svg viewBox="0 0 600 100" preserveAspectRatio="xMidYMid meet">
         <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
            Outline Stroke
         </text>
