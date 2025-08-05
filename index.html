@@ -202,6 +202,18 @@
       transform: translateY(-10px) scale(1.05);
       opacity: 1;
     }
+
+    /* 15. Outline Stroke Fill Reveal */
+    .link-15 {
+      color: transparent;
+      -webkit-text-stroke: 1px currentColor;
+      position: relative;
+    }
+    .link-15:hover {
+      color: currentColor;
+      -webkit-text-stroke: 0;
+      transition: all 0.3s ease;
+    }
   </style>
 </head>
 <body>
@@ -220,10 +232,11 @@
     <div class="link link-12">Slide Shine</div>
     <div class="link link-13"><span>Fly-In</span></div>
     <div class="link link-14">Matrix Flicker</div>
+    <div class="link link-15">Outline Stroke</div>
   </main>
 
   
-  <script>
+  <script> /* 14. Matrix Flicker (Randomized characters) */
     const toggle = document.querySelector('.link-14');
     const originalText = toggle.textContent;
 
