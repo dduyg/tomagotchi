@@ -300,10 +300,20 @@
       background-position: left;
     }
       
-    /* 22. Oal */
-    .link-22 {  
-      line-height: 1;   
-    }    
+    /* 22. Rolling Gradient Border */
+    .link-22 {
+      position: relative;
+      padding: 0.2em 0.5em;
+      border: 2px solid transparent;
+      background-image: linear-gradient(#000, #000), linear-gradient(120deg, #ff00ff, #00ffff);
+      background-clip: padding-box, border-box;
+      background-origin: padding-box, border-box;
+      transition: background-position 0.4s ease;
+      color: #fff;
+    }
+    .link-22:hover {
+      background-position: 100% 0;
+    }
 
     /* 🟣23. Circle Reveal Background */
     .link-23 {
@@ -339,22 +349,22 @@
 
     /* 25. Line Through Slash */
     .link-25 {
-      display: inline-block;
+      display: inline;
       position: relative;
       line-height: 1;
     }
     .link-25::before {
       content: "";
       position: absolute;
-      width: 100%;
-      height: 2px;
-      background: red;
-      top: 50%;
       left: 0;
+      top: 50%;
+      width: 100%;
+      height: 1px;
+      background: red;
       transform: scaleX(0);
       transform-origin: right;
       transition: transform 0.3s ease;
-      pointer-events: none; /* So it doesn't interfere with hover */
+      pointer-events: none;
     }
     .link-25:hover::before {
       transform: scaleX(1);
@@ -532,6 +542,7 @@
     <div class="link link-20">Overshoot Bounce</div>
     <div class="link link-21">Swipe Mask</div>
 
+    <div class="link link-22">Rolling Border</div>
   <div class="link link-23">Circle Reveal</div>
   <div class="link link-24"><span>Text Skew</span></div>
   <div class="link link-25">Line Slash</div>
