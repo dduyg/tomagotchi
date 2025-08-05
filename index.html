@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LiminalLoop</title>
 <style>
+  * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
   body {
     height: 100vh;
     overflow: hidden;
@@ -12,7 +13,7 @@
     background-size: cover;
     position: relative; /* to position ::before correctly */
     z-index: 0;    
-  }    
+  }
   body::before {
     content: "";
     position: absolute;
@@ -26,8 +27,6 @@
     height: 100vh;
     gap: 20px;
     padding: 10px;
-    position: relative;
-    z-index: 1; /* ensure it’s above the video */
   }
   #left {
     width: 55%;
