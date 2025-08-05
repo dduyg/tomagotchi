@@ -160,26 +160,15 @@
       100% { transform: scale(1, 1); }
     }
 
-    /* 11. Glitch Clone Split */
-    .link-11:hover {
-      position: relative;
-    }
-    .link-11:hover::before, 
-    .link-11:hover::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: #f0f;
-      background: transparent;
-      z-index: -1;
-      transform: translate(2px, -2px);
-      opacity: 0.7;
-    }
-    .link-11:hover::after {
-      color: #0ff;
-      transform: translate(-2px, 2px);
-    }
+    /* 11. Neon Pulse */
+    .link-11:hover {  text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+  animation: neonGlow 1s ease-in-out infinite alternate;
+}
+
+@keyframes neonGlow {
+  from { filter: brightness(1.2); }
+  to   { filter: brightness(1.5); }
+}
   </style>
 </head>
 <body>
@@ -194,7 +183,7 @@
   <div class="link link-8"><span>Flip Text</span></div>
   <div class="link link-9">Squish</div>
   <div class="link link-10">Jelly Bounce</div>
-  <div class="link link-11" data-text="Glitch Clone">Glitch Clone</div>
+  <div class="link link-11">Neon Pulse</div>
 </main>
 </body>
 </html>
