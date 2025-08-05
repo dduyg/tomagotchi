@@ -379,7 +379,8 @@
     .link-26 {
     position: relative;
     color: transparent;
-    -webkit-text-stroke: 1px currentColor;
+    text-stroke: 1px white;
+    -webkit-text-stroke: 1px white;
   }
   .link-26::after {
     content: attr(data-text);
@@ -388,7 +389,7 @@
     top: 100%;
     width: 100%;
     height: 100%;
-    color: currentColor;
+    color: white;
     transition: top 0.5s ease;
     overflow: hidden;
   }
@@ -396,32 +397,16 @@
     top: 0;
   }
 
-    /* 27. Glimmer Shine Sweep */
+    /* 27. Color Burn Text */
   .link-27 {
-    position: relative;
-    overflow: hidden;
+    background: linear-gradient(to right, red, orange);
+    -webkit-background-clip: text;
+    color: transparent;
+    transition: filter 0.3s ease;
+    filter: brightness(0.5);
   }
-  .link-27::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -75%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(
-      120deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.5) 50%,
-      transparent 100%
-    );
-    transform: skewX(-20deg);
-  }
-  .link-27:hover::after {
-    animation: shineSweep 1s ease forwards;
-  }
-  @keyframes shineSweep {
-    0% { left: -75%; }
-    100% { left: 125%; }
+  .link-27:hover {
+    filter: brightness(1.2);
   }
 
     /* 28. Font Weight Jump */
@@ -590,7 +575,7 @@
     <div class="link link-25">Line Slash</div>
 
    <div class="link link-26" data-text="LIQUID">LIQUID</div>
-   <div class="link link-27">GLIMMER</div> 
+   <div class="link link-27">COLOR BURN</div>
         
     <div class="link link-28">Font Weight Jump</div>
   <div class="link link-29">Glow Text</div>
