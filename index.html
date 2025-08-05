@@ -338,26 +338,31 @@
     }
 
     /* 25. Line Through Slash */
-    .link-25 span {
-      position: relative;
+    .link-25 {
       display: inline-block;
-    }
-    .link-25::before span {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 2px;
-      background: red;
-      top: 50%;
-      left: 0;
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform 0.3s ease;
-    }
-    .link-25:hover::before span {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
+    }.link-25 span {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.link-25 span::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: red;
+  top: 50%;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.link-25 span:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
 
     /* 26. DiagText */
     .link-26 {
