@@ -242,6 +242,31 @@
     .link-17:hover {
       filter: url(#waveFilter);
     }
+
+    /* 18. Ink Spill Drop */
+    .link-18 {
+      position: relative;
+      overflow: hidden;
+    }
+    .link-18::after {
+      content: '';
+      position: absolute;
+      background: currentColor;
+      border-radius: 50%;
+      width: 10px;
+      height: 10px;
+      opacity: 0;
+      transform: scale(0);
+      pointer-events: none;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .link-18:hover::after {
+      opacity: 0.4;
+      transform: scale(10);
+      left: 50%;
+      top: 50%;
+      transform-origin: center;
+    }
   </style>
 </head>
 <body>
@@ -263,6 +288,7 @@
     <div class="link link-15">Orbiting Dot</div>
     <div class="link link-16">Stretch+Snapback</div>
     <div class="link link-17">Distorted Mirror</div>
+    <div class="link link-18">Ink Spill</div>
   </main>
 
   <svg height="0" width="0" style="position: absolute;">
