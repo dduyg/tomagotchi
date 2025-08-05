@@ -340,13 +340,10 @@
     /* 25. Line Through Slash */
     .link-25 {
       display: inline-block;
-    }
-    .link-25 span {
       position: relative;
-      display: inline-block;
-      cursor: pointer;
+      line-height: 1;
     }
-    .link-25 span::before {
+    .link-25::before {
       content: "";
       position: absolute;
       width: 100%;
@@ -357,8 +354,9 @@
       transform: scaleX(0);
       transform-origin: right;
       transition: transform 0.3s ease;
+      pointer-events: none; /* So it doesn't interfere with hover */
     }
-    .link-25 span:hover::before {
+    .link-25:hover::before {
       transform: scaleX(1);
       transform-origin: left;
     }
@@ -434,21 +432,9 @@
       transform: scaleY(1.3);
     }
 
-    /* 34. Split Shadow */
+    /* 34. Saow */
     .link-34 {
-      position: relative;
-    }
-    .link-34::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 2px;
-      left: 2px;
-      color: #ff00ff;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .link-34:hover::after {
-      opacity: 1;
+      color: red;
     }
 
     /* 35. Dot Flicker Underline */
@@ -488,15 +474,9 @@
       transform: rotateX(360deg);
     }
 
-    /* 38. Outline Pulse */
+    /* 38. Ose */
     .link-38 {
-      color: transparent;
-      -webkit-text-stroke: 1px #fff;
-      transition: all 0.3s ease;
-    }
-    .link-38:hover {
-      color: #fff;
-      -webkit-text-stroke: 0;
+      color: red;
     }
 
     /* 39. Uppercase Morph */
@@ -554,7 +534,7 @@
 
   <div class="link link-23">Circle Reveal</div>
   <div class="link link-24"><span>Text Skew</span></div>
-  <div class="link link-25"><span>Line Slash</span></div>
+  <div class="link link-25">Line Slash</div>
   <div class="link link-26">Diagonal Clip</div>
   <div class="link link-27">Noise Overlay</div>
   <div class="link link-28">Font Weight Jump</div>
