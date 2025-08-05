@@ -263,7 +263,7 @@
       opacity: 0.5;
       left: 50%;
       top: 50%;
-      /* transform: translate(-50%, -50%); */
+      transform: translate(-50%, -50%);
     }
 
     /* 19. Shadow Teleport */
@@ -272,6 +272,21 @@
     }
     .link-19:hover {
       box-shadow: 5px 5px 0 currentColor;
+    }
+
+    /* 20. VCR Static Noise Overlay */
+    .link-20 {
+      position: relative;
+      overflow: hidden;
+    }
+    .link-20:hover::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('https://media.giphy.com/media/tJeGZumxDB01q/giphy.gif') center/cover no-repeat;
+      mix-blend-mode: screen;
+      opacity: 0.4;
+      pointer-events: none;
     }
   </style>
 </head>
@@ -296,6 +311,7 @@
     <div class="link link-17">Distorted Mirror</div>
     <div class="link link-18">Ink Spill</div>
     <div class="link link-19">Shadow Teleport</div>
+    <div class="link link-20">VCR Noise</div>
   </main>
 
   <svg height="0" width="0" style="position: absolute;">
