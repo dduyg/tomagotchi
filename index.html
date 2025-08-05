@@ -284,7 +284,20 @@
     }
     .link-20:active {
       transform: scale(0.9);
-    } 
+    }
+
+    /* 21. Gradient Swipe Mask */
+    .link-21 {
+      background: linear-gradient(90deg, currentColor 50%, #000 50%);
+      background-size: 200% 100%;
+      background-position: right;
+      -webkit-background-clip: text;
+      color: transparent;
+      transition: background-position 0.4s ease;
+    }
+    .link-21:hover {
+      background-position: left;
+    }
   </style>
 </head>
 <body>
@@ -309,6 +322,7 @@
     <div class="link link-18">Ink Spill</div>
     <div class="link link-19">Shadow Teleport</div>
     <div class="link link-20">Overshoot Bounce</div>
+    <div class="link link-21">Swipe Mask</div>
   </main>
 
   <svg height="0" width="0" style="position: absolute;">
