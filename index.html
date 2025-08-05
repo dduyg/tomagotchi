@@ -300,26 +300,248 @@
       background-position: left;
     }
       
-    /* 22. Outline Stroke Fill Reveal */
-    .link-22 {
+    /* 22. Oal */
+    .link-22 {  
+      line-height: 1;   
+    }    
+
+    /* 🟣23. Circle Reveal Background */
+    .link-23 {
+      position: relative;
+      z-index: 0;
+    }
+    .link-23::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 0;
+      height: 0;
+      background: #0ff;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      transition: width 0.4s ease, height 0.4s ease;
+    }
+    .link-23:hover::before {
+      width: 200%;
+      height: 200%;
+    }
+
+    /* 24. Text Skew */
+    .link-24 {
       display: inline-block;
-      line-height: 1;
+      transition: transform 0.3s ease;
     }
-    .link-22 svg {
-      width: auto;
-      height: 1em; /* Match the font-size */
-      display: block;
+    .link-24:hover {
+      transform: skewX(-10deg);
     }
-    .link-22 text {
-      font-size: 1em; /* Inherit from .link */
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 1px;
+
+    /* 25. Line Through Slash */
+    .link-25 {
+      position: relative;
+    }
+    .link-25::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: red;
+      top: 50%;
+      left: 0;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+    .link-25:hover::before {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* 26. Diagonal Clip Text */
+    .link-26 {
+      background: linear-gradient(135deg, #fff 50%, transparent 50%);
+      -webkit-background-clip: text;
+      color: transparent;
+      transition: background-position 0.4s;
+    }
+    .link-26:hover {
+      background-position: 100% 100%;
+    }
+
+    /* 27. Noise Overlay */
+    .link-27 {
+      position: relative;
+    }
+    .link-27::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif');
+      mix-blend-mode: screen;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .link-27:hover::after {
+      opacity: 0.2;
+    }
+
+    /* 28. Font Weight Jump */
+    .link-28 {
+      font-weight: 300;
+      transition: font-weight 0.3s;
+    }
+    .link-28:hover {
+      font-weight: 900;
+    }
+
+    /* 29. Glow on Hover */
+    .link-29 {
+      text-shadow: 0 0 0 transparent;
+      transition: text-shadow 0.3s;
+    }
+    .link-29:hover {
+      text-shadow: 0 0 10px #0ff;
+    }
+
+    /* 30. Elastic Scale */
+    .link-30 {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    .link-30:hover {
+      transform: scale(1.1, 0.9);
+    }
+
+    /* 31. Shadow Slide-In */
+    .link-31 {
+      text-shadow: none;
+      transition: text-shadow 0.3s;
+    }
+    .link-31:hover {
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    /* 32. Underline Expand */
+    .link-32 {
+      position: relative;
+      display: inline-block;
+    }
+    .link-32::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: currentColor;
+      transition: width 0.3s ease, left 0.3s ease;
+    }
+    .link-32:hover::after {
+      width: 100%;
+      left: 0;
+    }
+
+    /* 33. Letter Stretch */
+    .link-33 span {
+      display: inline-block;
+      transition: transform 0.2s;
+    }
+    .link-33:hover span {
+      transform: scaleY(1.3);
+    }
+
+    /* 34. Split Shadow */
+    .link-34 {
+      position: relative;
+    }
+    .link-34::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      color: #ff00ff;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .link-34:hover::after {
+      opacity: 1;
+    }
+
+    /* 35. Dot Flicker Underline */
+    .link-35 {
+      position: relative;
+    }
+    .link-35::after {
+      content: '⠿⠿⠿⠿⠿';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .link-35:hover::after {
+      opacity: 1;
+    }
+
+    /* 36. Blur In on Hover */
+    .link-36 {
+      color: transparent;
+      text-shadow: 0 0 10px #fff;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+    .link-36:hover {
+      color: #fff;
+      text-shadow: none;
+    }
+
+    /* 37. Flip Y */
+    .link-37 {
+      display: inline-block;
+      transform: rotateX(0);
+      transition: transform 0.5s;
+    }
+    .link-37:hover {
+      transform: rotateX(360deg);
+    }
+
+    /* 38. Outline Pulse */
+    .link-38 {
+      color: transparent;
+      -webkit-text-stroke: 1px #fff;
       transition: all 0.3s ease;
     }
-    .link-22:hover text {
-      fill: currentColor;
-      stroke: none;
+    .link-38:hover {
+      color: #fff;
+      -webkit-text-stroke: 0;
+    }
+
+    /* 39. Uppercase Morph */
+    .link-39 {
+      text-transform: lowercase;
+      transition: all 0.3s;
+    }
+    .link-39:hover {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* 40. Slide Up Color Fill */
+    .link-40 {
+      position: relative;
+      color: transparent;
+      -webkit-text-stroke: 1px #fff;
+    }
+    .link-40::before {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 100%;
+      color: #0ff;
+      transition: top 0.3s ease;
+    }
+    .link-40:hover::before {
+      top: 0;
     }
   </style>
 </head>
@@ -346,13 +568,25 @@
     <div class="link link-19">Shadow Teleport</div>
     <div class="link link-20">Overshoot Bounce</div>
     <div class="link link-21">Swipe Mask</div>
-    <div class="link link-22">
-      <svg viewBox="0 0 600 100" preserveAspectRatio="xMidYMid meet">
-        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
-          Outline Stroke
-        </text>
-      </svg>
-    </div>
+
+  <div class="link link-23">Circle Reveal</div>
+  <div class="link link-24">Text Skew</div>
+  <div class="link link-25">Line Slash</div>
+  <div class="link link-26">Diagonal Clip</div>
+  <div class="link link-27">Noise Overlay</div>
+  <div class="link link-28">Font Weight Jump</div>
+  <div class="link link-29">Glow Text</div>
+  <div class="link link-30">Elastic Scale</div>
+  <div class="link link-31">Shadow Slide</div>
+  <div class="link link-32">Underline Expand</div>
+  <div class="link link-33"><span>L</span><span>e</span><span>t</span><span>t</span><span>e</span><span>r</span> Stretch</div>
+  <div class="link link-34" data-text="Shadow Split">Shadow Split</div>
+  <div class="link link-35">Dot Flicker</div>
+  <div class="link link-36">Blur In</div>
+  <div class="link link-37">Flip Y</div>
+  <div class="link link-38">Outline Pulse</div>
+  <div class="link link-39">Morph Uppercase</div>
+  <div class="link link-40" data-text="Slide Up Fill">Slide Up Fill</div>
   </main>
 
   <svg height="0" width="0" style="position: absolute;">
