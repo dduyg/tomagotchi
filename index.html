@@ -24,26 +24,14 @@
       cursor: pointer;
     }
 
-    /* 26. Underline Expand */
-    .link-26 {
-      position: relative;
+    /* 26. Letter Stretch */
+    .link-26 span {
       display: inline-block;
-      color: #fff;
+      transition: transform 0.2s ease;
     }
-  .link-26::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: currentColor;
-    transition: width 0.3s ease, left 0.3s ease;
-  }
-  .link-26:hover::after {
-    width: 100%;
-    left: 0;
-  }
+    .link-26:hover span {
+      transform: scaleY(1.3);
+    }
 
     /* 27. Bounce In Letters */
     .link-27 span {
@@ -198,7 +186,7 @@
 </head>
 <body>
   <main>
-    <div class="link link-26">UNDERLINE</div>
+    <div class="link link-26"><span>S</span><span>T</span><span>R</span><span>E</span><span>T</span><span>C</span><span>H</span></div>
     
     <div class="link link-27"><span>B</span><span>o</span><span>u</span><span>n</span><span>c</span><span>e</span> <span>L</span><span>e</span><span>t</span><span>t</span><span>e</span><span>r</span><span>s</span></div>
      
