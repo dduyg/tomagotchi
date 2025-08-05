@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>LiminalLoop</title>
 <style>
-  body, html {
-    margin: 0;
+  body {
     height: 100vh;
     overflow: hidden;
-    line-height: 1.4;
-  }
-  #bg-video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    object-fit: cover;
+    background: url('https://media4.giphy.com/media/xT9IgAyUXKqniwFj20/giphy.gif') no-repeat center center fixed;     
+    background-size: cover;
+    position: relative; /* to position ::before correctly */
+    z-index: 0;    
+  }    
+  body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
     z-index: -1;
   }
 
