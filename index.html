@@ -68,13 +68,17 @@
       fill: currentColor;
       flex-shrink: 0;
     }
-    .toggle:hover svg {
-      animation: spin 1s ease-in-out;
-    }
-    @keyframes spin {
-      0%   { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+.toggle svg {
+  transform: rotate(0deg); /* reset rotation */
+  transition: transform 0.3s ease; /* smooth return */
+}
+.toggle:hover svg {
+  animation: spin 0.8s ease-in-out alternate;
+}
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(45deg); } /* increase angle if you want more spin */
+}
   
     main {
       display: flex;
