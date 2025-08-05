@@ -300,13 +300,18 @@
     }
       
     /* 22. Outline Stroke Fill Reveal */
-    .link-22 {
-      filter: url(#stroke-only);
+    .link-22 svg text {
+      font-size: 1.2rem;
+      font-family: "Marmelad", sans-serif;
+      text-transform: uppercase;
+      fill: transparent;
+      stroke: #fff;
+      stroke-width: 1.2px;
       transition: all 0.3s ease;
     }
-    .link-22:hover {
-      filter: none;
-      color: white;
+    .link-22 svg text:hover {
+      fill: #fff;
+      stroke: none;
     }
   </style>
 </head>
@@ -333,22 +338,19 @@
     <div class="link link-19">Shadow Teleport</div>
     <div class="link link-20">Overshoot Bounce</div>
     <div class="link link-21">Swipe Mask</div>
-    <div class="link link-22">Outline Stroke</div>
+    <div class="link link-22">
+      <svg viewBox="0 0 600 100" width="600" height="100">
+        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+           Outline Stroke
+        </text>
+      </svg>
+    </div>
   </main>
 
   <svg height="0" width="0" style="position: absolute;">
     <filter id="waveFilter">
       <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="1" result="turbulence"/>
      <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="10" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
-  </svg>   
-  <svg width="0" height="0"> <!-- 22. Outline Stroke Fill Reveal -->
-    <filter id="stroke-only">
-      <feMorphology in="SourceAlpha" result="DILATED" operator="dilate" radius="1.5"/>
-      <feComposite in="DILATED" in2="SourceAlpha" operator="xor" result="OUTLINE"/>
-      <feFlood flood-color="currentColor" result="COLOR"/>
-      <feComposite in="COLOR" in2="OUTLINE" operator="in" result="STROKE"/>
-      <feMerge><feMergeNode in="STROKE"/></feMerge>
     </filter>
   </svg>
   
