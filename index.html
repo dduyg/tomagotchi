@@ -193,11 +193,11 @@
     }
 
     /* 13. Fly-In Text */
-    .link-13 span {
+    .link-13 {
       display: inline-block;
       transition: transform 0.4s ease, opacity 0.4s ease;
     }
-    .link-13:hover span {
+    .link-13:hover {
       transform: translateY(-10px) scale(1.05);
       opacity: 1;
     }
@@ -217,7 +217,31 @@
   <div class="link link-10">Jelly Bounce</div>
   <div class="link link-11">Neon Pulse</div>
   <div class="link link-12">Slide Shine</div>
-  <div class="link link-13"><span>Fly-In</span></div>
+  <div class="link link-13">Fly-In</div>
+  <div class="link link-14">Matrix Flicker</div>
 </main>
+
+  <script>
+    const toggle = document.querySelector('.link-14');
+    const originalText = toggle.textContent;
+
+    toggle.addEventListener('mouseover', () => {
+      let iteration = 0;
+      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+      const interval = setInterval(() => {
+        toggle.textContent = originalText
+          .split("")
+          .map((letter, index) => {
+            if (index < iteration) return originalText[index];
+            return letters[Math.floor(Math.random() * 26)];
+          })
+          .join("");
+
+        if (iteration >= originalText.length) clearInterval(interval);
+        iteration += 1;
+      }, 30);
+    });
+  </script>
 </body>
 </html>
