@@ -60,19 +60,24 @@
       font-weight: 900;
     }
 
-    /* 29. Dne */
+    /* 29. Neon Glow Pulse */
     .link-29 {
-      color: red;
-    }
+      text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+      transition: text-shadow 0.3s;
+  }
+  .link-29:hover {
+    text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+  }
 
-    /* 30. Elastic Scale */
-    .link-30 {
+    /* 30. Inner Letter Slide-Up */
+    .link-30 span {
       display: inline-block;
-      transition: transform 0.3s ease;
-    }
-    .link-30:hover {
-      transform: scale(1.1, 0.9);
-    }
+      transform: translateY(0);
+    transition: transform 0.3s ease;
+  }
+  .link-30:hover span {
+    transform: translateY(-10%);
+  }
 
     /* 31. Shn */
     .link-31 {
@@ -108,10 +113,20 @@
       text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     }
 
-    /* 34. Saow */
+    /* 34. Text Flip Rotation */
     .link-34 {
-      color: red;
+      display: inline-block;
+      perspective: 600px;
     }
+    .link-34 span {
+      display: inline-block;
+      transform: rotateX(0deg);
+      transition: transform 0.5s ease;
+    transform-origin: bottom;
+  }
+  .link-30:hover span {
+    transform: rotateX(180deg);
+  }
 
     /* 35. Dot Flicker Underline */
     .link-35 {
@@ -150,9 +165,13 @@
       transform: rotateX(360deg);
     }
 
-    /* 38. Ose */
+    /* 38. Blurred Reveal */
     .link-38 {
-      color: red;
+      filter: blur(2px);
+      transition: filter 0.3s ease;
+    }
+    .link-38:hover {
+      filter: blur(0);
     }
 
     /* 39. Uppercase Morph */
@@ -190,20 +209,24 @@
     <div class="link link-27"><span>B</span><span>o</span><span>u</span><span>n</span><span>c</span><span>e</span> <span>L</span><span>e</span><span>t</span><span>t</span><span>e</span><span>r</span><span>s</span></div>    
     <div class="link link-28">Font Weight Jump</div>    
 
-    <div class="link link-29">Dot Flicker</div>
+    <div class="link link-29">NEON GLOW</div>
     
+    <div class="link link-30"><span>S</span><span>L</span><span>I</span><span>D</span><span>E</span></div>
+
     
-    <div class="link link-30">Elastic Scale</div>
-  <div class="link link-31">Shadow Slide</div>
+    <div class="link link-31">Shadow Slide</div>
   <div class="link link-32">Underline Expand</div>
     
   <div class="link link-33">SHADOW</div>                                     
                                      
-  <div class="link link-34" data-text="Shadow Split">Shadow Split</div>
-  <div class="link link-35">Dot Flicker</div>
+  <div class="link link-34"><span>FLIP</span></div>
+    
+    <div class="link link-35">Dot Flicker</div>
   <div class="link link-36">Blur In</div>
   <div class="link link-37">Flip Y</div>
-  <div class="link link-38">Outline Pulse</div>
+
+    <div class="link link-38">BLURRED</div>
+ 
   <div class="link link-39">Morph Uppercase</div>
   <div class="link link-40" data-text="Slide Up Fill">Slide Up Fill</div>
   </main>
