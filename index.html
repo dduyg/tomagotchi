@@ -7,7 +7,7 @@
   <link rel="shortcut icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/favicons/slate.ico">
   <link href="https://fonts.googleapis.com/css2?family=Marmelad&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
     body {
       min-height: 100vh;
       display: flex;
@@ -238,20 +238,14 @@
       100% { transform: scale(1, 1); }
     }
 
-    /* 17. Text Reveal Through Mask */
+    /* 17. Plasma Border Glow */
     .link-17 {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(to right, white 50%, transparent 50%);
-      background-clip: text;
-      -webkit-background-clip: text;
-      transition: background-position 0.4s ease;
-      background-size: 200% 100%;
-      background-position: 0 0;
+      box-shadow: 0 0 0 transparent;
+      transition: box-shadow 0.3s ease;
     }
     .link-17:hover {
-      background-position: 100% 0;
-    }
+      box-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+    } 
   </style>
 </head>
 <body>
@@ -272,7 +266,7 @@
     <div class="link link-14">Matrix Flicker</div>
     <div class="link link-15">Orbiting Dot</div>
     <div class="link link-16">Stretch+Snapback</div>
-    <div class="link link-17">Through Mask</div>
+    <div class="link link-17">Plasma Border</div>
   </main>
   
   <script> /* 14. Matrix Flicker (Randomized characters) */
