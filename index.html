@@ -302,25 +302,24 @@
       
     /* 22. Diagonal Slide Reveal */
     .link-22 {
-    position: relative;
-    color: #fff;
-  }
-  .link-22::after {
-    content: attr(data-text);
-    position: absolute;
-    left: -100%;
-    top: -100%;
-    color: #0ff;
-    opacity: 0;
-    transition: all 0.4s ease;
-  }
-  .link-22:hover::after {
-    left: 0;
-    top: 0;
-    opacity: 0.4;
-  }
+      position: relative;
+    }
+    .link-22::after {
+      content: attr(data-text);
+      position: absolute;
+      left: -100%;
+      top: -100%;
+      color: #00FFFF;
+      opacity: 0;
+      transition: all 0.4s ease;
+    }
+    .link-22:hover::after {
+      left: 0;
+      top: 0;
+      opacity: 0.4;
+    }
     
-    /* 🟣23. Circle Reveal Background */
+    /* 23. Circle Reveal Background */
     .link-23 {
       position: relative;
       z-index: 0;
@@ -376,15 +375,54 @@
       transform-origin: left;
     }
 
-    /* 26. DiagText */
+    /* 26. Liquid Fill Hover */
     .link-26 {
-      color: red;
-    }
+    position: relative;
+    color: transparent;
+    -webkit-text-stroke: 1px currentColor;
+  }
+  .link-26::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    height: 100%;
+    color: currentColor;
+    transition: top 0.5s ease;
+    overflow: hidden;
+  }
+  .link-26:hover::after {
+    top: 0;
+  }
 
-    /* 27. Nlay */
-    .link-27 {
-      color: red;
-    }
+    /* 27. Glimmer Shine Sweep */
+  .link-27 {
+    position: relative;
+    overflow: hidden;
+  }
+  .link-27::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.5) 50%,
+      transparent 100%
+    );
+    transform: skewX(-20deg);
+  }
+  .link-27:hover::after {
+    animation: shineSweep 1s ease forwards;
+  }
+  @keyframes shineSweep {
+    0% { left: -75%; }
+    100% { left: 125%; }
+  }
 
     /* 28. Font Weight Jump */
     .link-28 {
@@ -546,14 +584,15 @@
     <div class="link link-19">Shadow Teleport</div>
     <div class="link link-20">Overshoot Bounce</div>
     <div class="link link-21">Swipe Mask</div>
-
     <div class="link link-22" data-text="Diagonal Slide">Diagonal Slide</div>
-  <div class="link link-23">Circle Reveal</div>
-  <div class="link link-24"><span>Text Skew</span></div>
-  <div class="link link-25">Line Slash</div>
-  <div class="link link-26">Diagonal Clip</div>
-  <div class="link link-27">Noise Overlay</div>
-  <div class="link link-28">Font Weight Jump</div>
+    <div class="link link-23">Circle Reveal</div> 
+    <div class="link link-24"><span>Text Skew</span></div>
+    <div class="link link-25">Line Slash</div>
+
+   <div class="link link-26" data-text="LIQUID">LIQUID</div>
+   <div class="link link-27">GLIMMER</div> 
+        
+    <div class="link link-28">Font Weight Jump</div>
   <div class="link link-29">Glow Text</div>
   <div class="link link-30">Elastic Scale</div>
   <div class="link link-31">Shadow Slide</div>
