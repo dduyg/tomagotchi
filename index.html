@@ -174,15 +174,15 @@
       75%  { transform: scale(1.05, 0.95); }
       100% { transform: scale(1, 1); }
     }
-    /* 11. Neon Pulse */
+    /* 11. Uppercase Morph */
+    .link-11 {
+      text-transform: lowercase;
+      transition: all 0.3s;
+    }
     .link-11:hover {
-      text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
-      animation: neonGlow 1s ease-in-out infinite alternate;
-    }
-    @keyframes neonGlow {
-      from { filter: brightness(1.2); }
-      to   { filter: brightness(1.5); }
-    }
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }    
     /* 12. Slide Shine (Glass reflection) */
     .link-12 {
       display: inline;
@@ -524,14 +524,14 @@
     .link-35:hover {
       filter: blur(0);
     }
-    /* 36. Uppercase Morph */
-    .link-36 {
-      text-transform: lowercase;
-      transition: all 0.3s;
+
+    h3:hover {
+      text-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+      animation: neonPulse 1s ease-in-out infinite alternate;
     }
-    .link-36:hover {
-      text-transform: uppercase;
-      letter-spacing: 2px;
+    @keyframes neonPulse {
+      from { filter: brightness(1.2); }
+      to   { filter: brightness(1.5); }
     }
   
     /* Custom scrollbar */
@@ -570,7 +570,7 @@
         <div class="link link-8"><span>Flip Text</span></div>
         <div class="link link-9">Squish</div>
         <div class="link link-10">Jelly Bounce</div>
-        <div class="link link-11">Neon Pulse</div>
+        <div class="link link-11">Morph Uppercase</div>
         <div class="link link-12">Slide Shine</div>
         <div class="link link-13"><span>Fly-In</span></div>
         <div class="link link-14">Matrix Flicker</div>
@@ -595,8 +595,7 @@
         <div class="link link-33">Dot Flicker</div> 
         <div class="link link-34">Flip Y</div>
         <div class="link link-35">Blurred Reveal</div>
-        <div class="link link-36">Morph Uppercase</div>
-        <div style="height: 90px;"></div>
+        <div style="height: 110px;"></div>
     </main>
     <footer>
       <h3>the tilt of the scales</h3>
