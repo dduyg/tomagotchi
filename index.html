@@ -54,7 +54,6 @@
 
     /* 4. Blink Line Under */
     .link-4 {
-      display: inline;
       padding-bottom: 4px;
     }
     .link-4:hover::after {
@@ -100,7 +99,7 @@
 
     /* 7. Grid Flash Background */
     .link-7 {
-      display: inline-block;
+      display: inline;
     }
     .link-7:hover {
       background-image: repeating-linear-gradient(0deg, currentColor 0px, currentColor 1px, transparent 1px, transparent 3px);  
@@ -162,7 +161,7 @@
 
     /* 12. Slide Shine (Glass reflection) */
     .link-12 {
-      display: inline-block;
+      display: inline;
       position: relative;
       overflow: hidden;
     }
@@ -367,33 +366,28 @@
       transform-origin: left;
     }
 
-    /* 26. Ghost Fade-Out */
-  .link-26 {
-    position: relative;
-    transition: color 0.4s ease;
-  }
-  .link-26:hover {
-    color: transparent;
-    -webkit-text-stroke: 1px #fff;
-  }
+    /* 26. GOut */
+    .link-26 {
+      color: red;
+    }
 
     /* 27. Bounce In Letters */
-  .link-27 span {
-    display: inline-block;
-    transform: translateY(0);
-    transition: transform 0.3s ease;
-  }
-  .link-27:hover span {
-    animation: bounceLetters 0.5s ease forwards;
-  }
-  .link-27:hover span:nth-child(1) { animation-delay: 0s; }
-  .link-27:hover span:nth-child(2) { animation-delay: 0.05s; }
-  .link-27:hover span:nth-child(3) { animation-delay: 0.1s; }
-  @keyframes bounceLetters {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-    100% { transform: translateY(0); }
-  }
+    .link-27 span {
+      display: inline-block;
+      transform: translateY(0);
+      transition: transform 0.3s ease;
+    }
+    .link-27:hover span {
+      animation: bounceLetters 0.5s ease forwards;
+    }
+    .link-27:hover span:nth-child(1) { animation-delay: 0s; }
+    .link-27:hover span:nth-child(2) { animation-delay: 0.05s; }
+    .link-27:hover span:nth-child(3) { animation-delay: 0.1s; }
+    @keyframes bounceLetters {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+      100% { transform: translateY(0); }
+    }
 
     /* 28. Font Weight Jump */
     .link-28 {
@@ -404,28 +398,10 @@
       font-weight: 900;
     }
 
-    /* 29. Dot Flicker Underline */
+    /* 29. Dne */
     .link-29 {
-      position: relative;
+      color: red;
     }
-  .link-29::after {
-    content: '⠿⠿⠿⠿⠿';
-    position: absolute;
-    bottom: -6px;
-    left: 0;
-    font-size: 0.8em;
-    letter-spacing: 2px;
-    opacity: 0;
-    animation: flickerDots 0.8s infinite alternate;
-    transition: opacity 0.3s;
-  }
-  .link-29:hover::after {
-    opacity: 1;
-  }
-  @keyframes flickerDots {
-    0% { opacity: 0.3; }
-    100% { opacity: 1; }
-  }
 
     /* 30. Elastic Scale */
     .link-30 {
@@ -436,13 +412,9 @@
       transform: scale(1.1, 0.9);
     }
 
-    /* 31. Shadow Slide-In */
+    /* 31. Shn */
     .link-31 {
-      text-shadow: none;
-      transition: text-shadow 0.3s;
-    }
-    .link-31:hover {
-      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+      color: red;
     }
 
     /* 32. Underline Expand */
@@ -579,8 +551,8 @@
     <div class="link link-25">Line Slash</div>
 
    <div class="link link-26">GHOST</div>
-   <div class="link link-27"><span>B</span><span>O</span><span>U</span><span>N</span><span>C</span><span>E</span></div>
-        
+   <div class="link link-27"><span>B</span><span>o</span><span>u</span><span>n</span><span>c</span><span>e</span> <span>L</span><span>e</span><span>t</span><span>t</span><span>e</span><span>r</span><span>s</span></div>
+     
     <div class="link link-28">Font Weight Jump</div>
  
     
