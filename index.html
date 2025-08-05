@@ -17,7 +17,6 @@
       background: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/detail-18.png') no-repeat left center / cover;
       font-family: "Marmelad", sans-serif;
       z-index: 0;
-      color: white;
     }
     body::before {
       content: "";
@@ -38,6 +37,7 @@
       margin: 2rem 0;
       text-transform: uppercase;
       font-size: 1.2rem;
+      color: white;
       user-select: none;
       cursor: pointer;
     }
@@ -302,21 +302,22 @@
     /* 22. Outline Stroke Fill Reveal */
     .link-22 {
       display: inline-block;
+      line-height: 1;
     }
     .link-22 svg {
-      width: 1em;
-      height: 1em;
+      width: auto;
+      height: 1em; /* Match the font-size */
       display: block;
     }
     .link-22 text {
-      font-size: 1em;
-      stroke: #fff;
+      font-size: 1em; /* Inherit from .link */
+      stroke: currentColor;
       fill: none;
-      stroke-width: 1.1px;
+      stroke-width: 1px;
       transition: all 0.3s ease;
     }
-    .link-22 text:hover {
-      fill: #fff;
+    .link-22:hover text {
+      fill: currentColor;
       stroke: none;
     }
   </style>
@@ -347,7 +348,7 @@
     <div class="link link-22">
       <svg viewBox="0 0 600 100" preserveAspectRatio="xMidYMid meet">
         <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
-           Outline Stroke
+          Outline Stroke
         </text>
       </svg>
     </div>
