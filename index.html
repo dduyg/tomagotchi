@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Popup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    /* Clickable text */
+    .clickable-text {
+      color: blue;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    /* Popup styling */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .popup-content {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 80%;
+      max-height: 80%;
+    }
+
+    .popup-content img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <p>
+    Click <span class="clickable-text" id="openPopup">here</span> to view the image.
+  </p>
+
+  <!-- Popup structure -->
+  <div class="popup-overlay" id="popup">
+    <div class="popup-content">
+      <img src="VAPORGRAM_5.jpg" alt="⚙️">
+    </div>
+  </div>
+
+  <script>
+    const popup = document.getElementById('popup');
+    const openPopup = document.getElementById('openPopup');
+
+    openPopup.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent it from triggering document click
+      popup.style.display = 'flex';
+    });
+
+    document.addEventListener('click', () => {
+      popup.style.display = 'none';
+    });
+
+    // Prevent closing when clicking inside popup content
+    popup.querySelector('.popup-content').addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  </script>
+
+</body>
+</html>
