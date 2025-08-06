@@ -59,9 +59,6 @@
       position: relative;
       padding-bottom: 38px; /* match or exceed ::after height */
     }
-    article span {
-      text-decoration: underline dotted #19a868;  
-    }
     article::after {
       content: "";
       position: absolute;
@@ -90,22 +87,43 @@
         #2b4aa1 12px,
         transparent 12px,
         transparent 15px);
-      */
-    
-    #popupContent {
+      */    
+   
+    #openPopup {
+      cursor: pointer;
+      text-decoration: underline dotted #19a868;
+    }
+    .popupOverlay {
       display: none;
       position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      border: 2px dotted black;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-      width: 90vw;
-      max-width: 800px;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      justify-content: center;
+      align-items: center;
       z-index: 1000;
     }
-    #popupContent img {
-      width: 100%;
+    /* Fallback for older browsers */
+    @supports not ((backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px))) {
+      .popupOverlay {background-color: rgba(0, 0, 0, 0.4);}
+    }
+    .popupContent {
+      max-width: 80%;
+      max-height: 80%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transform: scale(0.8);
+      opacity: 0;
+      animation: zoomIn 0.3s ease forwards;
+    }
+    @keyframes zoomIn {
+      to {transform: scale(1); opacity: 1;}
+    }
+    .popupContent img {
+      max-width: 100%;
       height: auto;
       display: block;
     }
@@ -154,23 +172,34 @@
   <article>reading between the lines</article>
   <article>the unknown soldier</article>
   <article>where is my body</article>
-  <article id="popup">s<span>truc</span>ture duel</article>
+  <article>s<span id="openPopup">truc</span>ture duel</article>
+  
+  <!-- POPUP -->
+  <div class="popupOverlay" id="popup">
+    <div class="popupContent"><img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/04/highfalutin.png" alt="🌀"></div>
+  </div>
+  <script>
+    const popup = document.getElementById('popup');
+    const popupContent = popup.querySelector('.popupContent');
+    const openPopup = document.getElementById('openPopup');
 
-<div id="popupContent"><img src="https://raw.githubusercontent.com/dduyg/LiminalLoop/refs/heads/main/04/highfalutin.png"></div>
-<script>
-  const trigger = document.getElementById('popup');
-  const popup = document.getElementById('popupContent');
+    openPopup.addEventListener('click', (e) => {
+      e.stopPropagation();
+      popup.style.display = 'flex';
 
-  trigger.addEventListener('click', (e) => {
-    popup.style.display = 'block';
-    e.stopPropagation();
-  });
+      // Restart animation
+      popupContent.style.animation = 'none';
+      popupContent.offsetHeight; // trigger reflow
+      popupContent.style.animation = '';
+    });
 
-  document.addEventListener('click', (e) => {
-    if (!popup.contains(e.target) && e.target !== trigger) {
+    document.addEventListener('click', () => {
       popup.style.display = 'none';
-    }
-  });
-</script>
+    });
+
+    popupContent.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  </script>
 </body>
 </html>
