@@ -2,20 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Image Popup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ImagePopup</title>
   <style>
     body {
       font-family: Arial, sans-serif;
     }
 
-    /* Clickable text */
     .clickable-text {
       color: blue;
       cursor: pointer;
       text-decoration: underline;
     }
 
-    /* Popup styling */
     .popup-overlay {
       display: none;
       position: fixed;
@@ -23,10 +22,25 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(0, 0, 0, 0.7);
+
+      /* Fallback for browsers that don't support backdrop-filter */
+      background-color: rgba(0, 0, 0, 0.5);
+
+      /* Use a transparent background so blur can show through */
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px); /* For Safari */
+
       justify-content: center;
       align-items: center;
       z-index: 1000;
+    }
+
+    /* For older browsers (fallback) */
+    @supports not ((backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px))) {
+      .popup-overlay {
+        background-color: rgba(0, 0, 0, 0.7);
+      }
     }
 
     .popup-content {
@@ -35,6 +49,7 @@
       border-radius: 8px;
       max-width: 80%;
       max-height: 80%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
 
     .popup-content img {
@@ -45,7 +60,6 @@
   </style>
 </head>
 <body>
-
   <p>
     Click <span class="clickable-text" id="openPopup">here</span> to view the image.
   </p>
@@ -62,7 +76,7 @@
     const openPopup = document.getElementById('openPopup');
 
     openPopup.addEventListener('click', (e) => {
-      e.stopPropagation(); // Prevent it from triggering document click
+      e.stopPropagation(); // Prevents triggering document click
       popup.style.display = 'flex';
     });
 
@@ -70,9 +84,8 @@
       popup.style.display = 'none';
     });
 
-    // Prevent closing when clicking inside popup content
     popup.querySelector('.popup-content').addEventListener('click', (e) => {
-      e.stopPropagation();
+      e.stopPropagation(); // Keep popup open if clicked inside
     });
   </script>
 
