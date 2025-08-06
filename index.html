@@ -246,7 +246,8 @@
     let currentThemeIndex = 0;
     const toggle = document.querySelector('.toggle');
 
-    toggle.addEventListener('click', () => {
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation(); // prevent it from triggering image change
       // Toggle the spin class
       toggle.classList.toggle('spin');
 
