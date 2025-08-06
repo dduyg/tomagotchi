@@ -61,24 +61,20 @@
       align-items: center;
       text-align: right;
       gap: 0.6em;
+      cursor: pointer;
+      user-select: none;
     }
     .toggle svg {
       width: 2em;
       height: 2em;
       fill: currentColor;
-      flex-shrink: 0;
+      flex-shrink: 0;  
+      transition: transform 0.5s ease-in-out;
+      transform-origin: center;
     }
-.toggle svg {
-  transform: rotate(0deg); /* reset rotation */
-  transition: transform 0.3s ease; /* smooth return */
-}
-.toggle:hover svg {
-  animation: spin 0.8s ease-in-out alternate;
-}
-@keyframes spin {
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(45deg); } /* increase angle if you want more spin */
-}
+    .toggle.spin svg {
+      transform: rotateY(180deg);
+    }
   
     main {
       display: flex;
@@ -212,6 +208,10 @@
     const toggle = document.querySelector('.toggle');
 
     toggle.addEventListener('click', () => {
+      // Toggle the spin class
+      toggle.classList.toggle('spin');
+
+      // Choose a new theme
       let newIndex;
       do {
         newIndex = Math.floor(Math.random() * themes.length);
@@ -220,6 +220,7 @@
       currentThemeIndex = newIndex;
       const newTheme = themes[newIndex];
 
+      // Apply new theme
       document.documentElement.style.backgroundColor = newTheme.bg;
       document.body.style.backgroundColor = newTheme.bg;
       document.body.style.color = newTheme.color;
