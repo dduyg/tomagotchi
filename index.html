@@ -39,7 +39,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 6% 7% 15vh;
+      padding: 6% 5% 15vh;
       z-index: 1;
       position: relative;
     }
@@ -210,14 +210,9 @@
       // Toggle the spin class
       toggle.classList.toggle('spin');
 
-      // Choose a new theme
-      let newIndex;
-      do {
-        newIndex = Math.floor(Math.random() * themes.length);
-      } while (newIndex === currentThemeIndex);
-
-      currentThemeIndex = newIndex;
-      const newTheme = themes[newIndex];
+      // Increment index and loop if needed
+      currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+      const newTheme = themes[currentThemeIndex];
 
       // Apply new theme
       document.documentElement.style.backgroundColor = newTheme.bg;
