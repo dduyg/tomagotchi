@@ -10,7 +10,6 @@
     }
 
     .clickable-text {
-      color: blue;
       cursor: pointer;
       text-decoration: underline;
     }
@@ -22,24 +21,17 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-
-      /* Fallback for browsers that don't support backdrop-filter */
-      background-color: rgba(0, 0, 0, 0.5);
-
-      /* Use a transparent background so blur can show through */
       background-color: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px); /* For Safari */
-
+      -webkit-backdrop-filter: blur(4px);
       justify-content: center;
       align-items: center;
       z-index: 1000;
     }
-
-    /* For older browsers (fallback) */
+    /* Fallback for older browsers */
     @supports not ((backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px))) {
       .popup-overlay {
-        background-color: rgba(0, 0, 0, 0.7);
+        background-color: rgba(0, 0, 0, 0.5);
       }
     }
 
@@ -49,7 +41,17 @@
       border-radius: 8px;
       max-width: 80%;
       max-height: 80%;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transform: scale(0.8);
+      opacity: 0;
+      animation: zoomIn 0.3s ease forwards;
+    }
+
+    @keyframes zoomIn {
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
     .popup-content img {
@@ -64,30 +66,35 @@
     Click <span class="clickable-text" id="openPopup">here</span> to view the image.
   </p>
 
-  <!-- Popup structure -->
+  <!-- Popup -->
   <div class="popup-overlay" id="popup">
     <div class="popup-content">
-      <img src="VAPORGRAM_5.jpg" alt="⚙️">
+      <img src="https://via.placeholder.com/400" alt="Popup Image">
     </div>
   </div>
 
   <script>
     const popup = document.getElementById('popup');
+    const popupContent = popup.querySelector('.popup-content');
     const openPopup = document.getElementById('openPopup');
 
     openPopup.addEventListener('click', (e) => {
-      e.stopPropagation(); // Prevents triggering document click
+      e.stopPropagation();
       popup.style.display = 'flex';
+
+      // Restart animation
+      popupContent.style.animation = 'none';
+      popupContent.offsetHeight; // trigger reflow
+      popupContent.style.animation = '';
     });
 
     document.addEventListener('click', () => {
       popup.style.display = 'none';
     });
 
-    popup.querySelector('.popup-content').addEventListener('click', (e) => {
-      e.stopPropagation(); // Keep popup open if clicked inside
+    popupContent.addEventListener('click', (e) => {
+      e.stopPropagation();
     });
   </script>
-
 </body>
 </html>
