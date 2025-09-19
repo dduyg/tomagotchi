@@ -39,7 +39,6 @@
       background: var(--card);
       padding: 18px 18px 14px 18px;
       box-sizing: border-box;
-      border: 6px solid var(--card-border); /* emulate inner darker edge */
       box-shadow: 0 0 0 1px rgba(0,0,0,0.04) inset;
     }
 
@@ -65,12 +64,10 @@
 
     /* large red 'image' area */
     .hero {
-      background: linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0.02)),
-                  var(--red);
+      background: linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0.02)), var(--red);
       height: 360px;
       display: block;
       position: relative;
-      border: 12px solid rgba(0,0,0,0.05);
       box-sizing: border-box;
       margin: 6px 0 0 0;
       overflow: hidden;
@@ -145,25 +142,10 @@
       box-sizing: border-box;
     }
 
-    /* Big overlapping ".DESIGN" text on the right (partially outside page) */
-    .big-design {
-      position: absolute;
-      right: -6px;
-      bottom: 20px;
-      font-size: 108px;
-      font-weight: 800;
-      color: #000;
-      line-height: 0.8;
-      transform: translateX(6px);
-      pointer-events: none;
-      user-select: none;
-    }
-
     /* Make things scale better on small screens */
     @media (max-width:480px){
       .page { width: 92%; margin: 18px auto; }
       .hero { height: 260px; }
-      .big-design { font-size: 72px; right: -12px; bottom: 10px; }
       .top-card .headline { font-size: 18px; }
     }
   </style>
@@ -205,9 +187,6 @@ FESTIVAL
 
         <div class="red-rect" aria-hidden="true"></div>
       </aside>
-
-      <!-- Big ".DESIGN" text that overlaps page edge -->
-      <div class="big-design">.DESIGN</div>
     </div>
   </div>
 
