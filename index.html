@@ -1,191 +1,143 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>RMock</title>
+  <title>Showcase</title>
   <style>
-    :root{
-      --bg: #cfcfc8;            /* page background */
-      --card: #606368;          /* header/card dark gray */
-      --card-border: #54585d;
-      --red: #b71c1c;           /* deep red inside the big image */
-      --muted: #9ea1a1;
-      --white: #f6f6f6;
+    @font-face {
+      font-family: "Iskry";
+      src: url("https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/Iskry-Regular.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
     }
-
-    html,body{
-      height:100%;
-      margin:0;
-      font-family: monospace;
-      background: var(--bg);
-      color: #000;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+    @font-face {
+      font-family: "Iskry";
+      src: url("https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/Iskry-Bold.woff2") format("woff2");
+      font-weight: 700;
+      font-style: normal;
+    }    
+    
+    @font-face {
+      font-family: "ArgakaFashion";   
+      src: url('https://cdn.vev.design/font/fldmx4q83c_dig1-kbe/ArgakaFashion-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
     }
-
-    /* page wrapper to emulate the composition in your screenshot */
-    .page {
-      width: 720px;                    /* fixed design width (like screenshot) */
-      max-width: calc(100% - 32px);
-      margin: 36px auto;
-      position: relative;
-      box-sizing: border-box;
-    }
-
-    /* Top project card */
-    .top-card {
-      background: var(--card);
-      padding: 18px 18px 14px 18px;
-      box-sizing: border-box;
-      box-shadow: 0 0 0 1px rgba(0,0,0,0.04) inset;
-    }
-
-    .top-card .headline {
+    body {
+      margin: 0;
+      font-family: "Iskry", sans-serif;
+      background-color: #bfc0bb; /* matches the grey background */
       color: black;
-      font-size: 22px;
-      line-height: 1.05;
-      text-transform: uppercase;
-      margin: 0 0 8px 0;
-      max-width: 92%;
-      /* force the same line breaks as the screenshot */
-      white-space: pre-line;
     }
 
-    /* small service line below the headline */
-    .services {
-      color: rgba(0,0,0,0.85);
-      font-size: 14px;
-      margin-bottom: 12px;
-      opacity: 0.95;
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 40px;
     }
 
-    /* large red 'image' area */
-    .hero {
-      background: linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0.02)), var(--red);
-      height: 360px;
-      display: block;
-      position: relative;
-      box-sizing: border-box;
-      margin: 6px 0 0 0;
-      overflow: hidden;
-      filter: saturate(1.02);
+    .case-block {
+      background-color: #5e6066; /* darker grey block */
+      padding: 20px;
+      max-width: 700px;
+      margin-bottom: 200px;
     }
 
-    /* 'view case' pill button in the lower-right of the hero */
-    .view-btn {
-      position: absolute;
-      right: 26px;
-      bottom: 22px;
-      background: transparent;
-      border: 2px solid rgba(255,255,255,0.95);
-      color: rgba(255,255,255,0.95);
-      padding: 10px 18px;
-      border-radius: 30px;
-      font-size: 16px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      backdrop-filter: blur(0.6px);
-      cursor: pointer;
-    }
-
-    .view-btn span.arrow {
+    .case-block h2 {
+      margin: 0 0 10px 0;
       font-size: 18px;
-      transform: translateY(0.5px);
+      line-height: 1.4em;
+      font-weight: 400;
     }
 
-    /* Bottom block positioned lower on the page */
-    .bottom-wrapper {
-      height: 520px;  /* create the vertical space like the screenshot */
+    .case-block .tags {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .case-block .preview {
+      background: #b11818;
+      height: 200px;
+      margin-top: 10px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      padding: 10px;
+    }
+
+    .case-block .button {
+      border: 1px solid white;
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      color: white;
+      text-decoration: none;
+      background: transparent;
+    }
+
+    .festival-block {
+      background-color: #dcdcdc;
+      padding: 20px;
+      max-width: 400px;
+      margin-left: auto;
       position: relative;
     }
 
-    .bottom-card {
-      position: absolute;
-      right: 36px;
-      bottom: 6px;
-      width: 220px;
-      background: var(--white);
-      padding: 10px 10px 18px 12px;
-      box-shadow: 0 6px 0 rgba(0,0,0,0.06);
-      box-sizing: border-box;
+    .festival-block h2 {
+      margin: 0 0 10px 0;
+      font-size: 18px;
+      line-height: 1.4em;
+      font-weight: 400;
     }
 
-    .bottom-card .title {
-      font-size: 16px;
-      text-transform: uppercase;
-      margin: 2px 0 14px 0;
-      line-height: 1.03;
-      letter-spacing: 0px;
+    .festival-block .tags {
+      font-size: 14px;
+      margin-bottom: 10px;
     }
 
-    .bottom-card .meta {
-      font-size: 13px;
-      margin-bottom: 8px;
-      color: #111;
-      opacity: 0.9;
-    }
-
-    .bottom-card .meta + .red-rect {
-      margin-top: 12px;
-    }
-
-    .red-rect {
+    .festival-block .red-box {
+      background-color: #e5331a;
+      height: 100px;
       width: 100%;
-      height: 72px;
-      background: #f03b2b;  /* bright red like screenshot */
-      box-sizing: border-box;
+      margin-top: 10px;
     }
 
-    /* Make things scale better on small screens */
-    @media (max-width:480px){
-      .page { width: 92%; margin: 18px auto; }
-      .hero { height: 260px; }
-      .top-card .headline { font-size: 18px; }
+    .festival-block .design-label {
+      position: absolute;
+      right: -30px;
+      bottom: -20px;
+      font-size: 60px;
+      font-weight: bold;
+      color: black;
     }
   </style>
 </head>
 <body>
+  <div class="container">
 
-  <div class="page" role="main" aria-label="Mocked webpage">
-    <!-- Top project card -->
-    <section class="top-card" aria-labelledby="top-heading">
-      <h1 id="top-heading" class="headline">
-REBRANDING FOR
-THE LEADING WEDDING
-AGENCY IN MOSCOW
-      </h1>
-
-      <div class="services">rebranding . logo . identity . package . web</div>
-
-      <div class="hero" aria-hidden="true">
-        <!-- Decorative blurred texture could sit here; using CSS gradient to emulate -->
-        <!-- View case button -->
-        <a class="view-btn" href="#" aria-label="View case">
-          <span>view case</span>
-          <span class="arrow">→</span>
-        </a>
+    <!-- First case block -->
+    <div class="case-block">
+      <h2>REBRANDING FOR<br>
+      THE LEADING WEDDING<br>
+      AGENCY IN MOSCOW</h2>
+      <div class="tags">rebranding . logo . identity . package . web</div>
+      <div class="preview">
+        <a href="#" class="button">view case →</a>
       </div>
-    </section>
-
-    <!-- Spacer / large empty middle area (matches screenshot composition) -->
-    <div class="bottom-wrapper" aria-hidden="true">
-      <!-- Bottom right small project card -->
-      <aside class="bottom-card" aria-labelledby="bottom-heading">
-        <div id="bottom-heading" class="title">
-WEBSITE FOR MTC
-LIVE SUMMER.LIVE
-FESTIVAL
-        </div>
-
-        <div class="meta">artdirection . ui/ux</div>
-
-        <div class="red-rect" aria-hidden="true"></div>
-      </aside>
     </div>
-  </div>
 
+    <!-- Festival block -->
+    <div class="festival-block">
+      <h2>WEBSITE FOR MTC<br>
+      LIVE SUMMER.LIVE<br>
+      FESTIVAL</h2>
+      <div class="tags">artdirection . ui/ux</div>
+      <div class="red-box"></div>
+      <div class="design-label">.DESIGN</div>
+    </div>
+
+  </div>
 </body>
 </html>
