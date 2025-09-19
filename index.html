@@ -2,374 +2,398 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Portfolio Garden</title>
+  <title>Portfolio – GARDEN</title>
   <meta name="viewport" content="width=900">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:900,700,400,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,700,900&display=swap" rel="stylesheet">
   <style>
     html, body {
+      height: 100%;
+      background: #fff;
       margin: 0;
       padding: 0;
-      background: #fff;
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-weight: 400;
-      color: #141414;
-      min-width: 900px;
+      font-family: 'Inter', Arial, sans-serif;
+      color: #030303;
+      width: 100vw;
+      overflow-x: hidden;
     }
     body {
-      box-sizing: border-box;
-      padding: 0;
+      min-width: 900px;
     }
-    .container {
-      width: 900px;
-      margin: 0 auto;
-      position: relative;
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 38px 0 0 0;
+      padding: 0 48px;
+      height: 56px;
     }
-    header {
-      margin-top: 30px;
-      margin-bottom: 0;
-      position: relative;
-    }
-    .welcome-bar {
+    .welcome {
+      font-size: 28px;
+      font-weight: 700;
+      border: 3px solid #000;
+      padding: 6px 24px 6px 12px;
+      letter-spacing: 0.5px;
+      background: #fff;
+      border-radius: 3px;
       display: inline-block;
-      background: #fff;
-      border: 2px solid #000;
-      padding: 8px 24px 6px 18px;
-      font-size: 1.28rem;
-      font-weight: 900;
-      letter-spacing: 0.04em;
-      position: relative;
-      z-index: 2;
-      margin-bottom: -10px;
     }
-    .years-badge {
-      position: absolute;
-      right: 0;
-      top: 18px;
+    .year-badge {
+      font-size: 16px;
+      border-radius: 20px;
+      border: 1.5px solid #aaa;
+      padding: 3px 18px 2px 18px;
+      color: #333;
       background: #fff;
-      border: 2px solid #000;
-      border-radius: 16px;
-      font-size: 1rem;
       font-weight: 400;
-      padding: 4px 16px 3px 16px;
-      letter-spacing: 0.04em;
+      float: right;
+      margin-left: 12px;
     }
-    .garden-title {
-      font-size: 7.6rem;
-      font-weight: 900;
-      margin: 0;
-      margin-top: 6px;
-      line-height: 1;
-      letter-spacing: -0.01em;
-      word-spacing: 0.03em;
-    }
-    .subtitle-row {
+    .garden-title-row {
+      width: 100vw;
       display: flex;
       align-items: baseline;
-      margin-top: -16px;
-      margin-bottom: 16px;
-      justify-content: space-between;
+      margin: 0 0 0 0;
+      padding: 0 0 0 48px;
     }
-    .subtitle {
-      font-size: 1.3rem;
-      letter-spacing: 0.13em;
-      font-weight: 300;
-      border-bottom: 2px solid #000;
-      padding-bottom: 3px;
-      margin-right: 14px;
-      flex: 1 1 auto;
-      min-width: 0;
+    .garden-title {
+      font-size: 130px;
+      font-weight: 900;
+      letter-spacing: -3px;
+      margin: 0 28px 0 0;
+      line-height: 122px;
     }
-    .portfolio-owner {
-      font-size: 1.1rem;
-      letter-spacing: 0.07em;
-      font-weight: 700;
-      margin-left: 30px;
-      flex: 0 0 auto;
-      margin-top: 3px;
-    }
-    .category-labels {
+    .garden-sub {
+      flex: 1;
       display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      width: 100%;
-      margin-top: 12px;
-      margin-bottom: 0;
-      padding: 0 10px 0 4px;
+      align-items: flex-end;
+      justify-content: flex-end;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-right: 50px;
+      margin-bottom: 18px;
+      text-align: right;
     }
-    .category-label {
-      font-size: 0.9rem;
+    .divider {
+      width: 96vw;
+      margin: 0 auto 0 auto;
+      border-bottom: 2px solid #222;
+      margin-bottom: 3px;
+    }
+    .design-strat {
+      font-size: 22px;
+      letter-spacing: 2.5px;
+      margin: 16px 0 0 49px;
       font-weight: 400;
-      letter-spacing: 0.17em;
-      color: #141414;
+      border-bottom: 1.5px solid #222;
+      width: 480px;
+      padding-bottom: 2px;
       text-transform: uppercase;
-      margin-bottom: 0;
-      margin-top: 0;
-      position: relative;
     }
-    .category-label:nth-child(2) {
-      margin-left: 50px;
-    }
-    .category-label:nth-child(3) {
-      margin-right: 14px;
-    }
-    .garden-svg {
-      width: 100%;
-      display: block;
-      margin: 0 auto 0;
-      margin-top: 10px;
-      position: relative;
-      z-index: 1;
-      height: 355px;
-      /* For correct scaling */
-    }
-
-    /* Dropdowns */
-    .dropdown-block {
-      position: absolute;
-      z-index: 3;
-      font-size: 1.1rem;
-      letter-spacing: 0.01em;
+    .ad-row {
+      margin: 18px 0 0 50px;
+      font-size: 14px;
+      letter-spacing: 2px;
       font-weight: 400;
-      color: #141414;
+      text-transform: uppercase;
+      display: flex;
+      align-items: baseline;
+      gap: 38px;
+      color: #444;
+    }
+    .ad-row span {
+      border-bottom: 1px solid #bbb;
+      padding-bottom: 1px;
+      font-size: 13px;
+      color: #444;
+    }
+    .ad-row .ad-label {
+      margin-right: 80px;
+    }
+    .ad-row .graphic-label {
+      margin-left: 100px;
+    }
+    .ad-row .illust-label {
+      margin-left: 230px;
+    }
+    .main-art-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin: 14px 54px 0 49px;
+      position: relative;
+      min-height: 440px;
+    }
+    .flower-svg {
+      flex: 2.5;
+      min-width: 370px;
+      min-height: 360px;
+      max-width: 49vw;
+    }
+    .dropdowns {
+      flex: 1.5;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-top: 56px;
+      gap: 26px;
+    }
+    .dropdown-block {
+      width: 230px;
+      margin-bottom: 8px;
     }
     .dropdown-label {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      margin-left: 3px;
       display: flex;
       align-items: center;
-      font-size: 1.11rem;
-      font-weight: 500;
-      margin-bottom: 10px;
-      margin-top: 0;
-      letter-spacing: 0.03em;
-      cursor: pointer;
-      user-select: none;
+      color: #111;
+      letter-spacing: 1px;
     }
     .dropdown-label .dot {
-      font-size: 1.4em;
-      margin-right: 6px;
-      margin-top: -1px;
-      color: #000;
+      display: inline-block;
+      height: 10px;
+      width: 10px;
+      background: #111;
+      border-radius: 50%;
+      margin-right: 9px;
+      vertical-align: middle;
     }
-    .dropdown {
-      min-width: 155px;
+    /* Dropdown styles */
+    .dropdown-list {
+      border: 1.3px solid #111;
+      border-radius: 2px;
+      background: #fff;
       box-sizing: border-box;
-    }
-    .dropdown-content {
-      display: none;
-      background: #fff;
-      border: 1.4px solid #000;
-      box-shadow: none;
-      border-radius: 0;
-      margin-top: 3px;
-      width: 175px;
-      padding: 0;
-      list-style: none;
-    }
-    /* Show dropdown if .open */
-    .dropdown.open .dropdown-content {
-      display: block;
-      animation: dropdown-fade 0.19s cubic-bezier(.4,0,.2,1);
-    }
-    @keyframes dropdown-fade {
-      from { opacity: 0; transform: translateY(-10px);}
-      to { opacity: 1; transform: translateY(0);}
-    }
-    .dropdown-content li {
-      font-size: 1.04rem;
+      margin-top: 0;
+      font-size: 16px;
       font-weight: 400;
-      border: none;
-      border-bottom: 1px solid #ddd;
-      padding: 6px 12px 6px 12px;
-      background: #fff;
-      color: #141414;
-      letter-spacing: 0.01em;
-    }
-    .dropdown-content li:last-child {
-      border-bottom: none;
-      padding-bottom: 8px;
-    }
-    .dropdown-content .section-title {
-      font-size: 1.01rem;
-      font-weight: 700;
-      margin-top: 7px;
-      margin-bottom: 0;
-      padding-left: 0;
-      background: #fff;
-    }
-    .dropdown-content .sub-list {
-      list-style: disc inside;
-      margin: 0;
-      margin-bottom: 0;
-      margin-top: 2px;
-      padding-left: 18px;
-      font-size: 0.98rem;
-    }
-    /* Dropdown placement */
-    .skills-dropdown {
-      left: 70px;
-      top: 205px;
-    }
-    .interests-dropdown {
-      right: 50px;
-      top: 215px;
-    }
-    /* Interests dropdown open look */
-    .dropdown.open {
-      box-shadow: 0 2px 18px rgba(80,80,80,0.06);
-    }
-    /* Responsive tweaks (minimal, as original is fixed width) */
-    @media (max-width: 950px) {
-      .container { width: 100vw; min-width: 0;}
-      .garden-title { font-size: 4.9rem;}
-      .garden-svg { height: 200px;}
-      .skills-dropdown, .interests-dropdown { position: static; margin-bottom: 24px;}
-    }
-
-    /* Footer nav */
-    .footer {
       width: 100%;
-      border-top: 2px solid #000;
-      margin-top: 37px;
       padding: 0;
+      box-shadow: none;
+      min-height: 38px;
+      transition: border 0.15s;
+      list-style: none;
+      overflow: visible;
+      position: relative;
+    }
+    .dropdown-list li {
+      padding: 8px 16px 7px 10px;
+      border-bottom: 1px solid #eee;
+      cursor: default;
+      user-select: none;
+    }
+    .dropdown-list li:last-child {
+      border-bottom: none;
+    }
+    .dropdown-list .dropdown-caption {
+      color: #000;
+      font-weight: 700;
+      background: #fff;
+      padding: 8px 16px 7px 10px;
+      border-bottom: 1px solid #eee;
+    }
+    .dropdown-list .dropdown-note {
+      color: #888;
+      font-size: 13px;
+      font-weight: 400;
+      padding-left: 4px;
+      display: inline;
+    }
+    .dropdown-list .dropdown-bullets {
+      margin: 8px 0 0 16px;
+      font-size: 14px;
+      color: #000;
+      list-style: disc;
+      padding-left: 15px;
+    }
+    .dropdown-list .dropdown-bullets li{
+      border:none;
+      padding: 0 0 2px 0;
+      margin: 0 0 0 0;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    /* Skills dropdown - closed state (shown as just a box) */
+    .dropdown-list.skills-dropdown {
+      min-height: 38px;
+      max-height: 38px;
+      overflow: hidden;
+      background: #fff;
+      border: 1.3px solid #111;
+      box-shadow: none;
+      cursor: pointer;
+      position: relative;
+    }
+    /* Interests dropdown - open state (shown as in screenshot) */
+    .dropdown-list.interests-dropdown {
+      min-height: 170px;
+      background: #fff;
+      border: 1.3px solid #111;
+      box-shadow: none;
+      position: relative;
+    }
+    /* Footer area */
+    .footer-bar {
+      width: 100vw;
+      margin-top: 49px;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 1.05rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      position: relative;
+      padding: 0 48px;
     }
-    .footer-copyright {
-      color: #555;
-      font-size: 0.93rem;
-      margin-left: 2px;
+    .footer-left {
+      font-size: 14px;
+      color: #444;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .footer-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      margin: 0 28px;
+    }
+    .footer-links {
+      font-size: 16px;
       font-weight: 400;
-      margin-top: 7px;
-      margin-bottom: 7px;
-      flex: 1 1 auto;
-    }
-    .footer-nav {
+      letter-spacing: 2.5px;
       display: flex;
       gap: 34px;
-      margin-right: 10px;
-      margin-top: 7px;
-      margin-bottom: 7px;
     }
-    .footer-nav a {
-      color: #141414;
+    .footer-links a {
+      color: #000;
       text-decoration: none;
-      font-weight: 500;
-      letter-spacing: 0.07em;
-      transition: color 0.14s;
+      transition: color 0.16s;
     }
-    .footer-nav a:hover {
-      color: #aaa;
+    .footer-links a:hover {
+      color: #555;
       text-decoration: underline;
     }
-    /* Description */
-    .description {
-      margin: 22px 0 0 0;
+    .footer-center svg {
+      height: 40px;
+      width: 37px;
+      margin-top: 12px;
+    }
+    /* Bottom description */
+    .site-desc {
+      font-size: 13px;
+      color: #232323;
       text-align: center;
-      font-size: 1.01rem;
-      color: #141414;
-      letter-spacing: 0.035em;
-      max-width: 830px;
-      margin-left: auto;
-      margin-right: auto;
+      width: 92vw;
+      margin: 22px auto 0 auto;
       font-weight: 400;
-      line-height: 1.5;
+      letter-spacing: 0.4px;
+      line-height: 1.2;
+      padding-bottom: 11px;
     }
-    /* Little icon at bottom */
-    .footer-icon {
-      width: 36px;
-      height: 36px;
-      margin: 0 auto;
-      display: block;
-      margin-top: 17px;
-      margin-bottom: 0;
+    /* Responsive for large screens */
+    @media (min-width: 1200px) {
+      .main-art-section { min-height: 470px; }
+      .flower-svg { min-width: 450px; min-height: 410px;}
+      .dropdowns { margin-top: 90px;}
     }
-    /* Hide focus outline for dropdowns */
-    .dropdown:focus-within {
-      outline: none;
+    /* Responsive for smaller screens */
+    @media (max-width: 950px) {
+      .garden-title { font-size: 88px;}
+      .design-strat { font-size: 15px; width: 280px;}
+      .main-art-section { flex-direction: column; align-items: flex-start; }
+      .dropdowns { align-items: flex-start; margin-left: 0; }
+      .footer-bar { flex-direction: column; align-items: flex-start; gap: 12px; }
     }
+    /* Hide scrollbar for dropdown */
+    .dropdown-list::-webkit-scrollbar { display: none;}
+    .dropdown-list { -ms-overflow-style: none; scrollbar-width: none;}
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <span class="welcome-bar">WELCOME TO MY</span>
-      <span class="years-badge">2025–2026</span>
-      <h1 class="garden-title">GARDEN</h1>
-      <div class="subtitle-row">
-        <span class="subtitle">DESIGN &amp; CREATIVE STRAT.</span>
-        <span class="portfolio-owner">GAVIN BACHER'S PORTFOLIO</span>
-      </div>
-      <div class="category-labels">
-        <span class="category-label">ADVERTISING / ART DIRECTION</span>
-        <span class="category-label">GRAPHIC DESIGN</span>
-        <span class="category-label">ILLUSTRATION</span>
-      </div>
-    </header>
-
-    <!-- SVG garden illustration -->
-    <svg class="garden-svg" viewBox="0 0 880 350" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Left plant (flower) -->
+  <!-- Header -->
+  <div class="header-bar">
+    <span class="welcome">WELCOME TO MY</span>
+    <span class="year-badge">2025-2026</span>
+  </div>
+  <div class="garden-title-row">
+    <div class="garden-title">GARDEN</div>
+    <div class="garden-sub">GAVIN BACHER'S PORTFOLIO</div>
+  </div>
+  <div class="design-strat">
+    DESIGN &amp; CREATIVE STRAT.
+  </div>
+  <div class="divider"></div>
+  <div class="ad-row">
+    <span class="ad-label">ADVERTISING / ART DIRECTION</span>
+    <span class="graphic-label">GRAPHIC DESIGN</span>
+    <span class="illust-label">ILLUSTRATION</span>
+  </div>
+  <!-- Main Art and Dropdowns -->
+  <div class="main-art-section">
+    <!-- SVG Illustration: Three plants -->
+    <svg class="flower-svg" viewBox="0 0 680 390" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Left flower (daisy) -->
       <g>
-        <path d="M95 340 Q100 220, 200 200" stroke="#000" stroke-width="2" fill="none"/>
-        <circle cx="200" cy="200" r="38" stroke="#000" stroke-width="2" fill="#fff"/>
-        <circle cx="200" cy="200" r="24" fill="#000"/>
-        <ellipse cx="200" cy="155" rx="20" ry="10" stroke="#000" stroke-width="2" fill="#fff"/>
-        <ellipse cx="170" cy="185" rx="10" ry="20" stroke="#000" stroke-width="2" fill="#fff"/>
-        <ellipse cx="170" cy="215" rx="10" ry="20" stroke="#000" stroke-width="2" fill="#fff"/>
-        <ellipse cx="200" cy="245" rx="20" ry="10" stroke="#000" stroke-width="2" fill="#fff"/>
-        <ellipse cx="230" cy="215" rx="10" ry="20" stroke="#000" stroke-width="2" fill="#fff"/>
-        <ellipse cx="230" cy="185" rx="10" ry="20" stroke="#000" stroke-width="2" fill="#fff"/>
+        <ellipse cx="120" cy="128" rx="44" ry="25" stroke="#000" stroke-width="2"/>
+        <ellipse cx="57" cy="176" rx="24" ry="43" stroke="#000" stroke-width="2"/>
+        <ellipse cx="137" cy="66" rx="24" ry="43" stroke="#000" stroke-width="2"/>
+        <ellipse cx="188" cy="100" rx="43" ry="24" stroke="#000" stroke-width="2"/>
+        <ellipse cx="66" cy="80" rx="24" ry="43" stroke="#000" stroke-width="2"/>
+        <ellipse cx="102" cy="50" rx="20" ry="15" stroke="#000" stroke-width="2"/>
+        <ellipse cx="180" cy="162" rx="15" ry="24" stroke="#000" stroke-width="2"/>
+        <circle cx="120" cy="128" r="28" fill="#111"/>
       </g>
-      <!-- Center plant (leaves) -->
+      <!-- Left stem -->
+      <path d="M120,156 C100,240 60,315 102,380" stroke="#000" stroke-width="2"/>
+      <!-- Middle plant (leaves) -->
       <g>
-        <path d="M330 340 Q340 265, 430 105" stroke="#000" stroke-width="2" fill="none"/>
-        <polygon points="330,340 336,340 333,325" fill="#000"/>
-        <path d="M355 260 Q372 240, 390 235 Q370 255, 355 260" stroke="#000" stroke-width="2" fill="#fff"/>
-        <path d="M370 220 Q390 200, 410 197 Q392 218, 370 220" stroke="#000" stroke-width="2" fill="#fff"/>
-        <path d="M380 185 Q398 165, 420 170 Q403 180, 380 185" stroke="#000" stroke-width="2" fill="#fff"/>
-        <path d="M395 150 Q415 125, 432 135 Q417 146, 395 150" stroke="#000" stroke-width="2" fill="#fff"/>
-        <path d="M342 295 Q355 285, 370 282 Q355 297, 342 295" stroke="#000" stroke-width="2" fill="#fff"/>
+        <path d="M348,380 C328,330 324,220 352,86" stroke="#000" stroke-width="2"/>
+        <path d="M352,86 C355,105 384,125 397,160" stroke="#000" stroke-width="2"/>
+        <path d="M352,136 C335,153 316,168 305,200" stroke="#000" stroke-width="2"/>
+        <path d="M352,170 C332,185 324,210 327,228" stroke="#000" stroke-width="2"/>
+        <path d="M352,215 C345,227 340,244 344,263" stroke="#000" stroke-width="2"/>
+        <path d="M352,270 C358,282 366,295 373,312" stroke="#000" stroke-width="2"/>
+        <!-- Leaves -->
+        <ellipse cx="390" cy="156" rx="23" ry="10" stroke="#000" stroke-width="2" transform="rotate(-30 390 156)"/>
+        <ellipse cx="313" cy="202" rx="9" ry="21" stroke="#000" stroke-width="2" transform="rotate(14 313 202)"/>
+        <ellipse cx="328" cy="232" rx="8" ry="17" stroke="#000" stroke-width="2" transform="rotate(-12 328 232)"/>
+        <ellipse cx="345" cy="263" rx="8" ry="16" stroke="#000" stroke-width="2" transform="rotate(7 345 263)"/>
+        <ellipse cx="373" cy="312" rx="11" ry="19" stroke="#000" stroke-width="2" transform="rotate(-18 373 312)"/>
+        <polygon points="346,380 350,380 349,372" fill="#111"/>
       </g>
-      <!-- Right plant (swirl) -->
+      <!-- Right spiral plant -->
       <g>
-        <path d="M590 340 Q635 225, 770 205 Q835 200, 820 270 Q804 330, 730 330 Q640 330, 735 240 Q800 180, 680 110" stroke="#000" stroke-width="2" fill="none"/>
-        <path d="M830 255 Q815 250, 810 265 Q820 263, 830 255" stroke="#000" stroke-width="2" fill="#fff"/>
-        <path d="M755 175 Q770 170, 775 185 Q765 183, 755 175" stroke="#000" stroke-width="2" fill="#fff"/>
-        <path d="M720 135 Q730 130, 735 140 Q728 137, 720 135" stroke="#000" stroke-width="2" fill="#fff"/>
+        <path d="M532,370 C613,373 646,277 570,226 513,186 458,221 486,272 508,311 583,319 591,277 598,239 546,237 538,264" stroke="#000" stroke-width="2"/>
+        <ellipse cx="590" cy="277" rx="17" ry="8" stroke="#000" stroke-width="2" transform="rotate(-28 590 277)"/>
+        <ellipse cx="570" cy="226" rx="22" ry="9" stroke="#000" stroke-width="2" transform="rotate(18 570 226)"/>
+        <ellipse cx="538" cy="264" rx="7" ry="13" stroke="#000" stroke-width="2" transform="rotate(18 538 264)"/>
+        <ellipse cx="513" cy="186" rx="8" ry="18" stroke="#000" stroke-width="2" transform="rotate(9 513 186)"/>
+        <ellipse cx="486" cy="272" rx="8" ry="18" stroke="#000" stroke-width="2" transform="rotate(-21 486 272)"/>
+        <path d="M532,370 Q534,350 548,344" stroke="#111" stroke-width="8" stroke-linecap="round"/>
       </g>
     </svg>
-
-    <!-- Skills dropdown -->
-    <div class="dropdown-block skills-dropdown" style="top:203px; left:65px;">
-      <div class="dropdown" tabindex="0">
-        <span class="dropdown-label"><span class="dot">●</span>SKILLS</span>
-        <ul class="dropdown-content">
-          <li>Art Direction</li>
-          <li>Advertising</li>
-          <li>Graphic Design</li>
-          <li>Branding</li>
-          <li>Illustration</li>
-          <li>Strategy</li>
-          <li>Creative Writing</li>
+    <!-- Dropdowns: Skills (closed), Interests (open) -->
+    <div class="dropdowns">
+      <!-- Skills: closed dropdown dummy -->
+      <div class="dropdown-block">
+        <div class="dropdown-label"><span class="dot"></span>SKILLS</div>
+        <ul class="dropdown-list skills-dropdown">
+          <!-- closed state, just a blank box -->
         </ul>
       </div>
-    </div>
-
-    <!-- Interests dropdown (OPEN by default, as in screenshot) -->
-    <div class="dropdown-block interests-dropdown" style="top:215px; right:33px;">
-      <div class="dropdown open" tabindex="0">
-        <span class="dropdown-label"><span class="dot">●</span>INTERESTS</span>
-        <ul class="dropdown-content">
+      <!-- Interests: open dropdown -->
+      <div class="dropdown-block">
+        <div class="dropdown-label"><span class="dot"></span>INTERESTS</div>
+        <ul class="dropdown-list interests-dropdown">
           <li>GAMING</li>
           <li>PHILOSOPHY</li>
           <li>NATURE/WILDLIFE</li>
-          <li>DESIGN <span style="font-size:0.84em; color:#555;">(ON A NERD)</span></li>
-          <li class="section-title">FAVORITE MOVIES</li>
-          <ul class="sub-list">
+          <li>DESIGN <span class="dropdown-note">(IN A NERD)</span></li>
+          <li class="dropdown-caption">FAVORITE MOVIES</li>
+          <ul class="dropdown-bullets">
             <li>AVATAR (THE BLUE PEOPLE)</li>
             <li>LADY BIRD</li>
             <li>CAPTAIN FANTASTIC</li>
@@ -377,52 +401,32 @@
         </ul>
       </div>
     </div>
-
-    <!-- Description and bottom icon -->
-    <div class="description">
-      THIS SITE IS A COLLECTION OF THE WORKS I'M MOST PROUD OF. ALL OF THESE PROJECTS WERE CURATED FROM RESEARCH STRATEGY, AND WITH THE WILLINGNESS AND EXCITEMENT TO EXPLORE. AS A CREATIVE I'M ALWAYS LOOKING FOR WAYS TO EXPAND MY SKILLSET AND GROW MY GARDEN. COME JOIN ME IN EXPANDING THIS BEAUTIFUL COLLECTION AND REACH OUT.
+  </div>
+  <!-- Site Description -->
+  <div class="site-desc">
+    THIS SITE IS A COLLECTION OF THE WORKS I'M MOST PROUD OF. ALL OF THESE PROJECTS WERE CURATED FROM RESEARCH STRATEGY, AND WITH THE WILLINGNESS AND EXCITEMENT TO EXPLORE. AS A CREATIVE I'M ALWAYS LOOKING FOR WAYS TO EXPAND MY SKILLSET AND GROW MY GARDEN. COME JOIN ME IN EXPANDING THIS BEAUTIFUL COLLECTION AND REACH OUT.
+  </div>
+  <!-- Footer -->
+  <div class="footer-bar">
+    <div class="footer-left">
+      <span>&copy; 2025 GAVIN BACHER</span>
     </div>
-    <!-- Little icon at bottom (minimalistic face & hand) -->
-    <svg class="footer-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-top: 23px;">
-      <circle cx="18" cy="18" r="12" stroke="#000" stroke-width="1"/>
-      <circle cx="18" cy="25" r="6" stroke="#000" stroke-width="1"/>
-      <rect x="16" y="31" width="10" height="1" fill="#000" transform="rotate(-25 16 31)"/>
-    </svg>
-
-    <!-- Footer -->
-    <div class="footer">
-      <span class="footer-copyright">&copy; 2025 GAVIN BACHER</span>
-      <nav class="footer-nav">
-        <a href="#">RESUME</a>
-        <a href="#">LINKEDIN</a>
-        <a href="#">INSTAGRAM</a>
-        <a href="#">EMAIL</a>
-      </nav>
+    <div class="footer-center">
+      <!-- Minimalist stick person drawing as SVG -->
+      <svg width="32" height="40" viewBox="0 0 35 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="17" cy="11" r="9" stroke="#232323" stroke-width="1.5"/>
+        <path d="M17 20 v14" stroke="#232323" stroke-width="1.5"/>
+        <path d="M17 27 l10 8" stroke="#232323" stroke-width="1.5"/>
+        <path d="M17 27 l-10 8" stroke="#232323" stroke-width="1.5"/>
+        <path d="M17 34 l0 8" stroke="#232323" stroke-width="1.5"/>
+      </svg>
+    </div>
+    <div class="footer-links">
+      <a href="#">RESUME</a>
+      <a href="#">LINKEDIN</a>
+      <a href="#">INSTAGRAM</a>
+      <a href="#">EMAIL</a>
     </div>
   </div>
-
-  <script>
-    // Skills dropdown: open on click/focus, close on blur
-    document.querySelectorAll('.dropdown-block .dropdown').forEach(function(dropdown) {
-      if(dropdown.classList.contains('open')) return; // interests dropdown is open
-      dropdown.addEventListener('click', function(e) {
-        e.stopPropagation();
-        dropdown.classList.toggle('open');
-      });
-      dropdown.addEventListener('blur', function() {
-        dropdown.classList.remove('open');
-      });
-    });
-
-    // Close dropdowns when clicking outside
-    document.body.addEventListener('click', function(e) {
-      document.querySelectorAll('.dropdown-block .dropdown')
-        .forEach(function(dropdown) {
-        if(dropdown.classList.contains('open') && !dropdown.contains(e.target)) {
-          dropdown.classList.remove('open');
-        }
-      });
-    });
-  </script>
 </body>
 </html>
