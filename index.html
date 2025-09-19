@@ -3,432 +3,470 @@
 <head>
   <meta charset="UTF-8">
   <title>.TAG Club Program</title>
-  <meta name="viewport" content="width=900">
+  <meta name="viewport" content="width=860">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css?family=Inter:900,700,400&display=swap');
-    html, body {
-      padding: 0;
-      margin: 0;
-      background: #fff;
-    }
     body {
-      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      background: #eee;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', Arial, sans-serif;
       color: #000;
-      background: #fff;
-      width: 900px;
-      margin: 0 auto;
-      box-sizing: border-box;
-      font-weight: 700;
-      letter-spacing: 0.01em;
+      min-width: 860px;
     }
-
-    .poster {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      width: 900px;
+    .container {
+      width: 860px;
+      margin: 0 auto;
       background: #fff;
+      box-shadow: 0 0 10px #bbb;
+      padding: 0;
+      border: 1px solid #bdbdbd;
     }
     .row {
       display: flex;
-      flex-direction: row;
-      align-items: stretch;
       width: 100%;
-      border-bottom: 2px solid #000;
-      min-height: 60px;
-      position: relative;
-      font-size: 1.55rem;
+      align-items: stretch;
+      border-bottom: 1px solid #ccc;
+      font-size: 1.64rem;
+      min-height: 54px;
     }
-
-    .row:last-child { border-bottom: none; }
-
+    .row:last-child {
+      border-bottom: none;
+    }
     .num {
-      width: 65px;
-      min-width: 65px;
-      max-width: 65px;
-      background: #e5e5e5;
-      color: #000;
-      font-size: 2.3rem;
-      font-weight: 900;
+      width: 6.5%;
+      min-width: 56px;
+      background: #eee;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid #ccc;
+      box-sizing: border-box;
+      letter-spacing: 0.5px;
+    }
+    .num.color1 { background: #f2b4b4; color: #000; }
+    .num.color2 { background: #e6e6e6; }
+    .num.color3 { background: #d7f2b4; color: #000; }
+    .num.color4 { background: #f7cfa5; color: #000; }
+    .num.color5 { background: #b4d9f2; color: #000; }
+    .num.color6 { background: #f2e0b4; color: #000; }
+    .row .content {
+      flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-      border-right: 2px solid #000;
+      padding: 0 10px;
+      box-sizing: border-box;
     }
-    .num.red { background: #e55a3b; color: #fff;}
-    .num.green { background: #4cbc6e; color: #fff;}
-    .num.blue { background: #6ca2e7; color: #fff;}
-    .num.orange { background: #f89a43; color: #fff;}
-
-    .weekday {
-      font-size: 0.95rem;
-      font-weight: 700;
-      text-align: left;
-      min-width: 43px;
+    .main-title {
+      font-size: 1.46em;
+      font-weight: bold;
+      margin-bottom: 2px;
+      letter-spacing: 0.5px;
+    }
+    .subtitle {
+      font-size: 1.1em;
+      font-weight: normal;
       color: #222;
-      opacity: 0.9;
-      padding: 0 9px 0 7px;
-      display: flex;
-      align-items: center;
-      border-right: 1px solid #000;
-      background: #fff;
     }
-    .event-details {
-      display: flex;
-      flex-direction: column;
-      flex: 1 1 auto;
-      padding: 6px 11px;
-      overflow: hidden;
-      background: #fff;
-    }
-    .event-main {
-      font-size: 1.7rem;
-      font-weight: 900;
-      letter-spacing: 0.03em;
-      line-height: 1.25;
-      color: #000;
-      text-transform: uppercase;
-      margin-bottom: 1px;
-      word-break: break-word;
-    }
-    .event-main.ch { font-size: 1.25rem; font-weight: 700; text-transform: none; }
-    .event-sub {
-      font-size: 1.03rem;
-      font-weight: 400;
-      color: #000;
-      margin-top: 1px;
-      margin-bottom: 0;
-      word-break: break-word;
-      opacity: 0.93;
-    }
-    .event-performers {
-      font-size: 0.99rem;
-      font-weight: 700;
+    .desc, .desc2 {
+      font-size: 0.93em;
       color: #222;
       margin-top: 2px;
-      margin-bottom: 0;
-      line-height: 1.18;
-      word-break: break-word;
-    }
-    .block {
       display: flex;
-      align-items: stretch;
-      justify-content: center;
-      min-width: 0;
-      min-height: 60px;
+      flex-wrap: wrap;
+      gap: 10px;
     }
-
-    /* Large vertical/month blocks */
-    .month-block {
-      font-size: 4.5rem;
-      font-weight: 900;
-      width: 170px;
+    .desc2 {
+      font-size: 0.92em;
+      color: #666;
+    }
+    .right-block {
+      width: 28%;
       min-width: 170px;
-      background: #000;
+      background: #222;
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      writing-mode: vertical-lr;
-      text-orientation: mixed;
-      letter-spacing: 0.01em;
+      font-size: 2.4rem;
+      font-weight: bold;
+      flex-direction: column;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
       border-left: 2px solid #fff;
-      border-bottom: 2px solid #000;
+      position: relative;
     }
-    .month-block.june {
-      font-size: 4.2rem;
-      writing-mode: initial;
-      text-orientation: initial;
-      width: 305px;
-      justify-content: flex-end;
-      padding-right: 30px;
-      align-items: flex-end;
-    }
-    .block.program {
-      background: #000;
-      color: #fff;
-      font-size: 2.7rem;
-      font-weight: 900;
-      letter-spacing: 0.01em;
-      min-width: 255px;
-      max-width: 255px;
-      justify-content: flex-end;
-      align-items: flex-start;
-      padding-top: 7px;
-      padding-right: 8px;
-      border-left: 2px solid #fff;
-    }
-    .block.year {
-      font-size: 4.1rem;
-      font-weight: 900;
-      background: #000;
-      color: #fff;
-      min-width: 215px;
-      justify-content: center;
-      align-items: center;
-      letter-spacing: 0.01em;
-    }
-    /* .TAG logo block */
-    .block.tag {
-      background: #000;
-      color: #fff;
-      min-width: 185px;
-      max-width: 185px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .right-block .month {
       font-size: 2.6rem;
-      font-weight: 900;
-      letter-spacing: 0.03em;
-      position: relative;
-      overflow: hidden;
+      line-height: 1;
+      font-weight: bold;
+      margin: 0;
+      letter-spacing: 0.1em;
+      text-align: center;
     }
-    .block.tag .tag-spiral {
-      width: 120px;
-      height: 120px;
-      position: absolute;
-      left: 60px;
-      top: 6px;
-      opacity: 0.7;
+    .right-block .year {
+      font-size: 2.9rem;
+      letter-spacing: 0.09em;
+      margin-top: 0.25em;
     }
-    .block.tag .tag-text {
-      position: relative;
-      z-index: 1;
-      font-size: 2.1rem;
-      font-family: 'Inter', Arial, sans-serif;
-      letter-spacing: 0.05em;
-      font-weight: 900;
-    }
-    /* Spiral graphics for the .TAG and bottom left */
-    .spiral {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      opacity: 0.9;
-    }
-    .block.spiral-big {
-      position: relative;
-      min-width: 348px;
-      max-width: 348px;
+    .right-block .program {
+      font-size: 1.6rem;
+      font-weight: bold;
       background: #fff;
-      border-left: 2px solid #000;
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-end;
-      padding-bottom: 0;
+      color: #000;
+      padding: 0.4em 1.2em;
+      border-radius: 4px;
+      margin: 0.2em 0;
     }
-    .block.spiral-big .spiral {
-      position: absolute;
-      left: -30px;
-      bottom: -20px;
-      width: 340px;
-      height: 130px;
-      opacity: 1;
+    .right-block .taglogo {
+      width: 110px;
+      height: 30px;
+      background: url('data:image/svg+xml;utf8,<svg width="110" height="30" xmlns="http://www.w3.org/2000/svg"><ellipse cx="55" cy="15" rx="53" ry="12" fill="none" stroke="black" stroke-width="2"/><ellipse cx="55" cy="15" rx="45" ry="9" fill="none" stroke="black" stroke-width="1.5"/><ellipse cx="55" cy="15" rx="37" ry="7" fill="none" stroke="black" stroke-width="1"/></svg>') no-repeat center/contain;
+      margin: 0.8em 0 0.2em 0;
     }
-    .block.spiral-big .text {
+    /* Decorative stripes for certain rows */
+    .stripes {
+      background: repeating-linear-gradient(
+        135deg,
+        #fff,
+        #fff 5px,
+        #000 5px,
+        #000 15px
+      );
+      border-left: 2px solid #fff;
       position: relative;
-      z-index: 2;
+      width: 28%;
+      min-width: 170px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      font-weight: bold;
+      flex-direction: column;
+      color: #000;
     }
-
-    /* Responsive for large screens only */
-    @media (max-width: 950px) {
-      body, .poster { width: 100vw; min-width: 0; }
+    .stripes .bigtext {
+      font-size: 2.7rem;
+      font-weight: bold;
+      letter-spacing: 0.08em;
+      margin: 0.1em 0;
+      text-align: center;
+      text-shadow: 1px 1px 0 #fff;
     }
-    @media (max-width: 750px) {
-      .poster { font-size: 1rem; }
-      .row, .block, .month-block, .block.tag, .block.program, .block.year, .block.spiral-big { min-width: 0; max-width: 100vw; }
+    /* Orange and green line for colored days */
+    .row.color-orange .num { background: #fbbe94; }
+    .row.color-green .num { background: #b8f2c9; }
+    /* Responsive for wide desktops */
+    @media (max-width: 900px) {
+      .container { width: 100vw; min-width: 0; }
+      .row { font-size: 1.1rem; }
+      .right-block, .stripes { min-width: 110px; font-size: 1.1rem; }
+    }
+    /* Hide scroll on body for ultra-wide */
+    html, body { overflow-x: auto; }
+    /* Small text for side event tags */
+    .event-tag {
+      font-size: 0.85em;
+      font-weight: 600;
+      background: #222;
+      color: #fff;
+      padding: 0 4px;
+      margin-right: 6px;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+      margin-bottom: 2px;
+      display: inline-block;
+    }
+    /* Tag logo (for .TAG) */
+    .tag-logo {
+      background: #fff;
+      color: #000;
+      font-weight: bold;
+      border-radius: 3px;
+      padding: 0.23em 0.8em;
+      font-size: 1.25em;
+      letter-spacing: 0.06em;
+      margin-right: 6px;
+      margin-bottom: 2px;
+      display: inline-block;
+      border: 2.5px solid #000;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    /* Responsive tweaks for mobile (scrollable) */
+    @media (max-width: 700px) {
+      .container { width: 100vw; }
+      .row { font-size: 1rem; }
     }
   </style>
 </head>
 <body>
-  <div class="poster">
-
+  <div class="container">
     <!-- 1 -->
     <div class="row">
-      <div class="num red">1.<br><span style="font-size:0.8rem;font-weight:400">WED</span></div>
-      <div class="event-details">
-        <span class="event-main">THE CHILDREN'S GARDEN</span>
-        <span class="event-performers">SHAWN (竹笛) 寒地 品志良 | XING 瑞</span>
+      <div class="num color1">1.<br>WED</div>
+      <div class="content">
+        <div class="main-title">THE CHILDREN'S GARDEN</div>
+        <div class="desc">
+          <span>SHAWN (竹笙)</span>
+          <span>寒吐</span>
+          <span>品志良</span>
+          <span>XING 瑞</span>
+        </div>
       </div>
-      <div class="month-block">6月</div>
+      <div class="stripes">
+        <div class="bigtext">6月</div>
+      </div>
     </div>
-
     <!-- 2 -->
     <div class="row">
-      <div class="num">2.<br><span style="font-size:0.8rem;font-weight:400">THU</span></div>
-      <div class="event-details">
-        <span class="event-main">SiS B&C 棒槌姐妹</span>
-        <span class="event-performers">DJ BANG | DJ CHUI | KEKEXILI<br>VENGO | DJ SHAWN</span>
+      <div class="num color2">2.<br>THU</div>
+      <div class="content">
+        <div class="main-title">SiS B&C 棒锤姐妹</div>
+        <div class="desc">
+          <span>DJ BANG</span>
+          <span>DJ CHUI</span>
+          <span>KEKEXILI</span>
+          <span>DJ VENGO</span>
+          <span>DJ SHAWN</span>
+        </div>
       </div>
-      <div class="month-block" style="background:#fff; color:#000; border-left:none;"></div>
+      <div class="right-block">
+        <span class="month">JUNE</span>
+      </div>
     </div>
-
     <!-- 3 -->
     <div class="row">
-      <div class="num">3.<br><span style="font-size:0.8rem;font-weight:400">FRI</span></div>
-      <div class="event-details">
-        <span class="event-main">湾岸MIDNIGHT</span>
-        <span class="event-performers">X.LEE | HAZEL | VINCENT<br>JIAHAO | PBXX</span>
+      <div class="num color2">3.<br>FRI</div>
+      <div class="content">
+        <div class="main-title">湾岸MIDNIGHT</div>
+        <div class="desc">
+          <span>X.LEE</span>
+          <span>HAZEL</span>
+          <span>VINCENT</span>
+          <span>JIAHAO</span>
+          <span>PBBX</span>
+        </div>
       </div>
-      <div class="month-block" style="background: #fff; color: #fff; border-left:none;"></div>
+      <div class="right-block">
+        <span class="month">JUNE</span>
+      </div>
     </div>
-
     <!-- 4 -->
     <div class="row">
-      <div class="num">4.<br><span style="font-size:0.8rem;font-weight:400">SAT</span></div>
-      <div class="event-details">
-        <span class="event-main ch">报喜不成忧</span>
-        <span class="event-performers">吕志良 | LUNA LI | 口/Nai BENKI | FAKEYANG VJ<br>CHAN | ZUS | HELING</span>
+      <div class="num color2">4.<br>SAT</div>
+      <div class="content">
+        <div class="main-title">报喜不成忧</div>
+        <div class="desc">
+          <span>吕志良</span>
+          <span>LUNA LI</span>
+          <span>O/NAI</span>
+          <span>BENKI</span>
+          <span>FAKEYANG VJ</span>
+          <span>CHAN</span>
+          <span>ZUS</span>
+          <span>HELING</span>
+        </div>
       </div>
-      <div class="month-block" style="background: #fff; color: #fff; border-left:none;"></div>
+      <div class="right-block">
+        <span class="month">JUNE</span>
+      </div>
     </div>
-
     <!-- 8 -->
-    <div class="row" style="background:#aaa;">
-      <div class="num">8.<br><span style="font-size:0.8rem;font-weight:400">WED</span></div>
-      <div class="event-details">
-        <span class="event-main">DUBDUB</span>
-        <span class="event-performers">ORB. | WONKEY | 袜面酱酱</span>
-      </div>
-      <div class="block" style="background:#fff;min-width:160px;"></div>
-    </div>
-
-    <!-- 9. .TAG PROGRAM -->
-    <div class="row" style="background:#000;">
-      <div class="num" style="background:#fff;color:#000;">9.<br><span style="font-size:0.8rem;font-weight:400">THU</span></div>
-      <div class="event-details" style="background:#000;color:#fff;">
-        <span class="event-main" style="color:#fff;">.TAG 开放日<br><span style="font-size:1.2rem;font-weight:400;">OPEN DECKS</span></span>
-      </div>
-      <div class="block program">PROGRAM</div>
-      <div class="month-block june">JUNE</div>
-    </div>
-
-    <!-- 10 -->
     <div class="row">
-      <div class="num green">10.<br><span style="font-size:0.8rem;font-weight:400">WED</span></div>
-      <div class="event-details">
-        <span class="event-main">BACK TO THE SHORE</span>
-        <span class="event-performers">吴卓均LIVE | AYMEN | EWAN<br>OPUL | HEDER | LUNA LI | M2F</span>
+      <div class="num color2">8.<br>WED</div>
+      <div class="content">
+        <div class="main-title">DUBDUB</div>
+        <div class="desc">
+          <span>ORB.</span>
+          <span>WONKEY</span>
+          <span>袖口酷街</span>
+        </div>
+      </div>
+      <div class="right-block">
+        <span class="month">JUNE</span>
       </div>
     </div>
-
+    <!-- 9 -->
+    <div class="row">
+      <div class="num color2">9.<br>THU</div>
+      <div class="content">
+        <div class="main-title"><span class="tag-logo">.TAG</span>开放日 OPEN DECKS PROGRAM</div>
+      </div>
+      <div class="right-block">
+        <span class="program">PROGRAM</span>
+      </div>
+    </div>
+    <!-- 10 -->
+    <div class="row color-green">
+      <div class="num color3">10.<br>WED</div>
+      <div class="content">
+        <div class="main-title">BACK TO THE SHORE <span class="event-tag">HIDDENBAR</span></div>
+        <div class="desc">
+          <span>吴卓均LIVE</span>
+          <span>AYMEN</span>
+          <span>EWAN</span>
+          <span>LUNA LI</span>
+          <span>M2F</span>
+        </div>
+      </div>
+      <div class="right-block">
+        <span class="month">JUNE</span>
+      </div>
+    </div>
     <!-- 11 -->
     <div class="row">
-      <div class="num green">11.<br><span style="font-size:0.8rem;font-weight:400">THU</span></div>
-      <div class="event-details">
-        <span class="event-main">ART OF LIVE <span style="font-size:1.08rem;font-weight:400;">#15</span></span>
-        <span class="event-performers">XIANG | SEVEN 九LIVE | A.I LIVE SU | QIQUIU | FAKEYANG | POLLYHEDRON</span>
+      <div class="num color2">11.<br>SAT</div>
+      <div class="content">
+        <div class="main-title">ART OF LIVE #15</div>
+        <div class="desc">
+          <span>XIANG</span>
+          <span>QUIQUI</span>
+          <span>SEVEN 九LIVE</span>
+          <span>FAKEYANG</span>
+          <span>A.I LIVE</span>
+          <span>SU</span>
+          <span>POLLYHEDRON</span>
+        </div>
+      </div>
+      <div class="right-block">
+        <span class="month">JUNE</span>
       </div>
     </div>
-
     <!-- 15 -->
-    <div class="row" style="background:#e5e5e5;">
-      <div class="num">15.<br><span style="font-size:0.8rem;font-weight:400">WED</span></div>
-      <div class="event-details">
-        <span class="event-main ch">掌椰唱片之夜</span>
-        <span class="event-performers">F61 | TSENG | BENKI | SHAWN DOU</span>
-      </div>
-    </div>
-
-    <!-- 17 -->
     <div class="row">
-      <div class="num orange">17.<br><span style="font-size:0.8rem;font-weight:400">FRI</span></div>
-      <div class="event-details">
-        <span class="event-main">谁不爱双子？SANTONG&ORB.<br><span class="event-main ch" style="font-size:1.1rem;">双子月大乱斗</span></span>
-        <span class="event-performers">SLOWDOWN | ORB. | SALOME | ZARAH | UPDUBVJ | OLD SHENG | SIMONG | F61</span>
+      <div class="num color2">15.<br>WED</div>
+      <div class="content">
+        <div class="main-title">掌棉唱片之夜</div>
+        <div class="desc">
+          <span>F61</span>
+          <span>TSENG</span>
+          <span>BENKI</span>
+          <span>SHAWN DOU</span>
+        </div>
       </div>
-      <div class="block year">2022</div>
+      <div class="right-block">
+        <span class="month">JUNE</span>
+      </div>
     </div>
-
+    <!-- 17 -->
+    <div class="row color-orange">
+      <div class="num color4">17.<br>FRI</div>
+      <div class="content">
+        <div class="main-title">谁不爱双子? SANTONG&ORB. 双子月大乱斗</div>
+        <div class="desc">
+          <span>SLOWDOWN</span>
+          <span>ORB.</span>
+          <span>SALOME</span>
+          <span>ZARAH</span>
+          <span>UPDUBVJ</span>
+          <span>OLD SHENG</span>
+          <span>SIMONG</span>
+          <span>F61</span>
+        </div>
+      </div>
+      <div class="stripes">
+        <div class="bigtext">2022</div>
+      </div>
+    </div>
     <!-- 18 -->
     <div class="row">
-      <div class="num orange">18.<br><span style="font-size:0.8rem;font-weight:400">SAT</span></div>
-      <div class="event-details">
-        <span class="event-main">ASYLUM 4YRS × 便利</span>
-        <span class="event-performers">DJ GORDON B2B HELING | FINSENT B2B DJ BLUE | STEVE PAN LIVE | ZARAH B2B QIQUIU | PIXIUO</span>
+      <div class="num color2">18.<br>SAT</div>
+      <div class="content">
+        <div class="main-title">ASYLUM 4YRS × 便利</div>
+        <div class="desc">
+          <span>DJ GORDON B2B HELING</span>
+          <span>FINSENT B2B DJ BLUE</span>
+          <span>STEVE PAN LIVE</span>
+          <span>ZARAH B2B QUIQUI</span>
+          <span>PIXIUO</span>
+        </div>
+        <div class="desc2">
+          <span>XIAOLONG</span>
+          <span>JUGG</span>
+          <span>POLLYHEDRON</span>
+          <span>HAKKAELLEN</span>
+        </div>
+      </div>
+      <div class="right-block">
+        <span class="month">JUNE</span>
       </div>
     </div>
-
     <!-- 22 -->
     <div class="row">
-      <div class="num blue">22.<br><span style="font-size:0.8rem;font-weight:400">WED</span></div>
-      <div class="event-details">
-        <span class="event-main ch">闪现</span>
-        <span class="event-performers">阵容待公布</span>
+      <div class="num color5">22.<br>WED</div>
+      <div class="content">
+        <div class="main-title">闪现 <span class="tag-logo">.TAG</span></div>
+        <div class="desc">
+          <span>阵容待公布</span>
+        </div>
       </div>
-      <div class="block tag">
-        <span class="tag-text">.TAG</span>
-        <svg class="tag-spiral" viewBox="0 0 100 100">
-          <path d="M50,50
-            m-40,0
-            a40,40 0 1,0 80,0
-            a40,40 0 1,0 -80,0
-            m10,0
-            a30,30 0 1,0 60,0
-            a30,30 0 1,0 -60,0
-            m10,0
-            a20,20 0 1,0 40,0
-            a20,20 0 1,0 -40,0
-            m10,0
-            a10,10 0 1,0 20,0
-            a10,10 0 1,0 -20,0
-          " fill="none" stroke="#fff" stroke-width="2"/>
-        </svg>
+      <div class="right-block">
+        <div class="taglogo"></div>
       </div>
     </div>
-
-    <!-- 25 -->
+    <!-- 23 -->
     <div class="row">
-      <div class="num">25.<br><span style="font-size:0.8rem;font-weight:400">SAT</span></div>
-      <div class="event-details">
-        <span class="event-main">HIDDENBAR 开放日</span>
-        <span class="event-performers">OPEN DECKS</span>
+      <div class="num color2">23.<br>THU</div>
+      <div class="content">
+        <div class="main-title">HIDDENBAR 开放日 <span class="event-tag">OPEN DECKS</span></div>
       </div>
-      <div class="block spiral-big">
-        <span class="text"></span>
-        <svg class="spiral" viewBox="0 0 320 120">
-          <g>
-            <path d="M160,60 m-120,0
-              a120,60 0 1,0 240,0
-              a120,60 0 1,0 -240,0
-              m15,0
-              a105,45 0 1,0 210,0
-              a105,45 0 1,0 -210,0
-              m15,0
-              a90,30 0 1,0 180,0
-              a90,30 0 1,0 -180,0
-              m15,0
-              a75,15 0 1,0 150,0
-              a75,15 0 1,0 -150,0
-            " fill="none" stroke="#000" stroke-width="2"/>
-          </g>
-        </svg>
+      <div class="right-block">
+        <span class="program">OPEN DECKS</span>
       </div>
     </div>
-
     <!-- 24 -->
     <div class="row">
-      <div class="num">24.<br><span style="font-size:0.8rem;font-weight:400">FRI</span></div>
-      <div class="event-details">
-        <span class="event-main">ATMOS</span>
-        <span class="event-performers">MOHEAMNN | EWAN | ZARAH<br>F61 | SHAWN DOU</span>
+      <div class="num color2">24.<br>FRI</div>
+      <div class="content">
+        <div class="main-title">ATMOS</div>
+        <div class="desc">
+          <span>MOHEMANN</span>
+          <span>EWAN</span>
+          <span>ZARAH</span>
+          <span>HIDDENBAR</span>
+        </div>
+        <div class="desc2">
+          <span>F61</span>
+          <span>SHAWN</span>
+          <span>BENKI</span>
+          <span>XING</span>
+        </div>
+      </div>
+      <div class="right-block">
+        <span class="month">JUNE</span>
       </div>
     </div>
-
     <!-- 25 -->
     <div class="row">
-      <div class="num">25.<br><span style="font-size:0.8rem;font-weight:400">SAT</span></div>
-      <div class="event-details">
-        <span class="event-main">醺雨ACID RAIN</span>
-        <span class="event-performers">SHY BEEF | QIQUIU | AMPHE2000<br>OEA | BENKI | XING</span>
+      <div class="num color6">25.<br>SAT</div>
+      <div class="content">
+        <div class="main-title">酣雨 ACID RAIN</div>
+        <div class="desc">
+          <span>SHY BEEF</span>
+          <span>QUIQUI</span>
+          <span>AMPHE2000</span>
+        </div>
+        <div class="desc2">
+          <span>OEA</span>
+          <span>BENKI</span>
+          <span>XING</span>
+        </div>
+      </div>
+      <div class="right-block">
+        <span class="month">JUNE</span>
       </div>
     </div>
-
-    <div style="font-size:0.93rem;text-align:right;letter-spacing:0.07em;font-weight:400;margin-top:6px;color:#111;">
-      #217/218, BLOCK A, POLYCENTER, CHENGDU
+    <!-- Footer, credits -->
+    <div class="row" style="background:#fff; border-bottom:none; font-size:1.1rem;">
+      <div class="num" style="background:#fff;"></div>
+      <div class="content" style="text-align:right; font-size:0.98em; color:#888;">
+        #217/218 BLOCK A, POLYCENTER, CHENGDU
+      </div>
     </div>
-
   </div>
 </body>
 </html>
