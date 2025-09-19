@@ -2,471 +2,427 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>.TAG Club Program</title>
-  <meta name="viewport" content="width=860">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <title>Portfolio Garden</title>
+  <meta name="viewport" content="width=900">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:900,700,400,300&display=swap" rel="stylesheet">
   <style>
-    body {
-      background: #eee;
+    html, body {
       margin: 0;
       padding: 0;
-      font-family: 'Roboto', Arial, sans-serif;
-      color: #000;
-      min-width: 860px;
+      background: #fff;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 400;
+      color: #141414;
+      min-width: 900px;
+    }
+    body {
+      box-sizing: border-box;
+      padding: 0;
     }
     .container {
-      width: 860px;
+      width: 900px;
       margin: 0 auto;
+      position: relative;
+    }
+    header {
+      margin-top: 30px;
+      margin-bottom: 0;
+      position: relative;
+    }
+    .welcome-bar {
+      display: inline-block;
       background: #fff;
-      box-shadow: 0 0 10px #bbb;
-      padding: 0;
-      border: 1px solid #bdbdbd;
+      border: 2px solid #000;
+      padding: 8px 24px 6px 18px;
+      font-size: 1.28rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      position: relative;
+      z-index: 2;
+      margin-bottom: -10px;
     }
-    .row {
+    .years-badge {
+      position: absolute;
+      right: 0;
+      top: 18px;
+      background: #fff;
+      border: 2px solid #000;
+      border-radius: 16px;
+      font-size: 1rem;
+      font-weight: 400;
+      padding: 4px 16px 3px 16px;
+      letter-spacing: 0.04em;
+    }
+    .garden-title {
+      font-size: 7.6rem;
+      font-weight: 900;
+      margin: 0;
+      margin-top: 6px;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      word-spacing: 0.03em;
+    }
+    .subtitle-row {
       display: flex;
-      width: 100%;
-      align-items: stretch;
-      border-bottom: 1px solid #ccc;
-      font-size: 1.64rem;
-      min-height: 54px;
-    }
-    .row:last-child {
-      border-bottom: none;
-    }
-    .num {
-      width: 6.5%;
-      min-width: 56px;
-      background: #eee;
-      text-align: center;
-      font-weight: bold;
-      font-size: 1.6rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-right: 1px solid #ccc;
-      box-sizing: border-box;
-      letter-spacing: 0.5px;
-    }
-    .num.color1 { background: #f2b4b4; color: #000; }
-    .num.color2 { background: #e6e6e6; }
-    .num.color3 { background: #d7f2b4; color: #000; }
-    .num.color4 { background: #f7cfa5; color: #000; }
-    .num.color5 { background: #b4d9f2; color: #000; }
-    .num.color6 { background: #f2e0b4; color: #000; }
-    .row .content {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 10px;
-      box-sizing: border-box;
-    }
-    .main-title {
-      font-size: 1.46em;
-      font-weight: bold;
-      margin-bottom: 2px;
-      letter-spacing: 0.5px;
+      align-items: baseline;
+      margin-top: -16px;
+      margin-bottom: 16px;
+      justify-content: space-between;
     }
     .subtitle {
-      font-size: 1.1em;
-      font-weight: normal;
-      color: #222;
+      font-size: 1.3rem;
+      letter-spacing: 0.13em;
+      font-weight: 300;
+      border-bottom: 2px solid #000;
+      padding-bottom: 3px;
+      margin-right: 14px;
+      flex: 1 1 auto;
+      min-width: 0;
     }
-    .desc, .desc2 {
-      font-size: 0.93em;
-      color: #222;
-      margin-top: 2px;
+    .portfolio-owner {
+      font-size: 1.1rem;
+      letter-spacing: 0.07em;
+      font-weight: 700;
+      margin-left: 30px;
+      flex: 0 0 auto;
+      margin-top: 3px;
+    }
+    .category-labels {
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 12px;
+      margin-bottom: 0;
+      padding: 0 10px 0 4px;
     }
-    .desc2 {
-      font-size: 0.92em;
-      color: #666;
-    }
-    .right-block {
-      width: 28%;
-      min-width: 170px;
-      background: #222;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.4rem;
-      font-weight: bold;
-      flex-direction: column;
-      letter-spacing: 1.5px;
+    .category-label {
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0.17em;
+      color: #141414;
       text-transform: uppercase;
-      border-left: 2px solid #fff;
+      margin-bottom: 0;
+      margin-top: 0;
       position: relative;
     }
-    .right-block .month {
-      font-size: 2.6rem;
-      line-height: 1;
-      font-weight: bold;
-      margin: 0;
-      letter-spacing: 0.1em;
-      text-align: center;
+    .category-label:nth-child(2) {
+      margin-left: 50px;
     }
-    .right-block .year {
-      font-size: 2.9rem;
-      letter-spacing: 0.09em;
-      margin-top: 0.25em;
+    .category-label:nth-child(3) {
+      margin-right: 14px;
     }
-    .right-block .program {
-      font-size: 1.6rem;
-      font-weight: bold;
-      background: #fff;
-      color: #000;
-      padding: 0.4em 1.2em;
-      border-radius: 4px;
-      margin: 0.2em 0;
-    }
-    .right-block .taglogo {
-      width: 110px;
-      height: 30px;
-      background: url('data:image/svg+xml;utf8,<svg width="110" height="30" xmlns="http://www.w3.org/2000/svg"><ellipse cx="55" cy="15" rx="53" ry="12" fill="none" stroke="black" stroke-width="2"/><ellipse cx="55" cy="15" rx="45" ry="9" fill="none" stroke="black" stroke-width="1.5"/><ellipse cx="55" cy="15" rx="37" ry="7" fill="none" stroke="black" stroke-width="1"/></svg>') no-repeat center/contain;
-      margin: 0.8em 0 0.2em 0;
-    }
-    /* Decorative stripes for certain rows */
-    .stripes {
-      background: repeating-linear-gradient(
-        135deg,
-        #fff,
-        #fff 5px,
-        #000 5px,
-        #000 15px
-      );
-      border-left: 2px solid #fff;
+    .garden-svg {
+      width: 100%;
+      display: block;
+      margin: 0 auto 0;
+      margin-top: 10px;
       position: relative;
-      width: 28%;
-      min-width: 170px;
+      z-index: 1;
+      height: 355px;
+      /* For correct scaling */
+    }
+
+    /* Dropdowns */
+    .dropdown-block {
+      position: absolute;
+      z-index: 3;
+      font-size: 1.1rem;
+      letter-spacing: 0.01em;
+      font-weight: 400;
+      color: #141414;
+    }
+    .dropdown-label {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 2.2rem;
-      font-weight: bold;
-      flex-direction: column;
+      font-size: 1.11rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+      margin-top: 0;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      user-select: none;
+    }
+    .dropdown-label .dot {
+      font-size: 1.4em;
+      margin-right: 6px;
+      margin-top: -1px;
       color: #000;
     }
-    .stripes .bigtext {
-      font-size: 2.7rem;
-      font-weight: bold;
-      letter-spacing: 0.08em;
-      margin: 0.1em 0;
-      text-align: center;
-      text-shadow: 1px 1px 0 #fff;
+    .dropdown {
+      min-width: 155px;
+      box-sizing: border-box;
     }
-    /* Orange and green line for colored days */
-    .row.color-orange .num { background: #fbbe94; }
-    .row.color-green .num { background: #b8f2c9; }
-    /* Responsive for wide desktops */
-    @media (max-width: 900px) {
-      .container { width: 100vw; min-width: 0; }
-      .row { font-size: 1.1rem; }
-      .right-block, .stripes { min-width: 110px; font-size: 1.1rem; }
-    }
-    /* Hide scroll on body for ultra-wide */
-    html, body { overflow-x: auto; }
-    /* Small text for side event tags */
-    .event-tag {
-      font-size: 0.85em;
-      font-weight: 600;
-      background: #222;
-      color: #fff;
-      padding: 0 4px;
-      margin-right: 6px;
-      border-radius: 2px;
-      letter-spacing: 0.04em;
-      margin-bottom: 2px;
-      display: inline-block;
-    }
-    /* Tag logo (for .TAG) */
-    .tag-logo {
+    .dropdown-content {
+      display: none;
       background: #fff;
-      color: #000;
-      font-weight: bold;
-      border-radius: 3px;
-      padding: 0.23em 0.8em;
-      font-size: 1.25em;
-      letter-spacing: 0.06em;
-      margin-right: 6px;
-      margin-bottom: 2px;
-      display: inline-block;
-      border: 2.5px solid #000;
-      font-family: 'Roboto', Arial, sans-serif;
+      border: 1.4px solid #000;
+      box-shadow: none;
+      border-radius: 0;
+      margin-top: 3px;
+      width: 175px;
+      padding: 0;
+      list-style: none;
     }
-    /* Responsive tweaks for mobile (scrollable) */
-    @media (max-width: 700px) {
-      .container { width: 100vw; }
-      .row { font-size: 1rem; }
+    /* Show dropdown if .open */
+    .dropdown.open .dropdown-content {
+      display: block;
+      animation: dropdown-fade 0.19s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes dropdown-fade {
+      from { opacity: 0; transform: translateY(-10px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .dropdown-content li {
+      font-size: 1.04rem;
+      font-weight: 400;
+      border: none;
+      border-bottom: 1px solid #ddd;
+      padding: 6px 12px 6px 12px;
+      background: #fff;
+      color: #141414;
+      letter-spacing: 0.01em;
+    }
+    .dropdown-content li:last-child {
+      border-bottom: none;
+      padding-bottom: 8px;
+    }
+    .dropdown-content .section-title {
+      font-size: 1.01rem;
+      font-weight: 700;
+      margin-top: 7px;
+      margin-bottom: 0;
+      padding-left: 0;
+      background: #fff;
+    }
+    .dropdown-content .sub-list {
+      list-style: disc inside;
+      margin: 0;
+      margin-bottom: 0;
+      margin-top: 2px;
+      padding-left: 18px;
+      font-size: 0.98rem;
+    }
+    /* Dropdown placement */
+    .skills-dropdown {
+      left: 70px;
+      top: 205px;
+    }
+    .interests-dropdown {
+      right: 50px;
+      top: 215px;
+    }
+    /* Interests dropdown open look */
+    .dropdown.open {
+      box-shadow: 0 2px 18px rgba(80,80,80,0.06);
+    }
+    /* Responsive tweaks (minimal, as original is fixed width) */
+    @media (max-width: 950px) {
+      .container { width: 100vw; min-width: 0;}
+      .garden-title { font-size: 4.9rem;}
+      .garden-svg { height: 200px;}
+      .skills-dropdown, .interests-dropdown { position: static; margin-bottom: 24px;}
+    }
+
+    /* Footer nav */
+    .footer {
+      width: 100%;
+      border-top: 2px solid #000;
+      margin-top: 37px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 1.05rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      position: relative;
+    }
+    .footer-copyright {
+      color: #555;
+      font-size: 0.93rem;
+      margin-left: 2px;
+      font-weight: 400;
+      margin-top: 7px;
+      margin-bottom: 7px;
+      flex: 1 1 auto;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 34px;
+      margin-right: 10px;
+      margin-top: 7px;
+      margin-bottom: 7px;
+    }
+    .footer-nav a {
+      color: #141414;
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      transition: color 0.14s;
+    }
+    .footer-nav a:hover {
+      color: #aaa;
+      text-decoration: underline;
+    }
+    /* Description */
+    .description {
+      margin: 22px 0 0 0;
+      text-align: center;
+      font-size: 1.01rem;
+      color: #141414;
+      letter-spacing: 0.035em;
+      max-width: 830px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    /* Little icon at bottom */
+    .footer-icon {
+      width: 36px;
+      height: 36px;
+      margin: 0 auto;
+      display: block;
+      margin-top: 17px;
+      margin-bottom: 0;
+    }
+    /* Hide focus outline for dropdowns */
+    .dropdown:focus-within {
+      outline: none;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- 1 -->
-    <div class="row">
-      <div class="num color1">1.<br>WED</div>
-      <div class="content">
-        <div class="main-title">THE CHILDREN'S GARDEN</div>
-        <div class="desc">
-          <span>SHAWN (竹笙)</span>
-          <span>寒吐</span>
-          <span>品志良</span>
-          <span>XING 瑞</span>
-        </div>
+    <header>
+      <span class="welcome-bar">WELCOME TO MY</span>
+      <span class="years-badge">2025–2026</span>
+      <h1 class="garden-title">GARDEN</h1>
+      <div class="subtitle-row">
+        <span class="subtitle">DESIGN &amp; CREATIVE STRAT.</span>
+        <span class="portfolio-owner">GAVIN BACHER'S PORTFOLIO</span>
       </div>
-      <div class="stripes">
-        <div class="bigtext">6月</div>
+      <div class="category-labels">
+        <span class="category-label">ADVERTISING / ART DIRECTION</span>
+        <span class="category-label">GRAPHIC DESIGN</span>
+        <span class="category-label">ILLUSTRATION</span>
       </div>
-    </div>
-    <!-- 2 -->
-    <div class="row">
-      <div class="num color2">2.<br>THU</div>
-      <div class="content">
-        <div class="main-title">SiS B&C 棒锤姐妹</div>
-        <div class="desc">
-          <span>DJ BANG</span>
-          <span>DJ CHUI</span>
-          <span>KEKEXILI</span>
-          <span>DJ VENGO</span>
-          <span>DJ SHAWN</span>
-        </div>
-      </div>
-      <div class="right-block">
-        <span class="month">JUNE</span>
-      </div>
-    </div>
-    <!-- 3 -->
-    <div class="row">
-      <div class="num color2">3.<br>FRI</div>
-      <div class="content">
-        <div class="main-title">湾岸MIDNIGHT</div>
-        <div class="desc">
-          <span>X.LEE</span>
-          <span>HAZEL</span>
-          <span>VINCENT</span>
-          <span>JIAHAO</span>
-          <span>PBBX</span>
-        </div>
-      </div>
-      <div class="right-block">
-        <span class="month">JUNE</span>
-      </div>
-    </div>
-    <!-- 4 -->
-    <div class="row">
-      <div class="num color2">4.<br>SAT</div>
-      <div class="content">
-        <div class="main-title">报喜不成忧</div>
-        <div class="desc">
-          <span>吕志良</span>
-          <span>LUNA LI</span>
-          <span>O/NAI</span>
-          <span>BENKI</span>
-          <span>FAKEYANG VJ</span>
-          <span>CHAN</span>
-          <span>ZUS</span>
-          <span>HELING</span>
-        </div>
-      </div>
-      <div class="right-block">
-        <span class="month">JUNE</span>
+    </header>
+
+    <!-- SVG garden illustration -->
+    <svg class="garden-svg" viewBox="0 0 880 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Left plant (flower) -->
+      <g>
+        <path d="M95 340 Q100 220, 200 200" stroke="#000" stroke-width="2" fill="none"/>
+        <circle cx="200" cy="200" r="38" stroke="#000" stroke-width="2" fill="#fff"/>
+        <circle cx="200" cy="200" r="24" fill="#000"/>
+        <ellipse cx="200" cy="155" rx="20" ry="10" stroke="#000" stroke-width="2" fill="#fff"/>
+        <ellipse cx="170" cy="185" rx="10" ry="20" stroke="#000" stroke-width="2" fill="#fff"/>
+        <ellipse cx="170" cy="215" rx="10" ry="20" stroke="#000" stroke-width="2" fill="#fff"/>
+        <ellipse cx="200" cy="245" rx="20" ry="10" stroke="#000" stroke-width="2" fill="#fff"/>
+        <ellipse cx="230" cy="215" rx="10" ry="20" stroke="#000" stroke-width="2" fill="#fff"/>
+        <ellipse cx="230" cy="185" rx="10" ry="20" stroke="#000" stroke-width="2" fill="#fff"/>
+      </g>
+      <!-- Center plant (leaves) -->
+      <g>
+        <path d="M330 340 Q340 265, 430 105" stroke="#000" stroke-width="2" fill="none"/>
+        <polygon points="330,340 336,340 333,325" fill="#000"/>
+        <path d="M355 260 Q372 240, 390 235 Q370 255, 355 260" stroke="#000" stroke-width="2" fill="#fff"/>
+        <path d="M370 220 Q390 200, 410 197 Q392 218, 370 220" stroke="#000" stroke-width="2" fill="#fff"/>
+        <path d="M380 185 Q398 165, 420 170 Q403 180, 380 185" stroke="#000" stroke-width="2" fill="#fff"/>
+        <path d="M395 150 Q415 125, 432 135 Q417 146, 395 150" stroke="#000" stroke-width="2" fill="#fff"/>
+        <path d="M342 295 Q355 285, 370 282 Q355 297, 342 295" stroke="#000" stroke-width="2" fill="#fff"/>
+      </g>
+      <!-- Right plant (swirl) -->
+      <g>
+        <path d="M590 340 Q635 225, 770 205 Q835 200, 820 270 Q804 330, 730 330 Q640 330, 735 240 Q800 180, 680 110" stroke="#000" stroke-width="2" fill="none"/>
+        <path d="M830 255 Q815 250, 810 265 Q820 263, 830 255" stroke="#000" stroke-width="2" fill="#fff"/>
+        <path d="M755 175 Q770 170, 775 185 Q765 183, 755 175" stroke="#000" stroke-width="2" fill="#fff"/>
+        <path d="M720 135 Q730 130, 735 140 Q728 137, 720 135" stroke="#000" stroke-width="2" fill="#fff"/>
+      </g>
+    </svg>
+
+    <!-- Skills dropdown -->
+    <div class="dropdown-block skills-dropdown" style="top:203px; left:65px;">
+      <div class="dropdown" tabindex="0">
+        <span class="dropdown-label"><span class="dot">●</span>SKILLS</span>
+        <ul class="dropdown-content">
+          <li>Art Direction</li>
+          <li>Advertising</li>
+          <li>Graphic Design</li>
+          <li>Branding</li>
+          <li>Illustration</li>
+          <li>Strategy</li>
+          <li>Creative Writing</li>
+        </ul>
       </div>
     </div>
-    <!-- 8 -->
-    <div class="row">
-      <div class="num color2">8.<br>WED</div>
-      <div class="content">
-        <div class="main-title">DUBDUB</div>
-        <div class="desc">
-          <span>ORB.</span>
-          <span>WONKEY</span>
-          <span>袖口酷街</span>
-        </div>
-      </div>
-      <div class="right-block">
-        <span class="month">JUNE</span>
-      </div>
-    </div>
-    <!-- 9 -->
-    <div class="row">
-      <div class="num color2">9.<br>THU</div>
-      <div class="content">
-        <div class="main-title"><span class="tag-logo">.TAG</span>开放日 OPEN DECKS PROGRAM</div>
-      </div>
-      <div class="right-block">
-        <span class="program">PROGRAM</span>
+
+    <!-- Interests dropdown (OPEN by default, as in screenshot) -->
+    <div class="dropdown-block interests-dropdown" style="top:215px; right:33px;">
+      <div class="dropdown open" tabindex="0">
+        <span class="dropdown-label"><span class="dot">●</span>INTERESTS</span>
+        <ul class="dropdown-content">
+          <li>GAMING</li>
+          <li>PHILOSOPHY</li>
+          <li>NATURE/WILDLIFE</li>
+          <li>DESIGN <span style="font-size:0.84em; color:#555;">(ON A NERD)</span></li>
+          <li class="section-title">FAVORITE MOVIES</li>
+          <ul class="sub-list">
+            <li>AVATAR (THE BLUE PEOPLE)</li>
+            <li>LADY BIRD</li>
+            <li>CAPTAIN FANTASTIC</li>
+          </ul>
+        </ul>
       </div>
     </div>
-    <!-- 10 -->
-    <div class="row color-green">
-      <div class="num color3">10.<br>WED</div>
-      <div class="content">
-        <div class="main-title">BACK TO THE SHORE <span class="event-tag">HIDDENBAR</span></div>
-        <div class="desc">
-          <span>吴卓均LIVE</span>
-          <span>AYMEN</span>
-          <span>EWAN</span>
-          <span>LUNA LI</span>
-          <span>M2F</span>
-        </div>
-      </div>
-      <div class="right-block">
-        <span class="month">JUNE</span>
-      </div>
+
+    <!-- Description and bottom icon -->
+    <div class="description">
+      THIS SITE IS A COLLECTION OF THE WORKS I'M MOST PROUD OF. ALL OF THESE PROJECTS WERE CURATED FROM RESEARCH STRATEGY, AND WITH THE WILLINGNESS AND EXCITEMENT TO EXPLORE. AS A CREATIVE I'M ALWAYS LOOKING FOR WAYS TO EXPAND MY SKILLSET AND GROW MY GARDEN. COME JOIN ME IN EXPANDING THIS BEAUTIFUL COLLECTION AND REACH OUT.
     </div>
-    <!-- 11 -->
-    <div class="row">
-      <div class="num color2">11.<br>SAT</div>
-      <div class="content">
-        <div class="main-title">ART OF LIVE #15</div>
-        <div class="desc">
-          <span>XIANG</span>
-          <span>QUIQUI</span>
-          <span>SEVEN 九LIVE</span>
-          <span>FAKEYANG</span>
-          <span>A.I LIVE</span>
-          <span>SU</span>
-          <span>POLLYHEDRON</span>
-        </div>
-      </div>
-      <div class="right-block">
-        <span class="month">JUNE</span>
-      </div>
-    </div>
-    <!-- 15 -->
-    <div class="row">
-      <div class="num color2">15.<br>WED</div>
-      <div class="content">
-        <div class="main-title">掌棉唱片之夜</div>
-        <div class="desc">
-          <span>F61</span>
-          <span>TSENG</span>
-          <span>BENKI</span>
-          <span>SHAWN DOU</span>
-        </div>
-      </div>
-      <div class="right-block">
-        <span class="month">JUNE</span>
-      </div>
-    </div>
-    <!-- 17 -->
-    <div class="row color-orange">
-      <div class="num color4">17.<br>FRI</div>
-      <div class="content">
-        <div class="main-title">谁不爱双子? SANTONG&ORB. 双子月大乱斗</div>
-        <div class="desc">
-          <span>SLOWDOWN</span>
-          <span>ORB.</span>
-          <span>SALOME</span>
-          <span>ZARAH</span>
-          <span>UPDUBVJ</span>
-          <span>OLD SHENG</span>
-          <span>SIMONG</span>
-          <span>F61</span>
-        </div>
-      </div>
-      <div class="stripes">
-        <div class="bigtext">2022</div>
-      </div>
-    </div>
-    <!-- 18 -->
-    <div class="row">
-      <div class="num color2">18.<br>SAT</div>
-      <div class="content">
-        <div class="main-title">ASYLUM 4YRS × 便利</div>
-        <div class="desc">
-          <span>DJ GORDON B2B HELING</span>
-          <span>FINSENT B2B DJ BLUE</span>
-          <span>STEVE PAN LIVE</span>
-          <span>ZARAH B2B QUIQUI</span>
-          <span>PIXIUO</span>
-        </div>
-        <div class="desc2">
-          <span>XIAOLONG</span>
-          <span>JUGG</span>
-          <span>POLLYHEDRON</span>
-          <span>HAKKAELLEN</span>
-        </div>
-      </div>
-      <div class="right-block">
-        <span class="month">JUNE</span>
-      </div>
-    </div>
-    <!-- 22 -->
-    <div class="row">
-      <div class="num color5">22.<br>WED</div>
-      <div class="content">
-        <div class="main-title">闪现 <span class="tag-logo">.TAG</span></div>
-        <div class="desc">
-          <span>阵容待公布</span>
-        </div>
-      </div>
-      <div class="right-block">
-        <div class="taglogo"></div>
-      </div>
-    </div>
-    <!-- 23 -->
-    <div class="row">
-      <div class="num color2">23.<br>THU</div>
-      <div class="content">
-        <div class="main-title">HIDDENBAR 开放日 <span class="event-tag">OPEN DECKS</span></div>
-      </div>
-      <div class="right-block">
-        <span class="program">OPEN DECKS</span>
-      </div>
-    </div>
-    <!-- 24 -->
-    <div class="row">
-      <div class="num color2">24.<br>FRI</div>
-      <div class="content">
-        <div class="main-title">ATMOS</div>
-        <div class="desc">
-          <span>MOHEMANN</span>
-          <span>EWAN</span>
-          <span>ZARAH</span>
-          <span>HIDDENBAR</span>
-        </div>
-        <div class="desc2">
-          <span>F61</span>
-          <span>SHAWN</span>
-          <span>BENKI</span>
-          <span>XING</span>
-        </div>
-      </div>
-      <div class="right-block">
-        <span class="month">JUNE</span>
-      </div>
-    </div>
-    <!-- 25 -->
-    <div class="row">
-      <div class="num color6">25.<br>SAT</div>
-      <div class="content">
-        <div class="main-title">酣雨 ACID RAIN</div>
-        <div class="desc">
-          <span>SHY BEEF</span>
-          <span>QUIQUI</span>
-          <span>AMPHE2000</span>
-        </div>
-        <div class="desc2">
-          <span>OEA</span>
-          <span>BENKI</span>
-          <span>XING</span>
-        </div>
-      </div>
-      <div class="right-block">
-        <span class="month">JUNE</span>
-      </div>
-    </div>
-    <!-- Footer, credits -->
-    <div class="row" style="background:#fff; border-bottom:none; font-size:1.1rem;">
-      <div class="num" style="background:#fff;"></div>
-      <div class="content" style="text-align:right; font-size:0.98em; color:#888;">
-        #217/218 BLOCK A, POLYCENTER, CHENGDU
-      </div>
+    <!-- Little icon at bottom (minimalistic face & hand) -->
+    <svg class="footer-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-top: 23px;">
+      <circle cx="18" cy="18" r="12" stroke="#000" stroke-width="1"/>
+      <circle cx="18" cy="25" r="6" stroke="#000" stroke-width="1"/>
+      <rect x="16" y="31" width="10" height="1" fill="#000" transform="rotate(-25 16 31)"/>
+    </svg>
+
+    <!-- Footer -->
+    <div class="footer">
+      <span class="footer-copyright">&copy; 2025 GAVIN BACHER</span>
+      <nav class="footer-nav">
+        <a href="#">RESUME</a>
+        <a href="#">LINKEDIN</a>
+        <a href="#">INSTAGRAM</a>
+        <a href="#">EMAIL</a>
+      </nav>
     </div>
   </div>
+
+  <script>
+    // Skills dropdown: open on click/focus, close on blur
+    document.querySelectorAll('.dropdown-block .dropdown').forEach(function(dropdown) {
+      if(dropdown.classList.contains('open')) return; // interests dropdown is open
+      dropdown.addEventListener('click', function(e) {
+        e.stopPropagation();
+        dropdown.classList.toggle('open');
+      });
+      dropdown.addEventListener('blur', function() {
+        dropdown.classList.remove('open');
+      });
+    });
+
+    // Close dropdowns when clicking outside
+    document.body.addEventListener('click', function(e) {
+      document.querySelectorAll('.dropdown-block .dropdown')
+        .forEach(function(dropdown) {
+        if(dropdown.classList.contains('open') && !dropdown.contains(e.target)) {
+          dropdown.classList.remove('open');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
