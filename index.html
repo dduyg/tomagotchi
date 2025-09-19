@@ -2,443 +2,426 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>GARDEN prtfolio</title>
+  <title>Portfolio Garden</title>
   <meta name="viewport" content="width=900">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&family=Arial:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:900,700,400,300&display=swap" rel="stylesheet">
   <style>
     html, body {
       margin: 0;
       padding: 0;
       background: #fff;
-      color: #111;
-      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-      width: 100vw;
-      min-height: 100vh;
-      overflow-x: hidden;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 400;
+      color: #141414;
+      min-width: 900px;
     }
     body {
-      max-width: 900px;
+      box-sizing: border-box;
+      padding: 0;
+    }
+    .container {
+      width: 900px;
       margin: 0 auto;
       position: relative;
     }
-    .header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      margin-top: 35px;
+    header {
+      margin-top: 30px;
       margin-bottom: 0;
-    }
-    .welcome {
-      background: #fff;
-      border: 3px solid #111;
-      padding: 7px 18px 7px 18px;
-      font-size: 1.25rem;
-      font-weight: bold;
-      letter-spacing: 1px;
-      margin-right: 0;
-      margin-left: 0;
-      font-family: inherit;
-      display: inline-block;
-    }
-    .year-badge {
-      border: 2px solid #bbb;
-      border-radius: 20px;
-      padding: 2px 18px;
-      font-size: 1.15rem;
-      color: #222;
       position: relative;
-      top: 10px;
-      background: #fafafa;
-      letter-spacing: 2px;
-      font-family: inherit;
+    }
+    .welcome-bar {
+      display: inline-block;
+      background: #fff;
+      border: 2px solid #000;
+      padding: 8px 24px 6px 18px;
+      font-size: 1.28rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      position: relative;
+      z-index: 2;
+      margin-bottom: -10px;
+    }
+    .years-badge {
+      position: absolute;
+      right: 0;
+      top: 18px;
+      background: #fff;
+      border: 2px solid #000;
+      border-radius: 16px;
+      font-size: 1rem;
       font-weight: 400;
+      padding: 4px 16px 3px 16px;
+      letter-spacing: 0.04em;
     }
     .garden-title {
-      font-size: 8.1rem;
-      font-weight: 800;
-      letter-spacing: -7px;
-      line-height: 1;
+      font-size: 7.6rem;
+      font-weight: 900;
       margin: 0;
-      margin-top: 9px;
-      margin-bottom: 4px;
-      font-family: 'Montserrat', Arial, sans-serif;
+      margin-top: 6px;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      word-spacing: 0.03em;
     }
     .subtitle-row {
       display: flex;
-      align-items: flex-end;
+      align-items: baseline;
+      margin-top: -16px;
+      margin-bottom: 16px;
       justify-content: space-between;
-      margin-top: -18px;
     }
     .subtitle {
-      font-size: 1.40rem;
-      letter-spacing: 0.08em;
-      border-bottom: 2px solid #111;
-      padding-right: 20px;
-      margin-bottom: 3px;
-      font-family: inherit;
+      font-size: 1.3rem;
+      letter-spacing: 0.13em;
+      font-weight: 300;
+      border-bottom: 2px solid #000;
+      padding-bottom: 3px;
+      margin-right: 14px;
+      flex: 1 1 auto;
+      min-width: 0;
     }
-    .portfolio-label {
+    .portfolio-owner {
+      font-size: 1.1rem;
+      letter-spacing: 0.07em;
       font-weight: 700;
-      font-size: 1.10rem;
-      letter-spacing: 1px;
-      margin-bottom: 6px;
-      font-family: inherit;
+      margin-left: 30px;
+      flex: 0 0 auto;
+      margin-top: 3px;
     }
-    .categories-row {
+    .category-labels {
       display: flex;
+      flex-direction: row;
       justify-content: space-between;
-      margin-top: 30px;
-      margin-bottom: 8px;
-      font-size: 0.93rem;
+      width: 100%;
+      margin-top: 12px;
+      margin-bottom: 0;
+      padding: 0 10px 0 4px;
+    }
+    .category-label {
+      font-size: 0.9rem;
       font-weight: 400;
-      letter-spacing: 2.5px;
-      color: #444;
+      letter-spacing: 0.17em;
+      color: #141414;
       text-transform: uppercase;
-      font-family: inherit;
-    }
-    /* SVG Garden */
-    .garden-svg-wrap {
-      display: block;
-      width: 100%;
-      margin: 0 auto;
-      margin-top: 2px;
       margin-bottom: 0;
-      position: relative;
-      min-height: 355px;
-      pointer-events: none;
-      user-select: none;
-    }
-    /* Dropdowns */
-    .side-widgets {
-      display: flex;
-      justify-content: space-between;
       margin-top: 0;
-      margin-bottom: 0;
-      width: 100%;
+      position: relative;
     }
-    .dropdown-block {
+    .category-label:nth-child(2) {
+      margin-left: 50px;
+    }
+    .category-label:nth-child(3) {
+      margin-right: 14px;
+    }
+    .garden-svg {
+      width: 100%;
+      display: block;
+      margin: 0 auto 0;
       margin-top: 10px;
-      min-width: 220px;
-      max-width: 240px;
+      position: relative;
+      z-index: 1;
+      height: 355px;
+      /* For correct scaling */
+    }
+
+    /* Dropdowns */
+    .dropdown-block {
+      position: absolute;
+      z-index: 3;
+      font-size: 1.1rem;
+      letter-spacing: 0.01em;
+      font-weight: 400;
+      color: #141414;
     }
     .dropdown-label {
       display: flex;
       align-items: center;
-      font-size: 1.08rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      margin-bottom: 2px;
-      font-family: inherit;
-    }
-    .dot {
-      width: 11px;
-      height: 11px;
-      background: #111;
-      border-radius: 50%;
-      display: inline-block;
-      margin-right: 7px;
-      margin-left: 2px;
-    }
-    .custom-dropdown {
-      background: #fff;
-      border: 1px solid #111;
-      padding: 7px 12px;
-      width: 100%;
-      min-height: 34px;
-      font-size: 1rem;
-      font-family: inherit;
-      color: #111;
-      margin-bottom: 7px;
-      cursor: pointer;
-      text-align: left;
-      position: relative;
-      outline: none;
-      transition: border 0.2s;
-      box-sizing: border-box;
-      margin-top: 2px;
-    }
-    .custom-dropdown[aria-expanded="true"], .custom-dropdown:focus {
-      border: 2px solid #111;
-    }
-    .dropdown-list {
-      position: absolute;
-      background: #fff;
-      border: 1px solid #111;
-      width: 100%;
-      left: 0;
-      z-index: 10;
-      box-shadow: 2px 6px 18px rgba(0,0,0,0.07);
-      font-family: inherit;
-      font-size: 1rem;
-      padding: 0;
-      margin-top: 2px;
-      list-style: none;
-      display: none;
-      max-height: 210px;
-      overflow-y: auto;
-    }
-    .custom-dropdown[aria-expanded="true"] + .dropdown-list {
-      display: block;
-      animation: fadeIn 0.21s;
-    }
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-    .dropdown-list li {
-      padding: 8px 14px;
-      cursor: pointer;
-      transition: background 0.13s;
-      border-bottom: 1px solid #eee;
-      font-family: inherit;
-    }
-    .dropdown-list li:last-child {
-      border-bottom: none;
-    }
-    .dropdown-list li:hover, .dropdown-list li.selected {
-      background: #ececec;
-    }
-    /* Interests specific tweaks */
-    .interests-extra {
-      margin-top: 6px;
-      font-size: 0.98rem;
-      letter-spacing: 0.6px;
-      color: #222;
-      line-height: 1.25;
-    }
-    .fav-movies-label {
-      font-size: 0.99rem;
-      font-weight: 700;
-      margin-top: 8px;
-      margin-bottom: 0;
-      letter-spacing: 1px;
-    }
-    .fav-movies-list {
-      margin: 2px 0 0 0;
-      padding-left: 18px;
-      font-size: 0.97rem;
-      color: #111;
-      letter-spacing: 0.4px;
-    }
-    /* Footer */
-    .footer-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.98rem;
-      width: 100%;
-      margin-top: 35px;
-      margin-bottom: 0;
-      border-top: 2px solid #bbb;
-      padding-top: 13px;
-      letter-spacing: 1px;
-    }
-    .copyright {
-      color: #666;
-      font-size: 0.93rem;
-      font-family: inherit;
-      letter-spacing: 1px;
-    }
-    .footer-links {
-      display: flex;
-      gap: 32px;
-      font-size: 1.02rem;
-      font-family: inherit;
+      font-size: 1.11rem;
       font-weight: 500;
+      margin-bottom: 10px;
+      margin-top: 0;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      user-select: none;
     }
-    .footer-links a {
-      color: #111;
-      text-decoration: none;
-      transition: color 0.14s;
-      border-bottom: 1px solid transparent;
+    .dropdown-label .dot {
+      font-size: 1.4em;
+      margin-right: 6px;
+      margin-top: -1px;
+      color: #000;
     }
-    .footer-links a:hover {
-      color: #0056b3;
-      border-bottom: 1px solid #0056b3;
+    .dropdown {
+      min-width: 155px;
+      box-sizing: border-box;
     }
-    /* Bottom message */
-    .bottom-message {
-      font-size: 1.02rem;
-      text-align: center;
-      margin: 26px 0 12px 0;
-      color: #111;
-      letter-spacing: 0.07em;
-      line-height: 1.3;
-      max-width: 98vw;
-      font-family: inherit;
+    .dropdown-content {
+      display: none;
+      background: #fff;
+      border: 1.4px solid #000;
+      box-shadow: none;
+      border-radius: 0;
+      margin-top: 3px;
+      width: 175px;
+      padding: 0;
+      list-style: none;
+    }
+    /* Show dropdown if .open */
+    .dropdown.open .dropdown-content {
+      display: block;
+      animation: dropdown-fade 0.19s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes dropdown-fade {
+      from { opacity: 0; transform: translateY(-10px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .dropdown-content li {
+      font-size: 1.04rem;
       font-weight: 400;
+      border: none;
+      border-bottom: 1px solid #ddd;
+      padding: 6px 12px 6px 12px;
+      background: #fff;
+      color: #141414;
+      letter-spacing: 0.01em;
     }
-    /* Responsive */
+    .dropdown-content li:last-child {
+      border-bottom: none;
+      padding-bottom: 8px;
+    }
+    .dropdown-content .section-title {
+      font-size: 1.01rem;
+      font-weight: 700;
+      margin-top: 7px;
+      margin-bottom: 0;
+      padding-left: 0;
+      background: #fff;
+    }
+    .dropdown-content .sub-list {
+      list-style: disc inside;
+      margin: 0;
+      margin-bottom: 0;
+      margin-top: 2px;
+      padding-left: 18px;
+      font-size: 0.98rem;
+    }
+    /* Dropdown placement */
+    .skills-dropdown {
+      left: 70px;
+      top: 205px;
+    }
+    .interests-dropdown {
+      right: 50px;
+      top: 215px;
+    }
+    /* Interests dropdown open look */
+    .dropdown.open {
+      box-shadow: 0 2px 18px rgba(80,80,80,0.06);
+    }
+    /* Responsive tweaks (minimal, as original is fixed width) */
     @media (max-width: 950px) {
-      body {
-        max-width: 98vw;
-      }
-      .garden-title { font-size: 6.4rem; }
-      .categories-row { font-size: 0.87rem; }
-      .dropdown-block { min-width: 140px; }
+      .container { width: 100vw; min-width: 0;}
+      .garden-title { font-size: 4.9rem;}
+      .garden-svg { height: 200px;}
+      .skills-dropdown, .interests-dropdown { position: static; margin-bottom: 24px;}
     }
-    @media (max-width: 725px) {
-      .garden-title { font-size: 4.5rem; }
-      .categories-row { font-size: 0.7rem; }
-      .subtitle { font-size: 1rem; }
-      .dropdown-block { min-width: 100px; }
+
+    /* Footer nav */
+    .footer {
+      width: 100%;
+      border-top: 2px solid #000;
+      margin-top: 37px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 1.05rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      position: relative;
     }
-    /* Hide default select arrow for dropdowns */
-    .custom-dropdown::-ms-expand { display: none; }
+    .footer-copyright {
+      color: #555;
+      font-size: 0.93rem;
+      margin-left: 2px;
+      font-weight: 400;
+      margin-top: 7px;
+      margin-bottom: 7px;
+      flex: 1 1 auto;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 34px;
+      margin-right: 10px;
+      margin-top: 7px;
+      margin-bottom: 7px;
+    }
+    .footer-nav a {
+      color: #141414;
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      transition: color 0.14s;
+    }
+    .footer-nav a:hover {
+      color: #aaa;
+      text-decoration: underline;
+    }
+    /* Description */
+    .description {
+      margin: 22px 0 0 0;
+      text-align: center;
+      font-size: 1.01rem;
+      color: #141414;
+      letter-spacing: 0.035em;
+      max-width: 830px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+    /* Little icon at bottom */
+    .footer-icon {
+      width: 36px;
+      height: 36px;
+      margin: 0 auto;
+      display: block;
+      margin-top: 17px;
+      margin-bottom: 0;
+    }
+    /* Hide focus outline for dropdowns */
+    .dropdown:focus-within {
+      outline: none;
+    }
   </style>
 </head>
 <body>
-  <div class="header">
-    <div class="welcome">WELCOME TO MY</div>
-    <div class="year-badge">2025–2026</div>
-  </div>
-  <h1 class="garden-title">GARDEN</h1>
-  <div class="subtitle-row">
-    <div class="subtitle">DESIGN &amp; CREATIVE STRAT.</div>
-    <div class="portfolio-label">GAVIN BACHER'S PORTFOLIO</div>
-  </div>
-  <div class="categories-row">
-    <span>ADVERTISING / ART DIRECTION</span>
-    <span style="margin-right: 50px;">GRAPHIC DESIGN</span>
-    <span>ILLUSTRATION</span>
-  </div>
-  <div class="side-widgets" style="position: relative; margin-top: 18px; margin-bottom: 22px;">
-    <!-- Left: Skills Dropdown -->
-    <div class="dropdown-block" style="position: absolute; left: 0; top: 0;">
-      <div class="dropdown-label"><span class="dot"></span>SKILLS</div>
-      <button class="custom-dropdown" id="skillsDropdown" aria-expanded="false" aria-controls="skillsList" type="button" tabindex="0">
-        <!-- Placeholder for inactive dropdown -->
-        <span style="color:#aaa;">(inactive)</span>
-      </button>
-      <ul class="dropdown-list" id="skillsList" style="display:none;">
-        <li>Art Direction</li>
-        <li>Branding</li>
-        <li>Typography</li>
-        <li>Illustration</li>
-        <li>UI/UX</li>
-      </ul>
+  <div class="container">
+    <header>
+      <span class="welcome-bar">WELCOME TO MY</span>
+      <span class="years-badge">2025–2026</span>
+      <h1 class="garden-title">GARDEN</h1>
+      <div class="subtitle-row">
+        <span class="subtitle">DESIGN &amp; CREATIVE STRAT.</span>
+        <span class="portfolio-owner">GAVIN BACHER'S PORTFOLIO</span>
+      </div>
+      <div class="category-labels">
+        <span class="category-label">ADVERTISING / ART DIRECTION</span>
+        <span class="category-label">GRAPHIC DESIGN</span>
+        <span class="category-label">ILLUSTRATION</span>
+      </div>
+    </header>
+
+    <!-- SVG garden illustration -->
+    <svg class="garden-svg" viewBox="0 0 880 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Left plant (flower) -->
+      <g>
+        <path d="M95 340 Q100 220, 200 200" stroke="#000" stroke-width="2" fill="none"/>
+        <circle cx="200" cy="200" r="38" stroke="#000" stroke-width="2" fill="#fff"/>
+        <circle cx="200" cy="200" r="24" fill="#000"/>
+        <ellipse cx="200" cy="155" rx="20" ry="10" stroke="#000" stroke-width="2" fill="#fff"/>
+        <ellipse cx="170" cy="185" rx="10" ry="20" stroke="#000" stroke-width="2" fill="#fff"/>
+        <ellipse cx="170" cy="215" rx="10" ry="20" stroke="#000" stroke-width="2" fill="#fff"/>
+        <ellipse cx="200" cy="245" rx="20" ry="10" stroke="#000" stroke-width="2" fill="#fff"/>
+        <ellipse cx="230" cy="215" rx="10" ry="20" stroke="#000" stroke-width="2" fill="#fff"/>
+        <ellipse cx="230" cy="185" rx="10" ry="20" stroke="#000" stroke-width="2" fill="#fff"/>
+      </g>
+      <!-- Center plant (leaves) -->
+      <g>
+        <path d="M330 340 Q340 265, 430 105" stroke="#000" stroke-width="2" fill="none"/>
+        <polygon points="330,340 336,340 333,325" fill="#000"/>
+        <path d="M355 260 Q372 240, 390 235 Q370 255, 355 260" stroke="#000" stroke-width="2" fill="#fff"/>
+        <path d="M370 220 Q390 200, 410 197 Q392 218, 370 220" stroke="#000" stroke-width="2" fill="#fff"/>
+        <path d="M380 185 Q398 165, 420 170 Q403 180, 380 185" stroke="#000" stroke-width="2" fill="#fff"/>
+        <path d="M395 150 Q415 125, 432 135 Q417 146, 395 150" stroke="#000" stroke-width="2" fill="#fff"/>
+        <path d="M342 295 Q355 285, 370 282 Q355 297, 342 295" stroke="#000" stroke-width="2" fill="#fff"/>
+      </g>
+      <!-- Right plant (swirl) -->
+      <g>
+        <path d="M590 340 Q635 225, 770 205 Q835 200, 820 270 Q804 330, 730 330 Q640 330, 735 240 Q800 180, 680 110" stroke="#000" stroke-width="2" fill="none"/>
+        <path d="M830 255 Q815 250, 810 265 Q820 263, 830 255" stroke="#000" stroke-width="2" fill="#fff"/>
+        <path d="M755 175 Q770 170, 775 185 Q765 183, 755 175" stroke="#000" stroke-width="2" fill="#fff"/>
+        <path d="M720 135 Q730 130, 735 140 Q728 137, 720 135" stroke="#000" stroke-width="2" fill="#fff"/>
+      </g>
+    </svg>
+
+    <!-- Skills dropdown -->
+    <div class="dropdown-block skills-dropdown" style="top:203px; left:65px;">
+      <div class="dropdown" tabindex="0">
+        <span class="dropdown-label"><span class="dot">●</span>SKILLS</span>
+        <ul class="dropdown-content">
+          <li>Art Direction</li>
+          <li>Advertising</li>
+          <li>Graphic Design</li>
+          <li>Branding</li>
+          <li>Illustration</li>
+          <li>Strategy</li>
+          <li>Creative Writing</li>
+        </ul>
+      </div>
     </div>
-    <!-- Right: Interests Dropdown -->
-    <div class="dropdown-block" style="position: absolute; right: 0; top: 0;">
-      <div class="dropdown-label"><span class="dot"></span>INTERESTS</div>
-      <button class="custom-dropdown" id="interestsDropdown" aria-expanded="false" aria-controls="interestsList" type="button" tabindex="0">
-        GAMING
-      </button>
-      <ul class="dropdown-list" id="interestsList">
-        <li class="selected">GAMING</li>
-        <li>PHILOSOPHY</li>
-        <li>NATURE/WILDLIFE</li>
-        <li>
-          <span>DESIGN <span style="font-size:0.93em; color:#444;">(ON A NERD)</span></span>
-        </li>
-        <li style="pointer-events:none; background: #fafafa; cursor:default;">
-          <div class="fav-movies-label">FAVORITE MOVIES</div>
-          <ul class="fav-movies-list">
+
+    <!-- Interests dropdown (OPEN by default, as in screenshot) -->
+    <div class="dropdown-block interests-dropdown" style="top:215px; right:33px;">
+      <div class="dropdown open" tabindex="0">
+        <span class="dropdown-label"><span class="dot">●</span>INTERESTS</span>
+        <ul class="dropdown-content">
+          <li>GAMING</li>
+          <li>PHILOSOPHY</li>
+          <li>NATURE/WILDLIFE</li>
+          <li>DESIGN <span style="font-size:0.84em; color:#555;">(ON A NERD)</span></li>
+          <li class="section-title">FAVORITE MOVIES</li>
+          <ul class="sub-list">
             <li>AVATAR (THE BLUE PEOPLE)</li>
             <li>LADY BIRD</li>
             <li>CAPTAIN FANTASTIC</li>
           </ul>
-        </li>
-      </ul>
+        </ul>
+      </div>
     </div>
-    <!-- SVG Garden (centered) -->
-    <div class="garden-svg-wrap" style="pointer-events:none; user-select:none; min-height: 355px;">
-      <svg viewBox="0 0 780 355" width="780" height="355" style="display:block; margin:0 auto; pointer-events:none;" fill="none" stroke="#111" stroke-width="2">
-        <!-- Flower (left) -->
-        <ellipse cx="110" cy="160" rx="46" ry="70" stroke="#111" fill="none"/>
-        <ellipse cx="110" cy="110" rx="47" ry="47" stroke="#111" fill="none"/>
-        <ellipse cx="60" cy="130" rx="19" ry="29" stroke="#111" fill="none"/>
-        <ellipse cx="160" cy="130" rx="19" ry="29" stroke="#111" fill="none"/>
-        <ellipse cx="110" cy="80" rx="16" ry="23" stroke="#111" fill="none"/>
-        <ellipse cx="110" cy="200" rx="16" ry="23" stroke="#111" fill="none"/>
-        <circle cx="110" cy="110" r="20" fill="#111" />
-        <!-- Stem (left) -->
-        <path d="M110 157 Q100 230 75 290" stroke="#111" fill="none"/>
-        <!-- Middle plant (leaves) -->
-        <path d="M390 300 Q390 170 300 65" stroke="#111" fill="none"/>
-        <ellipse cx="340" cy="120" rx="29" ry="13" transform="rotate(-32 340 120)" stroke="#111" fill="none"/>
-        <ellipse cx="360" cy="155" rx="29" ry="13" transform="rotate(-15 360 155)" stroke="#111" fill="none"/>
-        <ellipse cx="375" cy="195" rx="28" ry="12" transform="rotate(10 375 195)" stroke="#111" fill="none"/>
-        <ellipse cx="385" cy="235" rx="27" ry="13" transform="rotate(25 385 235)" stroke="#111" fill="none"/>
-        <ellipse cx="388" cy="265" rx="21" ry="9" transform="rotate(46 388 265)" stroke="#111" fill="none"/>
-        <ellipse cx="320" cy="92" rx="21" ry="9" transform="rotate(-38 320 92)" stroke="#111" fill="none"/>
-        <polygon points="390,300 383,330 397,330" fill="#111"/>
-        <!-- Right swirl plant -->
-        <path d="M660 170 Q730 70 640 40 Q560 30 610 120 Q680 220 590 320" stroke="#111" fill="none"/>
-        <ellipse cx="670" cy="55" rx="18" ry="7" transform="rotate(-7 670 55)" stroke="#111" fill="none"/>
-        <ellipse cx="630" cy="90" rx="16" ry="7" transform="rotate(20 630 90)" stroke="#111" fill="none"/>
-        <ellipse cx="680" cy="130" rx="14" ry="7" transform="rotate(-26 680 130)" stroke="#111" fill="none"/>
-        <ellipse cx="650" cy="180" rx="17" ry="8" transform="rotate(33 650 180)" stroke="#111" fill="none"/>
-        <ellipse cx="705" cy="120" rx="12" ry="5" transform="rotate(-13 705 120)" stroke="#111" fill="none"/>
-        <ellipse cx="620" cy="220" rx="13" ry="6" transform="rotate(15 620 220)" stroke="#111" fill="none"/>
-        <path d="M590 320 Q600 335 620 335" stroke="#111" fill="none"/>
-        <!-- Little bug at bottom -->
-        <circle cx="410" cy="345" r="12" stroke="#111" fill="none"/>
-        <circle cx="422" cy="345" r="5" stroke="#111" fill="none"/>
-        <line x1="430" y1="345" x2="437" y2="345" stroke="#111"/>
-        <line x1="410" y1="357" x2="410" y2="367" stroke="#111"/>
-        <line x1="400" y1="350" x2="395" y2="355" stroke="#111"/>
-      </svg>
+
+    <!-- Description and bottom icon -->
+    <div class="description">
+      THIS SITE IS A COLLECTION OF THE WORKS I'M MOST PROUD OF. ALL OF THESE PROJECTS WERE CURATED FROM RESEARCH STRATEGY, AND WITH THE WILLINGNESS AND EXCITEMENT TO EXPLORE. AS A CREATIVE I'M ALWAYS LOOKING FOR WAYS TO EXPAND MY SKILLSET AND GROW MY GARDEN. COME JOIN ME IN EXPANDING THIS BEAUTIFUL COLLECTION AND REACH OUT.
+    </div>
+    <!-- Little icon at bottom (minimalistic face & hand) -->
+    <svg class="footer-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-top: 23px;">
+      <circle cx="18" cy="18" r="12" stroke="#000" stroke-width="1"/>
+      <circle cx="18" cy="25" r="6" stroke="#000" stroke-width="1"/>
+      <rect x="16" y="31" width="10" height="1" fill="#000" transform="rotate(-25 16 31)"/>
+    </svg>
+
+    <!-- Footer -->
+    <div class="footer">
+      <span class="footer-copyright">&copy; 2025 GAVIN BACHER</span>
+      <nav class="footer-nav">
+        <a href="#">RESUME</a>
+        <a href="#">LINKEDIN</a>
+        <a href="#">INSTAGRAM</a>
+        <a href="#">EMAIL</a>
+      </nav>
     </div>
   </div>
-  <div style="clear: both;"></div>
-  <div class="bottom-message">
-    THIS SITE IS A COLLECTION OF THE WORKS I'M MOST PROUD OF. ALL OF THESE PROJECTS WERE CURATED FROM RESEARCH STRATEGY, AND WITH THE WILLINGNESS AND EXCITEMENT TO EXPLORE. AS A CREATIVE I'M ALWAYS LOOKING FOR WAYS TO EXPAND MY SKILLSET AND GROW MY GARDEN. COME JOIN ME IN EXPANDING THIS BEAUTIFUL COLLECTION AND REACH OUT.
-  </div>
-  <div class="footer-row">
-    <div class="copyright">© 2025 GAVIN BACHER</div>
-    <nav class="footer-links">
-      <a href="#">RESUME</a>
-      <a href="#">LINKEDIN</a>
-      <a href="#">INSTAGRAM</a>
-      <a href="#">EMAIL</a>
-    </nav>
-  </div>
+
   <script>
-    // Dropdown interactivity for Interests
-    const interestsDropdown = document.getElementById('interestsDropdown');
-    const interestsList = document.getElementById('interestsList');
-    let interestsOpen = false;
+    // Skills dropdown: open on click/focus, close on blur
+    document.querySelectorAll('.dropdown-block .dropdown').forEach(function(dropdown) {
+      if(dropdown.classList.contains('open')) return; // interests dropdown is open
+      dropdown.addEventListener('click', function(e) {
+        e.stopPropagation();
+        dropdown.classList.toggle('open');
+      });
+      dropdown.addEventListener('blur', function() {
+        dropdown.classList.remove('open');
+      });
+    });
 
-    interestsDropdown.addEventListener('click', function(e){
-      e.stopPropagation();
-      interestsOpen = !interestsOpen;
-      this.setAttribute('aria-expanded', interestsOpen ? 'true' : 'false');
-    });
-    document.addEventListener('click', function(e){
-      interestsOpen = false;
-      interestsDropdown.setAttribute('aria-expanded', 'false');
-    });
-    // Clicking an item sets it as selected and updates button text
-    Array.from(interestsList.querySelectorAll('li')).forEach(li => {
-      if (!li.classList.contains('selected') && !li.querySelector('ul')) {
-        li.addEventListener('click', function(e){
-          e.stopPropagation();
-          Array.from(interestsList.querySelectorAll('li')).forEach(el => el.classList.remove('selected'));
-          this.classList.add('selected');
-          interestsDropdown.innerHTML = this.innerText;
-          interestsDropdown.setAttribute('aria-expanded', 'false');
-          interestsOpen = false;
-        });
-      }
-    });
-    // Accessibility/keyboard support
-    interestsDropdown.addEventListener('keydown', function(e){
-      if(e.key === 'ArrowDown' || e.key === 'Enter'){
-        e.preventDefault();
-        interestsOpen = true;
-        this.setAttribute('aria-expanded', 'true');
-        interestsList.querySelector('li:not(.fav-movies-label)').focus();
-      }
-    });
-    // Skills dropdown is inactive (as in screenshot) so no interactivity
-
-    // Close dropdowns on ESC
-    document.addEventListener('keydown', function(e){
-      if (e.key === 'Escape') {
-        interestsOpen = false;
-        interestsDropdown.setAttribute('aria-expanded', 'false');
-      }
+    // Close dropdowns when clicking outside
+    document.body.addEventListener('click', function(e) {
+      document.querySelectorAll('.dropdown-block .dropdown')
+        .forEach(function(dropdown) {
+        if(dropdown.classList.contains('open') && !dropdown.contains(e.target)) {
+          dropdown.classList.remove('open');
+        }
+      });
     });
   </script>
 </body>
