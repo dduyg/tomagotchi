@@ -2,431 +2,433 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Portfolio – GARDEN</title>
+  <title>.TAG Club Program</title>
   <meta name="viewport" content="width=900">
-  <link href="https://fonts.googleapis.com/css?family=Inter:400,700,900&display=swap" rel="stylesheet">
   <style>
+    @import url('https://fonts.googleapis.com/css?family=Inter:900,700,400&display=swap');
     html, body {
-      height: 100%;
-      background: #fff;
-      margin: 0;
       padding: 0;
-      font-family: 'Inter', Arial, sans-serif;
-      color: #030303;
-      width: 100vw;
-      overflow-x: hidden;
+      margin: 0;
+      background: #fff;
     }
     body {
-      min-width: 900px;
-    }
-    .header-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 38px 0 0 0;
-      padding: 0 48px;
-      height: 56px;
-    }
-    .welcome {
-      font-size: 28px;
-      font-weight: 700;
-      border: 3px solid #000;
-      padding: 6px 24px 6px 12px;
-      letter-spacing: 0.5px;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      color: #000;
       background: #fff;
-      border-radius: 3px;
-      display: inline-block;
-    }
-    .year-badge {
-      font-size: 16px;
-      border-radius: 20px;
-      border: 1.5px solid #aaa;
-      padding: 3px 18px 2px 18px;
-      color: #333;
-      background: #fff;
-      font-weight: 400;
-      float: right;
-      margin-left: 12px;
-    }
-    .garden-title-row {
-      width: 100vw;
-      display: flex;
-      align-items: baseline;
-      margin: 0 0 0 0;
-      padding: 0 0 0 48px;
-    }
-    .garden-title {
-      font-size: 130px;
-      font-weight: 900;
-      letter-spacing: -3px;
-      margin: 0 28px 0 0;
-      line-height: 122px;
-    }
-    .garden-sub {
-      flex: 1;
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-end;
-      font-size: 18px;
+      width: 900px;
+      margin: 0 auto;
+      box-sizing: border-box;
       font-weight: 700;
-      letter-spacing: 0.5px;
-      margin-right: 50px;
-      margin-bottom: 18px;
-      text-align: right;
+      letter-spacing: 0.01em;
     }
-    .divider {
-      width: 96vw;
-      margin: 0 auto 0 auto;
-      border-bottom: 2px solid #222;
-      margin-bottom: 3px;
-    }
-    .design-strat {
-      font-size: 22px;
-      letter-spacing: 2.5px;
-      margin: 16px 0 0 49px;
-      font-weight: 400;
-      border-bottom: 1.5px solid #222;
-      width: 480px;
-      padding-bottom: 2px;
-      text-transform: uppercase;
-    }
-    .ad-row {
-      margin: 18px 0 0 50px;
-      font-size: 14px;
-      letter-spacing: 2px;
-      font-weight: 400;
-      text-transform: uppercase;
-      display: flex;
-      align-items: baseline;
-      gap: 38px;
-      color: #444;
-    }
-    .ad-row span {
-      border-bottom: 1px solid #bbb;
-      padding-bottom: 1px;
-      font-size: 13px;
-      color: #444;
-    }
-    .ad-row .ad-label {
-      margin-right: 80px;
-    }
-    .ad-row .graphic-label {
-      margin-left: 100px;
-    }
-    .ad-row .illust-label {
-      margin-left: 230px;
-    }
-    .main-art-section {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin: 14px 54px 0 49px;
-      position: relative;
-      min-height: 440px;
-    }
-    .flower-svg {
-      flex: 2.5;
-      min-width: 370px;
-      min-height: 360px;
-      max-width: 49vw;
-    }
-    .dropdowns {
-      flex: 1.5;
+
+    .poster {
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
-      margin-top: 56px;
-      gap: 26px;
+      gap: 0;
+      width: 900px;
+      background: #fff;
     }
-    .dropdown-block {
-      width: 230px;
-      margin-bottom: 8px;
+    .row {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      width: 100%;
+      border-bottom: 2px solid #000;
+      min-height: 60px;
+      position: relative;
+      font-size: 1.55rem;
     }
-    .dropdown-label {
-      font-size: 16px;
+
+    .row:last-child { border-bottom: none; }
+
+    .num {
+      width: 65px;
+      min-width: 65px;
+      max-width: 65px;
+      background: #e5e5e5;
+      color: #000;
+      font-size: 2.3rem;
+      font-weight: 900;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-right: 2px solid #000;
+    }
+    .num.red { background: #e55a3b; color: #fff;}
+    .num.green { background: #4cbc6e; color: #fff;}
+    .num.blue { background: #6ca2e7; color: #fff;}
+    .num.orange { background: #f89a43; color: #fff;}
+
+    .weekday {
+      font-size: 0.95rem;
       font-weight: 700;
-      margin-bottom: 4px;
-      margin-left: 3px;
+      text-align: left;
+      min-width: 43px;
+      color: #222;
+      opacity: 0.9;
+      padding: 0 9px 0 7px;
       display: flex;
       align-items: center;
-      color: #111;
-      letter-spacing: 1px;
-    }
-    .dropdown-label .dot {
-      display: inline-block;
-      height: 10px;
-      width: 10px;
-      background: #111;
-      border-radius: 50%;
-      margin-right: 9px;
-      vertical-align: middle;
-    }
-    /* Dropdown styles */
-    .dropdown-list {
-      border: 1.3px solid #111;
-      border-radius: 2px;
+      border-right: 1px solid #000;
       background: #fff;
-      box-sizing: border-box;
-      margin-top: 0;
-      font-size: 16px;
-      font-weight: 400;
-      width: 100%;
-      padding: 0;
-      box-shadow: none;
-      min-height: 38px;
-      transition: border 0.15s;
-      list-style: none;
-      overflow: visible;
-      position: relative;
     }
-    .dropdown-list li {
-      padding: 8px 16px 7px 10px;
-      border-bottom: 1px solid #eee;
-      cursor: default;
-      user-select: none;
-    }
-    .dropdown-list li:last-child {
-      border-bottom: none;
-    }
-    .dropdown-list .dropdown-caption {
-      color: #000;
-      font-weight: 700;
-      background: #fff;
-      padding: 8px 16px 7px 10px;
-      border-bottom: 1px solid #eee;
-    }
-    .dropdown-list .dropdown-note {
-      color: #888;
-      font-size: 13px;
-      font-weight: 400;
-      padding-left: 4px;
-      display: inline;
-    }
-    .dropdown-list .dropdown-bullets {
-      margin: 8px 0 0 16px;
-      font-size: 14px;
-      color: #000;
-      list-style: disc;
-      padding-left: 15px;
-    }
-    .dropdown-list .dropdown-bullets li{
-      border:none;
-      padding: 0 0 2px 0;
-      margin: 0 0 0 0;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-    /* Skills dropdown - closed state (shown as just a box) */
-    .dropdown-list.skills-dropdown {
-      min-height: 38px;
-      max-height: 38px;
+    .event-details {
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+      padding: 6px 11px;
       overflow: hidden;
       background: #fff;
-      border: 1.3px solid #111;
-      box-shadow: none;
-      cursor: pointer;
-      position: relative;
     }
-    /* Interests dropdown - open state (shown as in screenshot) */
-    .dropdown-list.interests-dropdown {
-      min-height: 170px;
-      background: #fff;
-      border: 1.3px solid #111;
-      box-shadow: none;
-      position: relative;
+    .event-main {
+      font-size: 1.7rem;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      line-height: 1.25;
+      color: #000;
+      text-transform: uppercase;
+      margin-bottom: 1px;
+      word-break: break-word;
     }
-    /* Footer area */
-    .footer-bar {
-      width: 100vw;
-      margin-top: 49px;
-      margin-bottom: 10px;
+    .event-main.ch { font-size: 1.25rem; font-weight: 700; text-transform: none; }
+    .event-sub {
+      font-size: 1.03rem;
+      font-weight: 400;
+      color: #000;
+      margin-top: 1px;
+      margin-bottom: 0;
+      word-break: break-word;
+      opacity: 0.93;
+    }
+    .event-performers {
+      font-size: 0.99rem;
+      font-weight: 700;
+      color: #222;
+      margin-top: 2px;
+      margin-bottom: 0;
+      line-height: 1.18;
+      word-break: break-word;
+    }
+    .block {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 48px;
+      align-items: stretch;
+      justify-content: center;
+      min-width: 0;
+      min-height: 60px;
     }
-    .footer-left {
-      font-size: 14px;
-      color: #444;
-      letter-spacing: 0.5px;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-    .footer-center {
+
+    /* Large vertical/month blocks */
+    .month-block {
+      font-size: 4.5rem;
+      font-weight: 900;
+      width: 170px;
+      min-width: 170px;
+      background: #000;
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex: 1;
-      margin: 0 28px;
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      letter-spacing: 0.01em;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #000;
     }
-    .footer-links {
-      font-size: 16px;
-      font-weight: 400;
-      letter-spacing: 2.5px;
+    .month-block.june {
+      font-size: 4.2rem;
+      writing-mode: initial;
+      text-orientation: initial;
+      width: 305px;
+      justify-content: flex-end;
+      padding-right: 30px;
+      align-items: flex-end;
+    }
+    .block.program {
+      background: #000;
+      color: #fff;
+      font-size: 2.7rem;
+      font-weight: 900;
+      letter-spacing: 0.01em;
+      min-width: 255px;
+      max-width: 255px;
+      justify-content: flex-end;
+      align-items: flex-start;
+      padding-top: 7px;
+      padding-right: 8px;
+      border-left: 2px solid #fff;
+    }
+    .block.year {
+      font-size: 4.1rem;
+      font-weight: 900;
+      background: #000;
+      color: #fff;
+      min-width: 215px;
+      justify-content: center;
+      align-items: center;
+      letter-spacing: 0.01em;
+    }
+    /* .TAG logo block */
+    .block.tag {
+      background: #000;
+      color: #fff;
+      min-width: 185px;
+      max-width: 185px;
       display: flex;
-      gap: 34px;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.6rem;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      position: relative;
+      overflow: hidden;
     }
-    .footer-links a {
-      color: #000;
-      text-decoration: none;
-      transition: color 0.16s;
+    .block.tag .tag-spiral {
+      width: 120px;
+      height: 120px;
+      position: absolute;
+      left: 60px;
+      top: 6px;
+      opacity: 0.7;
     }
-    .footer-links a:hover {
-      color: #555;
-      text-decoration: underline;
+    .block.tag .tag-text {
+      position: relative;
+      z-index: 1;
+      font-size: 2.1rem;
+      font-family: 'Inter', Arial, sans-serif;
+      letter-spacing: 0.05em;
+      font-weight: 900;
     }
-    .footer-center svg {
-      height: 40px;
-      width: 37px;
-      margin-top: 12px;
+    /* Spiral graphics for the .TAG and bottom left */
+    .spiral {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      opacity: 0.9;
     }
-    /* Bottom description */
-    .site-desc {
-      font-size: 13px;
-      color: #232323;
-      text-align: center;
-      width: 92vw;
-      margin: 22px auto 0 auto;
-      font-weight: 400;
-      letter-spacing: 0.4px;
-      line-height: 1.2;
-      padding-bottom: 11px;
+    .block.spiral-big {
+      position: relative;
+      min-width: 348px;
+      max-width: 348px;
+      background: #fff;
+      border-left: 2px solid #000;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+      padding-bottom: 0;
     }
-    /* Responsive for large screens */
-    @media (min-width: 1200px) {
-      .main-art-section { min-height: 470px; }
-      .flower-svg { min-width: 450px; min-height: 410px;}
-      .dropdowns { margin-top: 90px;}
+    .block.spiral-big .spiral {
+      position: absolute;
+      left: -30px;
+      bottom: -20px;
+      width: 340px;
+      height: 130px;
+      opacity: 1;
     }
-    /* Responsive for smaller screens */
+    .block.spiral-big .text {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Responsive for large screens only */
     @media (max-width: 950px) {
-      .garden-title { font-size: 88px;}
-      .design-strat { font-size: 15px; width: 280px;}
-      .main-art-section { flex-direction: column; align-items: flex-start; }
-      .dropdowns { align-items: flex-start; margin-left: 0; }
-      .footer-bar { flex-direction: column; align-items: flex-start; gap: 12px; }
+      body, .poster { width: 100vw; min-width: 0; }
     }
-    /* Hide scrollbar for dropdown */
-    .dropdown-list::-webkit-scrollbar { display: none;}
-    .dropdown-list { -ms-overflow-style: none; scrollbar-width: none;}
+    @media (max-width: 750px) {
+      .poster { font-size: 1rem; }
+      .row, .block, .month-block, .block.tag, .block.program, .block.year, .block.spiral-big { min-width: 0; max-width: 100vw; }
+    }
   </style>
 </head>
 <body>
-  <!-- Header -->
-  <div class="header-bar">
-    <span class="welcome">WELCOME TO MY</span>
-    <span class="year-badge">2025-2026</span>
-  </div>
-  <div class="garden-title-row">
-    <div class="garden-title">GARDEN</div>
-    <div class="garden-sub">GAVIN BACHER'S PORTFOLIO</div>
-  </div>
-  <div class="design-strat">
-    DESIGN &amp; CREATIVE STRAT.
-  </div>
-  <div class="divider"></div>
-  <div class="ad-row">
-    <span class="ad-label">ADVERTISING / ART DIRECTION</span>
-    <span class="graphic-label">GRAPHIC DESIGN</span>
-    <span class="illust-label">ILLUSTRATION</span>
-  </div>
-  <!-- Main Art and Dropdowns -->
-  <div class="main-art-section">
-    <!-- SVG Illustration: Three plants -->
-    <svg class="flower-svg" viewBox="0 0 680 390" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Left flower (daisy) -->
-      <g>
-        <ellipse cx="120" cy="128" rx="44" ry="25" stroke="#000" stroke-width="2"/>
-        <ellipse cx="57" cy="176" rx="24" ry="43" stroke="#000" stroke-width="2"/>
-        <ellipse cx="137" cy="66" rx="24" ry="43" stroke="#000" stroke-width="2"/>
-        <ellipse cx="188" cy="100" rx="43" ry="24" stroke="#000" stroke-width="2"/>
-        <ellipse cx="66" cy="80" rx="24" ry="43" stroke="#000" stroke-width="2"/>
-        <ellipse cx="102" cy="50" rx="20" ry="15" stroke="#000" stroke-width="2"/>
-        <ellipse cx="180" cy="162" rx="15" ry="24" stroke="#000" stroke-width="2"/>
-        <circle cx="120" cy="128" r="28" fill="#111"/>
-      </g>
-      <!-- Left stem -->
-      <path d="M120,156 C100,240 60,315 102,380" stroke="#000" stroke-width="2"/>
-      <!-- Middle plant (leaves) -->
-      <g>
-        <path d="M348,380 C328,330 324,220 352,86" stroke="#000" stroke-width="2"/>
-        <path d="M352,86 C355,105 384,125 397,160" stroke="#000" stroke-width="2"/>
-        <path d="M352,136 C335,153 316,168 305,200" stroke="#000" stroke-width="2"/>
-        <path d="M352,170 C332,185 324,210 327,228" stroke="#000" stroke-width="2"/>
-        <path d="M352,215 C345,227 340,244 344,263" stroke="#000" stroke-width="2"/>
-        <path d="M352,270 C358,282 366,295 373,312" stroke="#000" stroke-width="2"/>
-        <!-- Leaves -->
-        <ellipse cx="390" cy="156" rx="23" ry="10" stroke="#000" stroke-width="2" transform="rotate(-30 390 156)"/>
-        <ellipse cx="313" cy="202" rx="9" ry="21" stroke="#000" stroke-width="2" transform="rotate(14 313 202)"/>
-        <ellipse cx="328" cy="232" rx="8" ry="17" stroke="#000" stroke-width="2" transform="rotate(-12 328 232)"/>
-        <ellipse cx="345" cy="263" rx="8" ry="16" stroke="#000" stroke-width="2" transform="rotate(7 345 263)"/>
-        <ellipse cx="373" cy="312" rx="11" ry="19" stroke="#000" stroke-width="2" transform="rotate(-18 373 312)"/>
-        <polygon points="346,380 350,380 349,372" fill="#111"/>
-      </g>
-      <!-- Right spiral plant -->
-      <g>
-        <path d="M532,370 C613,373 646,277 570,226 513,186 458,221 486,272 508,311 583,319 591,277 598,239 546,237 538,264" stroke="#000" stroke-width="2"/>
-        <ellipse cx="590" cy="277" rx="17" ry="8" stroke="#000" stroke-width="2" transform="rotate(-28 590 277)"/>
-        <ellipse cx="570" cy="226" rx="22" ry="9" stroke="#000" stroke-width="2" transform="rotate(18 570 226)"/>
-        <ellipse cx="538" cy="264" rx="7" ry="13" stroke="#000" stroke-width="2" transform="rotate(18 538 264)"/>
-        <ellipse cx="513" cy="186" rx="8" ry="18" stroke="#000" stroke-width="2" transform="rotate(9 513 186)"/>
-        <ellipse cx="486" cy="272" rx="8" ry="18" stroke="#000" stroke-width="2" transform="rotate(-21 486 272)"/>
-        <path d="M532,370 Q534,350 548,344" stroke="#111" stroke-width="8" stroke-linecap="round"/>
-      </g>
-    </svg>
-    <!-- Dropdowns: Skills (closed), Interests (open) -->
-    <div class="dropdowns">
-      <!-- Skills: closed dropdown dummy -->
-      <div class="dropdown-block">
-        <div class="dropdown-label"><span class="dot"></span>SKILLS</div>
-        <ul class="dropdown-list skills-dropdown">
-          <!-- closed state, just a blank box -->
-        </ul>
+  <div class="poster">
+
+    <!-- 1 -->
+    <div class="row">
+      <div class="num red">1.<br><span style="font-size:0.8rem;font-weight:400">WED</span></div>
+      <div class="event-details">
+        <span class="event-main">THE CHILDREN'S GARDEN</span>
+        <span class="event-performers">SHAWN (竹笛) 寒地 品志良 | XING 瑞</span>
       </div>
-      <!-- Interests: open dropdown -->
-      <div class="dropdown-block">
-        <div class="dropdown-label"><span class="dot"></span>INTERESTS</div>
-        <ul class="dropdown-list interests-dropdown">
-          <li>GAMING</li>
-          <li>PHILOSOPHY</li>
-          <li>NATURE/WILDLIFE</li>
-          <li>DESIGN <span class="dropdown-note">(IN A NERD)</span></li>
-          <li class="dropdown-caption">FAVORITE MOVIES</li>
-          <ul class="dropdown-bullets">
-            <li>AVATAR (THE BLUE PEOPLE)</li>
-            <li>LADY BIRD</li>
-            <li>CAPTAIN FANTASTIC</li>
-          </ul>
-        </ul>
+      <div class="month-block">6月</div>
+    </div>
+
+    <!-- 2 -->
+    <div class="row">
+      <div class="num">2.<br><span style="font-size:0.8rem;font-weight:400">THU</span></div>
+      <div class="event-details">
+        <span class="event-main">SiS B&C 棒槌姐妹</span>
+        <span class="event-performers">DJ BANG | DJ CHUI | KEKEXILI<br>VENGO | DJ SHAWN</span>
+      </div>
+      <div class="month-block" style="background:#fff; color:#000; border-left:none;"></div>
+    </div>
+
+    <!-- 3 -->
+    <div class="row">
+      <div class="num">3.<br><span style="font-size:0.8rem;font-weight:400">FRI</span></div>
+      <div class="event-details">
+        <span class="event-main">湾岸MIDNIGHT</span>
+        <span class="event-performers">X.LEE | HAZEL | VINCENT<br>JIAHAO | PBXX</span>
+      </div>
+      <div class="month-block" style="background: #fff; color: #fff; border-left:none;"></div>
+    </div>
+
+    <!-- 4 -->
+    <div class="row">
+      <div class="num">4.<br><span style="font-size:0.8rem;font-weight:400">SAT</span></div>
+      <div class="event-details">
+        <span class="event-main ch">报喜不成忧</span>
+        <span class="event-performers">吕志良 | LUNA LI | 口/Nai BENKI | FAKEYANG VJ<br>CHAN | ZUS | HELING</span>
+      </div>
+      <div class="month-block" style="background: #fff; color: #fff; border-left:none;"></div>
+    </div>
+
+    <!-- 8 -->
+    <div class="row" style="background:#aaa;">
+      <div class="num">8.<br><span style="font-size:0.8rem;font-weight:400">WED</span></div>
+      <div class="event-details">
+        <span class="event-main">DUBDUB</span>
+        <span class="event-performers">ORB. | WONKEY | 袜面酱酱</span>
+      </div>
+      <div class="block" style="background:#fff;min-width:160px;"></div>
+    </div>
+
+    <!-- 9. .TAG PROGRAM -->
+    <div class="row" style="background:#000;">
+      <div class="num" style="background:#fff;color:#000;">9.<br><span style="font-size:0.8rem;font-weight:400">THU</span></div>
+      <div class="event-details" style="background:#000;color:#fff;">
+        <span class="event-main" style="color:#fff;">.TAG 开放日<br><span style="font-size:1.2rem;font-weight:400;">OPEN DECKS</span></span>
+      </div>
+      <div class="block program">PROGRAM</div>
+      <div class="month-block june">JUNE</div>
+    </div>
+
+    <!-- 10 -->
+    <div class="row">
+      <div class="num green">10.<br><span style="font-size:0.8rem;font-weight:400">WED</span></div>
+      <div class="event-details">
+        <span class="event-main">BACK TO THE SHORE</span>
+        <span class="event-performers">吴卓均LIVE | AYMEN | EWAN<br>OPUL | HEDER | LUNA LI | M2F</span>
       </div>
     </div>
-  </div>
-  <!-- Site Description -->
-  <div class="site-desc">
-    THIS SITE IS A COLLECTION OF THE WORKS I'M MOST PROUD OF. ALL OF THESE PROJECTS WERE CURATED FROM RESEARCH STRATEGY, AND WITH THE WILLINGNESS AND EXCITEMENT TO EXPLORE. AS A CREATIVE I'M ALWAYS LOOKING FOR WAYS TO EXPAND MY SKILLSET AND GROW MY GARDEN. COME JOIN ME IN EXPANDING THIS BEAUTIFUL COLLECTION AND REACH OUT.
-  </div>
-  <!-- Footer -->
-  <div class="footer-bar">
-    <div class="footer-left">
-      <span>&copy; 2025 GAVIN BACHER</span>
+
+    <!-- 11 -->
+    <div class="row">
+      <div class="num green">11.<br><span style="font-size:0.8rem;font-weight:400">THU</span></div>
+      <div class="event-details">
+        <span class="event-main">ART OF LIVE <span style="font-size:1.08rem;font-weight:400;">#15</span></span>
+        <span class="event-performers">XIANG | SEVEN 九LIVE | A.I LIVE SU | QIQUIU | FAKEYANG | POLLYHEDRON</span>
+      </div>
     </div>
-    <div class="footer-center">
-      <!-- Minimalist stick person drawing as SVG -->
-      <svg width="32" height="40" viewBox="0 0 35 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="17" cy="11" r="9" stroke="#232323" stroke-width="1.5"/>
-        <path d="M17 20 v14" stroke="#232323" stroke-width="1.5"/>
-        <path d="M17 27 l10 8" stroke="#232323" stroke-width="1.5"/>
-        <path d="M17 27 l-10 8" stroke="#232323" stroke-width="1.5"/>
-        <path d="M17 34 l0 8" stroke="#232323" stroke-width="1.5"/>
-      </svg>
+
+    <!-- 15 -->
+    <div class="row" style="background:#e5e5e5;">
+      <div class="num">15.<br><span style="font-size:0.8rem;font-weight:400">WED</span></div>
+      <div class="event-details">
+        <span class="event-main ch">掌椰唱片之夜</span>
+        <span class="event-performers">F61 | TSENG | BENKI | SHAWN DOU</span>
+      </div>
     </div>
-    <div class="footer-links">
-      <a href="#">RESUME</a>
-      <a href="#">LINKEDIN</a>
-      <a href="#">INSTAGRAM</a>
-      <a href="#">EMAIL</a>
+
+    <!-- 17 -->
+    <div class="row">
+      <div class="num orange">17.<br><span style="font-size:0.8rem;font-weight:400">FRI</span></div>
+      <div class="event-details">
+        <span class="event-main">谁不爱双子？SANTONG&ORB.<br><span class="event-main ch" style="font-size:1.1rem;">双子月大乱斗</span></span>
+        <span class="event-performers">SLOWDOWN | ORB. | SALOME | ZARAH | UPDUBVJ | OLD SHENG | SIMONG | F61</span>
+      </div>
+      <div class="block year">2022</div>
     </div>
+
+    <!-- 18 -->
+    <div class="row">
+      <div class="num orange">18.<br><span style="font-size:0.8rem;font-weight:400">SAT</span></div>
+      <div class="event-details">
+        <span class="event-main">ASYLUM 4YRS × 便利</span>
+        <span class="event-performers">DJ GORDON B2B HELING | FINSENT B2B DJ BLUE | STEVE PAN LIVE | ZARAH B2B QIQUIU | PIXIUO</span>
+      </div>
+    </div>
+
+    <!-- 22 -->
+    <div class="row">
+      <div class="num blue">22.<br><span style="font-size:0.8rem;font-weight:400">WED</span></div>
+      <div class="event-details">
+        <span class="event-main ch">闪现</span>
+        <span class="event-performers">阵容待公布</span>
+      </div>
+      <div class="block tag">
+        <span class="tag-text">.TAG</span>
+        <svg class="tag-spiral" viewBox="0 0 100 100">
+          <path d="M50,50
+            m-40,0
+            a40,40 0 1,0 80,0
+            a40,40 0 1,0 -80,0
+            m10,0
+            a30,30 0 1,0 60,0
+            a30,30 0 1,0 -60,0
+            m10,0
+            a20,20 0 1,0 40,0
+            a20,20 0 1,0 -40,0
+            m10,0
+            a10,10 0 1,0 20,0
+            a10,10 0 1,0 -20,0
+          " fill="none" stroke="#fff" stroke-width="2"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 25 -->
+    <div class="row">
+      <div class="num">25.<br><span style="font-size:0.8rem;font-weight:400">SAT</span></div>
+      <div class="event-details">
+        <span class="event-main">HIDDENBAR 开放日</span>
+        <span class="event-performers">OPEN DECKS</span>
+      </div>
+      <div class="block spiral-big">
+        <span class="text"></span>
+        <svg class="spiral" viewBox="0 0 320 120">
+          <g>
+            <path d="M160,60 m-120,0
+              a120,60 0 1,0 240,0
+              a120,60 0 1,0 -240,0
+              m15,0
+              a105,45 0 1,0 210,0
+              a105,45 0 1,0 -210,0
+              m15,0
+              a90,30 0 1,0 180,0
+              a90,30 0 1,0 -180,0
+              m15,0
+              a75,15 0 1,0 150,0
+              a75,15 0 1,0 -150,0
+            " fill="none" stroke="#000" stroke-width="2"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 24 -->
+    <div class="row">
+      <div class="num">24.<br><span style="font-size:0.8rem;font-weight:400">FRI</span></div>
+      <div class="event-details">
+        <span class="event-main">ATMOS</span>
+        <span class="event-performers">MOHEAMNN | EWAN | ZARAH<br>F61 | SHAWN DOU</span>
+      </div>
+    </div>
+
+    <!-- 25 -->
+    <div class="row">
+      <div class="num">25.<br><span style="font-size:0.8rem;font-weight:400">SAT</span></div>
+      <div class="event-details">
+        <span class="event-main">醺雨ACID RAIN</span>
+        <span class="event-performers">SHY BEEF | QIQUIU | AMPHE2000<br>OEA | BENKI | XING</span>
+      </div>
+    </div>
+
+    <div style="font-size:0.93rem;text-align:right;letter-spacing:0.07em;font-weight:400;margin-top:6px;color:#111;">
+      #217/218, BLOCK A, POLYCENTER, CHENGDU
+    </div>
+
   </div>
 </body>
 </html>
