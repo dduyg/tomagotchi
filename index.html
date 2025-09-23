@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiminalLoop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --border-radius: 26px;
+      --highlight-bg: #98ffa6;
+      --tab-bg: #2d2d2d;
+      --button-border: #222;
+      --tab-padding: 0.5em 2em;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      background: #fcfcfc;
+      color: #191919;
+      box-sizing: border-box;
+    }
+    body {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 16px 32px 16px;
+      box-sizing: border-box;
+    }
+
+    .top-bar {
+      margin-top: 32px;
+      margin-bottom: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .resources-roundup {
+      border: 2px solid #222;
+      border-radius: var(--border-radius);
+      padding: 7px 22px 7px 20px;
+      font-size: 1.09rem;
+      font-weight: 500;
+      background: none;
+      letter-spacing: 0.01em;
+      line-height: 1.1;
+      display: inline-block;
+    }
+    .swipe-explore {
+      font-size: 1.08rem;
+      font-weight: 500;
+      color: #222;
+      display: flex;
+      align-items: center;
+    }
+    .swipe-explore::after {
+      content: "→";
+      margin-left: 4px;
+      font-size: 1.12em;
+    }
+
+    .main-title {
+      margin: 0 0 28px 0;
+      font-size: 3.2rem;
+      font-weight: 900;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+    }
+
+    .tab-container {
+      display: flex;
+      flex-direction: row;
+      gap: 14px;
+      margin-bottom: 38px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .tab {
+      font-size: 2rem;
+      font-weight: 400;
+      border-radius: var(--border-radius);
+      border: 2.2px solid #222;
+      padding: 0.26em 0.95em 0.32em 0.95em;
+      background: none;
+      color: #222;
+      transition: background 0.16s, color 0.16s;
+      line-height: 1.07;
+      cursor: pointer;
+      min-width: 0;
+      white-space: nowrap;
+    }
+    .tab.active {
+      background: var(--highlight-bg);
+      border: none;
+      color: #222;
+    }
+    .tab.dark {
+      background: var(--tab-bg);
+      border: none;
+      color: #fff;
+    }
+
+    .desc {
+      margin-top: 0;
+      font-size: 1.32rem;
+      font-weight: 400;
+      color: #222;
+      letter-spacing: 0.01em;
+      line-height: 1.32;
+      margin-bottom: 0;
+      margin-left: 1px;
+    }
+
+    @media (max-width: 430px) {
+      .main-title {
+        font-size: 2.3rem;
+      }
+      .tab {
+        font-size: 1.2rem;
+        padding: 0.22em 0.7em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <span class="resources-roundup">Resources Round-Up</span>
+    <span class="swipe-explore">Swipe to explore</span>
+  </div>
+  <h1 class="main-title">6 newsletters<br>and mailing<br>lists for your<br>entry-level<br>job hunt</h1>
+  <div class="tab-container">
+    <button class="tab">Run The Check</button>
+    <button class="tab active">Livity</button>
+    <button class="tab dark">Arts Jobs</button>
+  </div>
+  <p class="desc">
+    Want to spend more time applying and less time hunting? Your next job could be an email away!
+  </p>
+</body>
+</html>
