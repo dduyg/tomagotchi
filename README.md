@@ -533,11 +533,6 @@ _|        _|    _|    _|    _|    _|    _|    _|  _|    _|  _|        _|    _|
 </details>
 <br>
 
-- https://webdevtrick.com/jquery-search-filter/?amp=1
-- https://webdevtrick.com/html-css-glitch-effect/?amp=1
-- https://webdevtrick.com/css-moving-text-mask/?amp=1
-- https://webdevtrick.com/text-to-search-input-animation/?amp=1
-
 ```css
 body {
   background-color: #F7ECE1;
@@ -548,21 +543,6 @@ body {
 - [x] <img src="https://img.shields.io/badge/■D3D3D3-D3D3D3?style=for-the-badge"/> <img src="https://img.shields.io/badge/■1E1E1E-1E1E1E?style=for-the-badge"/>
 - [ ] <img src="https://img.shields.io/badge/■E8E8E8-E8E8E8?style=for-the-badge"/>
 - [ ] <img src="https://img.shields.io/badge/■cecece-cecece?style=for-the-badge"/> <img src="https://img.shields.io/badge/■333-333?style=for-the-badge"/>
-
-<br>
-
-| `BG` | `TXT` |
-|----|-----|
-| <img src="https://img.shields.io/badge/■FFD3B6-FFD3B6?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■393E46-393E46?style=for-the-badge"/> |
-| <img src="https://img.shields.io/badge/■FFEBEE-FFEBEE?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■37474F-37474F?style=for-the-badge"/> |
-| <img src="https://img.shields.io/badge/■E6E6FA-E6E6FA?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■2C3E50-2C3E50?style=for-the-badge"/> |
-| <img src="https://img.shields.io/badge/■DFE0DC-DFE0DC?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■333333-333333?style=for-the-badge"/> |
-| <img src="https://img.shields.io/badge/■696969-696969?style=for-the-badge"/> |  |
-| <img src="https://img.shields.io/badge/■5C6C78-5C6C78?style=for-the-badge"/> |  |
-| <img src="https://img.shields.io/badge/■330867-330867?style=for-the-badge"/> |  |
-| <img src="https://img.shields.io/badge/■F54931-F54931?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■532FDB-532FDB?style=for-the-badge"/> |
-| <img src="https://img.shields.io/badge/■3333ff-3333ff?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■ffffff-ffffff?style=for-the-badge"/> |
-| <img src="https://img.shields.io/badge/■F20145-F20145?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■1B0027-1B0027?style=for-the-badge"/> |
 
 # ⌨️
 >  Trademark (™) — &trade;
