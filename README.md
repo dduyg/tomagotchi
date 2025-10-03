@@ -5,165 +5,6 @@
 
 ⛡ ▆  ⚞ ⏥ 
 ```
-<br>
-
-<details>
-<summary>&nbsp; <samp><b>K-Drama Cityscape ASCII</b></samp></summary>
-<br>
-
-```
-|||||||||||
-     |           |
-  ---|   ㅤㅤ   |---
-     |   K-Drama|
-   __|___________|__
-  |    ||    ||    | 
-  |    ||    ||    |
-  |____||____||____|
-```
-
-## Korean Hanbok
-```
-_____
-  /     \
- /_______\
- |  |  |  |
- |  |  |  |
- |__|__|__|
-    ||
-   /  \
-```
-
-## Lantern or Floating Object
-```
-
-.-"""-.
-  /       \
- /         \
- \         /
-  \       /
-   `-._.-'
-```
-
-## Flower (Inspired by K-Drama Romance)
-```
-@@@
-   @@@@@
-  @@@@@@@
-   @@@@@
-    @@@
-     |
-     |
-```
-
-## Romantic Couple (For Romance K-Dramas)
-```
-(●♡●)   (●♡●)  
-    (♥‿♥)    (♥‿♥)   
-     <)   )♡ (   (>  
-      /   \     /   \
-```
-
-## CEO & Assistant (For Office Romance or Chaebol Dramas)
-```
-(•_•)  (•_•)  
- <)   )╯  ╰(   (>  
-  /    \    /    \
-```
-
-## Mystery & Thriller K-Drama (Detective Searching Clues)
-```
-(╭ರ_⊙)  
-   <(  |  )>  
-    /  |  \
-```
-
-## Food Scene (For K-Dramas with Delicious Food Moments)
-```
-(｡♥‿♥｡)  
-   (っ🍜)っ
-```
-
-## Time Travel / Fantasy Drama (Portal Scene)
-```
-★彡(ゝ‿◕)彡★  
-      ─═≡Σ(っ°Д°)っ
-```
-
-
-## Broken Heart (Symbolizing Sad Love Stories)
-```
-,d88b.d88b,
-  88888888888
-  `Y8888888Y'
-    `Y888Y'
-      `Y'
-```
-
-## Rainy Scene (For Emotional Moments)
-```
-.-""""""-.
-  .'          '.
- :              :
- :              :
-  :            :
-   '          '
-     '------'
-      //  \\
-     //    \\
-    ||      ||
-```
-
-## Couple Holding Hands (Romance Trope)
-```
-(•‿•)❤(•‿•)
-   /|   |\
-  /  \ /  \
-```
-
-## City Skyline (Night Views, Romance Settings)
-```
-_.-._
-    _| | | |_
-   | | | | | |
-   | | | | | |
-   | | | | | |
-   | | | | | |__
-   | | | | | | |__
-  _|_|_|_|_|_|_|_|
-```
-
-## Cherry Blossoms (Spring Romance Theme)
-```
-🌸   🌸   🌸  
-🌸   🌸   🌸  
-  🌸   🌸   🌸
-```
-
-## Wedding Scene (Happy Ending Trope)
-```
-(👰‍♀️❤️🤵)
-     /     \
-    /       \
-   🎉🎊🎉🎊
-```
-
-## Café Scene (K-Dramas Love Coffee Shops
-```
-(  )  
-   ||  
-  |~~|  
-  |~~|  
-  |__|
-```
-
-## A City Skyline (Seoul Night Vibes)
-```
-|| || ||_||_|| ||  
-  ||_||_|| || ||_||  
-  || ||_|| ||_|| ||
-```
-</details>
 
 <details>
 <summary>&nbsp; 💾 𝘿𝘼𝙏𝘼 ⭒ 𝘾𝙊𝘿𝙀𝙍</summary>
@@ -504,8 +345,165 @@ _|        _|    _|    _|    _|    _|    _|    _|  _|    _|  _|        _|    _|
    _|________________|_
   |____________________|
 ```
+
+# K-Drama Cityscape ASCII
+
+```
+|||||||||||
+     |           |
+  ---|   ㅤㅤ   |---
+     |   K-Drama|
+   __|___________|__
+  |    ||    ||    | 
+  |    ||    ||    |
+  |____||____||____|
+```
+
+## Korean Hanbok
+```
+_____
+  /     \
+ /_______\
+ |  |  |  |
+ |  |  |  |
+ |__|__|__|
+    ||
+   /  \
+```
+
+## Lantern or Floating Object
+```
+
+.-"""-.
+  /       \
+ /         \
+ \         /
+  \       /
+   `-._.-'
+```
+
+## Flower (Inspired by K-Drama Romance)
+```
+@@@
+   @@@@@
+  @@@@@@@
+   @@@@@
+    @@@
+     |
+     |
+```
+
+## Romantic Couple (For Romance K-Dramas)
+```
+(●♡●)   (●♡●)  
+    (♥‿♥)    (♥‿♥)   
+     <)   )♡ (   (>  
+      /   \     /   \
+```
+
+## CEO & Assistant (For Office Romance or Chaebol Dramas)
+```
+(•_•)  (•_•)  
+ <)   )╯  ╰(   (>  
+  /    \    /    \
+```
+
+## Mystery & Thriller K-Drama (Detective Searching Clues)
+```
+(╭ರ_⊙)  
+   <(  |  )>  
+    /  |  \
+```
+
+## Food Scene (For K-Dramas with Delicious Food Moments)
+```
+(｡♥‿♥｡)  
+   (っ🍜)っ
+```
+
+## Time Travel / Fantasy Drama (Portal Scene)
+```
+★彡(ゝ‿◕)彡★  
+      ─═≡Σ(っ°Д°)っ
+```
+
+
+## Broken Heart (Symbolizing Sad Love Stories)
+```
+,d88b.d88b,
+  88888888888
+  `Y8888888Y'
+    `Y888Y'
+      `Y'
+```
+
+## Rainy Scene (For Emotional Moments)
+```
+.-""""""-.
+  .'          '.
+ :              :
+ :              :
+  :            :
+   '          '
+     '------'
+      //  \\
+     //    \\
+    ||      ||
+```
+
+## Couple Holding Hands (Romance Trope)
+```
+(•‿•)❤(•‿•)
+   /|   |\
+  /  \ /  \
+```
+
+## City Skyline (Night Views, Romance Settings)
+```
+_.-._
+    _| | | |_
+   | | | | | |
+   | | | | | |
+   | | | | | |
+   | | | | | |__
+   | | | | | | |__
+  _|_|_|_|_|_|_|_|
+```
+
+## Cherry Blossoms (Spring Romance Theme)
+```
+🌸   🌸   🌸  
+🌸   🌸   🌸  
+  🌸   🌸   🌸
+```
+
+## Wedding Scene (Happy Ending Trope)
+```
+(👰‍♀️❤️🤵)
+     /     \
+    /       \
+   🎉🎊🎉🎊
+```
+
+## Café Scene (K-Dramas Love Coffee Shops
+```
+(  )  
+   ||  
+  |~~|  
+  |~~|  
+  |__|
+```
+
+## A City Skyline (Seoul Night Vibes)
+```
+|| || ||_||_|| ||  
+  ||_||_|| || ||_||  
+  || ||_|| ||_|| ||
+```
 </details>
-<br>
+
+
+
 
 ```css
 body {
