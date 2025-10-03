@@ -549,142 +549,6 @@ body {
 - [ ] <img src="https://img.shields.io/badge/■E8E8E8-E8E8E8?style=for-the-badge"/>
 - [ ] <img src="https://img.shields.io/badge/■cecece-cecece?style=for-the-badge"/> <img src="https://img.shields.io/badge/■333-333?style=for-the-badge"/>
 
-- [ ]  Righteous
-- [ ]  Geostar
-- [ ]  Geostar Fill
-- [ ]  Georama
-- [ ]  Oxanium
-- [ ]  Jacquard 12
-- [ ]  Micro 5
-- [ ]  Jersey 10
-- [ ]  Handjet
-- [ ]  Raleway ♡
-- [ ]  Chivo
-- [ ]  Ruda
-- [ ]  Warnes
-- [ ]  Luxurious Roman
-- [ ]  Philosopher
-- [ ]  Diplomata SC
-- [ ]  Montserrat Alternates
-- [ ]  Offside ♡~
-- [ ]  Overlock
-- [ ]  Titillium Web
-- [ ]  Nunito
-- [ ]  Capriola
-- [ ]  Karla
-- [ ]  Savate
-- [ ]  Bitter
-- [ ]  Courgette
-- [ ]  Hubballi
-- [ ]  Signika
-- [ ]  Srisakdi
-- [ ]  SUSE
-- [ ]  Stalinist One
-- [ ]  Baumans
-- [ ]  Workbench
-- [ ]  Kanit
-- [ ]  Revalia
-- [ ]  Sixtyfour
-- [ ]  Michroma
-- [ ]  Pixelify Sans
-- [ ]  Plaster
-- [ ]  Fira Sans
-- [ ]  Rethink Sans
-- [ ]  Niconne  (*doing uppercase)
-- [ ]  Ropa Sans
-- [ ]  Inria Sans
-- [ ]  Share
-- [ ]  Kodchasan
-- [ ]  MuseoModerno
-- [ ]  Parkinsans
-- [ ]  Sora 🩶
-- [ ]  Reddit Sans Condensed
-- [ ]  Inknut Antiqua
-- [ ]  Barlow Condensed
-- [ ]  Arimo
-- [ ]  Rubik
-- [ ]  Albert Sans
-- [ ]  Onest
-- [ ]  Inclusive Sans
-- [ ]  Urbanist
-- [ ]  Text Me One
-- [ ]  Ribeye Marrow
-- [ ]  Armata
-- [ ]  Jura
-- [ ]  Encode Sans Condensed
-- [ ]  Mona Sans
-- [ ]  Stick No Bills
-- [ ]  Thasadith
-- [ ]  Fahkwang
-- [ ]  Train One
-- [ ]  Hanalei
-- [ ]  Kumar One Outline
-- [ ]  Victor Mono
-- [ ]  Tourney
-
-- [x] 🔘https://fontesk.com/?s=Mono ❤️
-    - https://fontesk.com/markl-mono-font/
-    - https://fontesk.com/asterisk-mono-font/
-    - https://fontesk.com/departure-mono-font/
-    - https://fontesk.com/xanmono-font/
-    - https://fontesk.com/ardiga-font/
-    - https://fontesk.com/meridiana-pro-font/
-    - https://fontesk.com/miracode-font/
-    - https://fontesk.com/jt-mekito-font/
-    - https://fontesk.com/astral-mono-font/
-    - https://fontesk.com/caffeine-mono-font/
-    - https://fontesk.com/new-heterodox-mono-font/
-    - https://fontesk.com/butovo-mono-font/
-    - https://fontesk.com/bakemono-typeface/
-    - https://fontesk.com/ultramono-2-0-typeface/
-    - https://fontesk.com/brinky-mono-font/
-    - https://fontesk.com/twilio-sans-mono-typeface/
-    - https://fontesk.com/awoof-mono-font/
-    - https://fontesk.com/fifteen-typeface/
-    - https://fontesk.com/lotion-typeface/
-    - https://fontesk.com/maker-mono-font/
-    - https://fontesk.com/eirian-font/
-    - https://fontesk.com/manolo-mono-font/
-    - https://fontesk.com/lacrimoceras-mono-font/
-    - https://fontesk.com/optik-optik-mono-fonts
-    - https://fontesk.com/steps-mono-typeface/
-    - https://fontesk.com/znak-mono-font/
-    - https://fontesk.com/league-mono-typeface/
-     
-- [x] 🔘Y2K style fonts: https://fontesk.com/tag/y2k/
-    - https://fontesk.com/graphy-font/
-    - https://justfreefonts.com/fonts/aeogo-box/
-    - https://fontesk.com/ut-gixora-metric-font/
-    - https://fontesk.com/monberg-font/
-    - https://fontesk.com/eden-meadow-font/
-    - https://fontesk.com/tokolima-font/
-    - https://fontesk.com/klick-font-2/
-    - https://fontesk.com/meriah-font/
-    - https://fontesk.com/eternal-mono-font/
-    - https://fontesk.com/enfonix-font/
-    - https://fontesk.com/badd-mono-font/
-    - https://fontesk.com/jt-rejiro-font/
-    - https://fontesk.com/borne-celine-font/
-    - https://fontesk.com/lafemme-vibe-font/
-    - https://fontesk.com/the-saroja-font/
-    - https://fontesk.com/molex-shoora-font/
-    - https://fontesk.com/venice-la-corla-font/
-    - https://fontesk.com/kiltier-font/
-    - https://fontesk.com/mica-valo-font/
-    - https://fontesk.com/moncheur-havens-font/
-- [x] 🔘geometric/header fonts:
-    - https://fontesk.com/defekt-font/
-    - https://fontesk.com/kepler-452b-font/
-    - https://fontesk.com/latimer-sans-font/
-    - https://fontesk.com/shapes-font/
-    - https://fontesk.com/glock-font/
-    - https://fontesk.com/01-typekini-font/
-    - https://fontesk.com/jugend-typeface/
-    - https://fontesk.com/amiak-nhzdn-font/
-    - https://fontesk.com/astakhov-flacon-font/
-    - https://fontesk.com/grisha-font/
-    - https://fontesk.com/85-110-105-99-105-109-97-font/
-
 <br>
 
 | `BG` | `TXT` |
@@ -700,27 +564,8 @@ body {
 | <img src="https://img.shields.io/badge/■3333ff-3333ff?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■ffffff-ffffff?style=for-the-badge"/> |
 | <img src="https://img.shields.io/badge/■F20145-F20145?style=for-the-badge"/> | <img src="https://img.shields.io/badge/■1B0027-1B0027?style=for-the-badge"/> |
 
-- [x] Syncing data under coral-coded skies.
-- [ ] Binary Tsunami
-- [ ] Digital Sea Breeze
-- [ ] Digital Tidebreaker
-- [ ] Coded Currents
-- [ ] Riptide __Renderer__
-- [ ] Seas of Syntax
-- [ ] Virtual Tides
-- [ ] Virtual Interface
-- [ ] Synthetic Logic
-- [ ] Aquatic Data Wrangler
-- [ ] Byte Loop Void
-- [ ] Code Warp Grid
-
-
 # ⌨️
 >  Trademark (™) — &trade;
-
-```
-view-source:
-```
 
 - href="https://societycentered.design/" alt="Society-Centred Design" target="_blank">Society-Centred Design</a> (2020) is a design manifesto by London-based design collective If, calling for a framework that goes beyond human-centred design to advocate for civic value, equity, the common good, public health, and the planet. It centres on design principles such as put care first, earn trust, empower collective agency, create patterns for public value, and redistribute the power of tech.</p> </div> </div>
 
@@ -751,24 +596,6 @@ padding-bottom: 15px;
   <div class="lets_collaborate">
     <p class="paragraph-8 nextproject">Curious? I&#x27;m always eager for new possibilities. Get in touch if you’d like to learn more about me or the work.<br/></p>
     <h1 class="project_heading">Let&#x27;s Connect.</h1>
-```
-
-   <br>
-
-```css
-.details {
-    display: flex;
-    gap: 20px;
-    justify-content: flex-end;
-}
-.cover {
-    width: 200px;
-    background-color: currentColor;
-}
-.tracklist {
-    list-style: decimal inside;
-    font-size: 0.8em;
-}
 ```
 
    <br>
