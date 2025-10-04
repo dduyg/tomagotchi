@@ -6,14 +6,6 @@
   <title>Gaussian Blur</title>
   <link href="https://fonts.cdnfonts.com/css/recoleta" rel="stylesheet">
   <style>
-:root {
-  --bg: #F0DBA5;
-  --text: #151515;
-  --yellow: #EDB74D;
-  --red: #EB6666;
-  --green: #6FB18A;
-}
-
 body {
   height: 100vh;
   margin: 0;  
@@ -22,7 +14,7 @@ body {
   justify-content: flex-start;
   align-items: center;
   gap: 3em;  
-  background-color: var(--bg);
+  background-color: #F0DBA5;
   font-family: "Recoleta";  
   margin: 0 10em;
 }
@@ -68,7 +60,7 @@ body::before {
   filter: blur(60px);
 }
 .yellow {
-  background-color: var(--yellow);
+  background-color: #EDB74D;
   position: absolute;
   top: 200px;
   left: 100px;
@@ -77,7 +69,7 @@ body::before {
   animation: yellow 8s infinite ease;
 }
 .green {
-  background-color: var(--green);
+  background-color: #6FB18A;
   position: absolute;
   top: 80px;
   right: -20px;
@@ -86,7 +78,7 @@ body::before {
   animation: green 8s infinite ease;
 }
 .red {
-  background-color: var(--red);
+  background-color: #EB6666;
   position: absolute;
   right: 0;
   top: 300px;
@@ -113,8 +105,7 @@ body::before {
   100% {top: 250px; right: 0px; transform: scale(1);}
 }
 
-/* the rest of the page */
-.hero {
+main {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -135,7 +126,7 @@ body::before {
   background-size: 20px 20px;      
 }
 
-.hero-text {
+.content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -166,8 +157,8 @@ body::before {
   </style>
 </head>   
 <body>
-<div class="hero">
-  <div class="hero-text">
+<main>
+  <div class="content">
     <h1>Grainy Forever.</h1>
     <p>Grainy animated blob for your modern website.</p>    
   </div>
@@ -176,7 +167,7 @@ body::before {
     <div class="red blob"></div>
     <div class="green blob"></div>
   </div>
-</div>
+</main>
 
 <svg>
   <filter id='noiseFilter'>
