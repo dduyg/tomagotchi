@@ -48,17 +48,15 @@
       text-align: center;
       padding-bottom: 15vh;
     }
-    header {
-      padding: 10px 10%;
-    }
+    header { padding: 10px 10%; }
+    header img { width: 100%; }
     nav {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;  
-      font-size: 1.3rem;    
+      align-items: flex-start;
+      font-size: 1.3rem;
       font-family: "ArgakaFashion", sans-serif;
-    }
-    header img { width: 100%; }
+    }  
     .desc {
       flex: 1;
       display: flex;
@@ -70,7 +68,7 @@
       font-size: 1.2rem;
     }
     footer {
-      font-size: 6vw;  
+      font-size: 6vw;
       font-family: "ArgakaFashion", sans-serif;
       letter-spacing: 0.01em;
       transform: rotate(180deg);
@@ -94,7 +92,6 @@
       overflow-y: scroll;
       overflow-x: hidden;
       pointer-events: all;
-      /* Hide default scrollbar on Webkit */
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
@@ -112,26 +109,18 @@
       gap: 70px;
       z-index: 11;
     }
-    .gallery img {
-      width: 50vw;
-      margin-bottom: 0;
+    .gallery iframe {
+      width: 60vw;
+      height: 34vw; /* Keeps 16:9 aspect ratio */
+      border: none;
       pointer-events: all;
       cursor: pointer;
     }
-    /* Gallery item positions */
-    .gallery img:nth-child(1) {
-      margin-left: 0;
-    }
-    .gallery img:nth-child(2) {
-      width: 60vw;
-    }
-    .gallery img:nth-child(3) {
-      margin-top: 70px;
-    }
-    .gallery img:nth-child(4) {
-      margin-bottom: 0;
-    }
     @media (max-width: 800px) {
+      .gallery iframe {
+        width: 90vw;
+        height: 50vw;
+      }
       footer { font-size: 14vw; }
     }
   </style>
@@ -147,21 +136,22 @@
       <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/popeye.png">
     </header>
     <div class="desc">
-      It's about how many notes you take 
-      that actually matter to you, and how 
-      many you turn into action. Real growth 
-      starts when you grab the idea, deconstruct 
+      It's about how many notes you take
+      that actually matter to you, and how
+      many you turn into action. Real growth
+      starts when you grab the idea, deconstruct
       it on the page, and make it work in your world.
     </div>
     <footer>BETTER</footer>
   </div>
+
   <aside>
     <div class="scroll">
       <div class="gallery">
-        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80">
-        <img src="https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?auto=format&fit=crop&w=800&q=80">
-        <img src="https://images.unsplash.com/photo-1465101162946-4377e57745c3?auto=format&fit=crop&w=800&q=80">
-        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80">
+        <iframe src="https://www.youtube.com/embed/NYv7HsBr9aM" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/GNxBn2CH-vQ" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/lJGuXm-vkEk" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/XH1EXDHVG9s" allowfullscreen></iframe>
       </div>
     </div>
   </aside>
