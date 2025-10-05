@@ -106,23 +106,22 @@
       justify-content: flex-start;
       padding-top: 160px;
       padding-bottom: 40vh;
-      gap: 150px;
+      gap: 70px;
       z-index: 11;
     }
-    .video {
-      opacity: 0;
-      transition: opacity 1.2s ease;
+    .gallery iframe {
       width: 60vw;
       height: 34vw; /* Keeps 16:9 aspect ratio */
-      overflow: hidden;
-    }
-    .video.visible {
-      opacity: 1;
-    }
-    iframe {
-      width: 100%;
-      height: 100%;
       border: none;
+      pointer-events: all;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+    .gallery iframe.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     @media (max-width: 800px) {
       footer { font-size: 14vw; }
@@ -152,59 +151,65 @@
   <aside>
     <div class="scroll">
       <div class="gallery">
-        <div class="video"><div id="player1"></div></div>
-        <div class="video"><div id="player2"></div></div>
-        <div class="video"><div id="player3"></div></div>
-        <div class="video"><div id="player4"></div></div>
+        <iframe src="https://www.youtube.com/embed/NYv7HsBr9aM?enablejsapi=1&mute=1" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/GNxBn2CH-vQ?enablejsapi=1&mute=1" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/lJGuXm-vkEk?enablejsapi=1&mute=1" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/XH1EXDHVG9s?enablejsapi=1&mute=1" allowfullscreen></iframe>
       </div>
     </div>
   </aside>
 
-  <!-- YouTube IFrame API -->
-  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
+    // Load YouTube API dynamically
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.body.appendChild(tag);
+
     let players = [];
 
-    // Create YouTube players when API is ready
     function onYouTubeIframeAPIReady() {
-      const videoIds = ["NYv7HsBr9aM", "GNxBn2CH-vQ", "lJGuXm-vkEk", "XH1EXDHVG9s"];
-      videoIds.forEach((id, index) => {
-        const player = new YT.Player(`player${index + 1}`, {
-          videoId: id,
-          playerVars: {
-            autoplay: 0,
-            mute: 1,
-            controls: 0,
-            modestbranding: 1,
-            rel: 0,
-            showinfo: 0,
+      const iframes = document.querySelectorAll('.gallery iframe');
+      iframes.forEach((iframe, index) => {
+        const player = new YT.Player(iframe, {
+          events: {
+            'onStateChange': (event) => handleStateChange(event, index)
           }
         });
         players.push(player);
       });
+
+      // Observe scrolling visibility
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const iframe = entry.target;
+          const index = Array.from(iframes).indexOf(iframe);
+          if (entry.isIntersecting) {
+            iframe.classList.add("visible");
+            // Play when visible
+            if (players[index]?.playVideo) {
+              players.forEach((p, i) => { if (i !== index) p.pauseVideo(); });
+              players[index].playVideo();
+            }
+          } else {
+            // Pause when not visible
+            if (players[index]?.pauseVideo) players[index].pauseVideo();
+            iframe.classList.remove("visible");
+          }
+        });
+      }, { threshold: 0.6 }); // Trigger when 60% visible
+
+      iframes.forEach(iframe => observer.observe(iframe));
     }
 
-    // Fade-in + autoplay on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const container = entry.target;
-        const index = [...container.parentNode.children].indexOf(container);
-        const player = players[index];
+    function handleStateChange(event, index) {
+      if (event.data === YT.PlayerState.PLAYING) {
+        players.forEach((player, i) => {
+          if (i !== index) player.pauseVideo();
+        });
+      }
+    }
 
-        if (entry.isIntersecting) {
-          container.classList.add("visible");
-          if (player && player.playVideo) player.playVideo();
-        } else {
-          container.classList.remove("visible");
-          if (player && player.pauseVideo) player.pauseVideo();
-        }
-      });
-    }, { threshold: 0.5 });
-
-    // Observe all videos
-    window.addEventListener("load", () => {
-      document.querySelectorAll(".video").forEach(v => observer.observe(v));
-    });
+    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
   </script>
 </body>
 </html>
