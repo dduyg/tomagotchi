@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>LiminalLoop</title>
   <style>
@@ -160,14 +160,16 @@
     </div>
   </aside>
 
+  <!-- YouTube IFrame API -->
   <script src="https://www.youtube.com/iframe_api"></script>
   <script>
     let players = [];
-    const videoIds = ["NYv7HsBr9aM", "GNxBn2CH-vQ", "lJGuXm-vkEk", "XH1EXDHVG9s"];
 
+    // Create YouTube players when API is ready
     function onYouTubeIframeAPIReady() {
+      const videoIds = ["NYv7HsBr9aM", "GNxBn2CH-vQ", "lJGuXm-vkEk", "XH1EXDHVG9s"];
       videoIds.forEach((id, index) => {
-        players[index] = new YT.Player(`player${index + 1}`, {
+        const player = new YT.Player(`player${index + 1}`, {
           videoId: id,
           playerVars: {
             autoplay: 0,
@@ -176,15 +178,13 @@
             modestbranding: 1,
             rel: 0,
             showinfo: 0,
-            playsinline: 1
-          },
-          events: {
-            onReady: e => e.target.mute()
           }
         });
+        players.push(player);
       });
     }
 
+    // Fade-in + autoplay on scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const container = entry.target;
@@ -193,18 +193,15 @@
 
         if (entry.isIntersecting) {
           container.classList.add("visible");
-          if (player && player.playVideo) {
-            player.playVideo();
-          }
+          if (player && player.playVideo) player.playVideo();
         } else {
           container.classList.remove("visible");
-          if (player && player.pauseVideo) {
-            player.pauseVideo();
-          }
+          if (player && player.pauseVideo) player.pauseVideo();
         }
       });
     }, { threshold: 0.5 });
 
+    // Observe all videos
     window.addEventListener("load", () => {
       document.querySelectorAll(".video").forEach(v => observer.observe(v));
     });
