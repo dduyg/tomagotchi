@@ -56,7 +56,7 @@
       align-items: flex-start;
       font-size: 1.3rem;
       font-family: "ArgakaFashion", sans-serif;
-    }  
+    }
     .desc {
       flex: 1;
       display: flex;
@@ -109,18 +109,22 @@
       gap: 70px;
       z-index: 11;
     }
-    .gallery iframe {
+    .video {
+      opacity: 0;
+      transition: opacity 1.2s ease;
       width: 60vw;
       height: 34vw; /* Keeps 16:9 aspect ratio */
+      overflow: hidden;
+    }
+    .video.visible {
+      opacity: 1;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
       border: none;
-      pointer-events: all;
-      cursor: pointer;
     }
     @media (max-width: 800px) {
-      .gallery iframe {
-        width: 90vw;
-        height: 50vw;
-      }
       footer { font-size: 14vw; }
     }
   </style>
@@ -148,12 +152,59 @@
   <aside>
     <div class="scroll">
       <div class="gallery">
-        <iframe src="https://www.youtube.com/embed/NYv7HsBr9aM" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/GNxBn2CH-vQ" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/lJGuXm-vkEk" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/XH1EXDHVG9s" allowfullscreen></iframe>
+        <div class="video"><div id="player1"></div></div>
+        <div class="video"><div id="player2"></div></div>
+        <div class="video"><div id="player3"></div></div>
+        <div class="video"><div id="player4"></div></div>
       </div>
     </div>
   </aside>
+
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
+    let players = [];
+
+    // Create YouTube players when API is ready
+    function onYouTubeIframeAPIReady() {
+      const videoIds = ["NYv7HsBr9aM", "GNxBn2CH-vQ", "lJGuXm-vkEk", "XH1EXDHVG9s"];
+      videoIds.forEach((id, index) => {
+        const player = new YT.Player(`player${index + 1}`, {
+          videoId: id,
+          playerVars: {
+            autoplay: 0,
+            mute: 1,
+            controls: 0,
+            modestbranding: 1,
+            rel: 0,
+            showinfo: 0,
+          }
+        });
+        players.push(player);
+      });
+    }
+
+    // Fade-in + autoplay on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const container = entry.target;
+        const index = [...container.parentNode.children].indexOf(container);
+        const player = players[index];
+
+        if (entry.isIntersecting) {
+          container.classList.add("visible");
+          if (player && player.playVideo) player.playVideo();
+        } else {
+          container.classList.remove("visible");
+          if (player && player.pauseVideo) player.pauseVideo();
+        }
+      });
+    }, { threshold: 0.5 });
+
+    // Observe all videos
+    window.addEventListener("load", () => {
+      document.querySelectorAll(".video").forEach(v => observer.observe(v));
+    });
+  </script>
 </body>
 </html>
