@@ -27,26 +27,42 @@
       pointer-events: none; /* allows gallery to scroll */
       z-index: 1;
     }
-    nav {
+    .nav {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      padding: 10px 15%;
+      width: 100%;
+      padding: 32px 0 0 0;
       position: absolute;
       top: 0; left: 0;
-      font-size: 0.9em;
+      font-size: 2em;
+      font-family: inherit;
+      color: #18b24b;
       z-index: 2;
       pointer-events: all;
+    }
+    .nav-item {
+      width: 33.33%;
       text-align: center;
+      font-family: inherit;
       cursor: pointer;
     }
     .logo {
       position: absolute;
       top: 70px;
+      width: 100%;
       text-align: center;
       font-size: 7vw;
+      font-family: inherit;
+      color: #18b24b;
+      font-weight: 700;
       letter-spacing: 0.01em;
       z-index: 2;
+      pointer-events: all;
+      /* Simulate pixel art with text-shadow */
+      text-shadow:
+        2px 0 #18b24b, 0 2px #18b24b, 2px 2px #18b24b,
+        4px 0 #18b24b, 0 4px #18b24b, 4px 4px #18b24b;
     }
     .desc {
       position: absolute;
@@ -157,11 +173,11 @@
 </head>
 <body>
   <div class="content">
-    <nav>
-      <div style="text-align:left;">Work</div>
-      <div>Contact</div>
-      <div style="text-align:right;">Info</div>
-    </nav>
+    <div class="nav">
+      <div class="nav-item" style="text-align:left;">Work</div>
+      <div class="nav-item">Contact</div>
+      <div class="nav-item" style="text-align:right;">Info</div>
+    </div>
     <div class="logo">NEVER</div>
     <div class="desc">
       * – Never Better® is <br>
