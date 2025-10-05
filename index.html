@@ -1,124 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Showcase</title>
-  <style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liminal🌀Loop</title>
+  <style> 
+    * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: sans-serif;
-      background-color: #bfc0bb; /* matches the grey background */
-      color: black;
+      padding: 0;
+      font-family: monospace;
+      background-color: #60646D;
     }
-
-    .container {
+    header {
+      width: 80vw;
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 40px;
+      align-items: flex-end;
+      padding: 0 0 60px 20px;
     }
-
-    .case-block {
-      background-color: #5e6066; /* darker grey block */
-      padding: 20px;
-      max-width: 700px;
-      margin-bottom: 200px;
+    .image-panel {
+      width: 35vw;
     }
-
-    .case-block h2 {
-      margin: 0 0 10px 0;
-      font-size: 18px;
-      line-height: 1.4em;
-      font-weight: 400;
-    }
-
-    .case-block .tags {
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
-
-    .case-block .preview {
-      background: #b11818;
-      height: 200px;
-      margin-top: 10px;
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
-      padding: 10px;
-    }
-
-    .case-block .button {
-      border: 1px solid white;
-      border-radius: 20px;
-      padding: 6px 14px;
-      font-size: 13px;
-      color: white;
-      text-decoration: none;
-      background: transparent;
-    }
-
-    .festival-block {
-      background-color: #dcdcdc;
-      padding: 20px;
-      max-width: 400px;
-      margin-left: auto;
-      position: relative;
-    }
-
-    .festival-block h2 {
-      margin: 0 0 10px 0;
-      font-size: 18px;
-      line-height: 1.4em;
-      font-weight: 400;
-    }
-
-    .festival-block .tags {
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
-
-    .festival-block .red-box {
-      background-color: #e5331a;
-      height: 100px;
+    .image-panel img {
+      border: 10px solid #D9D9D9;
       width: 100%;
-      margin-top: 10px;
+      height: auto;
+    }
+    .text-panel {
+      width: 45vw;
+      padding-left: 20px;
     }
 
-    .festival-block .design-label {
-      position: absolute;
-      right: -30px;
-      bottom: -20px;
-      font-size: 60px;
-      font-weight: bold;
+    .button { 
+      font-family: "Bebas Neue", sans-serif;
+      display: inline-block;
+      padding: 5px 11px;
+      margin-bottom: 14px;
+      font-size: 11px;
+      border-radius: 20px;
+      border: 2px solid black;
+      text-align: center;
+      text-decoration: none;
+    }
+    .button.blue {
+      color: #2015FF;
+      border-color: #2015FF;
+    }
+    .button.black {
       color: black;
+      border-color: black;
+      background-color: transparent;
+    }
+
+    .text-block {
+      font-size: 12px;
+      line-height: 1.2;
+      white-space: pre-line;
+      margin-top: 20px;
+      max-width: 500px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-
-    <!-- First case block -->
-    <div class="case-block">
-      <h2>REBRANDING FOR<br>
-      THE LEADING WEDDING<br>
-      AGENCY IN MOSCOW</h2>
-      <div class="tags">rebranding . logo . identity . package . web</div>
-      <div class="preview">
-        <a href="#" class="button">view case →</a>
+  <header>
+    <div class="image-panel">
+      <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/06/jellyfish.gif" alt="🪼">
+    </div>
+    <div class="text-panel">
+      <div class="button blue">WEB DESIGN PROCESS</div><br>
+      <div class="button black">IDENTITY PROCESS</div>
+      <div class="text-block">
+Before starting work
+on a project interview the
+customer, formulate the
+technical specifications,
+determine the deadlines and
+cost, and sign the contract
       </div>
     </div>
-
-    <!-- Festival block -->
-    <div class="festival-block">
-      <h2>WEBSITE FOR MTC<br>
-      LIVE SUMMER.LIVE<br>
-      FESTIVAL</h2>
-      <div class="tags">artdirection . ui/ux</div>
-      <div class="red-box"></div>
-      <div class="design-label">.DESIGN</div>
-    </div>
-
-  </div>
+  </header>
 </body>
 </html>
