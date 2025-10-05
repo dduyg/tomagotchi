@@ -1,238 +1,286 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>97GEVER</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>4EVER — Single page replica</title>
 
-        body {
-            font-family: 'Courier New', monospace;
-            background: linear-gradient(135deg, #c8b5d4 0%, #e8dcc8 100%);
-            overflow: hidden;
-            height: 100vh;
-        }
+  <!-- Fonts (google) -->
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Libre+Barcode+39+Text&family=Pacifico&family=Space+Mono:wght@400;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
 
-        .container {
-            position: fixed;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
+  <style>
+    /* Page fixed to viewport, only the gallery scrolls */
+    html,body{
+      height:100%;
+      margin:0;
+      padding:0;
+      overflow:hidden;                /* page itself doesn't scroll */
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
 
-        /* Navigation */
-        nav {
-            display: flex;
-            justify-content: space-around;
-            padding: 20px 40px;
-            position: relative;
-            z-index: 10;
-        }
+    /* Soft pastel gradient background like screenshot */
+    body{
+      background: linear-gradient(180deg,
+                  rgba(232,223,255,1) 0%,
+                  rgba(245,236,255,1) 15%,
+                  rgba(249,240,242,1) 45%,
+                  rgba(255,246,235,1) 100%);
+      color:#119b4f;
+      font-family: "Space Mono", monospace;
+      position:relative;
+    }
 
-        nav a {
-            color: #2ecc71;
-            text-decoration: none;
-            font-size: 28px;
-            font-weight: bold;
-            transition: transform 0.3s;
-        }
+    /* Top nav (fixed) */
+    .topbar{
+      position:fixed;
+      top:18px;
+      left:32px;
+      right:32px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      pointer-events:auto;
+      z-index:30;
+    }
+    .nav-left{ font-family: "Mrs Saint Delafield", cursive; color:#0fa653; font-size:20px; }
+    .nav-right{ font-family: "Mrs Saint Delafield", cursive; color:#0fa653; font-size:20px; }
+    .nav-center{ font-family: "Mrs Saint Delafield", cursive; color:#0fa653; font-size:20px; }
 
-        nav a:hover {
-            transform: scale(1.1);
-        }
+    /* Big logo */
+    .logo{
+      position:fixed;
+      top:60px;
+      left:50%;
+      transform:translateX(-50%);
+      font-family: "Archivo Black", sans-serif;
+      font-size:140px;
+      letter-spacing:8px;
+      color:#11a14a;
+      z-index:20;
+      line-height:0.8;
+      -webkit-font-smoothing:antialiased;
+    }
+    /* tiny pixel-ish swirl before text to mimic screenshot flourish */
+    .logo:before{
+      content:"❖";
+      font-family: "Libre Barcode 39 Text", monospace;
+      margin-right:10px;
+      font-size:82px;
+      vertical-align:middle;
+      transform:translateY(12px);
+      color:#11a14a;
+    }
 
-        /* Main Content Area */
-        .main-content {
-            flex: 1;
-            display: flex;
-            position: relative;
-            overflow: hidden;
-        }
+    /* Left large content block — fixed */
+    .content-fixed{
+      position:fixed;
+      top:240px;
+      left:28px;
+      width:58%;
+      max-width:780px;
+      z-index:10;
+      pointer-events:none; /* text isn't interactive in screenshot */
+    }
 
-        /* Left Side - Text Content */
-        .text-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 40px;
-            position: relative;
-            z-index: 5;
-        }
+    .headline{
+      font-size:72px;
+      color:#0fa653;
+      font-family: "Mrs Saint Delafield", cursive;
+      line-height:0.95;
+      letter-spacing:1px;
+      margin:0 0 10px 0;
+      display:block;
+      -webkit-font-smoothing:antialiased;
+    }
 
-        .logo {
-            font-size: 120px;
-            font-weight: bold;
-            color: #2ecc71;
-            letter-spacing: -5px;
-            line-height: 0.9;
-            font-family: 'Courier New', monospace;
-            text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
-        }
+    .sub{
+      margin-top:14px;
+      font-family: "Space Mono", monospace;
+      font-size:42px;
+      color:#0fa653;
+      line-height:1.05;
+      max-width:780px;
+      opacity:0.98;
+    }
 
-        .tagline {
-            color: #2ecc71;
-            font-size: 32px;
-            line-height: 1.4;
-            margin-top: 40px;
-        }
+    .small-note{
+      font-family: "Pacifico", cursive;
+      color:#0fa653;
+      font-size:22px;
+      margin-top:8px;
+      opacity:0.9;
+    }
 
-        .tagline .asterisk {
-            font-size: 48px;
-            margin-right: 10px;
-        }
+    /* Upside-down footer word (mirrored) */
+    .footer-word{
+      position:fixed;
+      bottom:36px;
+      left:50%;
+      transform:translateX(-50%) rotate(180deg);
+      font-family:"Archivo Black", sans-serif;
+      font-size:120px;
+      color:#11a14a;
+      opacity:0.95;
+      z-index:5;
+      pointer-events:none;
+      letter-spacing:8px;
+    }
 
-        .tagline .strike {
-            text-decoration: line-through;
-        }
+    /* THE GALLERY - only this area scrolls vertically */
+    .gallery-wrap{
+      position:fixed;
+      top:160px;                 /* sits across the text area */
+      right:36px;                /* screenshot places images to the right */
+      width:360px;               /* narrow vertical column */
+      height:68vh;
+      max-height:760px;
+      background:transparent;
+      overflow-y:auto;           /* only gallery scrolls */
+      padding:10px 6px;
+      box-sizing:border-box;
+      z-index:40;                /* above text but below header/logo as needed */
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:thin;
+    }
 
-        .tagline .cursive {
-            font-family: 'Comic Sans MS', cursive;
-            font-style: italic;
-        }
+    /* style scrollbar for modern browsers (nice thin green) */
+    .gallery-wrap::-webkit-scrollbar{ width:12px; }
+    .gallery-wrap::-webkit-scrollbar-track{ background:transparent; }
+    .gallery-wrap::-webkit-scrollbar-thumb{
+      background: linear-gradient(#bff3d0,#8ee1a2);
+      border-radius:20px;
+    }
 
-        .tagline .small {
-            font-size: 20px;
-        }
+    /* individual image tiles that float and overlap text/look collage-like */
+    .tile{
+      width:320px;
+      height:200px;
+      margin:18px auto;
+      display:block;
+      position:relative;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+      border-radius:4px;
+      overflow:hidden;
+      transform-origin:center;
+      transition:transform .18s ease, box-shadow .18s ease;
+      background:#eee;
+    }
+    .tile img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .tile:hover{ transform:scale(1.03); box-shadow:0 18px 40px rgba(0,0,0,0.28); }
 
-        .bottom-logo {
-            font-size: 120px;
-            font-weight: bold;
-            color: #2ecc71;
-            letter-spacing: -5px;
-            transform: scaleY(-1);
-            text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
-        }
+    /* varied sizes for a collage feeling */
+    .tile.small{ height:140px; width:260px; }
+    .tile.large{ height:240px; width:360px; }
 
-        /* Right Side - Image Gallery */
-        .gallery-container {
-            width: 400px;
-            position: relative;
-            overflow: hidden;
-        }
+    /* Some rotation for a playful look */
+    .tile.r1{ transform:rotate(-2deg); }
+    .tile.r2{ transform:rotate(1.5deg); }
+    .tile.r3{ transform:rotate(-0.6deg); }
 
-        .gallery {
-            height: 100%;
-            overflow-y: scroll;
-            overflow-x: hidden;
-            padding: 20px;
-            scrollbar-width: thin;
-            scrollbar-color: #2ecc71 transparent;
-        }
+    /* make the gallery visually float over typography by slight z-index */
+    .gallery-wrap .tile{ z-index:42; pointer-events:auto; }
 
-        .gallery::-webkit-scrollbar {
-            width: 8px;
-        }
+    /* RESPONSIVE adjustments */
+    @media (max-width:900px){
+      .logo{ font-size:100px; top:50px; }
+      .content-fixed{ top:180px; left:18px; width:60%; }
+      .gallery-wrap{ right:18px; width:300px; }
+      .headline{ font-size:54px; }
+      .sub{ font-size:34px; }
+      .footer-word{ font-size:80px; }
+    }
 
-        .gallery::-webkit-scrollbar-track {
-            background: transparent;
-        }
+    @media (max-width:600px){
+      /* stack a little differently on narrow screens */
+      .logo{ font-size:84px; top:26px; }
+      .content-fixed{ left:12px; width:62%; top:140px; }
+      .gallery-wrap{ right:12px; width:240px; height:56vh; top:150px; }
+      .headline{ font-size:44px; }
+      .sub{ font-size:26px; }
+      .footer-word{ font-size:64px; bottom:12px; }
+    }
 
-        .gallery::-webkit-scrollbar-thumb {
-            background: #2ecc71;
-            border-radius: 4px;
-        }
-
-        .gallery img {
-            width: 100%;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
-        }
-
-        .gallery img:hover {
-            transform: scale(1.02);
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 1024px) {
-            .logo, .bottom-logo {
-                font-size: 80px;
-            }
-            
-            .tagline {
-                font-size: 24px;
-            }
-            
-            .gallery-container {
-                width: 300px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .main-content {
-                flex-direction: column;
-            }
-            
-            .gallery-container {
-                width: 100%;
-                height: 300px;
-            }
-            
-            .gallery {
-                display: flex;
-                flex-direction: row;
-                overflow-x: scroll;
-                overflow-y: hidden;
-            }
-            
-            .gallery img {
-                min-width: 250px;
-                margin-right: 20px;
-                margin-bottom: 0;
-            }
-        }
-    </style>
+    /* small accessibility helper so text is selectable if user wants */
+    .content-fixed *{ user-select:text; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Navigation -->
-        <nav>
-            <a href="#work">Work</a>
-            <a href="#contact">Contact</a>
-            <a href="#info">Info</a>
-        </nav>
 
-        <!-- Main Content -->
-        <div class="main-content">
-            <!-- Left Side - Text Content -->
-            <div class="text-content">
-                <div>
-                    <div class="logo">97GEVER</div>
-                    <div class="tagline">
-                        <span class="asterisk">*</span><span style="text-decoration: underline;">_</span> Never <span class="strike">Better</span> is<br>
-                        <span class="cursive">a creative space</span><br>
-                        that partners with<br>
-                        <span class="cursive">nice people</span> to bring<br>
-                        <span class="cursive">ambition</span> to <span class="cursive">casual</span><br>
-                        <span class="small">(and fun)</span> life.
-                    </div>
-                </div>
-                
-                <div class="bottom-logo">BETTER</div>
-            </div>
+  <!-- Top navigation (fixed) -->
+  <div class="topbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-left">Work</div>
+    <div class="nav-center">Contact</div>
+    <div class="nav-right">Info</div>
+  </div>
 
-            <!-- Right Side - Scrollable Gallery -->
-            <div class="gallery-container">
-                <div class="gallery">
-                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop" alt="Pool floaties">
-                    <img src="https://images.unsplash.com/photo-1541364983171-a8ba01e95cfc?w=400&h=300&fit=crop" alt="Construction site">
-                    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=400&h=300&fit=crop" alt="Interior design">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" alt="Gallery wall">
-                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=300&fit=crop" alt="Office space">
-                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop" alt="Modern workspace">
-                    <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=400&h=300&fit=crop" alt="Creative studio">
-                    <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&h=300&fit=crop" alt="Design work">
-                </div>
-            </div>
-        </div>
+  <!-- Logo large and centered -->
+  <div class="logo" aria-hidden="true">4EVER</div>
+
+  <!-- Fixed left text content (stays put while images scroll) -->
+  <div class="content-fixed" aria-hidden="false">
+    <h1 class="headline">*_Never Better® is</h1>
+
+    <div class="sub">
+      a creative studio
+      <br>that partners with
+      <br>nice people to bring
+      <br>ambitious, casual
+      <br>(and functional) ideas to life.
     </div>
+
+    <div class="small-note">(a community-building &amp; design practice)</div>
+  </div>
+
+  <!-- Vertical gallery column — ONLY this scrolls -->
+  <aside class="gallery-wrap" aria-label="Scrolling image gallery">
+    <!-- The images used here are from unsplash. Replace with your images if desired. -->
+    <a class="tile r1 large" href="#" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1502741126161-b048400d971e?q=80&w=1400&auto=format&fit=crop&crop=entropy" alt="Colorful still life">
+    </a>
+
+    <a class="tile r2 small" href="#" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop&crop=entropy" alt="Poster wall / signage">
+    </a>
+
+    <a class="tile r3 large" href="#" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1470317596697-cbd2f8a7f3b5?q=80&w=1400&auto=format&fit=crop&crop=entropy" alt="Cozy lounge interior">
+    </a>
+
+    <a class="tile r1 small" href="#" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1505245208761-ba872912fac0?q=80&w=1400&auto=format&fit=crop&crop=entropy" alt="Billboard / outdoor">
+    </a>
+
+    <a class="tile r2 large" href="#" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=1400&auto=format&fit=crop&crop=entropy" alt="Colorful donuts & products">
+    </a>
+
+    <a class="tile r3 small" href="#" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1400&auto=format&fit=crop&crop=entropy" alt="Stacked logs interior decoration">
+    </a>
+
+    <a class="tile r2 large" href="#" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?q=80&w=1400&auto=format&fit=crop&crop=entropy" alt="Minimal billboard on wall">
+    </a>
+
+    <!-- Add more tiles if needed to make scroll feel like screenshot -->
+    <a class="tile r1 small" href="#" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1400&auto=format&fit=crop&crop=entropy" alt="Bar interior">
+    </a>
+
+    <a class="tile r3 large" href="#" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?q=80&w=1400&auto=format&fit=crop&crop=entropy" alt="Contemporary poster display">
+    </a>
+
+  </aside>
+
+  <!-- Mirrored footer word "BETTER" rotated 180deg similar to screenshot -->
+  <div class="footer-word" aria-hidden="true">BETTER</div>
+
 </body>
 </html>
