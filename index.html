@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiminalLoop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Montserrat:wght@300;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script&display=swap" rel="stylesheet">
+<style>
+  /* Reset */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html,body { height: 100%; }
+  body {
+    font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    color: #0a7f56; /* green used through the page */
+    background: linear-gradient(180deg, #e6d7ff 0%, #ffe8d2 45%, #f7f7ff 100%);
+    overflow-y: scroll;
+    padding: 24px;
+  }
+
+  /* Top navigation row */
+  .top-nav {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    max-width: 1100px;
+    margin: 6px auto 12px;
+    gap: 12px;
+  }
+  .top-nav .left {
+    font-size:18px;
+    color: #09a760;
+  }
+  .top-nav .center {
+    text-align:center;
+    flex:1;
+    color:#09a760;
+    font-size:18px;
+  }
+  .top-nav .right {
+    text-align:right;
+    color:#09a760;
+    font-size:18px;
+  }
+
+  /* Logo row with stylized 'M' pixel and big letters */
+  .hero {
+    max-width:1100px;
+    margin: 6px auto 18px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+  }
+
+  .logo-pixel {
+    font-family: "Press Start 2P", monospace;
+    color: #0db25f;
+    font-size: 84px;
+    line-height:0.95;
+    letter-spacing: 6px;
+    -webkit-font-smoothing: none;
+    transform: translateY(-6px);
+    white-space: nowrap;
+  }
+  .logo-letters {
+    font-family: "Montserrat", sans-serif;
+    font-weight:700;
+    font-size: 120px;
+    color: #09a760;
+    letter-spacing: 4px;
+  }
+
+  /* Page container */
+  .page {
+    max-width:1100px;
+    margin: 12px auto;
+    position: relative;
+  }
+
+  /* Big decorative paragraph text behind images */
+  .lead {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 64px;
+    line-height: 1.05;
+    color: #0aa15a;
+    opacity: 0.98;
+    margin-top: 18px;
+    padding: 18px 6px;
+    position: relative;
+  }
+
+  /* Use a monospace-like marker at the start, as in screenshot */
+  .lead .marker {
+    display:inline-block;
+    font-family: "Press Start 2P", monospace;
+    font-size: 28px;
+    vertical-align: middle;
+    transform: translateY(-6px);
+  }
+
+  /* Cursive lines in the screenshot — emulate with Dancing Script for contrast */
+  .subscript {
+    font-family: "Dancing Script", cursive;
+    font-size: 46px;
+    color: #0aa15a;
+    line-height: 1.25;
+    margin: 18px 0;
+  }
+
+  .small-note {
+    font-size: 20px;
+    color: #0aa15a;
+    opacity: 0.95;
+    margin-top: 8px;
+    font-weight:300;
+  }
+
+  /* Floating images positioned over the text (overlapping style) */
+  .float-img {
+    position: absolute;
+    box-shadow: 0 8px 30px rgba(10,10,10,0.25);
+    object-fit: cover;
+    background: #fff;
+    border-radius: 4px;
+  }
+
+  /* Specific image placements to mimic the screenshot composition */
+  /* top-left donut image */
+  .img-top-left {
+    width: 300px;
+    height: 170px;
+    left: 30px;
+    top: 110px;
+    z-index: 6;
+  }
+
+  /* mid-right poster image */
+  .img-mid-right {
+    width: 360px;
+    height: 180px;
+    right: 80px;
+    top: 420px;
+    z-index: 6;
+  }
+
+  /* center lounge image */
+  .img-center {
+    width: 420px;
+    height: 220px;
+    left: 160px;
+    top: 720px;
+    z-index: 6;
+  }
+
+  /* bottom-left billboard (inverted) */
+  .img-bottom-left {
+    width: 420px;
+    height: 150px;
+    left: 28px;
+    top: 1080px;
+    transform: rotate(180deg); /* upside down as in screenshot */
+    z-index: 6;
+  }
+
+  /* make the page tall and scrollable like the screenshot portrait */
+  .spacer {
+    height: 1200px;
+  }
+
+  /* Responsive adjustments for narrow viewports (mobile portrait like screenshot) */
+  @media (max-width: 520px) {
+    .logo-pixel { font-size: 54px; letter-spacing:2px; transform: translateY(-2px); }
+    .logo-letters { font-size: 96px; }
+    .lead { font-size: 44px; padding: 12px; }
+    .subscript { font-size: 34px; }
+    .img-top-left { width: 240px; height: 130px; left: 22px; top: 90px; }
+    .img-mid-right { width: 280px; height: 140px; right: 24px; top: 350px; }
+    .img-center { width: 320px; height: 180px; left: 40px; top: 620px; }
+    .img-bottom-left { width: 320px; height: 120px; left: 24px; top: 960px; transform: rotate(180deg); }
+    .top-nav { padding: 0 6px; }
+    body { padding: 12px; }
+  }
+
+  /* small decorative footer text */
+  footer {
+    max-width:1100px;
+    margin: 40px auto 80px;
+    color: #088f4f;
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.9;
+  }
+
+  /* simple hover lift effect for images */
+  .float-img:hover {
+    transform: translateY(-6px);
+    transition: transform .25s ease;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Top navigation row similar to screenshot -->
+  <div class="top-nav" role="navigation" aria-label="Main navigation">
+    <div class="left">Work</div>
+    <div class="center">Contact</div>
+    <div class="right">Info</div>
+  </div>
+
+  <!-- Hero logo -->
+  <div class="hero" aria-hidden="true">
+    <div class="logo-pixel">M</div>
+    <div class="logo-letters">EVER</div>
+  </div>
+
+  <main class="page" role="main">
+    <!-- Floating images (we use public placeholder images; replace src with your own if you want) -->
+    <img src="https://picsum.photos/id/1080/800/450" alt="Colorful product and donut" class="float-img img-top-left" loading="lazy">
+    <img src="https://picsum.photos/id/1011/1200/800" alt="Street poster hoarding" class="float-img img-mid-right" loading="lazy">
+    <img src="https://picsum.photos/id/1066/1200/800" alt="Lounge interior" class="float-img img-center" loading="lazy">
+    <img src="https://picsum.photos/id/1025/1200/800" alt="Billboard panels" class="float-img img-bottom-left" loading="lazy">
+
+    <!-- Large typographic content block -->
+    <div class="lead" aria-label="Site tag line">
+      <span class="marker">*_</span>
+      <span>Never Better® is</span>
+      <div class="subscript">a creative studio</div>
+      <div class="subscript">that partners with</div>
+      <div class="subscript">nice people to bring</div>
+      <div class="subscript">ambitious, casual</div>
+      <div class="small-note">(and fun) ideas to life.</div>
+    </div>
+
+    <!-- blank spacer to create the tall portrait layout similar to the screenshot -->
+    <div class="spacer" aria-hidden="true"></div>
+  </main>
+
+  <footer>
+    This is a single-page visual replica created from the screenshot you provided — layout, colors, positioning and fonts were matched as closely as possible using HTML/CSS. Replace the sample images (picsum) with your images to fully match the original visuals.
+  </footer>
+
+</body>
+</html>
