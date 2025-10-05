@@ -2,171 +2,203 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>NEVER BETTER Replica</title>
-  <meta name="viewport" content="width=768, initial-scale=1.0">
+  <title>Never Better</title>
+  <meta name="viewport" content="width=768,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap');
-
     html, body {
       height: 100%;
       margin: 0;
       padding: 0;
       overflow: hidden;
+      width: 100vw;
     }
     body {
       width: 100vw;
       height: 100vh;
-      background: radial-gradient(circle at 60% 40%, #fff0e5 0%, #cfe2fa 100%);
+      background: linear-gradient(120deg, #e7d7fa 0%, #f6d4ca 80%);
+      font-family: 'Spline Sans Mono', monospace;
       position: relative;
     }
-    .main-content {
+    .fixed-content {
       position: absolute;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      z-index: 2;
-      pointer-events: none;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none; /* allows gallery to scroll */
+      z-index: 1;
     }
     .nav {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      width: 100vw;
-      padding: 32px 48px 0 48px;
-      font-family: 'Schoolbell', cursive;
-      font-size: 2.2rem;
-      color: #22b573;
+      width: 100%;
+      padding: 32px 0 0 0;
       position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 10;
-      pointer-events: auto;
+      top: 0; left: 0;
+      font-size: 2em;
+      font-family: inherit;
+      color: #18b24b;
+      z-index: 2;
+      pointer-events: all;
+    }
+    .nav-item {
+      width: 33.33%;
+      text-align: center;
+      font-family: inherit;
+      cursor: pointer;
     }
     .logo {
-      font-family: 'VT323', monospace;
-      font-size: 7vw;
-      color: #22b573;
+      position: absolute;
+      top: 70px;
+      width: 100%;
       text-align: center;
-      margin: 60px auto 0 auto;
-      letter-spacing: -2px;
-      user-select: none;
-      line-height: 1;
+      font-size: 7vw;
+      font-family: inherit;
+      color: #18b24b;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      z-index: 2;
+      pointer-events: all;
+      /* Simulate pixel art with text-shadow */
+      text-shadow:
+        2px 0 #18b24b, 0 2px #18b24b, 2px 2px #18b24b,
+        4px 0 #18b24b, 0 4px #18b24b, 4px 4px #18b24b;
     }
     .desc {
       position: absolute;
-      top: 36vh;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 86vw;
-      font-family: 'Schoolbell', cursive;
-      font-size: 3vw;
-      color: #22b573;
-      text-align: left;
-      z-index: 3;
-      letter-spacing: .5px;
-      font-weight: 400;
+      left: 0; right: 0;
+      top: 210px;
+      width: 100%;
+      padding: 0 5vw;
+      font-size: 2.2vw;
       line-height: 1.1;
-      pointer-events: auto;
+      color: #18b24b;
+      font-family: inherit;
+      z-index: 2;
+      pointer-events: all;
     }
     .desc .small {
-      font-size: 2vw;
-      display: block;
-      margin-top: .5em;
+      font-size: 1.3vw;
+      color: #18b24b;
+      opacity: 0.7;
     }
-    .bottom-logo {
+    .better {
       position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100vw;
+      bottom: 6vw;
+      width: 100%;
       text-align: center;
-      font-family: 'VT323', monospace;
-      font-size: 7vw;
-      color: #22b573;
+      font-size: 6vw;
+      color: #18b24b;
+      font-weight: 700;
+      font-family: inherit;
+      letter-spacing: 0.01em;
       transform: rotate(180deg);
-      margin-bottom: 0;
-      user-select: none;
-      pointer-events: none;
-      z-index: 4;
+      z-index: 2;
+      pointer-events: all;
     }
-
-    .gallery-container {
+    /* Gallery styles */
+    .gallery-outer {
       position: absolute;
-      top: 20vh;
-      left: 0;
+      left: 0; right: 0; top: 0; bottom: 0;
       width: 100vw;
-      height: 60vh;
-      z-index: 12;
+      height: 100vh;
       overflow: hidden;
-      pointer-events: auto;
+      z-index: 10;
+      pointer-events: all;
+    }
+    .gallery-scroll {
+      position: absolute;
+      left: 0; right: 0;
+      top: 0; bottom: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      pointer-events: all;
+      /* Hide default scrollbar on Webkit */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .gallery-scroll::-webkit-scrollbar { display: none; }
+    .gallery {
+      position: relative;
+      width: 100vw;
+      min-height: 140vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
+      padding-top: 160px;
+      gap: 70px;
+      z-index: 11;
     }
-    .gallery-scroll {
-      width: 100vw;
-      height: 100%;
-      overflow-y: scroll;
-      overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4vh;
-      padding: 0;
-      scrollbar-width: thin;
-      scrollbar-color: #22b573 #fff0e5;
-    }
-    .gallery-scroll::-webkit-scrollbar {
-      width: 8px;
-      background: #fff0e5;
-    }
-    .gallery-scroll::-webkit-scrollbar-thumb {
-      background: #22b573;
-      border-radius: 8px;
-    }
-    .gallery-img {
-      width: 54vw;
-      max-width: 450px;
-      aspect-ratio: 4/3;
+    .gallery img {
+      width: 340px;
+      height: 190px;
       object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 4px 28px rgba(0,0,0,0.11);
-      background: #eee;
-      display: block;
+      border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.11);
+      background: #fff;
+      margin-bottom: 0;
+      pointer-events: all;
     }
-    /* Responsive tweaks */
+    /* Gallery positions to overlap text, as per screenshot */
+    .gallery img:nth-child(1) {
+      margin-top: -25px;
+      margin-left: 0;
+    }
+    .gallery img:nth-child(2) {
+      position: absolute;
+      top: 340px;
+      left: 55vw;
+    }
+    .gallery img:nth-child(3) {
+      margin-top: 70px;
+    }
+    .gallery img:nth-child(4) {
+      margin-top: 70px;
+      margin-bottom: 0;
+    }
     @media (max-width: 800px) {
-      .logo, .bottom-logo { font-size: 11vw; }
-      .desc { font-size: 4vw; }
-      .desc .small { font-size: 2.8vw; }
-      .gallery-img { width: 80vw; max-width: 95vw; }
-      .nav { font-size: 5vw; padding: 24px 20px 0 20px; }
-      .gallery-container { top: 18vh; height: 67vh; }
+      .gallery img, .gallery img:nth-child(1), .gallery img:nth-child(2), .gallery img:nth-child(3), .gallery img:nth-child(4) {
+        width: 70vw;
+        height: 120px;
+        left: unset !important;
+      }
+      .gallery img:nth-child(2) {
+        top: 370px;
+        left: 62vw;
+      }
+      .logo, .better { font-size: 14vw;}
+      .desc { font-size: 3vw;}
     }
   </style>
 </head>
 <body>
-  <div class="main-content">
+  <div class="fixed-content">
     <div class="nav">
-      <div>Work</div>
-      <div>Contact</div>
-      <div>Info</div>
+      <div class="nav-item" style="text-align:left;">Work</div>
+      <div class="nav-item">Contact</div>
+      <div class="nav-item" style="text-align:right;">Info</div>
     </div>
-    <div class="logo">𝔑EVER</div>
+    <div class="logo">NEVER</div>
     <div class="desc">
-      * – Never Bottom<sup>®</sup> is a creative studio that partners with nice people to bring ambient, casual (and fun) life.
-      <span class="small"></span>
+      * – Never Better® is <br>
+      a creative studio<br>
+      that partners with<br>
+      nice people to bring<br>
+      ambitious, casual<br>
+      (and fun) ideas to life.
     </div>
-    <div class="bottom-logo">BETTER</div>
+    <div class="better">BETTER</div>
   </div>
-  <div class="gallery-container">
+  <div class="gallery-outer">
     <div class="gallery-scroll">
-      <img class="gallery-img" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" alt="Gallery 1">
-      <img class="gallery-img" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Gallery 2">
-      <img class="gallery-img" src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80" alt="Gallery 3">
-      <img class="gallery-img" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" alt="Gallery 4">
+      <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Gallery 1">
+        <img src="https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?auto=format&fit=crop&w=800&q=80" alt="Gallery 2">
+        <img src="https://images.unsplash.com/photo-1465101162946-4377e57745c3?auto=format&fit=crop&w=800&q=80" alt="Gallery 3">
+        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80" alt="Gallery 4">
+      </div>
     </div>
   </div>
 </body>
