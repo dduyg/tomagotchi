@@ -1,307 +1,238 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Replica — 7EVER</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>97GEVER</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<!-- Google fonts similar to screenshot -->
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Press+Start+2P&family=Cutive+Mono&display=swap" rel="stylesheet">
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #c8b5d4 0%, #e8dcc8 100%);
+            overflow: hidden;
+            height: 100vh;
+        }
 
-<style>
-  :root{
-    --green: #17b153; /* bright green used for text/buttons */
-    --bg-a: #f3e9ff;
-    --bg-b: #fff8d6;
-    --page-w: 100vw;
-    --page-h: 100vh;
-    --max-width: 1100px;
-  }
+        .container {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-  /* Page fixed, no body scroll */
-  html,body{
-    height:100%;
-    margin:0;
-    padding:0;
-    overflow:hidden; /* page itself doesn't scroll */
-    font-family: 'Cutive Mono', monospace;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    background: linear-gradient(180deg, #efe6ff 0%, #fdebd0 55%, #f8efd8 100%);
-  }
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px 40px;
+            position: relative;
+            z-index: 10;
+        }
 
-  /* container that stays fixed to viewport */
-  .site {
-    position:relative;
-    width:100%;
-    height:100vh;
-    max-width: var(--max-width);
-    margin:0 auto;
-    box-sizing:border-box;
-    padding:30px 40px;
-  }
+        nav a {
+            color: #2ecc71;
+            text-decoration: none;
+            font-size: 28px;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
 
-  /* Top nav */
-  .nav {
-    position:fixed;
-    left:0;
-    right:0;
-    top:24px;
-    z-index:40;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    pointer-events:auto;
-    width:100%;
-    max-width:var(--max-width);
-    margin:0 auto;
-    padding:0 40px;
-    box-sizing:border-box;
-  }
-  .nav .left, .nav .right {
-    display:flex;
-    gap:28px;
-    color:var(--green);
-    font-size:20px;
-    font-family: 'Cutive Mono', monospace;
-    letter-spacing:0.6px;
-  }
+        nav a:hover {
+            transform: scale(1.1);
+        }
 
-  /* big logo */
-  .logo {
-    position:fixed;
-    top:36px;
-    left:120px;
-    z-index:35;
-    color:var(--green);
-    font-size:160px;
-    line-height:1;
-    font-weight:700;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    pointer-events:none;
-    font-family:'Cutive Mono', monospace;
-  }
-  /* pixel 7 to mimic screenshot's stylized "7" */
-  .logo .pixel {
-    font-family: 'Press Start 2P', monospace;
-    font-size:86px;
-    transform:translateY(8px);
-    letter-spacing: -6px;
-  }
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+        }
 
-  /* Big body text (green big expanded lines) - fixed */
-  .hero-text {
-    position:fixed;
-    top:220px;
-    left:60px;
-    right:60px;
-    z-index:30;
-    color:var(--green);
-    font-size:64px;
-    line-height:0.95;
-    font-family: 'Dancing Script', cursive;
-    max-width:820px;
-    pointer-events:none;
-    /* letter spacing and subtle transparency to match the screenshot feel */
-    opacity: 0.98;
-    text-wrap: pretty;
-  }
+        /* Left Side - Text Content */
+        .text-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px;
+            position: relative;
+            z-index: 5;
+        }
 
-  /* small descriptive line parenthetical */
-  .sub {
-    position:fixed;
-    top:460px;
-    left:60px;
-    z-index:30;
-    color:var(--green);
-    font-size:22px;
-    font-family:'Cutive Mono', monospace;
-    opacity:0.9;
-    pointer-events:none;
-  }
+        .logo {
+            font-size: 120px;
+            font-weight: bold;
+            color: #2ecc71;
+            letter-spacing: -5px;
+            line-height: 0.9;
+            font-family: 'Courier New', monospace;
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+        }
 
-  /* an upside-down mirrored word near bottom (like screenshot) */
-  .mirror {
-    position:fixed;
-    bottom:34px;
-    left:120px;
-    z-index:25;
-    color:var(--green);
-    font-size:110px;
-    transform: rotate(180deg);
-    font-family:'Cutive Mono', monospace;
-    pointer-events:none;
-    opacity:0.95;
-  }
+        .tagline {
+            color: #2ecc71;
+            font-size: 32px;
+            line-height: 1.4;
+            margin-top: 40px;
+        }
 
-  /* Scrollable gallery column - only this scrolls */
-  .gallery-wrap{
-    position:fixed;
-    top:150px;
-    right:40px;
-    width:420px;
-    height:72vh;
-    z-index:50;
-    overflow-y:auto;
-    -webkit-overflow-scrolling:touch;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(23,177,83,0.6) rgba(0,0,0,0.05);
-    background: transparent;
-    padding-right:10px; /* for visual breathing room */
-    box-sizing:border-box;
-  }
+        .tagline .asterisk {
+            font-size: 48px;
+            margin-right: 10px;
+        }
 
-  /* custom scrollbar for webkit */
-  .gallery-wrap::-webkit-scrollbar{ width:10px; }
-  .gallery-wrap::-webkit-scrollbar-thumb{
-    background: rgba(23,177,83,0.18);
-    border-radius:8px;
-  }
+        .tagline .strike {
+            text-decoration: line-through;
+        }
 
-  .gallery {
-    display:flex;
-    flex-direction:column;
-    gap:48px;
-    align-items:center;
-    padding:18px 0;
-    box-sizing:border-box;
-  }
+        .tagline .cursive {
+            font-family: 'Comic Sans MS', cursive;
+            font-style: italic;
+        }
 
-  .gallery .card{
-    width:380px;
-    border-radius:6px;
-    box-shadow: 0 12px 30px rgba(10,10,10,0.12);
-    overflow:hidden;
-    background:#fff;
-    transform-origin:center;
-  }
+        .tagline .small {
+            font-size: 20px;
+        }
 
-  .card img {
-    display:block;
-    width:100%;
-    height:auto;
-    object-fit:cover;
-  }
+        .bottom-logo {
+            font-size: 120px;
+            font-weight: bold;
+            color: #2ecc71;
+            letter-spacing: -5px;
+            transform: scaleY(-1);
+            text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
+        }
 
-  /* position some cards with different aspect ratios to mimic screenshot */
-  .c--wide { width:420px; }
-  .c--tall { height:320px; }
-  .c--small { width:300px; }
+        /* Right Side - Image Gallery */
+        .gallery-container {
+            width: 400px;
+            position: relative;
+            overflow: hidden;
+        }
 
-  /* decorative pixel star at left like screenshot's '*' */
-  .asterisk {
-    position:fixed;
-    left:40px;
-    top:660px;
-    z-index:31;
-    color:var(--green);
-    font-family:'Press Start 2P', monospace;
-    font-size:28px;
-    pointer-events:none;
-  }
+        .gallery {
+            height: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            padding: 20px;
+            scrollbar-width: thin;
+            scrollbar-color: #2ecc71 transparent;
+        }
 
-  /* responsive tweaks */
-  @media (max-width:1200px){
-    .logo { left:40px; font-size:120px; }
-    .gallery-wrap { right:20px; width:360px; }
-    .hero-text { left:40px; font-size:52px; top:200px; }
-    .mirror{ left:40px; font-size:86px; }
-  }
+        .gallery::-webkit-scrollbar {
+            width: 8px;
+        }
 
-  @media (max-width:800px){
-    /* on small screens make layout stacked but keep behavior */
-    .nav { padding:0 20px; }
-    .logo { left:20px; font-size:96px; top:28px; }
-    .hero-text { left:20px; top:160px; font-size:44px; }
-    .gallery-wrap { top:260px; right:20px; width:300px; height:56vh; }
-    .mirror { left:20px; font-size:64px; bottom:10px; }
-  }
-</style>
+        .gallery::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .gallery::-webkit-scrollbar-thumb {
+            background: #2ecc71;
+            border-radius: 4px;
+        }
+
+        .gallery img {
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .logo, .bottom-logo {
+                font-size: 80px;
+            }
+            
+            .tagline {
+                font-size: 24px;
+            }
+            
+            .gallery-container {
+                width: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .gallery-container {
+                width: 100%;
+                height: 300px;
+            }
+            
+            .gallery {
+                display: flex;
+                flex-direction: row;
+                overflow-x: scroll;
+                overflow-y: hidden;
+            }
+            
+            .gallery img {
+                min-width: 250px;
+                margin-right: 20px;
+                margin-bottom: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="site" role="main">
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <a href="#work">Work</a>
+            <a href="#contact">Contact</a>
+            <a href="#info">Info</a>
+        </nav>
 
-    <!-- Top nav (fixed) -->
-    <nav class="nav" aria-label="Main navigation">
-      <div class="left">
-        <a href="#" style="text-decoration:none;color:var(--green);">Work</a>
-        <a href="#" style="text-decoration:none;color:var(--green);">Contact</a>
-      </div>
-      <div class="right">
-        <a href="#" style="text-decoration:none;color:var(--green);">Info</a>
-      </div>
-    </nav>
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Side - Text Content -->
+            <div class="text-content">
+                <div>
+                    <div class="logo">97GEVER</div>
+                    <div class="tagline">
+                        <span class="asterisk">*</span><span style="text-decoration: underline;">_</span> Never <span class="strike">Better</span> is<br>
+                        <span class="cursive">a creative space</span><br>
+                        that partners with<br>
+                        <span class="cursive">nice people</span> to bring<br>
+                        <span class="cursive">ambition</span> to <span class="cursive">casual</span><br>
+                        <span class="small">(and fun)</span> life.
+                    </div>
+                </div>
+                
+                <div class="bottom-logo">BETTER</div>
+            </div>
 
-    <!-- Big logo -->
-    <div class="logo" aria-hidden="true">
-      <span class="pixel">7</span>
-      <span>EVER</span>
+            <!-- Right Side - Scrollable Gallery -->
+            <div class="gallery-container">
+                <div class="gallery">
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&h=300&fit=crop" alt="Pool floaties">
+                    <img src="https://images.unsplash.com/photo-1541364983171-a8ba01e95cfc?w=400&h=300&fit=crop" alt="Construction site">
+                    <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=400&h=300&fit=crop" alt="Interior design">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop" alt="Gallery wall">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=300&fit=crop" alt="Office space">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop" alt="Modern workspace">
+                    <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=400&h=300&fit=crop" alt="Creative studio">
+                    <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&h=300&fit=crop" alt="Design work">
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!-- Big body text (fixed) -->
-    <div class="hero-text" aria-hidden="true">
-      <div style="font-size:56px; margin-bottom:8px;">*_Never Better® is</div>
-      <div style="font-size:62px; margin-top:6px;">a creative agency</div>
-      <div style="font-size:52px; margin-top:4px;">that partners with</div>
-      <div style="font-size:48px; margin-top:4px;">nice people to bring</div>
-      <div style="font-size:48px; margin-top:4px;">ambitious, casual</div>
-    </div>
-
-    <div class="sub">(and fun) to life.</div>
-
-    <div class="asterisk">*</div>
-
-    <!-- Upside-down mirrored big text -->
-    <div class="mirror">BETTER</div>
-
-    <!-- Scrollable gallery column -->
-    <aside class="gallery-wrap" aria-label="Images gallery, vertically scrollable">
-      <div class="gallery">
-
-        <!-- top decorative small image -->
-        <div class="card c--small" style="width:360px;">
-          <img alt="playful donut product" src="https://images.unsplash.com/photo-1594759209503-1b7b1cfa7a37?auto=format&fit=crop&w=1200&q=60">
-        </div>
-
-        <!-- mid poster images, placed to mimic overlapping in screenshot -->
-        <div class="card c--wide" style="width:420px;">
-          <img alt="poster on construction fence" src="https://images.unsplash.com/photo-1470132379752-6a1fdd0e5a5a?auto=format&fit=crop&w=1400&q=60">
-        </div>
-
-        <div class="card" style="width:380px; height:240px;">
-          <img alt="bar lounge interior" src="https://images.unsplash.com/photo-1542444459-db6dbee2f2b3?auto=format&fit=crop&w=1400&q=60">
-        </div>
-
-        <div class="card c--wide" style="width:420px;">
-          <img alt="billboard minimalist" src="https://images.unsplash.com/photo-1520166838029-30d8f3b5d7f0?auto=format&fit=crop&w=1400&q=60">
-        </div>
-
-        <!-- Add more images to allow ample vertical scroll -->
-        <div class="card" style="width:380px;">
-          <img alt="creative office" src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1400&q=60">
-        </div>
-
-        <div class="card" style="width:380px;">
-          <img alt="desk workspace" src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1400&q=60">
-        </div>
-
-        <div style="height:36px;"></div>
-      </div>
-    </aside>
-
-  </div>
-
-  <!-- No JS required for the basic behavior; small helper to keep tab focus inside gallery when tabbing -->
-  <script>
-    // Basic accessibility: Keep keyboard focus from moving to page elements outside of the gallery
-    // (This is optional and can be removed; included to show the gallery is the interactive scroll region.)
-    (function(){
-      var gallery = document.querySelector('.gallery-wrap');
-      // allow keyboard scrolling when focused
-      gallery.tabIndex = 0;
-    })();
-  </script>
 </body>
 </html>
