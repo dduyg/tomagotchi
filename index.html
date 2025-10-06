@@ -122,10 +122,6 @@
             border-color: #ff00ff;
         }
         
-        .post-category {
-            font-size: 0.8em;
-            margin-bottom: 15px;
-        }     
         .post-title {
             font-size: 1.5em;
             margin-bottom: 10px;
@@ -139,7 +135,7 @@
             line-height: 1.6;
             margin-bottom: 15px;
         }      
-        .post-author {
+        .post-category {
             font-size: 0.9em;
             font-style: italic;
         }
@@ -181,7 +177,7 @@
                     <option value="all">All Categories</option>
                     <option value="cyberwaves">Cyberwaves</option>
                     <option value="digital-ocean">Digital Ocean</option>
-                    <option value="vaporwave">Vaporwave</option>      
+                    <option value="HoloFish_Keeper">HoloFish_Keeper</option>      
                     <option value="tech-depths">Tech Depths</option>
                 </select>  
             </div>
@@ -216,7 +212,6 @@
                 title: "Dolphin Protocol v3.0",
                 category: "tech-depths",
                 date: "2025-09-28",
-                author: "SynthWave_Rider",
                 excerpt: "New communication protocols for navigating the cyber seas. Enhanced with holographic interfaces and bioluminescent data visualization."
             },
             {
@@ -224,7 +219,6 @@
                 title: "Underwater Data Centers",
                 category: "tech-depths",
                 date: "2025-09-20",
-                author: "NeonMermaid",
                 excerpt: "How submerged servers are cooling the future. Exploring the intersection of marine biology and cloud computing infrastructure."
             },
             {
@@ -232,7 +226,6 @@
                 title: "Holographic Coral Reefs",
                 category: "digital-ocean",
                 date: "2025-09-15",
-                author: "PixelSurfer",
                 excerpt: "Building ecosystems in virtual space where light refracts through crystalline data structures creating infinite prismatic possibilities."
             },
             {
@@ -240,23 +233,20 @@
                 title: "AI Mermaids in the Cloud",
                 category: "digital-ocean",
                 date: "2025-08-20",
-                author: "CloudSiren",
                 excerpt: "Artificial intelligence takes aquatic form, swimming through neural networks and singing in binary code beneath waves of data."
             },
             {
                 id: 5,
-                title: "Aesthetic Tides Rising",
+                title: "ErrorAesthetic Tides Rising",
                 category: "cyberwaves",
                 date: "2025-08-15",
-                author: "ErrorAesthetic",
                 excerpt: "When systems crash beautifully, corrupted pixels form artistic waves that wash over our screens in chromatic aberration."
             },
             {
                 id: 6,
                 title: "Virtual Aquariums of Tomorrow",
-                category: "digital-ocean",
+                category: "HoloFish_Keeper",
                 date: "2025-08-10",
-                author: "HoloFish_Keeper",
                 excerpt: "Creating immersive oceanic experiences in VR where impossible creatures swim through impossible waters in mesmerizing loops."
             }
         ];
@@ -273,11 +263,10 @@
             
             grid.innerHTML = postsToRender.map(post => `
                 <div class="post-card">
-                    <span class="post-category">${post.category.replace('-', ' ')}</span>
                     <h2 class="post-title">${post.title}</h2>
                     <div class="post-date">📅 ${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
                     <p class="post-excerpt">${post.excerpt}</p>
-                    <div class="post-author">✧ By ${post.author}</div>
+                    <div class="post-category">✧ ${post.category.replace('-', ' ')}</div>
                 </div>
             `).join('');
         }
