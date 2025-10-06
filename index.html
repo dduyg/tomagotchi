@@ -141,6 +141,29 @@
       width: 60vw;
       max-width: 250px;
     }
+    /* Popup Videos */
+    .popupVideo {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .popupVideo iframe {
+      width: 80vw;
+      max-width: 960px;
+      height: 45vw;
+      max-height: 540px;
+      border: none;
+      box-shadow: 0 0 30px rgba(0,0,0,0.4);
+    }
   </style>
 </head>
 <body>
@@ -166,13 +189,18 @@
   <aside>
     <div class="scroll">
       <div class="gallery">
-        <iframe src="https://www.youtube.com/embed/NYv7HsBr9aM?enablejsapi=1&mute=1" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/GNxBn2CH-vQ?enablejsapi=1&mute=1" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/lJGuXm-vkEk?enablejsapi=1&mute=1" allowfullscreen></iframe>
-        <iframe src="https://www.youtube.com/embed/XH1EXDHVG9s?enablejsapi=1&mute=1" allowfullscreen></iframe>
+        <iframe data-video="NYv7HsBr9aM" src="https://www.youtube.com/embed/NYv7HsBr9aM?enablejsapi=1&mute=1" allowfullscreen></iframe>
+        <iframe data-video="GNxBn2CH-vQ" src="https://www.youtube.com/embed/GNxBn2CH-vQ?enablejsapi=1&mute=1" allowfullscreen></iframe>
+        <iframe data-video="lJGuXm-vkEk" src="https://www.youtube.com/embed/lJGuXm-vkEk?enablejsapi=1&mute=1" allowfullscreen></iframe>
+        <iframe data-video="XH1EXDHVG9s" src="https://www.youtube.com/embed/XH1EXDHVG9s?enablejsapi=1&mute=1" allowfullscreen></iframe>
       </div>
     </div>
   </aside>
+
+  <!-- Popup Videos -->
+  <div class="popupVideo" id="popupVideo">
+    <iframe id="popupFrame" src="" allowfullscreen></iframe>
+  </div>
 
   <script>
     // Load YouTube API dynamically
@@ -203,7 +231,7 @@
         players.push(player);
       });
 
-      // Observe visibility
+      // Observe visibility for autoplay
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           const iframe = entry.target;
@@ -222,7 +250,15 @@
         });
       }, { threshold: 0.6 });
 
-      iframes.forEach(iframe => observer.observe(iframe));
+      iframes.forEach(iframe => {
+        observer.observe(iframe);
+
+        // When clicked, open popup
+        iframe.addEventListener('click', (e) => {
+          e.stopPropagation();
+          openPopup(iframe.dataset.video);
+        });
+      });
     }
 
     function handleStateChange(event, index) {
@@ -232,6 +268,27 @@
         });
       }
     }
+
+    // Popup logic
+    const popup = document.getElementById('popupVideo');
+    const popupFrame = document.getElementById('popupFrame');
+
+    function openPopup(videoId) {
+      popupFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      popup.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePopup() {
+      popupFrame.src = "";
+      popup.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    popup.addEventListener('click', closePopup);
+    window.addEventListener('keydown', (e) => {
+      if (e.key === "Escape") closePopup();
+    });
 
     window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
   </script>
