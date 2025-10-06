@@ -141,38 +141,6 @@
       width: 60vw;
       max-width: 250px;
     }
-    /* Popup Videos */
-    .popupVideo {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-    .popupVideo.active {
-      display: flex;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-    .popupVideo iframe {
-      width: 80vw;
-      max-width: 900px;
-      height: 50vw;
-      max-height: 500px;
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.6);
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
   </style>
 </head>
 <body>
@@ -206,11 +174,6 @@
     </div>
   </aside>
 
-  <!-- Popup Videos -->
-  <div class="popupVideo" id="popupVideo">
-    <iframe src="" allowfullscreen></iframe>
-  </div>
-
   <script>
     // Load YouTube API dynamically
     const tag = document.createElement('script');
@@ -220,7 +183,7 @@
     let players = [];
     let userInteracted = false;
 
-    // Enable sound after first click/touch
+    // Unmute all players once user interacts
     function enableSound() {
       if (userInteracted) return;
       userInteracted = true;
@@ -260,9 +223,6 @@
       }, { threshold: 0.6 });
 
       iframes.forEach(iframe => observer.observe(iframe));
-
-      // Add click event for popup
-      setupPopupHandlers(iframes);
     }
 
     function handleStateChange(event, index) {
@@ -270,44 +230,6 @@
         players.forEach((player, i) => {
           if (i !== index) player.pauseVideo();
         });
-      }
-    }
-
-    function setupPopupHandlers(iframes) {
-      const popup = document.getElementById('popupVideo');
-      const popupIframe = popup.querySelector('iframe');
-
-      iframes.forEach((iframe, i) => {
-        iframe.addEventListener('click', () => {
-          // Pause all background videos
-          players.forEach(p => p.pauseVideo && p.pauseVideo());
-
-          // Get clean video ID from original iframe
-          const src = iframe.src.replace('&mute=1', '').replace('?enablejsapi=1', '');
-          const embedUrl = src.split('?')[0];
-          const videoId = embedUrl.split('/embed/')[1];
-
-          // Load video in popup with sound on
-          popupIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-          popup.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        });
-      });
-
-      // Close popup when clicking outside iframe
-      popup.addEventListener('click', (e) => {
-        if (e.target === popup) closePopup();
-      });
-
-      // Close popup with ESC key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closePopup();
-      });
-
-      function closePopup() {
-        popup.classList.remove('active');
-        popupIframe.src = '';
-        document.body.style.overflow = 'auto';
       }
     }
 
