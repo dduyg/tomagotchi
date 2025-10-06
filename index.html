@@ -49,14 +49,6 @@
       mix-blend-mode:overlay;
     }
 
-    /* floating shapes */
-    .shape{
-      position:absolute;filter:drop-shadow(0 10px 30px rgba(0,0,0,0.25));opacity:0.9;
-      transform-origin:center;will-change:transform;mix-blend-mode:screen;
-    }
-    .shape.sphere{right:8%;top:10%;width:160px;height:160px;border-radius:50%;background:conic-gradient(from 120deg, rgba(255,255,255,0.18), rgba(0,0,0,0.08));border:4px solid rgba(255,255,255,0.06)}
-    .shape.triangle{left:6%;bottom:18%;width:0;height:0;border-left:70px solid transparent;border-right:70px solid transparent;border-bottom:120px solid rgba(255,255,255,0.06);filter:blur(0.6px);}
-
     /* container */
     .hero{
       width:95%;max-width:1200px;padding:48px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));backdrop-filter: blur(8px) saturate(120%);box-shadow: 0 10px 40px rgba(11,11,18,0.45);border:1px solid rgba(255,255,255,0.06);
@@ -68,8 +60,7 @@
     @media(max-width:520px){.hero{padding:28px;border-radius:12px}}
 
     /* left column */
-    .kicker{
-      display:inline-block;padding:6px 12px;border-radius:999px;background:linear-gradient(90deg, rgba(139,92,246,0.12), rgba(107,231,255,0.06));color:var(--text-dark);font-weight:700;font-size:0.78rem;margin-bottom:14px}
+    .kicker{display:inline-block;padding:6px 12px;border-radius:999px;background:linear-gradient(90deg, rgba(139,92,246,0.12), rgba(107,231,255,0.06));color:var(--text-dark);font-weight:700;font-size:0.78rem;margin-bottom:14px}
 
     .btn{
       appearance:none;border:0;padding:14px 22px;border-radius:14px;font-weight:800;cursor:pointer;font-size:0.88rem;letter-spacing:0.6px;transition:transform .18s ease, box-shadow .18s ease;
@@ -78,22 +69,10 @@
     }
     .btn.secondary{background:transparent;border:1px solid rgba(11,11,18,0.06);color:var(--text-dark);backdrop-filter: blur(4px)}
     .btn:active{transform:translateY(2px)}
-
-    /* subtle animations */
-    @keyframes floaty{0%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(6deg)}100%{transform:translateY(0) rotate(0deg)}}
-    .shape {animation: floaty 6s ease-in-out infinite}
-
-    .logo-strap{font-family:'Press Start 2P';font-size:12px;color:rgba(11,11,18,0.9);letter-spacing:1px}
-
-    /* small responsive headline size */
-    @media(max-width:780px){.hero-content h1{font-size:2rem}}
   </style>
 </head>
 <body>
-
   <div class="grid-3d" aria-hidden="true"></div>
-  <div class="shape sphere" aria-hidden="true"></div>
-  <div class="shape triangle" aria-hidden="true"></div>
 
   <main class="hero" role="main">
       <div class="kicker">NEW RELEASE</div>
@@ -122,18 +101,6 @@
       secondaryBtn.blur();
       location.hash = '#tracks';
     });
-
-    // micro-animation for shapes
-    const sphere = document.querySelector('.shape.sphere');
-    const triangle = document.querySelector('.shape.triangle');
-    let t = 0;
-    function tick(){
-      t += 0.005;
-      sphere.style.transform = `translateY(${Math.sin(t)*6}px) rotate(${Math.sin(t/1.4)*8}deg)`;
-      triangle.style.transform = `translateY(${Math.cos(t)*4}px) rotate(${Math.cos(t/2)*2}deg)`;
-      requestAnimationFrame(tick);
-    }
-    tick();
   </script>
 </body>
 </html>
