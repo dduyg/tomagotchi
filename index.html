@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>✧ Seapunk Dreams</title>
+    <title>LiminalLoop</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }   
         body {
@@ -52,13 +52,13 @@
             50% { opacity: 0.7; }
         }
         
-        .content-section {
+        section {
             margin-bottom: 30px;
             animation: fadeInUp 1s ease;
             position: relative;
             overflow: hidden;
         } 
-        .content-section::before {
+        section::before {
             content: '';
             position: absolute;
             top: -50%;
@@ -97,38 +97,6 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
-        
-        .glitch {
-            position: relative;
-            display: inline-block;
-        }     
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            left: 0;
-            top: 0;
-        }     
-        .glitch::before {
-            animation: glitch1 0.3s infinite;
-            color: #ff00ff;
-            z-index: -1;
-        }     
-        .glitch::after {
-            animation: glitch2 0.3s infinite;
-            color: #00ffff;
-            z-index: -2;
-        }  
-        @keyframes glitch1 {
-            0%, 100% { transform: translate(0); }
-            33% { transform: translate(-2px, 2px); }
-            66% { transform: translate(2px, -2px); }
-        }    
-        @keyframes glitch2 {
-            0%, 100% { transform: translate(0); }
-            33% { transform: translate(2px, -2px); }
-            66% { transform: translate(-2px, 2px); }
-        }
     </style>
 </head>
 <body>
@@ -136,31 +104,23 @@
     
     <div class="container">
         <header>
-            <h1 class="glitch" data-text="✧ Est. 2011">✧ Est. 2011</h1>
-            <p class="tagline">Forever in the Waves</p>
+            <h1>✧ Est. 2011</h1>
+            <p class="tagline">Forever in the Waves🌊 ∿∿∿ 🌊 ∿∿∿</p>
         </header>
         
-        <div class="waves">🌊 ∿∿∿ 🌊 ∿∿∿ 🌊</div>
-        
-        <div class="content-section">
-            <h2>OUR VISION</h2>
-            <p>We envision a world where technology and nature merge into something beautifully chaotic. Where retro web graphics meet marine biology. Where Windows 95 screensavers become portals to alternate dimensions filled with crystalline coral reefs and digital cetaceans.</p>
-            <p>Our mission is to create spaces—both digital and physical—that celebrate this unique fusion. Through music, art, fashion, and community, we're building an underwater utopia one pixel at a time.</p>
-        </div>
-        
-        <div class="content-section">
-            <h2>WHAT WE DO</h2>
-            <p>We curate experiences that transport you to the iridescent depths. From hosting virtual aquarium parties to designing apparel that channels early internet nostalgia mixed with oceancore aesthetics, we're all about that cyan-magenta-glitch life.</p>
+        <section>
+            <h3>Our Vision</h3>
+            <p>We curate experiences that transport <span class="dolphin">🐬</span> you to the iridescent depths. From hosting virtual aquarium parties to designing apparel that channels early internet nostalgia mixed with oceancore aesthetics, we're all about that cyan-magenta-glitch life.</p>
             <p>Our collective produces music that sounds like dial-up tones remixed with whale songs, creates art that glitches like corrupted JPEGs of tropical reefs, and builds communities where everyone speaks in emojis and dreams in gradients.</p>
-        </div>
+        </section>
         
         <div class="waves">✧･ﾟ: *✧･ﾟ:* 🐚 *:･ﾟ✧*:･ﾟ✧</div>
         
-        <div class="content-section">
-            <h2>JOIN THE WAVE</h2>
+        <section>
+            <h3>Join The Wave</h3>
             <p>Whether you're a digital mermaid, a cyber sailor, or just someone who appreciates the aesthetic of old school internet culture mixed with oceanic vibes, you belong here. We're not just a community—we're a <strong>digital ecosystem</strong>.</p>
             <p>Dive in. The water's neon. The dolphins are waiting. And somewhere in the depths, a mixtape of vaporwave and ocean ambiance is playing just for you.</p>
-        </div>
+        </section>
     </div>
 </body>
 </html>
