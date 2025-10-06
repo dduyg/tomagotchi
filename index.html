@@ -39,7 +39,6 @@
       top: 0; left: 0; right: 0; bottom: 0;
       pointer-events: none; /* allows gallery to scroll */
       z-index: 1;
-   
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -84,8 +83,7 @@
     }
     .scroll {
       position: absolute;
-      left: 0; right: 0;
-      top: 0; bottom: 0;
+      left: 0; right: 0; top: 0; bottom: 0;
       width: 100vw;
       height: 100vh;
       overflow-y: scroll;
@@ -183,6 +181,16 @@
     document.body.appendChild(tag);
 
     let players = [];
+    let userInteracted = false;
+
+    // Unmute all players once user interacts
+    function enableSound() {
+      if (userInteracted) return;
+      userInteracted = true;
+      players.forEach(p => { if (p.unMute) p.unMute(); });
+    }
+    document.addEventListener('click', enableSound);
+    document.addEventListener('touchstart', enableSound);
 
     function onYouTubeIframeAPIReady() {
       const iframes = document.querySelectorAll('.gallery iframe');
@@ -205,6 +213,7 @@
             if (players[index]?.playVideo) {
               players.forEach((p, i) => { if (i !== index) p.pauseVideo(); });
               players[index].playVideo();
+              if (userInteracted) players[index].unMute();
             }
           } else {
             if (players[index]?.pauseVideo) players[index].pauseVideo();
