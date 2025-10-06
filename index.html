@@ -3,251 +3,478 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liminal🌅Loop</title>
-    <link href="https://fonts.googleapis.com/css2?family=Diplomata+SC&display=swap" rel="stylesheet">
+    <title>🌊 Digital Depths Blog 🐬</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Press+Start+2P&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: "Diplomata SC", serif;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a237e 25%, #006064 50%, #1a237e 75%, #0a0e27 100%);
+            background-size: 400% 400%;
+            animation: oceanWave 15s ease infinite;
+            color: #00ffff;
+            min-height: 100vh;
             overflow-x: hidden;
-            background: linear-gradient(180deg, #1a0033 0%, #330066 50%, #ff006e 100%);
-            color: #fff;
-            min-height: 100vh;
         }
-        .grid-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(rgba(255, 0, 255, 0.3) 2px, transparent 2px), linear-gradient(90deg, rgba(255, 0, 255, 0.3) 2px, transparent 2px);
-            background-size: 50px 50px;
-            perspective: 1000px;
-            transform: rotateX(60deg) scale(2);
-            transform-origin: center bottom;
-            z-index: 1;
-            animation: gridMove 20s linear infinite;
+        
+        @keyframes oceanWave {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        @keyframes gridMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 0 50px; }
-        }
-        .sun {
-            position: fixed;
-            bottom: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(180deg, #ff006e 0%, #ffbe0b 50%, #ff006e 100%);
-            border-radius: 50%;
-            box-shadow: 0 0 100px #ff006e, 0 0 200px #ff006e, inset 0 0 50px rgba(255, 190, 11, 0.5);
-            z-index: 2;
-            animation: pulse 4s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.05); }
-        }
-        .sun::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 110%;
-            height: 110%;
-            border-radius: 50%;
-            background: repeating-linear-gradient(transparent, transparent 20px, rgba(255, 0, 110, 0.3) 20px, rgba(255, 0, 110, 0.3) 22px);
-        }
-
+        
         .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
             position: relative;
-            z-index: 10;
-            min-height: 100vh;
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            position: relative;
+        }
+        
+        h1 {
+            font-family: 'Press Start+2P', cursive;
+            font-size: 2.5em;
+            color: #00ffff;
+            text-shadow: 
+                0 0 10px #00ffff,
+                0 0 20px #00ffff,
+                0 0 30px #ff00ff,
+                0 0 40px #ff00ff;
+            animation: glow 2s ease-in-out infinite alternate;
+            margin-bottom: 10px;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 
+                    0 0 10px #00ffff,
+                    0 0 20px #00ffff,
+                    0 0 30px #ff00ff,
+                    0 0 40px #ff00ff;
+            }
+            to {
+                text-shadow: 
+                    0 0 20px #00ffff,
+                    0 0 30px #00ffff,
+                    0 0 40px #ff00ff,
+                    0 0 50px #ff00ff,
+                    0 0 60px #ff00ff;
+            }
+        }
+        
+        .subtitle {
+            color: #ff00ff;
+            font-size: 1.2em;
+            text-shadow: 0 0 10px #ff00ff;
+        }
+        
+        .filter-section {
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid #00ffff;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 
+                0 0 20px rgba(0, 255, 255, 0.3),
+                inset 0 0 20px rgba(0, 255, 255, 0.1);
+        }
+        
+        .filter-controls {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .filter-group {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
+            gap: 10px;
         }
-
-        h1 {
-            font-size: clamp(2rem, 8vw, 5rem);
-            text-align: center;
-            margin-bottom: 1rem;
-            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 2px 2px 0 #ff006e, 4px 4px 0 #ffbe0b;
-            animation: glitch 3s infinite;
-            letter-spacing: 0.2em;
+        
+        label {
+            color: #ff00ff;
+            font-weight: bold;
+            text-shadow: 0 0 5px #ff00ff;
         }
-        @keyframes glitch {
-            0%, 90%, 100% { transform: translate(0); }
-            92% { transform: translate(-2px, 2px); }
-            94% { transform: translate(2px, -2px); }
-            96% { transform: translate(-2px, -2px); }
-            98% { transform: translate(2px, 2px); }
-        }
-        .subtitle {
-            font-size: clamp(1rem, 3vw, 1.5rem);
-            text-align: center;
-            margin-bottom: 3rem;
+        
+        select, input {
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid #00ffff;
             color: #00ffff;
-            text-shadow: 0 0 10px #00ffff;
-            letter-spacing: 0.3em;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1em;
+            outline: none;
+            transition: all 0.3s;
         }
-
-        .cta-button {
-            padding: 1.5rem 3rem;
-            font-size: 1.2rem;
-            font-family: 'Major Mono Display', monospace;
-            background: linear-gradient(45deg, #ff006e, #8338ec, #00ffff);
-            border: 3px solid #00ffff;
-            color: #fff;
+        
+        select:hover, input:hover {
+            box-shadow: 0 0 15px #00ffff;
+            border-color: #ff00ff;
+        }
+        
+        select:focus, input:focus {
+            box-shadow: 0 0 20px #ff00ff;
+            border-color: #ff00ff;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #00ffff, #ff00ff);
+            border: none;
+            color: #000;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            font-size: 1em;
             cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+        
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 0, 255, 0.8);
+        }
+        
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .post-card {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid #00ffff;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s;
             position: relative;
             overflow: hidden;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), inset 0 0 20px rgba(255, 0, 110, 0.3);
-            transition: all 0.3s ease;
         }
-        .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px rgba(0, 255, 255, 0.8), inset 0 0 40px rgba(255, 0, 110, 0.5);
-        }
-        .cta-button::before {
+        
+        .post-card::before {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(0, 255, 255, 0.1),
+                transparent
+            );
             transform: rotate(45deg);
-            animation: shine 3s infinite;
+            animation: shimmer 3s infinite;
         }
-        @keyframes shine {
+        
+        @keyframes shimmer {
             0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
             100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
-
-        .palm-trees {
+        
+        .post-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 
+                0 0 30px rgba(0, 255, 255, 0.5),
+                0 0 40px rgba(255, 0, 255, 0.3);
+            border-color: #ff00ff;
+        }
+        
+        .post-category {
+            display: inline-block;
+            background: rgba(255, 0, 255, 0.3);
+            border: 1px solid #ff00ff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-bottom: 15px;
+            text-shadow: 0 0 5px #ff00ff;
+        }
+        
+        .post-title {
+            font-size: 1.5em;
+            color: #00ffff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #00ffff;
+        }
+        
+        .post-date {
+            color: #ff00ff;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        
+        .post-excerpt {
+            color: #a0f0ff;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .post-author {
+            color: #00ffff;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #ff00ff;
+            font-size: 1.5em;
+            text-shadow: 0 0 10px #ff00ff;
+        }
+        
+        .dolphins {
             position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 40vh;
-            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
-            z-index: 5;
+            font-size: 3em;
+            opacity: 0.3;
             pointer-events: none;
+            z-index: 0;
         }
-        .palm {
-            position: absolute;
-            bottom: 0;
-            width: 0;
-            height: 0;
-            border-left: 30px solid transparent;
-            border-right: 30px solid transparent;
-            border-bottom: 200px solid rgba(255, 0, 110, 0.6);
-            filter: blur(1px);
-        }
-        .palm:nth-child(1) {
-            left: 10%;
-            transform: skew(-10deg);
-            border-bottom-color: rgba(131, 56, 236, 0.7);
-        }
-        .palm:nth-child(2) {
-            left: 25%;
-            height: 150px;
-            border-bottom: 180px solid rgba(255, 0, 110, 0.5);
-        }
-        .palm:nth-child(3) {
-            right: 20%;
-            transform: skew(15deg);
-            border-bottom-color: rgba(0, 255, 255, 0.6);
-        }
-        .palm:nth-child(4) {
-            right: 5%;
-            height: 220px;
-            border-bottom: 220px solid rgba(255, 190, 11, 0.5);
-            transform: skew(-5deg);
-        }
-
-        .scanlines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 2px);
-            pointer-events: none;
-            z-index: 100;
-            animation: flicker 0.15s infinite;
-        }
-        @keyframes flicker {
-            0%, 100% { opacity: 0.9; }
-            50% { opacity: 1; }
-        }
-
-        .stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            z-index: 1;
-        }
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 0 5px white;
-            animation: twinkle 2s infinite;
-        }
-        @keyframes twinkle {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            
+            .filter-controls {
+                flex-direction: column;
+            }
+            
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="grid-background"></div>
-    <div class="sun"></div> 
-    <div class="stars" id="stars"></div>
+    <div class="dolphins" style="top: 10%; left: 10%;">🐬</div>
+    <div class="dolphins" style="top: 60%; right: 15%;">🐚</div>
+    <div class="dolphins" style="bottom: 10%; left: 20%;">🌊</div>
     
-    <div class="palm-trees">
-        <div class="palm"></div>
-        <div class="palm"></div>
-        <div class="palm"></div>
-        <div class="palm"></div>
-    </div>
-
     <div class="container">
-        <h1>Virtual Tides</h1>
-        <p class="subtitle">Digital Tidebreaker</p>
-        <button class="cta-button">ENTER ザ</button>
+        <header>
+            <h1>🌊 DIGITAL DEPTHS 🐬</h1>
+            <p class="subtitle">✧ Navigate the Cyber Ocean ✧</p>
+        </header>
+        
+        <div class="filter-section">
+            <div class="filter-controls">
+                <div class="filter-group">
+                    <label for="categoryFilter">Category</label>
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="cyberwaves">Cyberwaves</option>
+                        <option value="digital-ocean">Digital Ocean</option>
+                        <option value="vaporwave">Vaporwave</option>
+                        <option value="tech-depths">Tech Depths</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="searchInput">Search</label>
+                    <input type="text" id="searchInput" placeholder="Search posts...">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="sortFilter">Sort By</label>
+                    <select id="sortFilter">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="title">Title A-Z</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label style="opacity: 0;">Reset</label>
+                    <button id="resetBtn">Reset Filters</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="posts-grid" id="postsGrid"></div>
     </div>
-
-    <div class="scanlines"></div>
-
+    
     <script>
-        const starsContainer = document.getElementById('stars');
-        for (let i = 0; i < 100; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.animationDelay = Math.random() * 2 + 's';
-            starsContainer.appendChild(star);
+        const posts = [
+            {
+                id: 1,
+                title: "Diving Into the Neon Abyss",
+                category: "cyberwaves",
+                date: "2025-10-01",
+                author: "AquaPixel",
+                excerpt: "Exploring the depths of digital consciousness where cyan meets magenta in perfect harmony. The ocean floor glows with data streams."
+            },
+            {
+                id: 2,
+                title: "Dolphin Protocol v3.0",
+                category: "tech-depths",
+                date: "2025-09-28",
+                author: "SynthWave_Rider",
+                excerpt: "New communication protocols for navigating the cyber seas. Enhanced with holographic interfaces and bioluminescent data visualization."
+            },
+            {
+                id: 3,
+                title: "Aesthetic Tides Rising",
+                category: "vaporwave",
+                date: "2025-09-25",
+                author: "NeonMermaid",
+                excerpt: "The convergence of retro futurism and oceanic mysticism creates waves of pure aesthetic energy through the digital realm."
+            },
+            {
+                id: 4,
+                title: "Underwater Data Centers",
+                category: "tech-depths",
+                date: "2025-09-20",
+                author: "DeepDiver_404",
+                excerpt: "How submerged servers are cooling the future. Exploring the intersection of marine biology and cloud computing infrastructure."
+            },
+            {
+                id: 5,
+                title: "Holographic Coral Reefs",
+                category: "digital-ocean",
+                date: "2025-09-15",
+                author: "PixelSurfer",
+                excerpt: "Building ecosystems in virtual space where light refracts through crystalline data structures creating infinite prismatic possibilities."
+            },
+            {
+                id: 6,
+                title: "Cyan Dreams and Magenta Schemes",
+                category: "vaporwave",
+                date: "2025-09-10",
+                author: "RetroWave_Queen",
+                excerpt: "A journey through color theory in the digital age. How neon palettes evoke nostalgia for a future that never existed."
+            },
+            {
+                id: 7,
+                title: "The Tide of Cryptocurrency",
+                category: "cyberwaves",
+                date: "2025-09-05",
+                author: "CryptoKraken",
+                excerpt: "Digital currencies flow like ocean currents through the blockchain, creating new economies in the depths of decentralization."
+            },
+            {
+                id: 8,
+                title: "Bioluminescent UX Design",
+                category: "tech-depths",
+                date: "2025-08-30",
+                author: "GlowCode_Dev",
+                excerpt: "Taking inspiration from deep sea creatures to illuminate user interfaces with organic, glowing interactive elements."
+            },
+            {
+                id: 9,
+                title: "Synthwave Sunset Sessions",
+                category: "vaporwave",
+                date: "2025-08-25",
+                author: "SunsetStreamer",
+                excerpt: "When the digital sun sets over virtual beaches, the sky erupts in impossible colors that defy the laws of physics."
+            },
+            {
+                id: 10,
+                title: "AI Mermaids in the Cloud",
+                category: "digital-ocean",
+                date: "2025-08-20",
+                author: "CloudSiren",
+                excerpt: "Artificial intelligence takes aquatic form, swimming through neural networks and singing in binary code beneath waves of data."
+            },
+            {
+                id: 11,
+                title: "Glitch Art Tsunamis",
+                category: "cyberwaves",
+                date: "2025-08-15",
+                author: "ErrorAesthetic",
+                excerpt: "When systems crash beautifully, corrupted pixels form artistic waves that wash over our screens in chromatic aberration."
+            },
+            {
+                id: 12,
+                title: "Virtual Aquariums of Tomorrow",
+                category: "digital-ocean",
+                date: "2025-08-10",
+                author: "HoloFish_Keeper",
+                excerpt: "Creating immersive oceanic experiences in VR where impossible creatures swim through impossible waters in mesmerizing loops."
+            }
+        ];
+        
+        let filteredPosts = [...posts];
+        
+        function renderPosts(postsToRender) {
+            const grid = document.getElementById('postsGrid');
+            
+            if (postsToRender.length === 0) {
+                grid.innerHTML = '<div class="no-results">🐚 No posts found in these waters 🐚</div>';
+                return;
+            }
+            
+            grid.innerHTML = postsToRender.map(post => `
+                <div class="post-card">
+                    <span class="post-category">${post.category.replace('-', ' ')}</span>
+                    <h2 class="post-title">${post.title}</h2>
+                    <div class="post-date">📅 ${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+                    <p class="post-excerpt">${post.excerpt}</p>
+                    <div class="post-author">✧ By ${post.author}</div>
+                </div>
+            `).join('');
         }
-
-        document.querySelector('.cta-button').addEventListener('click', function() {
-            this.textContent = 'Coded Currentsようこそ';
-            setTimeout(() => {
-                this.textContent = 'ENTER ザ';
-            }, 2000);
-        });
+        
+        function filterPosts() {
+            const category = document.getElementById('categoryFilter').value;
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const sortBy = document.getElementById('sortFilter').value;
+            
+            filteredPosts = posts.filter(post => {
+                const matchesCategory = category === 'all' || post.category === category;
+                const matchesSearch = searchTerm === '' || 
+                    post.title.toLowerCase().includes(searchTerm) ||
+                    post.excerpt.toLowerCase().includes(searchTerm) ||
+                    post.author.toLowerCase().includes(searchTerm);
+                
+                return matchesCategory && matchesSearch;
+            });
+            
+            if (sortBy === 'newest') {
+                filteredPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+            } else if (sortBy === 'oldest') {
+                filteredPosts.sort((a, b) => new Date(a.date) - new Date(b.date));
+            } else if (sortBy === 'title') {
+                filteredPosts.sort((a, b) => a.title.localeCompare(b.title));
+            }
+            
+            renderPosts(filteredPosts);
+        }
+        
+        function resetFilters() {
+            document.getElementById('categoryFilter').value = 'all';
+            document.getElementById('searchInput').value = '';
+            document.getElementById('sortFilter').value = 'newest';
+            filterPosts();
+        }
+        
+        document.getElementById('categoryFilter').addEventListener('change', filterPosts);
+        document.getElementById('searchInput').addEventListener('input', filterPosts);
+        document.getElementById('sortFilter').addEventListener('change', filterPosts);
+        document.getElementById('resetBtn').addEventListener('click', resetFilters);
+        
+        renderPosts(filteredPosts);
     </script>
 </body>
 </html>
