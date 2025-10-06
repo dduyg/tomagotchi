@@ -38,29 +38,11 @@
         h1 {
             font-size: 2.5em;
             color: #00ffff;
-            animation: glow 2s ease-in-out infinite alternate;
             margin-bottom: 10px;
         }     
-        @keyframes glow {
-            from { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #ff00ff, 0 0 40px #ff00ff; }
-            to { text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 60px #ff00ff; }
-        }
-        
         .subtitle {
             color: #ff00ff;
             font-size: 1.2em;
-            text-shadow: 0 0 10px #ff00ff;
-        }
-        
-        .filter-section {
-            background: rgba(0, 255, 255, 0.1);
-            border: 2px solid #00ffff;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 40px;
-            box-shadow: 
-                0 0 20px rgba(0, 255, 255, 0.3),
-                inset 0 0 20px rgba(0, 255, 255, 0.1);
         }
         
         .filter-controls {
@@ -230,40 +212,38 @@
             <p class="subtitle">✧ Navigate the Cyber Ocean ✧</p>
         </header>
         
-        <div class="filter-section">
-            <div class="filter-controls">
-                <div class="filter-group">
-                    <label for="categoryFilter">Category</label>
-                    <select id="categoryFilter">
-                        <option value="all">All Categories</option>
-                        <option value="cyberwaves">Cyberwaves</option>
-                        <option value="digital-ocean">Digital Ocean</option>
-                        <option value="vaporwave">Vaporwave</option>
-                        <option value="tech-depths">Tech Depths</option>
-                    </select>
-                </div>
+        <div class="filter-controls">     
+            <div class="filter-group">     
+                <label for="categoryFilter">Category</label>     
+                <select id="categoryFilter"> 
+                    <option value="all">All Categories</option>
+                    <option value="cyberwaves">Cyberwaves</option>
+                    <option value="digital-ocean">Digital Ocean</option>
+                    <option value="vaporwave">Vaporwave</option>      
+                    <option value="tech-depths">Tech Depths</option>
+                </select>  
+            </div>
+               
+            <div class="filter-group">
+                <label for="searchInput">Search</label>
+                <input type="text" id="searchInput" placeholder="Search posts..."> 
+            </div>         
+               
+            <div class="filter-group">     
+                <label for="sortFilter">Sort By</label>
+                <select id="sortFilter">     
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="title">Title A-Z</option>   
+                </select>
+            </div>
                 
-                <div class="filter-group">
-                    <label for="searchInput">Search</label>
-                    <input type="text" id="searchInput" placeholder="Search posts...">
-                </div>
-                
-                <div class="filter-group">
-                    <label for="sortFilter">Sort By</label>
-                    <select id="sortFilter">
-                        <option value="newest">Newest First</option>
-                        <option value="oldest">Oldest First</option>
-                        <option value="title">Title A-Z</option>
-                    </select>
-                </div>
-                
-                <div class="filter-group">
-                    <label style="opacity: 0;">Reset</label>
-                    <button id="resetBtn">Reset Filters</button>
-                </div>
+            <div class="filter-group">    
+                <label style="opacity: 0;">Reset</label>
+                <button id="resetBtn">Reset Filters</button>
             </div>
         </div>
-        
+          
         <div class="posts-grid" id="postsGrid"></div>
     </div>
     
