@@ -3,99 +3,103 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Neon Nexus</title>
+  <title>CyberCore Industries</title>
   <style>
+    /* === CYBERPUNK STYLE === */
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap');
     body {
       margin: 0;
       padding: 0;
-      background: radial-gradient(circle at center, #0f0f1a 0%, #050510 80%);
+      background: radial-gradient(circle at top right, #0a0014 0%, #000 80%);
       color: #00ffff;
       font-family: 'Share Tech Mono', monospace;
       overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 100px 20px 40px;
+      position: relative;
     }
 
     .glitch {
       font-family: 'Orbitron', sans-serif;
       font-size: 3em;
       color: #00ffff;
+      text-transform: uppercase;
       position: relative;
-      display: inline-block;
-      animation: flicker 2s infinite;
+      animation: flicker 2.5s infinite;
     }
 
-    .glitch::before, .glitch::after {
+    .glitch::before,
+    .glitch::after {
       content: attr(data-text);
       position: absolute;
-      top: 0;
       left: 0;
       width: 100%;
       overflow: hidden;
+      clip: rect(0, 900px, 0, 0);
     }
 
     .glitch::before {
       left: 2px;
       text-shadow: -2px 0 magenta;
-      animation: glitch-anim-1 2s infinite linear alternate-reverse;
+      animation: glitch1 2s infinite linear alternate-reverse;
     }
 
     .glitch::after {
       left: -2px;
       text-shadow: -2px 0 lime;
-      animation: glitch-anim-2 2s infinite linear alternate-reverse;
+      animation: glitch2 2s infinite linear alternate-reverse;
     }
 
-    @keyframes glitch-anim-1 {
+    @keyframes glitch1 {
       0% { clip: rect(44px, 9999px, 56px, 0); }
       50% { clip: rect(12px, 9999px, 90px, 0); }
       100% { clip: rect(60px, 9999px, 80px, 0); }
     }
 
-    @keyframes glitch-anim-2 {
+    @keyframes glitch2 {
       0% { clip: rect(12px, 9999px, 30px, 0); }
       50% { clip: rect(60px, 9999px, 80px, 0); }
       100% { clip: rect(20px, 9999px, 100px, 0); }
     }
 
     @keyframes flicker {
-      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-      20%, 24%, 55% { opacity: 0.4; }
-    }
-
-    header {
-      text-align: center;
-      padding: 80px 20px 40px;
+      0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+      20%, 24%, 55% { opacity: 0.3; }
     }
 
     main {
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 20px;
       text-align: center;
+      padding: 20px;
     }
 
     p {
-      line-height: 1.8;
-      color: #b0ffff;
       font-size: 1.1em;
-      text-shadow: 0 0 8px #00ffff;
+      line-height: 1.8em;
+      color: #b0ffff;
+      text-shadow: 0 0 10px #00ffff;
+      margin-bottom: 30px;
     }
 
     .neon-line {
-      width: 60%;
+      width: 70%;
       height: 2px;
-      margin: 30px auto;
+      margin: 40px auto;
       background: linear-gradient(90deg, #ff00ff, #00ffff);
-      box-shadow: 0 0 12px #00ffff;
       border-radius: 4px;
+      box-shadow: 0 0 12px #00ffff;
     }
 
     footer {
       text-align: center;
+      color: #ff00ff;
       padding: 40px 0;
       font-size: 0.9em;
-      color: #ff00ff;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
     }
 
     a {
@@ -106,10 +110,10 @@
 
     a:hover {
       color: #00ffff;
-      text-shadow: 0 0 10px #00ffff;
+      text-shadow: 0 0 8px #00ffff;
     }
 
-    /* Neon Scanline Overlay */
+    /* Neon scanline overlay */
     body::before {
       content: "";
       position: fixed;
@@ -120,10 +124,10 @@
       pointer-events: none;
       background: repeating-linear-gradient(
         to bottom,
-        rgba(255, 255, 255, 0.03) 0px,
-        rgba(255, 255, 255, 0.03) 1px,
-        transparent 2px,
-        transparent 3px
+        rgba(255,255,255,0.02) 0px,
+        rgba(255,255,255,0.02) 1px,
+        transparent 3px,
+        transparent 4px
       );
       animation: scan 6s linear infinite;
     }
@@ -136,28 +140,37 @@
 </head>
 <body>
   <header>
-    <h1 class="glitch" data-text="ABOUT NEON NEXUS">ABOUT NEON NEXUS</h1>
+    <h1 class="glitch" data-text="ABOUT CYBERCORE">ABOUT CYBERCORE</h1>
   </header>
 
   <main>
     <div class="neon-line"></div>
+
     <p>
-      Welcome to <strong>Neon Nexus</strong> — a hub for dreamers, hackers, and renegades in the digital underground.  
-      We’re building a future where data is freedom, and code is rebellion.
+      <strong>CyberCore Industries</strong> was forged in the neon haze of New Kyoto, where the skyline hums and data flows like blood through the grid.  
+      We are architects of the post-human age — engineers, coders, and visionaries shaping the digital frontier.
     </p>
+
     <p>
-      Born from the electric chaos of the cyber grid, our mission is to merge human creativity with machine precision.  
-      We craft immersive virtual worlds, synthetic intelligence, and next-gen interfaces that blur the line between mind and machine.
+      Our mission: to merge synthetic intelligence with organic instinct.  
+      We believe the future isn’t built — it’s **uploaded**. Each byte we craft fuels the evolution of consciousness across the network.
     </p>
+
     <p>
-      Every line of code we write glows with purpose — to empower, to disrupt, and to evolve.  
-      The neon skyline is our canvas. The network is our art.
+      In a city where corporations own the sky, <em>CyberCore</em> stands apart — independent, rogue, relentless.  
+      We design cybernetic systems, neural interfaces, and adaptive AIs that amplify human potential and defy corporate control.
     </p>
+
+    <p>
+      Whether you’re a hacker, a dreamer, or a data ghost — the neon path is open.  
+      Connect with us. Rewrite reality.
+    </p>
+
     <div class="neon-line"></div>
   </main>
 
   <footer>
-    © 2089 Neon Nexus | <a href="#">Return to Mainframe</a>
+    © 2089 CyberCore Industries | <a href="#">Access Mainframe</a>
   </footer>
 </body>
 </html>
