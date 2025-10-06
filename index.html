@@ -3,16 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ＶＡＰＯＲＷＡＶＥ ＡＥＳＴＨＥＴＩＣ</title>
+    <title>Liminal🌅Loop</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Major Mono Display', monospace;
             overflow-x: hidden;
@@ -20,16 +13,13 @@
             color: #fff;
             min-height: 100vh;
         }
-
         .grid-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                linear-gradient(rgba(255, 0, 255, 0.3) 2px, transparent 2px),
-                linear-gradient(90deg, rgba(255, 0, 255, 0.3) 2px, transparent 2px);
+            background-image: linear-gradient(rgba(255, 0, 255, 0.3) 2px, transparent 2px), linear-gradient(90deg, rgba(255, 0, 255, 0.3) 2px, transparent 2px);
             background-size: 50px 50px;
             perspective: 1000px;
             transform: rotateX(60deg) scale(2);
@@ -37,12 +27,10 @@
             z-index: 1;
             animation: gridMove 20s linear infinite;
         }
-
         @keyframes gridMove {
             0% { background-position: 0 0; }
             100% { background-position: 0 50px; }
         }
-
         .sun {
             position: fixed;
             bottom: 20%;
@@ -52,19 +40,14 @@
             height: 300px;
             background: linear-gradient(180deg, #ff006e 0%, #ffbe0b 50%, #ff006e 100%);
             border-radius: 50%;
-            box-shadow: 
-                0 0 100px #ff006e,
-                0 0 200px #ff006e,
-                inset 0 0 50px rgba(255, 190, 11, 0.5);
+            box-shadow: 0 0 100px #ff006e, 0 0 200px #ff006e, inset 0 0 50px rgba(255, 190, 11, 0.5);
             z-index: 2;
             animation: pulse 4s ease-in-out infinite;
         }
-
         @keyframes pulse {
             0%, 100% { transform: translateX(-50%) scale(1); }
             50% { transform: translateX(-50%) scale(1.05); }
         }
-
         .sun::before {
             content: '';
             position: absolute;
@@ -74,12 +57,7 @@
             width: 110%;
             height: 110%;
             border-radius: 50%;
-            background: repeating-linear-gradient(
-                transparent,
-                transparent 20px,
-                rgba(255, 0, 110, 0.3) 20px,
-                rgba(255, 0, 110, 0.3) 22px
-            );
+            background: repeating-linear-gradient(transparent, transparent 20px, rgba(255, 0, 110, 0.3) 20px, rgba(255, 0, 110, 0.3) 22px);
         }
 
         .container {
@@ -97,17 +75,10 @@
             font-size: clamp(2rem, 8vw, 5rem);
             text-align: center;
             margin-bottom: 1rem;
-            text-shadow: 
-                0 0 10px #00ffff,
-                0 0 20px #00ffff,
-                0 0 30px #ff00ff,
-                0 0 40px #ff00ff,
-                2px 2px 0 #ff006e,
-                4px 4px 0 #ffbe0b;
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 2px 2px 0 #ff006e, 4px 4px 0 #ffbe0b;
             animation: glitch 3s infinite;
             letter-spacing: 0.2em;
         }
-
         @keyframes glitch {
             0%, 90%, 100% { transform: translate(0); }
             92% { transform: translate(-2px, 2px); }
@@ -115,7 +86,6 @@
             96% { transform: translate(-2px, -2px); }
             98% { transform: translate(2px, 2px); }
         }
-
         .subtitle {
             font-size: clamp(1rem, 3vw, 1.5rem);
             text-align: center;
@@ -137,19 +107,13 @@
             overflow: hidden;
             text-transform: uppercase;
             letter-spacing: 0.2em;
-            box-shadow: 
-                0 0 20px rgba(0, 255, 255, 0.5),
-                inset 0 0 20px rgba(255, 0, 110, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), inset 0 0 20px rgba(255, 0, 110, 0.3);
             transition: all 0.3s ease;
         }
-
         .cta-button:hover {
             transform: scale(1.05);
-            box-shadow: 
-                0 0 40px rgba(0, 255, 255, 0.8),
-                inset 0 0 40px rgba(255, 0, 110, 0.5);
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.8), inset 0 0 40px rgba(255, 0, 110, 0.5);
         }
-
         .cta-button::before {
             content: '';
             position: absolute;
@@ -157,16 +121,10 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent,
-                rgba(255, 255, 255, 0.3),
-                transparent
-            );
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             transform: rotate(45deg);
             animation: shine 3s infinite;
         }
-
         @keyframes shine {
             0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
             100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
@@ -181,7 +139,6 @@
             z-index: 5;
             pointer-events: none;
         }
-
         .palm {
             position: absolute;
             bottom: 0;
@@ -192,25 +149,21 @@
             border-bottom: 200px solid rgba(255, 0, 110, 0.6);
             filter: blur(1px);
         }
-
         .palm:nth-child(1) {
             left: 10%;
             transform: skew(-10deg);
             border-bottom-color: rgba(131, 56, 236, 0.7);
         }
-
         .palm:nth-child(2) {
             left: 25%;
             height: 150px;
             border-bottom: 180px solid rgba(255, 0, 110, 0.5);
         }
-
         .palm:nth-child(3) {
             right: 20%;
             transform: skew(15deg);
             border-bottom-color: rgba(0, 255, 255, 0.6);
         }
-
         .palm:nth-child(4) {
             right: 5%;
             height: 220px;
@@ -224,18 +177,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: repeating-linear-gradient(
-                0deg,
-                rgba(0, 0, 0, 0.1),
-                rgba(0, 0, 0, 0.1) 1px,
-                transparent 1px,
-                transparent 2px
-            );
+            background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) 1px, transparent 1px, transparent 2px);
             pointer-events: none;
             z-index: 100;
             animation: flicker 0.15s infinite;
         }
-
         @keyframes flicker {
             0%, 100% { opacity: 0.9; }
             50% { opacity: 1; }
@@ -249,7 +195,6 @@
             height: 50%;
             z-index: 1;
         }
-
         .star {
             position: absolute;
             width: 2px;
@@ -259,7 +204,6 @@
             box-shadow: 0 0 5px white;
             animation: twinkle 2s infinite;
         }
-
         @keyframes twinkle {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.3; }
@@ -268,8 +212,7 @@
 </head>
 <body>
     <div class="grid-background"></div>
-    <div class="sun"></div>
-    
+    <div class="sun"></div> 
     <div class="stars" id="stars"></div>
     
     <div class="palm-trees">
@@ -280,9 +223,9 @@
     </div>
 
     <div class="container">
-        <h1>ＶＡＰＯＲＷＡＶＥ</h1>
-        <p class="subtitle">Ａ Ｅ Ｓ Ｔ Ｈ Ｅ Ｔ Ｉ Ｃ</p>
-        <button class="cta-button">Enter ザ Future</button>
+        <h1>Virtual Tides</h1>
+        <p class="subtitle">Digital Tidebreaker</p>
+        <button class="cta-button">ENTER ザ</button>
     </div>
 
     <div class="scanlines"></div>
@@ -299,9 +242,9 @@
         }
 
         document.querySelector('.cta-button').addEventListener('click', function() {
-            this.textContent = 'Welcome ようこそ';
+            this.textContent = 'Coded Currentsようこそ';
             setTimeout(() => {
-                this.textContent = 'Enter ザ Future';
+                this.textContent = 'ENTER ザ';
             }, 2000);
         });
     </script>
