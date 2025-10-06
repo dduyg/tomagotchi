@@ -64,12 +64,13 @@
         }
         select:hover, input:hover {
             transform: translateY(2px);
+            border-color: #FAC898;
         }   
         select:focus, input:focus {
             border-color: #FAC898;
         }
         button {
-            background: gray;
+            background: #E8E8E8;
             border: none;
             color: white;
             padding: 12px 30px;
@@ -78,7 +79,24 @@
             cursor: pointer;
             transition: all 0.3s;
             text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+        button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
         }    
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
         button:hover {
             transform: scale(1.05);
         }
@@ -97,31 +115,12 @@
             border-radius: 16px;
             padding: 25px;
             transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
         }     
-        .post-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            animation: shimmer 3s infinite;
-        }    
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-        
         .post-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 0 30px rgba(0, 255, 255, 0.5), 0 0 40px rgba(255, 0, 255, 0.3);
             border-color: #ff00ff;
-        }
-        
+        }    
         .post-title {
             font-size: 1.5em;
             margin-bottom: 10px;
@@ -166,8 +165,8 @@
     
     <div class="container">
         <header>
-            <h1>DIGITAL DEPTHS</h1>
-            <p class="subtitle">✧ Navigate the Cyber Ocean ✧</p>
+            <h1>DATABASE HANDLING</h1>
+            <p>Ah shit, here we go again.</p>
         </header>
         
         <div class="filter-controls">     
