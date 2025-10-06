@@ -1,40 +1,295 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Seams</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      color: #b0fff7;
-      background: #006a99;
-      font-family: 'Orbitron', sans-serif;
-      text-align: center;
-      overflow-x: hidden;
-    }
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      mix-blend-mode: overlay;
-      opacity: 0.9;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="g"><feTurbulence baseFrequency="0.9" numOctaves="1"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 0.12"/></feComponentTransfer></filter><rect width="100%" height="100%" filter="url(%23g)"/></svg>');
-    }
-
-    section {
-      max-width: 500px;
-      margin: 80px auto 0;
-      backdrop-filter: blur(6px);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✧ Seapunk Dreams</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }   
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(45deg, #0a0e27 0%, #1a0033 25%, #003d5c 50%, #1a0033 75%, #0a0e27 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: #00ffff;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }   
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .ocean-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 0, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            animation: pulse 8s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 1s ease;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        h1 {
+            font-size: 4em;
+            font-weight: 900;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #00ffff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientText 3s ease infinite;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+        
+        @keyframes gradientText {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .tagline {
+            font-size: 1.2em;
+            color: #ff00ff;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.8);
+            animation: flicker 4s infinite alternate;
+        }
+        
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .content-section {
+            background: rgba(0, 20, 40, 0.7);
+            border: 2px solid #00ffff;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 
+                0 0 20px rgba(0, 255, 255, 0.3),
+                inset 0 0 20px rgba(0, 255, 255, 0.1);
+            animation: fadeInUp 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        h2 {
+            color: #ff00ff;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(255, 0, 255, 0.8);
+            position: relative;
+            z-index: 1;
+        }
+        
+        p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: #a0e7ff;
+            font-size: 1.1em;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .dolphin {
+            display: inline-block;
+            animation: swim 2s ease-in-out infinite;
+        }
+        
+        @keyframes swim {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            50% { transform: translateX(10px) rotate(-5deg); }
+        }
+        
+        .waves {
+            font-size: 2em;
+            text-align: center;
+            margin: 30px 0;
+            animation: wave 2s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .glitch {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .glitch::before {
+            animation: glitch1 0.3s infinite;
+            color: #ff00ff;
+            z-index: -1;
+        }
+        
+        .glitch::after {
+            animation: glitch2 0.3s infinite;
+            color: #00ffff;
+            z-index: -2;
+        }
+        
+        @keyframes glitch1 {
+            0%, 100% { transform: translate(0); }
+            33% { transform: translate(-2px, 2px); }
+            66% { transform: translate(2px, -2px); }
+        }
+        
+        @keyframes glitch2 {
+            0%, 100% { transform: translate(0); }
+            33% { transform: translate(2px, -2px); }
+            66% { transform: translate(-2px, 2px); }
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px;
+            color: #00ffff;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .content-section {
+                padding: 25px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <section>
-    <h3>Riding digital tides since 20XX</h3>
-    <p>We Dive deep, float free, and let the current take you.</p>
-  </section>
+    <div class="ocean-overlay"></div>
+    
+    <div class="container">
+        <header>
+            <h1 class="glitch" data-text="ABOUT US">ABOUT US</h1>
+            <p class="tagline">✧ Diving Deep Into Digital Waters ✧</p>
+        </header>
+        
+        <div class="content-section">
+            <h2>🐬 WHO WE ARE</h2>
+            <p>
+                We are the <span class="dolphin">🐬</span> dreamers, the ocean dwellers of the digital realm. Born from the neon depths where 90s internet culture collides with underwater fantasies, we exist in a space between reality and virtuality, where dolphins swim through cyberspace and mermaids code in binary.
+            </p>
+            <p>
+                Seapunk is more than an aesthetic—it's a <strong>movement</strong>, a <strong>vibe</strong>, a rebellious dive into turquoise waters lit by bioluminescent pixels. We reject the mundane surface world and embrace the glitchy, holographic beauty of the deep.
+            </p>
+        </div>
+        
+        <div class="waves">🌊 ∿∿∿ 🌊 ∿∿∿ 🌊</div>
+        
+        <div class="content-section">
+            <h2>✧ OUR VISION</h2>
+            <p>
+                We envision a world where technology and nature merge into something beautifully chaotic. Where retro web graphics meet marine biology. Where Windows 95 screensavers become portals to alternate dimensions filled with crystalline coral reefs and digital cetaceans.
+            </p>
+            <p>
+                Our mission is to create spaces—both digital and physical—that celebrate this unique fusion. Through music, art, fashion, and community, we're building an underwater utopia one pixel at a time.
+            </p>
+        </div>
+        
+        <div class="content-section">
+            <h2>🦈 WHAT WE DO</h2>
+            <p>
+                We curate experiences that transport you to the iridescent depths. From hosting virtual aquarium parties to designing apparel that channels early internet nostalgia mixed with oceancore aesthetics, we're all about that cyan-magenta-glitch life.
+            </p>
+            <p>
+                Our collective produces music that sounds like dial-up tones remixed with whale songs, creates art that glitches like corrupted JPEGs of tropical reefs, and builds communities where everyone speaks in emojis and dreams in gradients.
+            </p>
+        </div>
+        
+        <div class="waves">✧･ﾟ: *✧･ﾟ:* 🐚 *:･ﾟ✧*:･ﾟ✧</div>
+        
+        <div class="content-section">
+            <h2>🌴 JOIN THE WAVE</h2>
+            <p>
+                Whether you're a digital mermaid, a cyber sailor, or just someone who appreciates the aesthetic of old school internet culture mixed with oceanic vibes, you belong here. We're not just a community—we're a <strong>digital ecosystem</strong>.
+            </p>
+            <p>
+                Dive in. The water's neon. The dolphins are waiting. And somewhere in the depths, a mixtape of vaporwave and ocean ambiance is playing just for you.
+            </p>
+        </div>
+        
+        <div class="footer">
+            <p>🐋 Stay Submerged • Stay Digital • Stay Seapunk 🐋</p>
+            <p style="margin-top: 10px; font-size: 0.8em;">✧ Est. 2011 • Forever in the Waves ✧</p>
+        </div>
+    </div>
 </body>
 </html>
