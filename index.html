@@ -3,107 +3,79 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CyberCore Industries</title>
+  <title>About | AquaSynth Collective</title>
   <style>
-    /* === CYBERPUNK STYLE === */
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap');
+    /* === SEAPUNK STYLE === */
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap');
+
     body {
       margin: 0;
       padding: 0;
-      background: radial-gradient(circle at top right, #0a0014 0%, #000 80%);
-      color: #00ffff;
       font-family: 'Share Tech Mono', monospace;
+      color: #cfffff;
+      background: linear-gradient(180deg, #1dd3b0, #00a6a6, #4b0082);
+      background-attachment: fixed;
+      text-align: center;
       overflow-x: hidden;
     }
 
     header {
-      text-align: center;
-      padding: 100px 20px 40px;
-      position: relative;
+      padding: 80px 20px 40px;
     }
 
-    .glitch {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3em;
-      color: #00ffff;
-      text-transform: uppercase;
-      position: relative;
-      animation: flicker 2.5s infinite;
+    h1 {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 2.2em;
+      color: #c0ffff;
+      text-shadow: 0 0 8px #00ffff, 0 0 15px #00b8d9;
+      animation: wave-glow 4s ease-in-out infinite;
     }
 
-    .glitch::before,
-    .glitch::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      width: 100%;
-      overflow: hidden;
-      clip: rect(0, 900px, 0, 0);
-    }
-
-    .glitch::before {
-      left: 2px;
-      text-shadow: -2px 0 magenta;
-      animation: glitch1 2s infinite linear alternate-reverse;
-    }
-
-    .glitch::after {
-      left: -2px;
-      text-shadow: -2px 0 lime;
-      animation: glitch2 2s infinite linear alternate-reverse;
-    }
-
-    @keyframes glitch1 {
-      0% { clip: rect(44px, 9999px, 56px, 0); }
-      50% { clip: rect(12px, 9999px, 90px, 0); }
-      100% { clip: rect(60px, 9999px, 80px, 0); }
-    }
-
-    @keyframes glitch2 {
-      0% { clip: rect(12px, 9999px, 30px, 0); }
-      50% { clip: rect(60px, 9999px, 80px, 0); }
-      100% { clip: rect(20px, 9999px, 100px, 0); }
-    }
-
-    @keyframes flicker {
-      0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
-      20%, 24%, 55% { opacity: 0.3; }
+    @keyframes wave-glow {
+      0%, 100% { text-shadow: 0 0 10px #00ffff, 0 0 20px #00b8d9; }
+      50% { text-shadow: 0 0 20px #ffb6ff, 0 0 30px #b8ffff; }
     }
 
     main {
-      max-width: 900px;
+      max-width: 800px;
       margin: 0 auto;
-      text-align: center;
       padding: 20px;
     }
 
     p {
+      color: #e0ffff;
       font-size: 1.1em;
       line-height: 1.8em;
-      color: #b0ffff;
-      text-shadow: 0 0 10px #00ffff;
+      text-shadow: 0 0 10px #5ef5f5;
       margin-bottom: 30px;
     }
 
-    .neon-line {
-      width: 70%;
-      height: 2px;
+    .bubble-line {
+      width: 60%;
+      height: 3px;
       margin: 40px auto;
-      background: linear-gradient(90deg, #ff00ff, #00ffff);
+      background: linear-gradient(90deg, #ffb6ff, #00ffff, #1dd3b0);
       border-radius: 4px;
-      box-shadow: 0 0 12px #00ffff;
+      box-shadow: 0 0 12px #a0ffff;
+      animation: shimmer 5s linear infinite;
+    }
+
+    @keyframes shimmer {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
     }
 
     footer {
-      text-align: center;
-      color: #ff00ff;
       padding: 40px 0;
+      color: #e0ffff;
       font-size: 0.9em;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
+      background: rgba(0, 255, 255, 0.1);
+      backdrop-filter: blur(6px);
     }
 
     a {
-      color: #ff00ff;
+      color: #ffb6ff;
       text-decoration: none;
       transition: 0.3s;
     }
@@ -113,64 +85,68 @@
       text-shadow: 0 0 8px #00ffff;
     }
 
-    /* Neon scanline overlay */
-    body::before {
-      content: "";
+    /* Floating bubbles animation */
+    .bubble {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      background: repeating-linear-gradient(
-        to bottom,
-        rgba(255,255,255,0.02) 0px,
-        rgba(255,255,255,0.02) 1px,
-        transparent 3px,
-        transparent 4px
-      );
-      animation: scan 6s linear infinite;
+      bottom: -100px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      animation: rise 10s linear infinite;
     }
 
-    @keyframes scan {
-      0% { background-position: 0 -100%; }
-      100% { background-position: 0 100%; }
+    @keyframes rise {
+      0% { transform: translateY(0) scale(1); opacity: 0.7; }
+      100% { transform: translateY(-120vh) scale(1.3); opacity: 0; }
     }
+
+    /* Create multiple random bubbles */
+    .bubble:nth-child(1) { left: 10%; width: 20px; height: 20px; animation-delay: 0s; }
+    .bubble:nth-child(2) { left: 25%; width: 40px; height: 40px; animation-delay: 3s; }
+    .bubble:nth-child(3) { left: 45%; width: 25px; height: 25px; animation-delay: 1.5s; }
+    .bubble:nth-child(4) { left: 70%; width: 30px; height: 30px; animation-delay: 4s; }
+    .bubble:nth-child(5) { left: 85%; width: 15px; height: 15px; animation-delay: 2s; }
+
   </style>
 </head>
 <body>
+  <!-- Floating bubbles -->
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
   <header>
-    <h1 class="glitch" data-text="ABOUT CYBERCORE">ABOUT CYBERCORE</h1>
+    <h1>ABOUT AQUASYNTH</h1>
   </header>
 
   <main>
-    <div class="neon-line"></div>
+    <div class="bubble-line"></div>
 
     <p>
-      <strong>CyberCore Industries</strong> was forged in the neon haze of New Kyoto, where the skyline hums and data flows like blood through the grid.  
-      We are architects of the post-human age — engineers, coders, and visionaries shaping the digital frontier.
+      <strong>AquaSynth Collective</strong> was born beneath the digital tides — a fusion of surf culture, soft synths, and bioluminescent dreams.  
+      We ride the waves of sound and code, blending nostalgia with neon coral energy.
     </p>
 
     <p>
-      Our mission: to merge synthetic intelligence with organic instinct.  
-      We believe the future isn’t built — it’s **uploaded**. Each byte we craft fuels the evolution of consciousness across the network.
+      Inspired by the deep ocean’s mystery and the pastel shimmer of early internet aesthetics,  
+      AquaSynth creates immersive art, soundscapes, and virtual spaces that celebrate fluid identity and digital freedom.
     </p>
 
     <p>
-      In a city where corporations own the sky, <em>CyberCore</em> stands apart — independent, rogue, relentless.  
-      We design cybernetic systems, neural interfaces, and adaptive AIs that amplify human potential and defy corporate control.
+      Our motto: <em>“Flow with the current, shine like the reef.”</em>  
+      Every pixel we render ripples with a sense of play, connection, and aquatic rebellion.
     </p>
 
     <p>
-      Whether you’re a hacker, a dreamer, or a data ghost — the neon path is open.  
-      Connect with us. Rewrite reality.
+      Join us under the liquid sky — where vaporwave meets the seafoam and creativity knows no shore.
     </p>
 
-    <div class="neon-line"></div>
+    <div class="bubble-line"></div>
   </main>
 
   <footer>
-    © 2089 CyberCore Industries | <a href="#">Access Mainframe</a>
+    © 2090 AquaSynth Collective | <a href="#">Dive Back Home</a>
   </footer>
 </body>
 </html>
