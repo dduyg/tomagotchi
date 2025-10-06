@@ -82,25 +82,5 @@
         <button class="btn secondary" style="flex:0 0 36%">Share</button>
       </div>
   </main>
-
-  <script>
-    // small interactive touches
-    const primaryBtn = document.getElementById('primaryBtn');
-    const secondaryBtn = document.getElementById('secondaryBtn');
-
-    primaryBtn.addEventListener('click', ()=>{
-      primaryBtn.blur();
-      primaryBtn.style.transform = 'scale(0.98)';
-      setTimeout(()=>{
-        primaryBtn.style.transform = '';
-        alert('Now playing: "Sunset Drive" — Neon Terrace');
-      },160);
-    });
-
-    secondaryBtn.addEventListener('click', ()=>{
-      secondaryBtn.blur();
-      location.hash = '#tracks';
-    });
-  </script>
 </body>
 </html>
