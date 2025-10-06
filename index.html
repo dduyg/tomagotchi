@@ -34,16 +34,8 @@
             gap: 20px;
             flex-wrap: wrap;
             justify-content: center;
-        }
-        
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }      
-        label {
-            font-family: monospace;
-        }    
+        } 
+         
         select, input {
             appearance: none;
             border: none;
@@ -181,19 +173,14 @@
                
             <input type="text" id="searchInput" placeholder="Search posts...">      
                
-            <div class="filter-group">     
-                <label for="sortFilter">Sort By</label>
-                <select id="sortFilter">     
-                    <option value="newest">Newest First</option>
-                    <option value="oldest">Oldest First</option>
-                    <option value="title">Title A-Z</option>   
-                </select>
-            </div>
+            <select id="sortFilter">   
+                <option value="">--Sort By--</option>
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+                <option value="title">Title A-Z</option>   
+            </select>
                 
-            <div class="filter-group">    
-                <label style="opacity: 0;">Reset</label>
-                <button id="resetBtn">Reset Filters</button>
-            </div>
+            <button id="resetBtn">Reset Filters</button>
         </div>
           
         <div class="posts-grid" id="postsGrid"></div>
