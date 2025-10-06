@@ -10,7 +10,7 @@
         body {
             font-family: "Outfit", sans-serif;
             background: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/inwave1759.png') center/cover no-repeat fixed;
-            color: #00ffff;
+            color: #0b0b12;
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -45,22 +45,29 @@
             font-family: monospace;
         }    
         select, input {
-            background: rgba(0, 0, 0, 0.5);
-            border: 2px solid #00ffff;
-            color: #00ffff;
+            appearance: none;
+            border: none;
+            cursor: pointer;
             padding: 10px 15px;
             border-radius: 8px;
             font-size: 1em;
             outline: none;
-            transition: all 0.3s;
-        }     
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(139,92,246,0.12);
+            background: linear-gradient(90deg, rgba(139,92,246,0.12), rgba(107,231,255,0.06));
+        }
+        input {
+            border-radius: 999px;
+            background: transparent;
+            border: 1px solid rgba(11,11,18,0.06);
+            backdrop-filter: blur(4px);
+        }
         select:hover, input:hover {
-            border-color: #FAC898;
+            transform: translateY(2px);
         }   
         select:focus, input:focus {
             border-color: #FAC898;
         }
-        
         button {
             background: darkgray;
             border: none;
