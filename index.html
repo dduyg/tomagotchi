@@ -15,7 +15,7 @@
             overflow-x: hidden;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -106,7 +106,7 @@
         .post-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 0 30px rgba(0, 255, 255, 0.5), 0 0 40px rgba(255, 0, 255, 0.3);
-            border-color: #ff00ff;
+            border-color: #FAC898;
         }    
         .post-title {
             font-size: 1.5em;
@@ -128,7 +128,8 @@
         .no-results {
             text-align: center;
             padding: 60px 20px;
-            font-size: 1.5em;
+            font-size: 1.4em;
+            font-family: monospace;
         }
         
         .dolphins {
@@ -231,13 +232,13 @@
             const grid = document.getElementById('postsGrid');
             
             if (postsToRender.length === 0) {
-                grid.innerHTML = '<div class="no-results">🐚 No posts found in these waters 🐚</div>';
+                grid.innerHTML = '<div class="no-results">No posts found in these waters</div>';
                 return;
             }
             
             grid.innerHTML = postsToRender.map(post => `
                 <div class="post-card">
-                    <h2 class="post-title">${post.title}</h2>
+                    <h3 class="post-title">${post.title}</h3>
                     <div class="post-date">📅 ${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
                     <p class="post-excerpt">${post.excerpt}</p>
                     <div class="post-category">✧ ${post.category.replace('-', ' ')}</div>
