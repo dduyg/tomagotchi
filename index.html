@@ -14,26 +14,20 @@
       text-align: center;
       overflow-x: hidden;
     }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      mix-blend-mode: overlay;
+      opacity: 0.6;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="g"><feTurbulence baseFrequency="0.9" numOctaves="1"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 0.12"/></feComponentTransfer></filter><rect width="100%" height="100%" filter="url(%23g)"/></svg>');
+    }
 
     section {
-      max-width: 800px;
-      margin: 0 auto;
+      max-width: 500px;
+      margin: 80px auto 0;
       backdrop-filter: blur(6px);
-    }
-
-    .waves {
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 150px;
-      background: url('https://svgshare.com/i/15q9.svg') repeat-x;
-      animation: wave 15s linear infinite;
-      opacity: 0.6;
-    }
-    @keyframes wave {
-      from { background-position-x: 0; }
-      to { background-position-x: 1000px; }
     }
   </style>
 </head>
