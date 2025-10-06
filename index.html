@@ -156,13 +156,22 @@
       align-items: center;
       z-index: 1000;
     }
+    .popupVideo.active {
+      display: flex;
+      animation: fadeIn 0.3s ease-in-out;
+    }
     .popupVideo iframe {
       width: 80vw;
-      max-width: 960px;
-      height: 45vw;
-      max-height: 540px;
+      max-width: 900px;
+      height: 50vw;
+      max-height: 500px;
       border: none;
-      box-shadow: 0 0 30px rgba(0,0,0,0.4);
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
@@ -189,17 +198,17 @@
   <aside>
     <div class="scroll">
       <div class="gallery">
-        <iframe data-video="NYv7HsBr9aM" src="https://www.youtube.com/embed/NYv7HsBr9aM?enablejsapi=1&mute=1" allowfullscreen></iframe>
-        <iframe data-video="GNxBn2CH-vQ" src="https://www.youtube.com/embed/GNxBn2CH-vQ?enablejsapi=1&mute=1" allowfullscreen></iframe>
-        <iframe data-video="lJGuXm-vkEk" src="https://www.youtube.com/embed/lJGuXm-vkEk?enablejsapi=1&mute=1" allowfullscreen></iframe>
-        <iframe data-video="XH1EXDHVG9s" src="https://www.youtube.com/embed/XH1EXDHVG9s?enablejsapi=1&mute=1" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/NYv7HsBr9aM?enablejsapi=1&mute=1" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/GNxBn2CH-vQ?enablejsapi=1&mute=1" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/lJGuXm-vkEk?enablejsapi=1&mute=1" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/XH1EXDHVG9s?enablejsapi=1&mute=1" allowfullscreen></iframe>
       </div>
     </div>
   </aside>
 
   <!-- Popup Videos -->
   <div class="popupVideo" id="popupVideo">
-    <iframe id="popupFrame" src="" allowfullscreen></iframe>
+    <iframe src="" allowfullscreen></iframe>
   </div>
 
   <script>
@@ -211,7 +220,7 @@
     let players = [];
     let userInteracted = false;
 
-    // Unmute all players once user interacts
+    // Enable sound after first click/touch
     function enableSound() {
       if (userInteracted) return;
       userInteracted = true;
@@ -231,7 +240,7 @@
         players.push(player);
       });
 
-      // Observe visibility for autoplay
+      // Observe visibility
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           const iframe = entry.target;
@@ -250,15 +259,10 @@
         });
       }, { threshold: 0.6 });
 
-      iframes.forEach(iframe => {
-        observer.observe(iframe);
+      iframes.forEach(iframe => observer.observe(iframe));
 
-        // When clicked, open popup
-        iframe.addEventListener('click', (e) => {
-          e.stopPropagation();
-          openPopup(iframe.dataset.video);
-        });
-      });
+      // Add click event for popup
+      setupPopupHandlers(iframes);
     }
 
     function handleStateChange(event, index) {
@@ -269,26 +273,43 @@
       }
     }
 
-    // Popup logic
-    const popup = document.getElementById('popupVideo');
-    const popupFrame = document.getElementById('popupFrame');
+    function setupPopupHandlers(iframes) {
+      const popup = document.getElementById('popupVideo');
+      const popupIframe = popup.querySelector('iframe');
 
-    function openPopup(videoId) {
-      popupFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-      popup.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
+      iframes.forEach((iframe, i) => {
+        iframe.addEventListener('click', () => {
+          // Pause all background videos
+          players.forEach(p => p.pauseVideo && p.pauseVideo());
+
+          // Get clean video ID from original iframe
+          const src = iframe.src.replace('&mute=1', '').replace('?enablejsapi=1', '');
+          const embedUrl = src.split('?')[0];
+          const videoId = embedUrl.split('/embed/')[1];
+
+          // Load video in popup with sound on
+          popupIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+          popup.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      // Close popup when clicking outside iframe
+      popup.addEventListener('click', (e) => {
+        if (e.target === popup) closePopup();
+      });
+
+      // Close popup with ESC key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closePopup();
+      });
+
+      function closePopup() {
+        popup.classList.remove('active');
+        popupIframe.src = '';
+        document.body.style.overflow = 'auto';
+      }
     }
-
-    function closePopup() {
-      popupFrame.src = "";
-      popup.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
-
-    popup.addEventListener('click', closePopup);
-    window.addEventListener('keydown', (e) => {
-      if (e.key === "Escape") closePopup();
-    });
 
     window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
   </script>
