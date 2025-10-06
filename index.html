@@ -23,10 +23,6 @@
         header {
             text-align: center;
             padding: 40px 0;
-        }     
-        h1 {
-            font-size: 2em;
-            margin-bottom: 10px;
         }
         
         .filter-controls {
@@ -62,9 +58,8 @@
             border-color: #FAC898;
         }
         button {
-            background: #E8E8E8;
+            background: darkgray;
             border: none;
-            color: white;
             padding: 12px 30px;
             border-radius: 8px;
             font-size: 1em;
@@ -84,7 +79,7 @@
             background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
             transform: rotate(45deg);
             animation: shimmer 3s infinite;
-        }    
+        }
         @keyframes shimmer {
             0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
             100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
@@ -122,8 +117,7 @@
             margin-bottom: 15px;
         }   
         .post-excerpt {
-            color: #a0f0ff;
-            line-height: 1.6;
+            line-height: 1.4;
             margin-bottom: 15px;
         }      
         .post-category {
@@ -170,16 +164,15 @@
                 <option value="HoloFish_Keeper">HoloFish_Keeper</option>      
                 <option value="tech-depths">Tech Depths</option>  
             </select>
-               
-            <input type="text" id="searchInput" placeholder="Search posts...">      
-               
+    
             <select id="sortFilter">   
                 <option value="">--Sort By--</option>
                 <option value="newest">Newest First</option>
                 <option value="oldest">Oldest First</option>
                 <option value="title">Title A-Z</option>   
             </select>
-                
+
+            <input type="text" id="searchInput" placeholder="Search posts...">
             <button id="resetBtn">Reset Filters</button>
         </div>
           
