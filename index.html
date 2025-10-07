@@ -6,7 +6,7 @@
   <title>m² | works</title>
   <style>
     :root {
-      --border: 2px solid #000;
+      --border: 1px solid #000;
       --cell-padding: 0.5em 0.3em;
       --header-bg: #fff;
       --featured-bg: #000;
@@ -58,10 +58,10 @@
       border-left: var(--border);
       /* 12 columns: featured, project, client, G, B, P, AD, E, S, A (10 col for content, 2 for featured/project/client) */
       grid-template-columns:
-        minmax(48px, 6vw) /* featured */
+        minmax(56px, 6vw) /* featured */
         minmax(110px, 2.2fr) /* project */
         minmax(110px, 1.6fr) /* client */
-        repeat(7, minmax(36px, 1fr)); /* categories */
+        repeat(7, minmax(30px, 1fr)); /* categories */
       font-size: 1em;
       background: #fff;
     }
@@ -176,11 +176,6 @@
     ::-webkit-scrollbar-thumb {
       background: #888;
       border-radius: 3px;
-    }
-    /* Prevent grid overflow on mobile */
-    html, body {
-      overflow-x: hidden;
-      width: 100vw;
     }
   </style>
 </head>
