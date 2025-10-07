@@ -1,169 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liminal🃏Loop</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        @font-face {
-            font-family: 'Argue';
-            src: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/Argue.woff2') format('woff2');   
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: "Vanosky";
-            src: url("https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/VanoskyThin.woff2") format("woff2");
-            font-weight: 300;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: "Vanosky";
-            src: url("https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/VanoskyRegular.woff2") format("woff2");
-            font-weight: 400;
-            font-style: normal;
-        }
-        body {
-            font-family: 'Argue', sans-serif;
-            background: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/inwave1759.png') center/cover no-repeat fixed;
-            color: #0b0b12;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            text-align: center;
-            padding: 40px 0;
-        }
-        
-        .filter-controls {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }      
-        select, input {
-            font-family: "Vanosky", sans-serif;
-            font-weight: 300;
-            appearance: none;
-            border: none;
-            cursor: pointer;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 1em;
-            outline: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 30px rgba(139,92,246,0.12);
-            background: linear-gradient(90deg, rgba(139,92,246,0.12), rgba(107,231,255,0.06));
-        }
-        input {
-            border-radius: 999px;
-            background: transparent;
-            border: 1px solid rgba(11,11,18,0.06);
-            backdrop-filter: blur(4px);
-        }
-        select:hover, input:hover {
-            transform: translateY(2px);
-            border-color: #FAC898;
-        }   
-        select:focus, input:focus {
-            border-color: #FAC898;
-        }
-        button {
-            background: darkgray;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-size: 1em;
-            font-family: "Vanosky", sans-serif;
-            font-weight: 300;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            position: relative;
-            overflow: hidden;
-        }
-        button::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            animation: shimmer 3s infinite;
-        }
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-        button:hover {
-            transform: scale(1.05);
-        }
-        
-        .posts-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .post-card {
-            background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-            backdrop-filter: blur(8px) saturate(120%);
-            border: 1px solid darkgray;
-            border-radius: 16px;
-            padding: 25px;
-            transition: all 0.3s;
-        }     
-        .post-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5), 0 0 40px rgba(255, 0, 255, 0.3);
-            border-color: #FAC898;
-        }    
-        .post-title {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }    
-        .post-date {
-            font-size: 0.9em;
-            margin-bottom: 15px;
-        }   
-        .post-excerpt {
-            line-height: 1.4;
-            margin-bottom: 15px;
-        }      
-        .post-category {
-            font-size: 0.9em;
-            font-style: italic;
-        }
-        
-        .no-results {
-            text-align: center;
-            padding: 60px 20px;
-            font-size: 1.4em;
-            font-family: monospace;
-        }
-        
-        .dolphins {
-            position: fixed;
-            width: 3em;
-            opacity: 0.3;
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        @media (max-width: 768px) {
-            .filter-controls { flex-direction: column; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liminal🃏Loop</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    @font-face {
+        font-family: 'Argue';
+        src: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/Argue.woff2') format('woff2');   
+        font-weight: normal;
+        font-style: normal;    
+    }
+    @font-face {
+        font-family: "Vanosky";
+        src: url("https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/VanoskyThin.woff2") format("woff2");
+        font-weight: 300;
+        font-style: normal;  
+    }
+    @font-face {       
+        font-family: "Vanosky";
+        src: url("https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/VanoskyRegular.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;  
+    }
+    body {
+        font-family: 'Argue', sans-serif;
+        background: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/inwave1759.png') center/cover no-repeat fixed;
+        color: #0b0b12;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+
+    header { text-align: center; padding: 40px 0; }
+
+    .filter-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    input {
+        font-family: "Vanosky", sans-serif;
+        font-weight: 300;
+        appearance: none;
+        border: 1px solid rgba(11,11,18,0.1);
+        cursor: pointer;
+        padding: 10px 15px;
+        border-radius: 999px;
+        font-size: 1em;
+        outline: none;
+        transition: all 0.3s ease;
+        background: transparent;
+        backdrop-filter: blur(4px);
+    }
+    input:hover, input:focus {
+        border-color: #FAC898;
+    }
+
+    /* custom dropdown */
+    .custom-dropdown {
+        position: relative;
+        min-width: 200px;
+        font-family: "Vanosky", sans-serif;
+        font-weight: 300;
+    }
+    .dropdown-btn {
+        background: linear-gradient(90deg, rgba(139,92,246,0.12), rgba(107,231,255,0.06));
+        border: none;
+        border-radius: 8px;
+        padding: 10px 15px;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        transition: 0.3s;
+        box-shadow: 0 8px 30px rgba(139,92,246,0.12);
+    }
+    .dropdown-btn:hover {
+        transform: translateY(2px);
+        border-color: #FAC898;
+    }
+    .dropdown-content {
+        position: absolute;
+        top: 110%;
+        left: 0;
+        width: 100%;
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 8px;
+        max-height: 200px;
+        overflow-y: auto;
+        display: none;
+        z-index: 10;
+    }
+    .dropdown-content.show { display: block; }
+    .dropdown-item {
+        padding: 8px 12px;
+        cursor: pointer;
+        transition: 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .dropdown-item:hover { background: rgba(255,255,255,0.1); }
+    .dropdown-item input[type="checkbox"] { accent-color: #FAC898; }
+
+    button {
+        background: darkgray;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 8px;
+        font-size: 1em;
+        font-family: "Vanosky", sans-serif;
+        font-weight: 300;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-transform: uppercase;
+        position: relative;
+        overflow: hidden;
+    }
+    button::before {
+        content: '';
+        position: absolute;
+        top: -50%; left: -50%;
+        width: 200%; height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(0,255,255,0.1), transparent);
+        transform: rotate(45deg);
+        animation: shimmer 3s infinite;
+    }
+    @keyframes shimmer {
+        0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+    button:hover { transform: scale(1.05); }
+
+    .posts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    .post-card {
+        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+        backdrop-filter: blur(8px) saturate(120%);
+        border: 1px solid darkgray;
+        border-radius: 16px;
+        overflow: hidden;
+        transition: all 0.3s;
+    }
+    .post-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 0 30px rgba(0,255,255,0.5), 0 0 40px rgba(255,0,255,0.3);
+        border-color: #FAC898;
+    }
+    .post-image { width: 100%; height: 180px; object-fit: cover; }
+    .post-content { padding: 20px; }
+    .post-title { font-size: 1.5em; margin-bottom: 10px; }
+    .post-date { font-size: 0.9em; margin-bottom: 15px; }
+    .post-excerpt { line-height: 1.4; margin-bottom: 15px; }
+    .post-category { font-size: 0.9em; font-style: italic; }
+
+    .no-results {
+        text-align: center;
+        padding: 60px 20px;
+        font-size: 1.4em;
+        font-family: monospace;
+    }
+
+    .dolphins {       
+        position: fixed;
+        width: 3em;
+        opacity: 0.3;
+        pointer-events: none;
+        z-index: 0;     
+    }
+
+    @media (max-width: 768px) {
+        .filter-controls { flex-direction: column; }
+    }
+</style>
 </head>
 <body>
     <div class="dolphins" style="top: 10%; left: 10%;"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="#3B3B3B"><path d="M118.125 18.285c-50.616 0-91.848 41.234-91.848 91.85 0 16.783 4.538 32.53 12.444 46.09-2.017 6.705-3.103 13.82-3.103 21.203 0 31.782 20.04 58.905 48.158 69.44-5.863 6.96-9.414 15.922-9.414 25.67 0 11.727 5.138 22.323 13.267 29.657-36.275 7.53-63.67 39.773-63.67 78.23 0 44.01 35.88 79.89 79.893 79.89 16.252 0 31.387-4.903 44.025-13.292 13.485 18.495 35.304 30.53 59.928 30.53 33.308 0 61.144-22.157 70.482-52.414.16-.083.323-.16.483-.244 22.43-2.07 43.35-9.045 61.685-19.955 10.443 15.996 27.664 27.192 47.527 29.44-.067 1.042-.113 2.09-.113 3.147 0 26.61 21.773 48.38 48.383 48.38 26.61 0 48.383-21.77 48.383-48.38 0-19.492-11.69-36.377-28.4-44.02 2.197-5.482 3.677-11.32 4.314-17.405 15.134-13.576 24.666-33.272 24.666-55.188 0-15.132-4.552-29.203-12.346-40.937 16.048-11.97 26.48-31.09 26.48-52.563 0-29.132-19.203-53.93-45.587-62.412 1.016-4.86 1.558-9.9 1.558-15.076 0-4.87-.485-9.624-1.382-14.233 8.977-8.883 14.562-21.19 14.562-34.74 0-26.915-22.02-48.937-48.937-48.937-9.968 0-19.263 3.025-27.02 8.197-5.598-14.962-20.073-25.705-36.913-25.705-21.643 0-39.39 17.746-39.39 39.39 0 10.1 3.865 19.347 10.185 26.342-9.428 10.497-15.918 23.71-18.18 38.326-13.648-4.188-28.03-6.576-43.045-6.576-6.49 0-12.86.38-19.13 1.197-.972-30.35-20.245-56.103-47.122-66.638-15.555-28.71-45.962-48.265-80.82-48.265zm0 18.69c7.544 0 14.814 1.134 21.652 3.238-1.293-.11-2.598-.178-3.92-.178-25.298 0-45.804 20.505-45.804 45.803s20.506 45.805 45.804 45.805c25.3 0 45.805-20.507 45.805-45.805 0-6.236-1.25-12.176-3.508-17.594 8.273 11.855 13.133 26.283 13.133 41.89 0 40.517-32.645 73.16-73.162 73.16s-73.16-32.643-73.16-73.16c0-40.515 32.643-73.16 73.16-73.16zm237.502 16.22c.9 0 1.784.062 2.652.17-5.003 1.46-8.66 6.072-8.66 11.545 0 6.646 5.387 12.033 12.032 12.033 6.646 0 12.034-5.387 12.034-12.033 0-.45-.03-.894-.08-1.332 1.726 3.03 2.722 6.542 2.722 10.32 0 11.545-9.158 20.702-20.7 20.702-11.546 0-20.702-9.158-20.702-20.702 0-11.544 9.157-20.703 20.7-20.703zm63.934 17.508c3.39 0 6.637.554 9.67 1.563-9.974.273-17.978 8.425-17.978 18.464 0 10.212 8.276 18.49 18.488 18.49 10.064 0 18.233-8.043 18.47-18.05 1.032 3.064 1.6 6.352 1.6 9.783 0 16.818-13.434 30.248-30.25 30.248-16.817 0-30.248-13.43-30.248-30.247s13.433-30.25 30.25-30.25zm-95.078 88.19c3.62 0 7.13.426 10.502 1.21-15.534.07-28.107 12.68-28.107 28.23 0 15.596 12.643 28.237 28.238 28.237 15.596 0 28.237-12.64 28.237-28.236 0-4.11-.885-8.01-2.463-11.53 5.914 7.717 9.428 17.387 9.428 27.925 0 25.424-20.41 45.834-45.836 45.834-25.425 0-45.836-20.41-45.836-45.835 0-25.427 20.41-45.837 45.836-45.837zm109.32 21.668c1.165 0 2.317.057 3.462.14-10.243 5.013-17.3 15.533-17.3 27.706 0 17.03 13.805 30.836 30.835 30.836 13.4 0 24.8-8.552 29.052-20.494.52 2.808.804 5.7.804 8.666 0 25.988-20.867 46.854-46.855 46.854-25.987 0-46.855-20.866-46.855-46.854 0-25.987 20.868-46.853 46.856-46.853zM230.03 241.41c.642 0 1.282.012 1.92.026-26.22 6.906-45.556 30.77-45.556 59.158 0 33.79 27.39 61.18 61.182 61.18 33.79 0 61.18-27.39 61.18-61.18 0-4.832-.578-9.525-1.637-14.033 7.13 12.744 11.194 27.45 11.194 43.13 0 48.87-39.414 88.285-88.283 88.285-48.868 0-88.284-39.415-88.284-88.284 0-48.867 39.416-88.282 88.285-88.282zm-115.692 9.84c3.25 0 6.312.71 9.05 1.98-.377-.036-.757-.058-1.144-.058-6.776 0-12.27 5.492-12.27 12.268 0 6.775 5.494 12.267 12.27 12.267 6.71 0 12.15-5.387 12.258-12.07.726 2.16 1.125 4.478 1.125 6.902 0 11.87-9.422 21.29-21.29 21.29-11.87 0-21.29-9.422-21.29-21.29 0-11.87 9.422-21.29 21.29-21.29zm-10.49 67.973c5.03 0 9.91.615 14.582 1.75-.343-.01-.683-.03-1.028-.03-23.42 0-42.406 18.986-42.406 42.406 0 23.42 18.986 42.406 42.406 42.406 10.767 0 20.59-4.02 28.07-10.63 3.814 4.918 8.044 9.5 12.643 13.685-10.198 19.537-30.616 32.82-54.267 32.82-33.913 0-61.204-27.29-61.204-61.203 0-33.913 27.29-61.203 61.204-61.203zm291.513 3.186c2.17 0 4.3.158 6.387.44-12.363 3.926-21.322 15.492-21.322 29.156 0 16.895 13.696 30.59 30.592 30.59 14.714 0 26.997-10.39 29.923-24.233.826 3.496 1.276 7.143 1.276 10.902 0 7.137-1.584 13.883-4.406 19.922-.52-.017-1.04-.04-1.564-.04-18.91 0-35.365 11-43.313 26.91-24.85-1.25-44.43-21.618-44.43-46.792 0-25.988 20.868-46.856 46.856-46.856zm40.887 85.428c1.986 0 3.92.196 5.793.56-7.416 1.746-12.94 8.388-12.94 16.336 0 9.28 7.52 16.8 16.797 16.8 9.28 0 16.8-7.52 16.8-16.8 0-.294-.03-.58-.046-.873 2.1 4.084 3.29 8.726 3.29 13.67 0 16.51-13.184 29.694-29.694 29.694-16.51 0-29.693-13.183-29.693-29.693s13.183-29.693 29.693-29.693z"></path></svg></div>
@@ -176,22 +196,20 @@
             <p>Ah shit, here we go again.</p>
         </header>
         
-        <div class="filter-controls">     
-            <select id="categoryFilter">
-                <option value="">--Filter by Category--</option>
-                <option value="all">All Categories</option>
-                <option value="cyberwaves">Cyberwaves</option>
-                <option value="digital-ocean">Digital Ocean</option>
-                <option value="HoloFish_Keeper">HoloFish_Keeper</option>      
-                <option value="tech-depths">Tech Depths</option>  
-            </select>
-    
-            <select id="sortFilter">   
-                <option value="">--Sort By--</option>
-                <option value="newest">Newest First</option>
-                <option value="oldest">Oldest First</option>
-                <option value="title">Title A-Z</option>   
-            </select>
+        <div class="filter-controls">
+            <div class="custom-dropdown" id="categoryDropdown">
+                <button class="dropdown-btn">Filter Categories ▾</button>
+                <div class="dropdown-content" id="categoryOptions"></div>
+            </div>
+
+            <div class="custom-dropdown">
+                <button class="dropdown-btn" id="sortBtn">Sort ▾</button>
+                <div class="dropdown-content" id="sortOptions">
+                    <div class="dropdown-item" data-sort="newest">Newest First</div>
+                    <div class="dropdown-item" data-sort="oldest">Oldest First</div>
+                    <div class="dropdown-item" data-sort="title">Title A-Z</div>
+                </div>
+            </div>
 
             <input type="text" id="searchInput" placeholder="Search posts...">
             <button id="resetBtn">Reset Filters</button>
@@ -199,112 +217,140 @@
           
         <div class="posts-grid" id="postsGrid"></div>
     </div>
-    
-    <script>
-        const posts = [
-            {
-                id: 1,
-                title: "Dolphin Protocol v3.0",
-                category: "tech-depths",
-                date: "2025-09-28",
-                excerpt: "New communication protocols for navigating the cyber seas. Enhanced with holographic interfaces and bioluminescent data visualization."
-            },
-            {
-                id: 2,
-                title: "Underwater Data Centers",
-                category: "tech-depths",
-                date: "2025-09-20",
-                excerpt: "How submerged servers are cooling the future. Exploring the intersection of marine biology and cloud computing infrastructure."
-            },
-            {
-                id: 3,
-                title: "Holographic Coral Reefs",
-                category: "digital-ocean",
-                date: "2025-09-15",
-                excerpt: "Building ecosystems in virtual space where light refracts through crystalline data structures creating infinite prismatic possibilities."
-            },
-            {
-                id: 4,
-                title: "AI Mermaids in the Cloud",
-                category: "digital-ocean",
-                date: "2025-08-20",
-                excerpt: "Artificial intelligence takes aquatic form, swimming through neural networks and singing in binary code beneath waves of data."
-            },
-            {
-                id: 5,
-                title: "ErrorAesthetic Tides Rising",
-                category: "cyberwaves",
-                date: "2025-08-15",
-                excerpt: "When systems crash beautifully, corrupted pixels form artistic waves that wash over our screens in chromatic aberration."
-            },
-            {
-                id: 6,
-                title: "Virtual Aquariums of Tomorrow",
-                category: "HoloFish_Keeper",
-                date: "2025-08-10",
-                excerpt: "Creating immersive oceanic experiences in VR where impossible creatures swim through impossible waters in mesmerizing loops."
-            }
-        ];
-        
-        let filteredPosts = [...posts];
-        
-        function renderPosts(postsToRender) {
-            const grid = document.getElementById('postsGrid');
-            
-            if (postsToRender.length === 0) {
-                grid.innerHTML = '<div class="no-results">No posts found in these waters</div>';
-                return;
-            }
-            
-            grid.innerHTML = postsToRender.map(post => `
-                <div class="post-card">
-                    <h3 class="post-title">${post.title}</h3>
-                    <div class="post-date">📅 ${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
-                    <p class="post-excerpt">${post.excerpt}</p>
-                    <div class="post-category">✧ ${post.category.replace('-', ' ')}</div>
-                </div>
-            `).join('');
-        }
-        
-        function filterPosts() {
-            const category = document.getElementById('categoryFilter').value;
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const sortBy = document.getElementById('sortFilter').value;
-            
-            filteredPosts = posts.filter(post => {
-                const matchesCategory = category === 'all' || post.category === category;
-                const matchesSearch = searchTerm === '' || 
-                    post.title.toLowerCase().includes(searchTerm) ||
-                    post.excerpt.toLowerCase().includes(searchTerm) ||
-                    post.author.toLowerCase().includes(searchTerm);
-                
-                return matchesCategory && matchesSearch;
-            });
-            
-            if (sortBy === 'newest') {
-                filteredPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-            } else if (sortBy === 'oldest') {
-                filteredPosts.sort((a, b) => new Date(a.date) - new Date(b.date));
-            } else if (sortBy === 'title') {
-                filteredPosts.sort((a, b) => a.title.localeCompare(b.title));
-            }
-            
-            renderPosts(filteredPosts);
-        }
-        
-        function resetFilters() {
-            document.getElementById('categoryFilter').value = 'all';
-            document.getElementById('searchInput').value = '';
-            document.getElementById('sortFilter').value = 'newest';
-            filterPosts();
-        }
-        
-        document.getElementById('categoryFilter').addEventListener('change', filterPosts);
-        document.getElementById('searchInput').addEventListener('input', filterPosts);
-        document.getElementById('sortFilter').addEventListener('change', filterPosts);
-        document.getElementById('resetBtn').addEventListener('click', resetFilters);
-        
-        renderPosts(filteredPosts);
-    </script>
+
+<script>
+const posts = [
+    {
+        id: 1,
+        title: "Dolphin Protocol v3.0",
+        categories: ["tech-depths", "cyberwaves"],
+        date: "2025-09-28",
+        excerpt: "New communication protocols for navigating the cyber seas.",
+        image: "https://picsum.photos/id/1011/600/400"
+    },
+    {
+        id: 2,
+        title: "Underwater Data Centers",
+        categories: ["tech-depths"],
+        date: "2025-09-20",
+        excerpt: "How submerged servers are cooling the future.",
+        image: "https://picsum.photos/id/1003/600/400"
+    },
+    {
+        id: 3,
+        title: "Holographic Coral Reefs",
+        categories: ["digital-ocean", "cyberwaves"],
+        date: "2025-09-15",
+        excerpt: "Building ecosystems in virtual space where light refracts through data.",
+        image: "https://picsum.photos/id/1005/600/400"
+    },
+    {
+        id: 4,
+        title: "AI Mermaids in the Cloud",
+        categories: ["digital-ocean"],
+        date: "2025-08-20",
+        excerpt: "Artificial intelligence takes aquatic form beneath waves of data.",
+        image: "https://picsum.photos/id/1015/600/400"
+    },
+    {
+        id: 5,
+        title: "ErrorAesthetic Tides Rising",
+        categories: ["cyberwaves"],
+        date: "2025-08-15",
+        excerpt: "When systems crash beautifully, corrupted pixels form artistic waves.",
+        image: "https://picsum.photos/id/1018/600/400"
+    },
+    {
+        id: 6,
+        title: "Virtual Aquariums of Tomorrow",
+        categories: ["HoloFish_Keeper", "digital-ocean"],
+        date: "2025-08-10",
+        excerpt: "Creating immersive oceanic experiences in VR.",
+        image: "https://picsum.photos/id/1020/600/400"
+    }
+];
+
+let selectedCategories = [];
+let sortBy = "newest";
+
+function renderPosts(postsToRender) {
+    const grid = document.getElementById('postsGrid');
+    if (!postsToRender.length) {
+        grid.innerHTML = '<div class="no-results">No posts found in these waters</div>';
+        return;
+    }
+    grid.innerHTML = postsToRender.map(post => `
+        <div class="post-card">
+            <img src="${post.image}" alt="${post.title}" class="post-image">
+            <div class="post-content">
+                <h3 class="post-title">${post.title}</h3>
+                <div class="post-date">📅 ${new Date(post.date).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}</div>
+                <p class="post-excerpt">${post.excerpt}</p>
+                <div class="post-category">✧ ${post.categories.join(', ')}</div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function populateCategoryDropdown() {
+    const uniqueCategories = [...new Set(posts.flatMap(p => p.categories))];
+    const container = document.getElementById('categoryOptions');
+    container.innerHTML = uniqueCategories.map(cat => `
+        <div class="dropdown-item">
+            <input type="checkbox" value="${cat}"> ${cat}
+        </div>
+    `).join('');
+    container.querySelectorAll('input').forEach(cb => cb.addEventListener('change', filterPosts));
+}
+
+function filterPosts() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    selectedCategories = Array.from(document.querySelectorAll('#categoryOptions input:checked')).map(cb => cb.value);
+    let filtered = posts.filter(post => {
+        const matchesCategory = selectedCategories.length === 0 || selectedCategories.some(cat => post.categories.includes(cat));
+        const matchesSearch = post.title.toLowerCase().includes(searchTerm) || post.excerpt.toLowerCase().includes(searchTerm);
+        return matchesCategory && matchesSearch;
+    });
+
+    if (sortBy === 'newest') filtered.sort((a,b)=>new Date(b.date)-new Date(a.date));
+    else if (sortBy === 'oldest') filtered.sort((a,b)=>new Date(a.date)-new Date(b.date));
+    else if (sortBy === 'title') filtered.sort((a,b)=>a.title.localeCompare(b.title));
+
+    renderPosts(filtered);
+}
+
+function resetFilters() {
+    document.getElementById('searchInput').value = '';
+    document.querySelectorAll('#categoryOptions input').forEach(cb => cb.checked = false);
+    sortBy = "newest";
+    document.getElementById('sortBtn').textContent = "Sort ▾";
+    filterPosts();
+}
+
+// dropdown logic
+document.querySelectorAll('.custom-dropdown').forEach(drop => {
+    const btn = drop.querySelector('.dropdown-btn');
+    btn.addEventListener('click', e => {
+        e.stopPropagation();
+        document.querySelectorAll('.dropdown-content').forEach(dc => dc.classList.remove('show'));
+        drop.querySelector('.dropdown-content').classList.toggle('show');
+    });
+});
+document.body.addEventListener('click', ()=>document.querySelectorAll('.dropdown-content').forEach(dc=>dc.classList.remove('show')));
+
+document.getElementById('sortOptions').addEventListener('click', e => {
+    if (e.target.classList.contains('dropdown-item')) {
+        sortBy = e.target.dataset.sort;
+        document.getElementById('sortBtn').textContent = e.target.textContent + ' ▾';
+        filterPosts();
+    }
+});
+
+document.getElementById('searchInput').addEventListener('input', filterPosts);
+document.getElementById('resetBtn').addEventListener('click', resetFilters);
+
+populateCategoryDropdown();
+filterPosts();
+</script>
 </body>
 </html>
