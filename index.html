@@ -1,254 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>m² | works ©2025</title>
-<style>
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background: #fff;
-    color: #000;
-  }
-
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 2rem;
-    font-size: 1.5rem;
-    border-bottom: 2px solid #000;
-  }
-
-  .table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    border-top: 2px solid #000;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 1200px;
-    transition: all 0.3s ease;
-  }
-
-  th, td {
-    border-right: 1px solid #000;
-    border-bottom: 1px solid #000;
-    padding: 0.75rem;
-    text-align: center;
-    vertical-align: middle;
-    transition: background 0.3s ease;
-  }
-
-  th:first-child,
-  td:first-child {
-    border-left: 1px solid #000;
-  }
-
-  th {
-    font-weight: 500;
-  }
-
-  /* Vertical column headers */
-  .vertical {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    text-align: left;
-    font-size: 0.9rem;
-    padding: 0.5rem;
-  }
-
-  /* Featured image styling */
-  .featured-img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    display: block;
-    margin: 0 auto;
-    border-radius: 2px;
-    transition: transform 0.3s ease;
-  }
-
-  td {
-    font-size: 0.9rem;
-  }
-
-  /* Small dot */
-  .dot {
-    font-size: 1.2rem;
-    line-height: 1;
-  }
-
-  /* Column width balancing */
-  th:nth-child(1), td:nth-child(1) { width: 120px; }
-  th:nth-child(2), td:nth-child(2) { width: 220px; }
-  th:nth-child(3), td:nth-child(3) { width: 180px; }
-
-  /* Hover effects */
-  tr:hover td {
-    background: #f5f5f5;
-  }
-
-  tr:hover .featured-img {
-    transform: scale(1.06);
-  }
-
-  @media (max-width: 768px) {
-    header {
-      font-size: 1.2rem;
-      padding: 1rem;
+  <meta charset="UTF-8">
+  <title>m² | works ©2025</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: #fff;
+      color: #000;
     }
-    th, td {
-      padding: 0.5rem;
+    body {
+      min-height: 100vh;
+      width: 100vw;
+      overflow-x: hidden;
     }
-    .featured-img {
-      width: 60px;
-      height: 60px;
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      width: 100%;
+      padding: 32px 0 16px 0;
+      font-size: 3.2vw;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      border-bottom: none;
+      box-sizing: border-box;
     }
-  }
-</style>
+    .header .left {
+      margin-left: 5vw;
+    }
+    .header .right {
+      margin-right: 5vw;
+      font-size: 2.5vw;
+      font-weight: 400;
+    }
+
+    .works-table {
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      border-top: 5px solid #000;
+      border-left: 2px solid #000;
+      border-right: 2px solid #000;
+      box-sizing: border-box;
+      font-size: 1.4em;
+      margin-top: 1vw;
+      background: #fff;
+      overflow-x: auto;
+    }
+    .table-row {
+      display: flex;
+      width: 100%;
+      min-height: 7.2vw;
+      border-bottom: 2px solid #000;
+      box-sizing: border-box;
+    }
+
+    /* Column widths - flexible, mobile first */
+    .col-featured { flex: 1.2 0 0; min-width: 74px; background: #000; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .col-project { flex: 2 0 0; min-width: 120px; display: flex; align-items: center; justify-content: flex-start; padding-left: 0.7em; }
+    .col-client { flex: 2 0 0; min-width: 120px; display: flex; align-items: center; }
+    .col-vertical { flex: 1 0 0; min-width: 46px; display: flex; align-items: center; justify-content: center; border-left: 2px solid #000; }
+    .col-vertical-title { writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); white-space: nowrap; font-size: 0.93em; font-weight: 400; letter-spacing: 0.02em; }
+    .col-vertical-dot { font-size: 1.5em; text-align: center; width: 100%; }
+    .col-image {
+      width: 100%;
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #fff;
+    }
+    .col-image img {
+      max-width: 66px;
+      max-height: 66px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 4px;
+      border: 1px solid #eee;
+    }
+    .col-featured-title {
+      font-size: 1em;
+      font-weight: 500;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
+    .table-header {
+      font-weight: 500;
+      background: #fff;
+      border-bottom: 2px solid #000;
+    }
+    .table-header .col-featured {
+      background: #000;
+      color: #fff;
+      font-weight: 600;
+    }
+    /* Responsive */
+    @media (max-width: 700px) {
+      .header { font-size: 6vw; }
+      .header .right { font-size: 4vw; }
+      .works-table { font-size: 1.1em; }
+      .col-project, .col-client { min-width: 80px; font-size: 0.93em; }
+      .col-vertical { min-width: 34px; }
+      .col-featured, .col-image { min-width: 54px; }
+    }
+    @media (max-width: 430px) {
+      .header { font-size: 8vw; }
+      .header .right { font-size: 6vw; }
+      .works-table { font-size: 0.88em; }
+      .col-project, .col-client { min-width: 60px; font-size: 0.87em; }
+      .col-vertical { min-width: 26px; }
+      .col-featured, .col-image { min-width: 44px; }
+    }
+  </style>
 </head>
 <body>
-
-<header>
-  <div>m² | works</div>
-  <div>©2025</div>
-</header>
-
-<div class="table-wrapper">
-  <table>
-    <thead>
-      <tr>
-        <th>featured</th>
-        <th>project</th>
-        <th>client</th>
-        <th class="vertical">G: graphics</th>
-        <th class="vertical">B: branding / logo</th>
-        <th class="vertical">P: packaging</th>
-        <th class="vertical">AD: advertising</th>
-        <th class="vertical">E: editorial / book</th>
-        <th class="vertical">S: space / sign</th>
-        <th class="vertical">A: art</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><img src="https://via.placeholder.com/80x80?text=ICEBERG" alt="" class="featured-img"></td>
-        <td>I.CEBERG MAGAZINE 01</td>
-        <td></td>
-        <td class="dot">●</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="dot">●</td>
-        <td></td>
-        <td class="dot">●</td>
-      </tr>
-      <tr>
-        <td><img src="https://via.placeholder.com/80x80?text=UFJ" alt="" class="featured-img"></td>
-        <td>三菱UFJ信託銀行 ブランディング</td>
-        <td>三菱UFJ信託銀行</td>
-        <td class="dot">●</td>
-        <td class="dot">●</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><img src="https://via.placeholder.com/80x80?text=板橋" alt="" class="featured-img"></td>
-        <td>板橋区立美術館 館蔵品展</td>
-        <td>板橋区立美術館</td>
-        <td class="dot">●</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><img src="https://via.placeholder.com/80x80?text=TACTILE" alt="" class="featured-img"></td>
-        <td>TACTILE</td>
-        <td>Tactile Material Co.,Ltd.</td>
-        <td class="dot">●</td>
-        <td class="dot">●</td>
-        <td class="dot">●</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><img src="https://via.placeholder.com/80x80?text=ICEBERG" alt="" class="featured-img"></td>
-        <td>アイスバーグ®</td>
-        <td></td>
-        <td class="dot">●</td>
-        <td class="dot">●</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><img src="https://via.placeholder.com/80x80?text=Tokyo2024" alt="" class="featured-img"></td>
-        <td>東京芸術祭2024</td>
-        <td>東京芸術祭事務局</td>
-        <td class="dot">●</td>
-        <td class="dot">●</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><img src="https://via.placeholder.com/80x80?text=Chainsaw" alt="" class="featured-img"></td>
-        <td>劇場版 CHAINSAW MAN -レゼ篇-</td>
-        <td>株式会社 MAPPA</td>
-        <td class="dot">●</td>
-        <td></td>
-        <td></td>
-        <td class="dot">●</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><img src="https://via.placeholder.com/80x80?text=TokyoTools" alt="" class="featured-img"></td>
-        <td>東京芸術祭2024 ツール</td>
-        <td>東京芸術祭事務局</td>
-        <td class="dot">●</td>
-        <td class="dot">●</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="dot">●</td>
-        <td class="dot">●</td>
-      </tr>
-      <tr>
-        <td><img src="https://via.placeholder.com/80x80?text=劉建華" alt="" class="featured-img"></td>
-        <td>劉建華 中空を注ぐ 図録</td>
-        <td>十和田市現代美術館</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="dot">●</td>
-        <td></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
+  <div class="header">
+    <div class="left">
+      <span style="font-size:1.5em; font-weight:500;">m²</span> | works
+    </div>
+    <div class="right">
+      ©2025
+    </div>
+  </div>
+  <div class="works-table">
+    <!-- table header -->
+    <div class="table-row table-header">
+      <div class="col-featured">
+        <span class="col-featured-title">featured</span>
+      </div>
+      <div class="col-project">project</div>
+      <div class="col-client">client</div>
+      <div class="col-vertical"><span class="col-vertical-title">G: graphics</span></div>
+      <div class="col-vertical"><span class="col-vertical-title">B: branding / logo</span></div>
+      <div class="col-vertical"><span class="col-vertical-title">P: packaging</span></div>
+      <div class="col-vertical"><span class="col-vertical-title">AD: advertising</span></div>
+      <div class="col-vertical"><span class="col-vertical-title">E: editorial / book</span></div>
+      <div class="col-vertical"><span class="col-vertical-title">S: space / sign</span></div>
+      <div class="col-vertical"><span class="col-vertical-title">A: art</span></div>
+    </div>
+    <!-- table rows -->
+    <div class="table-row">
+      <div class="col-featured">
+        <div class="col-image"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=66&q=80" alt="ICEBERG MAGAZINE 01"></div>
+      </div>
+      <div class="col-project">I.CEBERG MAGAZINE 01</div>
+      <div class="col-client"></div>
+      <div class="col-vertical"><span class="col-vertical-dot">●</span> G</div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"><span class="col-vertical-dot">●</span> E</div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"><span class="col-vertical-dot">●</span> A</div>
+    </div>
+    <div class="table-row">
+      <div class="col-featured">
+        <div class="col-image"><img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=66&q=80" alt="三菱UFJ信託銀行 ブランディング"></div>
+      </div>
+      <div class="col-project">三菱UFJ信託銀行 <br> ブランディング</div>
+      <div class="col-client">三菱UFJ信託銀行</div>
+      <div class="col-vertical"><span class="col-vertical-dot">●</span> G</div>
+      <div class="col-vertical"><span class="col-vertical-dot">●</span> B</div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+    </div>
+    <div class="table-row">
+      <div class="col-featured">
+        <div class="col-image"><img src="https://images.unsplash.com/photo-1465101162946-4377e57745c3?auto=format&fit=crop&w=66&q=80" alt="板橋区立美術館館蔵品展"></div>
+      </div>
+      <div class="col-project">板橋区立美術館館蔵品展</div>
+      <div class="col-client">板橋区立美術館</div>
+      <div class="col-vertical"><span class="col-vertical-dot">●</span> G</div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+    </div>
+    <div class="table-row">
+      <div class="col-featured">
+        <div class="col-image"><img src="https://images.unsplash.com/photo-1534081333815-ae5019106622?auto=format&fit=crop&w=66&q=80" alt="TACTILE"></div>
+      </div>
+      <div class="col-project">TACTILE</div>
+      <div class="col-client">Tactile Material Co.,Ltd.</div>
+      <div class="col-vertical"><span class="col-vertical-dot">●</span> G</div>
+      <div class="col-vertical"><span class="col-vertical-dot">●</span> B</div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+    </div>
+    <div class="table-row">
+      <div class="col-featured">
+        <div class="col-image"><img src="https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=66&q=80" alt="アイスバーグ®"></div>
+      </div>
+      <div class="col-project">アイスバーグ®</div>
+      <div class="col-client"></div>
+      <div class="col-vertical"><span class="col-vertical-dot">●</span> G</div>
+      <div class="col-vertical"><span class="col-vertical-dot">●</span> B</div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+    </div>
+    <div class="table-row">
+      <div class="col-featured">
+        <div class="col-image"><img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=66&q=80" alt="東京芸術祭2024"></div>
+      </div>
+      <div class="col-project">東京芸術祭2024</div>
+      <div class="col-client">東京芸術祭事務局</div>
+      <div class="col-vertical"><span class="col-vertical-dot">●</span> G</div>
+      <div class="col-vertical"><span class="col-vertical-dot">●</span> B</div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+    </div>
+    <div class="table-row">
+      <div class="col-featured">
+        <div class="col-image"><img src="https://images.unsplash.com/photo-1519985176271-adb1088fa94c?auto=format&fit=crop&w=66&q=80" alt="劇場版CHAINSAW MAN"></div>
+      </div>
+      <div class="col-project">劇場版<br>CHAINSAW MAN -レゼ篇-</div>
+      <div class="col-client">株式会社 MAPPA</div>
+      <div class="col-vertical"><span class="col-vertical-dot">●</span> G</div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"><span class="col-vertical-dot">●</span> AD</div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+    </div>
+    <div class="table-row">
+      <div class="col-featured">
+        <div class="col-image"><img src="https://images.unsplash.com/photo-1551963831-b3b1ca40c98e?auto=format&fit=crop&w=66&q=80" alt="東京芸術祭2024ツール"></div>
+      </div>
+      <div class="col-project">東京芸術祭2024ツール</div>
+      <div class="col-client">東京芸術祭事務局</div>
+      <div class="col-vertical"><span class="col-vertical-dot">●</span> G</div>
+      <div class="col-vertical"><span class="col-vertical-dot">●</span> B</div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"><span class="col-vertical-dot">●</span> S</div>
+      <div class="col-vertical"><span class="col-vertical-dot">●</span> A</div>
+    </div>
+    <div class="table-row">
+      <div class="col-featured">
+        <div class="col-image"><img src="https://images.unsplash.com/photo-1522770179533-24471fcdba45?auto=format&fit=crop&w=66&q=80" alt="劉建華 中空を注ぐ図録"></div>
+      </div>
+      <div class="col-project">劉建華 中空を注ぐ図録</div>
+      <div class="col-client">十和田市現代美術館</div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"><span class="col-vertical-dot">●</span> E</div>
+      <div class="col-vertical"></div>
+      <div class="col-vertical"></div>
+    </div>
+  </div>
 </body>
 </html>
