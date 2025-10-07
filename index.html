@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>m² | works ©2025</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: #fff;
+    color: #000;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #000;
+  }
+
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    border-top: 2px solid #000;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1200px;
+    transition: all 0.3s ease;
+  }
+
+  th, td {
+    border-right: 1px solid #000;
+    border-bottom: 1px solid #000;
+    padding: 0.75rem;
+    text-align: center;
+    vertical-align: middle;
+    transition: background 0.3s ease;
+  }
+
+  th:first-child,
+  td:first-child {
+    border-left: 1px solid #000;
+  }
+
+  th {
+    font-weight: 500;
+  }
+
+  /* Vertical column headers */
+  .vertical {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-align: left;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+
+  /* Featured image styling */
+  .featured-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    border-radius: 2px;
+    transition: transform 0.3s ease;
+  }
+
+  td {
+    font-size: 0.9rem;
+  }
+
+  /* Small dot */
+  .dot {
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+
+  /* Column width balancing */
+  th:nth-child(1), td:nth-child(1) { width: 120px; }
+  th:nth-child(2), td:nth-child(2) { width: 220px; }
+  th:nth-child(3), td:nth-child(3) { width: 180px; }
+
+  /* Hover effects */
+  tr:hover td {
+    background: #f5f5f5;
+  }
+
+  tr:hover .featured-img {
+    transform: scale(1.06);
+  }
+
+  @media (max-width: 768px) {
+    header {
+      font-size: 1.2rem;
+      padding: 1rem;
+    }
+    th, td {
+      padding: 0.5rem;
+    }
+    .featured-img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>m² | works</div>
+  <div>©2025</div>
+</header>
+
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>featured</th>
+        <th>project</th>
+        <th>client</th>
+        <th class="vertical">G: graphics</th>
+        <th class="vertical">B: branding / logo</th>
+        <th class="vertical">P: packaging</th>
+        <th class="vertical">AD: advertising</th>
+        <th class="vertical">E: editorial / book</th>
+        <th class="vertical">S: space / sign</th>
+        <th class="vertical">A: art</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><img src="https://via.placeholder.com/80x80?text=ICEBERG" alt="" class="featured-img"></td>
+        <td>I.CEBERG MAGAZINE 01</td>
+        <td></td>
+        <td class="dot">●</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="dot">●</td>
+        <td></td>
+        <td class="dot">●</td>
+      </tr>
+      <tr>
+        <td><img src="https://via.placeholder.com/80x80?text=UFJ" alt="" class="featured-img"></td>
+        <td>三菱UFJ信託銀行 ブランディング</td>
+        <td>三菱UFJ信託銀行</td>
+        <td class="dot">●</td>
+        <td class="dot">●</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><img src="https://via.placeholder.com/80x80?text=板橋" alt="" class="featured-img"></td>
+        <td>板橋区立美術館 館蔵品展</td>
+        <td>板橋区立美術館</td>
+        <td class="dot">●</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><img src="https://via.placeholder.com/80x80?text=TACTILE" alt="" class="featured-img"></td>
+        <td>TACTILE</td>
+        <td>Tactile Material Co.,Ltd.</td>
+        <td class="dot">●</td>
+        <td class="dot">●</td>
+        <td class="dot">●</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><img src="https://via.placeholder.com/80x80?text=ICEBERG" alt="" class="featured-img"></td>
+        <td>アイスバーグ®</td>
+        <td></td>
+        <td class="dot">●</td>
+        <td class="dot">●</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><img src="https://via.placeholder.com/80x80?text=Tokyo2024" alt="" class="featured-img"></td>
+        <td>東京芸術祭2024</td>
+        <td>東京芸術祭事務局</td>
+        <td class="dot">●</td>
+        <td class="dot">●</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><img src="https://via.placeholder.com/80x80?text=Chainsaw" alt="" class="featured-img"></td>
+        <td>劇場版 CHAINSAW MAN -レゼ篇-</td>
+        <td>株式会社 MAPPA</td>
+        <td class="dot">●</td>
+        <td></td>
+        <td></td>
+        <td class="dot">●</td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><img src="https://via.placeholder.com/80x80?text=TokyoTools" alt="" class="featured-img"></td>
+        <td>東京芸術祭2024 ツール</td>
+        <td>東京芸術祭事務局</td>
+        <td class="dot">●</td>
+        <td class="dot">●</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="dot">●</td>
+        <td class="dot">●</td>
+      </tr>
+      <tr>
+        <td><img src="https://via.placeholder.com/80x80?text=劉建華" alt="" class="featured-img"></td>
+        <td>劉建華 中空を注ぐ 図録</td>
+        <td>十和田市現代美術館</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="dot">●</td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
