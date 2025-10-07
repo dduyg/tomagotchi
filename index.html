@@ -5,14 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LiminalLoop</title>
   <style>
-    :root {
-      --border: 1px solid #000;
-      --cell-padding: 0.5em 0.3em;
-      --header-bg: transparent;
-      --featured-bg: #000;
-      --featured-color: #fff;
-      --font-main: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    }
     body {
       margin: 0;
       font-family: var(--font-main);
@@ -26,7 +18,7 @@
       padding: 0;
     }
 
-    .header {
+    header {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
@@ -55,15 +47,14 @@
     .works-grid {
       display: grid;
       width: 100vw;
-      border-top: var(--border);
-      border-left: var(--border);
+      border-top: 1px solid #000;
+      border-left: 1px solid #000;
       grid-template-columns:
         minmax(80px, 8vw) /* featured wider */
         minmax(110px, 2.2fr) /* project */
         minmax(110px, 1.6fr) /* client */
         repeat(7, minmax(30px, 1fr)); /* categories */
       font-size: 1em;
-      background: transparent;
       overflow-x: auto;
     }
 
@@ -76,37 +67,40 @@
           minmax(90px, 1.5fr)
           repeat(7, minmax(28px, 1fr));
       }
-      .header { font-size: 1.55em; }
+      header { font-size: 1.55em; }
     }
     @media (max-width: 520px) {
       .works-grid { font-size: 0.75em; }
-      .header { font-size: 1.1em; }
+      header { font-size: 1.1em; }
     }
 
     .cell {
-      border-right: var(--border);
-      border-bottom: var(--border);
-      padding: var(--cell-padding);
+      border-right: 1px solid #000;
+      border-bottom: 1px solid #000;
+      padding: 0.5em 0.3em;
       display: flex;
       align-items: center;
-      background: var(--header-bg);
       word-break: break-word;
       min-height: 54px;
       min-width: 0;
     }
-
-    .cell.featured {
-      background: var(--featured-bg);
-      color: var(--featured-color);
-      font-weight: bold;
+    .cell.title {
       writing-mode: vertical-rl;
       text-orientation: mixed;
       font-size: 1em;
-      letter-spacing: 0.02em;
-      min-width: 0;
+      font-weight: 400;
       justify-content: flex-start;
       align-items: flex-end;
       text-align: left;
+      letter-spacing: 0.01em;
+      padding: 0.3em 0.1em;
+    }
+    .cell.title.featured {
+      background: #000;
+      color: #fff;
+      font-weight: bold;
+      letter-spacing: 0.02em;
+      min-width: 0;
     }
     .cell.imgcell {
       justify-content: center;
@@ -119,19 +113,6 @@
       height: 100%;
       object-fit: cover;
       display: block;
-    }
-
-    .cell.cat-title {
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      font-size: 1em;
-      font-weight: 400;
-      justify-content: flex-start;
-      align-items: flex-end;
-      text-align: left;
-      letter-spacing: 0.01em;
-      padding: 0.3em 0.1em;
-      background: #fff;
     }
 
     .cell.center {
@@ -174,23 +155,23 @@
 </head>
 <body>
   <div class="container">
-    <div class="header">
+    <header>
       <span class="header-left">m<sup class="sup">2</sup> | works</span>
       <span class="header-right">&copy;2025</span>
-    </div>
-
+    </header>
+    
     <div class="works-grid">
       <!-- Table header row -->
-      <div class="cell featured bold">featured</div>
-      <div class="cell bold">project</div>
-      <div class="cell bold">client</div>
-      <div class="cell cat-title">G: graphics</div>
-      <div class="cell cat-title">B: branding / logo</div>
-      <div class="cell cat-title">P: packaging</div>
-      <div class="cell cat-title">AD: advertising</div>
-      <div class="cell cat-title">E: editorial / book</div>
-      <div class="cell cat-title">S: space / sign</div>
-      <div class="cell cat-title">A: art</div>
+      <div class="cell title featured">featured</div>
+      <div class="cell title">project</div>
+      <div class="cell title">client</div>
+      <div class="cell title">G: graphics</div>
+      <div class="cell title">B: branding / logo</div>
+      <div class="cell title">P: packaging</div>
+      <div class="cell title">AD: advertising</div>
+      <div class="cell title">E: editorial / book</div>
+      <div class="cell title">S: space / sign</div>
+      <div class="cell title">A: art</div>
 
       <!-- Row 1 -->
       <div class="cell imgcell">
