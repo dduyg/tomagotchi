@@ -2,361 +2,354 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>m² | works ©2025</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
-    html, body {
-      padding: 0;
-      margin: 0;
-      font-family: 'Montserrat', Arial, sans-serif;
-      background: #fff;
+    /* Basic Reset */
+    *, *::before, *::after {
       box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', 'Arial', sans-serif;
       width: 100vw;
       min-height: 100vh;
-      overflow-x: hidden;
+      background: #fff;
+      color: #111;
     }
+    body {
+      min-width: 320px;
+      font-size: 1rem;
+    }
+
     .header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      width: 100vw;
-      padding: 32px 0 12px 0;
-      box-sizing: border-box;
-      font-size: 2.7rem;
+      align-items: baseline;
+      padding: 32px 16px 0 16px;
+      font-family: 'Inter', 'Arial', sans-serif;
+      font-size: 2.4rem;
       font-weight: 400;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.05em;
     }
-    .header .title {
-      margin-left: 2vw;
+    .header .left {
       font-weight: 400;
     }
-    .header .copyright {
-      margin-right: 2vw;
+    .header .right {
       font-weight: 400;
+      font-size: 2.1rem;
     }
-    .works-grid {
+
+    .flex-table-container {
       width: 100vw;
       overflow-x: auto;
-      border-top: 4px solid #000;
-      border-bottom: 2px solid #000;
+      padding: 0 0 24px 0;
     }
-    .grid-table {
+    .flex-table {
       display: flex;
       flex-direction: column;
-      width: 100vw;
-      min-width: 100vw;
-      background: #fff;
+      border-top: 3px solid #111;
+      border-left: 3px solid #111;
+      width: 100%;
+      min-width: 600px;
+      font-size: 1rem;
     }
-    .grid-row {
+    .flex-table-row {
       display: flex;
       width: 100%;
-      min-width: 100vw;
-      border-bottom: 1px solid #222;
-      flex-wrap: nowrap;
+      min-width: 600px;
+      border-bottom: 2px solid #111;
+      background: #fff;
       align-items: stretch;
-      box-sizing: border-box;
     }
-    .grid-cell {
+
+    /* Cell styles */
+    .flex-table-cell {
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 0.8vw 0.2vw;
-      font-size: 1.15rem;
-      border-right: 1px solid #222;
+      padding: 6px 4px;
+      border-right: 2px solid #111;
+      font-size: 1rem;
+      font-weight: 400;
       background: #fff;
+      min-width: 0;
       box-sizing: border-box;
-      min-height: 80px;
-      text-align: center;
-      flex-shrink: 1;
-      flex-grow: 1;
       word-break: break-word;
-      overflow-wrap: break-word;
+      overflow-wrap: anywhere;
     }
-    .grid-cell:last-child {
-      border-right: none;
-    }
-    /* Featured column */
     .featured-cell {
-      background: #000;
-      color: #fff;
-      flex-basis: 80px;
-      flex-grow: 0;
-      flex-shrink: 0;
+      flex: 0 0 80px;
       min-width: 80px;
       max-width: 80px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      letter-spacing: 0.02em;
-      writing-mode: vertical-lr;
-      text-orientation: mixed;
+      background: #111;
+      color: #fff;
+      font-weight: 500;
+      flex-direction: column;
       justify-content: flex-start;
-      align-items: flex-start;
-      padding: 0;
-    }
-    /* Project column */
-    .project-cell {
-      flex-basis: 220px;
-      min-width: 120px;
-      max-width: 220px;
-      flex-grow: 1;
-      align-items: flex-start;
-      justify-content: flex-start;
-      padding-left: 10px;
-      font-weight: 600;
-    }
-    /* Client column */
-    .client-cell {
-      flex-basis: 160px;
-      min-width: 90px;
-      max-width: 160px;
-      flex-grow: 1;
-      align-items: flex-start;
-      justify-content: flex-start;
-      padding-left: 10px;
-      font-weight: 400;
-    }
-    /* Column title cells after client: vertical writing mode */
-    .vertical-title {
-      writing-mode: vertical-lr;
-      text-orientation: mixed;
-      font-size: 1.07rem;
-      font-weight: 400;
-      letter-spacing: 0.01em;
-      min-width: 48px;
-      max-width: 48px;
-      padding: 2px 0;
-      justify-content: center;
-      align-items: flex-end;
-      white-space: pre-line;
-      line-height: 1.18;
-      background: #f8f8f8;
-    }
-    /* Data cells for vertical columns */
-    .vertical-data {
-      min-width: 48px;
-      max-width: 48px;
-      font-weight: 600;
-      font-size: 1.1rem;
-      background: #fff;
-      justify-content: center;
       align-items: center;
-    }
-    .dot {
-      font-size: 1.5rem;
-      line-height: 1;
-      vertical-align: middle;
+      font-size: 1.1rem;
       padding: 0;
+      border-right: 2px solid #111;
     }
-    /* Image cells */
-    .featured-image {
-      width: 100%;
-      height: auto;
-      max-width: 80px;
-      max-height: 80px;
+    .project-cell {
+      flex: 0.9 0 100px;
+      min-width: 100px;
+      max-width: 170px;
+      text-align: left;
+      padding-left: 6px;
+      font-size: 1.06rem;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .client-cell {
+      flex: 0.9 0 100px;
+      min-width: 100px;
+      max-width: 170px;
+      text-align: left;
+      padding-left: 6px;
+      font-size: 1.06rem;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    .category-cell {
+      flex: 0.55 0 70px;
+      min-width: 70px;
+      max-width: 90px;
+      font-size: 1rem;
+    }
+    .category-cell .dot {
+      font-size: 1.3rem;
+      vertical-align: middle;
+      margin-right: 3px;
+    }
+    .category-header-vertical {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-size: 0.98rem;
+      letter-spacing: 0.02em;
+      text-align: center;
+      padding: 8px 0;
+      white-space: nowrap;
+    }
+    .category-header {
+      font-size: 1rem;
+      letter-spacing: 0.01em;
+      text-align: center;
+      padding: 8px 0;
+      white-space: nowrap;
+    }
+    .img-thumb {
+      width: 80px;
+      height: 80px;
       object-fit: cover;
-      box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000;
-      border-radius: 2px;
-      margin: 0 auto;
+      background: #eee;
       display: block;
+      border: none;
+      margin: 0;
     }
-    /* Responsive adjustments */
+    .featured-cell .img-thumb {
+      margin: 0;
+      border: none;
+      object-fit: cover;
+      width: 80px;
+      height: 80px;
+      background: #fff;
+    }
+    .featured-cell {
+      padding: 0;
+      border-right: 2px solid #111;
+    }
+    @media (max-width: 900px) {
+      .flex-table, .flex-table-row {
+        min-width: 500px;
+      }
+    }
     @media (max-width: 600px) {
+      .flex-table, .flex-table-row {
+        min-width: 320px;
+      }
       .header {
-        font-size: 2rem;
-        padding: 24px 0 8px 0;
+        font-size: 1.4rem;
+        padding: 20px 8px 0 8px;
       }
-      .grid-cell {
-        font-size: 0.98rem;
-        padding: 0.6vw 0.2vw;
-        min-width: 60px;
-      }
-      .featured-cell {
-        min-width: 60px;
-        max-width: 60px;
-        font-size: 0.98rem;
-      }
-      .project-cell {
-        min-width: 70px;
-        max-width: 110px;
-        font-size: 0.98rem;
-      }
-      .client-cell {
-        min-width: 60px;
-        max-width: 90px;
-        font-size: 0.98rem;
-      }
-      .vertical-title, .vertical-data {
-        min-width: 34px;
-        max-width: 34px;
-        font-size: 0.93rem;
-      }
-      .featured-image {
-        max-width: 60px;
-        max-height: 60px;
+      .header .right {
+        font-size: 1.1rem;
       }
     }
-    /* Remove right border for last row cell */
-    .grid-row:last-child .grid-cell {
+    /* Remove border on last cell */
+    .flex-table-cell:last-child {
+      border-right: none;
+    }
+    /* Remove border on last row */
+    .flex-table-row:last-child {
       border-bottom: none;
+    }
+    /* Hide scrollbar for aesthetics */
+    .flex-table-container::-webkit-scrollbar {
+      display: none;
+      width: 0;
     }
   </style>
 </head>
 <body>
   <div class="header">
-    <span class="title">m² | works</span>
-    <span class="copyright">©2025</span>
+    <span class="left">m² | works</span>
+    <span class="right">©2025</span>
   </div>
-  <div class="works-grid">
-    <div class="grid-table">
+  <div class="flex-table-container">
+    <div class="flex-table">
       <!-- Table Header Row -->
-      <div class="grid-row">
-        <div class="grid-cell featured-cell">featured</div>
-        <div class="grid-cell project-cell">project</div>
-        <div class="grid-cell client-cell">client</div>
-        <div class="grid-cell vertical-title">G: graphics</div>
-        <div class="grid-cell vertical-title">B: branding / logo</div>
-        <div class="grid-cell vertical-title">P: packaging</div>
-        <div class="grid-cell vertical-title">AD: advertising</div>
-        <div class="grid-cell vertical-title">E: editorial / book</div>
-        <div class="grid-cell vertical-title">S: space / sign</div>
-        <div class="grid-cell vertical-title">A: art</div>
+      <div class="flex-table-row" style="font-weight:500;">
+        <div class="flex-table-cell featured-cell" style="background:#111; color:#fff;">featured</div>
+        <div class="flex-table-cell project-cell">project</div>
+        <div class="flex-table-cell client-cell">client</div>
+        <div class="flex-table-cell category-cell">G: graphics</div>
+        <div class="flex-table-cell category-cell">B: branding / logo</div>
+        <div class="flex-table-cell category-cell">P: packaging</div>
+        <div class="flex-table-cell category-cell category-header-vertical">AD: advertising</div>
+        <div class="flex-table-cell category-cell category-header-vertical">E: editorial / book</div>
+        <div class="flex-table-cell category-cell category-header-vertical">S: space / sign</div>
+        <div class="flex-table-cell category-cell category-header-vertical">A: art</div>
       </div>
-      <!-- ROWS -->
-      <!-- 1 -->
-      <div class="grid-row">
-        <div class="grid-cell featured-cell">
-          <img class="featured-image" src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=80&q=80" alt="featured 1">
+      <!-- Table Data Rows (replicate screenshot) -->
+      <!-- Row 1 -->
+      <div class="flex-table-row">
+        <div class="flex-table-cell featured-cell">
+          <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=80&q=80" alt="featured" class="img-thumb">
         </div>
-        <div class="grid-cell project-cell">I.CEBERG MAGAZINE 01</div>
-        <div class="grid-cell client-cell"></div>
-        <div class="grid-cell vertical-data"><span class="dot">●</span> G</div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"><span class="dot">●</span> E</div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"><span class="dot">●</span> A</div>
+        <div class="flex-table-cell project-cell">I.CEBERG MAGAZINE 01</div>
+        <div class="flex-table-cell client-cell"></div>
+        <div class="flex-table-cell category-cell"><span class="dot">●</span>G</div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"><span class="dot">●</span>E</div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"><span class="dot">●</span>A</div>
       </div>
-      <!-- 2 -->
-      <div class="grid-row">
-        <div class="grid-cell featured-cell">
-          <img class="featured-image" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=80&q=80" alt="featured 2">
+      <!-- Row 2 -->
+      <div class="flex-table-row">
+        <div class="flex-table-cell featured-cell">
+          <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=80&q=80" alt="featured" class="img-thumb">
         </div>
-        <div class="grid-cell project-cell">三菱UFJ信託銀行 ブランディング</div>
-        <div class="grid-cell client-cell">三菱UFJ信託銀行</div>
-        <div class="grid-cell vertical-data"><span class="dot">●</span> G</div>
-        <div class="grid-cell vertical-data"><span class="dot">●</span> B</div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
+        <div class="flex-table-cell project-cell">三菱UFJ信託銀行<br>ブランディング</div>
+        <div class="flex-table-cell client-cell">三菱UFJ信託銀行</div>
+        <div class="flex-table-cell category-cell"><span class="dot">●</span>G</div>
+        <div class="flex-table-cell category-cell"><span class="dot">●</span>B</div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
       </div>
-      <!-- 3 -->
-      <div class="grid-row">
-        <div class="grid-cell featured-cell">
-          <img class="featured-image" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=80&q=80" alt="featured 3">
+      <!-- Row 3 -->
+      <div class="flex-table-row">
+        <div class="flex-table-cell featured-cell">
+          <img src="https://images.unsplash.com/photo-1541696432-82c6da8ce7bf?auto=format&fit=crop&w=80&q=80" alt="featured" class="img-thumb">
         </div>
-        <div class="grid-cell project-cell">板橋区立美術館館蔵品展</div>
-        <div class="grid-cell client-cell">板橋区立美術館</div>
-        <div class="grid-cell vertical-data"><span class="dot">●</span> G</div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
+        <div class="flex-table-cell project-cell">板橋区立美術館<br>館蔵品展</div>
+        <div class="flex-table-cell client-cell">板橋区立美術館</div>
+        <div class="flex-table-cell category-cell"><span class="dot">●</span>G</div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
       </div>
-      <!-- 4 -->
-      <div class="grid-row">
-        <div class="grid-cell featured-cell">
-          <img class="featured-image" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=80&q=80" alt="featured tactile">
+      <!-- Row 4 -->
+      <div class="flex-table-row">
+        <div class="flex-table-cell featured-cell">
+          <img src="https://images.unsplash.com/photo-1465101162946-4377e57745c3?auto=format&fit=crop&w=80&q=80" alt="featured" class="img-thumb">
         </div>
-        <div class="grid-cell project-cell">TACTILE</div>
-        <div class="grid-cell client-cell">Tactile Material Co.,Ltd.</div>
-        <div class="grid-cell vertical-data"><span class="dot">●</span> G</div>
-        <div class="grid-cell vertical-data"><span class="dot">●</span> B</div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
+        <div class="flex-table-cell project-cell">TACTILE</div>
+        <div class="flex-table-cell client-cell">Tactile Material<br>Co.,Ltd.</div>
+        <div class="flex-table-cell category-cell"><span class="dot">●</span>G</div>
+        <div class="flex-table-cell category-cell"><span class="dot">●</span>B</div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
       </div>
-      <!-- 5 -->
-      <div class="grid-row">
-        <div class="grid-cell featured-cell">
-          <img class="featured-image" src="https://images.unsplash.com/photo-1424746219973-8fe3bd07d0b7?auto=format&fit=crop&w=80&q=80" alt="featured iceberg">
+      <!-- Row 5 -->
+      <div class="flex-table-row">
+        <div class="flex-table-cell featured-cell">
+          <img src="https://images.unsplash.com/photo-1519985176271-adb1088fa94c?auto=format&fit=crop&w=80&q=80" alt="featured" class="img-thumb">
         </div>
-        <div class="grid-cell project-cell">アイスバーグ®</div>
-        <div class="grid-cell client-cell"></div>
-        <div class="grid-cell vertical-data"><span class="dot">●</span> G</div>
-        <div class="grid-cell vertical-data"><span class="dot">●</span> B</div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
+        <div class="flex-table-cell project-cell">アイスバーグ®</div>
+        <div class="flex-table-cell client-cell"></div>
+        <div class="flex-table-cell category-cell"><span class="dot">●</span>G</div>
+        <div class="flex-table-cell category-cell"><span class="dot">●</span>B</div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
       </div>
-      <!-- 6 -->
-      <div class="grid-row">
-        <div class="grid-cell featured-cell">
-          <img class="featured-image" src="https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=80&q=80" alt="featured art 2024">
+      <!-- Row 6 -->
+      <div class="flex-table-row">
+        <div class="flex-table-cell featured-cell">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=80&q=80" alt="featured" class="img-thumb">
         </div>
-        <div class="grid-cell project-cell">東京芸術祭2024</div>
-        <div class="grid-cell client-cell">東京芸術祭事務局</div>
-        <div class="grid-cell vertical-data"><span class="dot">●</span> G</div>
-        <div class="grid-cell vertical-data"><span class="dot">●</span> B</div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
+        <div class="flex-table-cell project-cell">東京芸術祭2024</div>
+        <div class="flex-table-cell client-cell">東京芸術祭事務局</div>
+        <div class="flex-table-cell category-cell"><span class="dot">●</span>G</div>
+        <div class="flex-table-cell category-cell"><span class="dot">●</span>B</div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
       </div>
-      <!-- 7 -->
-      <div class="grid-row">
-        <div class="grid-cell featured-cell">
-          <img class="featured-image" src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=80&q=80" alt="featured chainsaw">
+      <!-- Row 7 -->
+      <div class="flex-table-row">
+        <div class="flex-table-cell featured-cell">
+          <img src="https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=80&q=80" alt="featured" class="img-thumb">
         </div>
-        <div class="grid-cell project-cell">劇場版CHAINSAW MAN -レゼ篇-</div>
-        <div class="grid-cell client-cell">株式会社MAPPA</div>
-        <div class="grid-cell vertical-data"><span class="dot">●</span> G</div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"><span class="dot">●</span> AD</div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
+        <div class="flex-table-cell project-cell">劇場版<br>CHAINSAW MAN<br>-レゼ篇-</div>
+        <div class="flex-table-cell client-cell">株式会社MAPPA</div>
+        <div class="flex-table-cell category-cell"><span class="dot">●</span>G</div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"><span class="dot">●</span>AD</div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
       </div>
-      <!-- 8 -->
-      <div class="grid-row">
-        <div class="grid-cell featured-cell">
-          <img class="featured-image" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=80&q=80" alt="featured tool">
+      <!-- Row 8 -->
+      <div class="flex-table-row">
+        <div class="flex-table-cell featured-cell">
+          <img src="https://images.unsplash.com/photo-1532009324734-20a7a5813719?auto=format&fit=crop&w=80&q=80" alt="featured" class="img-thumb">
         </div>
-        <div class="grid-cell project-cell">東京芸術祭2024ツール</div>
-        <div class="grid-cell client-cell">東京芸術祭事務局</div>
-        <div class="grid-cell vertical-data"><span class="dot">●</span> G</div>
-        <div class="grid-cell vertical-data"><span class="dot">●</span> B</div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"><span class="dot">●</span> S</div>
-        <div class="grid-cell vertical-data"><span class="dot">●</span> A</div>
+        <div class="flex-table-cell project-cell">東京芸術祭<br>2024 ツール</div>
+        <div class="flex-table-cell client-cell">東京芸術祭事務局</div>
+        <div class="flex-table-cell category-cell"><span class="dot">●</span>G</div>
+        <div class="flex-table-cell category-cell"><span class="dot">●</span>B</div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"><span class="dot">●</span>S</div>
+        <div class="flex-table-cell category-cell"><span class="dot">●</span>A</div>
       </div>
-      <!-- 9 -->
-      <div class="grid-row">
-        <div class="grid-cell featured-cell">
-          <img class="featured-image" src="https://images.unsplash.com/photo-1424746219973-8fe3bd07d0b7?auto=format&fit=crop&w=80&q=80" alt="featured liu">
+      <!-- Row 9 -->
+      <div class="flex-table-row">
+        <div class="flex-table-cell featured-cell">
+          <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=80&q=80" alt="featured" class="img-thumb">
         </div>
-        <div class="grid-cell project-cell">劉建華 中空を注ぐ図録</div>
-        <div class="grid-cell client-cell">十和田市現代美術館</div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"><span class="dot">●</span> E</div>
-        <div class="grid-cell vertical-data"></div>
-        <div class="grid-cell vertical-data"></div>
+        <div class="flex-table-cell project-cell">劉建華<br>中空を注ぐ図録</div>
+        <div class="flex-table-cell client-cell">十和田市現代美術館</div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"><span class="dot">●</span>E</div>
+        <div class="flex-table-cell category-cell"></div>
+        <div class="flex-table-cell category-cell"></div>
       </div>
     </div>
   </div>
