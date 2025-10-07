@@ -8,323 +8,315 @@
     html, body {
       height: 100%;
       margin: 0;
-      padding: 0;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
       background: #fff;
-      color: #000;
-      box-sizing: border-box;
+      color: #111;
     }
-
     body {
       min-height: 100vh;
-      width: 100vw;
-      overflow-x: hidden;
+      box-sizing: border-box;
     }
-
     .header {
-      width: 100vw;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      padding: 3vw 4vw 2vw 4vw;
-      font-size: 2.6vw;
+      align-items: flex-start;
+      padding: 36px 3vw 24px 3vw;
+      font-size: 2.2rem;
       font-weight: 400;
-      box-sizing: border-box;
+      border-bottom: 3px solid #000;
+      letter-spacing: 0.02em;
     }
     .header .title {
-      font-size: 3.2vw;
-      font-weight: 400;
-      letter-spacing: 0.01em;
+      display: flex;
+      align-items: center;
+      gap: 20px;
     }
-    .header .copyright {
-      font-size: 2.6vw;
-      font-weight: 400;
+    .header .title .sup {
+      font-size: 1.1rem;
+      vertical-align: super;
+      margin-left: 2px;
     }
-
+    .header .year {
+      font-size: 2.2rem;
+    }
     .grid-table {
       width: 100vw;
-      display: flex;
-      flex-direction: column;
-      border-top: 2px solid #000;
-      border-left: 2px solid #000;
+      max-width: 100vw;
+      overflow-x: auto;
+      border-collapse: collapse;
+      /* Remove gaps for flex rows */
     }
-
-    .grid-row {
+    .table-row {
       display: flex;
       width: 100%;
-      min-height: 8vw;
-      border-bottom: 1.5px solid #000;
+      min-width: 900px;
+      border-bottom: 2px solid #000;
       background: #fff;
     }
-
-    .grid-cell {
+    .table-row.header {
+      border-bottom: 4px solid #000;
+      background: #fff;
+      z-index: 1;
+      position: sticky;
+      top: 0;
+    }
+    .cell {
+      box-sizing: border-box;
+      border-right: 2px solid #000;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5vw;
-      padding: 0.8vw 0.5vw;
-      border-right: 1.5px solid #000;
-      box-sizing: border-box;
+      padding: 10px 4px;
+      font-size: 1rem;
       background: #fff;
-      min-height: 7vw;
-      overflow: hidden;
-      text-align: left;
+      min-width: 60px;
+      min-height: 60px;
+      flex: 1 1 0;
       word-break: break-word;
-      font-weight: 400;
+      overflow-wrap: break-word;
+      text-align: center;
     }
-
-    /* First column (featured image) */
-    .featured-cell {
+    .cell:last-child {
+      border-right: none;
+    }
+    .cell.featured {
+      flex: 0 0 75px;
+      min-width: 75px;
+      max-width: 75px;
       background: #000;
       color: #fff;
-      flex: 0 0 8vw;
-      min-width: 8vw;
-      max-width: 8vw;
-      justify-content: flex-start;
-      align-items: flex-start;
-      padding: 0;
-      position: relative;
-    }
-    .featured-img {
-      width: 100%;
-      height: 7vw;
-      object-fit: cover;
-      display: block;
-    }
-    .featured-label {
-      writing-mode: vertical-rl;
-      text-align: center;
-      font-size: 1.7vw;
-      font-weight: 500;
-      padding: 0.5vw 0.2vw;
-      letter-spacing: 0.01em;
-      color: #fff;
-    }
-
-    /* Project column */
-    .project-cell {
-      flex: 0 0 14vw;
-      min-width: 14vw;
-      max-width: 18vw;
-      font-size: 1.5vw;
-      font-weight: 400;
-      align-items: flex-start;
-      justify-content: flex-start;
-      padding-left: 0.6vw;
-    }
-
-    /* Client column */
-    .client-cell {
-      flex: 0 0 14vw;
-      min-width: 13vw;
-      max-width: 18vw;
-      font-size: 1.5vw;
-      font-weight: 400;
-      align-items: flex-start;
-      justify-content: flex-start;
-      padding-left: 0.6vw;
-    }
-
-    /* Category columns */
-    .cat-cell {
-      flex: 0 0 5vw;
-      min-width: 4vw;
-      max-width: 6vw;
-      font-size: 1.3vw;
-      text-align: center;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* After client, switch headers vertical */
-    .cat-header-vertical {
+      font-weight: bold;
       writing-mode: vertical-rl;
       text-orientation: mixed;
-      font-size: 1.3vw;
-      font-weight: 400;
-      letter-spacing: 0.01em;
-      white-space: nowrap;
-      text-align: center;
-      padding: 0.2vw;
+      font-size: 1.1rem;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 14px 2px;
+    }
+    .cell.img {
+      flex: 0 0 75px;
+      min-width: 75px;
+      max-width: 75px;
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+    }
+    .cell.img img {
+      width: 100%;
+      height: 55px;
+      object-fit: cover;
+      border-radius: 2px;
+      border: 1px solid #ccc;
+    }
+    .cell.project, .cell.client {
+      flex: 1.5 1 0;
+      text-align: left;
+      padding: 10px 8px;
+      font-size: 1.04rem;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+    .col-vertical {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-size: 0.98rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      align-items: flex-end;
+      justify-content: center;
+      height: 90px;
+      min-width: 38px;
+      line-height: 1.1;
+    }
+    .cell.dot {
+      font-size: 1.6rem;
       line-height: 1;
+      color: #111;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
     }
-
-    /* Responsive */
+    /* Responsive adjustments */
     @media (max-width: 900px) {
-      .header .title { font-size: 5vw; }
-      .header .copyright { font-size: 4vw; }
-      .grid-row { min-height: 11vw; }
-      .grid-cell { font-size: 2.5vw; padding: 1.4vw 0.6vw; }
-      .featured-cell { min-width: 14vw; max-width: 14vw; }
-      .featured-img { height: 11vw; }
-      .project-cell, .client-cell { min-width: 20vw; max-width: 23vw; font-size: 2.3vw; }
-      .cat-cell { min-width: 8vw; max-width: 9vw; font-size: 2vw; }
-      .cat-header-vertical { font-size: 2vw; }
+      .table-row {
+        min-width: 700px;
+        font-size: 0.97rem;
+      }
+      .cell {
+        min-width: 40px;
+        font-size: 0.97rem;
+        padding: 7px 2px;
+      }
+      .cell.img, .cell.featured {
+        min-width: 55px;
+        max-width: 55px;
+      }
+      .col-vertical {
+        min-width: 26px;
+        font-size: 0.92rem;
+      }
     }
-
     @media (max-width: 600px) {
-      .header .title { font-size: 7vw; }
-      .header .copyright { font-size: 6vw; }
-      .grid-row { min-height: 16vw; }
-      .grid-cell { font-size: 3vw; padding: 2vw 1vw; }
-      .featured-cell { min-width: 20vw; max-width: 20vw; }
-      .featured-img { height: 16vw; }
-      .project-cell, .client-cell { min-width: 25vw; max-width: 35vw; font-size: 2.7vw; }
-      .cat-cell { min-width: 10vw; max-width: 10vw; font-size: 2.4vw; }
-      .cat-header-vertical { font-size: 2.3vw; }
+      .header {
+        font-size: 1.25rem;
+        padding: 12px 1vw 9px 1vw;
+      }
+      .header .year {
+        font-size: 1.18rem;
+      }
+      .cell, .cell.project, .cell.client {
+        font-size: 0.85rem;
+        padding: 6px 2px;
+      }
+      .cell.img, .cell.featured {
+        min-width: 39px;
+        max-width: 39px;
+        font-size: 0.9rem;
+        padding: 9px 2px;
+      }
+      .col-vertical {
+        min-width: 19px;
+        font-size: 0.79rem;
+        height: 58px;
+      }
     }
-
-    /* Hide border on last cell */
-    .grid-cell:last-child { border-right: none; }
+    /* Hide scroll bar for aesthetics */
+    .grid-table::-webkit-scrollbar {
+      display: none;
+    }
   </style>
 </head>
 <body>
   <div class="header">
-    <span class="title">m²&nbsp;|&nbsp;works</span>
-    <span class="copyright">©2025</span>
+    <span class="title">m<sup class="sup">2</sup> &nbsp;|&nbsp; works</span>
+    <span class="year">&copy;2025</span>
   </div>
-  <div class="grid-table" id="grid-table"></div>
-
-  <script>
-    // Data for the grid
-    const columns = [
-      { key: 'featured', label: 'featured', type: 'featured' },
-      { key: 'project', label: 'project' },
-      { key: 'client', label: 'client' },
-      { key: 'G', label: 'G: graphics', vertical: true },
-      { key: 'B', label: 'B: branding / logo', vertical: true },
-      { key: 'P', label: 'P: packaging', vertical: true },
-      { key: 'AD', label: 'AD: advertising', vertical: true },
-      { key: 'E', label: 'E: editorial / book', vertical: true },
-      { key: 'S', label: 'S: space / sign', vertical: true },
-      { key: 'A', label: 'A: art', vertical: true }
-    ];
-
-    // Use placeholder images for demonstration (replace with actual URLs)
-    const rows = [
-      {
-        featured: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80',
-        project: 'I.CEBERG<br>MAGAZINE 01',
-        client: '',
-        G: true, B: false, P: false, AD: false, E: true, S: false, A: true
-      },
-      {
-        featured: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80',
-        project: '三菱UFJ信託銀行<br>ブランディング',
-        client: '三菱UFJ信託銀行',
-        G: true, B: true, P: false, AD: false, E: false, S: false, A: false
-      },
-      {
-        featured: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80',
-        project: '板橋区立美術館<br>館蔵品展',
-        client: '板橋区立美術館',
-        G: true, B: false, P: false, AD: false, E: false, S: false, A: false
-      },
-      {
-        featured: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=400&q=80',
-        project: 'TACTILE',
-        client: 'Tactile Material<br>Co.,Ltd.',
-        G: true, B: true, P: false, AD: false, E: false, S: false, A: false
-      },
-      {
-        featured: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80',
-        project: 'アイスバーグ®',
-        client: '',
-        G: true, B: true, P: false, AD: false, E: false, S: false, A: false
-      },
-      {
-        featured: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
-        project: '東京芸術祭<br>2024',
-        client: '東京芸術祭事務局',
-        G: true, B: true, P: false, AD: false, E: false, S: false, A: false
-      },
-      {
-        featured: 'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?auto=format&fit=crop&w=400&q=80',
-        project: '劇場版<br>CHAINSAW<br>MAN -レゼ篇-',
-        client: '株式会社MAPPA',
-        G: true, B: false, P: false, AD: true, E: false, S: false, A: false
-      },
-      {
-        featured: 'https://images.unsplash.com/photo-1482062364825-616fd23b8fc1?auto=format&fit=crop&w=400&q=80',
-        project: '東京芸術祭<br>2024ツール',
-        client: '東京芸術祭事務局',
-        G: true, B: true, P: false, AD: false, E: false, S: true, A: true
-      },
-      {
-        featured: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=400&q=80',
-        project: '劉建華<br>中空を注ぐ<br>図録',
-        client: '十和田市現代美術館',
-        G: false, B: false, P: false, AD: false, E: true, S: false, A: false
-      }
-    ];
-
-    // Build the header row
-    function buildHeaderRow() {
-      const headerRow = document.createElement('div');
-      headerRow.className = 'grid-row';
-      columns.forEach((col, idx) => {
-        const cell = document.createElement('div');
-        cell.className = 'grid-cell';
-        if (col.type === 'featured') {
-          cell.classList.add('featured-cell');
-          const label = document.createElement('span');
-          label.className = 'featured-label';
-          label.textContent = col.label;
-          cell.appendChild(label);
-        } else if (col.vertical) {
-          const label = document.createElement('span');
-          label.className = 'cat-header-vertical';
-          label.innerHTML = col.label;
-          cell.appendChild(label);
-        } else {
-          cell.textContent = col.label;
-        }
-        headerRow.appendChild(cell);
-      });
-      return headerRow;
-    }
-
-    // Build each data row
-    function buildDataRow(row) {
-      const dataRow = document.createElement('div');
-      dataRow.className = 'grid-row';
-      columns.forEach((col, idx) => {
-        const cell = document.createElement('div');
-        cell.className = 'grid-cell';
-        if (col.type === 'featured') {
-          cell.classList.add('featured-cell');
-          if (row.featured) {
-            const img = document.createElement('img');
-            img.className = 'featured-img';
-            img.src = row.featured;
-            img.alt = 'featured';
-            cell.appendChild(img);
-          }
-        } else if (col.key === 'project') {
-          cell.classList.add('project-cell');
-          cell.innerHTML = row.project || '';
-        } else if (col.key === 'client') {
-          cell.classList.add('client-cell');
-          cell.innerHTML = row.client || '';
-        } else if (col.vertical) {
-          cell.classList.add('cat-cell');
-          if (row[col.key]) {
-            cell.innerHTML = '<span style="font-size:2vw;display:inline-block;">&bull;</span> ' + (col.key === 'G' ? 'G' : col.key === 'B' ? 'B' : col.key === 'P' ? 'P' : col.key === 'AD' ? 'AD' : col.key === 'E' ? 'E' : col.key === 'S' ? 'S' : col.key === 'A' ? 'A' : '');
-          } else {
-            cell.innerHTML = '';
-          }
-        }
-        dataRow.appendChild(cell);
-      });
-      return dataRow;
-    }
-
-    // Render the table
-    const gridTable = document.getElementById('grid-table');
-    gridTable.appendChild(buildHeaderRow());
-    rows.forEach(row => {
-      gridTable.appendChild(buildDataRow(row));
-    });
-  </script>
+  <div class="grid-table">
+    <!-- Table header -->
+    <div class="table-row header">
+      <div class="cell featured">featured</div>
+      <div class="cell project">project</div>
+      <div class="cell client">client</div>
+      <div class="cell col-vertical">G: graphics</div>
+      <div class="cell col-vertical">B: branding / logo</div>
+      <div class="cell col-vertical">P: packaging</div>
+      <div class="cell col-vertical">AD: advertising</div>
+      <div class="cell col-vertical">E: editorial / book</div>
+      <div class="cell col-vertical">S: space / sign</div>
+      <div class="cell col-vertical">A: art</div>
+    </div>
+    <!-- Table rows -->
+    <div class="table-row">
+      <div class="cell img"><img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=200&q=80" alt="ICEBERG MAGAZINE"></div>
+      <div class="cell project">I.CEBERG MAGAZINE 01</div>
+      <div class="cell client"></div>
+      <div class="cell dot">&#9679;</div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell dot">&#9679;</div>
+      <div class="cell"></div>
+      <div class="cell dot">&#9679;</div>
+    </div>
+    <div class="table-row">
+      <div class="cell img"><img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=200&q=80" alt="UFJ"></div>
+      <div class="cell project">三菱UFJ信託銀行<br>行 ブランディング</div>
+      <div class="cell client">三菱UFJ信託銀行</div>
+      <div class="cell dot">&#9679;</div>
+      <div class="cell dot">&#9679;</div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+    </div>
+    <div class="table-row">
+      <div class="cell img"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=200&q=80" alt="Itabashi"></div>
+      <div class="cell project">板橋区立美術館<br>館蔵品展</div>
+      <div class="cell client">板橋区立美術館</div>
+      <div class="cell dot">&#9679;</div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+    </div>
+    <div class="table-row">
+      <div class="cell img"><img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=200&q=80" alt="TACTILE"></div>
+      <div class="cell project">TACTILE</div>
+      <div class="cell client">Tactile Material Co.,Ltd.</div>
+      <div class="cell dot">&#9679;</div>
+      <div class="cell dot">&#9679;</div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+    </div>
+    <div class="table-row">
+      <div class="cell img"><img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=200&q=80" alt="ICEBERG"></div>
+      <div class="cell project">アイスバーグ®</div>
+      <div class="cell client"></div>
+      <div class="cell dot">&#9679;</div>
+      <div class="cell dot">&#9679;</div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+    </div>
+    <div class="table-row">
+      <div class="cell img"><img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=200&q=80" alt="Art Festival"></div>
+      <div class="cell project">東京芸術祭2024</div>
+      <div class="cell client">東京芸術祭事務局</div>
+      <div class="cell dot">&#9679;</div>
+      <div class="cell dot">&#9679;</div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+    </div>
+    <div class="table-row">
+      <div class="cell img"><img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=200&q=80" alt="Chainsaw Man"></div>
+      <div class="cell project">劇場版<br>CHAINSAW MAN -レゼ篇-</div>
+      <div class="cell client">株式会社MAPPA</div>
+      <div class="cell dot">&#9679;</div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell dot">&#9679;</div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+    </div>
+    <div class="table-row">
+      <div class="cell img"><img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=200&q=80" alt="Art Festival Tool"></div>
+      <div class="cell project">東京芸術祭2024ツール</div>
+      <div class="cell client">東京芸術祭事務局</div>
+      <div class="cell dot">&#9679;</div>
+      <div class="cell dot">&#9679;</div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell dot">&#9679;</div>
+      <div class="cell dot">&#9679;</div>
+    </div>
+    <div class="table-row">
+      <div class="cell img"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=200&q=80" alt="Art Record"></div>
+      <div class="cell project">劉建華 中空を注ぐ図録</div>
+      <div class="cell client">十和田市現代美術館</div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell dot">&#9679;</div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+    </div>
+  </div>
 </body>
 </html>
