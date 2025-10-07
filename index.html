@@ -19,7 +19,6 @@
       font-family: var(--font-main);
       background: #fff;
       color: #000;
-      overflow-x: hidden;
     }
 
     .container {
@@ -37,6 +36,7 @@
       font-weight: 400;
       padding: 1em 0 0.5em 0.15em;
       letter-spacing: 0.02em;
+      border-bottom: none;
     }
 
     .header-left {
@@ -56,24 +56,43 @@
       font-weight: 400;
     }
 
-    /* Scrollable table wrapper */
-    .table-wrapper {
-      overflow-x: auto;
-      width: 100%;
-    }
-
     /* Table grid styles */
     .works-grid {
       display: grid;
-      min-width: 1200px; /* ensures scrolling on smaller screens */
+      width: 100vw;
       border-top: var(--border);
       border-left: var(--border);
       grid-template-columns:
-        minmax(90px, 8vw) /* featured wider */
-        minmax(140px, 2.2fr) /* project */
-        minmax(140px, 1.6fr) /* client */
-        repeat(7, minmax(40px, 1fr)); /* categories */
+        minmax(80px, 8vw) /* featured wider */
+        minmax(110px, 2.2fr) /* project */
+        minmax(110px, 1.6fr) /* client */
+        repeat(7, minmax(30px, 1fr)); /* categories */
       font-size: 1em;
+      background: #fff;
+      overflow-x: auto;
+    }
+
+    @media (max-width: 800px) {
+      .works-grid {
+        font-size: 0.98em;
+        grid-template-columns:
+          minmax(60px, 14vw)
+          minmax(90px, 2.3fr)
+          minmax(90px, 1.5fr)
+          repeat(7, minmax(28px, 1fr));
+      }
+      .header {
+        font-size: 1.55em;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .works-grid {
+        font-size: 0.83em;
+      }
+      .header {
+        font-size: 1.1em;
+      }
     }
 
     .cell {
@@ -84,7 +103,7 @@
       align-items: center;
       background: var(--header-bg);
       word-break: break-word;
-      min-height: 60px;
+      min-height: 54px;
       min-width: 0;
     }
 
@@ -97,20 +116,24 @@
       text-orientation: mixed;
       font-size: 1em;
       letter-spacing: 0.02em;
-      align-items: stretch;
+      min-width: 0;
+      align-items: flex-start;
     }
 
     .cell.imgcell {
       justify-content: center;
       align-items: center;
       background: #fff;
-      padding: 0;
+      padding: 0.18em;
+      min-height: 54px;
     }
 
     .cell.imgcell img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 2px;
+      background: #fff;
       display: block;
     }
 
@@ -135,12 +158,16 @@
       text-orientation: mixed;
     }
 
-    .cell.bold { font-weight: 600; }
+    .cell.bold {
+      font-weight: 600;
+    }
 
-    .works-row { display: contents; }
+    .works-row {
+      display: contents;
+    }
 
     .dot {
-      font-size: 1.7em;
+      font-size: 1.3em;
       line-height: 1;
       color: #000;
       display: inline-block;
@@ -148,25 +175,23 @@
       margin: 0 0.06em;
     }
 
-    /* Zebra striping */
-    .row { background: #fff; }
-    .row:nth-child(even) .cell { background: #fafafa; }
-
-    /* Scrollbar styling */
-    ::-webkit-scrollbar { width: 7px; background: #ddd; }
-    ::-webkit-scrollbar-thumb { background: #888; border-radius: 3px; }
-
-    /* Responsive adjustments */
-    @media (max-width: 800px) {
-      .works-grid { min-width: 1000px; }
-      .header { font-size: 1.55em; }
+    .row {
+      background: #fff;
     }
 
-    @media (max-width: 520px) {
-      .works-grid { min-width: 800px; }
-      .header { font-size: 1.1em; }
+    .row:nth-child(even) .cell {
+      background: #fafafa;
     }
 
+    ::-webkit-scrollbar {
+      width: 7px;
+      background: #ddd;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 3px;
+    }
   </style>
 </head>
 <body>
@@ -176,145 +201,145 @@
       <span class="header-right">&copy;2025</span>
     </div>
 
-    <div class="table-wrapper">
-      <div class="works-grid">
-        <!-- Header -->
-        <div class="cell featured bold">featured</div>
-        <div class="cell bold">project</div>
-        <div class="cell bold">client</div>
-        <div class="cell cat-title">G: graphics</div>
-        <div class="cell cat-title">B: branding / logo</div>
-        <div class="cell cat-title">P: packaging</div>
-        <div class="cell cat-title">AD: advertising</div>
-        <div class="cell cat-title">E: editorial / book</div>
-        <div class="cell cat-title">S: space / sign</div>
-        <div class="cell cat-title">A: art</div>
+    <div class="works-grid">
+      <!-- Table header row -->
+      <div class="cell featured bold">featured</div>
+      <div class="cell bold">project</div>
+      <div class="cell bold">client</div>
+      <div class="cell cat-title">G: graphics</div>
+      <div class="cell cat-title">B: branding / logo</div>
+      <div class="cell cat-title">P: packaging</div>
+      <div class="cell cat-title">AD: advertising</div>
+      <div class="cell cat-title">E: editorial / book</div>
+      <div class="cell cat-title">S: space / sign</div>
+      <div class="cell cat-title">A: art</div>
 
-        <!-- Row 1 -->
-        <div class="cell imgcell">
-          <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=150&q=80" alt="ICEBERG MAGAZINE 01">
-        </div>
-        <div class="cell bold">I.CEBERG MAGAZINE 01</div>
-        <div class="cell"></div>
-        <div class="cell center"><span class="dot">&#8226;</span> G</div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"><span class="dot">&#8226;</span> A</div>
-
-        <!-- Row 2 -->
-        <div class="cell imgcell">
-          <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=150&q=80" alt="三菱UFJ信託銀行">
-        </div>
-        <div class="cell bold">三菱UFJ信託銀行<br>行 ブランディング</div>
-        <div class="cell">三菱UFJ信託銀行</div>
-        <div class="cell center"><span class="dot">&#8226;</span> G</div>
-        <div class="cell center"><span class="dot">&#8226;</span> B</div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-
-        <!-- Row 3 -->
-        <div class="cell imgcell">
-          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=150&q=80" alt="板橋区立美術館館蔵品展">
-        </div>
-        <div class="cell bold">板橋区立美術館<br>館蔵品展</div>
-        <div class="cell">板橋区立美術館</div>
-        <div class="cell center"><span class="dot">&#8226;</span> G</div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-
-        <!-- Row 4 -->
-        <div class="cell imgcell">
-          <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=150&q=80" alt="TACTILE">
-        </div>
-        <div class="cell bold">TACTILE</div>
-        <div class="cell">Tactile Material Co.,Ltd.</div>
-        <div class="cell center"><span class="dot">&#8226;</span> G</div>
-        <div class="cell center"><span class="dot">&#8226;</span> B</div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-
-        <!-- Row 5 -->
-        <div class="cell imgcell">
-          <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=150&q=80" alt="アイスバーグ®">
-        </div>
-        <div class="cell bold">アイスバーグ®</div>
-        <div class="cell"></div>
-        <div class="cell center"><span class="dot">&#8226;</span> G</div>
-        <div class="cell center"><span class="dot">&#8226;</span> B</div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-
-        <!-- Row 6 -->
-        <div class="cell imgcell">
-          <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=150&q=80" alt="東京芸術祭2024">
-        </div>
-        <div class="cell bold">東京芸術祭2024</div>
-        <div class="cell">東京芸術祭事務局</div>
-        <div class="cell center"><span class="dot">&#8226;</span> G</div>
-        <div class="cell center"><span class="dot">&#8226;</span> B</div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-
-        <!-- Row 7 -->
-        <div class="cell imgcell">
-          <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=150&q=80" alt="劇場版 CHAINSAW MAN">
-        </div>
-        <div class="cell bold">劇場版<br>CHAINSAW MAN –レゼ篇–</div>
-        <div class="cell">株式会社MAPPA</div>
-        <div class="cell center"><span class="dot">&#8226;</span> G</div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"><span class="dot">&#8226;</span> AD</div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-
-        <!-- Row 8 -->
-        <div class="cell imgcell">
-          <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=150&q=80" alt="東京芸術祭2024 ツール">
-        </div>
-        <div class="cell bold">東京芸術祭<br>2024 ツール</div>
-        <div class="cell">東京芸術祭事務局</div>
-        <div class="cell center"><span class="dot">&#8226;</span> G</div>
-        <div class="cell center"><span class="dot">&#8226;</span> B</div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"><span class="dot">&#8226;</span> S</div>
-        <div class="cell center"><span class="dot">&#8226;</span> A</div>
-
-        <!-- Row 9 -->
-        <div class="cell imgcell">
-          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=150&q=80" alt="劉建華 中空を注ぐ図録">
-        </div>
-        <div class="cell bold">劉建華 中空を注ぐ図録</div>
-        <div class="cell">十和田市現代美術館</div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
-        <div class="cell center"><span class="dot">&#8226;</span> E</div>
-        <div class="cell center"></div>
-        <div class="cell center"></div>
+      <!-- Row 1 -->
+      <div class="cell imgcell">
+        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=150&q=80" alt="ICEBERG MAGAZINE 01">
       </div>
+      <div class="cell bold">I.CEBERG MAGAZINE 01</div>
+      <div class="cell"></div>
+      <div class="cell center"><span class="dot">&#8226;</span></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"><span class="dot">&#8226;</span></div>
+
+      <!-- Row 2 -->
+      <div class="cell imgcell">
+        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=150&q=80" alt="三菱UFJ信託銀行">
+      </div>
+      <div class="cell bold">三菱UFJ信託銀行<br>行 ブランディング</div>
+      <div class="cell">三菱UFJ信託銀行</div>
+      <div class="cell center"><span class="dot">&#8226;</span></div>
+      <div class="cell center"><span class="dot">&#8226;</span></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+
+      <!-- Row 3 -->
+      <div class="cell imgcell">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=150&q=80" alt="板橋区立美術館館蔵品展">
+      </div>
+      <div class="cell bold">板橋区立美術館<br>館蔵品展</div>
+      <div class="cell">板橋区立美術館</div>
+      <div class="cell center"><span class="dot">&#8226;</span></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+
+      <!-- Row 4 -->
+      <div class="cell imgcell">
+        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=150&q=80" alt="TACTILE">
+      </div>
+      <div class="cell bold">TACTILE</div>
+      <div class="cell">Tactile Material Co.,Ltd.</div>
+      <div class="cell center"><span class="dot">&#8226;</span></div>
+      <div class="cell center"><span class="dot">&#8226;</span></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+
+      <!-- Row 5 -->
+      <div class="cell imgcell">
+        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=150&q=80" alt="アイスバーグ®">
+      </div>
+      <div class="cell bold">アイスバーグ®</div>
+      <div class="cell"></div>
+      <div class="cell center"><span class="dot">&#8226;</span></div>
+      <div class="cell center"><span class="dot">&#8226;</span></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+
+      <!-- Row 6 -->
+      <div class="cell imgcell">
+        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=150&q=80" alt="東京芸術祭2024">
+      </div>
+      <div class="cell bold">東京芸術祭2024</div>
+      <div class="cell">東京芸術祭事務局</div>
+      <div class="cell center"><span class="dot">&#8226;</span></div>
+      <div class="cell center"><span class="dot">&#8226;</span></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+
+      <!-- Row 7 -->
+      <div class="cell imgcell">
+        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=150&q=80" alt="劇場版 CHAINSAW MAN">
+      </div>
+      <div class="cell bold">劇場版<br>CHAINSAW MAN –レゼ篇–</div>
+      <div class="cell">株式会社MAPPA</div>
+      <div class="cell center"><span class="dot">&#8226;</span></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"><span class="dot">&#8226;</span></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+
+      <!-- Row 8 -->
+      <div class="cell imgcell">
+        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=150&q=80" alt="東京芸術祭2024 ツール">
+      </div>
+      <div class="cell bold">東京芸術祭<br>2024 ツール</div>
+      <div class="cell">東京芸術祭事務局</div>
+      <div class="cell center"><span class="dot">&#8226;</span></div>
+      <div class="cell center"><span class="dot">&#8226;</span></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"><span class="dot">&#8226;</span></div>
+      <div class="cell center"><span class="dot">&#8226;</span></div>
+      <div class="cell center"></div>
+
+      <!-- Row 9 -->
+      <div class="cell imgcell">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=150&q=80" alt="劉建華 中空を注ぐ図録">
+      </div>
+      <div class="cell bold">劉建華 中空を注ぐ図録</div>
+      <div class="cell">十和田市現代美術館</div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+      <div class="cell center"><span class="dot">&#8226;</span></div>
+      <div class="cell center"></div>
+      <div class="cell center"></div>
+
     </div>
   </div>
 </body>
