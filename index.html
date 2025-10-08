@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Button with Custom SVG Icon</title>
+  <title>Button with SVG</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -17,13 +17,18 @@
     button {
       cursor: pointer;
       background: none;
-      transition: all 0.2s ease;
+      border: none;
     }
 
     button svg {
       width: 4em;
       height: 4em;
       fill: currentColor;
+      color: #000; /* default color */
+      transition: color 0.3s ease;
+    }
+    button:hover svg {
+      color: #5D73FA;
     }
   </style>
 </head>
