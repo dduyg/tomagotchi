@@ -3,31 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LiminalLoop</title>
+  <title>Liminal🎼Loop</title>
   <style>
     body {
-      margin: 0;
-      height: 200vh; /* just for scroll demo */
-      background: linear-gradient(180deg, #f7f7f7, #dcdcdc);
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f5f5f5;
     }
 
-    .footer {
-      position: fixed;
-      bottom: 20px;
-      right: -150px; /* start off-screen */
-      width: 120px;
-      height: auto;
-      animation: slideIn 1s ease-out forwards;
-      animation-delay: 0.5s; /* optional */
-      z-index: 9999;
+    button {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 14px;
+      cursor: pointer;
+      border: 1px solid #ccc;
+      background: white;
+      border-radius: 8px;
+      font-size: 1.5em;
+      transition: all 0.3s ease;
     }
-    @keyframes slideIn {
-      from { right: -150px; opacity: 0; }
-      to { right: 20px; opacity: 1; }
+    button:hover {
+      background-color: #f0f0f0;
+    }
+
+    button svg {
+      width: 0.9em;
+      height: 0.9em;
+      fill: currentColor;
     }
   </style>
 </head>
 <body>
-  <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/glidingIntegers.gif" class="footer" />
+  <button>
+    <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M16 2H0V14H16V2ZM5 10.5C6.38071 10.5 7.5 9.38071 7.5 8C7.5 6.61929 6.38071 5.5 5 5.5C3.61929 5.5 2.5 6.61929 2.5 8C2.5 9.38071 3.61929 10.5 5 10.5ZM10 5H14V7H10V5ZM14 9H10V11H14V9Z"></path>
+    </svg>
+    HoloFish_Keeper
+  </button>
+
 </body>
 </html>
