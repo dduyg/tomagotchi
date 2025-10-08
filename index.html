@@ -44,8 +44,6 @@
     }
 
     input {
-        font-family: "Vanosky", sans-serif;
-        font-weight: 300;
         appearance: none;
         border: 1px solid rgba(11,11,18,0.1);
         cursor: pointer;
@@ -64,8 +62,6 @@
     .filterDrop {
         position: relative;
         min-width: 200px;
-        font-family: "Vanosky", sans-serif;
-        font-weight: 300;
     }
     .filter-btn {
         background: linear-gradient(90deg, rgba(139,92,246,0.12), rgba(107,231,255,0.06));
@@ -118,8 +114,6 @@
         padding: 12px 30px;
         border-radius: 8px;
         font-size: 1em;
-        font-family: "Vanosky", sans-serif;
-        font-weight: 300;
         cursor: pointer;
         transition: all 0.3s;
         text-transform: uppercase;
@@ -163,16 +157,17 @@
     }
     .itemImage { width: 100%; height: 180px; object-fit: cover; }
     .itemContent { padding: 20px; }
-    .itemTitle { font-size: 1.5em; margin-bottom: 10px; }
-    .itemDate { font-size: 0.9em; margin-bottom: 15px; }
-    .itemExcerpt { line-height: 1.4; margin-bottom: 15px; }
-    .itemCategory { font-size: 0.9em; font-style: italic; }
+    .itemTitle { font-family: "Vanosky", sans-serif; font-weight: 300; }
+    .itemDate { font-size: 0.75em; font-style: italic; margin-bottom: 15px; }
+    .itemExcerpt { line-height: 1.4; margin-bottom: 30px; }
+    .itemCategory { font-size: 0.9em; }
 
     .no-results {
         text-align: center;
         padding: 60px 20px;
-        font-size: 1.4em;
-        font-family: monospace;
+        font-size: 1.4em;    
+        font-family: "Vanosky", sans-serif;
+        font-weight: 400;
     }
    
     .artifacts {       
@@ -287,9 +282,9 @@ function renderItems(itemsToRender) {
             <img src="${item.image}" alt="${item.title}" class="itemImage">
             <div class="itemContent">
                 <h3 class="itemTitle">${item.title}</h3>
-                <div class="itemDate">📅 ${new Date(item.date).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}</div>
+                <div class="itemDate">${new Date(item.date).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}</div>
                 <p class="itemExcerpt">${item.excerpt}</p>
-                <div class="itemCategory">✧ ${item.categories.join(', ')}</div>
+                <div class="itemCategory">[ ${item.categories.join(', ')} ]</div>
             </div>
         </div>
     `).join('');
