@@ -29,11 +29,25 @@
     button:hover {
       background-color: #f0f0f0;
     }
-
     button svg {
       width: 0.9em;
       height: 0.9em;
       fill: currentColor;
+    }    
+
+    .footer {
+      position: fixed;
+      bottom: 20px;
+      right: -150px; /* start off-screen */
+      width: 250px;
+      height: auto;
+      animation: slideIn 1s ease-out forwards;
+      animation-delay: 0.5s;
+      z-index: 9999;
+    }
+    @keyframes slideIn {
+      from { right: -150px; opacity: 0; }
+      to { right: 20px; opacity: 1; }
     }
   </style>
 </head>
@@ -45,5 +59,6 @@
     HoloFish_Keeper
   </button>
 
+<img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/glidingIntegers.gif" class="footer" />
 </body>
 </html>
