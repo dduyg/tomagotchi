@@ -382,7 +382,7 @@ document.body.addEventListener('click', ()=>document.querySelectorAll('.filter-c
 document.getElementById('sortOptions').addEventListener('click', e => {
     if (e.target.classList.contains('filter-item')) {
         sortBy = e.target.dataset.sort;
-        document.getElementById('sortBtn').textContent = e.target.textContent + ' ▾';
+        document.getElementById('sortBtn').textContent = e.target.textContent;
         filterItems();
     }
 });
