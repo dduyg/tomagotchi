@@ -71,6 +71,8 @@
       width: 100vw;  
       height: 100vh;  
       background: rgba(0, 0, 0, 0.4);  
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
       display: flex;  
       justify-content: center;  
       align-items: center;  
@@ -78,6 +80,10 @@
       opacity: 0;  
       pointer-events: none;  
       transition: opacity 0.3s ease;  
+    }
+    /* Fallback for older browsers */
+    @supports not ((backdrop-filter: blur(4px)) or (-webkit-backdrop-filter: blur(4px))) {
+      .videoPopup {background: rgba(0, 0, 0, 0.3);}
     }
     .videoPopup.active {  
       opacity: 1;  
