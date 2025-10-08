@@ -116,11 +116,23 @@
         padding: 12px 30px;
         border-radius: 8px;
         font-size: 1em;
+        font-family: 'Argue', sans-serif;
         cursor: pointer;
         transition: all 0.3s;
-        text-transform: uppercase;
         position: relative;
         overflow: hidden;
+
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+    button svg {
+      width: 0.9em;
+      height: 0.9em;
+      stroke: currentColor;
+      stroke-width: 1.2;
+      fill: none;
+      transform: rotate(90deg);       
     }
     button::before {
         content: '';
@@ -213,7 +225,12 @@
             </div>
 
             <input type="text" id="searchInput" placeholder="Search items...">
-            <button id="resetBtn">Reset Filters</button>
+            <button id="resetBtn">
+               <svg viewBox="0 0 21 21" xmlns="http://www.w3.org/2000/svg">
+                  <path d="m4.5 1.5c-2.4138473 1.37729434-4 4.02194088-4 7 0 4.418278 3.581722 8 8 8s8-3.581722 8-8-3.581722-8-8-8"></path><path d="m4.5 5.5v-4h-4"></path>
+               </svg>
+               Reset All
+            </button>
         </div>
           
         <div class="items-grid" id="itemsGrid"></div>
