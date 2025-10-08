@@ -33,9 +33,7 @@
         -moz-osx-font-smoothing: grayscale;
         overflow-x: hidden;
     }
-
     .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
-
     header { text-align: center; padding: 40px 0; }
 
     .filter-controls {
@@ -49,17 +47,32 @@
         font-family: 'Argue', sans-serif;
         appearance: none;
         border: 1px solid rgba(11,11,18,0.1);
-        cursor: pointer;
         padding: 10px 15px;
         border-radius: 999px;
         font-size: 1em;
-        outline: none;
         transition: all 0.3s ease;
         background: transparent;
         backdrop-filter: blur(4px);
+        outline: none;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
     }
     input:hover, input:focus {
         border-color: #FAC898;
+    }
+    input::before {
+        content: '';
+        position: absolute;
+        top: -50%; left: -50%;
+        width: 200%; height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(0,255,255,0.1), transparent);
+        transform: rotate(45deg);
+        animation: shimmer 3s infinite;
+    }
+    @keyframes shimmer {
+        0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
     }
 
     .filterDrop {
@@ -116,9 +129,7 @@
         background: none;
         border: none;
         cursor: pointer;
-        transition: all 0.3s;
-        position: relative;
-        overflow: hidden;
+        transition: all 0.3s ease;  
     }
     button svg {
        width: 4em;
@@ -127,20 +138,7 @@
        color: #000;
        transition: color 0.3s ease;
     }
-    button:hover svg { color: LightSlateGray; }  
-    button::before {
-        content: '';
-        position: absolute;
-        top: -50%; left: -50%;
-        width: 200%; height: 200%;
-        background: linear-gradient(45deg, transparent, rgba(0,255,255,0.1), transparent);
-        transform: rotate(45deg);
-        animation: shimmer 3s infinite;
-    }
-    @keyframes shimmer {
-        0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-        100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-    }
+    button:hover svg { color: LightSlateGray; } 
     button:hover { transform: scale(1.05); }
 
     .items-grid {
