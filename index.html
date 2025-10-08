@@ -63,15 +63,14 @@
       from { right: -240px; opacity: 0; }  
       to { right: 20px; opacity: 1; }  
     }  
-
-    /* Fullscreen video popup */  
-    .video-overlay {  
+  
+    .videoPopup {  
       position: fixed;  
       top: 0;  
       left: 0;  
       width: 100vw;  
       height: 100vh;  
-      background: rgba(0, 0, 0, 0.8);  
+      background: rgba(0, 0, 0, 0.4);  
       display: flex;  
       justify-content: center;  
       align-items: center;  
@@ -79,18 +78,14 @@
       opacity: 0;  
       pointer-events: none;  
       transition: opacity 0.3s ease;  
-    }  
-
-    .video-overlay.active {  
+    }
+    .videoPopup.active {  
       opacity: 1;  
       pointer-events: all;  
-    }  
-
-    .video-overlay video {  
+    }
+    .videoPopup video {  
       max-width: 90vw;  
-      max-height: 90vh;  
-      border-radius: 10px;  
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);  
+      max-height: 90vh;
     }  
   </style>  
 </head>  
@@ -102,10 +97,9 @@
     HoloFish_Keeper  
   </button>  
 
-  <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/glidingIntegers.gif" class="footer" />  
-
-  <!-- Video overlay -->  
-  <div class="video-overlay" id="videoOverlay">  
+  <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/glidingIntegers.gif" class="footer" />
+  <!-- Video Popup -->  
+  <div class="videoPopup" id="videoOverlay">  
     <video src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/satisfyingSetting.mp4" controls autoplay></video>  
   </div>  
 
