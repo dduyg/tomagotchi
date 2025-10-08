@@ -44,6 +44,7 @@
     }
 
     input {
+        font-family: 'Argue', sans-serif;
         appearance: none;
         border: 1px solid rgba(11,11,18,0.1);
         cursor: pointer;
@@ -64,6 +65,7 @@
         min-width: 200px;
     }
     .filter-btn {
+        font-family: 'Argue', sans-serif;
         background: linear-gradient(90deg, rgba(139,92,246,0.12), rgba(107,231,255,0.06));
         border: none;
         border-radius: 8px;
@@ -158,9 +160,9 @@
     .itemImage { width: 100%; height: 180px; object-fit: cover; }
     .itemContent { padding: 20px; }
     .itemTitle { font-family: "Vanosky", sans-serif; font-weight: 300; }
-    .itemDate { font-size: 0.75em; font-style: italic; margin-bottom: 15px; }
+    .itemDate { font-size: 0.7em; font-style: italic; margin-bottom: 15px; }
     .itemExcerpt { line-height: 1.4; margin-bottom: 30px; }
-    .itemCategory { font-size: 0.9em; }
+    .itemCategory { font-size: 0.9em; color: darkgray; font-family: "Vanosky", sans-serif; font-weight: 300; }
 
     .no-results {
         text-align: center;
@@ -168,6 +170,7 @@
         font-size: 1.4em;    
         font-family: "Vanosky", sans-serif;
         font-weight: 400;
+        color: gray;
     }
    
     .artifacts {       
@@ -191,17 +194,17 @@
     <div class="container">
         <header>
             <h1>DATABASE HANDLING</h1>
-            <p>Ah shit, here we go again.</p>
+            <p><em>Ah shit, here we go again.</em></p>
         </header>
         
         <div class="filter-controls">
             <div class="filterDrop" id="categoryDropdown">
-                <button class="filter-btn">Filter Categories ▾</button>
+                <div class="filter-btn">Filter by Tag</div>
                 <div class="filter-content" id="categoryOptions"></div>
             </div>
 
             <div class="filterDrop">
-                <button class="filter-btn" id="sortBtn">Sort ▾</button>
+                <button class="filter-btn" id="sortBtn">Sort</button>
                 <div class="filter-content" id="sortOptions">
                     <div class="filter-item" data-sort="newest">Newest First</div>
                     <div class="filter-item" data-sort="oldest">Oldest First</div>
