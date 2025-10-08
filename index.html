@@ -204,7 +204,7 @@
             </div>
 
             <div class="filterDrop">
-                <button class="filter-btn" id="sortBtn">Sort</button>
+                <div class="filter-btn" id="sortBtn">Sort</div>
                 <div class="filter-content" id="sortOptions">
                     <div class="filter-item" data-sort="newest">Newest First</div>
                     <div class="filter-item" data-sort="oldest">Oldest First</div>
@@ -320,7 +320,7 @@ function populateCategoryDropdown() {
 function updateCategoryButtonLabel() {
     const btn = document.querySelector('#categoryDropdown .filter-btn');
     if (selectedCategories.length === 0) {
-        btn.textContent = "Filter Categories ▾";
+        btn.textContent = "Filter by Tag";
     } else if (selectedCategories.length <= 2) {
         btn.textContent = selectedCategories.join(', ') + " ▾";
     } else {
