@@ -51,27 +51,12 @@
         border-radius: 999px;
         font-size: 1em;
         transition: all 0.3s ease;
-        background: gray;
+        background: transparent;
         backdrop-filter: blur(4px);
         cursor: pointer;
-        position: relative;
-        overflow: hidden;
     }
     input:hover, input:focus {
         border-color: #FAC898;
-    }
-    input::before {
-        content: '';
-        position: absolute;
-        top: -50%; left: -50%;
-        width: 200%; height: 200%;
-        background: linear-gradient(45deg, transparent, rgba(0,255,255,0.1), transparent);
-        transform: rotate(45deg);
-        animation: shimmer 3s infinite;
-    }
-    @keyframes shimmer {
-        0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-        100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
     }
 
     .filterDrop {
@@ -149,10 +134,24 @@
     .item {
         background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
         backdrop-filter: blur(8px) saturate(120%);
-        border: 1px solid darkgray;
+        border: 1px solid LightSlateGray;
         border-radius: 16px;
         overflow: hidden;
+        position: relative;
         transition: all 0.3s;
+    }
+    .item::before {
+        content: '';
+        position: absolute;
+        top: -50%; left: -50%;
+        width: 200%; height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(0,255,255,0.1), transparent);
+        transform: rotate(45deg);
+        animation: shimmer 3s infinite;
+    }
+    @keyframes shimmer {
+        0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
     }
     .item:hover {
         transform: translateY(-10px);
