@@ -1,226 +1,213 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gaussian Blur</title>
-  <link href="https://fonts.cdnfonts.com/css/recoleta" rel="stylesheet" />
-  <style>
-    body {
-      height: 100vh;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 3em;
-      background-color: #F0DBA5;
-      font-family: "Recoleta";
-      margin: 0 10em;
-      overflow: hidden; /* prevent scrollbars */
-    }
-
-    h1 {
-      font-weight: normal;
-      margin: 0;
-    }
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    body::before,
-    body::after {
-      position: absolute;
-      left: 0;
-      top: 0;
-      content: "";
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      opacity: 40%;
-    }
-    body::before {
-      background: #8c8c8c;
-      filter: url(#noiseFilter);
-    }
-
-    /* Blobs */
-    .blob-cont {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: -2;
-      position: relative;
-      height: 100%;
-      width: 100%;
-    }
-
-    .blob {
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.9;
-    }
-
-    .yellow {
-      background-color: #edb74d;
-      position: absolute;
-      top: 40%;
-      left: 20%;
-      height: 300px;
-      width: 300px;
-      animation: yellow 10s infinite ease-in-out;
-    }
-
-    .green {
-      background-color: #6fb18a;
-      position: absolute;
-      top: 15%;
-      right: 10%;
-      height: 350px;
-      width: 350px;
-      animation: green 10s infinite ease-in-out;
-    }
-
-    .red {
-      background-color: #eb6666;
-      position: absolute;
-      bottom: 10%;
-      right: 25%;
-      height: 300px;
-      width: 300px;
-      animation: red 10s infinite ease-in-out;
-    }
-
-    /* Smooth animations */
-    @keyframes yellow {
-      0%,
-      100% {
-        transform: translate(0, 0) scale(1);
-      }
-      50% {
-        transform: translate(50px, -30px) scale(1.2);
-      }
-    }
-    @keyframes green {
-      0%,
-      100% {
-        transform: translate(0, 0) scale(1.1);
-      }
-      50% {
-        transform: translate(-60px, 40px) scale(1.3);
-      }
-    }
-    @keyframes red {
-      0%,
-      100% {
-        transform: translate(0, 0) scale(1);
-      }
-      50% {
-        transform: translate(60px, -50px) scale(1.25);
-      }
-    }
-
-    main {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      height: 100vh; /* fits viewport */
-      gap: 3em;
-      overflow: hidden;
-      background: linear-gradient(to right, #151515 1px, transparent 1px) 0 0,
-        linear-gradient(to right, #151515 1px, transparent 1px) 0 100%,
-        linear-gradient(to left, #151515 1px, transparent 1px) 100% 0,
-        linear-gradient(to left, #151515 1px, transparent 1px) 100% 100%,
-        linear-gradient(to bottom, #151515 1px, transparent 1px) 0 0,
-        linear-gradient(to bottom, #151515 1px, transparent 1px) 100% 0,
-        linear-gradient(to top, #151515 1px, transparent 1px) 0 100%,
-        linear-gradient(to top, #151515 1px, transparent 1px) 100% 100%;
-      background-repeat: no-repeat;
-      background-size: 20px 20px;
-    }
-
-    .content {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 2em;
-      z-index: 2;
-    }
-
-    @media only screen and (max-width: 1000px) {
-      body {
-        margin: 1em;
-      }
-      .blob-cont {
-        right: 0;
-      }
-      .yellow,
-      .green,
-      .red {
-        width: 200px;
-        height: 200px;
-        filter: blur(50px);
-      }
-    }
-
-    /* Optional YouTube button */
-    .youtube {
-      text-decoration: none;
-      position: absolute;
-      padding: 1em 2em;
-      bottom: 3.5em;
-      right: 1em;
-      z-index: 9999;
-      font-family: "Roboto";
-      color: #1c1c1c;
-      border: 1px solid #1c1c1c;
-      border-radius: 5px;
-    }
-    .youtube:hover {
-      background-color: rgba(28, 28, 28, 0.14);
-    }
-  </style>
-</head>
-<body>
-  <main>
-    <div class="content">
-      <h1>Grainy Forever.</h1>
-      <p>Grainy animated blob for your modern website.</p>
-    </div>
-    <div class="blob-cont">
-      <div class="yellow blob"></div>
-      <div class="red blob"></div>
-      <div class="green blob"></div>
-    </div>
-  </main>
-
-  <svg>
-    <filter id="noiseFilter">
-      <feTurbulence
-        type="fractalNoise"
-        baseFrequency="0.6"
-        stitchTiles="stitch"
-      />
-      <feColorMatrix
-        in="colorNoise"
-        type="matrix"
-        values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0"
-      />
-      <feComposite operator="in" in2="SourceGraphic" result="monoNoise" />
-      <feBlend in="SourceGraphic" in2="monoNoise" mode="screen" />
-    </filter>
-  </svg>
-
-  <!-- Not required -->
-  <a
-    href="https://www.youtube.com/watch?v=_ZFghigBmqo"
-    target="_blank"
-    class="youtube"
-    >Watch on YouTube</a
-  >
-</body>
+<!DOCTYPE html>    
+<html lang="en">    
+<head>    
+  <meta charset="UTF-8">    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+  <title>Gaussian Blur</title>    
+  <link href="https://fonts.cdnfonts.com/css/recoleta" rel="stylesheet">    
+  <style>    
+body {    
+  height: 100vh;    
+  margin: 0;      
+  display: flex;    
+  flex-direction: column;    
+  justify-content: flex-start;    
+  align-items: center;    
+  gap: 3em;      
+  background-color: #F0DBA5;    
+  font-family: "Recoleta";      
+  padding: 2em;
+  box-sizing: border-box;
+  overflow: hidden;
+}    
+    
+h1 {    
+  font-weight: normal;    
+  margin: 0;    
+}    
+a {    
+  text-decoration: none;    
+  color: inherit;    
+}    
+    
+body::before, body::after {    
+  position: absolute;    
+  left: 0;    
+  top: 0;    
+  content: '';    
+  width: 100%;    
+  height: 100%;    
+  z-index: -1;    
+  opacity: 40%;    
+}    
+body::before {    
+  background: #8C8C8C;    
+  filter: url(#noiseFilter);    
+}    
+    
+/* Blobs */    
+.blob-cont {    
+  display: flex;    
+  flex-direction: column;    
+  justify-content: center;    
+  align-items: center;    
+  z-index: -2;    
+  height: 600px;    
+  width: 600px;    
+  position: relative;    
+  flex-shrink: 0;
+}    
+.blob {    
+  border-radius: 100px;    
+  filter: blur(80px);    
+}    
+.yellow {    
+  background-color: #EDB74D;    
+  position: absolute;    
+  top: 250px;    
+  left: 120px;    
+  height: 280px;    
+  width: 280px;      
+  animation: yellow 8s infinite ease;    
+}    
+.green {    
+  background-color: #6FB18A;    
+  position: absolute;    
+  top: 100px;    
+  right: 50px;    
+  height: 300px;    
+  width: 350px;      
+  animation: green 8s infinite ease;    
+}    
+.red {    
+  background-color: #EB6666;    
+  position: absolute;    
+  right: 80px;    
+  top: 350px;    
+  height: 320px;    
+  width: 280px;      
+  animation: red 8s infinite linear;    
+}    
+@keyframes yellow {    
+  0% {top: 250px; left: 120px; transform: scale(1);}    
+  30% {top: 320px; left: 180px; transform: scale(1.15);}    
+  60% {top: 150px; left: 220px; transform: scale(1.25);}    
+  100% {top: 250px; left: 120px; transform: scale(1);}    
+}    
+@keyframes green {    
+  0% {top: 100px; right: 50px; transform: scale(1.2);}    
+  30% {top: 320px; right: 30px;transform: scale(1);}    
+  60% {top: 220px; right: 140px;transform: scale(0.95);}    
+  100% {top: 100px; right: 50px; transform: scale(1.2);}    
+}    
+@keyframes red {    
+  0% {top: 320px; right: 80px; transform: scale(1);}    
+  30% {top: 180px; right: 180px;transform: scale(1.3);}    
+  60% {top: 300px; right: 130px;transform: scale(1.05);}    
+  100% {top: 320px; right: 80px; transform: scale(1);}    
+}    
+    
+main {    
+  display: flex;    
+  flex-direction: row;    
+  justify-content: space-between;    
+  align-items: center;    
+  width: 100%;    
+  max-width: 1400px;
+  height: auto;
+  max-height: calc(100vh - 6em);
+  gap: 3em;    
+  background:    
+        linear-gradient(to right, #151515 1px, transparent 1px) 0 0,    
+        linear-gradient(to right, #151515 1px, transparent 1px) 0 100%,    
+        linear-gradient(to left, #151515 1px, transparent 1px) 100% 0,    
+        linear-gradient(to left, #151515 1px, transparent 1px) 100% 100%,    
+        linear-gradient(to bottom, #151515 1px, transparent 1px) 0 0,    
+        linear-gradient(to bottom, #151515 1px, transparent 1px) 100% 0,    
+        linear-gradient(to top, #151515 1px, transparent 1px) 0 100%,    
+        linear-gradient(to top, #151515 1px, transparent 1px) 100% 100%;    
+  background-repeat: no-repeat;    
+  background-size: 20px 20px;
+  padding: 2em;
+  box-sizing: border-box;
+}    
+    
+.content {    
+  display: flex;    
+  flex-direction: column;    
+  justify-content: space-between;    
+  align-items: flex-start;    
+  gap: 3em;    
+}    
+    
+@media only screen and (max-width: 1000px) {    
+  body {padding: 1em;}
+  main {
+    flex-direction: column;
+    padding: 1.5em;
+  }
+  .blob-cont {
+    height: 400px;
+    width: 400px;
+  }
+  .yellow {
+    height: 200px;
+    width: 200px;
+  }
+  .green {
+    height: 220px;
+    width: 250px;
+  }
+  .red {
+    height: 230px;
+    width: 200px;
+  }
+}    
+    
+/* Not required */    
+.youtube {    
+  text-decoration: none;    
+  position: absolute;    
+  padding: 1em 2em;    
+  bottom: 3.5em;    
+  right: 1em;    
+  z-index: 9999;    
+  font-family: 'Roboto';    
+  color: #1c1c1c;    
+  border: 1px solid #1c1c1c;    
+  border-radius: 5px;    
+}    
+.youtube:hover {    
+  background-color: rgb(28,28,28,0.14);    
+}    
+  </style>    
+</head>       
+<body>    
+<main>    
+  <div class="content">    
+    <h1>Grainy Forever.</h1>    
+    <p>Grainy animated blob for your modern website.</p>        
+  </div>    
+  <div class="blob-cont">    
+    <div class="yellow blob"></div>    
+    <div class="red blob"></div>    
+    <div class="green blob"></div>    
+  </div>    
+</main>    
+    
+<svg>    
+  <filter id='noiseFilter'>    
+    <feTurbulence     
+      type='fractalNoise'     
+      baseFrequency='0.6'     
+      stitchTiles='stitch'/>    
+     <feColorMatrix in="colorNoise" type="matrix" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0" />    
+        <feComposite operator="in" in2="SourceGraphic" result="monoNoise"/>    
+        <feBlend in="SourceGraphic" in2="monoNoise" mode="screen" />    
+  </filter>     
+</svg>    
+    
+<!-- Not required -->    
+<a href="https://www.youtube.com/watch?v=_ZFghigBmqo" target="_blank" class="youtube">Watch on YouTube</a>      
+</body>     
 </html>
