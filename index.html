@@ -55,9 +55,9 @@
     @media (max-width: 768px) {
       nav { flex-direction: column; align-items: stretch; gap: 8px; }
       .filter-controls { display: flex; width: 100%; gap: 4px; }
-      .filter-controls .filterDrop:nth-child(1) { flex: 0 1 55%; }
-      .filter-controls .filterDrop:nth-child(2) { flex: 0 1 40%; }
-      .filter-controls button { flex: 0 1 5%; min-width: 20px; }
+      .filter-controls .filterDrop:nth-child(1) { flex: 1 1 0; min-width: 0; }
+      .filter-controls .filterDrop:nth-child(2) { flex: 0 1 auto; min-width: 80px; }
+      .filter-controls button { flex: 0 0 auto; width: 40px; padding: 4px; }
       .search { width: 100%; }
       .search input { width: 100%; display: block; }
     }       
@@ -106,7 +106,6 @@
         background: rgba(255,255,255,0.1);
         backdrop-filter: blur(10px);
         border: 1px solid rgba(11,11,18,0.1);
-        border-radius: 8px;
         max-height: 200px;
         overflow-y: auto;
         display: none;
@@ -114,10 +113,9 @@
     }
     .filter-content.show { display: block; }
     .filter-item {
-        padding: 8px 12px;
+        padding: 6px;
         cursor: pointer;
         transition: 0.3s;
-        border-radius: 4px;
     }
     .filter-item:hover {
         background: rgba(255,255,255,0.1);
