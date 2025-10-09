@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Responsive Nav Layout</title>
   <style>
+    * {
+      box-sizing: border-box; /* ✅ prevents overflow from padding */
+    }
+
     body {
       margin: 0;
       font-family: sans-serif;
@@ -25,12 +29,17 @@
       align-items: center;
       gap: 10px;
       flex-shrink: 0;
+      flex-wrap: nowrap;
     }
 
     .left-group .filterDrop,
     .left-group button {
       padding: 6px;
       font-size: 1rem;
+    }
+
+    .right-group {
+      flex-shrink: 1;
     }
 
     .right-group input {
@@ -50,7 +59,7 @@
       .left-group {
         display: flex;
         width: 100%;
-        gap: 4px; /* smaller gap to prevent overflow */
+        gap: 4px;
       }
 
       .left-group .filterDrop:nth-child(1) {
@@ -61,7 +70,7 @@
       }
       .left-group button {
         flex: 0 1 5%;
-        min-width: 32px; /* keeps button clickable but prevents overflow */
+        min-width: 32px;
         padding: 6px;
       }
 
@@ -71,6 +80,7 @@
 
       .right-group input {
         width: 100%;
+        display: block;
       }
     }
   </style>
