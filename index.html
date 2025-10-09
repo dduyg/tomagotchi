@@ -36,12 +36,16 @@
     .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
     header { text-align: center; padding: 40px 0; }
 
-    .filter-controls {
+    nav {
         display: flex;
         justify-content: space-between;
         align-items: flex-end;
         padding: 1em 0.1em 0.05em;
     }
+   .filter-controls { display: flex; gap: 8px; }   
+   .filter-controls .filterDrop:nth-child(1) { flex: 50 1 0; }
+   .filter-controls .filterDrop:nth-child(2) { flex: 45 1 0; }
+   .filter-controls button { flex: 5 1 0; }
 
     input {
         font-family: 'Argue', sans-serif;
@@ -193,8 +197,8 @@
             <p><em>Ah shit, here we go again.</em></p>
         </header>
         
-        <div class="filter-controls">
-           <div>
+        <nav>
+           <div class="filter-controls">
               <div class="filterDrop" id="categoryDropdown">
                  <div class="filter-btn">Filter by Tag</div>
                  <div class="filter-content" id="categoryOptions"></div>
@@ -213,7 +217,7 @@
               </button>
            </div>
            <input type="text" id="searchInput" placeholder="Search items...">
-        </div>
+        </nav>
           
         <div class="items-grid" id="itemsGrid"></div>
     </div>
