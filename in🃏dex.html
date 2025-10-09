@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liminal🃏Loop</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
+    @font-face {
+        font-family: 'Argue';
+        src: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/Argue.woff2') format('woff2');   
+        font-weight: normal;
+        font-style: normal;    
+    }
+    @font-face {
+        font-family: "Vanosky";
+        src: url("https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/VanoskyThin.woff2") format("woff2");
+        font-weight: 300;
+        font-style: normal;  
+    }
+    @font-face {       
+        font-family: "Vanosky";
+        src: url("https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/VanoskyRegular.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;  
+    }
+    body {
+        font-family: 'Argue', sans-serif;
+        background: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/inwave1759.png') center/cover no-repeat fixed;
+        color: #0b0b12;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+    }
+    .container { max-width: 1000px; margin: 0 auto; }
+    header { text-align: center; padding: 50px 0 70px; }
+
+    nav {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       padding: 10px;
+       gap: 10px;
+       flex-wrap: wrap;
+    }
+    .filter-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+      flex-wrap: nowrap;
+    }
+    .search { flex-shrink: 1; }  
+    @media (max-width: 768px) {
+      nav { flex-direction: column; align-items: stretch; gap: 8px; }
+      .filter-controls { display: flex; width: 100%; gap: 4px; }
+      .filter-controls .filterDrop:nth-child(1) { flex: 0 1 55%; }
+      .filter-controls .filterDrop:nth-child(2) { flex: 0 1 40%; }
+      .filter-controls button { flex: 0 1 5%; min-width: 32px; }
+      .search { width: 100%; }
+      .search input { width: 100%; display: block; }
+    }       
+   
+    input {
+        font-family: 'Argue', sans-serif;
+        appearance: none;
+        border: 1px solid rgba(11,11,18,0.1);
+        width: 200px;
+        max-width: 100%;
+        padding: 8px;
+        border-radius: 999px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: transparent;
+        backdrop-filter: blur(4px);
+        cursor: pointer;
+    }
+    input:hover, input:focus {
+        border-color: #FAC898;
+    }
+
+    .filterDrop {
+        position: relative;
+        min-width: 200px;
+    }
+    .filter-btn {
+        font-family: 'Argue', sans-serif;
+        background: linear-gradient(90deg, rgba(139,92,246,0.12), rgba(107,231,255,0.06));
+        border: none;
+        padding: 6px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: 0.3s;
+        box-shadow: 0 8px 30px rgba(139,92,246,0.12);
+    }
+    .filter-btn:hover {
+        transform: translateY(2px);
+        border-color: #FAC898;
+    }
+    .filter-content {
+        position: absolute;
+        top: 110%;
+        left: 0;
+        width: 100%;
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 8px;
+        max-height: 200px;
+        overflow-y: auto;
+        display: none;
+        z-index: 10;
+    }
+    .filter-content.show { display: block; }
+    .filter-item {
+        padding: 8px 12px;
+        cursor: pointer;
+        transition: 0.3s;
+        border-radius: 4px;
+    }
+    .filter-item:hover {
+        background: rgba(255,255,255,0.1);
+    }
+    .filter-item.active {
+        background: rgba(250,200,152,0.25);
+        color: lightslategray;
+        font-weight: 500;
+    }
+
+    button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;  
+    }
+    button svg {
+       width: 2.2em;
+       height: 2.2em;
+       fill: currentColor;
+       color: #000;
+    }
+    button:hover svg { color: lightslategray; } 
+    button:hover { transform: scale(1.05); }
+
+    .items-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        padding: 10px;
+    }
+
+    .item {
+        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+        backdrop-filter: blur(8px) saturate(120%);
+        border: 1px solid lightslategray;
+        border-radius: 16px;
+        overflow: hidden;
+        position: relative;
+        transition: all 0.3s;
+    }
+    .item::before {
+        content: '';
+        position: absolute;
+        top: -50%; left: -50%;
+        width: 200%; height: 200%;
+        background: linear-gradient(45deg, transparent, rgba(0,255,255,0.1), transparent);
+        transform: rotate(45deg);
+        animation: shimmer 3s infinite;
+    }
+    @keyframes shimmer {
+        0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+        100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+    .item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 0 30px rgba(0,255,255,0.5), 0 0 40px rgba(255,0,255,0.3);
+        border-color: #FAC898;
+    }
+    .itemImage { width: 100%; height: 180px; object-fit: cover; }
+    .itemContent { padding: 20px; }
+    .itemTitle { font-family: "Vanosky", sans-serif; font-weight: 300; }
+    .itemDate { font-size: 0.7em; font-style: italic; margin-bottom: 15px; }
+    .itemExcerpt { line-height: 1.4; margin-bottom: 30px; }
+    .itemCategory { font-size: 0.9em; color: lightslategray; font-family: "Vanosky", sans-serif; font-weight: 300; }
+
+    .no-results {
+        text-align: center;
+        padding: 60px 20px;
+        font-size: 1.4em;    
+        font-family: "Vanosky", sans-serif;
+        font-weight: 400;
+        color: lightslategray;
+    }
+   
+    .artifacts {       
+        position: fixed;
+        width: 3em;
+        opacity: 0.3;
+        pointer-events: none;
+        z-index: 0;     
+    }
+</style>
+</head>
+<body>
+    <div class="artifacts" style="top: 10%; left: 10%;"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="#3B3B3B"><path d="M118.125 18.285c-50.616 0-91.848 41.234-91.848 91.85 0 16.783 4.538 32.53 12.444 46.09-2.017 6.705-3.103 13.82-3.103 21.203 0 31.782 20.04 58.905 48.158 69.44-5.863 6.96-9.414 15.922-9.414 25.67 0 11.727 5.138 22.323 13.267 29.657-36.275 7.53-63.67 39.773-63.67 78.23 0 44.01 35.88 79.89 79.893 79.89 16.252 0 31.387-4.903 44.025-13.292 13.485 18.495 35.304 30.53 59.928 30.53 33.308 0 61.144-22.157 70.482-52.414.16-.083.323-.16.483-.244 22.43-2.07 43.35-9.045 61.685-19.955 10.443 15.996 27.664 27.192 47.527 29.44-.067 1.042-.113 2.09-.113 3.147 0 26.61 21.773 48.38 48.383 48.38 26.61 0 48.383-21.77 48.383-48.38 0-19.492-11.69-36.377-28.4-44.02 2.197-5.482 3.677-11.32 4.314-17.405 15.134-13.576 24.666-33.272 24.666-55.188 0-15.132-4.552-29.203-12.346-40.937 16.048-11.97 26.48-31.09 26.48-52.563 0-29.132-19.203-53.93-45.587-62.412 1.016-4.86 1.558-9.9 1.558-15.076 0-4.87-.485-9.624-1.382-14.233 8.977-8.883 14.562-21.19 14.562-34.74 0-26.915-22.02-48.937-48.937-48.937-9.968 0-19.263 3.025-27.02 8.197-5.598-14.962-20.073-25.705-36.913-25.705-21.643 0-39.39 17.746-39.39 39.39 0 10.1 3.865 19.347 10.185 26.342-9.428 10.497-15.918 23.71-18.18 38.326-13.648-4.188-28.03-6.576-43.045-6.576-6.49 0-12.86.38-19.13 1.197-.972-30.35-20.245-56.103-47.122-66.638-15.555-28.71-45.962-48.265-80.82-48.265zm0 18.69c7.544 0 14.814 1.134 21.652 3.238-1.293-.11-2.598-.178-3.92-.178-25.298 0-45.804 20.505-45.804 45.803s20.506 45.805 45.804 45.805c25.3 0 45.805-20.507 45.805-45.805 0-6.236-1.25-12.176-3.508-17.594 8.273 11.855 13.133 26.283 13.133 41.89 0 40.517-32.645 73.16-73.162 73.16s-73.16-32.643-73.16-73.16c0-40.515 32.643-73.16 73.16-73.16zm237.502 16.22c.9 0 1.784.062 2.652.17-5.003 1.46-8.66 6.072-8.66 11.545 0 6.646 5.387 12.033 12.032 12.033 6.646 0 12.034-5.387 12.034-12.033 0-.45-.03-.894-.08-1.332 1.726 3.03 2.722 6.542 2.722 10.32 0 11.545-9.158 20.702-20.7 20.702-11.546 0-20.702-9.158-20.702-20.702 0-11.544 9.157-20.703 20.7-20.703zm63.934 17.508c3.39 0 6.637.554 9.67 1.563-9.974.273-17.978 8.425-17.978 18.464 0 10.212 8.276 18.49 18.488 18.49 10.064 0 18.233-8.043 18.47-18.05 1.032 3.064 1.6 6.352 1.6 9.783 0 16.818-13.434 30.248-30.25 30.248-16.817 0-30.248-13.43-30.248-30.247s13.433-30.25 30.25-30.25zm-95.078 88.19c3.62 0 7.13.426 10.502 1.21-15.534.07-28.107 12.68-28.107 28.23 0 15.596 12.643 28.237 28.238 28.237 15.596 0 28.237-12.64 28.237-28.236 0-4.11-.885-8.01-2.463-11.53 5.914 7.717 9.428 17.387 9.428 27.925 0 25.424-20.41 45.834-45.836 45.834-25.425 0-45.836-20.41-45.836-45.835 0-25.427 20.41-45.837 45.836-45.837zm109.32 21.668c1.165 0 2.317.057 3.462.14-10.243 5.013-17.3 15.533-17.3 27.706 0 17.03 13.805 30.836 30.835 30.836 13.4 0 24.8-8.552 29.052-20.494.52 2.808.804 5.7.804 8.666 0 25.988-20.867 46.854-46.855 46.854-25.987 0-46.855-20.866-46.855-46.854 0-25.987 20.868-46.853 46.856-46.853zM230.03 241.41c.642 0 1.282.012 1.92.026-26.22 6.906-45.556 30.77-45.556 59.158 0 33.79 27.39 61.18 61.182 61.18 33.79 0 61.18-27.39 61.18-61.18 0-4.832-.578-9.525-1.637-14.033 7.13 12.744 11.194 27.45 11.194 43.13 0 48.87-39.414 88.285-88.283 88.285-48.868 0-88.284-39.415-88.284-88.284 0-48.867 39.416-88.282 88.285-88.282zm-115.692 9.84c3.25 0 6.312.71 9.05 1.98-.377-.036-.757-.058-1.144-.058-6.776 0-12.27 5.492-12.27 12.268 0 6.775 5.494 12.267 12.27 12.267 6.71 0 12.15-5.387 12.258-12.07.726 2.16 1.125 4.478 1.125 6.902 0 11.87-9.422 21.29-21.29 21.29-11.87 0-21.29-9.422-21.29-21.29 0-11.87 9.422-21.29 21.29-21.29zm-10.49 67.973c5.03 0 9.91.615 14.582 1.75-.343-.01-.683-.03-1.028-.03-23.42 0-42.406 18.986-42.406 42.406 0 23.42 18.986 42.406 42.406 42.406 10.767 0 20.59-4.02 28.07-10.63 3.814 4.918 8.044 9.5 12.643 13.685-10.198 19.537-30.616 32.82-54.267 32.82-33.913 0-61.204-27.29-61.204-61.203 0-33.913 27.29-61.203 61.204-61.203zm291.513 3.186c2.17 0 4.3.158 6.387.44-12.363 3.926-21.322 15.492-21.322 29.156 0 16.895 13.696 30.59 30.592 30.59 14.714 0 26.997-10.39 29.923-24.233.826 3.496 1.276 7.143 1.276 10.902 0 7.137-1.584 13.883-4.406 19.922-.52-.017-1.04-.04-1.564-.04-18.91 0-35.365 11-43.313 26.91-24.85-1.25-44.43-21.618-44.43-46.792 0-25.988 20.868-46.856 46.856-46.856zm40.887 85.428c1.986 0 3.92.196 5.793.56-7.416 1.746-12.94 8.388-12.94 16.336 0 9.28 7.52 16.8 16.797 16.8 9.28 0 16.8-7.52 16.8-16.8 0-.294-.03-.58-.046-.873 2.1 4.084 3.29 8.726 3.29 13.67 0 16.51-13.184 29.694-29.694 29.694-16.51 0-29.693-13.183-29.693-29.693s13.183-29.693 29.693-29.693z"></path></svg></div>
+    <div class="artifacts" style="top: 60%; right: 15%;"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="#3B3B3B"><path d="M256.05 20.283c-130.19 0-235.93 105.74-235.93 235.928 0 130.19 105.74 235.93 235.93 235.93 130.188 0 235.927-105.74 235.927-235.93 0-130.188-105.74-235.927-235.928-235.927zm0 18.696c120.084 0 217.23 97.146 217.23 217.23 0 33.477-7.556 65.166-21.048 93.47-.143.3-.28.604-.425.904-.673 1.395-1.363 2.78-2.065 4.158-.07.137-.135.276-.205.412-.157.307-.324.61-.482.914-.587 1.132-1.178 2.263-1.784 3.383-.475.882-.968 1.756-1.457 2.632-16.388 29.34-39.376 54.475-66.973 73.4-.794.544-1.59 1.086-2.39 1.618-.522.35-1.05.692-1.577 1.037-.933.61-1.866 1.215-2.807 1.808-.308.195-.62.385-.93.578-2.525 1.576-5.072 3.1-7.646 4.565l.008.006c-29.154 16.603-62.537 26.643-98.154 28.138v-.007c-6.226.266-12.462.265-18.688 0v.004c-115.716-4.912-207.84-100.082-207.84-217.02 0-120.084 97.148-217.23 217.233-217.23zm-.066 18.186c-3.11 0-6.222.075-9.33.22l.002 51.344c-8.04-.473-16.048-1.56-23.955-3.255-.595-12.692-11.074-22.8-23.913-22.8-6.91 0-13.134 2.93-17.504 7.614-5.884-3.153-11.613-6.704-17.146-10.65-5.946 3.1-11.772 6.52-17.446 10.266 8.928 7.01 18.375 13.04 28.2 18.092.714 12.58 11.14 22.564 23.897 22.564 6.85 0 13.023-2.882 17.387-7.494 10.04 2.302 20.242 3.73 30.482 4.266v48.436c-24.646-.303-49.197-1.807-72.945-4.5-2.235-11.778-12.58-20.688-25.01-20.688-9.724 0-18.173 5.454-22.462 13.47-14.295-2.777-28.034-6.06-41.074-9.816-3.295 5.515-6.298 11.155-9.012 16.897 15.228 4.59 31.32 8.52 48.034 11.79 3.002 10.72 12.838 18.587 24.515 18.587 8.88 0 16.694-4.547 21.25-11.438 56.1 6.688 116.216 6.68 172.304-.025 4.554 6.905 12.377 11.465 21.267 11.465 11.696 0 21.545-7.89 24.53-18.635 16.618-3.26 32.623-7.173 47.77-11.736-2.713-5.74-5.716-11.38-9.01-16.896-12.972 3.736-26.633 7.002-40.845 9.768-4.295-7.993-12.734-13.428-22.444-13.428-12.42 0-22.757 8.898-25.002 20.664-23.82 2.71-48.45 4.22-73.174 4.523v-48.436c10.304-.54 20.57-1.978 30.67-4.305 4.366 4.633 10.553 7.53 17.422 7.53 12.797 0 23.25-10.043 23.91-22.677 9.735-5.026 19.1-11.016 27.95-17.965-5.672-3.745-11.496-7.165-17.44-10.268-5.484 3.912-11.16 7.433-16.99 10.563-4.365-4.64-10.557-7.54-17.43-7.54-12.825 0-23.297 10.085-23.915 22.757-7.977 1.72-16.062 2.823-24.176 3.3l-.002-51.34c-3.117-.148-6.238-.224-9.358-.224zm.006 156.727c-23.483 0-42.326 18.84-42.326 42.324 0 23.488 18.84 42.328 42.326 42.328 23.483 0 42.324-18.84 42.324-42.328 0-23.484-18.837-42.324-42.324-42.324zm-123.408 12.734c-12.642 0-23.3 8.46-26.646 20.02h-48.58c-.29 6.228-.292 12.465 0 18.69h49.738c4.252 9.868 14.063 16.778 25.488 16.778 11.427 0 21.235-6.91 25.486-16.777h37.59c-.45-2.977-.685-6.023-.685-9.12 0-3.256.264-6.45.76-9.57h-36.506c-3.346-11.562-14.005-20.02-26.645-20.02zm247.064 0c-12.64 0-23.3 8.458-26.646 20.02h-36.754c.496 3.12.76 6.314.76 9.57 0 3.098-.236 6.143-.686 9.12h37.838c4.25 9.867 14.06 16.778 25.488 16.778 11.426 0 21.236-6.91 25.487-16.78h49.48c.29-6.225.29-12.462-.002-18.69h-48.32c-3.345-11.56-14.003-20.018-26.644-20.018zm-16.12 78.205c-11.026 0-20.412 7.008-23.954 16.813-25.412-2.935-51.62-4.488-77.885-4.686-1.877.175-3.775.276-5.697.276-1.92 0-3.82-.1-5.695-.275-26.182.2-52.31 1.74-77.647 4.657-3.55-9.788-12.93-16.78-23.943-16.78-13.715 0-24.894 10.846-25.437 24.43-16.388 3.234-32.176 7.105-47.127 11.612 2.712 5.737 5.713 11.372 9.005 16.884 14.103-4.064 29.046-7.557 44.6-10.473 4.66 5.2 11.427 8.474 18.96 8.474 10.258 0 19.094-6.07 23.127-14.81 24.33-2.828 49.526-4.404 74.822-4.714v48.444c-9.78.512-19.523 1.826-29.125 3.95-4.387-5.517-11.15-9.058-18.745-9.058-13.222 0-23.943 10.722-23.943 23.945 0 .173.01.343.013.513-9.815 5.053-19.254 11.082-28.173 18.086 5.673 3.745 11.496 7.162 17.44 10.265 5.92-4.227 12.06-8.002 18.38-11.317 4.273 3.967 9.993 6.395 16.283 6.395 12.19 0 22.245-9.11 23.744-20.893 7.96-1.716 16.027-2.808 24.124-3.285l.002 51.36c6.226.29 12.462.292 18.688 0l-.002-51.36c8.176.48 16.322 1.585 24.36 3.33 1.518 11.76 11.564 20.848 23.737 20.848 6.252 0 11.94-2.398 16.205-6.322 6.263 3.295 12.352 7.042 18.222 11.233 5.944-3.103 11.768-6.522 17.44-10.268-8.85-6.946-18.21-12.934-27.942-17.96.006-.208.016-.415.016-.624 0-13.222-10.718-23.944-23.94-23.944-7.615 0-14.394 3.56-18.78 9.1-9.664-2.148-19.473-3.48-29.318-3.994v-48.444c25.382.31 50.664 1.895 75.07 4.74 4.04 8.726 12.867 14.782 23.113 14.782 7.515 0 14.267-3.256 18.928-8.434 15.472 2.907 30.34 6.385 44.375 10.428 3.292-5.512 6.29-11.148 9.002-16.887-14.872-4.48-30.573-8.332-46.867-11.556-.52-13.605-11.707-24.478-25.438-24.478z"></path></svg></div>
+    <div class="artifacts" style="bottom: 10%; left: 20%;"><svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="#242424"><path d="M399.22 15.03c-15.483 0-28.033 12.55-28.033 28.032 0 14.46 10.972 26.336 25.032 27.844l60.374 248.53c-18.185-15.346-40.6-23.03-63-23.03-25.02 0-50.046 9.577-69.188 28.72-36.185 36.184-38.155 93.355-5.937 131.843L73.81 397.53c-1.2-14.374-13.22-25.655-27.906-25.655-15.48 0-28.03 12.55-28.03 28.03 0 15.483 12.55 28.033 28.03 28.033 9.65 0 18.176-4.888 23.22-12.313l291.155 70.72c34.573 12.523 74.728 4.897 102.5-22.876 27.094-27.094 35.005-65.936 23.75-99.908L414.407 66.625c7.736-4.99 12.875-13.673 12.875-23.563 0-15.48-12.58-28.03-28.06-28.03zM110.155 96.22c-15.48 0-28.03 12.548-28.03 28.03 0 15.482 12.55 28.03 28.03 28.03 4.647 0 9.017-1.154 12.875-3.155l180.064 171.75c2.512-3.09 5.217-6.092 8.094-8.97 1.562-1.56 3.153-3.075 4.78-4.53L135.813 135.5c1.515-3.447 2.375-7.244 2.375-11.25 0-15.482-12.55-28.03-28.03-28.03z"></path></svg></div>
+  
+    <div class="container">
+        <header>
+            <h1>DATABASE HANDLING</h1>
+            <p><em>Ah shit, here we go again.</em></p>
+        </header>
+        
+        <nav>
+           <div class="filter-controls">
+              <div class="filterDrop" id="categoryDropdown">
+                 <div class="filter-btn">Filter by Tag</div>
+                 <div class="filter-content" id="categoryOptions"></div>
+              </div>
+              <div class="filterDrop">
+                 <div class="filter-btn" id="sortBtn">Sort</div>
+                 <div class="filter-content" id="sortOptions">
+                    <div class="filter-item" data-sort="newest">Newest First</div>
+                    <div class="filter-item" data-sort="oldest">Oldest First</div>
+                    <div class="filter-item" data-sort="title">Title A-Z</div>
+                 </div>
+              </div>
+              <button id="resetBtn">
+                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300"><g transform="translate(0,300) scale(0.1,-0.1)" stroke="none"><path d="M1375 2954 c-362 -37 -665 -176 -909 -418 -375 -371 -521 -901 -387 -1406 116 -436 437 -803 849 -972 207 -84 378 -113 617 -105 168 6 264 23 411 72 381 127 723 446 871 813 69 169 113 367 113 505 l0 57 -144 0 -143 0 -7 -84 c-39 -510 -408 -936 -911 -1053 -124 -28 -399 -25 -518 6 -217 56 -376 143 -531 290 -176 168 -287 367 -342 612 -24 106 -24 347 0 459 102 476 476 840 946 920 94 16 304 17 390 1 238 -44 462 -160 625 -326 68 -69 175 -212 175 -234 0 -8 -85 -11 -280 -11 l-281 0 3 -142 3 -143 508 -3 507 -2 0 510 0 510 -145 0 -145 0 -2 -216 -3 -215 -60 72 c-203 245 -523 428 -845 483 -97 17 -293 27 -365 20z"/><path d="M1005 1671 c-32 -13 -55 -46 -62 -84 -11 -68 4 -102 77 -182 57 -61 70 -81 70 -108 0 -37 -15 -57 -42 -57 -20 0 -38 28 -38 59 0 17 -6 21 -35 21 -33 0 -35 -2 -35 -35 0 -72 43 -115 115 -115 72 0 115 45 115 118 0 60 -13 86 -85 162 -54 57 -65 75 -65 103 0 64 57 78 75 19 8 -28 13 -32 43 -32 l35 0 -6 43 c-10 76 -87 118 -162 88z"/>
+                 <path d="M402 1423 l3 -248 35 0 35 0 3 103 c3 100 3 102 26 102 38 0 51 -26 56 -119 l5 -86 38 -3 37 -3 0 74 c0 93 -7 130 -30 154 -16 18 -16 20 0 41 39 48 33 180 -11 215 -17 13 -40 17 -110 17 l-89 0 2 -247z m148 158 c5 -11 10 -36 10 -56 0 -52 -15 -75 -50 -75 l-30 0 0 75 0 75 30 0 c19 0 33 -7 40 -19z"/><path d="M692 1423 l3 -248 100 0 100 0 3 38 3 37 -65 0 -66 0 0 70 0 70 50 0 50 0 0 35 0 35 -50 0 -50 0 0 70 0 70 65 0 65 0 0 35 0 35 -105 0 -105 0 2 -247z"/><path d="M1222 1423 l3 -248 100 0 100 0 3 38 3 37 -65 0 -66 0 0 70 0 70 50 0 50 0 0 35 0 35 -50 0 -50 0 0 70 0 70 65 0 65 0 0 35 0 35 -105 0 -105 0 2 -247z"/><path d="M1460 1635 c0 -34 1 -35 40 -35 l40 0 0 -216 0 -215 38 3 37 3 3 213 2 212 40 0 c39 0 40 1 40 35 l0 35 -120 0 -120 0 0 -35z"/><path d="M1895 1638 c-25 -139 -72 -454 -68 -460 2 -5 17 -8 33 -8 30 0 35 8 42 70 3 22 8 25 50 28 52 3 47 9 64 -75 3 -19 11 -23 39 -23 27 0 35 4 35 18 0 9 -16 122 -37 250 l-37 232 -58 0 c-57 0 -57 0 -63 -32z m94 -290 c1 -14 -7 -18 -34 -18 -41 0 -41 -5 -18 138 l17 107 18 -105 c9 -58 17 -113 17 -122z"/><path d="M2132 1423 l3 -248 100 0 100 0 0 35 0 35 -62 3 -63 3 0 209 0 210 -40 0 -40 0 2 -247z"/><path d="M2372 1423 l3 -248 100 0 100 0 3 38 3 37 -65 0 -66 0 0 210 0 210 -40 0 -40 0 2 -247z"/></g></svg>
+              </button>
+           </div>
+           <div class="search">
+              <input type="text" id="searchInput" placeholder="Search items...">
+           </div>
+        </nav>
+          
+        <div class="items-grid" id="itemsGrid"></div>
+    </div>
+
+<script>
+const items = [
+    {
+        id: 1,
+        title: "AI Mermaids in the Cloud",
+        categories: ["Forecasting", "Python", "Streamlit"],
+        date: "2025-08-20",
+        excerpt: "Artificial intelligence takes aquatic form beneath waves of data.",
+        image: "https://images.unsplash.com/photo-1574388628724-c8319d449336?auto=format&fit=crop&w=400&q=80"
+    },
+    {
+        id: 2,
+        title: "Underwater Data Centers",
+        categories: ["Data Engineering", "Spark", "APIs"],
+        date: "2025-09-20",
+        excerpt: "How submerged servers are cooling the future.",
+        image: "https://raw.githubusercontent.com/dduyg/LiminalLoop/shelf/06/translucent.gif"
+    },
+    {
+        id: 3,
+        title: "Holographic Coral Reefs",
+        categories: ["Recommender Systems", "SQL"],
+        date: "2025-09-15",
+        excerpt: "Building ecosystems in virtual space where light refracts through data.",
+        image: "https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/NET-NEUTRALITY.gif"
+    },
+    {
+        id: 4,
+        title: "Dolphin Protocol v3.0",
+        categories: ["Data Modeling", "Python", "Scikit-learn"],
+        date: "2025-09-28",
+        excerpt: "New communication protocols for navigating the cyber seas.",
+        image: "https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/spendthrift.gif"
+    },
+    {
+        id: 5,
+        title: "ErrorAesthetic Tides Rising",
+        categories: ["Anomaly Detection"],
+        date: "2025-08-15",
+        excerpt: "When systems crash beautifully, corrupted pixels form artistic waves.",
+        image: "https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/detail-13.gif"
+    },
+    {
+        id: 6,
+        title: "Virtual Aquariums of Tomorrow",
+        categories: ["Time Series Analysis", "ARIMA"],
+        date: "2025-08-10",
+        excerpt: "Creating immersive oceanic experiences for future loops.",
+        image: "https://raw.githubusercontent.com/dduyg/LiminalLoop/shelf/06/inevitably.gif"
+    }
+];
+
+let selectedCategories = [];
+let sortBy = "newest";
+
+function renderItems(itemsToRender) {
+    const grid = document.getElementById('itemsGrid');
+    if (!itemsToRender.length) {
+        grid.innerHTML = '<div class="no-results">No items found in these waters</div>';
+        return;
+    }
+    grid.innerHTML = itemsToRender.map(item => `
+        <div class="item">
+            <img src="${item.image}" alt="${item.title}" class="itemImage">
+            <div class="itemContent">
+                <h3 class="itemTitle">${item.title}</h3>
+                <div class="itemDate">${new Date(item.date).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}</div>
+                <p class="itemExcerpt">${item.excerpt}</p>
+                <div class="itemCategory">[ ${item.categories.join(', ')} ]</div>
+            </div>
+        </div>
+    `).join('');
+}
+
+function populateCategoryDropdown() {
+    const uniqueCategories = [...new Set(items.flatMap(i => i.categories))];
+    const container = document.getElementById('categoryOptions');
+    
+    container.innerHTML = uniqueCategories.map(cat => `
+        <div class="filter-item" data-cat="${cat}">${cat}</div>
+    `).join('');
+
+    container.querySelectorAll('.filter-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const category = item.dataset.cat;
+            if (selectedCategories.includes(category)) {
+                selectedCategories = selectedCategories.filter(c => c !== category);
+                item.classList.remove('active');
+            } else {
+                selectedCategories.push(category);
+                item.classList.add('active');
+            }
+            updateCategoryButtonLabel();
+            filterItems();
+        });
+    });
+}
+
+function updateCategoryButtonLabel() {
+    const btn = document.querySelector('#categoryDropdown .filter-btn');
+    if (selectedCategories.length === 0) {
+        btn.textContent = "Filter by Tag";
+    } else if (selectedCategories.length <= 2) {
+        btn.textContent = selectedCategories.join(', ');
+    } else {
+        btn.textContent = `${selectedCategories.length} selected`;
+    }
+}
+
+function filterItems() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    let filtered = items.filter(item => {
+        const matchesCategory = selectedCategories.length === 0 || selectedCategories.some(cat => item.categories.includes(cat));
+        const matchesSearch = item.title.toLowerCase().includes(searchTerm) || item.excerpt.toLowerCase().includes(searchTerm);
+        return matchesCategory && matchesSearch;
+    });
+
+    if (sortBy === 'newest') filtered.sort((a,b)=>new Date(b.date)-new Date(a.date));
+    else if (sortBy === 'oldest') filtered.sort((a,b)=>new Date(a.date)-new Date(b.date));
+    else if (sortBy === 'title') filtered.sort((a,b)=>a.title.localeCompare(b.title));
+
+    renderItems(filtered);
+}
+
+function resetFilters() {
+    document.getElementById('searchInput').value = '';
+    selectedCategories = [];
+    document.querySelectorAll('#categoryOptions .filter-item').forEach(i => i.classList.remove('active'));
+    sortBy = "newest";
+    document.getElementById('sortBtn').textContent = "Sort";
+    updateCategoryButtonLabel();
+    filterItems();
+}
+
+// dropdown behavior
+document.querySelectorAll('.filterDrop').forEach(drop => {
+    const btn = drop.querySelector('.filter-btn');
+    btn.addEventListener('click', e => {
+        e.stopPropagation();
+        document.querySelectorAll('.filter-content').forEach(dc => dc.classList.remove('show'));
+        drop.querySelector('.filter-content').classList.toggle('show');
+    });
+});
+document.body.addEventListener('click', ()=>document.querySelectorAll('.filter-content').forEach(dc=>dc.classList.remove('show')));
+
+document.getElementById('sortOptions').addEventListener('click', e => {
+    if (e.target.classList.contains('filter-item')) {
+        sortBy = e.target.dataset.sort;
+        document.getElementById('sortBtn').textContent = e.target.textContent;
+        filterItems();
+    }
+});
+
+document.getElementById('searchInput').addEventListener('input', filterItems);
+document.getElementById('resetBtn').addEventListener('click', resetFilters);
+
+populateCategoryDropdown();
+filterItems();
+</script>
+</body>
+</html>
