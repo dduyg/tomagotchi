@@ -65,12 +65,21 @@
       width: 100vw;
       border-top: 1px solid #000;
       border-left: 1px solid #000;
-      /* Truly fluid columns with no minimum - pure percentage based */
+      /* Flexible column system - adjust these percentages as needed */
+      --featured-width: 8%;
+      --project-width: 18%;
+      --client-width: 14%;
+      /* Remaining space for category columns */
+      --categories-total: calc(100% - var(--featured-width) - var(--project-width) - var(--client-width));
+      --category-count: 7; /* Change this number when adding/removing columns */
+      --category-width: calc(var(--categories-total) / var(--category-count));
+      
       grid-template-columns:
-        8vw      /* featured */
-        18vw     /* project */
-        14vw     /* client */
-        repeat(7, 8.57vw); /* categories - 60vw / 7 = 8.57vw each */
+        var(--featured-width)
+        var(--project-width)
+        var(--client-width)
+        repeat(var(--category-count), var(--category-width));
+      
       /* Fluid font size that scales smoothly */
       font-size: clamp(0.45rem, 1.1vw, 1rem);
       overflow-x: auto;
