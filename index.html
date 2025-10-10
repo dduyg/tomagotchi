@@ -1,50 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Liminal🍧Loop</title>
-  <link href="https://fonts.googleapis.com/css2?family=BenchNine&display=swap" rel="stylesheet">
-  <style>
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+  <title>Liminal🍧Loop</title>  
+  <link href="https://fonts.googleapis.com/css2?family=BenchNine&display=swap" rel="stylesheet">  
+  <style>  
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
-    body {
-      font-family: "BenchNine", sans-serif;
-      background: #B4A8A8;
-      color: #9A8887;
-      height: 100vh;
-      overflow: hidden;
+    body {  
+      font-family: "BenchNine", sans-serif;  
+      background: #B4A8A8;  
+      color: #9A8887;  
+      height: 100vh;  
+      overflow: hidden;  
+      display: flex;  
+      justify-content: center;  
+      align-items: center;  
+      position: relative;  
+    }
+    body::before {  
+      content: "";  
+      position: fixed;  
+      top: 0;  
+      left: 0;  
+      width: 90px;  
+      height: 90px;  
+      background: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/signoftheTimes.png') no-repeat center/cover;  
+      opacity: 0.5;  
+      z-index: -1;  
+      pointer-events: none;  
+    }
+    body::after {  
+      content: "";  
+      position: fixed;  
+      bottom: 0;  
+      right: 0;  
+      width: 150px;  
+      height: 150px;  
+      background: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/sharkTeeth.png') no-repeat center/cover;  
+      opacity: 0.5;  
+      z-index: -1;  
+      pointer-events: none;  
+    }  
+
+    .content-wrapper {
       position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      width: 300px;
+      height: 200px;
+      overflow: hidden;
+      border: 2px solid #9A8887;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 90px;
-      height: 90px;
-      background: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/signoftheTimes.png') no-repeat center/cover;
-      opacity: 0.5;
-      z-index: -1;
-      pointer-events: none; /* so it doesn’t block clicks */
-    }
-    body::after {
-      content: "";
-      position: fixed;
+    .content {
+      position: absolute;
       bottom: 0;
-      right: 0;
-      width: 150px;
-      height: 150px;
-      background: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/sharkTeeth.png') no-repeat center/cover;
-      opacity: 0.5;
-      z-index: -1;
-      pointer-events: none; /* so it doesn’t block clicks */
+      width: 100%;
+      animation: scrollUp 10s linear infinite;
     }
-  </style>
-</head>
-<body>
-  <h3>Wingdings: ☠︎ᘉ⬥︎</h3>
-</body>
+    @keyframes scrollUp {
+      0% { transform: translateY(100%); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; transform: translateY(-100%); }
+      100% { opacity: 0; transform: translateY(-100%); }
+    }
+    .content p { padding: 1rem; line-height: 1.4; }
+  </style>  
+</head>  
+<body>  
+  <h3>Wingdings: ☠︎ᘉ⬥︎</h3>  
+
+  <div class="content-wrapper">
+    <div class="content">
+      <p>
+        Liminal spaces whisper memories of yesterday,<br>
+        hallways loop into themselves,<br>
+        the air hums with deja vu.<br><br>
+        Footsteps echo where no one walks,<br>
+        and signs point to nowhere — yet everywhere.<br><br>
+        Welcome to the Liminal🍧Loop.
+      </p>
+    </div>
+  </div>
+</body>  
 </html>
