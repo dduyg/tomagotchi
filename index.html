@@ -1,87 +1,115 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-  <meta charset="UTF-8" />  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
-  <title>Liminal🍧Loop</title>  
-  <link href="https://fonts.googleapis.com/css2?family=BenchNine&display=swap" rel="stylesheet">  
-  <style>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liminal🍧Loop</title>
+  <link href="https://fonts.googleapis.com/css2?family=BenchNine&display=swap" rel="stylesheet">
+  <style>
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
-    body {  
-      font-family: "BenchNine", sans-serif;  
-      background: #B4A8A8;  
-      color: #9A8887;  
-      height: 100vh;  
-      overflow: hidden;  
-      display: flex;  
-      justify-content: center;  
-      align-items: center;  
-      position: relative;  
-    }
-    body::before {  
-      content: "";  
-      position: fixed;  
-      top: 0;  
-      left: 0;  
-      width: 90px;  
-      height: 90px;  
-      background: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/signoftheTimes.png') no-repeat center/cover;  
-      opacity: 0.5;  
-      z-index: -1;  
-      pointer-events: none;  
-    }
-    body::after {  
-      content: "";  
-      position: fixed;  
-      bottom: 0;  
-      right: 0;  
-      width: 150px;  
-      height: 150px;  
-      background: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/sharkTeeth.png') no-repeat center/cover;  
-      opacity: 0.5;  
-      z-index: -1;  
-      pointer-events: none;  
-    }  
-
-    .content-wrapper {
-      position: relative;
-      width: 300px;
-      height: 200px;
+    body {
+      font-family: "BenchNine", sans-serif;
+      background: #B4A8A8;
+      color: #9A8887;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       overflow: hidden;
-      border: 2px solid #9A8887;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.1);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      position: relative;
     }
-    .content {
-      position: absolute;
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 90px;
+      height: 90px;
+      background: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/signoftheTimes.png') no-repeat center/cover;
+      opacity: 0.5;
+      z-index: -1;
+      pointer-events: none;
+    }
+    body::after {
+      content: "";
+      position: fixed;
       bottom: 0;
-      width: 100%;
-      animation: scrollUp 10s linear infinite;
+      right: 0;
+      width: 150px;
+      height: 150px;
+      background: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/sharkTeeth.png') no-repeat center/cover;
+      opacity: 0.5;
+      z-index: -1;
+      pointer-events: none;
     }
-    @keyframes scrollUp {
-      0% { transform: translateY(100%); opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; transform: translateY(-100%); }
-      100% { opacity: 0; transform: translateY(-100%); }
-    }
-    .content p { padding: 1rem; line-height: 1.4; }
-  </style>  
-</head>  
-<body>  
-  <h3>Wingdings: ☠︎ᘉ⬥︎</h3>  
 
-  <div class="content-wrapper">
-    <div class="content">
-      <p>
-        Liminal spaces whisper memories of yesterday,<br>
-        hallways loop into themselves,<br>
-        the air hums with deja vu.<br><br>
-        Footsteps echo where no one walks,<br>
-        and signs point to nowhere — yet everywhere.<br><br>
-        Welcome to the Liminal🍧Loop.
-      </p>
-    </div>
+    /* The scrollable content box */
+    .content {
+      width: 60%;
+      height: 60vh;
+      overflow-y: scroll;
+      padding: 20px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      backdrop-filter: blur(5px);
+      scroll-behavior: smooth;
+      position: relative;
+    }
+
+    /* Each block that fades/slides in */
+    .item {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      margin-bottom: 3rem;
+      font-size: 1.5rem;
+    }
+
+    .item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="item">☁︎ Floating Words</div>
+    <div class="item">✶ Mirror Hallway</div>
+    <div class="item">❈ Ocean Dreams</div>
+    <div class="item">⚘ Neon Shadow</div>
+    <div class="item">⧉ Quiet Static</div>
+    <div class="item">✦ Infinite Corridor</div>
+    <div class="item">☯︎ Fade In Again</div>
   </div>
-</body>  
+
+  <script>
+    const items = document.querySelectorAll('.item');
+    const content = document.querySelector('.content');
+
+    function checkVisible() {
+      items.forEach(item => {
+        const rect = item.getBoundingClientRect();
+        const contentRect = content.getBoundingClientRect();
+        if (rect.top < contentRect.bottom - 50 && rect.bottom > contentRect.top + 50) {
+          item.classList.add('visible');
+        } else {
+          item.classList.remove('visible');
+        }
+      });
+    }
+
+    // When scroll reaches bottom, loop back to top smoothly
+    content.addEventListener('scroll', () => {
+      if (content.scrollTop + content.clientHeight >= content.scrollHeight - 2) {
+        setTimeout(() => {
+          content.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 400);
+      }
+      checkVisible();
+    });
+
+    checkVisible();
+  </script>
+</body>
 </html>
