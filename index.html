@@ -1,3 +1,48 @@
+<!--
+A flexible system with CSS custom properties (variables) that makes it super easy 
+to add or remove columns.
+
+============================================================
+HOW TO ADD MORE COLUMNS
+============================================================
+
+Just change this one number:
+
+    --category-count: 7; /* Change to 8, 9, 10, etc. */
+
+Then add your new column header and data cells in the HTML!
+
+============================================================
+HOW IT WORKS
+============================================================
+
+1. Fixed columns (featured, project, client) take up 40% total
+2. Category columns automatically split the remaining 60% equally
+3. Add 1 more column? Change 7 to 8 — each column becomes slightly narrower
+4. Add 3 more columns? Change to 10 — still fits perfectly!
+
+============================================================
+EXAMPLE: Adding an "S: Strategy" column
+============================================================
+
+1. Change:
+       --category-count: 7;
+   to:
+       --category-count: 8;
+
+2. Add the header:
+       <div class="cell title">S: strategy</div>
+
+3. Add cells in each row:
+       <div class="cell mark"><span class="dot">&#8226;</span> S</div>
+
+The grid will automatically recalculate and fit everything perfectly!
+
+You can also adjust the following if you want to redistribute space differently:
+    --featured-width
+    --project-width
+    --client-width
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
