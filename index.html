@@ -7,19 +7,17 @@
   <link href="https://fonts.googleapis.com/css2?family=BenchNine&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
-
     body {
       font-family: "BenchNine", sans-serif;
       background: #B4A8A8;
       color: #9A8887;
       height: 100vh;
       overflow: hidden;
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
     }
-
     body::before {
       content: "";
       position: fixed;
@@ -30,9 +28,8 @@
       background: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/signoftheTimes.png') no-repeat center/cover;
       opacity: 0.5;
       z-index: -1;
-      pointer-events: none;
+      pointer-events: none; /* so it doesn’t block clicks */
     }
-
     body::after {
       content: "";
       position: fixed;
@@ -43,112 +40,11 @@
       background: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/sharkTeeth.png') no-repeat center/cover;
       opacity: 0.5;
       z-index: -1;
-      pointer-events: none;
+      pointer-events: none; /* so it doesn’t block clicks */
     }
-
-    /* The scrollable content box */
-    .content {
-      position: fixed;
-      bottom: 20vh;
-      width: 60vw;
-      max-height: 60vh;
-      overflow-y: auto;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 1rem;
-      padding: 1rem;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
-      scroll-behavior: smooth;
-    }
-
-    /* Just to show scrolling */
-    .item {
-      font-size: 1.2rem;
-      margin: 0.75rem 0;
-    }
-
   </style>
 </head>
 <body>
   <h3>Wingdings: ☠︎ᘉ⬥︎</h3>
-
-  <div class="content" id="scrollBox">
-    <!-- example content -->
-    <div class="item">Item 1</div>
-    <div class="item">Item 2</div>
-    <div class="item">Item 3</div>
-    <div class="item">Item 4</div>
-    <div class="item">Item 5</div>
-    <div class="item">Item 6</div>
-    <div class="item">Item 7</div>
-    <div class="item">Item 8</div>
-    <div class="item">Item 9</div>
-    <div class="item">Item 10</div>
-     <div class="item">Item 1</div>
-    <div class="item">Item 2</div>
-    <div class="item">Item 3</div>
-    <div class="item">Item 4</div>
-    <div class="item">Item 5</div>
-    <div class="item">Item 6</div>
-    <div class="item">Item 7</div>
-    <div class="item">Item 8</div>
-    <div class="item">Item 9</div>
-    <div class="item">Item 10</div>
-     <div class="item">Item 1</div>
-    <div class="item">Item 2</div>
-    <div class="item">Item 3</div>
-    <div class="item">Item 4</div>
-    <div class="item">Item 5</div>
-    <div class="item">Item 6</div>
-    <div class="item">Item 7</div>
-    <div class="item">Item 8</div>
-    <div class="item">Item 9</div>
-    <div class="item">Item 10</div>
-     <div class="item">Item 1</div>
-    <div class="item">Item 2</div>
-    <div class="item">Item 3</div>
-    <div class="item">Item 4</div>
-    <div class="item">Item 5</div>
-    <div class="item">Item 6</div>
-    <div class="item">Item 7</div>
-    <div class="item">Item 8</div>
-    <div class="item">Item 9</div>
-    <div class="item">Item 10</div>
-     <div class="item">Item 1</div>
-    <div class="item">Item 2</div>
-    <div class="item">Item 3</div>
-    <div class="item">Item 4</div>
-    <div class="item">Item 5</div>
-    <div class="item">Item 6</div>
-    <div class="item">Item 7</div>
-    <div class="item">Item 8</div>
-    <div class="item">Item 9</div>
-    <div class="item">Item 10</div>
-     <div class="item">Item 1</div>
-    <div class="item">Item 2</div>
-    <div class="item">Item 3</div>
-    <div class="item">Item 4</div>
-    <div class="item">Item 5</div>
-    <div class="item">Item 6</div>
-    <div class="item">Item 7</div>
-    <div class="item">Item 8</div>
-    <div class="item">Item 9</div>
-    <div class="item">Item 10</div>
-  </div>
-
-  <script>
-    const box = document.getElementById('scrollBox');
-
-    box.addEventListener('scroll', () => {
-      // When scrolled to the top and user scrolls up further, loop to bottom
-      if (box.scrollTop === 0) {
-        box.scrollTop = box.scrollHeight - box.clientHeight - 1;
-      }
-      // When scrolled to bottom and user scrolls down further, loop to top
-      else if (box.scrollTop + box.clientHeight >= box.scrollHeight) {
-        box.scrollTop = 1;
-      }
-    });
-  </script>
 </body>
 </html>
