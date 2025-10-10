@@ -5,132 +5,99 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Liminal🍧Loop</title>
   <link href="https://fonts.googleapis.com/css2?family=BenchNine&display=swap" rel="stylesheet">
-
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-      outline: none;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
 
     body {
       font-family: "BenchNine", sans-serif;
       background: #B4A8A8;
       color: #9A8887;
       height: 100vh;
-      overflow-x: hidden;
-      overflow-y: scroll;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       position: relative;
     }
 
-    /* Decorative images */
-    body::before, body::after {
+    body::before {
       content: "";
       position: fixed;
-      background-size: cover;
+      top: 0;
+      left: 0;
+      width: 90px;
+      height: 90px;
+      background: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/signoftheTimes.png') no-repeat center/cover;
       opacity: 0.5;
       z-index: -1;
       pointer-events: none;
     }
 
-    body::before {
-      top: 0;
-      left: 0;
-      width: 90px;
-      height: 90px;
-      background-image: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/signoftheTimes.png');
-    }
-
     body::after {
+      content: "";
+      position: fixed;
       bottom: 0;
       right: 0;
       width: 150px;
       height: 150px;
-      background-image: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/sharkTeeth.png');
+      background: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/sharkTeeth.png') no-repeat center/cover;
+      opacity: 0.5;
+      z-index: -1;
+      pointer-events: none;
     }
 
-    h3 {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    /* The scrollable section */
+    /* The scrollable content box */
     .content {
       position: fixed;
-      bottom: 30vh; /* initial position */
-      left: 0;
-      width: 100%;
-      height: 70vh;
+      bottom: 30vh;
+      width: 60vw;
+      max-height: 60vh;
       overflow-y: auto;
       background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(8px);
-      padding: 20px;
-      border-top-left-radius: 2rem;
-      border-top-right-radius: 2rem;
-      box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.15);
-      transition: transform 0.8s ease, opacity 0.8s ease;
-      transform: translateY(0);
-      opacity: 1;
+      border-radius: 1rem;
+      padding: 1rem;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      scroll-behavior: smooth;
     }
 
-    /* When scrolled off screen (upward) */
-    .content.offscreen {
-      transform: translateY(-110%);
-      opacity: 0;
+    /* Just to show scrolling */
+    .item {
+      font-size: 1.2rem;
+      margin: 0.75rem 0;
     }
 
-    /* When re-entering from bottom */
-    .content.visible {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    /* Demo filler text */
-    .block {
-      height: 200vh; /* So you can scroll */
-    }
-
-    .content p {
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-    }
   </style>
 </head>
 <body>
   <h3>Wingdings: ☠︎ᘉ⬥︎</h3>
-  <div class="block"></div>
 
-  <div class="content" id="scrollingContent">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus...</p>
-    <p>Phasellus lacinia, magna a ullamcorper laoreet...</p>
-    <p>Curabitur ullamcorper ultricies nisi. Nam eget dui...</p>
-    <p>Aliquam lorem ante, dapibus in, viverra quis...</p>
-    <p>Suspendisse potenti. Morbi mattis ullamcorper velit...</p>
-    <p>Donec pede justo, fringilla vel, aliquet nec...</p>
-    <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi...</p>
+  <div class="content" id="scrollBox">
+    <!-- example content -->
+    <div class="item">Item 1</div>
+    <div class="item">Item 2</div>
+    <div class="item">Item 3</div>
+    <div class="item">Item 4</div>
+    <div class="item">Item 5</div>
+    <div class="item">Item 6</div>
+    <div class="item">Item 7</div>
+    <div class="item">Item 8</div>
+    <div class="item">Item 9</div>
+    <div class="item">Item 10</div>
   </div>
 
   <script>
-    const content = document.getElementById('scrollingContent');
-    let lastScrollY = window.scrollY;
+    const box = document.getElementById('scrollBox');
 
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.scrollY;
-
-      // If user scrolls up, hide the panel (go offscreen)
-      if (currentScroll < lastScrollY && currentScroll > 50) {
-        content.classList.add('offscreen');
-        content.classList.remove('visible');
+    box.addEventListener('scroll', () => {
+      // When scrolled to the top and user scrolls up further, loop to bottom
+      if (box.scrollTop === 0) {
+        box.scrollTop = box.scrollHeight - box.clientHeight - 1;
       }
-      // If user scrolls down to bottom (re-enter view)
-      else if (currentScroll >= lastScrollY) {
-        content.classList.remove('offscreen');
-        content.classList.add('visible');
+      // When scrolled to bottom and user scrolls down further, loop to top
+      else if (box.scrollTop + box.clientHeight >= box.scrollHeight) {
+        box.scrollTop = 1;
       }
-
-      lastScrollY = currentScroll;
     });
   </script>
 </body>
