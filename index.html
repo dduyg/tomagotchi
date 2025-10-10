@@ -18,29 +18,27 @@
       justify-content: center;
       align-items: center;
     }
-    body::before {
+    body::before, body::after {
       content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 90px;
-      height: 90px;
-      background: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/signoftheTimes.png') no-repeat center/cover;
+      background-size: cover;
       opacity: 0.5;
       z-index: -1;
       pointer-events: none; /* so it doesn’t block clicks */
     }
+    body::before {
+      top: 0;
+      left: 0;
+      width: 90px;
+      height: 90px;
+      background-image: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/signoftheTimes.png');
+    }
     body::after {
-      content: "";
-      position: fixed;
       bottom: 0;
       right: 0;
       width: 150px;
       height: 150px;
-      background: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/sharkTeeth.png') no-repeat center/cover;
-      opacity: 0.5;
-      z-index: -1;
-      pointer-events: none; /* so it doesn’t block clicks */
+      background-image: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/sharkTeeth.png');
     }
   </style>
 </head>
