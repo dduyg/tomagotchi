@@ -1,48 +1,3 @@
-<!--
-A flexible system with CSS custom properties (variables) that makes it super easy 
-to add or remove columns.
-
-============================================================
-HOW TO ADD MORE COLUMNS
-============================================================
-
-Just change this one number:
-
-    --category-count: 7; /* Change to 8, 9, 10, etc. */
-
-Then add your new column header and data cells in the HTML!
-
-============================================================
-HOW IT WORKS
-============================================================
-
-1. Fixed columns (featured, project, client) take up 40% total
-2. Category columns automatically split the remaining 60% equally
-3. Add 1 more column? Change 7 to 8 — each column becomes slightly narrower
-4. Add 3 more columns? Change to 10 — still fits perfectly!
-
-============================================================
-EXAMPLE: Adding an "S: Strategy" column
-============================================================
-
-1. Change:
-       --category-count: 7;
-   to:
-       --category-count: 8;
-
-2. Add the header:
-       <div class="cell title">S: strategy</div>
-
-3. Add cells in each row:
-       <div class="cell mark"><span class="dot">&#8226;</span> S</div>
-
-The grid will automatically recalculate and fit everything perfectly!
-
-You can also adjust the following if you want to redistribute space differently:
-    --featured-width
-    --project-width
-    --client-width
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,7 +71,7 @@ You can also adjust the following if you want to redistribute space differently:
       --client-width: 14%;
       /* Remaining space for category columns */
       --categories-total: calc(100% - var(--featured-width) - var(--project-width) - var(--client-width));
-      --category-count: 7; /* Change this number when adding/removing columns */
+      --category-count: 8; /* Change this number when adding/removing columns */
       --category-width: calc(var(--categories-total) / var(--category-count));
       
       grid-template-columns:
@@ -212,6 +167,7 @@ You can also adjust the following if you want to redistribute space differently:
       <div class="cell title">R: reporting opt</div>
       <div class="cell title">DA: data architecture</div>
       <div class="cell title">AI: ai integration</div>
+      <div class="cell title">S: strategy</div>
 
       <!-- Row 1 -->
       <div class="cell imgcell">
@@ -339,6 +295,19 @@ You can also adjust the following if you want to redistribute space differently:
       <div class="cell"></div>
       <div class="cell"></div>
 
+       <!-- Row 10 -->
+      <div class="cell imgcell">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80" alt="Project image">
+      </div>
+      <div class="cell">young ぐ図録</div>
+      <div class="cell">옴seconds딕트</div>
+      <div class="cell"></div>
+      <div class="cell mark"><span class="dot">&#8226;</span> S</div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
+      <div class="cell"></div>
     </div>
   </div>
 </body>
