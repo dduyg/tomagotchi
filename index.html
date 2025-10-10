@@ -65,15 +65,15 @@
       width: 100vw;
       border-top: 1px solid #000;
       border-left: 1px solid #000;
-      /* Fluid column sizing that scales with viewport */
+      /* Truly fluid columns with no minimum - pure percentage based */
       grid-template-columns:
-        minmax(50px, 8vw)     /* featured */
-        minmax(90px, 18vw)    /* project */
-        minmax(80px, 14vw)    /* client */
-        repeat(7, minmax(30px, 8.5vw)); /* categories */
+        8vw      /* featured */
+        18vw     /* project */
+        14vw     /* client */
+        repeat(7, 8.57vw); /* categories - 60vw / 7 = 8.57vw each */
       /* Fluid font size that scales smoothly */
-      font-size: clamp(0.5rem, 1.1vw, 1rem);
-      overflow-x: auto;
+      font-size: clamp(0.45rem, 1.1vw, 1rem);
+      overflow-x: hidden;
     }
 
     .cell {
@@ -83,8 +83,9 @@
       display: flex;
       align-items: center;
       word-break: break-word;
-      min-height: clamp(40px, 6vw, 54px);
+      min-height: clamp(35px, 5vw, 54px);
       min-width: 0;
+      overflow: hidden;
     }
     .cell.title {
       writing-mode: vertical-rl;
@@ -106,7 +107,8 @@
       justify-content: center;
       align-items: center;
       padding: 0.18em;
-      min-height: clamp(40px, 6vw, 54px);
+      min-height: clamp(35px, 5vw, 54px);
+      overflow: hidden;
     }
     .cell.imgcell img {
       width: 100%;
