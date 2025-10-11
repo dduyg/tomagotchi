@@ -15,28 +15,28 @@
 │
 ├─▣ VAPT
 ├─▣ Author of seeker and finalrecon
-├─▣ <a href="https://thewhiteh4t.github.io/">thewhiteh4t's Blog</a>
+├─▣ <a href="#">thewhiteh4t's Blog</a>
 ├─▣ I am mostly available at <a href="https://twc1rcle.com/">The White Circle</a>
 │
 └───────────────────────────────▰▰▰
 
 ┌──┤ SOCIAL ├─────────▰▰▰
 │
-├─◈ <a href="https://twitter.com/thewhiteh4t">𝕏</a>
-├─◈ <a href="https://www.youtube.com/c/thewhiteh4t">YouTube</a>
-├─◈ <a href="https://t.me/thewhiteh4t">Telegram</a>
-├─◈ <a href="https://www.linkedin.com/in/lohityapushkar">LinkedIn</a>
+├─◈ <a href="#">𝕏</a>
+├─◈ <a href="#">YouTube</a>
+├─◈ <a href="#">Telegram</a>
+├─◈ <a href="#">LinkedIn</a>
 │
 └───────────────────────────────▰▰▰
 
 ┌──┤ PROJECTS ├───────▰▰▰
 │
-├─◈ <a href="https://github.com/thewhiteh4t/seeker">Seeker</a>
-├─◈ <a href="https://github.com/thewhiteh4t/FinalRecon">FinalRecon</a>
-├─◈ <a href="https://github.com/thewhiteh4t/nexfil">NExfil</a>
-├─◈ <a href="https://github.com/thewhiteh4t/pwnedornot">pwnedOrNot</a>
-├─◈ <a href="https://github.com/thewhiteh4t/killcast">KillCast</a>
-├─◈ <a href="https://github.com/thewhiteh4t/flashsploit">FlashSploit</a>
+├─◈ <a href="#">Seeker</a>
+├─◈ <a href="#">FinalRecon</a>
+├─◈ <a href="#">NExfil</a>
+├─◈ <a href="#">pwnedOrNot</a>
+├─◈ <a href="#">KillCast</a>
+├─◈ <a href="#">FlashSploit</a>
 │
 └───────────────────────────────▰▰▰
 </pre>
