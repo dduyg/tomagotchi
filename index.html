@@ -29,7 +29,6 @@
             padding: 40px 20px;
             min-height: 100vh;
         }
-
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -39,24 +38,13 @@
             text-align: left;
             margin-bottom: 80px;
         }
-
-        .header h1 {
-            font-size: 72px;
-            font-weight: 300;
-            font-style: italic;
-            line-height: 1;
-            margin-bottom: 0;
-            letter-spacing: -1px;
-        }
-
         .header h2 {
             font-size: 72px;
             font-weight: 400;
-            line-height: 1.1;
-            letter-spacing: -2px;
+            line-height: 1;
         }
 
-        .content-wrapper {
+        .content {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -76,20 +64,18 @@
             position: relative;
         }
 
-        .image-circle {
+        .avatar {
             width: 200px;
             height: 300px;
             border-radius: 50% 50% 50% 50% / 33% 33% 33% 33%;
             overflow: hidden;
             margin-bottom: 30px;
         }
-
-        .image-circle img {
+        .avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .connector {
             width: 100px;
             height: 80px;
@@ -98,105 +84,48 @@
             justify-content: center;
             align-items: center;
         }
-
-        .connector img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-
-        .connector::before {
-            display: none;
-        }
-
-        .connector::after {
-            display: none;
-        }
-
         .description {
             text-align: center;
             max-width: 450px;
-        }
-
-        .description p {
             font-size: 20px;
             line-height: 1.6;
             color: #2c2c2c;
-            letter-spacing: 0.5px;
-        }
-
-        .description .italic {
-            font-style: italic;
-            font-weight: 300;
-        }
-
-        .description .bold {
-            font-weight: 600;
-            font-style: normal;
         }
 
         @media (max-width: 768px) {
-            .header h1,
-            .header h2 {
-                font-size: 48px;
-            }
-
+            .header h2 { font-size: 48px; }
             .oval-container {
                 width: 100%;
                 max-width: 450px;
                 height: 700px;
                 padding: 60px 40px;
             }
-
-            .image-circle {
-                width: 150px;
-                height: 150px;
-            }
-
-            .description p {
-                font-size: 18px;
-            }
+            .avatar { width: 150px; }
+            .description { font-size: 18px; }
         }
-
         @media (max-width: 480px) {
-            .header h1,
-            .header h2 {
-                font-size: 36px;
-            }
-
+            .header h2 { font-size: 36px; }
             .oval-container {
                 height: 600px;
                 padding: 40px 30px;
             }
-
-            .image-circle {
-                width: 120px;
-                height: 120px;
-            }
-
-            .connector {
-                height: 60px;
-            }
-
-            .description p {
-                font-size: 16px;
-            }
+            .avatar { width: 120px; }
+            .connector { height: 60px; }
+            .description { font-size: 16px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>unconventional</h1>
+            <h2>unconventional</h2>
             <h2>people and their</h2>
             <h2>products.</h2>
         </div>
 
-        <div class="content-wrapper">
+        <div class="content">
             <div class="oval-container">
-                <div class="image-circle">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect fill='%23d9b8a8' width='200' height='200'/%3E%3Cpath d='M100 60 L120 100 L100 140 L80 100 Z' fill='%23f5c4a4' opacity='0.6'/%3E%3C/svg%3E" alt="Peace sign hand gesture">
-                </div>
+                <div class="avatar"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=988"></div>
                 
                 <div class="connector">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900">     
@@ -205,11 +134,7 @@
                     </svg>
                 </div>
                 
-                <div class="description">
-                    <p>
-                        <span class="italic">High-vibe,</span> <span class="bold">A STATE OF</span> <span class="italic">positive energy</span> <span class="bold">AND EMOTIONS, INCLUDING GRATITUDE, LOVE, AND FULFILLMENT. IT EMBODIES A LIFE CENTERED ON CONTINUOUS LEARNING, CURIOSITY, AND PERSONAL GROWTH.</span>
-                    </p>
-                </div>
+                <div class="description">High-vibe, A STATE OF positive energy AND EMOTIONS, INCLUDING GRATITUDE, LOVE, AND FULFILLMENT. IT EMBODIES A LIFE CENTERED ON CONTINUOUS LEARNING, CURIOSITY, AND PERSONAL GROWTH.</div>
             </div>
         </div>
     </div>
