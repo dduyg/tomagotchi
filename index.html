@@ -26,8 +26,7 @@
       line-height: 1.1;
     }
 
-    /* --- THE PILL CONTAINER --- */
-    .vertical-pill {
+    .pill {
       border: 1px solid #000;
       width: 95%;
       max-width: 500px;
@@ -43,24 +42,20 @@
       transition: all 0.3s ease;
     }
     /* keeps the shape consistent */
-    .vertical-pill::before {
+    .pill::before {
       content: "";
       display: block;
       padding-top: 140%; /* try 120% for chubbier, 160% for taller */ 
     }
-
-    .vertical-pill > .pill-content {
-      position: absolute;
+  
+    .content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
       gap: 1.2rem;
-      width: 80%;
-      text-align: center;
     }
 
-    .pill-image {
+    .pill img {
       width: 90px;
       height: 120px;
       border-radius: 9999px;
@@ -76,30 +71,27 @@
       margin: 0.3rem 0;
     }
 
-    .pill-text {
+    .text {
       font-size: 0.95rem;
       line-height: 1.6;
       max-width: 80%;
     }
 
     /* Subtle hover */
-    .vertical-pill:hover {
+    .pill:hover {
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
       transform: translateY(-3px);
     }
 
     @media (max-width: 600px) {
-      h1 {
-        font-size: 1.6rem;
-      }
-      .vertical-pill::before {
+      .pill::before {
         padding-top: 160%;
       }
-      .pill-image {
+      .pill img {
         width: 70px;
         height: 100px;
       }
-      .pill-text {
+      .text {
         font-size: 0.9rem;
       }
     }
@@ -108,11 +100,11 @@
 <body>
   <h1><em>Unconventional</em> people and their products.</h1>
 
-  <div class="vertical-pill">
-    <div class="pill-content">
-      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=988" class="pill-image" />
+  <div class="pill">
+    <div class="content">
+      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=988" />
       <div class="connector"></div>
-      <p class="pill-text">
+      <p class="text">
         <em>High-vibe,</em> a state of <em>positive energy</em> and emotions,
         including gratitude, love, and fulfillment. It embodies a life centered
         on continuous learning, curiosity, and personal growth.
