@@ -15,26 +15,25 @@
       align-items: center;
       justify-content: flex-start;
       min-height: 100vh;
-      padding: 2rem 1rem;
+      padding: 2rem 15px;
     }
 
     h1 {
       font-family: "Playfair Display", serif;
       font-style: italic;
-      font-size: 2.2rem;
+      font-size: 2rem;
       text-align: center;
       margin-bottom: 3rem;
-      line-height: 1.2;
+      line-height: 1.1;
     }
 
-    /* The key change: fixed height ratio, no aspect-ratio distortion */
+    /* Thpect-ratio distortion */
     .vertical-pill {
       border: 1px solid #000;
-      border-radius: 250px;       /* fixed curvature ensures straight sides */
+      border-radius: 250px;
       width: 90%;
       max-width: 500px;
-      height: 600px;              /* controls vertical height */
-      background-color: #fffefc;
+      height: 600px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -74,19 +73,8 @@
       max-width: 80%;
     }
 
-    .pill-text em {
-      font-style: italic;
-    }
-
     /* Responsive scaling with smooth proportions */
     @media (max-width: 768px) {
-      .vertical-pill {
-        height: 75vh;             /* uses viewport height on smaller screens */
-        border-radius: 200px;
-      }
-    }
-
-    @media (max-width: 480px) {
       h1 {
         font-size: 1.6rem;
       }
