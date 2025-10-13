@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LiminalLoop</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smooth Vertical Pill Example</title>
   <style>
     body {
       margin: 0;
@@ -13,9 +13,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
       min-height: 100vh;
-      padding: 2rem 1rem;
+      padding: 2rem 15px;
     }
 
     h1 {
@@ -26,13 +25,13 @@
       margin-bottom: 3rem;
       line-height: 1.1;
     }
-    
+
     .vertical-pill {
       border: 1px solid #000;
-      border-radius: 9999px;
-      width: 95%;
-      max-width: 500px;
-      aspect-ratio: 3 / 4;
+      width: 90%;
+      max-width: 480px;
+      min-height: 550px;
+      border-radius: 50% / 25%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -47,14 +46,12 @@
       flex-direction: column;
       align-items: center;
       gap: 1.2rem;
-      position: relative;
     }
 
     .pill-image {
       width: 90px;
       height: 120px;
       border-radius: 9999px;
-      border: 1px solid #000;
       object-fit: cover;
       display: block;
       z-index: 1;
@@ -78,7 +75,8 @@
         font-size: 1.6rem;
       }
       .vertical-pill {
-        aspect-ratio: 3 / 4.2; /* a bit taller on small screens */
+        min-height: 440px;
+        border-radius: 50% / 20%; /* keep the curve smooth */
         padding: 2rem 1.2rem;
       }
       .pill-image {
@@ -96,15 +94,14 @@
 
   <div class="vertical-pill">
     <div class="pill-content">
-      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=988" class="pill-image">
+      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=988" class="pill-image" />
       <div class="connector"></div>
       <p class="pill-text">
-        <em>High-vibe,</em> a state of <em>positive energy</em> and emotions, including 
-        gratitude, love, and fulfillment. It embodies a life centered on continuous 
-        learning, curiosity, and personal growth.
+        <em>High-vibe,</em> a state of <em>positive energy</em> and emotions,
+        including gratitude, love, and fulfillment. It embodies a life centered
+        on continuous learning, curiosity, and personal growth.
       </p>
     </div>
   </div>
-
 </body>
 </html>
