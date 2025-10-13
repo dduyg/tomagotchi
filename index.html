@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LiminalLoop</title>
+  <title>Smooth Vertical Pill Example</title>
   <style>
     body {
       margin: 0;
@@ -14,42 +14,43 @@
       flex-direction: column;
       align-items: center;
       min-height: 100vh;
-      padding: 2rem 15px;
+      padding: 2rem 1rem;
     }
 
     h1 {
       font-family: "Playfair Display", serif;
       font-style: italic;
-      font-size: 2rem;
+      font-size: 2.2rem;
       text-align: center;
       margin-bottom: 3rem;
-      line-height: 1.1;
+      line-height: 1.2;
     }
 
-    .pill {
+    /* The pill container */
+    .vertical-pill {
       border: 1px solid #000;
-      width: 95%;
-      max-width: 500px;
-      border-radius: 9999px;
+      width: 90%;
+      max-width: 480px;
+      min-height: 550px;                /* keep it tall */
+      background-color: #fffefc;
+      border-radius: 50% / 25%;         /* keeps smooth vertical sides */
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      flex-direction: column;
-      padding: 3rem 2rem;
+      padding: 2.5rem 1.5rem;
       box-sizing: border-box;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
     }
-  
-    .content {
+
+    .pill-content {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 1.2rem;
     }
 
-    .pill img {
+    .pill-image {
       width: 90px;
       height: 120px;
       border-radius: 9999px;
@@ -65,27 +66,34 @@
       margin: 0.3rem 0;
     }
 
-    .text {
+    .pill-text {
       font-size: 0.95rem;
       line-height: 1.6;
       max-width: 80%;
     }
 
-    /* Subtle hover */
-    .pill:hover {
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-      transform: translateY(-3px);
+    .pill-text em {
+      font-style: italic;
     }
 
+    /* Responsive adjustments */
     @media (max-width: 600px) {
-      .pill::before {
-        padding-top: 160%;
+      h1 {
+        font-size: 1.6rem;
       }
-      .pill img {
+
+      .vertical-pill {
+        min-height: 440px;
+        border-radius: 50% / 20%; /* keep the curve smooth */
+        padding: 2rem 1.2rem;
+      }
+
+      .pill-image {
         width: 70px;
         height: 100px;
       }
-      .text {
+
+      .pill-text {
         font-size: 0.9rem;
       }
     }
@@ -94,11 +102,11 @@
 <body>
   <h1><em>Unconventional</em> people and their products.</h1>
 
-  <div class="pill">
-    <div class="content">
-      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=988" />
+  <div class="vertical-pill">
+    <div class="pill-content">
+      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=988" class="pill-image" />
       <div class="connector"></div>
-      <p class="text">
+      <p class="pill-text">
         <em>High-vibe,</em> a state of <em>positive energy</em> and emotions,
         including gratitude, love, and fulfillment. It embodies a life centered
         on continuous learning, curiosity, and personal growth.
