@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chubbier Vertical Pill Example</title>
+  <title>LiminalLoop</title>
   <style>
     body {
       margin: 0;
@@ -27,7 +27,7 @@
       line-height: 1.1;
     }
 
-    .vertical-pill {
+    .pill {
       border: 1px solid #000;
       border-radius: 9999px;
       width: 95%;
@@ -41,15 +41,13 @@
       box-sizing: border-box;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
-
-    .pill-content {
+    .content {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 1.2rem;
     }
-
-    .pill-image {
+    .pill img {
       width: 90px;
       height: 120px;
       border-radius: 9999px;
@@ -64,38 +62,34 @@
       margin: 0.3rem 0;
     }
 
-    .pill-text {
+    .description {
       font-size: 0.95rem;
       line-height: 1.6;
       max-width: 80%;
     }
 
     @media (max-width: 600px) {
-      h1 {
-        font-size: 1.6rem;
-      }
-      .vertical-pill {
+      h1 { font-size: 1.6rem; }
+      .pill {
         aspect-ratio: 3 / 4.2; /* a bit taller on small screens */
         padding: 2rem 1.2rem;
       }
-      .pill-image {
+      .pill img {
         width: 70px;
         height: 100px;
       }
-      .pill-text {
-        font-size: 0.9rem;
-      }
+      .description { font-size: 0.9rem; }
     }
   </style>
 </head>
 <body>
   <h1><em>Unconventional</em> people and their products.</h1>
 
-  <div class="vertical-pill">
-    <div class="pill-content">
-      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=988" class="pill-image">
+  <div class="pill">
+    <div class="content">
+      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=988">
       <div class="connector"></div>
-      <p class="pill-text">
+      <p class="description">
         <em>High-vibe,</em> a state of <em>positive energy</em> and emotions, including 
         gratitude, love, and fulfillment. It embodies a life centered on continuous 
         learning, curiosity, and personal growth.
