@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smooth Vertical Pill Example</title>
+  <title>LiminalLoop</title>
   <style>
     body {
       margin: 0;
@@ -26,27 +26,38 @@
       line-height: 1.1;
     }
 
+    /* --- THE PILL CONTAINER --- */
     .vertical-pill {
       border: 1px solid #000;
       width: 95%;
       max-width: 500px;
-      min-height: 520px;
-      border-radius: 9999px / 60%;
+      border-radius: 9999px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 2.5rem 1.5rem;
+      flex-direction: column;
+      padding: 3rem 2rem;
       box-sizing: border-box;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       transition: all 0.3s ease;
     }
+    /* keeps the shape consistent */
+    .vertical-pill::before {
+      content: "";
+      display: block;
+      padding-top: 140%; /* try 120% for chubbier, 160% for taller */ 
+    }
 
-    .pill-content {
+    .vertical-pill > .pill-content {
+      position: absolute;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       gap: 1.2rem;
+      width: 80%;
+      text-align: center;
     }
 
     .pill-image {
@@ -71,7 +82,7 @@
       max-width: 80%;
     }
 
-    /* Slight hover effect */
+    /* Subtle hover */
     .vertical-pill:hover {
       box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
       transform: translateY(-3px);
@@ -81,10 +92,8 @@
       h1 {
         font-size: 1.6rem;
       }
-      .vertical-pill {
-        min-height: 440px;
-        border-radius: 9999px / 50%;
-        padding: 2rem 1.2rem;
+      .vertical-pill::before {
+        padding-top: 160%;
       }
       .pill-image {
         width: 70px;
