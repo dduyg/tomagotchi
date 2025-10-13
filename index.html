@@ -1,209 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unconventional People and Their Products</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chubbier Vertical Pill Example</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Georgia", serif;
+      background-color: #faf8f5;
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 2rem 15px;
+    }
 
-        body {
-            background-color: #f5f3ed;
-            font-family: 'Georgia', serif;
-            padding: 40px 20px;
-            min-height: 100vh;
-        }
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      line-height: 1.1;
+    }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    .vertical-pill {
+      border: 1px solid #000;
+      border-radius: 9999px;
+      width: 95%;
+      max-width: 500px;
+      aspect-ratio: 3 / 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      box-sizing: border-box;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
 
-        .header {
-            text-align: left;
-            margin-bottom: 80px;
-        }
+    .pill-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+    }
 
-        .header h1 {
-            font-size: 72px;
-            font-weight: 300;
-            font-style: italic;
-            line-height: 1;
-            margin-bottom: 0;
-            letter-spacing: -1px;
-        }
+    .pill-image {
+      width: 90px;
+      height: 120px;
+      border-radius: 9999px;
+      object-fit: cover;
+      display: block;
+    }
 
-        .header h2 {
-            font-size: 72px;
-            font-weight: 400;
-            line-height: 1.1;
-            letter-spacing: -2px;
-        }
+    .connector {
+      width: 2px;
+      height: 30px;
+      border-left: 2px dotted #000;
+      margin: 0.3rem 0;
+    }
 
-        .content-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 60px;
-        }
+    .pill-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 80%;
+    }
 
-        .oval-container {
-            border: 2px solid #2c2c2c;
-            border-radius: 50% 50% 50% 50% / 25% 25% 25% 25%;
-            width: 600px;
-            height: 800px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 80px 60px;
-            position: relative;
-        }
-
-        .image-circle {
-            width: 200px;
-            height: 260px;
-            border-radius: 50% 50% 50% 50% / 38% 38% 38% 38%;
-            overflow: hidden;
-            margin-bottom: 30px;
-        }
-
-        .image-circle img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .connector {
-            width: 2px;
-            height: 80px;
-            background-color: #2c2c2c;
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        .connector::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background-color: #2c2c2c;
-            border-radius: 50%;
-            position: absolute;
-            top: -4px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .connector::after {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background-color: #2c2c2c;
-            border-radius: 50%;
-            position: absolute;
-            bottom: -4px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .description {
-            text-align: center;
-            max-width: 450px;
-        }
-
-        .description p {
-            font-size: 20px;
-            line-height: 1.6;
-            color: #2c2c2c;
-            letter-spacing: 0.5px;
-        }
-
-        .description .italic {
-            font-style: italic;
-            font-weight: 300;
-        }
-
-        .description .bold {
-            font-weight: 600;
-            font-style: normal;
-        }
-
-        @media (max-width: 768px) {
-            .header h1,
-            .header h2 {
-                font-size: 48px;
-            }
-
-            .oval-container {
-                width: 100%;
-                max-width: 450px;
-                height: 700px;
-                padding: 60px 40px;
-            }
-
-            .image-circle {
-                width: 150px;
-                height: 150px;
-            }
-
-            .description p {
-                font-size: 18px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header h1,
-            .header h2 {
-                font-size: 36px;
-            }
-
-            .oval-container {
-                height: 600px;
-                padding: 40px 30px;
-            }
-
-            .image-circle {
-                width: 120px;
-                height: 120px;
-            }
-
-            .connector {
-                height: 60px;
-            }
-
-            .description p {
-                font-size: 16px;
-            }
-        }
-    </style>
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+      .vertical-pill {
+        aspect-ratio: 3 / 4.2; /* a bit taller on small screens */
+        padding: 2rem 1.2rem;
+      }
+      .pill-image {
+        width: 70px;
+        height: 100px;
+      }
+      .pill-text {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>unconventional</h1>
-            <h2>people and their</h2>
-            <h2>products.</h2>
-        </div>
+  <h1><em>Unconventional</em> people and their products.</h1>
 
-        <div class="content-wrapper">
-            <div class="oval-container">
-                <div class="image-circle">
-                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect fill='%23d9b8a8' width='200' height='200'/%3E%3Cpath d='M100 60 L120 100 L100 140 L80 100 Z' fill='%23f5c4a4' opacity='0.6'/%3E%3C/svg%3E" alt="Peace sign hand gesture">
-                </div>
-                
-                <div class="connector"></div>
-                
-                <div class="description">
-                    <p>
-                        <span class="italic">High-vibe,</span> <span class="bold">A STATE OF</span> <span class="italic">positive energy</span> <span class="bold">AND EMOTIONS, INCLUDING GRATITUDE, LOVE, AND FULFILLMENT. IT EMBODIES A LIFE CENTERED ON CONTINUOUS LEARNING, CURIOSITY, AND PERSONAL GROWTH.</span>
-                    </p>
-                </div>
-            </div>
-        </div>
+  <div class="vertical-pill">
+    <div class="pill-content">
+      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=988" class="pill-image">
+      <div class="connector"></div>
+      <p class="pill-text">
+        <em>High-vibe,</em> a state of <em>positive energy</em> and emotions, including 
+        gratitude, love, and fulfillment. It embodies a life centered on continuous 
+        learning, curiosity, and personal growth.
+      </p>
     </div>
+  </div>
+
 </body>
 </html>
