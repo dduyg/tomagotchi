@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smooth Vertical Pill Example</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chubbier Vertical Pill Example</title>
   <style>
     body {
       margin: 0;
@@ -13,26 +13,26 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: flex-start;
       min-height: 100vh;
-      padding: 2rem 1rem;
+      padding: 2rem 15px;
     }
 
     h1 {
       font-family: "Playfair Display", serif;
       font-style: italic;
-      font-size: 2.2rem;
+      font-size: 2rem;
       text-align: center;
       margin-bottom: 3rem;
-      line-height: 1.2;
+      line-height: 1.1;
     }
 
-    /* The pill container */
     .vertical-pill {
       border: 1px solid #000;
+      border-radius: 9999px;
       width: 95%;
       max-width: 500px;
-      min-height: 650px;                /* keep it tall */
-      border-radius: 9999px;
+      aspect-ratio: 3 / 4;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -55,13 +55,12 @@
       border-radius: 9999px;
       object-fit: cover;
       display: block;
-      z-index: 1;
     }
 
     .connector {
       width: 2px;
       height: 30px;
-      border-left: 1px dotted #000;
+      border-left: 2px dotted #000;
       margin: 0.3rem 0;
     }
 
@@ -76,8 +75,7 @@
         font-size: 1.6rem;
       }
       .vertical-pill {
-        min-height: 480px;
-        border-radius: 9999px;
+        aspect-ratio: 3 / 4.2; /* a bit taller on small screens */
         padding: 2rem 1.2rem;
       }
       .pill-image {
@@ -95,14 +93,15 @@
 
   <div class="vertical-pill">
     <div class="pill-content">
-      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=988" class="pill-image" />
+      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=988" class="pill-image">
       <div class="connector"></div>
       <p class="pill-text">
-        <em>High-vibe,</em> a state of <em>positive energy</em> and emotions,
-        including gratitude, love, and fulfillment. It embodies a life centered
-        on continuous learning, curiosity, and personal growth.
+        <em>High-vibe,</em> a state of <em>positive energy</em> and emotions, including 
+        gratitude, love, and fulfillment. It embodies a life centered on continuous 
+        learning, curiosity, and personal growth.
       </p>
     </div>
   </div>
+
 </body>
 </html>
