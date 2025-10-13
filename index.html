@@ -28,10 +28,10 @@
 
     .vertical-pill {
       border: 1px solid #000;
-      width: 90%;
-      max-width: 480px;
-      min-height: 550px;
-      border-radius: 50% / 25%;
+      width: 95%;
+      max-width: 500px;
+      min-height: 520px;
+      border-radius: 9999px / 60%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -39,6 +39,7 @@
       padding: 2.5rem 1.5rem;
       box-sizing: border-box;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
     }
 
     .pill-content {
@@ -70,13 +71,19 @@
       max-width: 80%;
     }
 
+    /* Slight hover effect */
+    .vertical-pill:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      transform: translateY(-3px);
+    }
+
     @media (max-width: 600px) {
       h1 {
         font-size: 1.6rem;
       }
       .vertical-pill {
         min-height: 440px;
-        border-radius: 50% / 20%; /* keep the curve smooth */
+        border-radius: 9999px / 50%;
         padding: 2rem 1.2rem;
       }
       .pill-image {
