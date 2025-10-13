@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chubby Vertical Pill - Auto Height</title>
+  <title>LiminalLoop</title>
   <style>
-    /* Base page styles */
     body {
       margin: 0;
       font-family: "Georgia", serif;
@@ -22,35 +21,24 @@
     h1 {
       font-family: "Playfair Display", serif;
       font-style: italic;
-      font-size: 2.2rem;
+      font-size: 2rem;
       text-align: center;
       margin-bottom: 3rem;
-      line-height: 1.2;
+      line-height: 1.1;
     }
-
-    /* The responsive, chubby, auto-height vertical pill */
+    
     .vertical-pill {
       border: 1px solid #000;
+      border-radius: 9999px;
       width: 90%;
-      max-width: 500px;
-      background-color: #fffefc;
+      max-width: 600px;
+      aspect-ratio: 3 / 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      box-sizing: border-box;
       padding: 2.5rem 1.5rem;
-      margin-bottom: 3rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      position: relative;
-      overflow: hidden;
-
-      /* The pill shape with straight sides + rounded ends */
-      mask-image: radial-gradient(circle 250px at 50% 0, black 100%, transparent 100%),
-                  linear-gradient(black 0 0);
-      -webkit-mask-image: radial-gradient(circle 250px at 50% 0, black 100%, transparent 100%),
-                         linear-gradient(black 0 0);
-      mask-composite: intersect;
-      -webkit-mask-composite: destination-in;
-
-      border-radius: 9999px; /* Fallback for browsers without mask support */
+      box-sizing: border-box;
     }
 
     .pill-content {
@@ -58,6 +46,7 @@
       flex-direction: column;
       align-items: center;
       gap: 1.2rem;
+      position: relative;
     }
 
     .pill-image {
@@ -82,13 +71,13 @@
       max-width: 80%;
     }
 
-    .pill-text em {
-      font-style: italic;
-    }
-
     @media (max-width: 600px) {
       h1 {
         font-size: 1.6rem;
+      }
+      .vertical-pill {
+        aspect-ratio: 3 / 4.2; /* a bit taller on small screens */
+        padding: 2rem 1.2rem;
       }
       .pill-image {
         width: 70px;
@@ -97,14 +86,10 @@
       .pill-text {
         font-size: 0.9rem;
       }
-      .vertical-pill {
-        padding: 2rem 1.2rem;
-      }
     }
   </style>
 </head>
 <body>
-
   <h1><em>Unconventional</em> people and their products.</h1>
 
   <div class="vertical-pill">
