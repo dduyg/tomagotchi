@@ -21,74 +21,67 @@
     h1 {
       font-family: "Playfair Display", serif;
       font-style: italic;
-      font-size: 2.2rem;
+      font-size: 2rem;
       text-align: center;
       margin-bottom: 3rem;
-      line-height: 1.2;
+      line-height: 1.1;
     }
-
-    /* Vertical pill container */
+    
     .vertical-pill {
       border: 1px solid #000;
       border-radius: 9999px;
       width: 90%;
-      max-width: 500px;
-      aspect-ratio: 3 / 5; /* makes it tall and pill-like */
-      background-color: #fffefc;
+      max-width: 600px;
+      aspect-ratio: 3 / 4;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 2rem;
+      padding: 2.5rem 1.5rem;
       box-sizing: border-box;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
     .pill-content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1.2rem;
       position: relative;
     }
 
-    /* The image inside the pill */
     .pill-image {
-      width: 100px;
-      height: 150px;
+      width: 90px;
+      height: 120px;
       border-radius: 9999px;
       object-fit: cover;
       display: block;
       z-index: 1;
     }
 
-    /* Dotted connector line */
     .connector {
       width: 2px;
-      height: 40px;
+      height: 30px;
       border-left: 1px dotted #000;
-      margin: 0.5rem 0;
+      margin: 0.3rem 0;
     }
 
-    /* Text inside the pill */
     .pill-text {
       font-size: 0.95rem;
       line-height: 1.6;
       max-width: 80%;
     }
 
-    .pill-text em {
-      font-style: italic;
-    }
-
-    /* Responsive tweaks */
     @media (max-width: 600px) {
       h1 {
         font-size: 1.6rem;
       }
+      .vertical-pill {
+        aspect-ratio: 3 / 4.2; /* a bit taller on small screens */
+        padding: 2rem 1.2rem;
+      }
       .pill-image {
-        width: 80px;
-        height: 120px;
+        width: 70px;
+        height: 100px;
       }
       .pill-text {
         font-size: 0.9rem;
@@ -97,7 +90,6 @@
   </style>
 </head>
 <body>
-
   <h1><em>Unconventional</em> people and their products.</h1>
 
   <div class="vertical-pill">
