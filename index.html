@@ -1,108 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LiminalLoop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;0,700;0,400&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    body {
+    html, body {
+      height: 100%;
       margin: 0;
-      font-family: "Georgia", serif;
-      background-color: #faf8f5;
-      color: #111;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      padding: 0;
+      background: #f7f6ef;
+    }
+    body {
+      width: 100vw;
       min-height: 100vh;
-      padding: 2rem 15px;
-    }
-
-    h1 {
-      font-family: "Playfair Display", serif;
-      font-style: italic;
-      font-size: 2rem;
-      text-align: center;
-      margin-bottom: 3rem;
-      line-height: 1.1;
-    }
-
-    .pill {
-      border: 1px solid #000;
-      width: 95%;
-      max-width: 500px;
-      border-radius: 9999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      flex-direction: column;
-      padding: 3rem 2rem;
+      font-family: 'Roboto', Arial, sans-serif;
+      color: #222;
       box-sizing: border-box;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
+      overflow-x: hidden;
     }
-  
-    .content {
+    .main-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 5.5vw;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 0.95;
+      margin: 0;
+      margin-top: 32px;
+      margin-bottom: 30px;
+      text-align: left;
+      letter-spacing: -1px;
+    }
+    .main-title strong {
+      font-style: normal;
+      font-weight: 700;
+    }
+    .circle-container {
+      margin: 0 auto;
+      margin-top: 30px;
+      width: 92vw;
+      max-width: 700px;
+      height: 70vw;
+      max-height: 1100px;
+      border: 2px solid #222;
+      border-radius: 50%/44%;
+      position: relative;
+      background: none;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1.2rem;
+      justify-content: flex-start;
     }
-
-    .pill img {
-      width: 90px;
-      height: 120px;
-      border-radius: 9999px;
+    .circle-content {
+      position: absolute;
+      top: 8vw;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .circle-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #222;
+      background: #fff;
       object-fit: cover;
-      display: block;
+      z-index: 2;
+    }
+    .dotted-line {
+      border-left: 2px dotted #222;
+      height: 32px;
+      margin: 0 auto;
       z-index: 1;
+      width: 0;
+      position: relative;
     }
-
-    .connector {
-      width: 2px;
-      height: 30px;
-      border-left: 1px dotted #000;
-      margin: 0.3rem 0;
+    .dot {
+      width: 10px;
+      height: 10px;
+      background: #222;
+      border-radius: 50%;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
-
-    .text {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      max-width: 80%;
+    .dot.top {
+      top: -10px;
     }
-
-    /* Subtle hover */
-    .pill:hover {
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-      transform: translateY(-3px);
+    .dot.bottom {
+      bottom: -10px;
     }
-
+    .circle-text {
+      margin-top: 26px;
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.3;
+      color: #222;
+      max-width: 90%;
+    }
+    .circle-text em {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      font-weight: 400;
+      letter-spacing: 0.1px;
+    }
+    .circle-text strong {
+      font-family: inherit;
+      font-style: normal;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    /* Responsive tweaks */
     @media (max-width: 600px) {
-      .pill::before {
-        padding-top: 160%;
+      .main-title {
+        font-size: 9vw;
+        margin-top: 16px;
       }
-      .pill img {
-        width: 70px;
-        height: 100px;
+      .circle-container {
+        width: 98vw;
+        height: 110vw;
+        max-width: unset;
+        max-height: unset;
       }
-      .text {
-        font-size: 0.9rem;
+      .circle-content {
+        top: 12vw;
+      }
+      .circle-img {
+        width: 80px;
+        height: 80px;
+      }
+      .circle-text {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <h1><em>Unconventional</em> people and their products.</h1>
-
-  <div class="pill">
-    <div class="content">
-      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=988" />
-      <div class="connector"></div>
-      <p class="text">
-        <em>High-vibe,</em> a state of <em>positive energy</em> and emotions,
-        including gratitude, love, and fulfillment. It embodies a life centered
-        on continuous learning, curiosity, and personal growth.
-      </p>
+  <div style="padding-left: 8vw;">
+    <h1 class="main-title">
+      unconventional<br>
+      people and their<br>
+      products.
+    </h1>
+  </div>
+  <div class="circle-container">
+    <div class="circle-content">
+      <img class="circle-img" src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=facearea&w=256&q=80" alt="Person with peace sign">
+      <div class="dotted-line" style="position: relative;">
+        <span class="dot top"></span>
+        <span class="dot bottom"></span>
+      </div>
+      <div class="circle-text">
+        <em>High-vibe</em>, A STATE OF <em>positive energy</em><br>
+        AND EMOTIONS, INCLUDING<br>
+        GRATITUDE, LOVE, AND<br>
+        FULFILLMENT. IT EMBODIES A LIFE<br>
+        CENTERED ON CONTINUOUS<br>
+        LEARNING, CURIOSITY, AND<br>
+        PERSONAL GROWTH.
+      </div>
     </div>
   </div>
 </body>
