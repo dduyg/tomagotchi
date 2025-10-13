@@ -1,137 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiminalLoop</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        @font-face{font-family:Image Future Semi Bold;src:url('//static.showit.co/file/qtYWI4u4x73pnAjZQE8XGg/shared/imagefuture-semibold-trial.woff');}
-        @font-face{font-family:Image Future;src:url('//static.showit.co/file/8scgNPIus9aTfmPKHwjdmQ/318617/imagefuture-regular.woff');}
-        @font-face{font-family:Image Future Medium;src:url('//static.showit.co/file/3ksrrFKnjA-Vd-X_CIR1_A/318617/imagefuture-medium.woff');}
-        @font-face{font-family:Switzer Light;src:url('//static.showit.co/file/h-i8Adtw7r6aZLMc5LtYsA/318617/switzer-light.woff');}
-        @font-face{font-family:Switzer Semibold;src:url('//static.showit.co/file/yYG_GrHkDMySqM_PH07_7Q/318617/switzer-semibold.woff');}
-        @font-face {
-            font-family: 'Image Futur';
-            src: url("https://static.showit.co/file/Wynh9dsyiZi6M67OXktmsw/251957/imagefuture-regular-trial.woff") format("woff");
-            font-weight: 600;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Switzer';
-            src: url("https://static.showit.co/file/gcW15DRl0GGCf0as__EfQA/251957/switzer-regular.woff") format("woff");
-            font-weight: 400;
-            font-style: normal;
-        }
-        body {
-            background-color: #f5f3ed;
-            font-family: 'Image Futur', serif;
-            padding: 40px 20px;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiminalLoop</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Georgia", serif;
+      background-color: #faf8f5;
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
 
-        .header {
-            text-align: left;
-            margin-bottom: 80px;
-        }
-        .header h2 {
-            font-size: 72px;
-            font-weight: 400;
-            line-height: 1;
-        }
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      line-height: 1.2;
+    }
 
-        .content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 60px;
-        }
+    /* Vertical pill container */
+    .vertical-pill {
+      border: 1px solid #000;
+      border-radius: 9999px;
+      width: 90%;
+      max-width: 500px;
+      aspect-ratio: 3 / 5; /* makes it tall and pill-like */
+      background-color: #fffefc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      box-sizing: border-box;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
 
-        .oval-container {
-            border: 2px solid #2c2c2c;
-            border-radius: 50% 50% 50% 50% / 25% 25% 25% 25%;
-            width: 600px;
-            height: 800px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 80px 60px;
-            position: relative;
-        }
+    .pill-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      position: relative;
+    }
 
-        .avatar {
-  display: block;           /* removes inline gaps */
-  width: 80px;             /* change as needed */
-  height: 200px;             /* pill height */
-  object-fit: cover;        /* crop to fill */
-  border-radius: 9999px;    /* makes it fully rounded (capsule) */
-  overflow: hidden;         /* safe-guard for some browsers */
-            margin-bottom: 30px;
-        }
-        .connector {
-            width: 100px;
-            height: 80px;
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .description {
-            text-align: center;
-            max-width: 450px;
-            font-size: 20px;
-            line-height: 1.6;
-            color: #2c2c2c;
-        }
+    /* The image inside the pill */
+    .pill-image {
+      width: 100px;
+      height: 150px;
+      border-radius: 9999px;
+      object-fit: cover;
+      display: block;
+      z-index: 1;
+    }
 
-        @media (max-width: 768px) {
-            .header h2 { font-size: 48px; }
-            .oval-container {
-                width: 100%;
-                max-width: 450px;
-                height: 700px;
-                padding: 60px 40px;
-            }
-            .description { font-size: 18px; }
-        }
-        @media (max-width: 480px) {
-            .header h2 { font-size: 36px; }
-            .oval-container {
-                height: 600px;
-                padding: 40px 30px;
-            }
-            .connector { height: 60px; }
-            .description { font-size: 16px; }
-        }
-    </style>
+    /* Dotted connector line */
+    .connector {
+      width: 2px;
+      height: 40px;
+      border-left: 1px dotted #000;
+      margin: 0.5rem 0;
+    }
+
+    /* Text inside the pill */
+    .pill-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 80%;
+    }
+
+    .pill-text em {
+      font-style: italic;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+      .pill-image {
+        width: 80px;
+        height: 120px;
+      }
+      .pill-text {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h2>unconventional</h2>
-            <h2>people and their</h2>
-            <h2>products.</h2>
-        </div>
 
-        <div class="content">
-            <div class="oval-container">
-                <img class="avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=988">
-                
-                <div class="connector">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900">     
-                        <g transform="translate(0,900) scale(0.1,-0.1)"><path d="M4420 8602 c-99 -28 -177 -95 -228 -195 -30 -59 -33 -72 -33 -151 0 -55 6 -97 14 -114 8 -15 23 -44 33 -65 28 -58 79 -103 158 -141 115 -56 147 -62 203 -42 140 52 220 111 260 196 34 70 53 132 53 171 0 40 -49 170 -74 198 -9 10 -16 22 -16 27 0 12 -95 84 -111 84 -7 0 -21 8 -31 17 -15 13 -41 18 -111 19 -51 2 -103 0 -117 -4z"/><path d="M4474 7836 c-17 -13 -19 -27 -18 -110 0 -53 4 -100 10 -105 22 -22 60 -22 87 -1 25 20 27 26 27 104 0 73 -3 85 -23 104 -27 25 -55 28 -83 8z"/><path d="M4471 7311 c-11 -7 -14 -35 -14 -113 0 -58 3 -110 7 -116 4 -7 24 -12 45 -12 58 0 71 21 71 114 0 74 -10 112 -34 128 -15 10 -58 10 -75 -1z"/><path d="M4460 6760 c-6 -11 -8 -50 -6 -87 2 -37 5 -78 5 -89 1 -26 45 -57 69 -50 35 11 52 59 52 145 0 69 -3 82 -19 91 -34 17 -89 12 -101 -10z"/><path d="M4471 6246 c-15 -18 -23 -151 -12 -192 6 -26 12 -29 51 -32 60 -4 70 11 70 110 0 97 -16 128 -65 128 -18 0 -38 -6 -44 -14z"/><path d="M4484 5723 c-14 -3 -24 -14 -27 -31 -6 -29 0 -179 8 -199 2 -8 22 -13 44 -13 35 0 43 4 56 30 16 30 21 175 7 196 -8 14 -58 23 -88 17z"/>
-                        <path d="M4478 5186 c-21 -16 -33 -105 -24 -169 6 -37 12 -47 35 -57 24 -9 35 -9 60 4 l31 17 0 88 c0 79 -2 90 -23 109 -26 25 -54 28 -79 8z"/><path d="M4463 4658 c-14 -23 -7 -219 8 -229 24 -15 68 -10 89 11 17 17 20 33 20 103 0 103 -13 127 -70 127 -21 0 -42 -6 -47 -12z"/><path d="M4462 4113 c-12 -32 -7 -190 7 -207 20 -24 69 -20 92 7 14 17 18 39 19 100 0 102 -8 117 -66 117 -33 0 -46 -4 -52 -17z"/><path d="M4476 3601 c-14 -15 -18 -39 -18 -117 -1 -83 1 -99 17 -110 25 -18 55 -18 83 2 20 13 22 24 22 96 0 64 -4 87 -21 114 -24 39 -56 45 -83 15z"/><path d="M4474 3066 c-16 -13 -19 -27 -19 -111 0 -84 3 -98 19 -111 29 -21 59 -17 84 9 19 20 22 35 22 103 0 71 -3 83 -23 102 -27 25 -55 28 -83 8z"/><path d="M4476 2537 c-15 -11 -18 -29 -18 -110 -1 -109 7 -127 58 -127 49 0 64 28 64 121 0 62 -4 81 -21 103 -22 28 -55 34 -83 13z"/><path d="M4471 2001 c-17 -17 -19 -31 -15 -112 5 -101 18 -129 61 -129 41 0 63 52 63 147 0 73 -2 83 -22 97 -30 21 -64 20 -87 -3z"/><path d="M4474 1469 c-16 -18 -19 -35 -17 -110 1 -49 5 -94 8 -99 3 -6 26 -10 50 -10 57 0 65 15 65 118 0 69 -3 81 -23 100 -29 28 -59 28 -83 1z"/><path d="M4450 1193 c-13 -3 -33 -11 -44 -19 -11 -8 -26 -14 -33 -14 -28 0 -118 -73 -150 -121 -18 -28 -33 -57 -33 -64 0 -7 -7 -18 -15 -25 -21 -18 -21 -206 0 -234 8 -11 15 -26 15 -34 0 -17 53 -88 89 -120 86 -75 247 -113 327 -77 108 49 127 59 157 91 59 63 117 191 117 259 0 34 -27 118 -56 175 -46 89 -187 179 -291 185 -32 2 -69 1 -83 -2z"/></g>
-                    </svg>
-                </div>
-                
-                <div class="description">High-vibe, A STATE OF positive energy AND EMOTIONS, INCLUDING GRATITUDE, LOVE, AND FULFILLMENT. IT EMBODIES A LIFE CENTERED ON CONTINUOUS LEARNING, CURIOSITY, AND PERSONAL GROWTH.</div>
-            </div>
-        </div>
+  <h1><em>Unconventional</em> people and their products.</h1>
+
+  <div class="vertical-pill">
+    <div class="pill-content">
+      <img src="your-image.jpg" alt="Peace sign hand" class="pill-image">
+      <div class="connector"></div>
+      <p class="pill-text">
+        <em>High-vibe,</em> a state of <em>positive energy</em> and emotions, including 
+        gratitude, love, and fulfillment. It embodies a life centered on continuous 
+        learning, curiosity, and personal growth.
+      </p>
     </div>
+  </div>
+
 </body>
 </html>
