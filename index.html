@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>LiminalLoop</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #fbf9f5; /* warm off-white like screenshot */
+    --text: #111;
+    --accent: #0b0b0b;
+    --oval-border: #111;
+    --max-width: 1100px;
+  }
+
+  html,body{
+    height:100%;
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family: "Playfair Display", serif;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  /* page container */
+  .page {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 48px 36px;
+    box-sizing: border-box;
+    position: relative;
+    min-height:100vh;
+  }
+
+  /* header area resembling screenshot: big left aligned with script word */
+  header {
+    margin-top: 6px;
+    margin-left: 2px;
+    margin-bottom: 40px;
+  }
+
+  .title {
+    line-height: 0.85;
+    text-align: left;
+    color: var(--accent);
+  }
+  .title .script {
+    display:block;
+    font-family: "Great Vibes", cursive;
+    font-size: 84px; /* responsive adjustments below */
+    font-weight: 400;
+    transform: translateY(-8px);
+    letter-spacing: -1px;
+  }
+
+  .title .main {
+    display:block;
+    font-family: "Playfair Display", serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 86px;
+    line-height: 0.92;
+    letter-spacing: -1px;
+  }
+
+  /* Main oval area: center horizontally; tall pill */
+  .oval-wrap {
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    width:100%;
+    padding: 20px 0 80px;
+  }
+
+  .oval {
+    /* large rounded pill */
+    width: 64%;
+    min-width: 320px;
+    max-width: 780px;
+    height: 78vh;
+    max-height: 1060px;
+    border: 2px solid var(--oval-border);
+    border-radius: 50% / 50%;
+    background: transparent;
+    position: relative;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    box-sizing: border-box;
+    padding-top: 120px;
+  }
+
+  /* the little circular avatar container positioned near top center inside oval */
+  .avatar {
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    overflow:hidden;
+    border:3px solid var(--oval-border);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.02) inset;
+    position: absolute;
+    top: 60px;
+    left:50%;
+    transform: translateX(-50%);
+    background: #fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .avatar img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  /* dotted connector: small filled dot, dotted line, bigger filled dot */
+  .connector {
+    position: absolute;
+    top: calc(60px + 110px); /* just below avatar */
+    left:50%;
+    transform: translateX(-50%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+  }
+
+  .dot-small, .dot-big {
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--oval-border);
+  }
+  .dot-big {
+    width:10px;
+    height:10px;
+  }
+
+  .dotted-line {
+    width:2px;
+    height:58px;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 4px,
+      var(--oval-border) 4px,
+      var(--oval-border) 6px
+    );
+    /* keeps it visually "dotted" */
+  }
+
+  /* body text content inside oval */
+  .content {
+    width:72%;
+    max-width:520px;
+    margin: 0 auto;
+    text-align:center;
+    margin-top: 20px;
+    font-size:18px;
+    line-height:1.35;
+    letter-spacing: 0.6px;
+    text-transform: none;
+  }
+
+  .content p {
+    margin:0;
+    padding:0 10px;
+    color:var(--text);
+  }
+
+  /* emphasize the first phrase similarly to italic serif + caps for other words */
+  .lead {
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size:20px;
+    display:block;
+    margin-bottom:10px;
+  }
+
+  .caps {
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing: 1px;
+    display:block;
+    margin-bottom:12px;
+  }
+
+  /* large paragraph mimic */
+  .bigpara {
+    font-family: "Archivo Narrow", sans-serif;
+    font-weight:700;
+    font-size:18px;
+    line-height:1.25;
+    text-transform:uppercase;
+    letter-spacing: 0.6px;
+  }
+
+  /* Responsive tweaks */
+  @media (max-width:1000px) {
+    .title .script { font-size:68px; }
+    .title .main { font-size:64px; }
+    .oval { width:78%; height:74vh; }
+  }
+  @media (max-width:720px) {
+    .page { padding:28px 20px; }
+    .title .script { font-size:52px; }
+    .title .main { font-size:44px; }
+    .oval { width:90%; height:66vh; padding-top:100px; }
+    .avatar { width:92px; height:92px; top:56px; }
+    .connector { top: calc(56px + 92px); }
+    .content { width:86%; max-width:420px; }
+    .lead { font-size:16px; }
+    .bigpara { font-size:15px; }
+  }
+  @media (max-width:420px){
+    .title .script { font-size:40px; }
+    .title .main { font-size:36px; }
+    .avatar { width:82px; height:82px; top:46px; }
+    .connector { top: calc(46px + 82px); }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1 class="title" aria-label="unconventional people and their products">
+        <span class="script">unconventional</span>
+        <span class="main">people and their<br>products.</span>
+      </h1>
+    </header>
+
+    <main class="oval-wrap" role="main" aria-labelledby="highvibe">
+      <section class="oval" aria-describedby="definition">
+        <!-- avatar: replace image src with your own to match screenshot -->
+        <div class="avatar" aria-hidden="false">
+          <img alt="avatar photo" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop&crop=faces">
+        </div>
+
+        <div class="connector" aria-hidden="true">
+          <div class="dot-small" ></div>
+          <div class="dotted-line" ></div>
+          <div class="dot-big" ></div>
+        </div>
+
+        <div class="content" id="definition">
+          <p class="lead"><em>High-vibe,</em> <span class="caps">A STATE OF</span> <em>positive energy</em></p>
+
+          <p class="bigpara" id="highvibe">
+            AND EMOTIONS, INCLUDING GRATITUDE, LOVE, AND FULFILLMENT. IT EMBODIES A LIFE CENTERED ON CONTINUOUS LEARNING, CURIOSITY, AND PERSONAL GROWTH.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
