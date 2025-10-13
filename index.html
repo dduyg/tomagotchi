@@ -3,14 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unconventional People and Their Products</title>
+    <title>LiminalLoop</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background-color: #f5f3ed;
             font-family: 'Georgia', serif;
@@ -66,8 +61,8 @@
 
         .image-circle {
             width: 200px;
-            height: 260px;
-            border-radius: 50% 50% 50% 50% / 38% 38% 38% 38%;
+            height: 300px;
+            border-radius: 50% 50% 50% 50% / 33% 33% 33% 33%;
             overflow: hidden;
             margin-bottom: 30px;
         }
@@ -79,35 +74,26 @@
         }
 
         .connector {
-            width: 2px;
+            width: 100px;
             height: 80px;
-            background-color: #2c2c2c;
             margin-bottom: 30px;
-            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .connector img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
 
         .connector::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background-color: #2c2c2c;
-            border-radius: 50%;
-            position: absolute;
-            top: -4px;
-            left: 50%;
-            transform: translateX(-50%);
+            display: none;
         }
 
         .connector::after {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background-color: #2c2c2c;
-            border-radius: 50%;
-            position: absolute;
-            bottom: -4px;
-            left: 50%;
-            transform: translateX(-50%);
+            display: none;
         }
 
         .description {
@@ -195,7 +181,9 @@
                     <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Crect fill='%23d9b8a8' width='200' height='200'/%3E%3Cpath d='M100 60 L120 100 L100 140 L80 100 Z' fill='%23f5c4a4' opacity='0.6'/%3E%3C/svg%3E" alt="Peace sign hand gesture">
                 </div>
                 
-                <div class="connector"></div>
+                <div class="connector">
+                    <img src="your-connector-image.png" alt="Connector">
+                </div>
                 
                 <div class="description">
                     <p>
