@@ -1,192 +1,163 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>LiminalLoop</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg: #f9f7f2;        /* off-white background like screenshot */
-      --ink: #121212;
-      --oval-border: rgba(0,0,0,0.85);
-      --max-width: 1000px;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiminalLoop</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #f5f3ed;
+            font-family: 'Georgia', serif;
+            color: #1a1a1a;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    html,body{
-      height:100%;
-      margin:0;
-      background: var(--bg);
-      color:var(--ink);
-      font-family: "Cormorant Garamond", serif;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
 
-    /* Page container to center and constrain content */
-    .page {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 48px 28px;
-      box-sizing: border-box;
-      position: relative;
-      min-height:100vh;
-    }
+        h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 300;
+            font-style: italic;
+            line-height: 0.95;
+            margin-bottom: 0;
+            letter-spacing: -0.02em;
+        }
 
-    /* Big headline at top-left */
-    header h1{
-      margin:0 0 18px 0;
-      font-family: "Playfair Display", serif;
-      font-style: italic;
-      font-weight: 400;
-      line-height: 0.9;
-      letter-spacing: -0.5px;
-      color:var(--ink);
-      /* large responsive size to match screenshot */
-      font-size: clamp(40px, 9.5vw, 120px);
-      text-transform: none;
-      margin-left: 2px;
-    }
+        .subtitle {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 400;
+            font-style: normal;
+            line-height: 0.95;
+            margin-bottom: 80px;
+            letter-spacing: -0.01em;
+        }
 
-    /* The large oval container */
-    .oval-wrap {
-      width: min(860px, 92vw);
-      height: min(1200px, 92vh);
-      max-height: 1200px;
-      margin: 28px auto 80px;
-      border-radius: 50% / 60%;
-      border: 2px solid var(--oval-border);
-      display:flex;
-      align-items:flex-start;
-      justify-content:center;
-      background: transparent;
-      box-sizing: border-box;
-      padding-top: 120px;
-      position: relative;
-    }
+        .content-circle {
+            border: 2px solid #1a1a1a;
+            border-radius: 50%;
+            padding: 100px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            max-width: 600px;
+            aspect-ratio: 0.75;
+        }
 
-    /* inner content column */
-    .oval-inner {
-      width: 78%;
-      text-align:center;
-      margin-top: 18px;
-    }
+        .image-container {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 40px;
+            position: relative;
+        }
 
-    /* circular image holder (rounded rectangle like screenshot) */
-    .avatar {
-      width:118px;
-      height:118px;
-      border-radius: 28px;
-      overflow:hidden;
-      margin: 0 auto;
-      box-shadow: 0 0 0 2px rgba(0,0,0,0.04) inset;
-      background: #fff;
-      display:block;
-      position: relative;
-      z-index: 3;
-    }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-    .avatar img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
+        .connector {
+            width: 2px;
+            height: 80px;
+            background-color: #1a1a1a;
+            margin: 0 auto 40px;
+            position: relative;
+        }
 
-    /* dotted connector */
-    .connector {
-      width: 2px;
-      height: 28px;
-      margin: 10px auto 8px;
-      background-image: radial-gradient(var(--ink) 0.6px, transparent 0.6px);
-      background-size: 2px 6px;
-      background-repeat: repeat-y;
-      background-position: center;
-      opacity: 0.9;
-      border-radius:1px;
-      position: relative;
-      z-index:2;
-    }
+        .connector::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: #1a1a1a;
+            border-radius: 50%;
+            position: absolute;
+            top: -4px;
+            left: -3px;
+        }
 
-    /* marker dot below connector */
-    .dot {
-      width:8px;
-      height:8px;
-      background:var(--ink);
-      border-radius:50%;
-      margin: 8px auto 26px;
-      box-shadow: 0 0 0 4px rgba(0,0,0,0.02);
-    }
+        .connector::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: #1a1a1a;
+            border-radius: 50%;
+            position: absolute;
+            bottom: -4px;
+            left: -3px;
+        }
 
-    /* headline inside oval: italic short phrase + allcaps description block */
-    .tagline {
-      font-style: italic;
-      font-family: "Cormorant Garamond", serif;
-      font-weight: 400;
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
+        .description {
+            text-align: center;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            line-height: 1.6;
+            letter-spacing: 0.02em;
+        }
 
-    .description {
-      font-family: "Cormorant Garamond", serif;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.6px;
-      line-height: 1.25;
-      font-size: clamp(14px, 2.3vw, 20px);
-      max-width: 76%;
-      margin: 0 auto;
-    }
+        .description .italic {
+            font-style: italic;
+            font-weight: 300;
+        }
 
-    /* smaller narrower paragraphs to mimic screenshot line breaks */
-    .description p{
-      margin:0;
-      font-weight:700;
-    }
+        .description .bold {
+            font-weight: 600;
+            font-style: normal;
+        }
 
-    /* tweak for very small screens */
-    @media (max-width:520px){
-      header h1{
-        font-size: clamp(28px, 12vw, 66px);
-      }
-      .oval-wrap{
-        height:1200px;
-        padding-top:100px;
-      }
-      .avatar { width:96px; height:96px; border-radius:18px; }
-    }
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
 
-  </style>
+            .content-circle {
+                padding: 60px 40px;
+            }
+
+            .image-container {
+                width: 140px;
+                height: 140px;
+            }
+
+            .connector {
+                height: 60px;
+                margin-bottom: 30px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="page">
-    <header>
-      <h1>unconventional<br>people and their<br>products.</h1>
-    </header>
-
-    <main>
-      <section class="oval-wrap" aria-label="Main feature">
-        <div class="oval-inner">
-          <!-- image: use any photo URL you like. This one is a generic placeholder (small rounded 'portrait' area). 
-               Replace src with your own image if you want an exact match to the screenshot. -->
-          <figure class="avatar" aria-hidden="true">
-            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=5b6a4b8b2bb7f7d6f2b2dcb6b4b9c462" alt="portrait">
-          </figure>
-
-          <div class="connector" role="presentation"></div>
-          <div class="dot" role="presentation"></div>
-
-          <div class="tagline" aria-hidden="false">
-            <em>High-vibe,</em> <strong>A STATE OF</strong> <em>positive energy</em>
-          </div>
-
-          <div class="description" role="article" aria-label="Description">
-            <p>AND EMOTIONS, INCLUDING<br>GRATITUDE, LOVE, AND<br>FULFILLMENT. IT EMBODIES A LIFE<br>CENTERED ON CONTINUOUS<br>LEARNING, CURIOSITY, AND<br>PERSONAL GROWTH.</p>
-          </div>
-
+    <div class="container">
+        <h1>unconventional</h1>
+        <div class="subtitle">people and their<br>products.</div>
+        
+        <div class="content-circle">
+            <div class="image-container">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23e8c4b8' width='200' height='200'/%3E%3Cpath fill='%23d4a59a' d='M100 150 Q80 120 90 100 T100 80 Q120 100 110 120 T100 150'/%3E%3Cpath fill='%23c4917c' d='M90 100 Q85 90 90 80 L110 80 Q115 90 110 100 Z'/%3E%3C/svg%3E" alt="Gesture illustration">
+            </div>
+            
+            <div class="connector"></div>
+            
+            <div class="description">
+                <span class="italic">High-vibe,</span> <span class="bold">A STATE OF</span> <span class="italic">positive energy</span><br>
+                <span class="bold">AND EMOTIONS, INCLUDING<br>
+                GRATITUDE, LOVE, AND<br>
+                FULFILLMENT. IT EMBODIES A LIFE<br>
+                CENTERED ON CONTINUOUS<br>
+                LEARNING, CURIOSITY, AND<br>
+                PERSONAL GROWTH.</span>
+            </div>
         </div>
-      </section>
-    </main>
-  </div>
+    </div>
 </body>
 </html>
