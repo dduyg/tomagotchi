@@ -1,258 +1,189 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>LiminalLoop</title>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg: #fbf9f5; /* warm off-white like screenshot */
-    --text: #111;
-    --accent: #0b0b0b;
-    --oval-border: #111;
-    --max-width: 1100px;
-  }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LiminalLoop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #f9f7f2;        /* off-white background like screenshot */
+      --ink: #121212;
+      --oval-border: rgba(0,0,0,0.85);
+      --max-width: 1000px;
+    }
 
-  html,body{
-    height:100%;
-    margin:0;
-    background:var(--bg);
-    color:var(--text);
-    font-family: "Playfair Display", serif;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-  }
+    html,body{
+      height:100%;
+      margin:0;
+      background: var(--bg);
+      color:var(--ink);
+      font-family: "Cormorant Garamond", serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
 
-  /* page container */
-  .page {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 48px 36px;
-    box-sizing: border-box;
-    position: relative;
-    min-height:100vh;
-  }
+    /* Page container to center and constrain content */
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 48px 28px;
+      box-sizing: border-box;
+      position: relative;
+      min-height:100vh;
+    }
 
-  /* header area resembling screenshot: big left aligned with script word */
-  header {
-    margin-top: 6px;
-    margin-left: 2px;
-    margin-bottom: 40px;
-  }
+    /* Big headline at top-left */
+    header h1{
+      margin:0 0 18px 0;
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 0.9;
+      letter-spacing: -0.5px;
+      color:var(--ink);
+      /* large responsive size to match screenshot */
+      font-size: clamp(40px, 9.5vw, 120px);
+      text-transform: none;
+      margin-left: 2px;
+    }
 
-  .title {
-    line-height: 0.85;
-    text-align: left;
-    color: var(--accent);
-  }
-  .title .script {
-    display:block;
-    font-family: "Great Vibes", cursive;
-    font-size: 84px; /* responsive adjustments below */
-    font-weight: 400;
-    transform: translateY(-8px);
-    letter-spacing: -1px;
-  }
+    /* The large oval container */
+    .oval-wrap {
+      width: min(860px, 92vw);
+      height: min(1200px, 92vh);
+      max-height: 1200px;
+      margin: 28px auto 80px;
+      border-radius: 50% / 60%;
+      border: 2px solid var(--oval-border);
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      background: transparent;
+      box-sizing: border-box;
+      padding-top: 120px;
+      position: relative;
+    }
 
-  .title .main {
-    display:block;
-    font-family: "Playfair Display", serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 86px;
-    line-height: 0.92;
-    letter-spacing: -1px;
-  }
+    /* inner content column */
+    .oval-inner {
+      width: 78%;
+      text-align:center;
+      margin-top: 18px;
+    }
 
-  /* Main oval area: center horizontally; tall pill */
-  .oval-wrap {
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    width:100%;
-    padding: 20px 0 80px;
-  }
+    /* circular image holder (rounded rectangle like screenshot) */
+    .avatar {
+      width:118px;
+      height:118px;
+      border-radius: 28px;
+      overflow:hidden;
+      margin: 0 auto;
+      box-shadow: 0 0 0 2px rgba(0,0,0,0.04) inset;
+      background: #fff;
+      display:block;
+      position: relative;
+      z-index: 3;
+    }
 
-  .oval {
-    /* large rounded pill */
-    width: 64%;
-    min-width: 320px;
-    max-width: 780px;
-    height: 78vh;
-    max-height: 1060px;
-    border: 2px solid var(--oval-border);
-    border-radius: 50% / 50%;
-    background: transparent;
-    position: relative;
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    box-sizing: border-box;
-    padding-top: 120px;
-  }
+    .avatar img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
 
-  /* the little circular avatar container positioned near top center inside oval */
-  .avatar {
-    width:110px;
-    height:110px;
-    border-radius:50%;
-    overflow:hidden;
-    border:3px solid var(--oval-border);
-    box-shadow: 0 1px 0 rgba(0,0,0,0.02) inset;
-    position: absolute;
-    top: 60px;
-    left:50%;
-    transform: translateX(-50%);
-    background: #fff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
+    /* dotted connector */
+    .connector {
+      width: 2px;
+      height: 28px;
+      margin: 10px auto 8px;
+      background-image: radial-gradient(var(--ink) 0.6px, transparent 0.6px);
+      background-size: 2px 6px;
+      background-repeat: repeat-y;
+      background-position: center;
+      opacity: 0.9;
+      border-radius:1px;
+      position: relative;
+      z-index:2;
+    }
 
-  .avatar img {
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-  }
+    /* marker dot below connector */
+    .dot {
+      width:8px;
+      height:8px;
+      background:var(--ink);
+      border-radius:50%;
+      margin: 8px auto 26px;
+      box-shadow: 0 0 0 4px rgba(0,0,0,0.02);
+    }
 
-  /* dotted connector: small filled dot, dotted line, bigger filled dot */
-  .connector {
-    position: absolute;
-    top: calc(60px + 110px); /* just below avatar */
-    left:50%;
-    transform: translateX(-50%);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:8px;
-  }
+    /* headline inside oval: italic short phrase + allcaps description block */
+    .tagline {
+      font-style: italic;
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 400;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
 
-  .dot-small, .dot-big {
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:var(--oval-border);
-  }
-  .dot-big {
-    width:10px;
-    height:10px;
-  }
+    .description {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      line-height: 1.25;
+      font-size: clamp(14px, 2.3vw, 20px);
+      max-width: 76%;
+      margin: 0 auto;
+    }
 
-  .dotted-line {
-    width:2px;
-    height:58px;
-    background: repeating-linear-gradient(
-      to bottom,
-      transparent 0px,
-      transparent 4px,
-      var(--oval-border) 4px,
-      var(--oval-border) 6px
-    );
-    /* keeps it visually "dotted" */
-  }
+    /* smaller narrower paragraphs to mimic screenshot line breaks */
+    .description p{
+      margin:0;
+      font-weight:700;
+    }
 
-  /* body text content inside oval */
-  .content {
-    width:72%;
-    max-width:520px;
-    margin: 0 auto;
-    text-align:center;
-    margin-top: 20px;
-    font-size:18px;
-    line-height:1.35;
-    letter-spacing: 0.6px;
-    text-transform: none;
-  }
+    /* tweak for very small screens */
+    @media (max-width:520px){
+      header h1{
+        font-size: clamp(28px, 12vw, 66px);
+      }
+      .oval-wrap{
+        height:1200px;
+        padding-top:100px;
+      }
+      .avatar { width:96px; height:96px; border-radius:18px; }
+    }
 
-  .content p {
-    margin:0;
-    padding:0 10px;
-    color:var(--text);
-  }
-
-  /* emphasize the first phrase similarly to italic serif + caps for other words */
-  .lead {
-    font-family: "Playfair Display", serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size:20px;
-    display:block;
-    margin-bottom:10px;
-  }
-
-  .caps {
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing: 1px;
-    display:block;
-    margin-bottom:12px;
-  }
-
-  /* large paragraph mimic */
-  .bigpara {
-    font-family: "Archivo Narrow", sans-serif;
-    font-weight:700;
-    font-size:18px;
-    line-height:1.25;
-    text-transform:uppercase;
-    letter-spacing: 0.6px;
-  }
-
-  /* Responsive tweaks */
-  @media (max-width:1000px) {
-    .title .script { font-size:68px; }
-    .title .main { font-size:64px; }
-    .oval { width:78%; height:74vh; }
-  }
-  @media (max-width:720px) {
-    .page { padding:28px 20px; }
-    .title .script { font-size:52px; }
-    .title .main { font-size:44px; }
-    .oval { width:90%; height:66vh; padding-top:100px; }
-    .avatar { width:92px; height:92px; top:56px; }
-    .connector { top: calc(56px + 92px); }
-    .content { width:86%; max-width:420px; }
-    .lead { font-size:16px; }
-    .bigpara { font-size:15px; }
-  }
-  @media (max-width:420px){
-    .title .script { font-size:40px; }
-    .title .main { font-size:36px; }
-    .avatar { width:82px; height:82px; top:46px; }
-    .connector { top: calc(46px + 82px); }
-  }
-</style>
+  </style>
 </head>
 <body>
   <div class="page">
     <header>
-      <h1 class="title" aria-label="unconventional people and their products">
-        <span class="script">unconventional</span>
-        <span class="main">people and their<br>products.</span>
-      </h1>
+      <h1>unconventional<br>people and their<br>products.</h1>
     </header>
 
-    <main class="oval-wrap" role="main" aria-labelledby="highvibe">
-      <section class="oval" aria-describedby="definition">
-        <!-- avatar: replace image src with your own to match screenshot -->
-        <div class="avatar" aria-hidden="false">
-          <img alt="avatar photo" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop&crop=faces">
-        </div>
+    <main>
+      <section class="oval-wrap" aria-label="Main feature">
+        <div class="oval-inner">
+          <!-- image: use any photo URL you like. This one is a generic placeholder (small rounded 'portrait' area). 
+               Replace src with your own image if you want an exact match to the screenshot. -->
+          <figure class="avatar" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=5b6a4b8b2bb7f7d6f2b2dcb6b4b9c462" alt="portrait">
+          </figure>
 
-        <div class="connector" aria-hidden="true">
-          <div class="dot-small" ></div>
-          <div class="dotted-line" ></div>
-          <div class="dot-big" ></div>
-        </div>
+          <div class="connector" role="presentation"></div>
+          <div class="dot" role="presentation"></div>
 
-        <div class="content" id="definition">
-          <p class="lead"><em>High-vibe,</em> <span class="caps">A STATE OF</span> <em>positive energy</em></p>
+          <div class="tagline" aria-hidden="false">
+            <em>High-vibe,</em> <strong>A STATE OF</strong> <em>positive energy</em>
+          </div>
 
-          <p class="bigpara" id="highvibe">
-            AND EMOTIONS, INCLUDING GRATITUDE, LOVE, AND FULFILLMENT. IT EMBODIES A LIFE CENTERED ON CONTINUOUS LEARNING, CURIOSITY, AND PERSONAL GROWTH.
-          </p>
+          <div class="description" role="article" aria-label="Description">
+            <p>AND EMOTIONS, INCLUDING<br>GRATITUDE, LOVE, AND<br>FULFILLMENT. IT EMBODIES A LIFE<br>CENTERED ON CONTINUOUS<br>LEARNING, CURIOSITY, AND<br>PERSONAL GROWTH.</p>
+          </div>
+
         </div>
       </section>
     </main>
