@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smooth Vertical Pill</title>
+  <title>Chubby Vertical Pill - Auto Height</title>
   <style>
+    /* Base page styles */
     body {
       margin: 0;
       font-family: "Georgia", serif;
@@ -15,32 +16,41 @@
       align-items: center;
       justify-content: flex-start;
       min-height: 100vh;
-      padding: 2rem 15px;
+      padding: 2rem 1rem;
     }
 
     h1 {
       font-family: "Playfair Display", serif;
       font-style: italic;
-      font-size: 2rem;
+      font-size: 2.2rem;
       text-align: center;
       margin-bottom: 3rem;
-      line-height: 1.1;
+      line-height: 1.2;
     }
 
-    /* Thpect-ratio distortion */
+    /* The responsive, chubby, auto-height vertical pill */
     .vertical-pill {
       border: 1px solid #000;
-      border-radius: 250px;
       width: 90%;
       max-width: 500px;
-      height: 600px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background-color: #fffefc;
       text-align: center;
-      padding: 2.5rem 1.5rem;
       box-sizing: border-box;
+      padding: 2.5rem 1.5rem;
+      margin-bottom: 3rem;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+
+      /* The pill shape with straight sides + rounded ends */
+      mask-image: radial-gradient(circle 250px at 50% 0, black 100%, transparent 100%),
+                  linear-gradient(black 0 0);
+      -webkit-mask-image: radial-gradient(circle 250px at 50% 0, black 100%, transparent 100%),
+                         linear-gradient(black 0 0);
+      mask-composite: intersect;
+      -webkit-mask-composite: destination-in;
+
+      border-radius: 9999px; /* Fallback for browsers without mask support */
     }
 
     .pill-content {
@@ -48,7 +58,6 @@
       flex-direction: column;
       align-items: center;
       gap: 1.2rem;
-      position: relative;
     }
 
     .pill-image {
@@ -73,15 +82,13 @@
       max-width: 80%;
     }
 
-    /* Responsive scaling with smooth proportions */
-    @media (max-width: 768px) {
+    .pill-text em {
+      font-style: italic;
+    }
+
+    @media (max-width: 600px) {
       h1 {
         font-size: 1.6rem;
-      }
-      .vertical-pill {
-        height: 65vh;
-        border-radius: 180px;
-        padding: 2rem 1.2rem;
       }
       .pill-image {
         width: 70px;
@@ -89,6 +96,9 @@
       }
       .pill-text {
         font-size: 0.9rem;
+      }
+      .vertical-pill {
+        padding: 2rem 1.2rem;
       }
     }
   </style>
@@ -99,7 +109,7 @@
 
   <div class="vertical-pill">
     <div class="pill-content">
-      <img src="your-image.jpg" alt="Peace sign hand" class="pill-image">
+      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=988" class="pill-image">
       <div class="connector"></div>
       <p class="pill-text">
         <em>High-vibe,</em> a state of <em>positive energy</em> and emotions, including 
