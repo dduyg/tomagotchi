@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LiminalLoop</title>
+  <title>Stable Vertical Pill Example</title>
   <style>
     body {
       margin: 0;
@@ -26,19 +26,19 @@
       margin-bottom: 3rem;
       line-height: 1.1;
     }
-    
+
     .vertical-pill {
       border: 1px solid #000;
-      border-radius: 9999px;
+      border-radius: 50% / 18%;
       width: 90%;
-      max-width: 600px;
-      aspect-ratio: 3 / 4;
+      max-width: 480px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       padding: 2.5rem 1.5rem;
       box-sizing: border-box;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
     .pill-content {
@@ -46,7 +46,7 @@
       flex-direction: column;
       align-items: center;
       gap: 1.2rem;
-      position: relative;
+      width: 100%;
     }
 
     .pill-image {
@@ -55,7 +55,6 @@
       border-radius: 9999px;
       object-fit: cover;
       display: block;
-      z-index: 1;
     }
 
     .connector {
@@ -76,7 +75,7 @@
         font-size: 1.6rem;
       }
       .vertical-pill {
-        aspect-ratio: 3 / 4.2; /* a bit taller on small screens */
+        border-radius: 50% / 22%; /* slightly taller curve on small screens */
         padding: 2rem 1.2rem;
       }
       .pill-image {
@@ -94,7 +93,7 @@
 
   <div class="vertical-pill">
     <div class="pill-content">
-      <img src="your-image.jpg" alt="Peace sign hand" class="pill-image">
+      <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=988" class="pill-image">
       <div class="connector"></div>
       <p class="pill-text">
         <em>High-vibe,</em> a state of <em>positive energy</em> and emotions, including 
