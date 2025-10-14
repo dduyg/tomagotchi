@@ -13,9 +13,10 @@
 
     html, body {
       height: 100%;
-      scroll-behavior: smooth;
       overflow-x: hidden;
       font-family: 'Arial', sans-serif;
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
     }
 
     section {
@@ -26,8 +27,9 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      transition: all 1s ease;
-      transform: translateY(150px);
+      scroll-snap-align: start;
+      transition: all 0.6s ease-out;
+      transform: translateY(50px);
       opacity: 0;
     }
 
@@ -95,14 +97,13 @@
       height: 100%;
       border-radius: 50%;
       background: white;
-      animation: pulse 1s ease-out;
+      animation: pulse 0.8s ease-out;
     }
 
     @keyframes pulse {
       0% { transform: scale(1); opacity: 1; }
       100% { transform: scale(2.5); opacity: 0; }
     }
-
   </style>
 </head>
 <body>
@@ -158,13 +159,13 @@
           countText.textContent = `${index + 1}/${total}`;
           entry.target.classList.add('in-view');
 
-          // Trigger pulse animation
+          // Pulse effect on nav dot
           dot.classList.remove('pulse');
-          void dot.offsetWidth; // reflow to restart animation
+          void dot.offsetWidth;
           dot.classList.add('pulse');
         }
       });
-    }, { threshold: 0.6 });
+    }, { threshold: 0.5 });
 
     sections.forEach(section => observer.observe(section));
   </script>
