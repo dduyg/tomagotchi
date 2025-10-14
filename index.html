@@ -1,102 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text with Image Icons</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 40px;
-            background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Georgia', serif;
-        }
-
-        .title-container {
-            max-width: 800px;
-            text-align: center;
-        }
-
-        .title-text {
-            font-size: 5rem;
-            line-height: 1.2;
-            color: #000;
-            font-weight: 400;
-            position: relative;
-            letter-spacing: 0.02em;
-        }
-
-        .title-text .line {
-            display: block;
-            position: relative;
-        }
-
-        .title-text .italic {
-            font-style: italic;
-        }
-
-        .icon {
-            display: inline-block;
-            width: 80px;
-            height: 80px;
-            vertical-align: middle;
-            margin: 0 10px;
-            position: relative;
-            top: -5px;
-        }
-
-        .icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: grayscale(100%) contrast(1.2);
-        }
-
-        @media (max-width: 768px) {
-            .title-text {
-                font-size: 3rem;
-            }
-            
-            .icon {
-                width: 50px;
-                height: 50px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Visual Creator Title with Icons</title>
+  <style>
+    body {
+      background: #ededed;
+      font-family: 'Georgia', serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .title-container {
+      position: relative;
+      width: 550px;
+      margin: auto;
+      text-align: center;
+    }
+    .main-title {
+      font-size: 4rem;
+      line-height: 1.1;
+      font-family: 'Georgia', serif;
+      font-weight: 400;
+      letter-spacing: 0;
+      color: #111;
+      z-index: 1;
+      position: relative;
+    }
+    /* Icon positions - adjust left/top as needed for your design */
+    .icon1 {
+      position: absolute;
+      top: 30px;
+      left: 25px;
+      width: 110px;
+      z-index: 2;
+    }
+    .icon2 {
+      position: absolute;
+      top: -40px;
+      left: 220px;
+      width: 120px;
+      z-index: 2;
+    }
+    .icon3 {
+      position: absolute;
+      top: 80px;
+      right: -40px;
+      width: 100px;
+      z-index: 2;
+    }
+    .icon4 {
+      position: absolute;
+      bottom: -40px;
+      left: 0px;
+      width: 120px;
+      z-index: 2;
+    }
+  </style>
 </head>
 <body>
-    <div class="title-container">
-        <div class="title-text">
-            <span class="line">
-                Hi
-                <span class="icon">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2917/2917995.png" alt="star">
-                </span>
-                I'm
-            </span>
-            <span class="line">
-                <span class="icon">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2917/2917641.png" alt="shape">
-                </span>
-                Rom
-                <span class="icon">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3062/3062634.png" alt="bone">
-                </span>
-            </span>
-            <span class="line">and I'm</span>
-            <span class="line italic">
-                a 
-                <span class="icon">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2917/2917242.png" alt="blob">
-                </span>
-                visual
-            </span>
-            <span class="line italic">creator</span>
-        </div>
+  <div class="title-container">
+    <!-- Replace src with your actual icon URLs -->
+    <img src="icon1.png" class="icon1" alt="Icon 1" />
+    <img src="icon2.png" class="icon2" alt="Icon 2" />
+    <img src="icon3.png" class="icon3" alt="Icon 3" />
+    <img src="icon4.png" class="icon4" alt="Icon 4" />
+    <div class="main-title">
+      Hi I'm<br>
+      <span style="font-style: italic;">Roni</span><br>
+      and I'm<br>
+      a <span style="font-style: italic;">visual</span><br>
+      creator
     </div>
+  </div>
 </body>
 </html>
