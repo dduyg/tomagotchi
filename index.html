@@ -118,13 +118,14 @@
       border-radius: 50%;
       background: #F2EDEC;
       position: relative;
-      opacity: 1;
-      animation: pulse 1s ease-out;
     }
     @keyframes pulse {
       0% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.4; transform: scale(1.4); }
       100% { opacity: 1; transform: scale(1); }
+    }
+    .dot.pulse {
+      animation: pulse 0.8s ease-out;
     }
   </style>
 </head>
@@ -164,6 +165,7 @@
 
   <script>
     const sections = document.querySelectorAll('.scroll_item');
+    const dot = document.querySelector('.dot');
     const countText = document.querySelector('.count');
     const total = sections.length;
 
@@ -173,12 +175,16 @@
           const index = [...sections].indexOf(entry.target);
           countText.textContent = `${index + 1}/${total}`;
           entry.target.classList.add('in-view');
+
+          // Trigger one-time pulse effect each time section changes
+          dot.classList.remove('pulse');
+          void dot.offsetWidth; // restart CSS animation
+          dot.classList.add('pulse');
         }
       });
     }, { threshold: 0.6 });
 
     sections.forEach(section => observer.observe(section));
   </script>
-
 </body>
 </html>
