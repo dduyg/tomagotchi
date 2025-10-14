@@ -1,127 +1,356 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/favicons/pythonString.ico">
-  <title>Liminal🧚🏻‍♀️Loop</title>
-  <link href="https://fonts.cdnfonts.com/css/harmony-3" rel="stylesheet">
-  <style>          
-    * { margin: 0; padding: 0; box-sizing: border-box; }     
-    @font-face {
-      font-family: 'Image Future';
-      src: url("https://static.showit.co/file/8scgNPIus9aTfmPKHwjdmQ/318617/imagefuture-regular.woff") format("woff");
-      font-weight: normal;
-      font-style: normal;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LiminalLoop</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+  <style>
+    /* Reset + base */
+    html,body {
+      height: 100%;
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: #111; /* visible behind slider */
+      color: #fff;
     }
-    body {
-      font-family: 'Image Future', sans-serif;
-      background-color: #d7dedb;
-      color: black;
+
+    /* Slider container fills viewport */
+    .vertical-slider {
+      height: 100vh; /* important: slick will use slides that are 100% of this */
+      overflow: hidden;
+    }
+
+    /* Each slide is a section with padding to show colored background as a border */
+    .slide {
+      min-height: 100vh;          /* so each slide occupies viewport height */
+      box-sizing: border-box;
+      padding: 22px;             /* the padding creates the visible background "border" */
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
+      align-items: stretch;
+      justify-content: center;
+      /* NOTE: background-color is set per-slide in HTML for different colors */
     }
 
-    header {
-      font-family: 'HARMONY', sans-serif;
-      font-size: 4rem;
-      font-weight: 300;
-      margin: 4rem 1rem;
+    /* Inner box holds the image and content and fills the padded area */
+    .slide-inner {
       position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.35);
     }
-    .gem {
-      position: absolute;
-      width: 100px;
-      z-index: -1;
-      pointer-events: none;
-    }
-    .gem.one { top: 14%; left: -5%; }
-    .gem.two { top: -30px; left: 25%; z-index: 2; }
-    .gem.three { top: 27%; right: 18%; }
-    .gem.four { bottom: -45px; left: 0; }
 
-    .pill {
-      border: 1px solid;
-      border-radius: 9999px;
-      width: 95%;
-      max-width: 500px;
-      aspect-ratio: 3 / 4;
+    /* Image covers the entire inner box */
+    .slide-inner img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      -webkit-user-drag: none;
+      user-select: none;
+    }
+
+    /* Content overlay on top of image */
+    .slide-content {
+      position: absolute;
+      inset: 0;                 /* cover entire inner area */
       display: flex;
       align-items: center;
       justify-content: center;
+      pointer-events: none;     /* allow underlying swipes */
+    }
+
+    /* actual text box */
+    .slide-content .text {
+      pointer-events: auto;     /* allow clicks on links/buttons if placed */
+      max-width: 880px;
+      padding: 18px 22px;
+      background: rgba(0,0,0,0.35);
+      border-radius: 8px;
+      backdrop-filter: blur(4px);
       text-align: center;
-      padding: 4rem 1.5rem;
-      margin-bottom: 5rem;
-      box-sizing: border-box;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
     }
-    .pill:hover {
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-      transform: translateY(-3px);
-    }  
-    .content {
+
+    .slide h1 {
+      margin: 0 0 8px 0;
+      font-size: clamp(20px, 3.8vw, 40px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+
+    .slide p {
+      margin: 0;
+      font-size: clamp(14px, 1.6vw, 18px);
+      opacity: 0.95;
+    }
+
+    /* Fixed bottom-right nav */
+    .fixed-nav {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 9999;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 3px;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      color: #fff;
+      background: rgba(0,0,0,0.45);
+      padding: 8px 12px;
+      border-radius: 999px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+      backdrop-filter: blur(6px);
     }
-    .pill img {
-      width: 95px;
-      height: 120px;
-      border: 1px solid;
-      border-radius: 9999px;
-      object-fit: cover;
+
+    .fixed-nav .dot {
+      color: #ffd24d; /* highlighted dot color */
+      font-size: 16px;
+      line-height: 1;
+      margin-right: 4px;
+    }
+
+    /* Slick customizations */
+    .slick-vertical .slick-slide {
       display: block;
+      outline: none; /* remove focus outline from slides */
     }
-    .connector {width: 90px; display: block;}
-    .description {
-      font-size: 0.95rem;
-      line-height: 1.5;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      max-width: 80%;
-      margin-bottom: 5rem;
+
+    /* Hide default dots/arrows if theme shows them */
+    .slick-dots, .slick-arrow {
+      display: none !important;
     }
-    .description em {text-transform: none;}
-    
-    @media (max-width: 700px) {
-      header {font-size: 2.8rem;}
-      .gem {width: 80px;}
-      .pill {aspect-ratio: 3 / 4.2; /* a bit taller on small screens */ padding: 4rem 1.2rem;}
-      .pill img {width: 75px; height: 100px;}    
-      .connector {width: 70px;}
+
+    /* Make sure slides are not clipped by parent overflow weirdness */
+    .slick-list, .slick-track {
+      height: 100% !important;
+    }
+
+    /* For keyboard focus accessibility */
+    .slide:focus {
+      outline: 3px solid rgba(255,255,255,0.08);
+    }
+
+    /* Small screens adjustments */
+    @media (max-width: 600px) {
+      .slide { padding: 12px; }
+      .fixed-nav { right: 12px; bottom: 12px; font-size: 13px; padding: 6px 10px; }
+      .slide-content .text { padding: 12px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/BLOBs/gem1.gif" class="gem one">
-    <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/BLOBs/gem2.gif" class="gem two">
-    <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/BLOBs/gem3.gif" class="gem three">
-    <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/BLOBs/gem4.gif" class="gem four">
-      Unconventional<br><em>&nbsp;&nbsp;&nbsp;people</em> and<br>their <em>gemstones</em>
-  </header>
 
-  <div class="pill">
-    <div class="content">
-      <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/syntheticWoman.gif">
-      <svg class="connector" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900">
-        <g transform="translate(0,900) scale(0.1,-0.1)"><path d="M4420 8602 c-99 -28 -177 -95 -228 -195 -30 -59 -33 -72 -33 -151 0 -55 6 -97 14 -114 8 -15 23 -44 33 -65 28 -58 79 -103 158 -141 115 -56 147 -62 203 -42 140 52 220 111 260 196 34 70 53 132 53 171 0 40 -49 170 -74 198 -9 10 -16 22 -16 27 0 12 -95 84 -111 84 -7 0 -21 8 -31 17 -15 13 -41 18 -111 19 -51 2 -103 0 -117 -4z"/><path d="M4474 7836 c-17 -13 -19 -27 -18 -110 0 -53 4 -100 10 -105 22 -22 60 -22 87 -1 25 20 27 26 27 104 0 73 -3 85 -23 104 -27 25 -55 28 -83 8z"/><path d="M4471 7311 c-11 -7 -14 -35 -14 -113 0 -58 3 -110 7 -116 4 -7 24 -12 45 -12 58 0 71 21 71 114 0 74 -10 112 -34 128 -15 10 -58 10 -75 -1z"/><path d="M4460 6760 c-6 -11 -8 -50 -6 -87 2 -37 5 -78 5 -89 1 -26 45 -57 69 -50 35 11 52 59 52 145 0 69 -3 82 -19 91 -34 17 -89 12 -101 -10z"/><path d="M4471 6246 c-15 -18 -23 -151 -12 -192 6 -26 12 -29 51 -32 60 -4 70 11 70 110 0 97 -16 128 -65 128 -18 0 -38 -6 -44 -14z"/><path d="M4484 5723 c-14 -3 -24 -14 -27 -31 -6 -29 0 -179 8 -199 2 -8 22 -13 44 -13 35 0 43 4 56 30 16 30 21 175 7 196 -8 14 -58 23 -88 17z"/>
-        <path d="M4478 5186 c-21 -16 -33 -105 -24 -169 6 -37 12 -47 35 -57 24 -9 35 -9 60 4 l31 17 0 88 c0 79 -2 90 -23 109 -26 25 -54 28 -79 8z"/><path d="M4463 4658 c-14 -23 -7 -219 8 -229 24 -15 68 -10 89 11 17 17 20 33 20 103 0 103 -13 127 -70 127 -21 0 -42 -6 -47 -12z"/><path d="M4462 4113 c-12 -32 -7 -190 7 -207 20 -24 69 -20 92 7 14 17 18 39 19 100 0 102 -8 117 -66 117 -33 0 -46 -4 -52 -17z"/><path d="M4476 3601 c-14 -15 -18 -39 -18 -117 -1 -83 1 -99 17 -110 25 -18 55 -18 83 2 20 13 22 24 22 96 0 64 -4 87 -21 114 -24 39 -56 45 -83 15z"/><path d="M4474 3066 c-16 -13 -19 -27 -19 -111 0 -84 3 -98 19 -111 29 -21 59 -17 84 9 19 20 22 35 22 103 0 71 -3 83 -23 102 -27 25 -55 28 -83 8z"/><path d="M4476 2537 c-15 -11 -18 -29 -18 -110 -1 -109 7 -127 58 -127 49 0 64 28 64 121 0 62 -4 81 -21 103 -22 28 -55 34 -83 13z"/><path d="M4471 2001 c-17 -17 -19 -31 -15 -112 5 -101 18 -129 61 -129 41 0 63 52 63 147 0 73 -2 83 -22 97 -30 21 -64 20 -87 -3z"/><path d="M4474 1469 c-16 -18 -19 -35 -17 -110 1 -49 5 -94 8 -99 3 -6 26 -10 50 -10 57 0 65 15 65 118 0 69 -3 81 -23 100 -29 28 -59 28 -83 1z"/><path d="M4450 1193 c-13 -3 -33 -11 -44 -19 -11 -8 -26 -14 -33 -14 -28 0 -118 -73 -150 -121 -18 -28 -33 -57 -33 -64 0 -7 -7 -18 -15 -25 -21 -18 -21 -206 0 -234 8 -11 15 -26 15 -34 0 -17 53 -88 89 -120 86 -75 247 -113 327 -77 108 49 127 59 157 91 59 63 117 191 117 259 0 34 -27 118 -56 175 -46 89 -187 179 -291 185 -32 2 -69 1 -83 -2z"/></g>
-      </svg>
-      <p class="description">
-        <em>Liminal spaces</em> whisper <em>memories of</em> yesterday,
-        hallways loop into themselves,
-        the air hums with deja vu.
-        Footsteps echo where no one walks,
-        and signs point to nowhere and yet everywhere.
-      </p>
+  <!-- Slider -->
+  <div class="vertical-slider slick-initialized slick-slider" id="verticalSlider">
+    <!-- slide 1 (background color visible as border) -->
+    <div class="slide" style="background:#e35d5d;">
+      <div class="slide-inner">
+        <img src="https://picsum.photos/id/1018/1920/1080" alt="Slide 1 image">
+        <div class="slide-content">
+          <div class="text">
+            <h1>Slide One Heading</h1>
+            <p>Hero text over the image. The colored padding around this image creates a visible border effect.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- slide 2 -->
+    <div class="slide" style="background:#4ea3ff;">
+      <div class="slide-inner">
+        <img src="https://picsum.photos/id/1025/1920/1080" alt="Slide 2 image">
+        <div class="slide-content">
+          <div class="text">
+            <h1>Slide Two</h1>
+            <p>Another caption — change this freely. Each slide uses a different background color.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- slide 3 -->
+    <div class="slide" style="background:#7be36b;">
+      <div class="slide-inner">
+        <img src="https://picsum.photos/id/1003/1920/1080" alt="Slide 3 image">
+        <div class="slide-content">
+          <div class="text">
+            <h1>Slide Three</h1>
+            <p>Images set to object-fit: cover so they always fill the inner box.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- slide 4 -->
+    <div class="slide" style="background:#9b7bff;">
+      <div class="slide-inner">
+        <img src="https://picsum.photos/id/1040/1920/1080" alt="Slide 4 image">
+        <div class="slide-content">
+          <div class="text">
+            <h1>Slide Four</h1>
+            <p>Text content goes on top of the image. Use buttons, links or more markup as needed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- slide 5 -->
+    <div class="slide" style="background:#ffb86b;">
+      <div class="slide-inner">
+        <img src="https://picsum.photos/id/1031/1920/1080" alt="Slide 5 image">
+        <div class="slide-content">
+          <div class="text">
+            <h1>Slide Five</h1>
+            <p>Customize colors and padding to get the exact border thickness.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- slide 6 -->
+    <div class="slide" style="background:#44c2b6;">
+      <div class="slide-inner">
+        <img src="https://picsum.photos/id/1056/1920/1080" alt="Slide 6 image">
+        <div class="slide-content">
+          <div class="text">
+            <h1>Slide Six</h1>
+            <p>The fixed bottom-right nav updates to show the current slide index / total slides.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
+  <!-- Fixed bottom-right nav -->
+  <div class="fixed-nav" id="fixedNav">
+    <span class="dot">●</span>
+    <span id="navCount">1/6</span>
+  </div>
+
+  <!-- jQuery + Slick JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+  <script>
+    (function () {
+      const $slider = $('#verticalSlider');
+
+      // Initialize Slick
+      $slider.slick({
+        vertical: true,
+        verticalSwiping: true,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        infinite: false,
+        arrows: false,
+        dots: false,
+        speed: 600,
+        adaptiveHeight: false,
+        // enable keyboard navigation
+        accessibility: true,
+        // touch threshold
+        touchThreshold: 10,
+      });
+
+      // Helper to update fixed nav
+      function updateNav(currentIndex) {
+        const total = $slider.slick("getSlick").slideCount || document.querySelectorAll('.slide').length;
+        // slick uses 0-based index
+        const display = (currentIndex + 1) + '/' + total;
+        document.getElementById('navCount').textContent = display;
+      }
+
+      // On init - set nav
+      $slider.on('init', function(event, slick) {
+        updateNav(slick.currentSlide || 0);
+      });
+
+      // on slide change, update nav
+      $slider.on('afterChange', function(event, slick, currentSlide) {
+        updateNav(currentSlide);
+      });
+
+      // Trigger init manually because some slick builds fire init immediately
+      // (if init already happened the handler above will still run)
+      $slider.slick('setPosition'); // ensure proper sizing
+      updateNav(0);
+
+      // Mouse wheel support with small debounce so one flick doesn't skip multiple slides
+      (function addWheel() {
+        let last = 0;
+        const throttleMs = 700; // minimum ms between allowed wheel navigations
+
+        window.addEventListener('wheel', function(e) {
+          // only when pointer is inside the viewport (always true) and not when CTRL pressed (zoom)
+          const now = Date.now();
+          if (now - last < throttleMs) return;
+
+          // prefer vertical delta (deltaY)
+          if (Math.abs(e.deltaY) < Math.abs(e.deltaX)) return; // ignore horizontal wheels
+
+          if (e.deltaY > 0) {
+            // scroll down -> next
+            if (!$slider.slick('getSlick').$slides.is(':animated')) {
+              $slider.slick('slickNext');
+              last = now;
+            }
+          } else if (e.deltaY < 0) {
+            // scroll up -> prev
+            if (!$slider.slick('getSlick').$slides.is(':animated')) {
+              $slider.slick('slickPrev');
+              last = now;
+            }
+          }
+        }, { passive: true });
+      })();
+
+      // Keyboard navigation (up/down)
+      (function addKeyboard() {
+        window.addEventListener('keydown', function(e) {
+          // avoid interfering with inputs
+          const active = document.activeElement;
+          if (active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable)) return;
+
+          if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+            $slider.slick('slickNext');
+            e.preventDefault();
+          } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+            $slider.slick('slickPrev');
+            e.preventDefault();
+          } else if (e.key === 'Home') {
+            $slider.slick('slickGoTo', 0);
+            e.preventDefault();
+          } else if (e.key === 'End') {
+            const total = $slider.slick("getSlick").slideCount - 1;
+            $slider.slick('slickGoTo', total);
+            e.preventDefault();
+          }
+        });
+      })();
+
+      // Optional: clicking the nav will move to next slide
+      document.getElementById('fixedNav').addEventListener('click', function() {
+        $slider.slick('slickNext');
+      });
+
+      // Make sure images are non-draggable on desktops for nicer touch interactions
+      document.querySelectorAll('.slide-inner img').forEach(img => {
+        img.draggable = false;
+      });
+
+      // Ensure accessibility: set role attributes
+      document.querySelectorAll('.slide').forEach((s, idx) => {
+        s.setAttribute('role', 'group');
+        s.setAttribute('aria-label', 'Slide ' + (idx + 1) + ' of ' + document.querySelectorAll('.slide').length);
+        s.tabIndex = 0;
+      });
+
+    })();
+  </script>
 </body>
 </html>
