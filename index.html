@@ -171,7 +171,46 @@
       padding-right: var(--marginRight);
       width: 100%;
       max-width: 768px;  
-    }  
+    }
+	.content h2 {
+	  margin-bottom: calc(var(--baseUnit) * 2);
+	  margin-top: calc(var(--baseUnit) / 3);
+	}
+	p.website {margin-top: calc(var(--baseUnit) * 2);}
+	.capsule {
+	  display: inline-block;
+      margin: 0 0 8px 0;
+      border-color: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 4px;
+      padding: 2px 8px 5px 6px;
+      line-height: 1rem;
+	}
+	@keyframes pulseAnim {
+	  0% {opacity: 1;}
+      50% {opacity: 0;}
+      100% {opacity: 1;}
+	}
+	i.pulse {
+	  font-style: normal;
+	  opacity: 1;
+	  animation: pulseAnim 1s infinite;
+	}
+	/* Icon Arrow */
+svg.icon_arr.darr {transform: rotate(90deg) translateX(0);}
+svg.icon_arr.larr {transform: rotate(180deg) translateX(0);}
+svg.icon_arr {
+	transform: translateX(-2px);
+    transition: transform 0.15s ease-in-out;
+    display: inline-block;
+    width: 8px;
+}
+svg.icon_arr path {fill: #16161d;}
+
+/* Icon Arrow Hover States */
+a:hover svg.icon_arr.rarr {transform: rotate(-45deg);}
+a:hover svg.icon_arr.darr {transform: rotate(90deg) translateX(3px);}
+a:hover svg.icon_arr.larr {transform: rotate(180deg) translateX(6px);}
   
     /* === Nav Indicator === */  
     nav {  
