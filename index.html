@@ -27,11 +27,22 @@
 
     header {
       font-family: 'HARMONY', sans-serif;
-      font-size: 2.6rem;
+      font-size: 3rem;
       font-weight: normal;
       line-height: 1;
       margin-bottom: 3rem;
+      position: relative;
     }
+    .gem {
+      position: absolute;
+      width: 100px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .gem.one { top: 10%; left: -10px; }
+    .gem.two { top: -30px; left: 25%; }
+    .gem.three { top: 30%; right: -20px; z-index: -1; }
+    .gem.four { bottom: -18px; left: -30px; z-index: -1; }
 
     .pill {
       border: 1px solid;
@@ -79,7 +90,8 @@
       margin-bottom: 1.5rem;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
+      .gem { width: 90px; }
       .pill { aspect-ratio: 3 / 4.2; /* a bit taller on small screens */ padding: 2rem 1.2rem; }
       .pill img { width: 70px; height: 100px; }    
       .connector { width: 60px; }
@@ -87,7 +99,13 @@
   </style>
 </head>
 <body>
-  <header>Unconventional people and their gemstones</header>
+  <header>
+    <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/BLOBs/gem1.gif" class="gem one">
+    <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/BLOBs/gem2.gif" class="gem two">
+    <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/BLOBs/gem3.gif" class="gem three">
+    <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/BLOBs/gem4.gif" class="gem four">
+      Unconventional people and their gemstones
+  </header>
 
   <div class="pill">
     <div class="content">
