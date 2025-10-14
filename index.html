@@ -1,180 +1,185 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LiminalLoop</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --baseUnit: calc(calc(0.33vw + 3px) * 3);
-      --baseUnit-: calc(calc(-0.33vw + -3px) * 3);
-      --marginLeft: calc(calc(0.33vw + 3px) * 14);
-      --marginRight: calc(calc(0.33vw + 3px) * 30);
-    }
-    @media (max-width: 768px) {
-      :root {
-        --baseUnit: calc(calc(0.25vw + 6px) * 2);
-        --baseUnit-: calc(calc(-0.25vw + -6px) * 2);
-        --marginLeft: calc(calc(0.33vw + 3px) * 8);
-        --marginRight: calc(calc(0.33vw + 3px) * 8);
-      }
-    }
-    @font-face {
-      font-family: '0xPropo';
-      src: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/0xPropo.woff2') format('woff2');
-      font-weight: normal;
-      font-style: normal;
-    }
-    html, body {
-      height: 100%;
-      overflow: hidden;
-      background: #EDE8E2;
-      color: #F2EDEC;
-      font-family: '0xPropo', monospace;
-    }
-
-    /* === Scroll Container === */
-    .scroll_container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      overflow-y: auto;
-      scroll-behavior: smooth;
-      scroll-snap-type: y mandatory;
-      height: 100%;
-      width: 100vw;
-    }
-    section {
-      width: 100%;
-      height: 100%;
-      padding: calc(var(--baseUnit) * 5) 0 calc(var(--baseUnit) * 6) var(--marginLeft);
-      scroll-snap-align: start;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      transform: translateY(60px);
-      transition: transform 0.7s ease, opacity 0.7s ease;
-    }
-    section.in-view {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* === Image Layers === */
-    section img {
-      object-fit: cover;
-      object-position: center;
-      mix-blend-mode: multiply;
-      filter: grayscale(100%);
-      z-index: 1;
-      position: absolute;
-    }
-    section img.full {
-      width: calc(100% - 24px);
-      height: calc(100% - 24px);
-      top: 12px;
-      left: 12px;
-      right: 12px;
-      bottom: 12px;
-      border-radius: 12px;
-      aspect-ratio: auto;
-    }
-
-    /* === Content === */
-    .content {
-      position: relative;
-      z-index: 2;
-      font-size: 3rem;
-      text-shadow: 0 4px 12px rgba(0,0,0,0.5);
-      text-align: center;
-    }
-
-    /* === Nav Indicator === */
-    nav {
-      position: fixed;
-      bottom: 30px;
-      left: 40px;
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      z-index: 1000;
-      pointer-events: none;
-    }
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #F2EDEC;
-      position: relative;
-    }
-    @keyframes pulse {
-      0% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(1.4); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-    .dot.pulse { animation: pulse 0.8s ease-out; }
-  </style>
-</head>
-<body>
-  <div class="scroll_container">
-    <section style="background-color:#EED6D2;">
-      <img class="full" src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/rewindNostalgia1.png">
-      <div class="content">Slide 1</div>
-    </section>
-    <section style="background-color:#61776B;">
-      <img class="full" src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/rewindNostalgia2.gif">
-      <div class="content">Slide 2</div>
-    </section>
-    <section style="background-color:#34d399;">
-      <img class="full" src="https://picsum.photos/id/1018/1920/1080">
-      <div class="content">Slide 3</div>
-    </section>
-    <section style="background-color:#fbbf24;">
-      <img class="full" src="https://picsum.photos/id/1020/1920/1080">
-      <div class="content">Slide 4</div>
-    </section>
-    <section style="background-color:#a78bfa;">
-      <img class="full" src="https://picsum.photos/id/1021/1920/1080">
-      <div class="content">Slide 5</div>
-    </section>
-    <section style="background-color:#f472b6;">
-      <img class="full" src="https://picsum.photos/id/1022/1920/1080">
-      <div class="content">Slide 6</div>
-    </section>
-  </div>
-
-  <nav>
-    <div class="dot"></div>
-    <span class="count">1/6</span>
-  </nav>
-
-  <script>
-    const sections = document.querySelectorAll('section');
-    const dot = document.querySelector('.dot');
-    const countText = document.querySelector('.count');
-    const total = sections.length;
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const index = [...sections].indexOf(entry.target);
-          countText.textContent = `${index + 1}/${total}`;
-          entry.target.classList.add('in-view');
-
-          // Trigger one-time pulse effect each time section changes
-          dot.classList.remove('pulse');
-          void dot.offsetWidth; // restart CSS animation
-          dot.classList.add('pulse');
-        }
-      });
-    }, { threshold: 0.6 });
-
-    sections.forEach(section => observer.observe(section));
-  </script>
-</body>
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+  <meta charset="UTF-8" />  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+  <title>LiminalLoop</title>  
+  <style>  
+    * { box-sizing: border-box; margin: 0; padding: 0; }  
+    :root {  
+      --baseUnit: calc(calc(0.33vw + 3px) * 3);  
+      --baseUnit-: calc(calc(-0.33vw + -3px) * 3);  
+      --marginLeft: calc(calc(0.33vw + 3px) * 14);  
+      --marginRight: calc(calc(0.33vw + 3px) * 30);  
+    }  
+    @media (max-width: 768px) {  
+      :root {  
+        --baseUnit: calc(calc(0.25vw + 6px) * 2);  
+        --baseUnit-: calc(calc(-0.25vw + -6px) * 2);  
+        --marginLeft: calc(calc(0.33vw + 3px) * 8);  
+        --marginRight: calc(calc(0.33vw + 3px) * 8);  
+      }  
+    }  
+    @font-face {  
+      font-family: '0xPropo';  
+      src: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/0xPropo.woff2') format('woff2');  
+      font-weight: normal;  
+      font-style: normal;  
+    }  
+    html, body {  
+      height: 100%;  
+      overflow: hidden;  
+      background: #EDE8E2;  
+      color: #F2EDEC;  
+      font-family: '0xPropo', monospace;  
+    }  
+  
+    /* === Scroll Container === */  
+    .scroll_container {  
+      position: fixed;  
+      top: 0;  
+      left: 0;  
+      overflow-y: auto;  
+      scroll-behavior: smooth;  
+      scroll-snap-type: y mandatory;  
+      height: 100%;  
+      width: 100vw;  
+    }  
+    section {  
+      width: 100%;  
+      height: 100%;  
+      padding: calc(var(--baseUnit) * 5) 0 calc(var(--baseUnit) * 6) var(--marginLeft);  
+      scroll-snap-align: start;  
+      position: relative;  
+      overflow: hidden;  
+      display: flex;  
+      justify-content: center;  
+      align-items: center;  
+      opacity: 0;  
+      transform: translateY(60px);  
+      transition: transform 0.7s ease, opacity 0.7s ease;  
+    }  
+    section.in-view {  
+      opacity: 1;  
+      transform: translateY(0);  
+    }  
+  
+    /* === Image Layers === */  
+    section img {  
+      object-fit: cover;  
+      object-position: center;  
+      z-index: 1;  
+      position: absolute;  
+    }  
+  
+    /* === Ripple Sections (3 & 6) === */  
+    section.ripple img {  
+      mix-blend-mode: multiply;  
+      filter: grayscale(100%);  
+    }  
+  
+    section img.full {  
+      width: calc(100% - 24px);  
+      height: calc(100% - 24px);  
+      top: 12px;  
+      left: 12px;  
+      right: 12px;  
+      bottom: 12px;  
+      border-radius: 12px;  
+      aspect-ratio: auto;  
+    }  
+  
+    /* === Content === */  
+    .content {  
+      position: relative;  
+      z-index: 2;  
+      font-size: 3rem;  
+      text-shadow: 0 4px 12px rgba(0,0,0,0.5);  
+      text-align: center;  
+    }  
+  
+    /* === Nav Indicator === */  
+    nav {  
+      position: fixed;  
+      bottom: 30px;  
+      left: 40px;  
+      font-size: 0.95rem;  
+      display: flex;  
+      align-items: center;  
+      gap: 8px;  
+      z-index: 1000;  
+      pointer-events: none;  
+    }  
+    .dot {  
+      width: 10px;  
+      height: 10px;  
+      border-radius: 50%;  
+      background: #F2EDEC;  
+      position: relative;  
+    }  
+    @keyframes pulse {  
+      0% { opacity: 1; transform: scale(1); }  
+      50% { opacity: 0.4; transform: scale(1.4); }  
+      100% { opacity: 1; transform: scale(1); }  
+    }  
+    .dot.pulse { animation: pulse 0.8s ease-out; }  
+  </style>  
+</head>  
+<body>  
+  <div class="scroll_container">  
+    <section style="background-color:#EED6D2;">  
+      <img class="full" src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/rewindNostalgia1.png">  
+      <div class="content">Slide 1</div>  
+    </section>  
+    <section style="background-color:#61776B;">  
+      <img class="full" src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/rewindNostalgia2.gif">  
+      <div class="content">Slide 2</div>  
+    </section>  
+    <section class="ripple" style="background-color:#34d399;">  
+      <img class="full" src="https://picsum.photos/id/1018/1920/1080">  
+      <div class="content">Slide 3</div>  
+    </section>  
+    <section style="background-color:#fbbf24;">  
+      <img class="full" src="https://picsum.photos/id/1020/1920/1080">  
+      <div class="content">Slide 4</div>  
+    </section>  
+    <section style="background-color:#a78bfa;">  
+      <img class="full" src="https://picsum.photos/id/1021/1920/1080">  
+      <div class="content">Slide 5</div>  
+    </section>  
+    <section class="ripple" style="background-color:#f472b6;">  
+      <img class="full" src="https://picsum.photos/id/1022/1920/1080">  
+      <div class="content">Slide 6</div>  
+    </section>  
+  </div>  
+  
+  <nav>  
+    <div class="dot"></div>  
+    <span class="count">1/6</span>  
+  </nav>  
+  
+  <script>  
+    const sections = document.querySelectorAll('section');  
+    const dot = document.querySelector('.dot');  
+    const countText = document.querySelector('.count');  
+    const total = sections.length;  
+  
+    const observer = new IntersectionObserver((entries) => {  
+      entries.forEach(entry => {  
+        if (entry.isIntersecting) {  
+          const index = [...sections].indexOf(entry.target);  
+          countText.textContent = `${index + 1}/${total}`;  
+          entry.target.classList.add('in-view');  
+  
+          // Trigger one-time pulse effect each time section changes  
+          dot.classList.remove('pulse');  
+          void dot.offsetWidth; // restart CSS animation  
+          dot.classList.add('pulse');  
+        }  
+      });  
+    }, { threshold: 0.6 });  
+  
+    sections.forEach(section => observer.observe(section));  
+  </script>  
+</body>  
 </html>
