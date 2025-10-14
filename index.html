@@ -169,7 +169,7 @@
 	  display: inline-block;
       margin: 0 0 8px 0;
       background: rgba(0, 0, 0, 0);
-      border: 1px solid hsla(0, 0%, 100%, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.5);
       border-radius: 4px;
       padding: 2px 8px 5px 6px;
       line-height: 1rem;
@@ -184,6 +184,20 @@
 	  opacity: 1;
 	  animation: pulseAnim 1s infinite;
 	}
+	/* Icon Arrow */
+	svg.icon_arr.darr {transform: rotate(90deg) translateX(0);}
+    svg.icon_arr.larr {transform: rotate(180deg) translateX(0);}
+	svg.icon_arr {
+		transform: translateX(-2px);
+        transition: transform 0.15s ease-in-out;
+        display: inline-block;
+        width: 8px;
+	}
+	svg.icon_arr path {fill: #fef5f4;}
+	/* Icon Arrow Hover States */
+    a:hover svg.icon_arr.rarr {transform: rotate(-45deg);}
+    a:hover svg.icon_arr.darr {transform: rotate(90deg) translateX(3px);}
+    a:hover svg.icon_arr.larr {transform: rotate(180deg) translateX(6px);}
 
     /* === Nav Indicator === */  
     nav {  
