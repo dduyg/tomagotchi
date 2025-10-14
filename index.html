@@ -81,28 +81,24 @@
     }
     a {
       cursor: pointer;
-      color: inherit;
-      text-decoration: none;
-      display: inline;
-      padding-bottom: 1px;
-      background-size: 100% 1px;
-	  background-position: 0 96%;		
-	  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
-      background-repeat: no-repeat;
-      transition: background-size 0.7s cubic-bezier(0.19, 1, 0.22, 1);    
-    }
-    a:hover {
-      background-size: 0 1px;
+	  color: inherit;
+	  text-decoration: none;
+	  transition: color 0.15s ease;
+	}
+	a:hover, a:active, a:focus {color: rgba(255, 255, 255, 0.5);}
+	a > span {
+	  display: inline;
+	  padding-bottom: 1px;
+	  background-size: 100% 1px;
+      background-position: 0 96%;
+	  background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6));
+	  background-repeat: no-repeat;
+	  transition: background-size 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+	}
+	a:hover > span {
+	  background-size: 0 1px;
 	  background-position: 100% 96%;
 	}
-    hr {
-      height: 1px;
-      background: #e9e9e9;
-      box-shadow: none;
-      border: 0;
-      padding: 0;
-      margin: var(--baseUnit) 0 calc(var(--baseUnit) * 2);
-    }  
   
     /* === Scroll Container === */  
     .scroll_container {  
@@ -114,7 +110,7 @@
       scroll-snap-type: y mandatory;  
       height: 100%;  
       width: 100vw;  
-    }  
+    }
     section {  
       width: 100%;  
       height: 100%;  
@@ -128,11 +124,11 @@
       opacity: 0;  
       transform: translateY(60px);  
       transition: transform 0.7s ease, opacity 0.7s ease;  
-    }  
+    }
     section.in-view {  
       opacity: 1;  
       transform: translateY(0);  
-    }  
+    }
   
     /* === Image Layers === */  
     section img {  
@@ -144,7 +140,7 @@
     section.ripple img {  
       mix-blend-mode: multiply;  
       filter: grayscale(100%);  
-    }  
+    }
     section img.full {  
       width: calc(100% - 24px);  
       height: calc(100% - 24px);  
@@ -154,9 +150,9 @@
       bottom: 12px;  
       border-radius: 12px;  
       aspect-ratio: auto;  
-    }  
+    }
    
-    .content {  
+    .content {
       position: relative;  
       z-index: 2;  
       text-shadow: 0 4px 12px rgba(0,0,0,0.5);
@@ -177,7 +173,7 @@
       border-radius: 4px;
       padding: 2px 8px 5px 6px;
       line-height: 1rem;
-	}
+	}	  
 	@keyframes pulseAnim {
 	  0% {opacity: 1;}
       50% {opacity: 0;}
@@ -188,22 +184,7 @@
 	  opacity: 1;
 	  animation: pulseAnim 1s infinite;
 	}
-	/* Icon Arrow */
-svg.icon_arr.darr {transform: rotate(90deg) translateX(0);}
-svg.icon_arr.larr {transform: rotate(180deg) translateX(0);}
-svg.icon_arr {
-	transform: translateX(-2px);
-    transition: transform 0.15s ease-in-out;
-    display: inline-block;
-    width: 8px;
-}
-svg.icon_arr path {fill: #16161d;}
 
-/* Icon Arrow Hover States */
-a:hover svg.icon_arr.rarr {transform: rotate(-45deg);}
-a:hover svg.icon_arr.darr {transform: rotate(90deg) translateX(3px);}
-a:hover svg.icon_arr.larr {transform: rotate(180deg) translateX(6px);}
-  
     /* === Nav Indicator === */  
     nav {  
       position: fixed;  
@@ -238,8 +219,8 @@ a:hover svg.icon_arr.larr {transform: rotate(180deg) translateX(6px);}
       <div class="content">
 		  <div class="capsule"><i class="pulse">&#9679;</i> Live</div>
 		  <h2>The Natural Travel</h2> 
-	      <p>connected knowledge collectorsconnected knowledge collectors</p><hr>	
-          <p class="website"><a href="#">Website <svg class="icon_arr rarr" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 460"><path class="b" d="m268.293,460l-35.868-35.604,160.689-164.489H0v-59.814h393.113L232.425,35.604,268.293,0l231.707,230-231.707,230Z"/></svg></a></p>
+	      <p>connected knowledge collectorsconnected knowledge collectors</p>	
+          <p class="website"><a href="#"><span>Python</span> <svg class="icon_arr rarr" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 460"><path class="b" d="m268.293,460l-35.868-35.604,160.689-164.489H0v-59.814h393.113L232.425,35.604,268.293,0l231.707,230-231.707,230Z"/></svg></a></p>
       </div>
     </section>  
     <section style="background-color:#61776B;">  
