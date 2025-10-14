@@ -2,77 +2,72 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VIcons</title>
+  <title>Creative Title With Images</title>
   <style>
     body {
-      background: #ededed;
-      font-family: 'Georgia', serif;
+      background: #ececec;
+      font-family: 'Playfair Display', serif;
       margin: 0;
+      padding: 0;
       min-height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
     }
     .title-container {
       position: relative;
-      width: 550px;
-      margin: auto;
+      width: 600px;
+      max-width: 95vw;
+      margin: 50px auto;
       text-align: center;
     }
     .main-title {
       font-size: 4rem;
-      line-height: 1.1;
-      font-family: 'Georgia', serif;
+      font-family: 'Playfair Display', serif;
       font-weight: 400;
-      letter-spacing: 0;
-      color: #111;
-      z-index: 1;
+      line-height: 1.05;
+      color: #222;
       position: relative;
-    }
-    /* Icon positions - adjust left/top as needed for your design */
-    .icon1 {
-      position: absolute;
-      top: 30px;
-      left: 25px;
-      width: 110px;
       z-index: 2;
     }
-    .icon2 {
+    /* Example image positioning */
+    .blob-img {
       position: absolute;
-      top: -40px;
-      left: 220px;
-      width: 120px;
-      z-index: 2;
+      width: 130px;
+      z-index: 3;
+      pointer-events: none;
     }
-    .icon3 {
-      position: absolute;
-      top: 80px;
-      right: -40px;
-      width: 100px;
-      z-index: 2;
-    }
-    .icon4 {
-      position: absolute;
-      bottom: -40px;
-      left: 0px;
-      width: 120px;
-      z-index: 2;
+    .blob1 { top: 18px; left: 0px; }
+    .blob2 { top: -14px; left: 220px; }
+    .blob3 { top: 60px; right: -25px; }
+    .blob4 { bottom: -35px; left: -30px; }
+
+    /* Responsive scaling for mobile */
+    @media (max-width: 700px) {
+      .main-title {
+        font-size: 2.2rem;
+      }
+      .blob-img {
+        width: 70px;
+      }
+      .title-container {
+        width: 95vw;
+      }
     }
   </style>
 </head>
 <body>
   <div class="title-container">
-    <!-- Replace src with your actual icon URLs -->
-    <img src="icon1.png" class="icon1" alt="Icon 1" />
-    <img src="icon2.png" class="icon2" alt="Icon 2" />
-    <img src="icon3.png" class="icon3" alt="Icon 3" />
-    <img src="icon4.png" class="icon4" alt="Icon 4" />
+    <!-- Example image icons, replace src with your image files! -->
+    <img src="blob1.png" alt="" class="blob-img blob1">
+    <img src="blob2.png" alt="" class="blob-img blob2">
+    <img src="blob3.png" alt="" class="blob-img blob3">
+    <img src="blob4.png" alt="" class="blob-img blob4">
     <div class="main-title">
       Hi I'm<br>
-      <span style="font-style: italic;">Roni</span><br>
+      <span style="font-style:italic;">Roni</span><br>
       and I'm<br>
-      a <span style="font-style: italic;">visual</span><br>
+      a <span style="font-style:italic;">visual</span><br>
       creator
     </div>
   </div>
