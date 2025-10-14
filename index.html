@@ -6,7 +6,7 @@
   <title>LiminalLoop</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
     /* === Base Units & Responsive Variables === */
     :root {
       --baseUnit: calc(calc(0.33vw + 3px) * 3);
@@ -72,7 +72,6 @@
       z-index: 1;
       position: absolute;
     }
-
     .scroll_item img.full {
       width: calc(100% - 24px);
       height: calc(100% - 24px);
@@ -82,29 +81,6 @@
       bottom: 12px;
       border-radius: 12px;
       aspect-ratio: auto;
-    }
-
-    .scroll_item img.base {
-      bottom: calc(var(--baseUnit) * 3);
-      aspect-ratio: 4 / 3;
-      right: var(--marginRight);
-      width: 58%;
-    }
-
-    @media screen and (max-width: 1024px), screen and (max-height: 896px) {
-      .scroll_item img.base {
-        aspect-ratio: 4 / 3;
-        width: 56vw;
-        right: 0;
-      }
-    }
-    @media screen and (max-width: 768px), screen and (max-height: 512px) {
-      .scroll_item img.base {
-        right: 0;
-        left: auto;
-        aspect-ratio: 4 / 2.5;
-        width: calc(100% - var(--marginRight) * 1);
-      }
     }
 
     /* === Text Overlay === */
@@ -139,8 +115,6 @@
       opacity: 1;
       animation: pulse 1s infinite;
     }
-
-    /* Pulse Animation */
     @keyframes pulse {
       0% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.4; transform: scale(1.4); }
@@ -152,27 +126,27 @@
 
   <div class="scroll_container">
     <section class="scroll_item" style="background-color:#EED6D2;">
-      <img class="full" src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/rewindNostalgia1.png" alt="">
+      <img class="full" src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/rewindNostalgia1.png">
       <div class="text">Slide 1</div>
     </section>
     <section class="scroll_item" style="background-color:#61776B;">
-      <img class="full" src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/rewindNostalgia2.gif" alt="">
+      <img class="full" src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/rewindNostalgia2.gif">
       <div class="text">Slide 2</div>
     </section>
     <section class="scroll_item" style="background-color:#34d399;">
-      <img class="full" src="https://picsum.photos/id/1018/1920/1080" alt="">
+      <img class="full" src="https://picsum.photos/id/1018/1920/1080">
       <div class="text">Slide 3</div>
     </section>
     <section class="scroll_item" style="background-color:#fbbf24;">
-      <img class="full" src="https://picsum.photos/id/1020/1920/1080" alt="">
+      <img class="full" src="https://picsum.photos/id/1020/1920/1080">
       <div class="text">Slide 4</div>
     </section>
     <section class="scroll_item" style="background-color:#a78bfa;">
-      <img class="full" src="https://picsum.photos/id/1021/1920/1080" alt="">
+      <img class="full" src="https://picsum.photos/id/1021/1920/1080">
       <div class="text">Slide 5</div>
     </section>
     <section class="scroll_item" style="background-color:#f472b6;">
-      <img class="full" src="https://picsum.photos/id/1022/1920/1080" alt="">
+      <img class="full" src="https://picsum.photos/id/1022/1920/1080">
       <div class="text">Slide 6</div>
     </section>
   </div>
