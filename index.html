@@ -17,26 +17,23 @@
     }
     .title {
       font-size: 4rem;
-      font-family: 'Playfair Display', serif;
       font-weight: 400;
-      line-height: 1.05;
-      color: #222;
+      line-height: 1;
       position: relative;
     }
-    /* Example image positioning */
     .gem {
       position: absolute;
       width: 100px;
-      z-index: 3;
+      z-index: 2;
       pointer-events: none;
     }
-    .one { top: 5%; left: 0; }
-    .two { top: -10px; left: 15%; }
-    .three { top: 25%; right: -20px; }
-    .four { bottom: -20px; left: -10px; }
+    .gem.one { top: 5%; left: 0; }
+    .gem.two { top: -10px; left: 15%; }
+    .gem.three { top: 25%; right: -20px; z-index: -1; }
+    .gem.four { bottom: -20px; left: -10px; z-index: -1; }
 
     @media (max-width: 700px) {
-      .gem { width: 80px; }
+      .gem { width: 70px; }
     }
   </style>
 </head>
