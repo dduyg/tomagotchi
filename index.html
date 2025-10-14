@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
   <title>LiminalLoop</title>  
   <style>  
-    * { box-sizing: border-box; margin: 0; padding: 0; }  
+    * {box-sizing: border-box; margin: 0; padding: 0;}
+    ::selection {background: gold !important; color: #000 !important;}
     :root {  
       --baseUnit: calc(calc(0.33vw + 3px) * 3);  
       --baseUnit-: calc(calc(-0.33vw + -3px) * 3);  
@@ -32,6 +33,84 @@
       background: #EDE8E2;  
       color: #F2EDEC;  
       font-family: '0xPropo', monospace;  
+    }
+    body:after, body:before {
+      content: "";
+      position: fixed;
+      width: 1px;
+      background: rgba(0, 0, 0, 0.1);
+      height: 100%;
+      top: 0;
+      left: var(--marginLeft);
+      z-index: 10;
+      pointer-events: none;
+    }
+    body:before {
+      right: var(--marginRight);
+      left: auto;
+    }
+    h1, h2, h3, p {
+      padding: 0 0 var(--baseUnit) 0;
+      font-weight: normal;
+      line-height: 1.4em;
+      overflow-wrap: break-word;
+    }
+    h1 {
+      font-size: clamp(1.5rem, 6vw, 2.5rem);
+      line-height: 1em;
+      margin: calc(var(--baseUnit) * 4) 0 var(--baseUnit);
+      text-transform: uppercase;
+      margin-left: -0.1vw;
+    }
+    h2 {
+      font-size: clamp(1.5rem, 6vw, 2.5rem);
+      text-transform: uppercase;
+      line-height: 1em;
+      margin-left: -0.05vw;
+    }
+    h3 {
+      font-size: 1.6em;
+      font-weight: 300;
+      text-transform: uppercase;
+    }
+    p {    
+      font-weight: 300;
+      font-size: clamp(0.75rem, 1.75vw, 0.85rem);
+      max-width: 680px;
+      padding-bottom: calc(var(--baseUnit) - 10px);
+    }
+    a {
+      cursor: pointer;
+      color: inherit;
+      text-decoration: none;
+      display: inline;
+      padding-bottom: 1px;
+      background-position: 100% 96%;
+      background-size: 0 1px;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
+      background-repeat: no-repeat;
+      transition: 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+      transition-property: background-size;
+    }
+    a:hover {
+      background-size: 100% 1px;
+      background-position: 0 96%;
+    }
+.reverse a {
+  background-size: 100% 1px;
+  background-position: 0 96%;
+}
+.reverse a:hover {
+  background-size: 0 1px;
+  background-position: 100% 96%;
+}
+    hr {
+      height: 1px;
+      background: #e9e9e9;
+      box-shadow: none;
+      border: 0;
+      padding: 0;
+      margin: var(--baseUnit) 0 calc(var(--baseUnit) * 2);
     }  
   
     /* === Scroll Container === */  
