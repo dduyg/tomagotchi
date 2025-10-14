@@ -16,15 +16,16 @@
     section {
       height: 100vh;
       width: 100vw;
-      padding: 20px;
+      scroll-snap-align: start;
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
-      scroll-snap-align: start;
-      transition: all 0.5s ease-out;
-      transform: translateY(50px);
+      padding: 30px;
+      overflow: hidden;
+      transform: translateY(60px);
       opacity: 0;
+      transition: transform 0.7s ease, opacity 0.7s ease;
     }
     section.in-view {
       transform: translateY(0);
@@ -35,40 +36,42 @@
       position: relative;
       width: 100%;
       height: 100%;
+      border-radius: 20px;
       overflow: hidden;
-      border-radius: 8px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.35);
-      background-size: cover;
-      background-position: center;
       display: flex;
       justify-content: center;
       align-items: center;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
     .text {
       position: absolute;
       color: #fff;
       font-size: 3rem;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.5);
       text-align: center;
-      text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      z-index: 2;
     }
 
-    section:nth-child(1) { background: #f87171; }
-    section:nth-child(2) { background: #60a5fa; }
-    section:nth-child(3) { background: #34d399; }
-    section:nth-child(4) { background: #fbbf24; }
-    section:nth-child(5) { background: #a78bfa; }
-    section:nth-child(6) { background: #f472b6; }
+    section:nth-child(1) { background-color: #f87171; }
+    section:nth-child(2) { background-color: #60a5fa; }
+    section:nth-child(3) { background-color: #34d399; }
+    section:nth-child(4) { background-color: #fbbf24; }
+    section:nth-child(5) { background-color: #a78bfa; }
+    section:nth-child(6) { background-color: #f472b6; }
 
     nav {
       position: fixed;
       bottom: 30px;
       left: 40px;
       color: #fff;
-      font-size: 1.2rem;
+      font-size: 0.95rem;
       display: flex;
       align-items: center;
       gap: 8px;
       z-index: 1000;
+      pointer-events: none;
     }
     .dot {
       width: 10px;
@@ -97,37 +100,37 @@
 <body>
 
   <section>
-    <div class="content" style="background-image: url('https://picsum.photos/id/1015/1920/1080');">
+    <div class="content" style="background-image:url('https://picsum.photos/id/1015/1920/1080');">
       <div class="text">Slide 1</div>
     </div>
   </section>
   <section>
-    <div class="content" style="background-image: url('https://picsum.photos/id/1016/1920/1080');">
+    <div class="content" style="background-image:url('https://picsum.photos/id/1016/1920/1080');">
       <div class="text">Slide 2</div>
     </div>
   </section>
   <section>
-    <div class="content" style="background-image: url('https://picsum.photos/id/1018/1920/1080');">
+    <div class="content" style="background-image:url('https://picsum.photos/id/1018/1920/1080');">
       <div class="text">Slide 3</div>
     </div>
   </section>
   <section>
-    <div class="content" style="background-image: url('https://picsum.photos/id/1020/1920/1080');">
+    <div class="content" style="background-image:url('https://picsum.photos/id/1020/1920/1080');">
       <div class="text">Slide 4</div>
     </div>
   </section>
   <section>
-    <div class="content" style="background-image: url('https://picsum.photos/id/1021/1920/1080');">
+    <div class="content" style="background-image:url('https://picsum.photos/id/1021/1920/1080');">
       <div class="text">Slide 5</div>
     </div>
   </section>
   <section>
-    <div class="content" style="background-image: url('https://picsum.photos/id/1022/1920/1080');">
+    <div class="content" style="background-image:url('https://picsum.photos/id/1022/1920/1080');">
       <div class="text">Slide 6</div>
     </div>
   </section>
   
-  <nav> /* Nav indicator */
+  <nav> <!-- Fixed nav indicator -->
     <div class="dot"></div>
     <span class="count">1/6</span>
   </nav>
@@ -145,13 +148,13 @@
           countText.textContent = `${index + 1}/${total}`;
           entry.target.classList.add('in-view');
 
-          // Pulse effect on nav dot
+          // Trigger pulse effect
           dot.classList.remove('pulse');
-          void dot.offsetWidth;
+          void dot.offsetWidth; // restart animation
           dot.classList.add('pulse');
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.6 });
 
     sections.forEach(section => observer.observe(section));
   </script>
