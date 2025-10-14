@@ -1,356 +1,167 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>LiminalLoop</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vertical Slider</title>
   <style>
-    /* Reset + base */
-    html,body {
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
       height: 100%;
-      margin: 0;
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: #111; /* visible behind slider */
-      color: #fff;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      font-family: 'Arial', sans-serif;
     }
-
-    /* Slider container fills viewport */
-    .vertical-slider {
-      height: 100vh; /* important: slick will use slides that are 100% of this */
-      overflow: hidden;
-    }
-
-    /* Each slide is a section with padding to show colored background as a border */
-    .slide {
-      min-height: 100vh;          /* so each slide occupies viewport height */
-      box-sizing: border-box;
-      padding: 22px;             /* the padding creates the visible background "border" */
+    section {
+      height: 100vh;
+      width: 100vw;
+      padding: 40px;
       display: flex;
-      align-items: stretch;
       justify-content: center;
-      /* NOTE: background-color is set per-slide in HTML for different colors */
+      align-items: center;
+      position: relative;
+      transition: background 1s ease;
     }
 
-    /* Inner box holds the image and content and fills the padded area */
-    .slide-inner {
+    .slide-content {
       position: relative;
       width: 100%;
       height: 100%;
       overflow: hidden;
-      border-radius: 8px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+      border-radius: 20px;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 1s ease;
     }
 
-    /* Image covers the entire inner box */
-    .slide-inner img {
-      display: block;
+    section.in-view .slide-content {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .slide-text {
+      position: absolute;
+      color: #fff;
+      font-size: 3rem;
+      text-align: center;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+
+    /* Different background colors for each section */
+    section:nth-child(1) { background: #f87171; }
+    section:nth-child(2) { background: #60a5fa; }
+    section:nth-child(3) { background: #34d399; }
+    section:nth-child(4) { background: #fbbf24; }
+    section:nth-child(5) { background: #a78bfa; }
+    section:nth-child(6) { background: #f472b6; }
+
+    /* Fixed bottom-left nav */
+    .nav-indicator {
+      position: fixed;
+      bottom: 30px;
+      left: 40px;
+      color: #fff;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 1000;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: white;
+      position: relative;
+    }
+
+    .dot.pulse::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: center;
-      -webkit-user-drag: none;
-      user-select: none;
+      border-radius: 50%;
+      background: white;
+      animation: pulse 1s ease-out;
     }
 
-    /* Content overlay on top of image */
-    .slide-content {
-      position: absolute;
-      inset: 0;                 /* cover entire inner area */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;     /* allow underlying swipes */
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(2.5); opacity: 0; }
     }
 
-    /* actual text box */
-    .slide-content .text {
-      pointer-events: auto;     /* allow clicks on links/buttons if placed */
-      max-width: 880px;
-      padding: 18px 22px;
-      background: rgba(0,0,0,0.35);
-      border-radius: 8px;
-      backdrop-filter: blur(4px);
-      text-align: center;
-    }
-
-    .slide h1 {
-      margin: 0 0 8px 0;
-      font-size: clamp(20px, 3.8vw, 40px);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-    }
-
-    .slide p {
-      margin: 0;
-      font-size: clamp(14px, 1.6vw, 18px);
-      opacity: 0.95;
-    }
-
-    /* Fixed bottom-right nav */
-    .fixed-nav {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      font-size: 14px;
-      color: #fff;
-      background: rgba(0,0,0,0.45);
-      padding: 8px 12px;
-      border-radius: 999px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.45);
-      backdrop-filter: blur(6px);
-    }
-
-    .fixed-nav .dot {
-      color: #ffd24d; /* highlighted dot color */
-      font-size: 16px;
-      line-height: 1;
-      margin-right: 4px;
-    }
-
-    /* Slick customizations */
-    .slick-vertical .slick-slide {
-      display: block;
-      outline: none; /* remove focus outline from slides */
-    }
-
-    /* Hide default dots/arrows if theme shows them */
-    .slick-dots, .slick-arrow {
-      display: none !important;
-    }
-
-    /* Make sure slides are not clipped by parent overflow weirdness */
-    .slick-list, .slick-track {
-      height: 100% !important;
-    }
-
-    /* For keyboard focus accessibility */
-    .slide:focus {
-      outline: 3px solid rgba(255,255,255,0.08);
-    }
-
-    /* Small screens adjustments */
-    @media (max-width: 600px) {
-      .slide { padding: 12px; }
-      .fixed-nav { right: 12px; bottom: 12px; font-size: 13px; padding: 6px 10px; }
-      .slide-content .text { padding: 12px; }
-    }
   </style>
 </head>
 <body>
 
-  <!-- Slider -->
-  <div class="vertical-slider slick-initialized slick-slider" id="verticalSlider">
-    <!-- slide 1 (background color visible as border) -->
-    <div class="slide" style="background:#e35d5d;">
-      <div class="slide-inner">
-        <img src="https://picsum.photos/id/1018/1920/1080" alt="Slide 1 image">
-        <div class="slide-content">
-          <div class="text">
-            <h1>Slide One Heading</h1>
-            <p>Hero text over the image. The colored padding around this image creates a visible border effect.</p>
-          </div>
-        </div>
-      </div>
+  <!-- Sections -->
+  <section>
+    <div class="slide-content" style="background-image: url('https://picsum.photos/id/1015/1920/1080');">
+      <div class="slide-text">Slide 1</div>
     </div>
+  </section>
+  <section>
+    <div class="slide-content" style="background-image: url('https://picsum.photos/id/1016/1920/1080');">
+      <div class="slide-text">Slide 2</div>
+    </div>
+  </section>
+  <section>
+    <div class="slide-content" style="background-image: url('https://picsum.photos/id/1018/1920/1080');">
+      <div class="slide-text">Slide 3</div>
+    </div>
+  </section>
+  <section>
+    <div class="slide-content" style="background-image: url('https://picsum.photos/id/1020/1920/1080');">
+      <div class="slide-text">Slide 4</div>
+    </div>
+  </section>
+  <section>
+    <div class="slide-content" style="background-image: url('https://picsum.photos/id/1021/1920/1080');">
+      <div class="slide-text">Slide 5</div>
+    </div>
+  </section>
+  <section>
+    <div class="slide-content" style="background-image: url('https://picsum.photos/id/1022/1920/1080');">
+      <div class="slide-text">Slide 6</div>
+    </div>
+  </section>
 
-    <!-- slide 2 -->
-    <div class="slide" style="background:#4ea3ff;">
-      <div class="slide-inner">
-        <img src="https://picsum.photos/id/1025/1920/1080" alt="Slide 2 image">
-        <div class="slide-content">
-          <div class="text">
-            <h1>Slide Two</h1>
-            <p>Another caption — change this freely. Each slide uses a different background color.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- slide 3 -->
-    <div class="slide" style="background:#7be36b;">
-      <div class="slide-inner">
-        <img src="https://picsum.photos/id/1003/1920/1080" alt="Slide 3 image">
-        <div class="slide-content">
-          <div class="text">
-            <h1>Slide Three</h1>
-            <p>Images set to object-fit: cover so they always fill the inner box.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- slide 4 -->
-    <div class="slide" style="background:#9b7bff;">
-      <div class="slide-inner">
-        <img src="https://picsum.photos/id/1040/1920/1080" alt="Slide 4 image">
-        <div class="slide-content">
-          <div class="text">
-            <h1>Slide Four</h1>
-            <p>Text content goes on top of the image. Use buttons, links or more markup as needed.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- slide 5 -->
-    <div class="slide" style="background:#ffb86b;">
-      <div class="slide-inner">
-        <img src="https://picsum.photos/id/1031/1920/1080" alt="Slide 5 image">
-        <div class="slide-content">
-          <div class="text">
-            <h1>Slide Five</h1>
-            <p>Customize colors and padding to get the exact border thickness.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- slide 6 -->
-    <div class="slide" style="background:#44c2b6;">
-      <div class="slide-inner">
-        <img src="https://picsum.photos/id/1056/1920/1080" alt="Slide 6 image">
-        <div class="slide-content">
-          <div class="text">
-            <h1>Slide Six</h1>
-            <p>The fixed bottom-right nav updates to show the current slide index / total slides.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- Nav indicator -->
+  <div class="nav-indicator">
+    <div class="dot"></div>
+    <span class="count">1/6</span>
   </div>
-
-  <!-- Fixed bottom-right nav -->
-  <div class="fixed-nav" id="fixedNav">
-    <span class="dot">●</span>
-    <span id="navCount">1/6</span>
-  </div>
-
-  <!-- jQuery + Slick JS -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
   <script>
-    (function () {
-      const $slider = $('#verticalSlider');
+    const sections = document.querySelectorAll('section');
+    const dot = document.querySelector('.dot');
+    const countText = document.querySelector('.count');
+    const total = sections.length;
 
-      // Initialize Slick
-      $slider.slick({
-        vertical: true,
-        verticalSwiping: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        infinite: false,
-        arrows: false,
-        dots: false,
-        speed: 600,
-        adaptiveHeight: false,
-        // enable keyboard navigation
-        accessibility: true,
-        // touch threshold
-        touchThreshold: 10,
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = [...sections].indexOf(entry.target);
+          countText.textContent = `${index + 1}/${total}`;
+          entry.target.classList.add('in-view');
+
+          // Trigger pulse
+          dot.classList.remove('pulse');
+          void dot.offsetWidth; // reflow
+          dot.classList.add('pulse');
+        }
       });
+    }, { threshold: 0.6 });
 
-      // Helper to update fixed nav
-      function updateNav(currentIndex) {
-        const total = $slider.slick("getSlick").slideCount || document.querySelectorAll('.slide').length;
-        // slick uses 0-based index
-        const display = (currentIndex + 1) + '/' + total;
-        document.getElementById('navCount').textContent = display;
-      }
-
-      // On init - set nav
-      $slider.on('init', function(event, slick) {
-        updateNav(slick.currentSlide || 0);
-      });
-
-      // on slide change, update nav
-      $slider.on('afterChange', function(event, slick, currentSlide) {
-        updateNav(currentSlide);
-      });
-
-      // Trigger init manually because some slick builds fire init immediately
-      // (if init already happened the handler above will still run)
-      $slider.slick('setPosition'); // ensure proper sizing
-      updateNav(0);
-
-      // Mouse wheel support with small debounce so one flick doesn't skip multiple slides
-      (function addWheel() {
-        let last = 0;
-        const throttleMs = 700; // minimum ms between allowed wheel navigations
-
-        window.addEventListener('wheel', function(e) {
-          // only when pointer is inside the viewport (always true) and not when CTRL pressed (zoom)
-          const now = Date.now();
-          if (now - last < throttleMs) return;
-
-          // prefer vertical delta (deltaY)
-          if (Math.abs(e.deltaY) < Math.abs(e.deltaX)) return; // ignore horizontal wheels
-
-          if (e.deltaY > 0) {
-            // scroll down -> next
-            if (!$slider.slick('getSlick').$slides.is(':animated')) {
-              $slider.slick('slickNext');
-              last = now;
-            }
-          } else if (e.deltaY < 0) {
-            // scroll up -> prev
-            if (!$slider.slick('getSlick').$slides.is(':animated')) {
-              $slider.slick('slickPrev');
-              last = now;
-            }
-          }
-        }, { passive: true });
-      })();
-
-      // Keyboard navigation (up/down)
-      (function addKeyboard() {
-        window.addEventListener('keydown', function(e) {
-          // avoid interfering with inputs
-          const active = document.activeElement;
-          if (active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable)) return;
-
-          if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-            $slider.slick('slickNext');
-            e.preventDefault();
-          } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-            $slider.slick('slickPrev');
-            e.preventDefault();
-          } else if (e.key === 'Home') {
-            $slider.slick('slickGoTo', 0);
-            e.preventDefault();
-          } else if (e.key === 'End') {
-            const total = $slider.slick("getSlick").slideCount - 1;
-            $slider.slick('slickGoTo', total);
-            e.preventDefault();
-          }
-        });
-      })();
-
-      // Optional: clicking the nav will move to next slide
-      document.getElementById('fixedNav').addEventListener('click', function() {
-        $slider.slick('slickNext');
-      });
-
-      // Make sure images are non-draggable on desktops for nicer touch interactions
-      document.querySelectorAll('.slide-inner img').forEach(img => {
-        img.draggable = false;
-      });
-
-      // Ensure accessibility: set role attributes
-      document.querySelectorAll('.slide').forEach((s, idx) => {
-        s.setAttribute('role', 'group');
-        s.setAttribute('aria-label', 'Slide ' + (idx + 1) + ' of ' + document.querySelectorAll('.slide').length);
-        s.tabIndex = 0;
-      });
-
-    })();
+    sections.forEach(section => observer.observe(section));
   </script>
 </body>
 </html>
