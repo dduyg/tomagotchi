@@ -2,157 +2,214 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Father - Music/Audio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FATHER — Music/Audio</title>
+  <!-- Google Fonts: Source Code Pro and Inter for close screenshot match -->
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Inter:wght@700&display=swap" rel="stylesheet">
   <style>
-    /* Global Styles */
     body {
       margin: 0;
-      font-family: 'Courier New', monospace;
-      background-color: #2d2d2b;
-      color: #111;
-      display: flex;
-      justify-content: center;
-      padding: 40px 0;
+      background: #393932;
+      font-family: 'Source Code Pro', monospace;
+      color: #393932;
     }
-
-    /* Container */
     .container {
-      background-color: #f8f7f4;
-      border-radius: 16px;
-      width: 90%;
-      max-width: 600px;
-      overflow: hidden;
-    }
-
-    /* Navbar */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: #2d2d2b;
-      color: #f5f5f5;
-      padding: 16px 24px;
-      font-size: 18px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 24px;
-    }
-
-    .nav-links a {
-      color: #f5f5f5;
-      text-decoration: none;
-    }
-
-    .nav-links a:hover {
-      text-decoration: underline;
-    }
-
-    .nav-icon {
-      font-size: 20px;
-    }
-
-    /* Hero Section */
-    .hero {
-      background-color: #f8f7f4;
-      text-align: center;
-      padding: 50px 0;
-      position: relative;
-    }
-
-    .gradient-circle {
-      width: 250px;
-      height: 250px;
+      max-width: 700px;
       margin: 0 auto;
-      border-radius: 50%;
-      background: radial-gradient(circle at center, #ff3d2e, #d02da7, #a445f5);
-      filter: blur(15px);
+      background: #f6f5ef;
+      border-radius: 20px;
+      margin-top: 32px;
+      margin-bottom: 32px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.03);
     }
-
-    .live-btn {
-      display: inline-block;
-      margin-top: 24px;
-      padding: 6px 14px;
-      border: 1px solid #999;
-      border-radius: 6px;
-      background: transparent;
-      color: #333;
-      font-size: 15px;
+    .navbar {
+      background: none;
+      color: #f6f5ef;
+      padding: 20px 0 0 0;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      letter-spacing: 1px;
+      font-family: 'Source Code Pro', monospace;
     }
-
-    .live-btn::before {
-      content: "• ";
-      color: black;
+    .navbar {
+      margin-left: 24px;
     }
-
-    /* Info Section */
-    .info {
-      background-color: #f8f7f4;
-      padding: 32px;
-    }
-
-    .info h2 {
-      font-size: 24px;
-      font-weight: 900;
-      margin: 0 0 20px 0;
-    }
-
-    .info p {
-      margin: 6px 0;
-      font-size: 15px;
-      line-height: 1.6;
-    }
-
-    .label {
-      width: 100px;
-      display: inline-block;
-      color: #777;
-    }
-
-    .link {
-      display: inline-block;
-      margin-top: 16px;
-      color: #000;
+    .navbar a {
+      color: #f6f5ef;
       text-decoration: none;
-      border-bottom: 1px solid #000;
+      opacity: 0.85;
+      transition: opacity 0.15s;
     }
-
-    .link:hover {
-      opacity: 0.7;
+    .navbar a:hover {
+      opacity: 1;
+    }
+    .navbar .icon {
+      margin-left: auto;
+      margin-right: 24px;
+      font-size: 1.4em;
+      opacity: 0.8;
+      cursor: pointer;
+    }
+    .main-content {
+      padding: 36px 32px 0 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .circle-img {
+      width: 80%;
+      max-width: 400px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      background: radial-gradient(ellipse 75% 75% at 50% 50%, #e85c36 65%, #d156b8 120%);
+      filter: blur(12px);
+      margin: 0 auto 32px auto;
+      display: block;
+    }
+    .live-btn {
+      display: flex;
+      align-items: center;
+      background: #f6f5ef;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      font-size: 1.3em;
+      padding: 8px 24px;
+      margin-bottom: 32px;
+      color: #393932;
+      font-family: 'Source Code Pro', monospace;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.03);
+      cursor: default;
+      letter-spacing: 1px;
+    }
+    .live-btn span {
+      display: inline-block;
+      margin-right: 10px;
+      font-size: 1.5em;
+      vertical-align: middle;
+    }
+    .info-section {
+      width: 100%;
+      border-top: 2px solid #ece9e1;
+      margin-top: 0px;
+      padding: 32px 0 32px 0;
+      font-size: 1.28em;
+      color: #393932;
+      font-family: 'Source Code Pro', monospace;
+      background: none;
+    }
+    .info-section h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: 2.1em;
+      margin: 0 0 16px 0;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .label {
+      color: #b3b2a6;
+      font-weight: 400;
+      width: 120px;
+      display: inline-block;
+      font-size: 1em;
+      letter-spacing: 1px;
+    }
+    .value {
+      color: #393932;
+      font-weight: 400;
+      font-size: 1em;
+      display: inline-block;
+      margin-left: 16px;
+      letter-spacing: 1px;
+    }
+    .expertise-list {
+      margin-left: 136px;
+      margin-bottom: 0px;
+      margin-top: 0;
+    }
+    .expertise-list div {
+      margin-bottom: 3px;
+    }
+    .collab {
+      margin-left: 136px;
+    }
+    .website-link {
+      margin-top: 36px;
+      font-size: 1.12em;
+      color: #393932;
+      text-decoration: underline;
+      display: inline-block;
+      letter-spacing: 1px;
+    }
+    .website-link:after {
+      content: ' →';
+      font-size: 1.1em;
+      margin-left: 3px;
+    }
+    @media (max-width: 600px) {
+      .container {
+        margin: 0;
+        border-radius: 0;
+        width: 100vw;
+        min-width: 0;
+      }
+      .main-content, .info-section {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+      .navbar {
+        font-size: 1.2em;
+        margin-left: 10px;
+      }
+      .navbar .icon {
+        margin-right: 10px;
+      }
+      .circle-img {
+        max-width: 240px;
+      }
+      .info-section {
+        font-size: 1em;
+        padding: 20px 0 20px 0;
+      }
     }
   </style>
 </head>
 <body>
+  <nav class="navbar">
+    <a href="#">Index</a>
+    <a href="#">Clients</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+    <span class="icon" title="Language/Globe">&#127760;</span>
+  </nav>
   <div class="container">
-    <!-- Navbar -->
-    <nav>
-      <div class="nav-links">
-        <a href="#">Index</a>
-        <a href="#">Clients</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-      </div>
-      <div class="nav-icon">🌐</div>
-    </nav>
-
-    <!-- Hero Section -->
-    <div class="hero">
-      <div class="gradient-circle"></div>
-      <div><button class="live-btn">Live</button></div>
+    <div class="main-content">
+      <div class="circle-img"></div>
+      <div class="live-btn"><span>&bull;</span> Live</div>
     </div>
-
-    <!-- Info Section -->
-    <div class="info">
-      <h2>FATHER</h2>
-      <p><span class="label">Sector:</span> Music/Audio</p>
-      <p><span class="label">Year:</span> 2016–2025</p>
-      <p><span class="label">Expertise:</span> Interaction Design<br>
-      <span class="label"></span> Front-End CMS Mobile<br>
-      <span class="label"></span> Back-End Video Dev</p>
-      <p><span class="label">Collab:</span> WDC →</p>
-      <a class="link" href="#">Website →</a>
+    <div class="info-section">
+      <h1>FATHER</h1>
+      <div>
+        <span class="label">Sector:</span>
+        <span class="value">Music/Audio</span>
+      </div>
+      <div>
+        <span class="label">Year:</span>
+        <span class="value">2016–2025</span>
+      </div>
+      <div>
+        <span class="label">Expertise:</span>
+      </div>
+      <div class="expertise-list">
+        <div>Interaction Design</div>
+        <div>Front-End CMS Mobile</div>
+        <div>Back-End Video Dev</div>
+      </div>
+      <div>
+        <span class="label">Collab:</span>
+        <span class="collab">WDC &rarr;</span>
+      </div>
+      <a class="website-link" href="#">Website</a>
     </div>
   </div>
 </body>
