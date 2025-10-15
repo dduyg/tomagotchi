@@ -1,291 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FATHER - Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FATHER — Music/Audio</title>
+<style>
+  /* Base styling */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background-color: #2a2a2a;
-            color: #f5f5f5;
-            line-height: 1.6;
-        }
+  body {
+    font-family: "Courier New", monospace;
+    background-color: #2e2e2b;
+    color: #111;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px;
+  }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 2rem 5rem;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background-color: rgba(42, 42, 42, 0.95);
-        }
+  .container {
+    background-color: #f7f6f2;
+    width: 420px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
 
-        .nav-links {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-        }
+  /* Navigation */
+  nav {
+    background-color: #2e2e2b;
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-        .nav-links a {
-            color: #f5f5f5;
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: opacity 0.3s;
-        }
+  .nav-links {
+    display: flex;
+    gap: 22px;
+  }
 
-        .nav-links a:hover {
-            opacity: 0.7;
-        }
+  .nav-links a {
+    text-decoration: none;
+    color: #c5c5c5;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+  }
 
-        .nav-links .clients {
-            opacity: 0.4;
-        }
+  .nav-links a:hover {
+    color: white;
+  }
 
-        .globe-icon {
-            width: 40px;
-            height: 40px;
-            border: 2px solid #f5f5f5;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
+  .globe {
+    font-size: 18px;
+    color: #c5c5c5;
+  }
 
-        .globe-icon:hover {
-            opacity: 0.7;
-        }
+  /* Main content */
+  .main {
+    text-align: center;
+    padding: 40px 20px;
+  }
 
-        .globe-icon::before {
-            content: '🌐';
-            font-size: 1.3rem;
-        }
+  .gradient-circle {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto 30px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 50%, #ff643d, #ff4b7c, #d958ff);
+    filter: blur(1px);
+  }
 
-        main {
-            margin-top: 100px;
-            padding: 0 5rem;
-        }
+  .status {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #f8f8f8;
+  }
 
-        .hero-section {
-            background-color: #e8e5e0;
-            border-radius: 20px;
-            padding: 3rem;
-            position: relative;
-            overflow: hidden;
-            height: 500px;
-            display: flex;
-            align-items: flex-end;
-        }
+  .status::before {
+    content: "•";
+    margin-right: 6px;
+    color: #333;
+  }
 
-        .gradient-orb {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, 
-                rgba(255, 100, 100, 0.8) 0%,
-                rgba(255, 120, 150, 0.7) 25%,
-                rgba(255, 150, 180, 0.6) 50%,
-                rgba(255, 180, 200, 0.4) 75%,
-                rgba(255, 200, 220, 0.1) 100%);
-            filter: blur(60px);
-            animation: pulse 4s ease-in-out infinite;
-        }
+  /* Info section */
+  .info {
+    padding: 30px 25px 50px;
+    text-align: left;
+  }
 
-        @keyframes pulse {
-            0%, 100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.8;
-            }
-            50% {
-                transform: translate(-50%, -50%) scale(1.1);
-                opacity: 1;
-            }
-        }
+  .info h2 {
+    font-weight: 800;
+    font-size: 22px;
+    margin-bottom: 22px;
+    letter-spacing: 0.5px;
+  }
 
-        .live-badge {
-            position: relative;
-            z-index: 10;
-            background-color: white;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            padding: 0.5rem 1.5rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.7rem;
-            font-size: 1.1rem;
-            color: #333;
-        }
+  .info p {
+    font-size: 15px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
 
-        .live-dot {
-            width: 12px;
-            height: 12px;
-            background-color: #000;
-            border-radius: 50%;
-        }
+  .label {
+    font-weight: bold;
+    color: #666;
+    display: inline-block;
+    width: 90px;
+  }
 
-        .content-section {
-            background-color: #e8e5e0;
-            border-radius: 0 0 20px 20px;
-            padding: 3rem;
-            margin-top: -20px;
-        }
+  .link {
+    color: #111;
+    text-decoration: none;
+    border-bottom: 1px solid #111;
+  }
 
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: #1a1a1a;
-            margin-bottom: 2rem;
-            letter-spacing: -1px;
-        }
+  .link:hover {
+    opacity: 0.7;
+  }
 
-        .info-grid {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 1.5rem;
-            color: #333;
-            font-size: 1.1rem;
-        }
-
-        .info-label {
-            color: #888;
-            font-weight: 400;
-        }
-
-        .info-value {
-            color: #1a1a1a;
-            font-weight: 400;
-        }
-
-        .expertise-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.3rem;
-        }
-
-        .website-link {
-            margin-top: 3rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #1a1a1a;
-            text-decoration: none;
-            font-size: 1.1rem;
-            border-bottom: 2px solid #1a1a1a;
-            padding-bottom: 0.2rem;
-            transition: opacity 0.3s;
-        }
-
-        .website-link:hover {
-            opacity: 0.7;
-        }
-
-        .arrow {
-            font-size: 1.2rem;
-        }
-
-        @media (max-width: 768px) {
-            nav {
-                padding: 1.5rem 2rem;
-            }
-
-            .nav-links {
-                gap: 1.5rem;
-            }
-
-            .nav-links a {
-                font-size: 1rem;
-            }
-
-            main {
-                padding: 0 2rem;
-            }
-
-            .hero-section {
-                height: 400px;
-                padding: 2rem;
-            }
-
-            .gradient-orb {
-                width: 350px;
-                height: 350px;
-            }
-
-            .content-section {
-                padding: 2rem;
-            }
-
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .info-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-        }
-    </style>
+  .website {
+    margin-top: 30px;
+  }
+</style>
 </head>
 <body>
-    <nav>
-        <div class="nav-links">
-            <a href="#index">Index</a>
-            <a href="#clients" class="clients">Clients</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </div>
-        <div class="globe-icon"></div>
-    </nav>
 
-    <main>
-        <section class="hero-section">
-            <div class="gradient-orb"></div>
-            <div class="live-badge">
-                <span class="live-dot"></span>
-                <span>Live</span>
-            </div>
-        </section>
+<div class="container">
+  <nav>
+    <div class="nav-links">
+      <a href="#">Index</a>
+      <a href="#">Clients</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="globe">🌐</div>
+  </nav>
 
-        <section class="content-section">
-            <h1>FATHER</h1>
-            
-            <div class="info-grid">
-                <div class="info-label">Sector:</div>
-                <div class="info-value">Music/Audio</div>
+  <div class="main">
+    <div class="gradient-circle"></div>
+    <div class="status">Live</div>
+  </div>
 
-                <div class="info-label">Year:</div>
-                <div class="info-value">2016-2025</div>
+  <div class="info">
+    <h2>FATHER</h2>
+    <p><span class="label">Sector:</span> Music/Audio</p>
+    <p><span class="label">Year:</span> 2016–2025</p>
+    <p><span class="label">Expertise:</span> Interaction Design<br>Front-End CMS Mobile<br>Back-End Video Dev</p>
+    <p><span class="label">Collab:</span> <a href="#" class="link">WDC →</a></p>
 
-                <div class="info-label">Expertise:</div>
-                <div class="info-value expertise-list">
-                    <div>Interaction Design</div>
-                    <div>Front-End CMS Mobile</div>
-                    <div>Back-End Video Dev</div>
-                </div>
+    <div class="website">
+      <a href="#" class="link">Website →</a>
+    </div>
+  </div>
+</div>
 
-                <div class="info-label">Collab:</div>
-                <div class="info-value">WDC <span class="arrow">→</span></div>
-            </div>
-
-            <a href="#" class="website-link">
-                Website <span class="arrow">→</span>
-            </a>
-        </section>
-    </main>
 </body>
 </html>
