@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FATHER - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #2a2a2a;
+            color: #fff;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 85px;
+            background-color: #2a2a2a;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 50px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 28px;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        .nav-links a.muted {
+            color: #666;
+        }
+
+        .globe-icon {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+
+        .globe-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: #fff;
+            stroke-width: 2;
+        }
+
+        .hero-section {
+            background: linear-gradient(180deg, #f5f5f0 0%, #e8e8e0 100%);
+            padding: 60px 85px 80px;
+            position: relative;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gradient-orb {
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 40% 40%, 
+                rgba(255, 100, 100, 0.8) 0%,
+                rgba(255, 120, 140, 0.9) 25%,
+                rgba(255, 80, 120, 0.85) 50%,
+                rgba(255, 100, 180, 0.8) 75%,
+                rgba(220, 100, 180, 0.6) 100%);
+            filter: blur(60px);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) scale(1);
+            }
+            50% {
+                transform: translateY(-20px) scale(1.05);
+            }
+        }
+
+        .live-badge {
+            position: absolute;
+            left: 85px;
+            bottom: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            color: #000;
+        }
+
+        .live-dot {
+            width: 12px;
+            height: 12px;
+            background-color: #000;
+            border-radius: 50%;
+        }
+
+        .content-section {
+            background-color: #fff;
+            color: #000;
+            padding: 80px 85px 120px;
+        }
+
+        h1 {
+            font-size: 72px;
+            font-weight: 900;
+            margin-bottom: 60px;
+            letter-spacing: -2px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 40px 60px;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .info-label {
+            color: #999;
+            font-weight: normal;
+        }
+
+        .info-value {
+            color: #000;
+            font-weight: normal;
+        }
+
+        .expertise-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .collab-link {
+            color: #000;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .collab-link:hover {
+            opacity: 0.7;
+        }
+
+        .website-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #000;
+            text-decoration: none;
+            font-size: 18px;
+            margin-top: 80px;
+            padding-bottom: 4px;
+            border-bottom: 2px solid #000;
+            transition: opacity 0.3s;
+        }
+
+        .website-link:hover {
+            opacity: 0.7;
+        }
+
+        .arrow {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#index">Index</a></li>
+            <li><a href="#clients" class="muted">Clients</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="globe-icon">
+            <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+        </div>
+    </nav>
+
+    <div class="hero-section">
+        <div class="gradient-orb"></div>
+        <div class="live-badge">
+            <span class="live-dot"></span>
+            <span>Live</span>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h1>FATHER</h1>
+        
+        <div class="info-grid">
+            <div class="info-label">Sector:</div>
+            <div class="info-value">Music/Audio</div>
+
+            <div class="info-label">Year:</div>
+            <div class="info-value">2016-2025</div>
+
+            <div class="info-label">Expertise:</div>
+            <div class="info-value">
+                <div class="expertise-list">
+                    <div>Interaction Design</div>
+                    <div>Front-End CMS Mobile</div>
+                    <div>Back-End Video Dev</div>
+                </div>
+            </div>
+
+            <div class="info-label">Collab:</div>
+            <div class="info-value">
+                <a href="#" class="collab-link">WDC <span class="arrow">→</span></a>
+            </div>
+        </div>
+
+        <a href="#" class="website-link">
+            Website <span class="arrow">→</span>
+        </a>
+    </div>
+</body>
+</html>
