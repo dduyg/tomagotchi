@@ -94,6 +94,9 @@
 	  background-size: 0 1px;
 	  background-position: 100% 96%;
 	}
+	svg.icon_arr {transform: translateX(-2px); transition: transform 0.15s ease-in-out; display: inline-block; width: 8px;}
+	svg.icon_arr path {fill: #fef5f4;}	
+    a:hover svg.icon_arr {transform: rotate(-45deg);}
   
     /* === Scroll Container === */  
     .scroll_container {  
@@ -178,22 +181,8 @@
 	i.pulse {
 	  opacity: 1;
 	  animation: pulseAnim 1s infinite;
-	}
-	/* Icon Arrow */
-	svg.icon_arr.darr {transform: rotate(90deg) translateX(0);}
-    svg.icon_arr.larr {transform: rotate(180deg) translateX(0);}
-	svg.icon_arr {
-		transform: translateX(-2px);
-        transition: transform 0.15s ease-in-out;
-        display: inline-block;
-        width: 8px;
-	}
-	svg.icon_arr path {fill: #fef5f4;}
-	/* Icon Arrow Hover States */
-    a:hover svg.icon_arr.rarr {transform: rotate(-45deg);}
-    a:hover svg.icon_arr.darr {transform: rotate(90deg) translateX(3px);}
-    a:hover svg.icon_arr.larr {transform: rotate(180deg) translateX(6px);}
-
+	}	
+	
     /* === Nav Indicator === */  
     nav {  
       position: fixed;  
@@ -229,7 +218,7 @@
 		  <div class="capsule"><i class="pulse">&#9679;</i> Live</div>
 		  <h2>The Natural Travel</h2> 
 	      <p>connected knowledge collectorsconnected knowledge collectors</p>	
-          <a href="#" class="web"><span>Python</span> <svg class="icon_arr rarr" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 460"><path class="b" d="m268.293,460l-35.868-35.604,160.689-164.489H0v-59.814h393.113L232.425,35.604,268.293,0l231.707,230-231.707,230Z"/></svg></a>
+          <a href="#" class="web"><span>Python</span> <svg class="icon_arr" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 460"><path class="b" d="m268.293,460l-35.868-35.604,160.689-164.489H0v-59.814h393.113L232.425,35.604,268.293,0l231.707,230-231.707,230Z"/></svg></a>
       </div>
     </section>  
     <section style="background-color:#61776B;">  
