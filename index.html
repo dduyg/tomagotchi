@@ -12,29 +12,35 @@
         }
 
         body {
-            font-family: 'Courier New', monospace;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background-color: #2a2a2a;
-            color: #fff;
+            color: #f5f5f5;
+            line-height: 1.6;
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 30px 85px;
-            background-color: #2a2a2a;
+            padding: 2rem 5rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: rgba(42, 42, 42, 0.95);
         }
 
         .nav-links {
             display: flex;
-            gap: 50px;
+            gap: 3rem;
             list-style: none;
         }
 
         .nav-links a {
-            color: #fff;
+            color: #f5f5f5;
             text-decoration: none;
-            font-size: 28px;
+            font-size: 1.2rem;
             transition: opacity 0.3s;
         }
 
@@ -42,70 +48,88 @@
             opacity: 0.7;
         }
 
-        .nav-links a.muted {
-            color: #666;
+        .nav-links .clients {
+            opacity: 0.4;
         }
 
         .globe-icon {
             width: 40px;
             height: 40px;
-            cursor: pointer;
-        }
-
-        .globe-icon svg {
-            width: 100%;
-            height: 100%;
-            fill: none;
-            stroke: #fff;
-            stroke-width: 2;
-        }
-
-        .hero-section {
-            background: linear-gradient(180deg, #f5f5f0 0%, #e8e8e0 100%);
-            padding: 60px 85px 80px;
-            position: relative;
-            min-height: 500px;
+            border: 2px solid #f5f5f5;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .globe-icon:hover {
+            opacity: 0.7;
+        }
+
+        .globe-icon::before {
+            content: '🌐';
+            font-size: 1.3rem;
+        }
+
+        main {
+            margin-top: 100px;
+            padding: 0 5rem;
+        }
+
+        .hero-section {
+            background-color: #e8e5e0;
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            height: 500px;
+            display: flex;
+            align-items: flex-end;
         }
 
         .gradient-orb {
-            width: 450px;
-            height: 450px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
             border-radius: 50%;
-            background: radial-gradient(circle at 40% 40%, 
+            background: radial-gradient(circle at 30% 30%, 
                 rgba(255, 100, 100, 0.8) 0%,
-                rgba(255, 120, 140, 0.9) 25%,
-                rgba(255, 80, 120, 0.85) 50%,
-                rgba(255, 100, 180, 0.8) 75%,
-                rgba(220, 100, 180, 0.6) 100%);
+                rgba(255, 120, 150, 0.7) 25%,
+                rgba(255, 150, 180, 0.6) 50%,
+                rgba(255, 180, 200, 0.4) 75%,
+                rgba(255, 200, 220, 0.1) 100%);
             filter: blur(60px);
-            animation: float 6s ease-in-out infinite;
+            animation: pulse 4s ease-in-out infinite;
         }
 
-        @keyframes float {
+        @keyframes pulse {
             0%, 100% {
-                transform: translateY(0px) scale(1);
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
             }
             50% {
-                transform: translateY(-20px) scale(1.05);
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 1;
             }
         }
 
         .live-badge {
-            position: absolute;
-            left: 85px;
-            bottom: 80px;
-            background: rgba(255, 255, 255, 0.9);
+            position: relative;
+            z-index: 10;
+            background-color: white;
             border: 2px solid #ddd;
             border-radius: 8px;
-            padding: 12px 24px;
-            display: flex;
+            padding: 0.5rem 1.5rem;
+            display: inline-flex;
             align-items: center;
-            gap: 10px;
-            font-size: 20px;
-            color: #000;
+            gap: 0.7rem;
+            font-size: 1.1rem;
+            color: #333;
         }
 
         .live-dot {
@@ -116,64 +140,54 @@
         }
 
         .content-section {
-            background-color: #fff;
-            color: #000;
-            padding: 80px 85px 120px;
+            background-color: #e8e5e0;
+            border-radius: 0 0 20px 20px;
+            padding: 3rem;
+            margin-top: -20px;
         }
 
         h1 {
-            font-size: 72px;
+            font-size: 3.5rem;
             font-weight: 900;
-            margin-bottom: 60px;
-            letter-spacing: -2px;
+            color: #1a1a1a;
+            margin-bottom: 2rem;
+            letter-spacing: -1px;
         }
 
         .info-grid {
             display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 40px 60px;
-            font-size: 18px;
-            line-height: 1.8;
+            grid-template-columns: 200px 1fr;
+            gap: 1.5rem;
+            color: #333;
+            font-size: 1.1rem;
         }
 
         .info-label {
-            color: #999;
-            font-weight: normal;
+            color: #888;
+            font-weight: 400;
         }
 
         .info-value {
-            color: #000;
-            font-weight: normal;
+            color: #1a1a1a;
+            font-weight: 400;
         }
 
         .expertise-list {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-        }
-
-        .collab-link {
-            color: #000;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .collab-link:hover {
-            opacity: 0.7;
+            gap: 0.3rem;
         }
 
         .website-link {
+            margin-top: 3rem;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            color: #000;
+            gap: 0.5rem;
+            color: #1a1a1a;
             text-decoration: none;
-            font-size: 18px;
-            margin-top: 80px;
-            padding-bottom: 4px;
-            border-bottom: 2px solid #000;
+            font-size: 1.1rem;
+            border-bottom: 2px solid #1a1a1a;
+            padding-bottom: 0.2rem;
             transition: opacity 0.3s;
         }
 
@@ -182,62 +196,96 @@
         }
 
         .arrow {
-            font-size: 20px;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.5rem 2rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+            }
+
+            main {
+                padding: 0 2rem;
+            }
+
+            .hero-section {
+                height: 400px;
+                padding: 2rem;
+            }
+
+            .gradient-orb {
+                width: 350px;
+                height: 350px;
+            }
+
+            .content-section {
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <nav>
-        <ul class="nav-links">
-            <li><a href="#index">Index</a></li>
-            <li><a href="#clients" class="muted">Clients</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="globe-icon">
-            <svg viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-            </svg>
+        <div class="nav-links">
+            <a href="#index">Index</a>
+            <a href="#clients" class="clients">Clients</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
         </div>
+        <div class="globe-icon"></div>
     </nav>
 
-    <div class="hero-section">
-        <div class="gradient-orb"></div>
-        <div class="live-badge">
-            <span class="live-dot"></span>
-            <span>Live</span>
-        </div>
-    </div>
+    <main>
+        <section class="hero-section">
+            <div class="gradient-orb"></div>
+            <div class="live-badge">
+                <span class="live-dot"></span>
+                <span>Live</span>
+            </div>
+        </section>
 
-    <div class="content-section">
-        <h1>FATHER</h1>
-        
-        <div class="info-grid">
-            <div class="info-label">Sector:</div>
-            <div class="info-value">Music/Audio</div>
+        <section class="content-section">
+            <h1>FATHER</h1>
+            
+            <div class="info-grid">
+                <div class="info-label">Sector:</div>
+                <div class="info-value">Music/Audio</div>
 
-            <div class="info-label">Year:</div>
-            <div class="info-value">2016-2025</div>
+                <div class="info-label">Year:</div>
+                <div class="info-value">2016-2025</div>
 
-            <div class="info-label">Expertise:</div>
-            <div class="info-value">
-                <div class="expertise-list">
+                <div class="info-label">Expertise:</div>
+                <div class="info-value expertise-list">
                     <div>Interaction Design</div>
                     <div>Front-End CMS Mobile</div>
                     <div>Back-End Video Dev</div>
                 </div>
+
+                <div class="info-label">Collab:</div>
+                <div class="info-value">WDC <span class="arrow">→</span></div>
             </div>
 
-            <div class="info-label">Collab:</div>
-            <div class="info-value">
-                <a href="#" class="collab-link">WDC <span class="arrow">→</span></a>
-            </div>
-        </div>
-
-        <a href="#" class="website-link">
-            Website <span class="arrow">→</span>
-        </a>
-    </div>
+            <a href="#" class="website-link">
+                Website <span class="arrow">→</span>
+            </a>
+        </section>
+    </main>
 </body>
 </html>
