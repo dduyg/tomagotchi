@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cyberpunk Project Dashboard</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Share+Tech+Mono&display=swap');
+
+    body {
+      background-color: #05010a;
+      color: #00ffff;
+      font-family: 'Share Tech Mono', monospace;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      text-shadow: 0 0 15px #00ffff;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 95%;
+      border-collapse: collapse;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+      background: rgba(10, 10, 25, 0.8);
+      border: 2px solid #00ffff;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px 18px;
+      text-align: left;
+      border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+    }
+
+    th {
+      font-family: 'Orbitron', sans-serif;
+      text-transform: uppercase;
+      color: #ff00ff;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      border-bottom: 2px solid #ff00ff;
+    }
+
+    tr:hover {
+      background: rgba(0, 255, 255, 0.1);
+      transition: 0.3s ease;
+    }
+
+    td {
+      font-size: 0.9rem;
+      color: #e0f7fa;
+    }
+
+    .difficulty {
+      text-align: center;
+      font-weight: bold;
+      color: #00ffff;
+    }
+
+    .client {
+      color: #ff00ff;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.8rem;
+      color: #555;
+      text-shadow: 0 0 8px #00ffff;
+    }
+
+    /* Neon border animation */
+    @keyframes neon-glow {
+      0% { box-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff; }
+      50% { box-shadow: 0 0 25px #00ffff, 0 0 40px #ff00ff; }
+      100% { box-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff; }
+    }
+
+    table:hover {
+      animation: neon-glow 2s infinite alternate;
+    }
+  </style>
+</head>
+<body>
+  <h1>CYBERPUNK DATA PROJECT DASHBOARD</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Project Title</th>
+        <th>Expertise & Tools</th>
+        <th>Difficulty</th>
+        <th>Client / Company</th>
+        <th>Concept Summary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>NeonPulse: Predictive Policing AI</td>
+        <td>Python, TensorFlow, Pandas, Flask, Plotly</td>
+        <td class="difficulty">8</td>
+        <td class="client">NovaSec Dynamics</td>
+        <td>Predicts urban crime patterns from surveillance and social data feeds.</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>ChromeSynth: AR Market Tracker</td>
+        <td>JavaScript, React, WebAR (A-Frame), Node.js, MongoDB</td>
+        <td class="difficulty">7</td>
+        <td class="client">Zenith OptiCorp</td>
+        <td>AR dashboard tracking crypto & black-market goods in real time.</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>DataGhost: Cyber Forensics Analyzer</td>
+        <td>Python, Scikit-learn, SQL, network traffic analysis, regex</td>
+        <td class="difficulty">9</td>
+        <td class="client">SpecterNet Security Bureau</td>
+        <td>Detects and visualizes digital intrusions in decentralized grids.</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>NoirGrid: Smart City Powerflow Optimizer</td>
+        <td>Python, PyTorch, D3.js, IoT simulation frameworks</td>
+        <td class="difficulty">8</td>
+        <td class="client">Arclight Energy Systems</td>
+        <td>Uses ML to optimize megacity energy flows and prevent overloads.</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>SynthVoice: AI Identity Cloaker</td>
+        <td>PyTorch, OpenAI Whisper, Flask, JavaScript</td>
+        <td class="difficulty">6</td>
+        <td class="client">EchoShadow Communications</td>
+        <td>AI voice modulator to anonymize operators across the dark grid.</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>NeuroLink: Emotion Recognition Network</td>
+        <td>Python, OpenCV, Keras, wearable sensor integration</td>
+        <td class="difficulty">7</td>
+        <td class="client">SynMind Interfaces</td>
+        <td>Detects human emotion from facial & brainwave patterns.</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>VoidLedger: Decentralized Data Vault</td>
+        <td>Solidity, Ethereum, Python, IPFS, cryptography</td>
+        <td class="difficulty">9</td>
+        <td class="client">Blackline Syndicate</td>
+        <td>Blockchain vault for encrypted corporate data trades.</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>HoloFeed: Immersive Data Stream Visualizer</td>
+        <td>Three.js, WebGL, Node.js, real-time APIs</td>
+        <td class="difficulty">7</td>
+        <td class="client">KairoTech Media</td>
+        <td>3D holographic visualization of global data streams.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer>© 2089 NeoGrid Systems — Cyberpunk Data Initiative</footer>
+</body>
+</html>
