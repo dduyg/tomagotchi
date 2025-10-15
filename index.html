@@ -1,215 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Father - Music/Audio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google Fonts: Source Code Pro and Inter for close screenshot match -->
-  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Inter:wght@700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FATHER — Music/Audio</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap');
+
     body {
       margin: 0;
-      background: #393932;
-      font-family: 'Source Code Pro', monospace;
-      color: #393932;
+      font-family: 'IBM Plex Mono', monospace;
+      background-color: #2b2b28;
+      color: #1a1a1a;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
     }
+
     .container {
-      max-width: 700px;
-      margin: 0 auto;
-      background: #f6f5ef;
-      border-radius: 20px;
-      margin-top: 32px;
-      margin-bottom: 32px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.03);
+      background-color: #f9f8f6;
+      border-radius: 12px;
+      overflow: hidden;
+      width: 380px;
+      margin: 40px 0;
     }
-    .navbar {
-      background: none;
-      color: #f6f5ef;
-      padding: 20px 0 0 0;
-      font-size: 2rem;
+
+    header {
+      background-color: #f9f8f6;
+      padding: 16px 20px;
+      border-radius: 12px 12px 0 0;
+    }
+
+    nav {
       display: flex;
       align-items: center;
-      gap: 2rem;
-      letter-spacing: 1px;
-      font-family: 'Source Code Pro', monospace;
+      justify-content: space-between;
+      background-color: #2b2b28;
+      color: #f0f0ef;
+      padding: 12px 18px;
+      font-size: 16px;
+      position: sticky;
+      top: 0;
+      border-radius: 12px 12px 0 0;
     }
-    .navbar {
-      margin-left: 24px;
-    }
-    .navbar a {
-      color: #f6f5ef;
+
+    nav a {
+      color: #e0e0de;
       text-decoration: none;
-      opacity: 0.85;
-      transition: opacity 0.15s;
+      margin-right: 18px;
+      transition: color 0.2s;
     }
-    .navbar a:hover {
-      opacity: 1;
+
+    nav a:hover {
+      color: white;
     }
-    .navbar .icon {
-      margin-left: auto;
-      margin-right: 24px;
-      font-size: 1.4em;
-      opacity: 0.8;
-      cursor: pointer;
-    }
-    .main-content {
-      padding: 36px 32px 0 32px;
+
+    nav .right {
       display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .globe {
+      font-size: 18px;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       flex-direction: column;
-      align-items: center;
+      padding: 40px 20px;
     }
-    .circle-img {
-      width: 80%;
-      max-width: 400px;
-      aspect-ratio: 1/1;
+
+    .blurred-circle {
+      width: 220px;
+      height: 220px;
       border-radius: 50%;
-      background: radial-gradient(ellipse 75% 75% at 50% 50%, #e85c36 65%, #d156b8 120%);
-      filter: blur(12px);
-      margin: 0 auto 32px auto;
-      display: block;
+      background: radial-gradient(circle at 30% 30%, #ff6347, #ff007f, #ffb6c1);
+      filter: blur(20px);
     }
-    .live-btn {
+
+    .live-badge {
+      margin-top: 20px;
+      border: 1px solid #c0c0c0;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 14px;
+      background-color: #f9f8f6;
       display: flex;
       align-items: center;
-      background: #f6f5ef;
-      border: 2px solid #ccc;
-      border-radius: 8px;
-      font-size: 1.3em;
-      padding: 8px 24px;
-      margin-bottom: 32px;
-      color: #393932;
-      font-family: 'Source Code Pro', monospace;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.03);
-      cursor: default;
-      letter-spacing: 1px;
+      gap: 6px;
     }
-    .live-btn span {
-      display: inline-block;
-      margin-right: 10px;
-      font-size: 1.5em;
-      vertical-align: middle;
+
+    .live-badge::before {
+      content: "•";
+      color: #000;
+      font-size: 16px;
     }
-    .info-section {
-      width: 100%;
-      border-top: 2px solid #ece9e1;
-      margin-top: 0px;
-      padding: 32px 0 32px 0;
-      font-size: 1.28em;
-      color: #393932;
-      font-family: 'Source Code Pro', monospace;
-      background: none;
+
+    .content {
+      padding: 24px 28px 40px;
     }
-    .info-section h1 {
-      font-family: 'Inter', sans-serif;
-      font-size: 2.1em;
-      margin: 0 0 16px 0;
+
+    .content h2 {
+      font-size: 22px;
       font-weight: 700;
-      letter-spacing: 1px;
+      margin-bottom: 20px;
     }
-    .label {
-      color: #b3b2a6;
-      font-weight: 400;
-      width: 120px;
+
+    .meta {
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .meta span {
       display: inline-block;
-      font-size: 1em;
-      letter-spacing: 1px;
+      min-width: 90px;
+      color: #7a7a7a;
     }
-    .value {
-      color: #393932;
-      font-weight: 400;
-      font-size: 1em;
-      display: inline-block;
-      margin-left: 16px;
-      letter-spacing: 1px;
+
+    .link {
+      margin-top: 24px;
+      font-size: 15px;
     }
-    .expertise-list {
-      margin-left: 136px;
-      margin-bottom: 0px;
-      margin-top: 0;
+
+    .link a {
+      color: #000;
+      text-decoration: none;
+      border-bottom: 1px solid #000;
+      transition: opacity 0.2s;
     }
-    .expertise-list div {
-      margin-bottom: 3px;
-    }
-    .collab {
-      margin-left: 136px;
-    }
-    .website-link {
-      margin-top: 36px;
-      font-size: 1.12em;
-      color: #393932;
-      text-decoration: underline;
-      display: inline-block;
-      letter-spacing: 1px;
-    }
-    .website-link:after {
-      content: ' →';
-      font-size: 1.1em;
-      margin-left: 3px;
-    }
-    @media (max-width: 600px) {
-      .container {
-        margin: 0;
-        border-radius: 0;
-        width: 100vw;
-        min-width: 0;
-      }
-      .main-content, .info-section {
-        padding-left: 12px;
-        padding-right: 12px;
-      }
-      .navbar {
-        font-size: 1.2em;
-        margin-left: 10px;
-      }
-      .navbar .icon {
-        margin-right: 10px;
-      }
-      .circle-img {
-        max-width: 240px;
-      }
-      .info-section {
-        font-size: 1em;
-        padding: 20px 0 20px 0;
-      }
+
+    .link a:hover {
+      opacity: 0.6;
     }
   </style>
 </head>
 <body>
-  <nav class="navbar">
-    <a href="#">Index</a>
-    <a href="#">Clients</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
-    <span class="icon" title="Language/Globe">&#127760;</span>
-  </nav>
   <div class="container">
-    <div class="main-content">
-      <div class="circle-img"></div>
-      <div class="live-btn"><span>&bull;</span> Live</div>
+    <nav>
+      <div>
+        <a href="#">Index</a>
+        <a href="#">Clients</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="right">
+        <span class="globe">🌐</span>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <div class="blurred-circle"></div>
+      <div class="live-badge">Live</div>
     </div>
-    <div class="info-section">
-      <h1>FATHER</h1>
-      <div>
-        <span class="label">Sector:</span>
-        <span class="value">Music/Audio</span>
+
+    <div class="content">
+      <h2>FATHER</h2>
+      <div class="meta">
+        <div><span>Sector:</span> Music/Audio</div>
+        <div><span>Year:</span> 2016–2025</div>
+        <div><span>Expertise:</span> Interaction Design<br>Front-End CMS Mobile<br>Back-End Video Dev</div>
+        <div><span>Collab:</span> WDC →</div>
       </div>
-      <div>
-        <span class="label">Year:</span>
-        <span class="value">2016–2025</span>
+      <div class="link">
+        <a href="#">Website →</a>
       </div>
-      <div>
-        <span class="label">Expertise:</span>
-      </div>
-      <div class="expertise-list">
-        <div>Interaction Design</div>
-        <div>Front-End CMS Mobile</div>
-        <div>Back-End Video Dev</div>
-      </div>
-      <div>
-        <span class="label">Collab:</span>
-        <span class="collab">WDC &rarr;</span>
-      </div>
-      <a class="website-link" href="#">Website</a>
     </div>
   </div>
 </body>
