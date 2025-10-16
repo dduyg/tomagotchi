@@ -78,26 +78,36 @@
       cursor: pointer;
 	  color: #fef5f4;
 	  text-decoration: none;
-	  transition: color 0.15s ease;
+      transition: color 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px; /* space between text&arrow */
 	}
 	a:hover, a:active, a:focus {color: rgba(255, 255, 255, 0.5);}
 	a > span {
 	  display: inline;
-	  padding-bottom: 4px;
-	  background-size: 100% 1px;
+      padding-bottom: 4px;
+      background-size: 100% 1px;
       background-position: 0 96%;
-	  background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6));
-	  background-repeat: no-repeat;
-	  transition: background-size 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+      background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6));
+      background-repeat: no-repeat;
+      transition: background-size 0.7s cubic-bezier(0.19, 1, 0.22, 1);
 	}
 	a:hover > span {
-	  background-size: 0 1px;
-	  background-position: 100% 96%;
+      background-size: 0 1px;
+      background-position: 100% 96%;
 	}
-	svg.arrow {transform: translateX(-2px); transition: transform 0.15s ease-in-out; display: inline-block; width: 8px;}
-	svg.arrow path {fill: #fef5f4;}	
-    a:hover svg.arrow {transform: rotate(-45deg);}
-  
+	a::after {
+	  content: '';
+      display: inline-block;
+      width: 8px; height: 8px;
+      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 460'><path fill='%23fef5f4' d='m268.293,460l-35.868-35.604,160.689-164.489H0v-59.814h393.113L232.425,35.604,268.293,0l231.707,230-231.707,230Z'/></svg>") no-repeat center;
+      background-size: contain;
+      transform: translateX(-2px);
+      transition: transform 0.15s ease-in-out;
+	}
+	a:hover::after {transform: rotate(-45deg);}
+
     /* === Scroll Container === */  
     .scroll_container {  
       position: fixed;  
@@ -219,8 +229,8 @@
 	      <p class="info"><span class="label">Expertise:</span><span class="value">Python, Scikit-learn, SQL, network traffic analysis, regex</span></p>	
           <p class="info"><span class="label">Level:</span><span class="value">9/10</span></p>
 		  <p class="info"><span class="label">Concept:</span><span class="value">Detects and visualizes digital intrusions across decentralized data grids.</span></p>
-		  
-		  <a href="#"><span>Python</span> <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 460"><path class="b" d="m268.293,460l-35.868-35.604,160.689-164.489H0v-59.814h393.113L232.425,35.604,268.293,0l231.707,230-231.707,230Z"/></svg></a>
+
+		  <a href="#"><span>Python</span></a>
       </div>
     </section>  
     <section style="background-color:#61776B;">  
