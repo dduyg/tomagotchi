@@ -32,18 +32,31 @@
       padding: 16px 24px;
       font-size: 15px;
     }
-    .nav-links {
+    .links {
       display: flex;
       gap: 24px;
     }
-    .nav-links a {
+    .links a {
       color: inherit;
-      display: inline-block;
-    }
-    .nav-links a:hover {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 40px;
       text-decoration: none;
-      opacity: 0.7;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      opacity: 0.9;      
     }
+    .links a:hover {           
+      opacity: 1;
+      transform: translateX(4px);
+    }      
+    .links a::after {           
+      content: "○";
+      font-size: 20px;
+      transition: transform 0.3s ease;     
+    }
+    .links a:hover::after {transform: translateX(4px);}
     .nav-icon {
       font-size: 20px;
     }
@@ -109,7 +122,7 @@
 <body>
   <div class="container">
     <nav>
-      <div class="nav-links">
+      <div class="links">
         <a href="#">Index</a>
         <a href="#">Clients</a>
         <a href="#">About</a>
