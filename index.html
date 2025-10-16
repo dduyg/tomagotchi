@@ -1,96 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LiminalLoop</title>
-<style>
-  :root {
-    --bg-dark: #2e2e2b;
-    --text-main: #111;
-    --text-secondary: #555;
-    --white: #f5f5f2;
-    --accent: #111;
-    --font-main: "IBM Plex Mono", monospace;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FATHER — Music/Audio</title>
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      font-family: 'Courier New', monospace;
+      background-color: #2d2d2b;
+      color: #111;
+      display: flex;
+      justify-content: center;
+      padding: 40px 0;
+    }
 
-  body {
-    margin: 0;
-    font-family: var(--font-main);
-    background-color: var(--bg-dark);
-    color: var(--text-main);
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
-  }
+    /* Container */
+    .container {
+      background-color: #f8f7f4;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 600px;
+      overflow: hidden;
+    }
 
-  .container {
-    max-width: 480px;
-    width: 100%;
-    background: var(--white);
-    border-radius: 14px;
-    padding: 30px 24px 50px;
-  }
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #2d2d2b;
+      color: #f5f5f5;
+      padding: 16px 24px;
+      font-size: 18px;
+    }
 
-  .info-row {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 12px;
-  }
+    .nav-links {
+      display: flex;
+      gap: 24px;
+    }
 
-  .info-label {
-    color: var(--text-secondary);
-    width: 90px;
-  }
+    .nav-links a {
+      color: #f5f5f5;
+      text-decoration: none;
+    }
 
-  .info-value {
-    flex: 1;
-  }
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
 
-  .info-value a {
-    color: inherit;
-    text-decoration: none;
-  }
+    .nav-icon {
+      font-size: 20px;
+    }
 
-  .footer-link {
-    display: inline-block;
-    margin-top: 30px;
-    text-decoration: none;
-    color: var(--accent);
-    font-weight: 500;
-  }
+    /* Hero Section */
+    .hero {
+      background-color: #f8f7f4;
+      text-align: center;
+      padding: 50px 0;
+      position: relative;
+    }
 
-  .footer-link:hover {
-    text-decoration: underline;
-  }
-</style>
+    .gradient-circle {
+      width: 250px;
+      height: 250px;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, #ff3d2e, #d02da7, #a445f5);
+      filter: blur(15px);
+    }
+
+    .live-btn {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 6px 14px;
+      border: 1px solid #999;
+      border-radius: 6px;
+      background: transparent;
+      color: #333;
+      font-size: 15px;
+    }
+
+    .live-btn::before {
+      content: "• ";
+      color: black;
+    }
+
+    /* Info Section */
+    .info {
+      background-color: #f8f7f4;
+      padding: 32px;
+    }
+
+    .info h2 {
+      font-size: 24px;
+      font-weight: 900;
+      margin: 0 0 20px 0;
+    }
+
+    .info p {
+      margin: 6px 0;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .label {
+      width: 100px;
+      display: inline-block;
+      color: #777;
+    }
+
+    .link {
+      display: inline-block;
+      margin-top: 16px;
+      color: #000;
+      text-decoration: none;
+      border-bottom: 1px solid #000;
+    }
+
+    .link:hover {
+      opacity: 0.7;
+    }
+  </style>
 </head>
 <body>
-
-<div class="container">
-    <div class="info-row">
-      <div class="info-label">Sector:</div>
-      <div class="info-value">Music/Audio</div>
-    </div>
-    <div class="info-row">
-      <div class="info-label">Year:</div>
-      <div class="info-value">2016–2025</div>
-    </div>
-    <div class="info-row">
-      <div class="info-label">Expertise:</div>
-      <div class="info-value">
-        Interaction Design<br>
-        Front-End CMS Mobile<br>
-        Back-End Video Dev
+  <div class="container">
+    <!-- Navbar -->
+    <nav>
+      <div class="nav-links">
+        <a href="#">Index</a>
+        <a href="#">Clients</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
       </div>
-    </div>
-    <div class="info-row">
-      <div class="info-label">Collab:</div>
-      <div class="info-value"><a href="#">WDC →</a></div>
+      <div class="nav-icon">🌐</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+      <div class="gradient-circle"></div>
+      <div><button class="live-btn">Live</button></div>
     </div>
 
-    <a href="#" class="footer-link">Website →</a>
-</div>
-
+    <!-- Info Section -->
+    <div class="info">
+      <h2>FATHER</h2>
+      <p><span class="label">Sector:</span> Music/Audio</p>
+      <p><span class="label">Year:</span> 2016–2025</p>
+      <p><span class="label">Expertise:</span> Interaction Design<br>
+      <span class="label"></span> Front-End CMS Mobile<br>
+      <span class="label"></span> Back-End Video Dev</p>
+      <p><span class="label">Collab:</span> WDC →</p>
+      <a class="link" href="#">Website →</a>
+    </div>
+  </div>
 </body>
 </html>
