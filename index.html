@@ -1,210 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiminalLoop</title>
-    <link href="https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital@0;1&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: "Google Sans Code", monospace;
-            background: linear-gradient(180deg, #f5f5f0 0%, #e8e8e0 100%);
-            min-height: 100vh;
-            padding: 40px 20px;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-    
-        .card {
-            background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 100%);
-            border-radius: 20px;
-            overflow: hidden;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-        }
-        .card-image {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            position: relative;
-        }
-        .image-container {
-            position: relative;
-            overflow: hidden;
-        }
-        .content {
-            padding: 30px;
-            background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 100%);
-        }
-        .card:nth-of-type(2),
-        .content:nth-of-type(2) {
-            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);         
-        }
-        h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiminalLoop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sixtyfour&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "Google Sans Code", monospace;
+      background: linear-gradient(180deg, #f5f5f0 0%, #e8e8e0 100%);
+      min-height: 100vh;
+      padding: 40px 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+    /* 🌕 Floating gradient orb behind content */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 40% 40%, 
+          rgba(255, 100, 100, 0.8) 0%,
+          rgba(255, 120, 140, 0.9) 25%,
+          rgba(255, 80, 120, 0.85) 50%,
+          rgba(255, 100, 180, 0.8) 75%,
+          rgba(220, 100, 180, 0.6) 100%);
+      filter: blur(60px);
+      transform: translate(-50%, -50%);
+      animation: float 6s ease-in-out infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
 
-        .info {
-            display: flex;
-            margin-bottom: 12px;
-            font-size: 14px;
-        }
-        .label {
-            min-width: 120px;
-        }
-        .expertise-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+    @keyframes float {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, calc(-50% - 20px)) scale(1.05); }
+    }
 
-        .link {
-            color: inherit;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            transition: opacity 0.3s ease;
-        }
-        .link:hover {opacity: 0.7;}
-        .link::after {
-            content: '→';
-            margin-left: 8px;
-        }       
-        footer {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            font-size: 0.7rem;
-            font-family: "Sixtyfour", sans-serif;
-            text-transform: uppercase;
-            opacity: 0.3;
-        }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
 
-        @media (max-width: 768px) {
-            .card-image {height: 250px;}
-            .content {padding: 20px;}     
-            h2 {font-size: 22px;}
-        }
-    </style>
+    .card {
+      background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 100%);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-image {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      position: relative;
+    }
+
+    .image-container {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content {
+      padding: 30px;
+      background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 100%);
+    }
+
+    .card:nth-of-type(2),
+    .content:nth-of-type(2) {
+      background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .info {
+      display: flex;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+
+    .label {
+      min-width: 120px;
+    }
+
+    .expertise-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .link {
+      color: inherit;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      transition: opacity 0.3s ease;
+    }
+
+    .link:hover {opacity: 0.7;}
+
+    .link::after {
+      content: '→';
+      margin-left: 8px;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      font-size: 0.7rem;
+      font-family: "Sixtyfour", sans-serif;
+      text-transform: uppercase;
+      opacity: 0.3;
+      z-index: 2;
+    }
+
+    @media (max-width: 768px) {
+      .card-image {height: 250px;}
+      .content {padding: 20px;}
+      h2 {font-size: 22px;}
+    }
+  </style>
 </head>
-<body>     
-<div class="container">
-        <main>
-            <!-- Project 1 -->
-            <div class="card">
-                <div class="image-container">
-                    <svg class="card-image" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-                        <defs>
-                            <linearGradient id="racing-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
-                                <stop offset="50%" style="stop-color:#2d2d2d;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <rect width="800" height="400" fill="url(#racing-bg)"/>
-                        <!-- Racing stripes -->
-                        <path d="M 0 100 L 800 250" stroke="#ff4444" stroke-width="40" opacity="0.6"/>
-                        <path d="M 0 150 L 800 300" stroke="#ff6633" stroke-width="30" opacity="0.5"/>
-                        <path d="M 0 200 L 800 350" stroke="#333" stroke-width="60" opacity="0.7"/>
-                        <path d="M 0 50 L 800 200" stroke="#666" stroke-width="50" opacity="0.4"/>
-                        <!-- Racing car silhouette -->
-                        <g transform="translate(550, 310)">
-                            <rect x="0" y="0" width="80" height="30" fill="#cc0000" rx="5"/>
-                            <rect x="10" y="5" width="25" height="20" fill="#1a1a1a" rx="3"/>
-                            <rect x="50" y="5" width="25" height="20" fill="#1a1a1a" rx="3"/>
-                            <circle cx="20" cy="32" r="8" fill="#1a1a1a"/>
-                            <circle cx="65" cy="32" r="8" fill="#1a1a1a"/>
-                        </g>
-                    </svg>
-                </div>
-                <div class="content">
-                    <h2>Artificial wealth in pixel form</h2>
-                    <div class="info">
-                        <span class="label">Mood:</span>
-                        <span>Ironic / Opulent</span>
-                    </div>
-                    <div class="info">
-                        <span class="label">Imagery:</span>
-                        <span>Luxury Simulator</span>
-                    </div>
-                    <div class="info">
-                        <span class="label">Sound Palette:</span>
-                        <span>sampled elevator music, eye pads</span>
-                    </div>
-                    <div class="info">
-                        <span class="label">VHS Noise Level:</span>
-                        <span><a href="#" class="link">0.19</a></span>
-                    </div>
-                </div>
-            </div>
+<body>
+  <div class="container">
+    <main>
+      <!-- Project 1 -->
+      <div class="card">
+        <div class="image-container">
+          <svg class="card-image" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="racing-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#2d2d2d;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <rect width="800" height="400" fill="url(#racing-bg)"/>
+            <path d="M 0 100 L 800 250" stroke="#ff4444" stroke-width="40" opacity="0.6"/>
+            <path d="M 0 150 L 800 300" stroke="#ff6633" stroke-width="30" opacity="0.5"/>
+            <path d="M 0 200 L 800 350" stroke="#333" stroke-width="60" opacity="0.7"/>
+            <path d="M 0 50 L 800 200" stroke="#666" stroke-width="50" opacity="0.4"/>
+            <g transform="translate(550, 310)">
+              <rect x="0" y="0" width="80" height="30" fill="#cc0000" rx="5"/>
+              <rect x="10" y="5" width="25" height="20" fill="#1a1a1a" rx="3"/>
+              <rect x="50" y="5" width="25" height="20" fill="#1a1a1a" rx="3"/>
+              <circle cx="20" cy="32" r="8" fill="#1a1a1a"/>
+              <circle cx="65" cy="32" r="8" fill="#1a1a1a"/>
+            </g>
+          </svg>
+        </div>
+        <div class="content">
+          <h2>Artificial wealth in pixel form</h2>
+          <div class="info"><span class="label">Mood:</span><span>Ironic / Opulent</span></div>
+          <div class="info"><span class="label">Imagery:</span><span>Luxury Simulator</span></div>
+          <div class="info"><span class="label">Sound Palette:</span><span>sampled elevator music, eye pads</span></div>
+          <div class="info"><span class="label">VHS Noise Level:</span><span><a href="#" class="link">0.19</a></span></div>
+        </div>
+      </div>
 
-            <div class="card">
-                <div class="image-container">
-                    <svg class="card-image" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-                        <defs>
-                            <linearGradient id="pool-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" style="stop-color:#5eb5bc;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#3a8a8f;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <rect width="800" height="400" fill="url(#pool-gradient)"/>
-                        <!-- Pool water -->
-                        <ellipse cx="400" cy="300" rx="350" ry="80" fill="#2d7a80" opacity="0.6"/>
-                        <rect x="50" y="280" width="700" height="120" fill="#2d7a80" opacity="0.5"/>
-                        <!-- Palm trees -->
-                        <g transform="translate(100, 150)">
-                            <rect x="8" y="50" width="4" height="100" fill="#4a3425"/>
-                            <ellipse cx="10" cy="45" rx="20" ry="30" fill="#2d5f3f"/>
-                            <ellipse cx="10" cy="35" rx="25" ry="25" fill="#3a7550"/>
-                        </g>
-                        <g transform="translate(200, 130)">
-                            <rect x="8" y="50" width="4" height="120" fill="#4a3425"/>
-                            <ellipse cx="10" cy="40" rx="22" ry="35" fill="#2d5f3f"/>
-                            <ellipse cx="10" cy="30" rx="28" ry="28" fill="#3a7550"/>
-                        </g>
-                        <g transform="translate(650, 140)">
-                            <rect x="8" y="50" width="4" height="110" fill="#4a3425"/>
-                            <ellipse cx="10" cy="42" rx="21" ry="32" fill="#2d5f3f"/>
-                            <ellipse cx="10" cy="32" rx="26" ry="26" fill="#3a7550"/>
-                        </g>
-                        <!-- Pool loungers -->
-                        <rect x="150" y="320" width="60" height="30" fill="#8b4513" opacity="0.7" rx="3"/>
-                        <rect x="250" y="325" width="60" height="30" fill="#8b4513" opacity="0.7" rx="3"/>
-                        <rect x="500" y="320" width="60" height="30" fill="#8b4513" opacity="0.7" rx="3"/>
-                    </svg>
-                </div>
-                <div class="content">
-                    <h2>Late-night phone call from the past</h2>
-                    <div class="info">
-                        <span class="label">Mood:</span>
-                        <span>Retro / Energetic</span>
-                    </div>
-                    <div class="info">
-                        <span class="label">Imagery:</span>
-                        <span>199X Hotline</span>
-                    </div>
-                    <div class="info">
-                        <span class="label">Sound Palette:</span>
-                        <span>fm synth leads, gated snares</span>
-                    </div>
-                    <div class="info">
-                        <span class="label">VHS Noise Level:</span>
-                        <span><a href="#" class="link">0.25</a></span>
-                    </div>
-                </div>
-            </div>
-        </main>
-</div>
-<footer>Visual Creator Gallery</footer>
+      <!-- Project 2 -->
+      <div class="card">
+        <div class="image-container">
+          <svg class="card-image" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="pool-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#5eb5bc;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#3a8a8f;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <rect width="800" height="400" fill="url(#pool-gradient)"/>
+            <ellipse cx="400" cy="300" rx="350" ry="80" fill="#2d7a80" opacity="0.6"/>
+            <rect x="50" y="280" width="700" height="120" fill="#2d7a80" opacity="0.5"/>
+            <g transform="translate(100, 150)">
+              <rect x="8" y="50" width="4" height="100" fill="#4a3425"/>
+              <ellipse cx="10" cy="45" rx="20" ry="30" fill="#2d5f3f"/>
+              <ellipse cx="10" cy="35" rx="25" ry="25" fill="#3a7550"/>
+            </g>
+            <g transform="translate(200, 130)">
+              <rect x="8" y="50" width="4" height="120" fill="#4a3425"/>
+              <ellipse cx="10" cy="40" rx="22" ry="35" fill="#2d5f3f"/>
+              <ellipse cx="10" cy="30" rx="28" ry="28" fill="#3a7550"/>
+            </g>
+            <g transform="translate(650, 140)">
+              <rect x="8" y="50" width="4" height="110" fill="#4a3425"/>
+              <ellipse cx="10" cy="42" rx="21" ry="32" fill="#2d5f3f"/>
+              <ellipse cx="10" cy="32" rx="26" ry="26" fill="#3a7550"/>
+            </g>
+            <rect x="150" y="320" width="60" height="30" fill="#8b4513" opacity="0.7" rx="3"/>
+            <rect x="250" y="325" width="60" height="30" fill="#8b4513" opacity="0.7" rx="3"/>
+            <rect x="500" y="320" width="60" height="30" fill="#8b4513" opacity="0.7" rx="3"/>
+          </svg>
+        </div>
+        <div class="content">
+          <h2>Late-night phone call from the past</h2>
+          <div class="info"><span class="label">Mood:</span><span>Retro / Energetic</span></div>
+          <div class="info"><span class="label">Imagery:</span><span>199X Hotline</span></div>
+          <div class="info"><span class="label">Sound Palette:</span><span>fm synth leads, gated snares</span></div>
+          <div class="info"><span class="label">VHS Noise Level:</span><span><a href="#" class="link">0.25</a></span></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer>Visual Creator Gallery</footer>
 </body>
 </html>
