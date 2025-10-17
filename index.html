@@ -1,282 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liminal Loop</title>
-    <link href="https://fonts.googleapis.com/css2?family=Niconne&display=swap" rel="stylesheet">
-    <style>
-        * {box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent;}
-        @font-face {
-            font-family: 'Lucida Console';
-            src: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/Lucida-Console-Regular.woff2') format('woff2');
-            font-weight: normal;
-            font-style: normal;
-        }
-        body {
-            margin: 0; padding: 0;
-            font-family: 'Lucida Console', monospace;
-            background-color: #ffcc00;
-            color: #6f05a5;
-            line-height: 1.4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        
-        body.theme-tranquility {
-            background-color: #1a1a2e;
-            color: #ff0;
-        }
-        
-        body.theme-mermaid {
-            background-color: #b131fa;
-            color: #1c3aff;
-        }
-            
-        header {
-            position: fixed;
-            top: 2%;
-            width: 100%;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 4%;
-            user-select: none;
-        }
-        nav {display: flex; align-items: center; gap: 30px;}
-        nav a {
-            color: inherit;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 24px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            opacity: 0.8;
-            cursor: pointer;
-        }
-        nav a:last-child {font-size: 28px;}
-        nav a:hover {transform: scale(1.2); opacity: 1;}
-        
-        body.theme-tranquility nav a:hover {
-            color: #ddd;
-        }
-        
-        .badge {height: 50px; width: auto; display: block;}
-            
-        main {
-            padding: 1.25em;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            max-width: 800px;
-        }
-        h1, h2 {
-            font-family: "Niconne", serif;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            text-align: center;
-        }
-        section {
-            max-height: 55vh;
-            overflow-y: auto;
-            margin-top: 20px;
-            padding: 0.625em;
-            background-color: rgba(0, 0, 0, 0.4);
-            border-radius: 0.625em;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        
-        body.theme-tranquility section {
-            background-color: #27293d;
-            color: #ddd;
-        }
-        
-        body.theme-mermaid section {
-            background-color: rgba(0, 0, 0, 0.1);
-        }
-        
-        ul {list-style-type: "➽ ";}
-        
-        body.theme-mermaid ul {
-            list-style-type: "▣ ";
-        }
-        
-        li {margin-bottom: 10px;}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mermaid Memories // Neon Tides</title>
+<style>
+    /* General body styling */
+    body {
+        font-family: 'Courier New', monospace;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4, #a1c4fd);
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+    }
 
-        /* Custom scrollbar - Default (webscapes) */
-        section::-webkit-scrollbar {width: 1.3em;}
-        section::-webkit-scrollbar-track {background: transparent;}
-        section::-webkit-scrollbar-thumb,
-        section::-webkit-scrollbar-thumb:hover {
-            background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M20 14.25C21.2426 14.25 22.25 13.2426 22.25 12C22.25 10.7574 21.2426 9.75 20 9.75C18.7574 9.75 17.75 10.7574 17.75 12C17.75 13.2426 18.7574 14.25 20 14.25Z" fill="%23FFCC00"%3E%3C/path%3E%3Cpath d="M20 6.25C21.2426 6.25 22.25 5.24264 22.25 4C22.25 2.75736 21.2426 1.75 20 1.75C18.7574 1.75 17.75 2.75736 17.75 4C17.75 5.24264 18.7574 6.25 20 6.25Z" fill="%23FFCC00"%3E%3C/path%3E%3Cpath d="M20 22.25C21.2426 22.25 22.25 21.2426 22.25 20C22.25 18.7574 21.2426 17.75 20 17.75C18.7574 17.75 17.75 18.7574 17.75 20C17.75 21.2426 18.7574 22.25 20 22.25Z" fill="%23FFCC00"%3E%3C/path%3E%3Cpath d="M4 14.25C5.24264 14.25 6.25 13.2426 6.25 12C6.25 10.7574 5.24264 9.75 4 9.75C2.75736 9.75 1.75 10.7574 1.75 12C1.75 13.2426 2.75736 14.25 4 14.25Z" fill="%23FFCC00"%3E%3C/path%3E%3Cpath d="M19 12.75C19.41 12.75 19.75 12.41 19.75 12C19.75 11.59 19.41 11.25 19 11.25H11.75V7C11.75 5.42 12.42 4.75 14 4.75H19C19.41 4.75 19.75 4.41 19.75 4C19.75 3.59 19.41 3.25 19 3.25H14C11.58 3.25 10.25 4.58 10.25 7V11.25H5C4.59 11.25 4.25 11.59 4.25 12C4.25 12.41 4.59 12.75 5 12.75H10.25V17C10.25 19.42 11.58 20.75 14 20.75H19C19.41 20.75 19.75 20.41 19.75 20C19.75 19.59 19.41 19.25 19 19.25H14C12.42 19.25 11.75 18.58 11.75 17V12.75H19Z" fill="%23FFCC00"%3E%3C/path%3E%3C/svg%3E');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center center;
-        }
-        
-        /* Tranquility scrollbar */
-        body.theme-tranquility section::-webkit-scrollbar-thumb,
-        body.theme-tranquility section::-webkit-scrollbar-thumb:hover {
-            background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="%23ff0"%3E%3Cpath d="M8 20h16v4h-4v4h-8v-4h-4v-4zM20 8v-4h-8v4h-4v4h16v-4h-4z"/%3E%3C/svg%3E');
-        }
-        
-        /* Mermaid scrollbar */
-        body.theme-mermaid section::-webkit-scrollbar-thumb,
-        body.theme-mermaid section::-webkit-scrollbar-thumb:hover {
-            background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M159.375 30.72v94.186l205.25-51.062V30.72h-205.25zm-45.125.06v448.47h27.78V30.78h-27.78zm266.53 0v448.47h27.783V30.78H380.78zm-16.155 61.25l-205.25 51.064v45.062l205.25-51.656V92.03zm-205.25 279.69v45.217h67.72c3.82-17.578 18.53-30.687 36.093-30.687 17.56 0 32.24 13.11 36.062 30.688h65.375v-44.22l-205.25-1zm0 62.874v43.875h205.25v-43.876h-65.25c-3.668 17.8-18.48 31.125-36.188 31.125-17.708 0-32.52-13.326-36.187-31.126h-67.625z" fill="%231c3aff"%3E%3C/path%3E%3C/svg%3E');
-        }
-        
-        @-moz-document url-prefix() { /* Firefox scrollbar */
-            section {scrollbar-color: transparent transparent; scrollbar-width: thin;}
-            section::-webkit-scrollbar-thumb {
-                background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M20 14.25C21.2426 14.25 22.25 13.2426 22.25 12C22.25 10.7574 21.2426 9.75 20 9.75C18.7574 9.75 17.75 10.7574 17.75 12C17.75 13.2426 18.7574 14.25 20 14.25Z" fill="%23FFCC00"%3E%3C/path%3E%3Cpath d="M20 6.25C21.2426 6.25 22.25 5.24264 22.25 4C22.25 2.75736 21.2426 1.75 20 1.75C18.7574 1.75 17.75 2.75736 17.75 4C17.75 5.24264 18.7574 6.25 20 6.25Z" fill="%23FFCC00"%3E%3C/path%3E%3Cpath d="M20 22.25C21.2426 22.25 22.25 21.2426 22.25 20C22.25 18.7574 21.2426 17.75 20 17.75C18.7574 17.75 17.75 18.7574 17.75 20C17.75 21.2426 18.7574 22.25 20 22.25Z" fill="%23FFCC00"%3E%3C/path%3E%3Cpath d="M4 14.25C5.24264 14.25 6.25 13.2426 6.25 12C6.25 10.7574 5.24264 9.75 4 9.75C2.75736 9.75 1.75 10.7574 1.75 12C1.75 13.2426 2.75736 14.25 4 14.25Z" fill="%23FFCC00"%3E%3C/path%3E%3Cpath d="M19 12.75C19.41 12.75 19.75 12.41 19.75 12C19.75 11.59 19.41 11.25 19 11.25H11.75V7C11.75 5.42 12.42 4.75 14 4.75H19C19.41 4.75 19.75 4.41 19.75 4C19.75 3.59 19.41 3.25 19 3.25H14C11.58 3.25 10.25 4.58 10.25 7V11.25H5C4.59 11.25 4.25 11.59 4.25 12C4.25 12.41 4.59 12.75 5 12.75H10.25V17C10.25 19.42 11.58 20.75 14 20.75H19C19.41 20.75 19.75 20.41 19.75 20C19.75 19.59 19.41 19.25 19 19.25H14C12.42 19.25 11.75 18.58 11.75 17V12.75H19Z" fill="%23FFCC00"%3E%3C/path%3E%3C/svg%3E');
-                background-size: contain;
-                background-repeat: no-repeat;
-                background-position: center center;
-            }
-            
-            body.theme-tranquility section::-webkit-scrollbar-thumb {
-                background-image: url('data:image/svg+xml;charset=utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="%23ff0"%3E%3Cpath d="M8 20h16v4h-4v4h-8v-4h-4v-4zM20 8v-4h-8v4h-4v4h16v-4h-4z"/%3E%3C/svg%3E');
-            }
-            
-            body.theme-mermaid section::-webkit-scrollbar-thumb {
-                background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M159.375 30.72v94.186l205.25-51.062V30.72h-205.25zm-45.125.06v448.47h27.78V30.78h-27.78zm266.53 0v448.47h27.783V30.78H380.78zm-16.155 61.25l-205.25 51.064v45.062l205.25-51.656V92.03zm-205.25 279.69v45.217h67.72c3.82-17.578 18.53-30.687 36.093-30.687 17.56 0 32.24 13.11 36.062 30.688h65.375v-44.22l-205.25-1zm0 62.874v43.875h205.25v-43.876h-65.25c-3.668 17.8-18.48 31.125-36.188 31.125-17.708 0-32.52-13.326-36.187-31.126h-67.625z" fill="%231c3aff"%3E%3C/path%3E%3C/svg%3E');
-            }
-        }
-    </style>
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+        margin-top: 50px;
+        font-size: 3em;
+        text-shadow: 2px 2px #000;
+        text-align: center;
+    }
+
+    .album-info {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 1.2em;
+        text-shadow: 1px 1px #000;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 90%;
+        max-width: 800px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    }
+
+    th, td {
+        padding: 12px 20px;
+        text-align: left;
+    }
+
+    th {
+        background: rgba(255, 255, 255, 0.2);
+        font-size: 1.2em;
+    }
+
+    tr:nth-child(even) {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    tr:hover {
+        background: rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+    }
+
+    .footer {
+        margin: 50px 0;
+        font-size: 0.9em;
+        text-shadow: 1px 1px #000;
+    }
+</style>
 </head>
 <body>
-    <header>
-        <img class="badge" id="badgeImg" src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/BLOBs/blob-31.gif" alt="🎱">
-        <nav>
-            <a onclick="switchTheme('tranquility')">❍</a>
-            <a onclick="switchTheme('mermaid')">❍</a>
-            <a onclick="switchTheme('webscapes')">❍</a>
-            <a href="../03/">■</a>
-        </nav>
-    </header>
-    <main>
-        <h2 id="mainTitle">Tachyon</h2>
-        <section id="contentSection">
-            <p>A tachyon (from the Greek: ταχύς (tachús), 'fast') is a hypothetical particle that travels faster than the speed of light. In theoretical physics, tachyons have been proposed, but there is currently no experimental evidence for their existence. According to special relativity, objects with mass cannot reach or exceed the speed of light, but tachyons, if they exist, would violate this principle. They are primarily discussed in the context of theoretical physics and speculative theories.</p>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Tachyon04s.gif" alt="⎄" style="width: 100%; max-width: 600px;">
-            <p>Because a tachyon moves faster than light, we would not be able to see it approaching. After it has passed us, we would see two images of it: one in the direction it is flying (left) and the other in the direction from which it came (right). Both images would move away from us. The image of the receding particle (left) would exhibit a redshift due to the Doppler effect, while the image of the approaching particle would show a blueshift. The black line is a snapshot of the shockwave of Cherenkov radiation.</p>
-            <h3>Related Concepts:</h3>
-            <ul>
-                <li>Particle Physics: The branch of physics that studies the fundamental particles and forces that make up the universe.</li>
-                <li>Special Relativity: Einstein's theory describing the relationship between space and time for objects moving at constant speeds in a straight line.</li>
-                <li>Quantum Field Theory: A theoretical framework that combines quantum mechanics with special relativity to describe the behavior of subatomic particles.</li>
-                <li>Exotic Particles: Particles that do not fit into the standard model of particle physics, such as tachyons or hypothetical particles like magnetic monopoles.</li>
-                <li>Speed of Light: The speed at which light travels in a vacuum, approximately 299,792,458 meters per second (or about 186,282 miles per second).</li>
-                <li>Hypothetical Particles: Particles that are predicted by theoretical models but have not yet been observed experimentally.</li>
-                <li>Doppler Effect: The change in frequency or wavelength of a wave in relation to an observer who is moving relative to the wave source.</li>
-                <li>Redshift and Blueshift: Redshift occurs when light or other electromagnetic radiation from an object is shifted towards longer wavelengths, indicating that the object is moving away from the observer. Blueshift occurs when the wavelengths are shifted towards shorter wavelengths, indicating that the object is moving towards the observer.</li>
-                <li>Cherenkov Radiation: A type of electromagnetic radiation emitted when a charged particle moves through a dielectric medium (such as water) at a speed greater than the speed of light in that medium.</li>
-            </ul>
-        </section>
-    </main>
-
-    <script>
-        const themes = {
-            tranquility: {
-                badge: 'https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/BLOBs/islas.gif',
-                title: 'PCA',
-                content: `
-                    <p>Principal Component Analysis (PCA) is a statistical method used to simplify and summarize the variation in a dataset. It transforms the original data into a new coordinate system, where the axes represent the principal components (PCs) of variation in the data.</p>
-                    <h3>How <code>PCA</code> Works:</h3>
-                    <ol>
-                        <li><strong>Data Centering:</strong> PCA begins by centering the data by subtracting the mean from each feature. This ensures that the data is centered around the origin.</li>
-                        <li><strong>Covariance Matrix:</strong> PCA then calculates the covariance matrix of the centered data. The covariance matrix describes the relationships between the different features in the dataset.</li>
-                        <li><strong>Eigenvalue Decomposition:</strong> Next, PCA performs eigenvalue decomposition on the covariance matrix to find its eigenvectors and eigenvalues. Eigenvectors represent the directions of maximum variance in the data, while eigenvalues indicate the magnitude of variance along those directions.</li>
-                        <li><strong>Selecting Principal Components:</strong> PCA sorts the eigenvectors based on their corresponding eigenvalues in descending order. The eigenvectors with the highest eigenvalues are chosen as the principal components. These principal components capture the most significant sources of variation in the data.</li>
-                        <li><strong>Dimensionality Reduction:</strong> Finally, PCA projects the original data onto the subspace spanned by the selected principal components. This reduces the dimensionality of the data while retaining as much variance as possible. The number of principal components retained is typically chosen based on the amount of variance explained or a predetermined threshold.</li>
-                    </ol>
-                    <p>Overall, PCA is a powerful tool for exploring and understanding the underlying structure of complex datasets.</p>
-                `
-            },
-            mermaid: {
-                badge: 'https://media0.giphy.com/media/ttUxcCADOjbxK/giphy.gif',
-                title: 'Data-Centric AI',
-                content: `
-                    <p>Data-Centric AI is an approach to artificial intelligence development that focuses on systematically improving the quality and characteristics of data rather than primarily iterating on model architecture or algorithms.</p>
-                    <ul>
-                        <li><strong>Improving data quality</strong> – Fixing labeling errors, standardizing annotations, ensuring consistency.</li>
-                        <li><strong>Data engineering</strong> – Carefully curating, cleaning, and organizing training data.</li>
-                        <li><strong>Systematic data iteration</strong> – Treating data improvement as an engineering discipline rather than a one-time collection.</li>
-                    </ul>
-                    <h3>Contrast with Model-Centric AI</h3>
-                    <p>Traditionally, AI development was <strong>model-centric</strong>: keeping datasets fixed while experimenting with different architectures, hyperparameters, and training techniques.</p>
-                    <p>Data-centric AI flips this: it advocates keeping the model fixed (or using standard architectures) while systematically improving the data itself.</p>
-                    <h3>Why It Matters</h3>
-                    <p>In production environments, especially with smaller datasets or specialized domains, data quality often matters more than model sophistication. Common data issues such as:</p>
-                    <ul>
-                        <li>Inconsistent labeling between annotators</li>
-                        <li>Missing edge cases</li>
-                        <li>Class imbalances</li>
-                        <li>Noisy or incorrect labels</li>
-                    </ul>
-                    <p>...can limit model performance far more than the choice of architecture or hyperparameters.</p>
-                    <h3>Practical Applications</h3>
-                    <p>Data-centric approaches include a variety of techniques and tools designed to continuously improve dataset quality and coverage:</p>
-                    <ul>
-                        <li>Active learning to identify which data points to label</li>
-                        <li>Better annotation tools and processes</li>
-                        <li>Data augmentation strategies</li>
-                        <li>Techniques to detect and fix label errors</li>
-                        <li>Methods to ensure training data represents real-world distribution</li>
-                    </ul>
-                    <p>This mindset has become increasingly important as foundation models make sophisticated architectures readily available, shifting the competitive advantage to those with better, more carefully curated data.</p>
-                `
-            },
-            webscapes: {
-                badge: 'https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/BLOBs/blob-31.gif',
-                title: 'Tachyon',
-                content: `
-                    <p>A tachyon (from the Greek: ταχύς (tachús), 'fast') is a hypothetical particle that travels faster than the speed of light. In theoretical physics, tachyons have been proposed, but there is currently no experimental evidence for their existence. According to special relativity, objects with mass cannot reach or exceed the speed of light, but tachyons, if they exist, would violate this principle. They are primarily discussed in the context of theoretical physics and speculative theories.</p>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Tachyon04s.gif" alt="⎄" style="width: 100%; max-width: 600px;">
-                    <p>Because a tachyon moves faster than light, we would not be able to see it approaching. After it has passed us, we would see two images of it: one in the direction it is flying (left) and the other in the direction from which it came (right). Both images would move away from us. The image of the receding particle (left) would exhibit a redshift due to the Doppler effect, while the image of the approaching particle would show a blueshift. The black line is a snapshot of the shockwave of Cherenkov radiation.</p>
-                    <h3>Related Concepts:</h3>
-                    <ul>
-                        <li>Particle Physics: The branch of physics that studies the fundamental particles and forces that make up the universe.</li>
-                        <li>Special Relativity: Einstein's theory describing the relationship between space and time for objects moving at constant speeds in a straight line.</li>
-                        <li>Quantum Field Theory: A theoretical framework that combines quantum mechanics with special relativity to describe the behavior of subatomic particles.</li>
-                        <li>Exotic Particles: Particles that do not fit into the standard model of particle physics, such as tachyons or hypothetical particles like magnetic monopoles.</li>
-                        <li>Speed of Light: The speed at which light travels in a vacuum, approximately 299,792,458 meters per second (or about 186,282 miles per second).</li>
-                        <li>Hypothetical Particles: Particles that are predicted by theoretical models but have not yet been observed experimentally.</li>
-                        <li>Doppler Effect: The change in frequency or wavelength of a wave in relation to an observer who is moving relative to the wave source.</li>
-                        <li>Redshift and Blueshift: Redshift occurs when light or other electromagnetic radiation from an object is shifted towards longer wavelengths, indicating that the object is moving away from the observer. Blueshift occurs when the wavelengths are shifted towards shorter wavelengths, indicating that the object is moving towards the observer.</li>
-                        <li>Cherenkov Radiation: A type of electromagnetic radiation emitted when a charged particle moves through a dielectric medium (such as water) at a speed greater than the speed of light in that medium.</li>
-                    </ul>
-                `
-            }
-        };
-
-        function switchTheme(themeName) {
-            const body = document.body;
-            const badge = document.getElementById('badgeImg');
-            const title = document.getElementById('mainTitle');
-            const content = document.getElementById('contentSection');
-
-            // Remove all theme classes
-            body.classList.remove('theme-tranquility', 'theme-mermaid');
-
-            // Apply the selected theme
-            if (themeName !== 'webscapes') {
-                body.classList.add('theme-' + themeName);
-            }
-
-            // Update content
-            const themeData = themes[themeName];
-            badge.src = themeData.badge;
-            title.textContent = themeData.title;
-            content.innerHTML = themeData.content;
-        }
-    </script>
+    <h1>Mermaid Memories // Neon Tides</h1>
+    <div class="album-info">
+        A vaporwave journey through digital oceans, pastel sunsets, and lost 80s/90s aesthetics.
+    </div>
+    <table>
+        <tr>
+            <th>Track #</th>
+            <th>Title</th>
+            <th>Duration</th>
+            <th>Notes</th>
+        </tr>
+        <tr><td>1</td><td>Mermaid.exe (Lost in the Coral Net)</td><td>3:45</td><td>Glitchy oceanic synths, retro PC underwater vibes</td></tr>
+        <tr><td>2</td><td>Neon Mermaid on VHS Shores</td><td>4:12</td><td>VHS-style tape static, slow tempo beach</td></tr>
+        <tr><td>3</td><td>Mallwave Mermaid (Aqua Mall ’94)</td><td>3:30</td><td>Elevator music, echoing mall ambiance</td></tr>
+        <tr><td>4</td><td>Forgotten Mermaid Hotline</td><td>4:50</td><td>Fuzzy hotline dial tone fading into pads</td></tr>
+        <tr><td>5</td><td>Mermaid Memories // Pacific Diskette</td><td>3:55</td><td>8-bit textures with oceanic synths</td></tr>
+        <tr><td>6</td><td>Pixel Mermaid Dreamzone</td><td>4:05</td><td>Arcade-inspired, surreal virtual ocean</td></tr>
+        <tr><td>7</td><td>Mermaid Lagoon 2001 (System Sleep)</td><td>5:00</td><td>Slow ambient Y2K computer sounds</td></tr>
+        <tr><td>8</td><td>Mermaid Mirage FM</td><td>3:40</td><td>FM radio static, faint ethereal vocals</td></tr>
+        <tr><td>9</td><td>Virtual Mermaid Reflection</td><td>4:20</td><td>Mirror-like synth textures, reflective mood</td></tr>
+        <tr><td>10</td><td>Mermaid in the Memory Pool</td><td>4:35</td><td>Nostalgic ambient layers, data-wave merge</td></tr>
+        <tr><td>11</td><td>Pastel Skies & Plastic Mermaids</td><td>5:10</td><td>Dreamy pastel tones, slow fade-out into static</td></tr>
+    </table>
+    <div class="footer">
+        Total Runtime: ~47:24 minutes | Designed in Vaporwave Style
+    </div>
 </body>
 </html>
