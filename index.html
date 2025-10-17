@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Niconne&display=swap" rel="stylesheet">
+    <style>
+        * {box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent;}
+        body {
+            font-family: 'Lucida Console', monospace;
+            background-color: #b131fa;
+            color: #1c3aff;
+            line-height: 1.4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        header {
+            position: fixed;
+            top: 2%;
+            width: 100%;
+            z-index: 1000;       
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 4%; 
+            user-select: none;
+        }
+        nav {display: flex; align-items: center; gap: 30px;}   
+        nav a {
+            color: inherit;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 24px;
+            font-weight: bold; 
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+        nav a:last-child {font-size: 30px;}
+        nav a:hover {transform: scale(1.2); opacity: 1;}      
+        .badge {height: 50px; width: auto; display: block;}
+        
+        main {
+            padding: 1.25em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            max-width: 800px;
+        }
+        h1, h2 {
+            font-family: "Niconne", serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-align: center;
+        }
+        section {
+            max-height: 55vh;
+            overflow-y: auto;
+            margin-top: 20px;
+            padding: 0.625em;
+            background-color: rgba(0, 0, 0, 0.4);  
+            border-radius: 0.625em;
+        }
+        ul {list-style-type: "◘ ";}
+        li {margin-bottom: 10px;}
+
+/* Custom scrollbar */
+section::-webkit-scrollbar {width: 1.3em;}
+section::-webkit-scrollbar-track {background: transparent;}
+section::-webkit-scrollbar-thumb,
+section::-webkit-scrollbar-thumb:hover {
+    background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M20 14.25C21.2426 14.25 22.25 13.2426 22.25 12C22.25 10.7574 21.2426 9.75 20 9.75C18.7574 9.75 17.75 10.7574 17.75 12C17.75 13.2426 18.7574 14.25 20 14.25Z" fill="%23FFCC00"%3E%3C/path%3E%3Cpath d="M20 6.25C21.2426 6.25 22.25 5.24264 22.25 4C22.25 2.75736 21.2426 1.75 20 1.75C18.7574 1.75 17.75 2.75736 17.75 4C17.75 5.24264 18.7574 6.25 20 6.25Z" fill="%23FFCC00"%3E%3C/path%3E%3Cpath d="M20 22.25C21.2426 22.25 22.25 21.2426 22.25 20C22.25 18.7574 21.2426 17.75 20 17.75C18.7574 17.75 17.75 18.7574 17.75 20C17.75 21.2426 18.7574 22.25 20 22.25Z" fill="%23FFCC00"%3E%3C/path%3E%3Cpath d="M4 14.25C5.24264 14.25 6.25 13.2426 6.25 12C6.25 10.7574 5.24264 9.75 4 9.75C2.75736 9.75 1.75 10.7574 1.75 12C1.75 13.2426 2.75736 14.25 4 14.25Z" fill="%23FFCC00"%3E%3C/path%3E%3Cpath d="M19 12.75C19.41 12.75 19.75 12.41 19.75 12C19.75 11.59 19.41 11.25 19 11.25H11.75V7C11.75 5.42 12.42 4.75 14 4.75H19C19.41 4.75 19.75 4.41 19.75 4C19.75 3.59 19.41 3.25 19 3.25H14C11.58 3.25 10.25 4.58 10.25 7V11.25H5C4.59 11.25 4.25 11.59 4.25 12C4.25 12.41 4.59 12.75 5 12.75H10.25V17C10.25 19.42 11.58 20.75 14 20.75H19C19.41 20.75 19.75 20.41 19.75 20C19.75 19.59 19.41 19.25 19 19.25H14C12.42 19.25 11.75 18.58 11.75 17V12.75H19Z" fill="%23FFCC00"%3E%3C/path%3E%3C/svg%3E');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+@-moz-document url-prefix() { /* Firefox scrollbar */
+    section {scrollbar-color: transparent transparent; scrollbar-width: thin;}
+    section::-webkit-scrollbar-thumb {
+        background-image: url('data:image/svg+xml;charset=utf8,%3Csvg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M20 14.25C21.2426 14.25 22.25 13.2426 22.25 12C22.25 10.7574 21.2426 9.75 20 9.75C18.7574 9.75 17.75 10.7574 17.75 12C17.75 13.2426 18.7574 14.25 20 14.25Z" fill="%23FFCC00"%3E%3C/path%3E%3Cpath d="M20 6.25C21.2426 6.25 22.25 5.24264 22.25 4C22.25 2.75736 21.2426 1.75 20 1.75C18.7574 1.75 17.75 2.75736 17.75 4C17.75 5.24264 18.7574 6.25 20 6.25Z" fill="%23FFCC00"%3E%3C/path%3E%3Cpath d="M20 22.25C21.2426 22.25 22.25 21.2426 22.25 20C22.25 18.7574 21.2426 17.75 20 17.75C18.7574 17.75 17.75 18.7574 17.75 20C17.75 21.2426 18.7574 22.25 20 22.25Z" fill="%23FFCC00"%3E%3C/path%3E%3Cpath d="M4 14.25C5.24264 14.25 6.25 13.2426 6.25 12C6.25 10.7574 5.24264 9.75 4 9.75C2.75736 9.75 1.75 10.7574 1.75 12C1.75 13.2426 2.75736 14.25 4 14.25Z" fill="%23FFCC00"%3E%3C/path%3E%3Cpath d="M19 12.75C19.41 12.75 19.75 12.41 19.75 12C19.75 11.59 19.41 11.25 19 11.25H11.75V7C11.75 5.42 12.42 4.75 14 4.75H19C19.41 4.75 19.75 4.41 19.75 4C19.75 3.59 19.41 3.25 19 3.25H14C11.58 3.25 10.25 4.58 10.25 7V11.25H5C4.59 11.25 4.25 11.59 4.25 12C4.25 12.41 4.59 12.75 5 12.75H10.25V17C10.25 19.42 11.58 20.75 14 20.75H19C19.41 20.75 19.75 20.41 19.75 20C19.75 19.59 19.41 19.25 19 19.25H14C12.42 19.25 11.75 18.58 11.75 17V12.75H19Z" fill="%23FFCC00"%3E%3C/path%3E%3C/svg%3E');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <img class="badge" src="https://media1.giphy.com/media/o4tgqyyIPrZjq/giphy.gif" alt="🎱">
+        <nav>
+            <a href="#">❍</a>
+            <a href="#">❍</a>
+            <a href="#">❍</a>
+            <a href="../03/">■</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Data-Centric AI</h1>
+        <section>
+            <p>Data-Centric AI is an approach to artificial intelligence development that focuses on systematically improving the quality and characteristics of data rather than primarily iterating on model architecture or algorithms.</p>
+            <ul>
+                <li><strong>Improving data quality</strong> – Fixing labeling errors, standardizing annotations, ensuring consistency.</li>
+                <li><strong>Data engineering</strong> – Carefully curating, cleaning, and organizing training data.</li>
+                <li><strong>Systematic data iteration</strong> – Treating data improvement as an engineering discipline rather than a one-time collection.</li>
+            </ul>
+            <h2>Contrast with Model-Centric AI</h2>
+            <p>Traditionally, AI development was <strong>model-centric</strong>: keeping datasets fixed while experimenting with different architectures, hyperparameters, and training techniques.</p>
+            <p>Data-centric AI flips this: it advocates keeping the model fixed (or using standard architectures) while systematically improving the data itself.</p>
+            <h2>Why It Matters</h2>
+            <p>In production environments, especially with smaller datasets or specialized domains, data quality often matters more than model sophistication. Common data issues such as:</p>
+            <ul>
+                <li>Inconsistent labeling between annotators</li>
+                <li>Missing edge cases</li>
+                <li>Class imbalances</li>
+                <li>Noisy or incorrect labels</li>
+            </ul>
+            <p>...can limit model performance far more than the choice of architecture or hyperparameters.</p>
+            <h2>Practical Applications</h2>
+            <p>Data-centric approaches include a variety of techniques and tools designed to continuously improve dataset quality and coverage:</p>
+            <ul>
+                <li>Active learning to identify which data points to label</li>
+                <li>Better annotation tools and processes</li>
+                <li>Data augmentation strategies</li>
+                <li>Techniques to detect and fix label errors</li>
+                <li>Methods to ensure training data represents real-world distribution</li>
+            </ul>
+            <p>This mindset has become increasingly important as foundation models make sophisticated architectures readily available, shifting the competitive advantage to those with better, more carefully curated data.</p>
+        </section>
+    </main>
+</body>
+</html>
