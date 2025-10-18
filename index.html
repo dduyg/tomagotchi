@@ -6,14 +6,12 @@
   <title>LiminalLoop</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --baseUnit: calc(calc(0.33vw + 3px) * 3);
       --baseUnit-: calc(calc(-0.33vw + -3px) * 3);
       --marginLeft: calc(calc(0.33vw + 3px) * 14);
       --marginRight: calc(calc(0.33vw + 3px) * 30);
     }
-
     @media (max-width: 768px) {
       :root {
         --baseUnit: calc(calc(0.25vw + 6px) * 2);
@@ -22,17 +20,14 @@
         --marginRight: calc(calc(0.33vw + 3px) * 8);
       }
     }
-
     html, body {
       height: 100%;
       overflow: hidden;
       background: #F7F4ED;
       color: #A37400;
-      line-height: 1.6;
+      line-height: 1.5;
       font-family: '0xPropo', monospace;
     }
-
-    /* Vertical guide lines */
     body:after, body:before {
       content: "";
       position: fixed;
@@ -48,65 +43,27 @@
       right: var(--marginRight);
       left: auto;
     }
-
     .scroll_container {
       position: fixed;
       top: 0;
       left: 0;
       overflow-y: auto;
       scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
       height: 100%;
       width: 100vw;
       perspective: 1000px;
     }
-
     .content {
       padding: 40vh var(--marginRight) calc(var(--baseUnit) * 6) var(--marginLeft);
-      max-width: calc(100vw - var(--marginLeft) - var(--marginRight));
       scroll-snap-align: start;
       position: relative;
+      max-width: calc(100vw - var(--marginLeft) - var(--marginRight));
+      transition: transform 0.3s ease-out;
+      will-change: transform, opacity;
     }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 2em;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-
-    p, blockquote {
-      margin-bottom: 1.4em;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    blockquote {
-      border-left: 2px solid rgba(163, 116, 0, 0.4);
-      padding-left: 1em;
-      font-style: italic;
-    }
-
-    /* When visible */
-    .visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Optional fade overlay for extra depth */
-    .scroll_container::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 200%;
-      background: radial-gradient(circle at center, #f8f5f0 0%, #ece7df 100%);
-      z-index: -1;
-    }
+    h2 { text-align: center; margin-bottom: 1.2em; }
+    p { margin-bottom: 1.4em; }
   </style>
 </head>
 <body>
@@ -139,22 +96,26 @@
       <p>By the time Lucien knocked at her door that afternoon, the canvas was alive with motion — a storm giving birth to sunrise.</p>
       <p>He stepped inside, eyes wide. “Elara,” he breathed, “It’s… beautiful.”</p>
       <p>She smiled softly, a touch of dried salt at the corner of her eyes. “They’re aesthetic tears,” she said. “The kind that don’t hurt anymore.”</p>
-      <p>Outside, the sky was clear. Inside, the colors began again.</p>
+      <p>Outside, the sky was clear. Inside, the colors began again.</p>      
     </section>
   </div>
 
   <script>
-    const elements = document.querySelectorAll('.content h2, .content p, .content blockquote');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.2 });
+    const content = document.querySelector('.content');
+    const container = document.querySelector('.scroll_container');
 
-    elements.forEach(el => observer.observe(el));
+    container.addEventListener('scroll', () => {
+      const scrollY = container.scrollTop;
+      const maxScroll = container.scrollHeight - window.innerHeight;
+      const progress = scrollY / maxScroll;
+
+      // Subtle lift and fade-in effect
+      const translateY = Math.max(0, 50 - progress * 50);
+      const opacity = Math.min(1, 0.3 + progress * 1.2);
+
+      content.style.transform = `translateY(${translateY}px) scale(${1 + progress * 0.02})`;
+      content.style.opacity = opacity;
+    });
   </script>
 </body>
 </html>
