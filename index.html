@@ -1,70 +1,81 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-  <meta charset="UTF-8" />  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
-  <title>LiminalLoop</title>  
-  <style>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LiminalLoop</title>
+  <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {  
-      --baseUnit: calc(calc(0.33vw + 3px) * 3);  
-      --baseUnit-: calc(calc(-0.33vw + -3px) * 3);  
-      --marginLeft: calc(calc(0.33vw + 3px) * 14);  
-      --marginRight: calc(calc(0.33vw + 3px) * 30);  
-    }  
-    @media (max-width: 768px) {  
-      :root {  
-        --baseUnit: calc(calc(0.25vw + 6px) * 2);  
-        --baseUnit-: calc(calc(-0.25vw + -6px) * 2);  
-        --marginLeft: calc(calc(0.33vw + 3px) * 8);  
-        --marginRight: calc(calc(0.33vw + 3px) * 8);  
-      }
-	}
-    html, body {  
-      height: 100%;  
-      overflow: hidden;  
-      background: #F7F4ED;  
-      color: #A37400;
-      line-height: 1.5;
-      font-family: '0xPropo', monospace;  
+    :root {
+      --baseUnit: calc(calc(0.33vw + 3px) * 3);
+      --marginLeft: calc(calc(0.33vw + 3px) * 14);
+      --marginRight: calc(calc(0.33vw + 3px) * 30);
     }
-    body:after, body:before {
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: #F7F4ED;
+      color: #A37400;
+      line-height: 1.6;
+      font-family: '0xPropo', monospace;
+    }
+    body::after, body::before {
       content: "";
       position: fixed;
       width: 1px;
       background: rgba(0, 0, 0, 0.1);
       height: 100%;
       top: 0;
-      left: var(--marginLeft);
       z-index: 10;
       pointer-events: none;
     }
-    body:before {
-      right: var(--marginRight);
-      left: auto;
-    }
-    .scroll_container {  
-      position: fixed;  
-      top: 0;  
-      left: 0;  
-      overflow-y: auto;  
-      scroll-behavior: smooth;  
-      scroll-snap-type: y mandatory;  
-      height: 100%;  
-      width: 100vw;  
+    body::after { left: var(--marginLeft); }
+    body::before { right: var(--marginRight); }
+
+    .scroll_container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100%;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+      perspective: 1000px;
     }
     .content {
-      padding: calc(var(--baseUnit) * 5) 0 calc(var(--baseUnit) * 6) var(--marginLeft);  
-      scroll-snap-align: start;  
-      position: relative;      
-      max-width: 768px;  
+      padding-top: 40vh; /* Start mid-page */
+      padding-bottom: 20vh;
+      padding-left: var(--marginLeft);
+      padding-right: var(--marginRight);
+      max-width: calc(100vw - var(--marginLeft) - var(--marginRight));
+      margin: 0 auto;
+      position: relative;
     }
-    h2 { text-align: center; }
-    p { margin-bottom: 1.4em; }
-  </style>  
-</head>  
-<body>  
-  <div class="scroll_container">  
+
+    h2 {
+      font-size: 1.8rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+    }
+    p {
+      margin-bottom: 1.4em;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease-out;
+    }
+
+    /* Scroll-triggered visible state */
+    .visible {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll_container"> 
     <section class="content">
        <h2>Aesthetic Tears</h2>
        <p>The rain arrived softly that evening, falling like silk threads unraveling from a gray sky. Elara sat by the open window of her small apartment, sketchbook balanced on her knees, watching the world blur behind a veil of water. Her tea had long gone cold, untouched on the sill beside her, steam having vanished hours ago like every other fleeting warmth in her life.</p>
@@ -95,6 +106,26 @@
        <p>She smiled softly, a touch of dried salt at the corner of her eyes. “They’re aesthetic tears,” she said. “The kind that don’t hurt anymore.”</p>
        <p>Outside, the sky was clear. Inside, the colors began again.</p>
     </section>
-  </div> 
-</body>  
+  </div>
+
+  <script>
+    // Smooth scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('p, h2').forEach(el => observer.observe(el));
+
+    // Optional parallax-like effect
+    const container = document.querySelector('.scroll_container');
+    container.addEventListener('scroll', () => {
+      const y = container.scrollTop * 0.1;
+      document.body.style.transform = `translateY(${y}px)`;
+    });
+  </script>
+</body>
 </html>
