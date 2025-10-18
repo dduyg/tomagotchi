@@ -46,30 +46,54 @@
         font-size: 3em;
         text-align: center;
         text-shadow: 2px 2px #000;
+        padding: 0 2%;
     }
     .album-info {
         text-align: center;
         margin-bottom: 30px;
         font-size: 1.2em;
         text-shadow: 1px 1px #000;
+        padding: 0 2%;
     }
 
     /* Tracklist table */
     table {
         border-collapse: collapse;
-        width: 90%;
-        max-width: 800px;
+        width: 96%;
+        max-width: 1200px;
+        margin: 0 2%;
         background: rgba(0,0,0,0.5);
         border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 0 40px rgba(255,255,255,0.2);
         z-index: 1;
         position: relative;
+        table-layout: auto;
     }
 
     th, td {
-        padding: 15px 25px;
+        padding: 15px 10px;
         text-align: left;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    /* Column width management */
+    th:nth-child(1), td:nth-child(1) { /* Track # */
+        width: 8%;
+        min-width: 50px;
+    }
+    th:nth-child(2), td:nth-child(2) { /* Title */
+        width: 35%;
+        min-width: 150px;
+    }
+    th:nth-child(3), td:nth-child(3) { /* Duration */
+        width: 10%;
+        min-width: 70px;
+    }
+    th:nth-child(4), td:nth-child(4) { /* Notes */
+        width: 47%;
+        min-width: 150px;
     }
 
     th {
@@ -118,10 +142,61 @@
         50% { transform: translateY(-15px) rotate(-5deg); }
         100% { transform: translateY(0px) rotate(0deg); }
     }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2em;
+            margin-top: 30px;
+        }
+        .album-info {
+            font-size: 1em;
+        }
+        th, td {
+            padding: 10px 5px;
+            font-size: 0.9em;
+        }
+        th {
+            font-size: 1.1em;
+        }
+        th:nth-child(1), td:nth-child(1) {
+            width: 10%;
+            min-width: 40px;
+        }
+        th:nth-child(2), td:nth-child(2) {
+            width: 40%;
+        }
+        th:nth-child(3), td:nth-child(3) {
+            width: 12%;
+            min-width: 60px;
+        }
+        th:nth-child(4), td:nth-child(4) {
+            width: 38%;
+        }
+        .mermaid {
+            width: 80px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 1.5em;
+        }
+        th, td {
+            padding: 8px 3px;
+            font-size: 0.8em;
+        }
+        th {
+            font-size: 0.95em;
+        }
+        .mermaid {
+            display: none;
+        }
+    }
 </style>
 </head>
 <body>
-    <h1>Mermaid Memories // Neon Tides</h1>
+    <h1>Mermaid Memories</h1>
     <div class="album-info">
         A vaporwave journey through digital oceans, pastel sunsets, and lost 80s/90s aesthetics.
     </div>
@@ -135,7 +210,7 @@
         </tr>
         <tr><td>1</td><td>Mermaid.exe (Lost in the Coral Net)</td><td>3:45</td><td>Glitchy oceanic synths, retro PC underwater vibes</td></tr>
         <tr><td>2</td><td>Neon Mermaid on VHS Shores</td><td>4:12</td><td>VHS-style tape static, slow tempo beach</td></tr>
-        <tr><td>3</td><td>Mallwave Mermaid (Aqua Mall ’94)</td><td>3:30</td><td>Elevator music, echoing mall ambiance</td></tr>
+        <tr><td>3</td><td>Mallwave Mermaid (Aqua Mall '94)</td><td>3:30</td><td>Elevator music, echoing mall ambiance</td></tr>
         <tr><td>4</td><td>Forgotten Mermaid Hotline</td><td>4:50</td><td>Fuzzy hotline dial tone fading into pads</td></tr>
         <tr><td>5</td><td>Mermaid Memories // Pacific Diskette</td><td>3:55</td><td>8-bit textures with oceanic synths</td></tr>
         <tr><td>6</td><td>Pixel Mermaid Dreamzone</td><td>4:05</td><td>Arcade-inspired, surreal virtual ocean</td></tr>
