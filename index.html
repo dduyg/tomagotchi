@@ -1,54 +1,39 @@
-<!DOCTYPE html>
+4:12<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mermaid Memories // Neon Tides</title>
 <style>
+    /* General body styling */
     body {
         font-family: 'Courier New', monospace;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4, #a1c4fd);
+        color: #fff;
         margin: 0;
         padding: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: flex-start;
         min-height: 100vh;
-        background: linear-gradient(135deg, #ff9a9e, #fad0c4, #a1c4fd);
         background-size: 400% 400%;
         animation: gradientBG 15s ease infinite;
-        overflow-x: hidden;
-        color: #fff;
     }
+
     @keyframes gradientBG {
         0% { background-position: 0% 50%; }
         50% { background-position: 100% 50%; }
         100% { background-position: 0% 50%; }
     }
 
-    /* VHS scanline overlay */
-    body::after {
-        content: "";
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: repeating-linear-gradient(
-            0deg,
-            rgba(255,255,255,0.05),
-            rgba(255,255,255,0.05) 1px,
-            transparent 1px,
-            transparent 3px
-        );
-        pointer-events: none;
-        z-index: 2;
-    }
-
     h1 {
         margin-top: 50px;
         font-size: 3em;
-        text-align: center;
         text-shadow: 2px 2px #000;
+        text-align: center;
     }
+
     .album-info {
         text-align: center;
         margin-bottom: 30px;
@@ -56,69 +41,39 @@
         text-shadow: 1px 1px #000;
     }
 
-    /* Tracklist table */
     table {
         border-collapse: collapse;
         width: 90%;
         max-width: 800px;
-        background: rgba(0,0,0,0.5);
-        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 15px;
         overflow: hidden;
-        box-shadow: 0 0 40px rgba(255,255,255,0.2);
-        z-index: 1;
-        position: relative;
+        box-shadow: 0 0 30px rgba(0,0,0,0.5);
     }
 
     th, td {
-        padding: 15px 25px;
+        padding: 12px 20px;
         text-align: left;
     }
 
     th {
-        background: rgba(255,255,255,0.2);
-        font-size: 1.3em;
-        color: #0ff;
-        text-shadow: 0 0 5px #0ff;
+        background: rgba(255, 255, 255, 0.2);
+        font-size: 1.2em;
     }
+
     tr:nth-child(even) {
-        background: rgba(255,255,255,0.05);
+        background: rgba(255, 255, 255, 0.1);
     }
+
     tr:hover {
-        background: rgba(255,255,255,0.15);
+        background: rgba(255, 255, 255, 0.2);
         cursor: pointer;
     }
 
     .footer {
         margin: 50px 0;
         font-size: 0.9em;
-        text-shadow: 0 0 5px #000;
-    }
-
-    /* Mermaid SVG decoration */
-    .mermaid {
-        position: absolute;
-        width: 150px;
-        height: auto;
-        opacity: 0.2;
-        animation: floatMermaid 6s ease-in-out infinite alternate;
-        z-index: 0;
-    }
-
-    .mermaid.left {
-        left: 10%;
-        top: 60%;
-    }
-
-    .mermaid.right {
-        right: 10%;
-        top: 50%;
-        animation-delay: 3s;
-    }
-
-    @keyframes floatMermaid {
-        0% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-15px) rotate(-5deg); }
-        100% { transform: translateY(0px) rotate(0deg); }
+        text-shadow: 1px 1px #000;
     }
 </style>
 </head>
@@ -127,7 +82,6 @@
     <div class="album-info">
         A vaporwave journey through digital oceans, pastel sunsets, and lost 80s/90s aesthetics.
     </div>
-
     <table>
         <tr>
             <th>Track #</th>
@@ -147,11 +101,8 @@
         <tr><td>10</td><td>Mermaid in the Memory Pool</td><td>4:35</td><td>Nostalgic ambient layers, data-wave merge</td></tr>
         <tr><td>11</td><td>Pastel Skies & Plastic Mermaids</td><td>5:10</td><td>Dreamy pastel tones, slow fade-out into static</td></tr>
     </table>
-
-    <div class="footer">Total Runtime: ~47:24 minutes</div>
-
-    <!-- Mermaid SVGs -->
-    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA1MCA1MCI+PHBhdGggZD0iTTI1IDBDMTEuMTcgMCAwIDExLjE3IDAgMjVTMTEuMTcgNTAgMjUgNTAgNTAgMzguODMgNTAgMjVTMzguODMgMCAyNSAweiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==" class="mermaid left">
-    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA1MCA1MCI+PHBhdGggZD0iTTI1IDBDMTEuMTcgMCAwIDExLjE3IDAgMjVTMTEuMTcgNTAgMjUgNTAgNTAgMzguODMgNTAgMjVTMzguODMgMCAyNSAweiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==" class="mermaid right">
+    <div class="footer">
+        Total Runtime: ~47:24 minutes | Designed in Vaporwave Style
+    </div>
 </body>
 </html>
