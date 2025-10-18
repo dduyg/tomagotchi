@@ -6,13 +6,11 @@
   <title>LiminalLoop</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
       --baseUnit: calc(calc(0.33vw + 3px) * 3);
       --marginLeft: calc(calc(0.33vw + 3px) * 14);
       --marginRight: calc(calc(0.33vw + 3px) * 30);
     }
-
     @media (max-width: 768px) {
       :root {
         --baseUnit: calc(calc(0.25vw + 6px) * 2);
@@ -24,12 +22,11 @@
     html, body {
       height: 100%;
       overflow: hidden;
-      background: #F7F4ED;
-      color: #A37400;
+      background: #faf9f7;
+      color: #2d2d2d;
       font-family: '0xPropo', monospace;
       line-height: 1.5;
     }
-
     body:after, body:before {
       content: "";
       position: fixed;
@@ -40,7 +37,6 @@
       z-index: 10;
       pointer-events: none;
     }
-
     body:after { left: var(--marginLeft); }
     body:before { right: var(--marginRight); }
 
@@ -80,7 +76,6 @@
     p, blockquote {
       margin-bottom: 1.4em;
     }
-
     blockquote {
       padding-left: 1em;
       border-left: 3px solid #A37400;
