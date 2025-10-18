@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
   <title>Liminal🐊🍬Loop</title>  
   <style>  
-    * {box-sizing: border-box; margin: 0; padding: 0;}
-    ::selection {background: gold !important; color: #000 !important;}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     :root {  
       --baseUnit: calc(calc(0.33vw + 3px) * 3);  
       --baseUnit-: calc(calc(-0.33vw + -3px) * 3);  
@@ -19,14 +18,8 @@
         --baseUnit-: calc(calc(-0.25vw + -6px) * 2);  
         --marginLeft: calc(calc(0.33vw + 3px) * 8);  
         --marginRight: calc(calc(0.33vw + 3px) * 8);  
-      }  
-    }  
-    @font-face {  
-      font-family: '0xPropo';  
-      src: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/0xPropo.woff2') format('woff2');  
-      font-weight: normal;  
-      font-style: normal;  
-    }  
+      }
+	}
     html, body {  
       height: 100%;  
       overflow: hidden;  
@@ -49,68 +42,6 @@
       right: var(--marginRight);
       left: auto;
     }
-    h1, h2, h3, p {
-      padding: 0 0 var(--baseUnit) 0;
-      font-weight: normal;
-      line-height: 1.4em;
-      overflow-wrap: break-word;
-    }
-    h1 {
-      font-size: clamp(1.5rem, 6vw, 2.5rem);
-      line-height: 1em;
-      margin: calc(var(--baseUnit) * 4) 0 var(--baseUnit);
-      text-transform: uppercase;
-      margin-left: -0.1vw;
-    }
-    h2 {
-      font-size: clamp(1.5rem, 6vw, 2.5rem);
-      text-transform: uppercase;
-      line-height: 1em;
-      margin-left: -0.05vw;
-    }
-    p {    
-      font-weight: 300;
-      font-size: clamp(0.75rem, 1.75vw, 0.85rem);
-      max-width: 680px;
-      padding-bottom: calc(var(--baseUnit) - 10px);
-    }
-    a {
-      cursor: pointer;
-	  color: #fef5f4;
-	  text-decoration: none;
-	  font-weight: 300;
-	  font-size: 14px;
-	  transition: color 0.15s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-	}
-	a:hover, a:active, a:focus {color: rgba(255, 255, 255, 0.5);}
-	a > span {
-	  display: inline;
-      padding-bottom: 4px;
-      background-size: 100% 1px;
-      background-position: 0 96%;
-      background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6));
-      background-repeat: no-repeat;
-      transition: background-size 0.7s cubic-bezier(0.19, 1, 0.22, 1);
-	}
-	a:hover > span {
-      background-size: 0 1px;
-      background-position: 100% 96%;
-	}
-	a::after {
-	  content: '';
-      display: inline-block;
-      width: 0.7em; height: 0.7em;
-      background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 460'><path fill='%23fef5f4' d='m268.293,460l-35.868-35.604,160.689-164.489H0v-59.814h393.113L232.425,35.604,268.293,0l231.707,230-231.707,230Z'/></svg>") no-repeat center;
-      background-size: contain;
-      transform: translateX(-2px);
-      transition: transform 0.15s ease-in-out;
-	}
-	a:hover::after {transform: rotate(-45deg);}
-
-    /* === Scroll Container === */  
     .scroll_container {  
       position: fixed;  
       top: 0;  
@@ -120,254 +51,22 @@
       scroll-snap-type: y mandatory;  
       height: 100%;  
       width: 100vw;  
-    }
-    section {  
-      width: 100%;  
-      height: 100%;  
-      padding: calc(var(--baseUnit) * 5) 0 calc(var(--baseUnit) * 6) var(--marginLeft);  
-      scroll-snap-align: start;  
-      position: relative;  
-      overflow: hidden;  
-      display: flex;  
-      justify-content: center;  
-      align-items: center;  
-      opacity: 0;  
-      transform: translateY(60px);  
-      transition: transform 0.7s ease, opacity 0.7s ease;  
-    }
-    section.in-view {  
-      opacity: 1;  
-      transform: translateY(0);  
-    }
-  
-    /* === Image Layers === */  
-    section img {  
-      object-fit: cover;  
-      object-position: center;  
-      z-index: 1;  
-      position: absolute;  
-    }
-    section.ripple img {  
-      mix-blend-mode: multiply;  
-      filter: grayscale(100%);  
-    }
-    section img.full {  
-      width: calc(100% - 24px);  
-      height: calc(100% - 24px);  
-      top: 12px;  
-      left: 12px;  
-      right: 12px;  
-      bottom: 12px;  
-      border-radius: 12px;  
-      aspect-ratio: auto;  
-    }
-   
+    }   
     .content {
       position: relative;  
-      z-index: 2;  
-      text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      z-index: 2;
       padding-right: var(--marginRight);
       width: 100%;
       max-width: 768px;  
     }
-	.content h2 {
-	  margin-bottom: calc(var(--baseUnit) * 2);
-	  margin-top: calc(var(--baseUnit) / 3);
-	}
-	.capsule {
-	  display: inline-block;
-      margin: 0 0 8px 0;
-      background: rgba(0, 0, 0, 0);
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      border-radius: 4px;
-      padding: 2px 8px 5px 6px;
-      line-height: 1rem;
-	}  
-	@keyframes pulseAnim {
-	  0% {opacity: 1;}
-      50% {opacity: 0;}
-      100% {opacity: 1;}
-	}
-	i.pulse {font-style: normal; opacity: 1; animation: pulseAnim 1s infinite; }	
-	      
-    .info {display: flex; gap: 12px;}
-    .label {min-width: 120px; opacity: 0.9; font-weight: 500;}
-    .value {flex: 1; font-weight: 400; opacity: 0.95;}
-  
-	/* === Nav Indicator === */  
-    nav {  
-      position: fixed;  
-      bottom: 7vh;
-      left: var(--marginLeft);
-	  font-family: 'Courier New', monospace;
-	  text-shadow: 0 4px 12px rgba(0,0,0,0.5);
-	  z-index: 1000;  
-      pointer-events: none;  
-    }  
-    .dot {  
-      width: 5px;  
-      height: 5px;  
-      border-radius: 50%;  
-      background: #F2EDEC;  
-      position: relative;  
-    }  
-    @keyframes pulse {  
-      0% { opacity: 1; transform: scale(1); }  
-      50% { opacity: 0.4; transform: scale(1.4); }  
-      100% { opacity: 1; transform: scale(1); }  
-    }  
-    .dot.pulse { animation: pulse 0.8s ease-out; }  
   </style>  
 </head>  
 <body>  
   <div class="scroll_container">  
-    <section style="background-color:#BE540A;">  
-      <img class="full" src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/rewindNostalgia1.png">  
-      <div class="content">
-		  <p class="capsule"><i class="pulse">&#9679;</i> Live</p>
-		  <h2>(DataGhost) Cyber Forensics Analyzer</h2> 
-	      <p class="info"><span class="label">Expertise:</span><span class="value">Python, Scikit-learn, SQL, network traffic analysis, regex</span></p>	
-          <p class="info"><span class="label">Level:</span><span class="value">9/10</span></p>
-		  <p class="info"><span class="label">Concept:</span><span class="value">Detects and visualizes digital intrusions across decentralized data grids.</span></p>
-		  <p class="info"><span class="label">Client:</span><span class="value"></span></p>
-		  <a href="#"><span>NOVA//Protocol</span></a>
-      </div>
-    </section>  
-
-    <section class="ripple" style="background-color:#311C93;">  
-      <img class="full" src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/rewindNostalgia2.gif">  
-      <div class="content">
-		  <p class="capsule"><i class="pulse">&#9679;</i> In Development</p>
-		  <h2>(EchoShadow) AI Identity Cloaker</h2> 
-	      <p class="info"><span class="label">Expertise:</span><span class="value">PyTorch, OpenAI Whisper, Flask, JavaScript</span></p>	
-          <p class="info"><span class="label">Level:</span><span class="value">6/10</span></p>
-		  <p class="info"><span class="label">Concept:</span><span class="value">AI-based voice modulator to anonymize operators across the dark grid.</span></p>
-	      <p class="info"><span class="label">Client:</span><span class="value"></span></p>	  
-		  <a href="#"><span>CrystalCode Network</span></a>
-	  </div> 
-    </section>  
-
-    <section class="ripple" style="background-color:#DB1019;">  
-      <img class="full" src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/rewindNostalgia3.gif">  
-      <div class="content">
-		  <p class="capsule">&#9900; Archived</p>
-		  <h2>(VoidLedger) Decentralized Data Vault</h2> 
-	      <p class="info"><span class="label">Expertise:</span><span class="value">Solidity, Ethereum, Python, IPFS, cryptography</span></p>	
-          <p class="info"><span class="label">Level:</span><span class="value">9/10</span></p>
-		  <p class="info"><span class="label">Concept:</span><span class="value">Blockchain-based system for encrypted corporate data trades.</span></p>
-	      <p class="info"><span class="label">Client:</span><span class="value"></span></p>	  
-		  <a href="#"><span>PixelCascade Corporation</span></a>
-	  </div>   
-    </section>  
-
-    <section style="background-color:#A37400;">  
-      <img class="full" src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/rewindNostalgia4.gif">  
-      <div class="content">
-		  <p class="capsule"><i class="pulse">&#9679;</i> Live</p>
-		  <h2>(HoloFeed) Immersive Data Stream Visualizer</h2> 
-	      <p class="info"><span class="label">Expertise:</span><span class="value">Three.js, WebGL, Node.js, real-time APIs</span></p>	
-          <p class="info"><span class="label">Level:</span><span class="value">7/10</span></p>
-		  <p class="info"><span class="label">Concept:</span><span class="value">Developing a 3D holographic interface that visualizes global data streams as glowing cybernetic flows.</span></p>
-	      <p class="info"><span class="label">Client:</span><span class="value"></span></p>	  
-		  <a href="#"><span>∞AzureSignal Labs</span></a>
-	  </div>  
-    </section>  
-
-    <section style="background-color:#56144D;">  
-      <img class="full" src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/rewindNostalgia5.gif">  
-      <div class="content">
-		  <p class="capsule">&#9900; Beta Testing</p>
-		  <h2>(NeonSyntax) Predictive Sentience Mapper</h2>
-		  <p class="info"><span class="label">Expertise:</span><span class="value">PyTorch, Pandas, Flask, D3.js</span></p>
-		  <p class="info"><span class="label">Level:</span><span class="value">7/10</span></p>
-          <p class="info"><span class="label">Concept:</span><span class="value">AI engine that maps behavioral trends across digital ecosystems, predicting emergent patterns in user interactions.</span></p>
-          <p class="info"><span class="label">Client:</span><span class="value"></span></p>
-          <a href="#"><span>VaporByte Collective</span></a>
-	  </div>
-    </section>  
-
-    <section class="ripple" style="background-color:#E6C7A8;">  
-      <img class="full" src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/screenOverload.gif">  
-      <div class="content">
-		  <p class="capsule"><i class="pulse">&#9679;</i> Research Phase</p>
-		  <h2>(NoirGrid) Smart City Powerflow Optimizer</h2> 
-	      <p class="info"><span class="label">Expertise:</span><span class="value">Python, PyTorch, D3.js, IoT simulation frameworks</span></p>	
-          <p class="info"><span class="label">Level:</span><span class="value">8/10</span></p>
-		  <p class="info"><span class="label">Concept:</span><span class="value">Uses ML to optimize megacity energy flows and prevent system overloads.</span></p>
-	      <p class="info"><span class="label">Client:</span><span class="value"></span></p>	  
-		  <a href="#"><span>ZeroLag Industries</span></a>
-	  </div> 
-    </section>  
-
-    <section style="background-color:#AEA693;">
-      <img class="full" src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/rewindNostalgia6.gif">
-      <div class="content">
-        <p class="capsule"><i class="pulse">&#9679;</i> Live</p>
-        <h2>(RetroCache) Glitch Archive Reanimator</h2>
-        <p class="info"><span class="label">Expertise:</span><span class="value">Python, SQLite, Node.js, Canvas API</span></p>
-        <p class="info"><span class="label">Level:</span><span class="value">6/10</span></p>
-        <p class="info"><span class="label">Concept:</span><span class="value">Revives vintage datasets from old storage formats, turning corrupted logs and outdated archives into visual glitch art with interactive layers.</span></p>
-        <p class="info"><span class="label">Client:</span><span class="value"></span></p>
-        <a href="#"><span>PixelVault Systems</span></a>
-      </div>
+      <section class="content">
+		  <p> Archived (VoidLedger) Decentralized Data Vault</p> 
+	      <p>PixelCascade Corporation</p>   
     </section>
-
-    <section class="ripple" style="background-color:#E2FD00;">
-      <img class="full" src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/rewindNostalgia7.gif">
-      <div class="content">
-        <p class="capsule"><i class="pulse">&#9679;</i> Prototype Phase</p>
-        <h2>(EchoVeil) Quantum Signal Obfuscator</h2>
-        <p class="info"><span class="label">Expertise:</span><span class="value">Rust, WebAssembly, TensorFlow, React</span></p>
-        <p class="info"><span class="label">Level:</span><span class="value">7/10</span></p>
-        <p class="info"><span class="label">Concept:</span><span class="value">Browser-based neural encryption layer that scrambles data streams in real time using emergent quantum noise patterns.</span></p>
-        <p class="info"><span class="label">Client:</span><span class="value"></span></p>
-        <a href="#"><span>Obsidian Relay Labs</span></a>
-      </div>
-    </section>
-
-    <section class="ripple" style="background-color:#BF9797;">
-      <img class="full" src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/rewindNostalgia8.gif">
-      <div class="content">
-        <p class="capsule">&#9900; Experimental Mode</p>
-        <h2>(DataDrift) Holographic Archive Synthesizer</h2>
-        <p class="info"><span class="label">Expertise:</span><span class="value">PostgreSQL, Apache Arrow, Python, Three.js</span></p>
-        <p class="info"><span class="label">Level:</span><span class="value">8/10</span></p>
-        <p class="info"><span class="label">Concept:</span><span class="value">Immersive 3D data visualizer that transforms historical datasets into living holographic landscapes where patterns move like vapor and memory becomes architecture.</span></p>
-        <p class="info"><span class="label">Client:</span><span class="value"></span></p>
-        <a href="#"><span>Luminous Grid Labs</span></a>
-      </div>
-    </section>
-
-  </div> <!-- end scroll_container -->
-
-  <!-- === Navigation Counter === -->
-  <nav>  
-    <p class="dot"></p>  
-    <p class="count">1/9</p>  
-  </nav>  
-
-  <script>  
-    const sections = document.querySelectorAll('section');  
-    const dot = document.querySelector('.dot');  
-    const countText = document.querySelector('.count');  
-    const total = sections.length;  
-  
-    const observer = new IntersectionObserver((entries) => {  
-      entries.forEach(entry => {  
-        if (entry.isIntersecting) {  
-          const index = [...sections].indexOf(entry.target);  
-          countText.textContent = `${index + 1}/${total}`;  
-          entry.target.classList.add('in-view');  
-  
-          // restart pulse animation each time section enters view  
-          dot.classList.remove('pulse');  
-          void dot.offsetWidth;  
-          dot.classList.add('pulse');  
-        }  
-      });  
-    }, { threshold: 0.6 });  
-  
-    sections.forEach(section => observer.observe(section));  
-  </script>  
+  </div> 
 </body>  
 </html>
