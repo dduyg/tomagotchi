@@ -6,7 +6,7 @@
 <title>Liminal Loop // Mermaid Memories</title>
 <link href="https://fonts.googleapis.com/css2?family=Mona+Sans&display=swap" rel="stylesheet">
 <style>
-    * { box-sizing: border-box; }   
+    * { box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; } 
     body {
         font-family: "Mona Sans", sans-serif;
         color: #fff;
@@ -81,7 +81,7 @@
         hyphens: auto;
     }
     /* First column extra padding */
-    th:first-child, td:first-child {padding-left: 15px;}
+    th:first-child, td:first-child { padding-left: 15px; }
 
     /* Column width management */
     th:nth-child(1), td:nth-child(1) { /* Track # */
@@ -103,7 +103,7 @@
         color: #0ff;
         text-shadow: 0 0 5px #0ff;
     }
-    tr:nth-child(even) {background: rgba(255,255,255,0.05);}
+    tr:nth-child(even) { background: rgba(255,255,255,0.05); }
     tr:hover {
         background: rgba(255,255,255,0.15);
         cursor: pointer;
@@ -121,7 +121,7 @@
         position: absolute;
         width: 150px;
         height: auto;
-        opacity: 0.2;
+        opacity: 0.6;
         animation: floatMermaid 6s ease-in-out infinite alternate;
         z-index: 0;
     }
@@ -140,116 +140,40 @@
         100% { transform: translateY(0px) rotate(0deg); }
     }
 
-    /* Responsive adjustments */
     @media (max-width: 768px) {
-        h1 {
-            font-size: 2em;
-            margin-top: 30px;
-        }
-        .album-info {
-            font-size: 0.95em;
-        }
-        th, td {
-            padding: 8px 6px;
-            font-size: 0.85em;
-        }
-        th:first-child, td:first-child {
-            padding-left: 12px;
-        }
-        th {
-            font-size: 1em;
-        }
-        th:nth-child(1), td:nth-child(1) {
-            width: 10%;
-        }
-        th:nth-child(2), td:nth-child(2) {
-            width: 35%;
-        }
-        th:nth-child(3), td:nth-child(3) {
-            width: 13%;
-        }
-        th:nth-child(4), td:nth-child(4) {
-            width: 42%;
-        }
-        .mermaid {
-            width: 80px;
-        }
+        h1 { font-size: 2em; margin-top: 30px; }
+        .album-info { font-size: 0.95em; }
+        th, td { padding: 8px 6px; font-size: 0.85em; }
+        th:first-child, td:first-child { padding-left: 12px; }
+        th { font-size: 1em; }
+        th:nth-child(1), td:nth-child(1) { width: 10%; }
+        th:nth-child(2), td:nth-child(2) { width: 35%; }
+        th:nth-child(3), td:nth-child(3) { width: 13%; }
+        th:nth-child(4), td:nth-child(4) { width: 42%; }
+        .mermaid { width: 80px; }
     }
 
     @media (max-width: 480px) {
-        h1 {
-            font-size: 1.5em;
-            margin-top: 20px;
-        }
-        .album-info {
-            font-size: 0.8em;
-            margin-bottom: 20px;
-        }
-        
-        table {
-            border-radius: 15px;
-        }
-        
-        th, td {
-            padding: 8px 6px;
-            font-size: 0.7em;
-            line-height: 1.4;
-        }
-        
-        /* Important: maintain good padding on all columns */
-        th:first-child, td:first-child {
-            padding-left: 10px;
-        }
-        
-        th:last-child, td:last-child {
-            padding-right: 10px;
-        }
-        
-        th {
-            font-size: 0.85em;
-        }
-        th:nth-child(1), td:nth-child(1) {
-            width: 11%;
-        }
-        th:nth-child(2), td:nth-child(2) {
-            width: 35%;
-        }
-        th:nth-child(3), td:nth-child(3) {
-            width: 14%;
-        }
-        th:nth-child(4), td:nth-child(4) {
-            width: 40%;
-        }
-        .mermaid {
-            display: none;
-        }
-        .footer {
-            font-size: 0.8em;
-            margin: 30px 0;
-        }
+        h1 { font-size: 1.5em; margin-top: 20px; }
+        .album-info { font-size: 0.8em; margin-bottom: 20px; }      
+        table { border-radius: 15px; }      
+        th, td { padding: 8px 6px; font-size: 0.7em; line-height: 1.4; }
+        th:first-child, td:first-child { padding-left: 10px; }      
+        th:last-child, td:last-child { padding-right: 10px; }    
+        th { font-size: 0.85em; }
+        th:nth-child(1), td:nth-child(1) { width: 11%; }
+        th:nth-child(2), td:nth-child(2) { width: 35%; }
+        th:nth-child(3), td:nth-child(3) { width: 14%; }
+        th:nth-child(4), td:nth-child(4) { width: 40%; }
+        .footer { font-size: 0.8em; margin: 30px 0; }
     }
 
     @media (max-width: 360px) {
-        h1 {
-            font-size: 1.3em;
-        }
-        
-        th, td {
-            padding: 7px 5px;
-            font-size: 0.65em;
-        }
-        
-        th:first-child, td:first-child {
-            padding-left: 8px;
-        }
-        
-        th:last-child, td:last-child {
-            padding-right: 8px;
-        }
-        
-        th {
-            font-size: 0.75em;
-        }
+        h1 { font-size: 1.3em; }     
+        th, td { padding: 7px 5px; font-size: 0.65em; }     
+        th:first-child, td:first-child { padding-left: 8px; }   
+        th:last-child, td:last-child { padding-right: 8px; }        
+        th { font-size: 0.75em; }
     }
 </style>
 </head>
