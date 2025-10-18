@@ -64,16 +64,28 @@
 
     h2 { text-align: center; margin-bottom: 1em; }
 
-    p {
-      margin-bottom: 1.4em;
+    /* Fade-in for all direct children */
+    .content > * {
       opacity: 0;
       transform: translateY(30px);
-      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 1s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    p.visible {
+    .content > *.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    p, blockquote {
+      margin-bottom: 1.4em;
+    }
+
+    blockquote {
+      padding-left: 1em;
+      border-left: 3px solid #A37400;
+      font-style: italic;
+      color: #7A5700;
     }
   </style>
 </head>
@@ -107,23 +119,24 @@
       <p>By the time Lucien knocked at her door that afternoon, the canvas was alive with motion — a storm giving birth to sunrise.</p>
       <p>He stepped inside, eyes wide. “Elara,” he breathed, “It’s… beautiful.”</p>
       <p>She smiled softly, a touch of dried salt at the corner of her eyes. “They’re aesthetic tears,” she said. “The kind that don’t hurt anymore.”</p>
-      <p>Outside, the sky was clear. Inside, the colors began again.</p>      
+      <p>Outside, the sky was clear. Inside, the colors began again.</p>
     </section>
   </div>
 
   <script>
-    // Smooth fade-in scroll effect
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+    const elements = document.querySelectorAll('.content > *');
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, index * 150); // stagger each element by 150ms
+          obs.unobserve(entry.target);
         }
       });
     }, { threshold: 0.2 });
 
-    document.querySelectorAll('.content p, .content blockquote').forEach(el => {
-      observer.observe(el);
-    });
+    elements.forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
