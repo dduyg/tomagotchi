@@ -5,13 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LiminalLoop</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     :root {
       --baseUnit: calc(calc(0.33vw + 3px) * 3);
       --baseUnit-: calc(calc(-0.33vw + -3px) * 3);
       --marginLeft: calc(calc(0.33vw + 3px) * 14);
       --marginRight: calc(calc(0.33vw + 3px) * 30);
     }
+
     @media (max-width: 768px) {
       :root {
         --baseUnit: calc(calc(0.25vw + 6px) * 2);
@@ -20,6 +26,7 @@
         --marginRight: calc(calc(0.33vw + 3px) * 8);
       }
     }
+
     html, body {
       height: 100%;
       overflow: hidden;
@@ -28,6 +35,7 @@
       line-height: 1.5;
       font-family: '0xPropo', monospace;
     }
+
     body:after, body:before {
       content: "";
       position: fixed;
@@ -39,10 +47,12 @@
       z-index: 10;
       pointer-events: none;
     }
+
     body:before {
       right: var(--marginRight);
       left: auto;
     }
+
     .scroll_container {
       position: fixed;
       top: 0;
@@ -54,16 +64,24 @@
       width: 100vw;
       perspective: 1000px;
     }
+
     .content {
       padding: 40vh var(--marginRight) calc(var(--baseUnit) * 6) var(--marginLeft);
       scroll-snap-align: start;
       position: relative;
       max-width: calc(100vw - var(--marginLeft) - var(--marginRight));
-      transition: transform 0.3s ease-out;
+      transition: transform 0.3s ease-out, opacity 0.3s ease-out;
       will-change: transform, opacity;
     }
-    h2 { text-align: center; margin-bottom: 1.2em; }
-    p { margin-bottom: 1.4em; }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.2em;
+    }
+
+    p {
+      margin-bottom: 1.4em;
+    }
   </style>
 </head>
 <body>
@@ -96,7 +114,7 @@
       <p>By the time Lucien knocked at her door that afternoon, the canvas was alive with motion — a storm giving birth to sunrise.</p>
       <p>He stepped inside, eyes wide. “Elara,” he breathed, “It’s… beautiful.”</p>
       <p>She smiled softly, a touch of dried salt at the corner of her eyes. “They’re aesthetic tears,” she said. “The kind that don’t hurt anymore.”</p>
-      <p>Outside, the sky was clear. Inside, the colors began again.</p>      
+      <p>Outside, the sky was clear. Inside, the colors began again.</p>
     </section>
   </div>
 
@@ -109,9 +127,9 @@
       const maxScroll = container.scrollHeight - window.innerHeight;
       const progress = scrollY / maxScroll;
 
-      // Subtle lift and fade-in effect
-      const translateY = Math.max(0, 50 - progress * 50);
-      const opacity = Math.min(1, 0.3 + progress * 1.2);
+      // Smooth rise and fade as you scroll
+      const translateY = Math.max(0, 80 - progress * 80);
+      const opacity = Math.min(1, 0.2 + progress * 1.2);
 
       content.style.transform = `translateY(${translateY}px) scale(${1 + progress * 0.02})`;
       content.style.opacity = opacity;
