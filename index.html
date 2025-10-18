@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Understanding Data Contracts</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: #f9fafb;
+      color: #222;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      color: #0d47a1;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    code, pre {
+      background-color: #f3f4f6;
+      padding: 0.75rem;
+      border-radius: 6px;
+      display: block;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.75rem;
+      text-align: left;
+    }
+    th {
+      background-color: #e3f2fd;
+    }
+    ul, ol {
+      margin-left: 1.5rem;
+    }
+    blockquote {
+      background: #e8f0fe;
+      border-left: 5px solid #1976d2;
+      margin: 1rem 0;
+      padding: 0.75rem 1rem;
+      font-style: italic;
+    }
+    img {
+      display: block;
+      margin: 2rem auto;
+      max-width: 600px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .section {
+      margin-bottom: 3rem;
+    }
+    .note {
+      background-color: #fff8e1;
+      border-left: 4px solid #ffb300;
+      padding: 0.5rem 1rem;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Understanding Data Contracts</h1>
+
+  <div class="section">
+    <p><strong>Definition:</strong> A <b>data contract</b> is a formal agreement between <b>data producers</b> (the teams or systems that create or provide data) and <b>data consumers</b> (the teams, dashboards, models, or services that use that data).</p>
+    <p>It defines <em>what data is shared, how it behaves, and what guarantees are made</em> — just like an API contract does for software systems.</p>
+  </div>
+
+  <div class="section">
+    <h2>🧱 In Simple Terms</h2>
+    <p>A <b>data contract</b> is like a “data API agreement”:</p>
+    <blockquote>
+      “We, the producer, promise to deliver data in this format, at this frequency, with this quality; you, the consumer, can safely rely on it.”
+    </blockquote>
+  </div>
+
+  <div class="section">
+    <h2>📄 What a Data Contract Usually Specifies</h2>
+    <table>
+      <tr><th>Aspect</th><th>Description</th><th>Example</th></tr>
+      <tr><td>Schema</td><td>Structure of the dataset (columns, data types, nullable fields).</td><td><code>user_id: string, signup_date: date, is_premium: boolean</code></td></tr>
+      <tr><td>Semantics</td><td>Meaning of each field and business logic.</td><td><code>is_premium = true</code> means the user paid within 30 days.</td></tr>
+      <tr><td>SLAs / SLIs</td><td>Service-level expectations for data delivery.</td><td>Data available by 2 AM daily, ≥99% completeness.</td></tr>
+      <tr><td>Quality Rules</td><td>Expectations for accuracy, uniqueness, validity, etc.</td><td>No duplicate <code>user_id</code>, valid dates only.</td></tr>
+      <tr><td>Versioning</td><td>How schema or logic changes are managed.</td><td>Adding new columns is backward-compatible.</td></tr>
+      <tr><td>Ownership & Contact</td><td>Who owns and maintains the dataset.</td><td><code>owner: marketing-data-team@company.com</code></td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>🚀 Why Data Contracts Matter</h2>
+    <ol>
+      <li><b>Reduce Breakages:</b> Prevents silent pipeline failures when upstream schemas change.</li>
+      <li><b>Enable Decentralization:</b> Supports data mesh / domain-driven design.</li>
+      <li><b>Improve Trust:</b> Consumers rely confidently on stable data.</li>
+      <li><b>Support Governance:</b> Simplifies lineage, compliance, and auditing.</li>
+      <li><b>Foster Collaboration:</b> Clarifies roles between producers and consumers.</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h2>🧩 How Data Contracts Are Implemented</h2>
+    <ul>
+      <li>Defined declaratively using schema tools (e.g., JSON Schema, Avro, Protocol Buffers).</li>
+      <li>Version-controlled in Git repositories.</li>
+      <li>Automatically validated during CI/CD pipeline runs.</li>
+      <li>Enforced by tools like Airflow, Dagster, or metadata platforms such as DataHub or Monte Carlo.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🛠️ Example Workflow</h2>
+    <ol>
+      <li>Product team defines a dataset schema in a YAML contract file.</li>
+      <li>The file is committed to Git and reviewed like code.</li>
+      <li>Automated tests verify conformance before publishing.</li>
+      <li>Consumers are notified automatically of schema changes.</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h2>🧾 Example Data Contract (YAML)</h2>
+    <pre><code># File: contracts/user_signups.yaml
+contract:
+  name: user_signups
+  version: 1.3.0
+  owner: marketing-data-team@company.com
+  domain: user_acquisition
+  description: >
+    Daily export of new user signups from the application database.
+    Used by analytics and ML teams for retention and growth metrics.
+
+  schema:
+    fields:
+      - name: user_id
+        type: string
+        description: Unique ID of the user.
+        constraints:
+          required: true
+          unique: true
+
+      - name: signup_timestamp
+        type: timestamp
+        description: UTC time of signup event.
+        constraints:
+          required: true
+          not_null: true
+
+      - name: country
+        type: string
+        description: ISO 3166-1 alpha-2 country code.
+        constraints:
+          allowed_values: ["US", "CA", "GB", "IN", "DE", "FR", "OTHER"]
+
+      - name: referral_source
+        type: string
+        description: How the user found the product.
+        constraints:
+          nullable: true
+
+      - name: is_premium
+        type: boolean
+        description: Whether the user subscribed to a paid plan.
+        default: false
+
+  data_quality_rules:
+    - name: no_null_ids
+      condition: "user_id IS NOT NULL"
+      severity: error
+
+    - name: valid_country_codes
+      condition: "country IN ('US','CA','GB','IN','DE','FR','OTHER')"
+      severity: warning
+
+    - name: signup_date_recent
+      condition: "signup_timestamp >= CURRENT_DATE - INTERVAL '7 days'"
+      severity: info
+
+  slas:
+    freshness: "Data must be available by 02:00 UTC daily"
+    completeness: "≥99% of records expected vs previous 7-day rolling average"
+    latency: "Under 30 min for pipeline completion"
+
+  change_policy:
+    breaking_changes:
+      - removing or renaming columns
+      - changing data types
+    notification:
+      channels: ["#data-contracts", "email:analytics-team@company.com"]
+      notice_period_days: 7
+</code></pre>
+  </div>
+
+  <div class="section">
+    <h2>⚙️ Enforcing Data Contracts in Pipelines</h2>
+
+    <h3>🧮 1. Validation with Great Expectations</h3>
+    <pre><code># validate_user_signups.py
+from great_expectations.dataset import PandasDataset
+import pandas as pd
+
+class UserSignupsDataset(PandasDataset):
+    def validate_schema(self):
+        self.expect_column_to_exist("user_id")
+        self.expect_column_values_to_not_be_null("user_id")
+        self.expect_column_to_exist("signup_timestamp")
+        self.expect_column_values_to_not_be_null("signup_timestamp")
+        self.expect_column_values_to_be_in_set(
+            "country", ["US", "CA", "GB", "IN", "DE", "FR", "OTHER"]
+        )
+
+def run_validation(file_path):
+    df = pd.read_parquet(file_path)
+    dataset = UserSignupsDataset(df)
+    results = dataset.validate(expectation_suite_name="user_signups_suite")
+    if not results["success"]:
+        raise ValueError("Data contract validation failed!")</code></pre>
+
+    <h3>🧰 2. Enforcement via Airflow DAG</h3>
+    <pre><code># airflow_dag_user_signups.py
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+from datetime import datetime, timedelta
+from validate_user_signups import run_validation
+
+default_args = {
+    "owner": "data-team",
+    "start_date": datetime(2025, 10, 1),
+    "retries": 1,
+    "retry_delay": timedelta(minutes=5),
+}
+
+with DAG(
+    "user_signups_pipeline",
+    default_args=default_args,
+    schedule_interval="@daily",
+    catchup=False,
+) as dag:
+
+    extract = PythonOperator(
+        task_id="extract_data",
+        python_callable=lambda: print("Extracting user signups..."),
+    )
+
+    validate = PythonOperator(
+        task_id="validate_contract",
+        python_callable=run_validation,
+        op_args=["/data/staging/user_signups.parquet"],
+    )
+
+    load_to_warehouse = PythonOperator(
+        task_id="load_to_warehouse",
+        python_callable=lambda: print("Loading data to Snowflake..."),
+    )
+
+    extract >> validate >> load_to_warehouse
+</code></pre>
+
+    <h3>🧱 3. Integration with dbt</h3>
+    <pre><code># models/staging/user_signups.yml
+version: 2
+
+models:
+  - name: stg_user_signups
+    description: "Validated user signup data"
+    columns:
+      - name: user_id
+        tests:
+          - not_null
+          - unique
+      - name: country
+        tests:
+          - accepted_values:
+              values: ['US', 'CA', 'GB', 'IN', 'DE', 'FR', 'OTHER']
+</code></pre>
+
+    <h3>🚀 4. Putting It All Together</h3>
+    <table>
+      <tr><th>Layer</th><th>Tool</th><th>Role</th></tr>
+      <tr><td>Contract Definition</td><td>YAML File</td><td>Defines schema, rules, SLAs</td></tr>
+      <tr><td>Validation</td><td>Great Expectations</td><td>Checks data vs. contract</td></tr>
+      <tr><td>Orchestration</td><td>Airflow</td><td>Runs validation before load</td></tr>
+      <tr><td>Transformation</td><td>dbt</td><td>Ensures schema compliance</td></tr>
+      <tr><td>Monitoring</td><td>DataHub / Monte Carlo</td><td>Tracks lineage & alerts</td></tr>
+    </table>
+
+    <h3>📊 Workflow Diagram</h3>
+    <img src="A_flowchart_in_a_2D_digital_flowchart_diagram_illu.png" alt="Data Contract Workflow Diagram">
+  </div>
+
+</body>
+</html>
