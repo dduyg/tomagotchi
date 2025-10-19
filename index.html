@@ -3,68 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiminalLoop</title>
+    <title>588o</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             overflow-x: hidden;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            position: relative;
         }
 
         .container {
             position: relative;
             width: 100%;
             min-height: 100vh;
-            background: linear-gradient(to bottom, rgba(100, 120, 150, 0.7), rgba(80, 100, 130, 0.8)),
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%23708090" width="800" height="600"/><ellipse cx="400" cy="300" rx="200" ry="150" fill="%234169e1" opacity="0.3"/></svg>');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-        }
-
-        .product-image {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
-            height: 300px;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1e3c72 100%);
-            border-radius: 20px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .product-image::before {
-            content: '';
-            position: absolute;
-            width: 80%;
-            height: 20px;
-            background: #4169e1;
-            border-radius: 10px;
-            top: 35%;
-            transform: translateY(-50%) rotateZ(-5deg);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .product-image::after {
-            content: '';
-            position: absolute;
-            width: 80%;
-            height: 20px;
-            background: #4169e1;
-            border-radius: 10px;
-            bottom: 30%;
-            transform: translateY(50%) rotateZ(-5deg);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"><defs><linearGradient id="bg" x1="0%25" y1="0%25" x2="100%25" y2="100%25"><stop offset="0%25" style="stop-color:%23667eea"/><stop offset="100%25" style="stop-color:%23764ba2"/></linearGradient></defs><rect fill="url(%23bg)" width="1000" height="600"/><path d="M200 200 L600 150 L550 350 L150 400 Z" fill="%232c5aa0" opacity="0.7"/><path d="M300 250 L650 220 L600 380 L250 420 Z" fill="%233d6bb3" opacity="0.6"/></svg>') center/cover no-repeat;
         }
 
         .text-overlay {
@@ -73,133 +32,107 @@
             height: 100%;
             top: 0;
             left: 0;
-            pointer-events: none;
         }
 
         .text-item {
             position: absolute;
-            color: rgba(255, 250, 230, 0.85);
+            color: #f5f0e8;
             font-weight: 300;
             letter-spacing: -0.02em;
             line-height: 1;
+            white-space: nowrap;
+        }
+
+        .text-large {
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 300;
+        }
+
+        .text-medium {
+            font-size: clamp(2.5rem, 7vw, 6rem);
+            font-weight: 300;
+        }
+
+        .text-small {
+            font-size: clamp(0.8rem, 1.2vw, 1rem);
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        /* Positioning each text element */
+        .mhasel-hasn {
+            top: 2%;
+            left: 2%;
         }
 
         .brand-design {
-            top: 20px;
-            right: 40px;
-            font-size: 16px;
-            font-weight: 400;
-        }
-
-        .mhasel-lhasn {
-            top: -20px;
-            left: 20px;
-            font-size: 140px;
-            font-weight: 200;
-            letter-spacing: -0.03em;
+            top: 2%;
+            right: 5%;
         }
 
         .object-design {
-            top: 140px;
-            left: 130px;
-            font-size: 14px;
-            font-weight: 400;
+            top: 20%;
+            left: 8%;
         }
 
-        .le-meur {
-            top: 120px;
-            right: 50px;
-            font-size: 110px;
-            font-weight: 200;
+        .lemeur {
+            top: 22%;
+            right: 8%;
+        }
+
+        .has-rtish-asn {
+            top: 42%;
+            left: 2%;
         }
 
         .event-design {
-            top: 270px;
-            right: 200px;
-            font-size: 14px;
-            font-weight: 400;
-        }
-
-        .has-rtishasn {
-            top: 240px;
-            left: 15px;
-            font-size: 130px;
-            font-weight: 200;
+            top: 45%;
+            left: 45%;
         }
 
         .web-design {
-            bottom: 200px;
-            left: 15px;
-            font-size: 14px;
-            font-weight: 400;
+            bottom: 35%;
+            left: 2%;
         }
 
-        .grhasn {
-            bottom: 80px;
-            right: -20px;
-            font-size: 160px;
-            font-weight: 200;
-            letter-spacing: -0.04em;
+        .grh-asn-bliste {
+            bottom: 15%;
+            right: 5%;
         }
 
-        .liste {
-            bottom: 80px;
-            right: 40px;
-            font-size: 80px;
-            font-weight: 200;
+        .online-store {
+            bottom: 8%;
+            right: 35%;
         }
 
-        .horizontal-line {
-            position: absolute;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.2);
-            left: 0;
-            right: 0;
-        }
-
-        .line-1 { top: 15%; }
-        .line-2 { top: 35%; }
-        .line-3 { top: 55%; }
-        .line-4 { top: 75%; }
-
-        @media (max-width: 1024px) {
-            .mhasel-lhasn { font-size: 100px; top: 10px; }
-            .le-meur { font-size: 80px; }
-            .has-rtishasn { font-size: 90px; }
-            .grhasn { font-size: 110px; }
-            .liste { font-size: 60px; }
-            .product-image { width: 300px; height: 250px; }
-        }
-
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            .mhasel-lhasn { font-size: 70px; }
-            .le-meur { font-size: 60px; }
-            .has-rtishasn { font-size: 65px; }
-            .grhasn { font-size: 80px; }
-            .liste { font-size: 45px; }
-            .product-image { width: 250px; height: 200px; }
+            .text-large {
+                font-size: clamp(2.5rem, 10vw, 6rem);
+            }
+            
+            .text-medium {
+                font-size: clamp(1.5rem, 6vw, 4rem);
+            }
+            
+            .text-small {
+                font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="horizontal-line line-1"></div>
-        <div class="horizontal-line line-2"></div>
-        <div class="horizontal-line line-3"></div>
-        <div class="horizontal-line line-4"></div>
-        
-        <div class="product-image"></div>
-        
         <div class="text-overlay">
-            <div class="text-item brand-design">Brand design</div>
-            <div class="text-item mhasel-lhasn">MhaseLhasn</div>
-            <div class="text-item object-design">Object design</div>
-            <div class="text-item le-meur">LeMeur</div>
-            <div class="text-item event-design">Event design</div>
-            <div class="text-item has-rtishasn">HASrtishasn</div>
-            <div class="text-item web-design">Web design</div>
-            <div class="text-item grhasn">Grhasn</div>
-            <div class="text-item liste">liste</div>
+            <div class="text-item text-large mhasel-hasn">MhaseLhasn</div>
+            <div class="text-item text-small brand-design">Brand design</div>
+            <div class="text-item text-small object-design">Object design</div>
+            <div class="text-item text-medium lemeur">LeMeur</div>
+            <div class="text-item text-large has-rtish-asn">HASrtishasn</div>
+            <div class="text-item text-small event-design">Event design</div>
+            <div class="text-item text-small web-design">Web design</div>
+            <div class="text-item text-medium grh-asn-bliste">Grhasnbliste</div>
+            <div class="text-item text-small online-store">Online store</div>
         </div>
     </div>
 </body>
