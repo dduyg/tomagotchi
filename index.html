@@ -5,226 +5,201 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LiminalLoop</title>
     <style>
-        * { margin: 0;  padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             overflow-x: hidden;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #89a8b8 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
         }
+
         .container {
             position: relative;
             width: 100%;
             min-height: 100vh;
+            background: linear-gradient(to bottom, rgba(100, 120, 150, 0.7), rgba(80, 100, 130, 0.8)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect fill="%23708090" width="800" height="600"/><ellipse cx="400" cy="300" rx="200" ry="150" fill="%234169e1" opacity="0.3"/></svg>');
+            background-size: cover;
+            background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 40px;
         }
 
-        .text-layer {
+        .product-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 300px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1e3c72 100%);
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 20px;
+            background: #4169e1;
+            border-radius: 10px;
+            top: 35%;
+            transform: translateY(-50%) rotateZ(-5deg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-image::after {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 20px;
+            background: #4169e1;
+            border-radius: 10px;
+            bottom: 30%;
+            transform: translateY(50%) rotateZ(-5deg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .text-overlay {
             position: absolute;
             width: 100%;
             height: 100%;
+            top: 0;
+            left: 0;
             pointer-events: none;
         }
 
-        .text-element {
+        .text-item {
             position: absolute;
-            color: rgba(255, 248, 220, 0.85);
+            color: rgba(255, 250, 230, 0.85);
             font-weight: 300;
             letter-spacing: -0.02em;
-            line-height: 0.9;
+            line-height: 1;
         }
 
         .brand-design {
             top: 20px;
             right: 40px;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 400;
-            letter-spacing: 0.05em;
         }
 
-        .mhase-lhasn {
-            top: 0;
+        .mhasel-lhasn {
+            top: -20px;
             left: 20px;
-            font-size: clamp(60px, 12vw, 180px);
-            font-weight: 300;
+            font-size: 140px;
+            font-weight: 200;
+            letter-spacing: -0.03em;
         }
 
         .object-design {
-            top: 150px;
-            left: 120px;
-            font-size: 13px;
+            top: 140px;
+            left: 130px;
+            font-size: 14px;
             font-weight: 400;
-            letter-spacing: 0.05em;
         }
 
         .le-meur {
-            top: 15%;
-            right: 5%;
-            font-size: clamp(50px, 10vw, 150px);
-            font-weight: 300;
+            top: 120px;
+            right: 50px;
+            font-size: 110px;
+            font-weight: 200;
         }
 
         .event-design {
-            top: 32%;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 13px;
+            top: 270px;
+            right: 200px;
+            font-size: 14px;
             font-weight: 400;
-            letter-spacing: 0.05em;
         }
 
         .has-rtishasn {
-            top: 28%;
-            left: 20px;
-            font-size: clamp(50px, 10vw, 140px);
-            font-weight: 300;
+            top: 240px;
+            left: 15px;
+            font-size: 130px;
+            font-weight: 200;
         }
 
         .web-design {
-            top: 52%;
-            left: 20px;
-            font-size: 13px;
+            bottom: 200px;
+            left: 15px;
+            font-size: 14px;
             font-weight: 400;
-            letter-spacing: 0.05em;
         }
 
-        .gr-hasp {
-            bottom: 15%;
-            left: 10%;
-            font-size: clamp(50px, 10vw, 140px);
-            font-weight: 300;
-        }
-
-        .online {
-            bottom: 18%;
-            right: 8%;
-            font-size: 13px;
-            font-weight: 400;
-            letter-spacing: 0.05em;
+        .grhasn {
+            bottom: 80px;
+            right: -20px;
+            font-size: 160px;
+            font-weight: 200;
+            letter-spacing: -0.04em;
         }
 
         .liste {
-            bottom: 10%;
-            right: 5%;
-            font-size: clamp(40px, 8vw, 120px);
-            font-weight: 300;
+            bottom: 80px;
+            right: 40px;
+            font-size: 80px;
+            font-weight: 200;
         }
 
-        .image-container {
-            position: relative;
-            z-index: 5;
-            max-width: 600px;
-            width: 80%;
-            padding: 20px;
+        .horizontal-line {
+            position: absolute;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            left: 0;
+            right: 0;
         }
 
-        .product-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: brightness(0.95) contrast(1.05);
-            border-radius: 8px;
+        .line-1 { top: 15%; }
+        .line-2 { top: 35%; }
+        .line-3 { top: 55%; }
+        .line-4 { top: 75%; }
+
+        @media (max-width: 1024px) {
+            .mhasel-lhasn { font-size: 100px; top: 10px; }
+            .le-meur { font-size: 80px; }
+            .has-rtishasn { font-size: 90px; }
+            .grhasn { font-size: 110px; }
+            .liste { font-size: 60px; }
+            .product-image { width: 300px; height: 250px; }
         }
 
-        /* Responsive adjustments */
         @media (max-width: 768px) {
-            .text-element {
-                letter-spacing: -0.03em;
-            }
-
-            .brand-design,
-            .object-design,
-            .event-design,
-            .web-design,
-            .online {
-                font-size: 11px;
-            }
-
-            .image-container {
-                width: 90%;
-            }
+            .mhasel-lhasn { font-size: 70px; }
+            .le-meur { font-size: 60px; }
+            .has-rtishasn { font-size: 65px; }
+            .grhasn { font-size: 80px; }
+            .liste { font-size: 45px; }
+            .product-image { width: 250px; height: 200px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="text-layer">
-            <div class="text-element brand-design">Brand design</div>
-            <div class="text-element mhase-lhasn">MhaseLhasn</div>
-            <div class="text-element object-design">Object design</div>
-            <div class="text-element le-meur">LeMeur</div>
-            <div class="text-element event-design">Event design</div>
-            <div class="text-element has-rtishasn">HASrtishasn</div>
-            <div class="text-element web-design">Web design</div>
-            <div class="text-element gr-hasp">Grhasp</div>
-            <div class="text-element online">Online</div>
-            <div class="text-element liste">liste</div>
-        </div>
-
-        <div class="image-container">
-            <svg class="product-image" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-                <!-- Background -->
-                <rect width="600" height="400" fill="#e8e8e8"/>
-                
-                <!-- Stack of papers/cards -->
-                <g transform="translate(150, 80)">
-                    <!-- Bottom layers (gray stack) -->
-                    <rect x="0" y="50" width="300" height="200" fill="#b8b8b8" stroke="#999" stroke-width="1"/>
-                    <rect x="0" y="45" width="300" height="200" fill="#c5c5c5" stroke="#aaa" stroke-width="1"/>
-                    <rect x="0" y="40" width="300" height="200" fill="#d0d0d0" stroke="#bbb" stroke-width="1"/>
-                    
-                    <!-- Blue strap going over -->
-                    <defs>
-                        <linearGradient id="blueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" style="stop-color:#2a5caa;stop-opacity:1" />
-                            <stop offset="50%" style="stop-color:#1e4a99;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#2a5caa;stop-opacity:1" />
-                        </linearGradient>
-                        
-                        <pattern id="texture" x="0" y="0" width="4" height="4" patternUnits="userSpaceOnUse">
-                            <rect width="4" height="4" fill="url(#blueGrad)"/>
-                            <line x1="0" y1="0" x2="4" y2="4" stroke="#1a3a79" stroke-width="0.5" opacity="0.3"/>
-                        </pattern>
-                    </defs>
-                    
-                    <!-- Blue strap with buckle -->
-                    <g transform="translate(-50, 10)">
-                        <path d="M 80 80 Q 180 60, 280 80 L 280 120 Q 180 100, 80 120 Z" fill="url(#texture)" stroke="#0d2347" stroke-width="2"/>
-                        
-                        <!-- Buckle -->
-                        <rect x="165" y="70" width="30" height="40" fill="#4a4a4a" stroke="#2a2a2a" stroke-width="1" rx="2"/>
-                        <rect x="168" y="73" width="24" height="34" fill="#6a6a6a" stroke="#3a3a3a" stroke-width="1" rx="1"/>
-                        <rect x="170" y="88" width="20" height="4" fill="#2a2a2a"/>
-                        
-                        <!-- Strap details -->
-                        <line x1="85" y1="90" x2="275" y2="90" stroke="#0d2347" stroke-width="1" opacity="0.5"/>
-                        <line x1="85" y1="110" x2="275" y2="110" stroke="#3d5f99" stroke-width="1" opacity="0.5"/>
-                    </g>
-                    
-                    <!-- Top white/light card -->
-                    <rect x="0" y="35" width="300" height="200" fill="#f5f5f5" stroke="#ddd" stroke-width="1"/>
-                    
-                    <!-- Grid pattern on top card -->
-                    <g opacity="0.15">
-                        <line x1="0" y1="135" x2="300" y2="135" stroke="#999" stroke-width="0.5"/>
-                        <line x1="0" y1="155" x2="300" y2="155" stroke="#999" stroke-width="0.5"/>
-                        <line x1="0" y1="175" x2="300" y2="175" stroke="#999" stroke-width="0.5"/>
-                        <line x1="0" y1="195" x2="300" y2="195" stroke="#999" stroke-width="0.5"/>
-                        <line x1="0" y1="215" x2="300" y2="215" stroke="#999" stroke-width="0.5"/>
-                        
-                        <line x1="50" y1="35" x2="50" y2="235" stroke="#999" stroke-width="0.5"/>
-                        <line x1="100" y1="35" x2="100" y2="235" stroke="#999" stroke-width="0.5"/>
-                        <line x1="150" y1="35" x2="150" y2="235" stroke="#999" stroke-width="0.5"/>
-                        <line x1="200" y1="35" x2="200" y2="235" stroke="#999" stroke-width="0.5"/>
-                        <line x1="250" y1="35" x2="250" y2="235" stroke="#999" stroke-width="0.5"/>
-                    </g>
-                </g>
-                
-                <!-- Shadow -->
-                <ellipse cx="300" cy="350" rx="200" ry="20" fill="#000" opacity="0.1"/>
-            </svg>
+        <div class="horizontal-line line-1"></div>
+        <div class="horizontal-line line-2"></div>
+        <div class="horizontal-line line-3"></div>
+        <div class="horizontal-line line-4"></div>
+        
+        <div class="product-image"></div>
+        
+        <div class="text-overlay">
+            <div class="text-item brand-design">Brand design</div>
+            <div class="text-item mhasel-lhasn">MhaseLhasn</div>
+            <div class="text-item object-design">Object design</div>
+            <div class="text-item le-meur">LeMeur</div>
+            <div class="text-item event-design">Event design</div>
+            <div class="text-item has-rtishasn">HASrtishasn</div>
+            <div class="text-item web-design">Web design</div>
+            <div class="text-item grhasn">Grhasn</div>
+            <div class="text-item liste">liste</div>
         </div>
     </div>
 </body>
