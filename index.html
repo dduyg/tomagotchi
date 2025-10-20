@@ -3,28 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Design Portfolio</title>
+    <title>Liminal📟Loop</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             overflow-x: hidden;
             height: 100vh;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-
         .container {
             height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        .row {
+        .section {
             flex: 1;
             position: relative;
             display: flex;
@@ -33,18 +27,17 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             overflow: hidden;
         }
-
-        .row:last-child {
+        .section:last-child {
             border-bottom: none;
         }
 
-        .row-content {
+        .section-content {
             width: 100%;
             position: relative;
             z-index: 2;
         }
 
-        .main-text {
+        .main {
             font-size: clamp(3rem, 12vw, 14vw);
             font-weight: 300;
             letter-spacing: -0.02em;
@@ -60,64 +53,64 @@
             margin-bottom: 1vh;
         }
 
-        /* Row 1 - MhaseLhasn with Brand design label on right */
-        .row-1 .row-content {
+        /* Section 1 - MhaseLhasn with Brand design label on right */
+        .one .section-content {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
         }
 
-        .row-1 .label {
+        .one .label {
             text-align: right;
             align-self: flex-start;
             margin-top: 1vh;
         }
 
-        /* Row 2 - LeMeur with Object design label on left */
-        .row-2 .row-content {
+        /* Section 2 - LeMeur with Object design label on left */
+        .two .section-content {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
         }
 
-        .row-2 .label {
+        .two .label {
             position: absolute;
             left: 5vw;
             top: 2vh;
         }
 
-        .row-2 .main-text {
+        .two .main {
             text-align: right;
         }
 
-        /* Row 3 - HASmtishasn with Event design in middle */
-        .row-3 .row-content {
+        /* Section 3 - HASmtishasn with Event design in middle */
+        .three .section-content {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
         }
 
-        .row-3 .label {
+        .three .label {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
             top: 2vh;
         }
 
-        /* Row 4 - Grhasnbliste with Web design label on left */
-        .row-4 .row-content {
+        /* Section 4 - Grhasnbliste with Web design label on left */
+        .four .section-content {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        .row-4 .label {
+        .four .label {
             position: absolute;
             left: 5vw;
             bottom: 2vh;
         }
 
-        .row-4 .main-text {
+        .four .main {
             text-align: center;
         }
 
@@ -137,7 +130,7 @@
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .main-text {
+            .main {
                 font-size: clamp(2rem, 10vw, 12vw);
             }
             
@@ -149,36 +142,36 @@
 </head>
 <body>
     <div class="container">
-        <!-- Row 1 -->
-        <div class="row row-1">
-            <div class="row-content">
-                <div class="main-text">MhaseLhasn</div>
+        <!-- Section 1 -->
+        <div class="section one">
+            <div class="section-content">
+                <div class="main">MhaseLhasn</div>
                 <div class="label">Brand design</div>
             </div>
         </div>
 
-        <!-- Row 2 -->
-        <div class="row row-2">
+        <!-- Section 2 -->
+        <div class="section two">
             <div class="bg-image"></div>
             <div class="label">Object design</div>
-            <div class="row-content">
-                <div class="main-text">LeMeur</div>
+            <div class="section-content">
+                <div class="main">LeMeur</div>
             </div>
         </div>
 
-        <!-- Row 3 -->
-        <div class="row row-3">
+        <!-- Section 3 -->
+        <div class="section three">
             <div class="label">Event design</div>
-            <div class="row-content">
-                <div class="main-text">HASmtishasn</div>
+            <div class="section-content">
+                <div class="main">HASmtishasn</div>
             </div>
         </div>
 
-        <!-- Row 4 -->
-        <div class="row row-4">
+        <!-- Section 4 -->
+        <div class="section four">
             <div class="label">Web design</div>
-            <div class="row-content">
-                <div class="main-text">Grhasnbliste</div>
+            <div class="section-content">
+                <div class="main">Grhasnbliste</div>
             </div>
         </div>
     </div>
