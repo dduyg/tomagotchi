@@ -3,231 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiminalLoop</title>
+    <title>Design Portfolio</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Helvetica Neue', sans-serif;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             overflow-x: hidden;
-            background: linear-gradient(135deg, #667eaa 0%, #8b9dc3 50%, #a5b5cd 100%);
-            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
         }
 
         .container {
-            position: relative;
-            width: 100vw;
+            width: 100%;
             height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .row {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
             overflow: hidden;
         }
 
-        .background-image {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50%;
-            height: auto;
-            z-index: 1;
-            opacity: 0.9;
+        .row:last-child {
+            border-bottom: none;
         }
 
-        .text-row {
-            position: absolute;
+        .row-content {
             width: 100%;
-            display: flex;
-            align-items: center;
-            z-index: 2;
+            position: relative;
+            padding: 0 5vw;
         }
 
-        .text-row.row-1 {
-            top: 5%;
-            justify-content: space-between;
-            padding: 0 2vw;
-        }
-
-        .text-row.row-2 {
-            top: 30%;
-            justify-content: flex-end;
-            padding-right: 5vw;
-        }
-
-        .text-row.row-3 {
-            top: 55%;
-            justify-content: flex-start;
-            padding-left: 2vw;
-        }
-
-        .text-row.row-4 {
-            top: 80%;
-            justify-content: center;
-        }
-
-        .main-text {
-            font-size: 12vw;
+        /* Row 1 */
+        .row:nth-child(1) .main-text {
+            font-size: 15vw;
             font-weight: 300;
-            color: rgba(240, 235, 210, 0.95);
+            color: rgba(255, 255, 255, 0.95);
             letter-spacing: -0.02em;
             line-height: 0.9;
         }
 
-        .small-text {
-            font-size: 1.8vw;
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.8);
-            letter-spacing: 0.02em;
-        }
-
-        .row-1 .main-text {
-            font-size: 11vw;
-        }
-
-        .row-2 .main-text {
-            font-size: 13vw;
-        }
-
-        .row-3 .main-text {
-            font-size: 11vw;
-        }
-
-        .row-4 .main-text {
-            font-size: 10vw;
-        }
-
-        .divider {
+        .row:nth-child(1) .small-text {
             position: absolute;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.3);
-            z-index: 2;
+            font-size: 1.8vw;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+            left: 8vw;
+            top: 15%;
         }
 
-        .divider-1 {
+        .row:nth-child(1) .secondary-text {
+            position: absolute;
+            font-size: 1.8vw;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+            right: 5vw;
+            top: 10%;
+        }
+
+        /* Row 2 */
+        .row:nth-child(2) .main-text {
+            font-size: 15vw;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.95);
+            letter-spacing: -0.02em;
+            text-align: right;
+            padding-right: 10vw;
+        }
+
+        /* Row 3 */
+        .row:nth-child(3) .main-text {
+            font-size: 12vw;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.95);
+            letter-spacing: -0.02em;
+            padding-left: 5vw;
+        }
+
+        .row:nth-child(3) .small-text {
+            position: absolute;
+            font-size: 1.8vw;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+            right: 10vw;
+            top: 35%;
+        }
+
+        .row:nth-child(3) .image-placeholder {
+            position: absolute;
+            width: 25vw;
+            height: 15vw;
+            background: linear-gradient(45deg, #4169e1, #1e3a8a);
+            right: 35vw;
             top: 25%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
         }
 
-        .divider-2 {
-            top: 50%;
+        /* Row 4 */
+        .row:nth-child(4) .main-text {
+            font-size: 13vw;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.95);
+            letter-spacing: -0.02em;
+            text-align: center;
         }
 
-        .divider-3 {
-            top: 75%;
+        .row:nth-child(4) .small-text {
+            position: absolute;
+            font-size: 1.8vw;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+            left: 5vw;
+            bottom: 20%;
         }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .main-text {
+            .row:nth-child(1) .main-text,
+            .row:nth-child(2) .main-text {
+                font-size: 18vw;
+            }
+
+            .row:nth-child(3) .main-text {
                 font-size: 15vw;
             }
 
-            .small-text {
-                font-size: 3vw;
-            }
-
-            .row-1 .main-text {
-                font-size: 14vw;
-            }
-
-            .row-2 .main-text {
+            .row:nth-child(4) .main-text {
                 font-size: 16vw;
             }
 
-            .row-3 .main-text {
-                font-size: 14vw;
+            .small-text,
+            .secondary-text {
+                font-size: 3vw !important;
             }
 
-            .row-4 .main-text {
-                font-size: 13vw;
-            }
-
-            .background-image {
-                width: 70%;
+            .row:nth-child(3) .image-placeholder {
+                width: 35vw;
+                height: 20vw;
+                right: 30vw;
             }
         }
 
         @media (max-width: 480px) {
-            .text-row.row-1 {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1vh;
+            .row:nth-child(1) .main-text,
+            .row:nth-child(2) .main-text {
+                font-size: 20vw;
             }
 
-            .background-image {
-                width: 90%;
+            .row:nth-child(3) .main-text,
+            .row:nth-child(4) .main-text {
+                font-size: 18vw;
+            }
+
+            .small-text,
+            .secondary-text {
+                font-size: 4vw !important;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Background 3D Object -->
-        <svg class="background-image" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
-            <!-- Blue 3D curved/folded object -->
-            <defs>
-                <linearGradient id="blueGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
-                </linearGradient>
-                <linearGradient id="blueGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#1e40af;stop-opacity:1" />
-                </linearGradient>
-                <linearGradient id="blueGrad3" x1="100%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1" />
-                </linearGradient>
-            </defs>
-            
-            <!-- Bottom layer/stack -->
-            <path d="M 50 200 L 350 200 L 350 280 L 50 280 Z" fill="#334155" opacity="0.6"/>
-            <path d="M 50 190 L 350 190 L 350 200 L 50 200 Z" fill="#475569" opacity="0.7"/>
-            
-            <!-- Middle folded section -->
-            <path d="M 80 120 L 320 120 Q 340 120 340 140 L 340 190 L 80 190 L 80 140 Q 80 120 80 120 Z" 
-                  fill="url(#blueGrad1)" stroke="#1e40af" stroke-width="1"/>
-            
-            <!-- Top curved ribbon -->
-            <path d="M 100 80 Q 200 60 300 80 L 300 120 Q 200 100 100 120 Z" 
-                  fill="url(#blueGrad2)" stroke="#1e3a8a" stroke-width="1"/>
-            
-            <!-- Ribbon continuation -->
-            <path d="M 300 80 L 320 85 L 320 125 L 300 120 Z" 
-                  fill="url(#blueGrad3)" stroke="#1e40af" stroke-width="0.5"/>
-            
-            <!-- Highlight line on ribbon -->
-            <path d="M 120 85 Q 200 70 280 85" 
-                  stroke="#60a5fa" stroke-width="2" fill="none" opacity="0.8"/>
-            
-            <!-- Side edge detail -->
-            <path d="M 80 140 L 80 190 L 70 185 L 70 135 Z" 
-                  fill="#1e3a8a" opacity="0.8"/>
-        </svg>
-
-        <!-- Text Row 1 -->
-        <div class="text-row row-1">
-            <div class="main-text">MhaseLhasn</div>
-            <div class="small-text">Brand design</div>
+        <!-- Row 1 -->
+        <div class="row">
+            <div class="row-content">
+                <div class="small-text">Object design</div>
+                <div class="secondary-text">Brand design</div>
+                <div class="main-text">MhaseLhasn</div>
+            </div>
         </div>
-        <div class="divider divider-1"></div>
 
-        <!-- Text Row 2 -->
-        <div class="text-row row-2">
-            <div class="small-text" style="margin-right: 3vw;">Object design</div>
-            <div class="main-text">LeMeur</div>
+        <!-- Row 2 -->
+        <div class="row">
+            <div class="row-content">
+                <div class="main-text">LeMeur</div>
+            </div>
         </div>
-        <div class="divider divider-2"></div>
 
-        <!-- Text Row 3 -->
-        <div class="text-row row-3">
-            <div class="main-text">HASmtishasn</div>
-            <div class="small-text" style="margin-left: 3vw;">Event design</div>
+        <!-- Row 3 -->
+        <div class="row">
+            <div class="row-content">
+                <div class="image-placeholder"></div>
+                <div class="small-text">Event design</div>
+                <div class="main-text">HASrtishasn</div>
+            </div>
         </div>
-        <div class="divider divider-3"></div>
 
-        <!-- Text Row 4 -->
-        <div class="text-row row-4">
-            <div class="small-text" style="margin-right: 2vw;">Web design</div>
-            <div class="main-text">Grhasbohiste</div>
+        <!-- Row 4 -->
+        <div class="row">
+            <div class="row-content">
+                <div class="small-text">Web design</div>
+                <div class="main-text">Grhasnbliste</div>
+            </div>
         </div>
     </div>
 </body>
