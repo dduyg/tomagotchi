@@ -18,7 +18,7 @@
             flex-direction: column;
         }
 
-        .section {
+        section {
             flex: 1;
             position: relative;
             display: flex;
@@ -27,16 +27,15 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             overflow: hidden;
         }
-        .section:last-child {
+        section:last-child {
             border-bottom: none;
         }
 
-        .section-content {
+        .content {
             width: 100%;
             position: relative;
             z-index: 2;
         }
-
         .main {
             font-size: clamp(3rem, 12vw, 14vw);
             font-weight: 300;
@@ -44,7 +43,6 @@
             color: rgba(255, 255, 255, 0.95);
             line-height: 0.9;
         }
-
         .label {
             font-size: clamp(0.8rem, 1.5vw, 1.8vw);
             font-weight: 300;
@@ -53,43 +51,39 @@
             margin-bottom: 1vh;
         }
 
-        /* Section 1 - MhaseLhasn with Brand design label on right */
-        .one .section-content {
+        /* Section 1 */
+        .one .content {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
         }
-
         .one .label {
             text-align: right;
             align-self: flex-start;
             margin-top: 1vh;
         }
 
-        /* Section 2 - LeMeur with Object design label on left */
-        .two .section-content {
+        /* Section 2 */
+        .two .content {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
         }
-
         .two .label {
             position: absolute;
             left: 5vw;
             top: 2vh;
         }
-
         .two .main {
             text-align: right;
         }
 
-        /* Section 3 - HASmtishasn with Event design in middle */
-        .three .section-content {
+        /* Section 3 */
+        .three .content {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
         }
-
         .three .label {
             position: absolute;
             left: 50%;
@@ -97,83 +91,60 @@
             top: 2vh;
         }
 
-        /* Section 4 - Grhasnbliste with Web design label on left */
-        .four .section-content {
+        /* Section 4 */
+        .four .content {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-
         .four .label {
             position: absolute;
             left: 5vw;
             bottom: 2vh;
         }
-
         .four .main {
             text-align: center;
         }
 
-        /* Background image effect */
-        .bg-image {
-            position: absolute;
-            width: 40%;
-            height: 60%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            z-index: 1;
-        }
-
-        /* Responsive adjustments */
         @media (max-width: 768px) {
-            .main {
-                font-size: clamp(2rem, 10vw, 12vw);
-            }
-            
-            .label {
-                font-size: clamp(0.7rem, 2vw, 2.5vw);
-            }
+            .main { font-size: clamp(2rem, 10vw, 12vw); }         
+            .label { font-size: clamp(0.7rem, 2vw, 2.5vw); }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Section 1 -->
-        <div class="section one">
-            <div class="section-content">
+        <section class="one">
+            <div class="content">
                 <div class="main">MhaseLhasn</div>
                 <div class="label">Brand design</div>
             </div>
-        </div>
+        </section>
 
         <!-- Section 2 -->
-        <div class="section two">
-            <div class="bg-image"></div>
+        <section class="two">
             <div class="label">Object design</div>
-            <div class="section-content">
+            <div class="content">
                 <div class="main">LeMeur</div>
             </div>
-        </div>
+        </section>
 
         <!-- Section 3 -->
-        <div class="section three">
+        <section class="three">
             <div class="label">Event design</div>
-            <div class="section-content">
+            <div class="content">
                 <div class="main">HASmtishasn</div>
             </div>
-        </div>
+        </section>
 
         <!-- Section 4 -->
-        <div class="section four">
+        <section class="four">
             <div class="label">Web design</div>
-            <div class="section-content">
+            <div class="content">
                 <div class="main">Grhasnbliste</div>
             </div>
-        </div>
+        </section>
     </div>
 </body>
 </html>
