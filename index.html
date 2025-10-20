@@ -12,9 +12,9 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             overflow-x: hidden;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
         }
 
         .container {
@@ -22,6 +22,21 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            position: relative;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg"><rect fill="%23889ab5" width="800" height="600"/><path d="M200 200 L500 250 L500 450 L200 400 Z" fill="%233d5a9e" opacity="0.8"/><ellipse cx="450" cy="250" rx="120" ry="80" fill="%232847a0" opacity="0.9"/></svg>');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.7;
         }
 
         .row {
@@ -31,182 +46,133 @@
             display: flex;
             align-items: center;
             padding: 0 5vw;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .row:last-child {
             border-bottom: none;
         }
 
-        .row-1 {
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300"><rect fill="%23667eea" width="1200" height="300"/></svg>') center/cover;
-            background-color: #7c8db5;
-        }
-
-        .row-2 {
-            background-color: #8997b8;
-            justify-content: center;
-        }
-
-        .row-3 {
-            background-color: #96a2bc;
-            justify-content: flex-end;
-        }
-
-        .row-4 {
-            background-color: #a3aec0;
-            justify-content: flex-start;
-        }
-
         .content-wrapper {
-            position: relative;
             width: 100%;
+            position: relative;
         }
 
         .main-text {
-            font-size: 12vw;
+            font-size: clamp(3rem, 8vw, 10vw);
             font-weight: 300;
             color: rgba(255, 255, 255, 0.95);
             letter-spacing: -0.02em;
-            line-height: 0.9;
+            line-height: 1;
+            margin: 0;
         }
 
-        .label {
-            font-size: 2.5vw;
+        .sub-text {
+            font-size: clamp(0.8rem, 1.5vw, 2vw);
             font-weight: 300;
-            color: rgba(255, 255, 255, 0.7);
-            letter-spacing: 0.01em;
-            margin-bottom: 1vh;
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 0.05em;
+            margin-top: 0.5em;
         }
 
-        /* Row 1 - Left aligned */
+        /* Row 1 - Top Left */
         .row-1 .content-wrapper {
             text-align: left;
         }
 
-        .row-1 .label {
+        .row-1 .sub-text {
             position: absolute;
-            top: -4vh;
-            left: 13vw;
+            top: -1.5em;
+            left: 0;
         }
 
-        /* Row 2 - Center aligned */
+        /* Row 2 - Center Right */
         .row-2 .content-wrapper {
+            text-align: right;
+            padding-right: 10vw;
+        }
+
+        .row-2 .sub-text {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+        }
+
+        /* Row 3 - Center */
+        .row-3 .content-wrapper {
             text-align: center;
         }
 
-        .row-2 .label {
+        .row-3 .sub-text {
             position: absolute;
-            top: 2vh;
-            right: 8vw;
+            bottom: -2em;
+            right: 5%;
         }
 
-        /* Row 3 - Right aligned */
-        .row-3 .content-wrapper {
+        /* Row 4 - Bottom Right */
+        .row-4 .content-wrapper {
             text-align: right;
         }
 
-        .row-3 .label {
+        .row-4 .sub-text {
             position: absolute;
-            bottom: -4vh;
-            left: 1vw;
+            bottom: -1.5em;
+            left: 0;
         }
 
-        /* Row 4 - Left aligned */
-        .row-4 .content-wrapper {
-            text-align: left;
-        }
-
-        .row-4 .label {
-            position: absolute;
-            bottom: -3vh;
-            right: 15vw;
-        }
-
-        /* Image styling for row 2 */
-        .image-container {
-            position: absolute;
-            left: 8%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 35vw;
-            height: auto;
-            z-index: 1;
-        }
-
-        .image-container img {
-            width: 100%;
-            height: auto;
-            opacity: 0.85;
-        }
-
-        /* Responsive adjustments */
         @media (max-width: 768px) {
             .main-text {
-                font-size: 15vw;
+                font-size: clamp(2rem, 10vw, 6rem);
             }
 
-            .label {
-                font-size: 4vw;
+            .sub-text {
+                font-size: clamp(0.7rem, 2.5vw, 1.2rem);
             }
 
-            .image-container {
-                width: 50vw;
+            .row {
+                padding: 0 3vw;
             }
         }
 
-        @media (min-width: 1920px) {
+        @media (max-width: 480px) {
             .main-text {
-                font-size: 230px;
+                font-size: clamp(1.5rem, 12vw, 4rem);
             }
 
-            .label {
-                font-size: 48px;
+            .sub-text {
+                font-size: clamp(0.6rem, 3vw, 1rem);
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Row 1 -->
         <div class="row row-1">
             <div class="content-wrapper">
-                <div class="label">Object design</div>
-                <div class="main-text">MhaseLhasn</div>
+                <div class="sub-text">Object design</div>
+                <h1 class="main-text">MhaseLhasn</h1>
             </div>
         </div>
 
-        <!-- Row 2 -->
         <div class="row row-2">
-            <div class="image-container">
-                <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Blue chair/furniture illustration placeholder -->
-                    <rect x="50" y="40" width="300" height="120" rx="10" fill="#3b5998" opacity="0.8"/>
-                    <rect x="80" y="30" width="240" height="15" rx="5" fill="#2d4373"/>
-                    <rect x="70" y="50" width="260" height="100" rx="8" fill="#4a69bd" opacity="0.9"/>
-                    <path d="M 100 80 Q 200 60 300 80" stroke="#1e3a5f" stroke-width="3" fill="none"/>
-                    <rect x="60" y="150" width="280" height="10" rx="2" fill="#2d4373"/>
-                </svg>
-            </div>
             <div class="content-wrapper">
-                <div class="label">Brand design</div>
-                <div class="main-text">LeMeur</div>
+                <div class="sub-text">Brand design</div>
+                <h1 class="main-text">LeMeur</h1>
             </div>
         </div>
 
-        <!-- Row 3 -->
         <div class="row row-3">
             <div class="content-wrapper">
-                <div class="label">Web design</div>
-                <div class="main-text">HAStishasn</div>
+                <h1 class="main-text">HAStishasn</h1>
+                <div class="sub-text">Event design</div>
             </div>
         </div>
 
-        <!-- Row 4 -->
         <div class="row row-4">
             <div class="content-wrapper">
-                <div class="label">Event design</div>
-                <div class="main-text">Grhasnhiste</div>
+                <div class="sub-text">Web design</div>
+                <h1 class="main-text">Grhasdniste</h1>
             </div>
         </div>
     </div>
