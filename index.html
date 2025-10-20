@@ -12,13 +12,13 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-            overflow: hidden;
-            height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
         .container {
+            width: 100vw;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -26,50 +26,57 @@
 
         .row {
             flex: 1;
+            width: 100%;
             position: relative;
             display: flex;
             align-items: center;
             padding: 0 5vw;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .row:last-child {
             border-bottom: none;
         }
 
-        .row::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.03);
-            pointer-events: none;
+        .row-1 {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300"><rect fill="%23667eea" width="1200" height="300"/></svg>') center/cover;
+            background-color: #7c8db5;
+        }
+
+        .row-2 {
+            background-color: #8997b8;
+            justify-content: center;
+        }
+
+        .row-3 {
+            background-color: #96a2bc;
+            justify-content: flex-end;
+        }
+
+        .row-4 {
+            background-color: #a3aec0;
+            justify-content: flex-start;
         }
 
         .content-wrapper {
-            width: 100%;
             position: relative;
-            z-index: 2;
+            width: 100%;
         }
 
         .main-text {
             font-size: 12vw;
             font-weight: 300;
+            color: rgba(255, 255, 255, 0.95);
             letter-spacing: -0.02em;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1;
-            text-transform: capitalize;
+            line-height: 0.9;
         }
 
-        .sub-text {
-            font-size: 1.8vw;
+        .label {
+            font-size: 2.5vw;
             font-weight: 300;
             color: rgba(255, 255, 255, 0.7);
-            margin-top: 1vh;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.01em;
+            margin-bottom: 1vh;
         }
 
         /* Row 1 - Left aligned */
@@ -77,32 +84,32 @@
             text-align: left;
         }
 
-        .row-1 .sub-text {
+        .row-1 .label {
             position: absolute;
-            top: 2vh;
-            left: 5vw;
+            top: -4vh;
+            left: 13vw;
         }
 
-        /* Row 2 - Right aligned */
+        /* Row 2 - Center aligned */
         .row-2 .content-wrapper {
-            text-align: right;
-        }
-
-        .row-2 .sub-text {
-            position: absolute;
-            top: 2vh;
-            right: 5vw;
-        }
-
-        /* Row 3 - Center aligned */
-        .row-3 .content-wrapper {
             text-align: center;
         }
 
-        .row-3 .sub-text {
+        .row-2 .label {
             position: absolute;
-            bottom: 2vh;
-            left: 5vw;
+            top: 2vh;
+            right: 8vw;
+        }
+
+        /* Row 3 - Right aligned */
+        .row-3 .content-wrapper {
+            text-align: right;
+        }
+
+        .row-3 .label {
+            position: absolute;
+            bottom: -4vh;
+            left: 1vw;
         }
 
         /* Row 4 - Left aligned */
@@ -110,50 +117,51 @@
             text-align: left;
         }
 
-        .row-4 .sub-text {
+        .row-4 .label {
             position: absolute;
-            bottom: 2vh;
-            right: 5vw;
+            bottom: -3vh;
+            right: 15vw;
         }
 
-        /* Image in row 3 */
-        .product-image {
+        /* Image styling for row 2 */
+        .image-container {
             position: absolute;
-            right: 15%;
+            left: 8%;
             top: 50%;
             transform: translateY(-50%);
-            width: 25vw;
+            width: 35vw;
             height: auto;
-            opacity: 0.8;
             z-index: 1;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            opacity: 0.85;
         }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .main-text {
-                font-size: 10vw;
+                font-size: 15vw;
             }
 
-            .sub-text {
-                font-size: 3vw;
-            }
-
-            .product-image {
-                width: 35vw;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main-text {
-                font-size: 8vw;
-            }
-
-            .sub-text {
+            .label {
                 font-size: 4vw;
             }
 
-            .product-image {
-                width: 40vw;
+            .image-container {
+                width: 50vw;
+            }
+        }
+
+        @media (min-width: 1920px) {
+            .main-text {
+                font-size: 230px;
+            }
+
+            .label {
+                font-size: 48px;
             }
         }
     </style>
@@ -162,49 +170,43 @@
     <div class="container">
         <!-- Row 1 -->
         <div class="row row-1">
-            <div class="sub-text">Object design</div>
             <div class="content-wrapper">
+                <div class="label">Object design</div>
                 <div class="main-text">MhaseLhasn</div>
             </div>
         </div>
 
         <!-- Row 2 -->
         <div class="row row-2">
-            <div class="sub-text">Brand design</div>
+            <div class="image-container">
+                <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Blue chair/furniture illustration placeholder -->
+                    <rect x="50" y="40" width="300" height="120" rx="10" fill="#3b5998" opacity="0.8"/>
+                    <rect x="80" y="30" width="240" height="15" rx="5" fill="#2d4373"/>
+                    <rect x="70" y="50" width="260" height="100" rx="8" fill="#4a69bd" opacity="0.9"/>
+                    <path d="M 100 80 Q 200 60 300 80" stroke="#1e3a5f" stroke-width="3" fill="none"/>
+                    <rect x="60" y="150" width="280" height="10" rx="2" fill="#2d4373"/>
+                </svg>
+            </div>
             <div class="content-wrapper">
+                <div class="label">Brand design</div>
                 <div class="main-text">LeMeur</div>
             </div>
         </div>
 
         <!-- Row 3 -->
         <div class="row row-3">
-            <div class="sub-text">Web design</div>
             <div class="content-wrapper">
-                <div class="main-text">HASrtishasn</div>
+                <div class="label">Web design</div>
+                <div class="main-text">HAStishasn</div>
             </div>
-            <!-- Product image placeholder -->
-            <svg class="product-image" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-                <!-- Blue strap product representation -->
-                <defs>
-                    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
-                    </linearGradient>
-                </defs>
-                <!-- Stack base -->
-                <rect x="50" y="120" width="200" height="60" fill="#334155" opacity="0.6"/>
-                <!-- Blue straps -->
-                <path d="M 80 80 Q 150 20 220 80 L 220 100 Q 150 40 80 100 Z" fill="url(#blueGrad)"/>
-                <rect x="80" y="95" width="140" height="8" fill="url(#blueGrad)"/>
-                <path d="M 220 100 L 240 140 L 220 140 Z" fill="#1e3a8a" opacity="0.8"/>
-            </svg>
         </div>
 
         <!-- Row 4 -->
         <div class="row row-4">
-            <div class="sub-text">Event design</div>
             <div class="content-wrapper">
-                <div class="main-text">Grhasnbliste</div>
+                <div class="label">Event design</div>
+                <div class="main-text">Grhasnhiste</div>
             </div>
         </div>
     </div>
