@@ -12,13 +12,13 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            overflow-x: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            overflow: hidden;
+            height: 100vh;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
         }
 
         .container {
-            width: 100vw;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -30,144 +30,130 @@
             display: flex;
             align-items: center;
             padding: 0 5vw;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             overflow: hidden;
         }
 
-        .row:not(:last-child)::after {
+        .row:last-child {
+            border-bottom: none;
+        }
+
+        .row::before {
             content: '';
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
             right: 0;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.3);
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.03);
+            pointer-events: none;
         }
 
-        .row-content {
+        .content-wrapper {
             width: 100%;
-            position: relative;
-        }
-
-        .main-text {
-            font-size: 15vw;
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.95);
-            letter-spacing: -0.02em;
-            line-height: 1;
             position: relative;
             z-index: 2;
         }
 
+        .main-text {
+            font-size: 12vw;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1;
+            text-transform: capitalize;
+        }
+
         .sub-text {
-            font-size: 2.5vw;
+            font-size: 1.8vw;
             font-weight: 300;
             color: rgba(255, 255, 255, 0.7);
-            position: absolute;
-            z-index: 1;
+            margin-top: 1vh;
+            letter-spacing: 0.02em;
         }
 
-        /* Row 1 - MhaseLhasn */
+        /* Row 1 - Left aligned */
+        .row-1 .content-wrapper {
+            text-align: left;
+        }
+
         .row-1 .sub-text {
-            top: 1vw;
-            left: 10vw;
+            position: absolute;
+            top: 2vh;
+            left: 5vw;
         }
 
-        .row-1 .sub-text-right {
-            top: 1vw;
-            right: 5vw;
-        }
-
-        .row-1 .main-text {
-            margin-top: 5vw;
-        }
-
-        /* Row 2 - LeMeur */
-        .row-2 {
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"><rect fill="%234169e1" width="800" height="400"/><path fill="%232c4d99" d="M200,100 L600,100 L580,300 L220,300 Z"/><ellipse cx="300" cy="200" rx="80" ry="40" fill="%233a5fb8"/><ellipse cx="500" cy="200" rx="80" ry="40" fill="%233a5fb8"/></svg>');
-            background-size: 40vw auto;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        .row-2 .main-text {
-            text-align: center;
+        /* Row 2 - Right aligned */
+        .row-2 .content-wrapper {
+            text-align: right;
         }
 
         .row-2 .sub-text {
-            right: 15vw;
-            bottom: 3vw;
+            position: absolute;
+            top: 2vh;
+            right: 5vw;
         }
 
-        /* Row 3 - HASmtishasn */
-        .row-3 .main-text {
-            margin-left: 5vw;
+        /* Row 3 - Center aligned */
+        .row-3 .content-wrapper {
+            text-align: center;
         }
 
         .row-3 .sub-text {
-            left: 2vw;
-            bottom: 3vw;
+            position: absolute;
+            bottom: 2vh;
+            left: 5vw;
         }
 
-        /* Row 4 - Grhasnbriste */
-        .row-4 .main-text {
-            text-align: right;
-            padding-right: 5vw;
+        /* Row 4 - Left aligned */
+        .row-4 .content-wrapper {
+            text-align: left;
         }
 
         .row-4 .sub-text {
-            right: 8vw;
-            bottom: 3vw;
+            position: absolute;
+            bottom: 2vh;
+            right: 5vw;
         }
 
-        /* Image overlay for row 2 */
-        .image-container {
+        /* Image in row 3 */
+        .product-image {
             position: absolute;
+            right: 15%;
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 35vw;
-            height: 20vw;
+            transform: translateY(-50%);
+            width: 25vw;
+            height: auto;
+            opacity: 0.8;
             z-index: 1;
         }
 
-        .blue-object {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(145deg, #4169e1 0%, #2c4d99 100%);
-            border-radius: 10px;
-            position: relative;
-            transform: perspective(1000px) rotateY(-15deg) rotateX(5deg);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .blue-strap {
-            position: absolute;
-            width: 120%;
-            height: 15%;
-            background: linear-gradient(90deg, #1e40af 0%, #3b5cb8 50%, #1e40af 100%);
-            top: 35%;
-            left: -10%;
-            transform: rotateZ(-5deg);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .blue-strap:nth-child(2) {
-            top: 55%;
-            transform: rotateZ(-3deg);
-        }
-
+        /* Responsive adjustments */
         @media (max-width: 768px) {
             .main-text {
-                font-size: 18vw;
+                font-size: 10vw;
             }
 
             .sub-text {
-                font-size: 3.5vw;
+                font-size: 3vw;
             }
 
-            .image-container {
-                width: 50vw;
-                height: 30vw;
+            .product-image {
+                width: 35vw;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-text {
+                font-size: 8vw;
+            }
+
+            .sub-text {
+                font-size: 4vw;
+            }
+
+            .product-image {
+                width: 40vw;
             }
         }
     </style>
@@ -176,40 +162,49 @@
     <div class="container">
         <!-- Row 1 -->
         <div class="row row-1">
-            <div class="row-content">
-                <div class="sub-text">Object design</div>
-                <div class="sub-text sub-text-right">Brand design</div>
+            <div class="sub-text">Object design</div>
+            <div class="content-wrapper">
                 <div class="main-text">MhaseLhasn</div>
             </div>
         </div>
 
         <!-- Row 2 -->
         <div class="row row-2">
-            <div class="row-content">
-                <div class="image-container">
-                    <div class="blue-object">
-                        <div class="blue-strap"></div>
-                        <div class="blue-strap"></div>
-                    </div>
-                </div>
+            <div class="sub-text">Brand design</div>
+            <div class="content-wrapper">
                 <div class="main-text">LeMeur</div>
-                <div class="sub-text">Event design</div>
             </div>
         </div>
 
         <!-- Row 3 -->
         <div class="row row-3">
-            <div class="row-content">
-                <div class="main-text">HASmtishasn</div>
-                <div class="sub-text">Web design</div>
+            <div class="sub-text">Web design</div>
+            <div class="content-wrapper">
+                <div class="main-text">HASrtishasn</div>
             </div>
+            <!-- Product image placeholder -->
+            <svg class="product-image" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Blue strap product representation -->
+                <defs>
+                    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <!-- Stack base -->
+                <rect x="50" y="120" width="200" height="60" fill="#334155" opacity="0.6"/>
+                <!-- Blue straps -->
+                <path d="M 80 80 Q 150 20 220 80 L 220 100 Q 150 40 80 100 Z" fill="url(#blueGrad)"/>
+                <rect x="80" y="95" width="140" height="8" fill="url(#blueGrad)"/>
+                <path d="M 220 100 L 240 140 L 220 140 Z" fill="#1e3a8a" opacity="0.8"/>
+            </svg>
         </div>
 
         <!-- Row 4 -->
         <div class="row row-4">
-            <div class="row-content">
-                <div class="main-text">Grhasnbriste</div>
-                <div class="sub-text">Portfolio</div>
+            <div class="sub-text">Event design</div>
+            <div class="content-wrapper">
+                <div class="main-text">Grhasnbliste</div>
             </div>
         </div>
     </div>
