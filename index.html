@@ -12,167 +12,173 @@
         }
 
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
             overflow-x: hidden;
             height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
 
         .container {
-            width: 100vw;
             height: 100vh;
             display: flex;
             flex-direction: column;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            position: relative;
-        }
-
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/svg+xml,<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg"><rect fill="%23889ab5" width="800" height="600"/><path d="M200 200 L500 250 L500 450 L200 400 Z" fill="%233d5a9e" opacity="0.8"/><ellipse cx="450" cy="250" rx="120" ry="80" fill="%232847a0" opacity="0.9"/></svg>');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.7;
         }
 
         .row {
             flex: 1;
-            width: 100%;
             position: relative;
             display: flex;
             align-items: center;
             padding: 0 5vw;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
         }
 
         .row:last-child {
             border-bottom: none;
         }
 
-        .content-wrapper {
+        .row-content {
             width: 100%;
             position: relative;
+            z-index: 2;
         }
 
         .main-text {
-            font-size: clamp(3rem, 8vw, 10vw);
+            font-size: clamp(3rem, 12vw, 14vw);
             font-weight: 300;
-            color: rgba(255, 255, 255, 0.95);
             letter-spacing: -0.02em;
-            line-height: 1;
-            margin: 0;
+            color: rgba(255, 255, 255, 0.95);
+            line-height: 0.9;
         }
 
-        .sub-text {
-            font-size: clamp(0.8rem, 1.5vw, 2vw);
+        .label {
+            font-size: clamp(0.8rem, 1.5vw, 1.8vw);
             font-weight: 300;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.7);
             letter-spacing: 0.05em;
-            margin-top: 0.5em;
+            margin-bottom: 1vh;
         }
 
-        /* Row 1 - Top Left */
-        .row-1 .content-wrapper {
-            text-align: left;
+        /* Row 1 - MhaseLhasn with Brand design label on right */
+        .row-1 .row-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
         }
 
-        .row-1 .sub-text {
-            position: absolute;
-            top: -1.5em;
-            left: 0;
-        }
-
-        /* Row 2 - Center Right */
-        .row-2 .content-wrapper {
+        .row-1 .label {
             text-align: right;
-            padding-right: 10vw;
+            align-self: flex-start;
+            margin-top: 1vh;
         }
 
-        .row-2 .sub-text {
+        /* Row 2 - LeMeur with Object design label on left */
+        .row-2 .row-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .row-2 .label {
             position: absolute;
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
+            left: 5vw;
+            top: 2vh;
         }
 
-        /* Row 3 - Center */
-        .row-3 .content-wrapper {
+        .row-2 .main-text {
+            text-align: right;
+        }
+
+        /* Row 3 - HASmtishasn with Event design in middle */
+        .row-3 .row-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .row-3 .label {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 2vh;
+        }
+
+        /* Row 4 - Grhasnbliste with Web design label on left */
+        .row-4 .row-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .row-4 .label {
+            position: absolute;
+            left: 5vw;
+            bottom: 2vh;
+        }
+
+        .row-4 .main-text {
             text-align: center;
         }
 
-        .row-3 .sub-text {
+        /* Background image effect */
+        .bg-image {
             position: absolute;
-            bottom: -2em;
-            right: 5%;
+            width: 40%;
+            height: 60%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            z-index: 1;
         }
 
-        /* Row 4 - Bottom Right */
-        .row-4 .content-wrapper {
-            text-align: right;
-        }
-
-        .row-4 .sub-text {
-            position: absolute;
-            bottom: -1.5em;
-            left: 0;
-        }
-
+        /* Responsive adjustments */
         @media (max-width: 768px) {
             .main-text {
-                font-size: clamp(2rem, 10vw, 6rem);
+                font-size: clamp(2rem, 10vw, 12vw);
             }
-
-            .sub-text {
-                font-size: clamp(0.7rem, 2.5vw, 1.2rem);
-            }
-
-            .row {
-                padding: 0 3vw;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main-text {
-                font-size: clamp(1.5rem, 12vw, 4rem);
-            }
-
-            .sub-text {
-                font-size: clamp(0.6rem, 3vw, 1rem);
+            
+            .label {
+                font-size: clamp(0.7rem, 2vw, 2.5vw);
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Row 1 -->
         <div class="row row-1">
-            <div class="content-wrapper">
-                <div class="sub-text">Object design</div>
-                <h1 class="main-text">MhaseLhasn</h1>
+            <div class="row-content">
+                <div class="main-text">MhaseLhasn</div>
+                <div class="label">Brand design</div>
             </div>
         </div>
 
+        <!-- Row 2 -->
         <div class="row row-2">
-            <div class="content-wrapper">
-                <div class="sub-text">Brand design</div>
-                <h1 class="main-text">LeMeur</h1>
+            <div class="bg-image"></div>
+            <div class="label">Object design</div>
+            <div class="row-content">
+                <div class="main-text">LeMeur</div>
             </div>
         </div>
 
+        <!-- Row 3 -->
         <div class="row row-3">
-            <div class="content-wrapper">
-                <h1 class="main-text">HAStishasn</h1>
-                <div class="sub-text">Event design</div>
+            <div class="label">Event design</div>
+            <div class="row-content">
+                <div class="main-text">HASmtishasn</div>
             </div>
         </div>
 
+        <!-- Row 4 -->
         <div class="row row-4">
-            <div class="content-wrapper">
-                <div class="sub-text">Web design</div>
-                <h1 class="main-text">Grhasdniste</h1>
+            <div class="label">Web design</div>
+            <div class="row-content">
+                <div class="main-text">Grhasnbliste</div>
             </div>
         </div>
     </div>
