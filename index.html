@@ -7,126 +7,208 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Oxygen, Cantarell, sans-serif;
-            overflow-x: hidden;
-            background: linear-gradient(to bottom, #5A5D6A, #F0EBCD);
-            color: #EEE9CC;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            position: relative;
+            overflow-x: hidden;
         }
 
         .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            padding: 2vh 0;
             position: relative;
-            width: 100%;
-            min-height: 100vh;
         }
 
-        .text-overlay {
-            position: absolute;
+        .row {
             width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
+            display: flex;
+            align-items: center;
+            padding: 0 5vw;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        .text-item {
-            position: absolute; 
+        .row:last-child {
+            border-bottom: none;
+        }
+
+        .main-text {
+            font-size: 15vw;
             font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
             letter-spacing: -0.02em;
-            line-height: 1;
-            white-space: nowrap;
+            line-height: 0.9;
+            text-transform: capitalize;
         }
 
-        .text-large {
-            font-size: clamp(4rem, 12vw, 10rem);
+        .small-text {
+            font-size: 2.5vw;
             font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 0.02em;
         }
 
-        .text-medium {
-            font-size: clamp(2.5rem, 7vw, 6rem);
-            font-weight: 300;
+        /* Row 1 - MhaseLhasn */
+        .row-1 {
+            justify-content: space-between;
         }
 
-        .text-small {
-            font-size: clamp(0.8rem, 1.2vw, 1rem);
-            font-weight: 400;
-            letter-spacing: 0.05em;
+        .row-1 .main-text {
+            flex: 1;
         }
 
-        /* Positioning each text element */
-        .mhasel-hasn {
-            top: 2%;
-            left: 2%;
+        .row-1 .small-text {
+            position: absolute;
+            right: 5vw;
+            top: 2vh;
         }
 
-        .brand-design {
-            top: 2%;
-            right: 5%;
+        /* Row 2 - Object design / LeMeur */
+        .row-2 {
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2vh;
+            padding-bottom: 2vh;
         }
 
-        .object-design {
-            top: 20%;
-            left: 8%;
+        .row-2 .small-text {
+            position: absolute;
+            left: 5vw;
+            bottom: 2vh;
         }
 
-        .lemeur {
-            top: 22%;
-            right: 8%;
+        .row-2 .main-text {
+            margin-left: auto;
         }
 
-        .has-rtish-asn {
-            top: 42%;
-            left: 2%;
+        /* Row 3 - HASrtishasn */
+        .row-3 {
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
         }
 
-        .event-design {
-            top: 45%;
-            left: 45%;
+        .row-3 .main-text {
+            flex: 1;
         }
 
-        .web-design {
-            bottom: 35%;
-            left: 2%;
+        .row-3 .small-text {
+            position: absolute;
+            right: 50%;
+            transform: translateX(50%);
+            top: 2vh;
         }
 
-        .grh-asn-bliste {
-            bottom: 15%;
-            right: 5%;
+        .row-3 .image-container {
+            position: absolute;
+            right: 8vw;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 25vw;
+            height: 18vh;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .online-store {
-            bottom: 8%;
-            right: 35%;
+        .row-3 .image-placeholder {
+            width: 90%;
+            height: 90%;
+            background: linear-gradient(45deg, #1e3a8a 0%, #3b82f6 100%);
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .strap {
+            position: absolute;
+            background: linear-gradient(to right, #1e40af 0%, #3b82f6 50%, #1e40af 100%);
+            height: 20%;
+            width: 120%;
+            top: 30%;
+            left: -10%;
+            transform: rotate(-15deg);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Row 4 - Grhasomliste */
+        .row-4 {
+            justify-content: flex-end;
+            padding-bottom: 3vh;
+        }
+
+        .row-4 .small-text {
+            position: absolute;
+            left: 5vw;
+            bottom: 2vh;
+        }
+
+        .row-4 .main-text {
+            text-align: right;
         }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .text-large {
-                font-size: clamp(2.5rem, 10vw, 6rem);
+            .main-text {
+                font-size: 18vw;
             }
-            
-            .text-medium {
-                font-size: clamp(1.5rem, 6vw, 4rem);
+
+            .small-text {
+                font-size: 3.5vw;
             }
-            
-            .text-small {
-                font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+
+            .row-3 .image-container {
+                width: 30vw;
+                height: 15vh;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .main-text {
+                font-size: 210px;
+            }
+
+            .small-text {
+                font-size: 35px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="text-overlay">
-            <div class="text-item text-large mhasel-hasn">SwingGhost</div>
-            <div class="text-item text-small brand-design">Noeffect</div>
-            <div class="text-item text-small object-design">Object 56</div>
-            <div class="text-item text-medium lemeur">LeMeur</div>
-            <div class="text-item text-large has-rtish-asn">HASrtishasn</div>
-            <div class="text-item text-small event-design">Event design</div>
-            <div class="text-item text-small web-design">Web design</div>
-            <div class="text-item text-medium grh-asn-bliste">Grhasnbliste</div>
-            <div class="text-item text-small online-store">Online store</div>
+        <!-- Row 1 -->
+        <div class="row row-1">
+            <div class="main-text">MhaseLhasn</div>
+            <div class="small-text">Brand design</div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="row row-2">
+            <div class="small-text">Object design</div>
+            <div class="main-text">LeMeur</div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="row row-3">
+            <div class="main-text">HASrtishasn</div>
+            <div class="small-text">Event design</div>
+            <div class="image-container">
+                <div class="image-placeholder">
+                    <div class="strap"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="row row-4">
+            <div class="small-text">Web design</div>
+            <div class="main-text">Grhasomliste</div>
         </div>
     </div>
 </body>
