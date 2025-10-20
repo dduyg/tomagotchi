@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiminalLoop</title>
+    <title>Liminal Loop</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #5a6a7d 0%, #8a9fb3 100%);
             min-height: 100vh;
             overflow-x: hidden;
+            color: #f5f0e8;
         }
 
         .container {
@@ -19,138 +20,125 @@
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
-            padding: 2vh 0;
-            position: relative;
+            padding: 4vh 0;
         }
 
         .row {
             width: 100%;
-            display: flex;
-            align-items: center;
-            padding: 0 5vw;
             position: relative;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0 5vw;
+            border-bottom: 1px solid rgba(245, 240, 232, 0.3);
         }
 
         .row:last-child {
             border-bottom: none;
         }
 
+        .row-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            padding: 2vh 0;
+        }
+
         .main-text {
             font-size: 15vw;
             font-weight: 300;
-            color: rgba(255, 255, 255, 0.9);
             letter-spacing: -0.02em;
             line-height: 0.9;
-            text-transform: capitalize;
+            color: #f5f0e8;
         }
 
-        .small-text {
+        .sub-text {
             font-size: 2.5vw;
             font-weight: 300;
-            color: rgba(255, 255, 255, 0.8);
-            letter-spacing: 0.02em;
+            letter-spacing: 0.05em;
+            color: rgba(245, 240, 232, 0.8);
         }
 
-        /* Row 1 - MhaseLhasn */
-        .row-1 {
-            justify-content: space-between;
+        /* Row 1 - MhaseLhasn with Object design on left */
+        .row-1 .row-content {
+            justify-content: flex-start;
+        }
+
+        .row-1 .sub-text {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
         }
 
         .row-1 .main-text {
-            flex: 1;
+            margin-left: auto;
+            padding-right: 8vw;
         }
 
-        .row-1 .small-text {
+        /* Row 2 - LeMeur with Brand design on right */
+        .row-2 .row-content {
+            justify-content: flex-end;
+        }
+
+        .row-2 .sub-text {
             position: absolute;
-            right: 5vw;
-            top: 2vh;
-        }
-
-        /* Row 2 - Object design / LeMeur */
-        .row-2 {
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 2vh;
-            padding-bottom: 2vh;
-        }
-
-        .row-2 .small-text {
-            position: absolute;
-            left: 5vw;
-            bottom: 2vh;
+            right: 0;
+            top: 0;
         }
 
         .row-2 .main-text {
-            margin-left: auto;
+            margin-right: auto;
+            padding-left: 5vw;
         }
 
-        /* Row 3 - HASrtishasn */
-        .row-3 {
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-        }
-
-        .row-3 .main-text {
-            flex: 1;
-        }
-
-        .row-3 .small-text {
-            position: absolute;
-            right: 50%;
-            transform: translateX(50%);
-            top: 2vh;
-        }
-
-        .row-3 .image-container {
-            position: absolute;
-            right: 8vw;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 25vw;
-            height: 18vh;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
+        /* Row 3 - HASmtishasn with Event design in middle */
+        .row-3 .row-content {
             justify-content: center;
         }
 
-        .row-3 .image-placeholder {
-            width: 90%;
-            height: 90%;
-            background: linear-gradient(45deg, #1e3a8a 0%, #3b82f6 100%);
-            border-radius: 8px;
+        .row-3 .sub-text {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        .row-3 .main-text {
             position: relative;
+            z-index: 2;
         }
 
-        .strap {
-            position: absolute;
-            background: linear-gradient(to right, #1e40af 0%, #3b82f6 50%, #1e40af 100%);
-            height: 20%;
-            width: 120%;
-            top: 30%;
-            left: -10%;
-            transform: rotate(-15deg);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Row 4 - Grhasomliste */
-        .row-4 {
+        /* Row 4 - Grhasnbriste with Web design on left, no border */
+        .row-4 .row-content {
             justify-content: flex-end;
-            padding-bottom: 3vh;
         }
 
-        .row-4 .small-text {
+        .row-4 .sub-text {
             position: absolute;
-            left: 5vw;
+            left: 0;
             bottom: 2vh;
         }
 
         .row-4 .main-text {
-            text-align: right;
+            padding-right: 3vw;
+        }
+
+        /* Image styling */
+        .design-object {
+            position: absolute;
+            left: 50%;
+            top: 15%;
+            transform: translateX(-50%);
+            width: 35vw;
+            max-width: 500px;
+            z-index: 10;
+            opacity: 0.95;
+        }
+
+        .design-object img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
         }
 
         /* Responsive adjustments */
@@ -159,23 +147,22 @@
                 font-size: 18vw;
             }
 
-            .small-text {
-                font-size: 3.5vw;
+            .sub-text {
+                font-size: 4vw;
             }
 
-            .row-3 .image-container {
-                width: 30vw;
-                height: 15vh;
+            .design-object {
+                width: 50vw;
             }
         }
 
-        @media (min-width: 1400px) {
+        @media (min-width: 1920px) {
             .main-text {
-                font-size: 210px;
+                font-size: 288px;
             }
 
-            .small-text {
-                font-size: 35px;
+            .sub-text {
+                font-size: 48px;
             }
         }
     </style>
@@ -184,31 +171,72 @@
     <div class="container">
         <!-- Row 1 -->
         <div class="row row-1">
-            <div class="main-text">MhaseLhasn</div>
-            <div class="small-text">Brand design</div>
+            <div class="row-content">
+                <span class="sub-text">Object design</span>
+                <h1 class="main-text">MhaseLhasn</h1>
+            </div>
         </div>
 
         <!-- Row 2 -->
         <div class="row row-2">
-            <div class="small-text">Object design</div>
-            <div class="main-text">LeMeur</div>
+            <div class="row-content">
+                <h1 class="main-text">LeMeur</h1>
+                <span class="sub-text">Brand design</span>
+            </div>
         </div>
 
         <!-- Row 3 -->
         <div class="row row-3">
-            <div class="main-text">HASrtishasn</div>
-            <div class="small-text">Event design</div>
-            <div class="image-container">
-                <div class="image-placeholder">
-                    <div class="strap"></div>
-                </div>
+            <div class="row-content">
+                <span class="sub-text">Event design</span>
+                <h1 class="main-text">HASmtishasn</h1>
             </div>
         </div>
 
         <!-- Row 4 -->
         <div class="row row-4">
-            <div class="small-text">Web design</div>
-            <div class="main-text">Grhasomliste</div>
+            <div class="row-content">
+                <span class="sub-text">Web design</span>
+                <h1 class="main-text">Grhasnbriste</h1>
+            </div>
+        </div>
+
+        <!-- 3D Object Image -->
+        <div class="design-object">
+            <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                <!-- Blue ribbon/strap design -->
+                <defs>
+                    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#1a3a6e;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#2557a8;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#1a3a6e;stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="grayGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#b8bcc4;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#7a8189;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                
+                <!-- Stack of cards/papers -->
+                <rect x="150" y="180" width="180" height="100" fill="url(#grayGrad)" opacity="0.9"/>
+                <rect x="150" y="175" width="180" height="5" fill="#6a6f7a"/>
+                
+                <!-- Blue straps -->
+                <path d="M 180 80 Q 200 90 220 100 L 240 150 Q 250 160 260 170 L 280 190 L 270 200 L 250 180 Q 240 170 230 160 L 210 110 Q 200 100 190 95 Z" 
+                      fill="url(#blueGrad)" opacity="0.95"/>
+                
+                <path d="M 260 60 Q 270 75 275 90 L 290 140 Q 295 155 298 170 L 310 195 L 300 205 L 288 180 Q 285 165 280 150 L 265 100 Q 260 85 250 70 Z" 
+                      fill="url(#blueGrad)" opacity="0.95"/>
+                
+                <!-- Strap highlights -->
+                <path d="M 185 85 Q 205 95 225 105 L 238 145" 
+                      stroke="#3a6bb8" stroke-width="2" fill="none" opacity="0.6"/>
+                <path d="M 265 65 Q 275 80 280 95 L 293 145" 
+                      stroke="#3a6bb8" stroke-width="2" fill="none" opacity="0.6"/>
+                
+                <!-- Shadow -->
+                <ellipse cx="240" cy="285" rx="120" ry="15" fill="rgba(0,0,0,0.2)"/>
+            </svg>
         </div>
     </div>
 </body>
