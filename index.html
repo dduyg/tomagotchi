@@ -54,85 +54,55 @@
             position: relative;
             z-index: 2;
         }
-        .main {
-            font-size: clamp(2rem, 12vw, 14vw);
-            line-height: 0.9;
-        }
-        .label {
-            font-size: clamp(0.7rem, 2vw, 2.5vw);
-            margin-bottom: 1vh;
-        }
+        .label { font-size: clamp(0.7rem, 2vw, 2.5vw); }
 
         /* Section 1 */
-        .one .content {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
         .one .label {
-            text-align: right;
-            align-self: flex-start;
-            margin-top: 1vh;
+            position: absolute;
+            right: -3vw;
+            top: -2vh;
         }
 
         /* Section 2 */
-        .two .content {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
         .two .label {
             position: absolute;
             left: 11vw;
             top: 2vh;
         }
-        .two .main { text-align: right; }
+        .two .content { text-align: right; }
 
         /* Section 3 */
-        .three .content {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
         .three .label {
             position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            top: 2vh;
+            right: 40vw;
+            top: 0;
         }
 
         /* Section 4 */
-        .four .content {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
         .four .label {
             position: absolute;
             left: 5vw;
             top: 2vh;
         }
-        .four .main { text-align: center; }   
+        .four .main { text-align: right; }   
     </style>
 </head>
 <body>
     <div class="container">
         <section class="one">
             <div class="content">
-                <div class="main">MirrorPlaza</div>
+                 MirrorPlaza
                 <div class="label">Deluxe Interface</div>
             </div>
         </section>
         <section class="two">
             <div class="label">Object design</div>
-            <div class="content">
-                <div class="main">Noeffect</div>
-            </div>
+            <div class="content">Noeffect</div>
         </section>
         <section class="three">
-            <div class="label">Server Starlight</div>
             <div class="content">
-                <div class="main">SwingGhost</div>
+                SwingGhost
+                <div class="label">Server Starlight</div>
             </div>
         </section>
         <section class="four">
