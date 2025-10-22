@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retro City Sunrise</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(to top, #ff5f6d, #ffc371); /* retro sunrise gradient */
+    height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-family: sans-serif;
+  }
+
+  .city {
+    display: flex;
+    align-items: flex-end;
+    height: 80%;
+    gap: 5px;
+  }
+
+  .building {
+    width: 30px;
+    height: 100px;
+    background: #111;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .window {
+    width: 100%;
+    height: 5px;
+    margin-bottom: 2px;
+    background: #333;
+    transition: background 0.2s;
+  }
+</style>
+</head>
+<body>
+<div class="city" id="city"></div>
+
+<script>
+  const cityLightFlickerRate = 500; // milliseconds
+  const numBuildings = 15;
+  const city = document.getElementById('city');
+
+  // Create buildings with windows
+  for (let i = 0; i < numBuildings; i++) {
+    const building = document.createElement('div');
+    building.classList.add('building');
+    const numWindows = Math.floor(Math.random() * 10) + 5;
+    for (let j = 0; j < numWindows; j++) {
+      const windowDiv = document.createElement('div');
+      windowDiv.classList.add('window');
+      building.appendChild(windowDiv);
+    }
+    city.appendChild(building);
+  }
+
+  // Flicker windows
+  setInterval(() => {
+    document.querySelectorAll('.window').forEach(win => {
+      win.style.background = Math.random() > 0.5 ? '#ffd700' : '#333';
+    });
+  }, cityLightFlickerRate);
+</script>
+</body>
+</html>
