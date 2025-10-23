@@ -1,207 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Porrrell</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: Helvetica, sans-serif;
-    background-color: #d9e3e2;
-    color: #000;
-    text-align: center;
-    line-height: 1.5;
-    /* subtle scanline background */
-    background-image: repeating-linear-gradient(
-      to bottom,
-      #e8f2f1 0px,
-      #e8f2f1 1px,
-      transparent 2px,
-      transparent 3px
-    );
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Place for Confidence</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #B6C1E0;
+            position: relative;
+            overflow-x: hidden;
+        }
 
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px 20px;
-  }
+        /* Scanline background effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                #B6C1E0 0px,
+                #B6C1E0 2px,
+                #BEC8D4 2px,
+                #BEC8D4 3.7px
+            );
+            pointer-events: none;
+            z-index: 1;
+        }
 
-  .top-section {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-  .top-section img {
-    width: 280px;
-    object-fit: cover;
-    border: none;
-  }
+        /* Header section with images */
+        .header-images {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
 
-  .comment {
-    background: #000;
-    color: white;
-    font-size: 14px;
-    padding: 12px;
-    border-radius: 5px;
-    text-align: left;
-    max-width: 280px;
-  }
+        .image-card {
+            position: relative;
+            flex: 1;
+            min-width: 280px;
+        }
 
-  .comment .username {
-    color: #f04;
-    font-weight: bold;
-  }
+        .portrait-img {
+            width: 100%;
+            max-width: 350px;
+            height: auto;
+        }
 
-  .title-section {
-    margin-top: 40px;
-    text-align: center;
-  }
+        .field-img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 8px;
+        }
 
-  .title-section h1 {
-    font-size: 60px;
-    font-weight: 900;
-    margin-bottom: 10px;
-  }
+        .comment-overlay {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 15px 20px;
+            border-radius: 8px;
+            color: white;
+            max-width: 300px;
+        }
 
-  .title-section h2 {
-    font-size: 18px;
-    font-weight: 400;
-    margin-bottom: 20px;
-  }
+        .comment-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
 
-  .title-section h3 {
-    font-size: 16px;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
-  }
+        .avatar {
+            width: 40px;
+            height: 40px;
+            background: #c9534f;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
 
-  .skills {
-    text-align: left;
-    margin-top: 50px;
-    display: inline-block;
-  }
+        .username {
+            color: #aaa;
+            font-size: 14px;
+        }
 
-  .skills h2 {
-    font-size: 28px;
-    font-weight: 900;
-    margin-bottom: 20px;
-    text-align: center;
-  }
+        .timestamp {
+            color: #888;
+            font-size: 12px;
+        }
 
-  .skill-group {
-    margin-bottom: 30px;
-  }
+        .comment-text {
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
 
-  .skill-group h3 {
-    font-size: 20px;
-    font-weight: bold;
-  }
+        .comment-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            font-size: 13px;
+        }
 
-  .skill-group h3::before {
-    content: ">";
-    color: #000;
-    margin-right: 3px;
-  }
+        /* Main title section */
+        .title-section {
+            text-align: center;
+            margin: 40px 0;
+        }
 
-  .skill-group h3::after {
-    content: "<";
-    color: #000;
-    margin-left: 3px;
-  }
+        .author-name {
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
 
-  .skill-group ul {
-    list-style: none;
-    margin-top: 5px;
-  }
+        .presents {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
 
-  .skill-group li {
-    margin-left: 20px;
-    font-size: 16px;
-  }
+        .main-title {
+            font-size: 80px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 15px;
+        }
 
-  .zine-note {
-    margin-top: 5px;
-    margin-left: 20px;
-    font-size: 15px;
-    line-height: 1.4;
-  }
-</style>
+        .subtitle {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 60px;
+        }
+
+        /* Skills section */
+        .skills-section {
+            text-align: right;
+            margin-bottom: 40px;
+        }
+
+        .skills-title {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            text-align: right;
+        }
+
+        .skill-category {
+            margin-bottom: 40px;
+        }
+
+        .category-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .skill-list {
+            list-style: none;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .skill-item {
+            font-weight: 600;
+        }
+
+        .zines-note {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 48px;
+            }
+
+            .skills-title {
+                font-size: 36px;
+            }
+
+            .header-images {
+                flex-direction: column;
+            }
+
+            .comment-overlay {
+                position: static;
+                margin-top: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="top-section">
-      <img src="https://via.placeholder.com/280x280.png?text=Collage+Image" alt="Collage Image">
-      <div class="comment">
-        <p><span class="username">@corporate_entity</span> 11 days ago<br>this is really good.</p>
-        <p>👍 1 &nbsp; 💬 1</p>
-      </div>
-    </div>
-
-    <div class="title-section">
-      <h3>ALAN BAYBARS FERRELL</h3>
-      <p>-PRESENTS-</p>
-      <h1>a PORTFOLIO</h1>
-      <h2>a place for confidence and craftmanship...</h2>
-    </div>
-
-    <div class="skills">
-      <h2>Practiced Skills</h2>
-
-      <div class="skill-group">
-        <h3>Collages</h3>
-        <ul>
-          <li>Physical</li>
-          <li>Digital</li>
-        </ul>
-      </div>
-
-      <div class="skill-group">
-        <h3>Iconography</h3>
-        <ul>
-          <li>Sketches</li>
-          <li>Proof of Concepts</li>
-          <li>Design Pitches</li>
-          <li>Moodboards</li>
-        </ul>
-      </div>
-
-      <div class="skill-group">
-        <h3>Websites</h3>
-        <ul>
-          <li>HTML/CSS</li>
-          <li>Wireframe Proofs</li>
-          <li>Mock Concepts</li>
-          <li>Wordpress, Figma</li>
-        </ul>
-      </div>
-
-      <div class="skill-group">
-        <h3>Zines</h3>
-        <div class="zine-note">
-          RIP@WSU.EDU<br>
-          Language, Text & Technology<br>
-          Does Home Depot feel<br>
-          like a sacred space to you?
+    <div class="container">
+        <!-- Header with images and comment -->
+        <div class="header-images">
+            <div class="image-card">
+                <svg class="portrait-img" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="300" height="400" fill="#d0d0d0"/>
+                    <rect x="75" y="80" width="150" height="200" fill="#e8e8e8"/>
+                    <ellipse cx="150" cy="120" rx="40" ry="50" fill="white"/>
+                    <ellipse cx="135" cy="115" rx="3" ry="4" fill="black"/>
+                    <ellipse cx="165" cy="115" rx="3" ry="4" fill="black"/>
+                    <path d="M 110 180 Q 150 200 190 180" stroke="#cc3333" stroke-width="8" fill="#cc3333"/>
+                    <circle cx="205" cy="150" r="6" fill="black"/>
+                    <circle cx="208" cy="155" r="4" fill="white"/>
+                </svg>
+            </div>
+            <div class="image-card" style="position: relative;">
+                <svg class="field-img" viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="400" height="120" fill="#87CEEB"/>
+                    <rect y="120" width="400" height="130" fill="#D4A574"/>
+                    <rect y="120" width="400" height="130" fill="url(#fieldPattern)"/>
+                    <defs>
+                        <pattern id="fieldPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                            <rect width="20" height="20" fill="#D4A574"/>
+                            <line x1="0" y1="0" x2="20" y2="20" stroke="#C9A063" stroke-width="1"/>
+                        </pattern>
+                    </defs>
+                    <rect x="20" y="100" width="60" height="50" fill="#90EE90" opacity="0.6"/>
+                </svg>
+                <div class="comment-overlay">
+                    <div class="comment-header">
+                        <div class="avatar">C</div>
+                        <div>
+                            <div class="username">@corporate_entity</div>
+                            <div class="timestamp">11 days ago</div>
+                        </div>
+                    </div>
+                    <div class="comment-text">this is really good.</div>
+                    <div class="comment-actions">
+                        <span>👍 1</span>
+                        <span>👎</span>
+                        <span>Reply</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <div class="skill-group">
-        <h3>Posters</h3>
-      </div>
+        <!-- Title section -->
+        <div class="title-section">
+            <div class="author-name">BAYBARS FERRELL</div>
+            <div class="presents">-PRESENTS-</div>
+            <h1 class="main-title">a PORTFOLIO</h1>
+            <div class="subtitle">a place for confidence and craftmanship...</div>
+        </div>
 
-      <div class="skill-group">
-        <h3>Photography</h3>
-      </div>
+        <!-- Skills section -->
+        <div class="skills-section">
+            <h2 class="skills-title">Practiced Skills</h2>
 
-      <div class="skill-group">
-        <h3>Writing</h3>
-      </div>
+            <div class="skill-category">
+                <div class="category-title">>Collages<</div>
+                <ul class="skill-list">
+                    <li class="skill-item">Physical</li>
+                    <li class="skill-item">Digital</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <div class="category-title">>Iconography<</div>
+                <ul class="skill-list">
+                    <li class="skill-item">Sketches</li>
+                    <li class="skill-item">Proof of Concepts</li>
+                    <li class="skill-item">Design Pitches</li>
+                    <li class="skill-item">Moodboards</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <div class="category-title">>Websites<</div>
+                <ul class="skill-list">
+                    <li class="skill-item">HTML/CSS</li>
+                    <li class="skill-item">Wireframe Proofs</li>
+                    <li class="skill-item">Mock Concepts</li>
+                    <li class="skill-item">Wordpress, Figma</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <div class="category-title">>Zines<</div>
+                <ul class="skill-list">
+                    <li class="skill-item">RIP@WSU.EDU</li>
+                    <li class="skill-item">Language, Text & Technology</li>
+                    <li class="zines-note">does Home Depot feel<br>like a sacred space to you?</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <div class="category-title">>Posters<</div>
+            </div>
+
+            <div class="skill-category">
+                <div class="category-title">>Photography<</div>
+            </div>
+
+            <div class="skill-category">
+                <div class="category-title">>Writing<</div>
+            </div>
+        </div>
     </div>
-  </div>
 </body>
 </html>
