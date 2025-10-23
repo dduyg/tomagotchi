@@ -3,136 +3,161 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Place for Confidence</title>
+<title>errell</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: Helvetica, Arial, sans-serif;
-    background: repeating-linear-gradient(to bottom, #e8f2f1, #e8f2f1 2px, #d7e4e3 2px, #d7e4e3 4px);
+    margin: 0;
+    padding: 0;
+    font-family: "Arial", sans-serif;
     color: #000;
-    line-height: 1.6;
-    padding: 40px 20px;
+    text-align: center;
+    background-color: #d9e3f2;
+    background-image: 
+      repeating-linear-gradient(
+        180deg,
+        #e8f2f1 0px,
+        #e8f2f1 1px,
+        transparent 2px,
+        transparent 3px
+      );
+    background-size: auto 3px;
   }
 
+  /* ==== Layout ==== */
   .container {
     max-width: 800px;
     margin: 0 auto;
-    text-align: center;
+    padding: 2rem 1rem;
   }
 
-  header {
-    margin-bottom: 40px;
-  }
-
-  header img {
+  img.header-img {
     width: 100%;
     max-width: 350px;
     display: block;
-    margin: 0 auto 20px;
+    margin: 0 auto 1rem;
   }
 
-  .comment-screenshot {
-    width: 100%;
-    max-width: 350px;
-    margin: 20px auto;
-    display: block;
+  .comment-box {
+    display: inline-block;
+    background: #111;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
   }
 
-  h1, h2, h3 {
+  .comment-box span {
+    color: #ff4c4c;
     font-weight: bold;
   }
 
   h1 {
-    font-size: 2.5rem;
-    margin: 20px 0 10px;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-top: 2rem;
   }
 
   h2 {
-    font-size: 1.2rem;
-    margin: 10px 0 30px;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    margin: 0.2rem 0 1rem 0;
   }
 
   h3 {
-    font-size: 1.4rem;
-    margin: 40px 0 10px;
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 1rem 0;
   }
 
-  p {
-    margin-bottom: 10px;
+  p.subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
   }
 
-  .section {
-    margin: 20px 0;
-    text-align: left;
+  /* ==== Skills ==== */
+  h4 {
+    font-size: 1.6rem;
+    margin: 2rem 0 1rem;
+    font-weight: 800;
   }
 
   .skills {
     text-align: left;
+    margin: 0 auto;
+    max-width: 400px;
+    line-height: 1.8;
+  }
+
+  .skills p {
     font-size: 1rem;
-    margin-top: 20px;
+    margin: 0.5rem 0;
   }
 
-  .skills strong {
-    display: inline-block;
-    margin: 20px 0 5px;
+  .skills b {
+    font-size: 1.1rem;
   }
 
-  footer {
-    margin-top: 50px;
-    text-align: center;
-    font-size: 0.9rem;
+  /* ==== Section dividers ==== */
+  .divider {
+    height: 1px;
+    background: #ccc;
+    width: 60%;
+    margin: 2rem auto;
   }
+
+  /* ==== Typography balance ==== */
+  .skills p.indent {
+    margin-left: 1.5rem;
+  }
+
 </style>
 </head>
-
 <body>
   <div class="container">
-    <!-- Header section with images -->
-    <header>
-      <img src="your-collage-image.jpg" alt="Collage Artwork">
-      <img class="comment-screenshot" src="your-comment-screenshot.jpg" alt="Comment Screenshot">
-      <p><strong>RYAN BAYBARS FERRELL</strong></p>
-      <p>-PRESENTS-</p>
-      <h1>a PORTFOLIO</h1>
-      <h2>a place for confidence and craftsmanship...</h2>
-    </header>
 
-    <!-- Practiced Skills section -->
-    <section>
-      <h3>Practiced Skills</h3>
+    <!-- Header Images -->
+    <img src="portrait.jpg" alt="Collage portrait" class="header-img">
+    <div class="comment-box">
+      <span>@corporate_entity</span> 11 days ago<br>this is really good.
+    </div>
 
-      <div class="skills">
-        <p><strong>&gt;Collages&lt;</strong><br>
-        Physical<br>
-        Digital</p>
+    <!-- Title -->
+    <h1>ARAN BAYBARS FERRELL</h1>
+    <h2>-PRESENTS-</h2>
+    <h3>a PORTFOLIO</h3>
+    <p class="subtitle">a place for confidence and craftmanship...</p>
 
-        <p><strong>&gt;Iconography&lt;</strong><br>
-        Sketches<br>
-        Proof of Concepts<br>
-        Design Pitches<br>
-        Moodboards</p>
+    <!-- Skills -->
+    <h4>Practiced Skills</h4>
+    <div class="skills">
+      <p><b>&gt;Collages&lt;</b><br>
+      <span class="indent">Physical</span><br>
+      <span class="indent">Digital</span></p>
 
-        <p><strong>&gt;Websites&lt;</strong><br>
-        HTML/CSS<br>
-        Wireframe Proofs<br>
-        Mock Concepts<br>
-        Wordpress, Figma</p>
+      <p><b>&gt;Iconography&lt;</b><br>
+      <span class="indent">Sketches</span><br>
+      <span class="indent">Proof of Concepts</span><br>
+      <span class="indent">Design Pitches</span><br>
+      <span class="indent">Moodboards</span></p>
 
-        <p><strong>&gt;Zines&lt;</strong><br>
-        RIP@WSU.EDU<br>
-        Language, Text &amp; Technology<br>
-        Does Home Depot feel<br>
-        like a sacred space to you?</p>
+      <p><b>&gt;Websites&lt;</b><br>
+      <span class="indent">HTML/CSS</span><br>
+      <span class="indent">Wireframe Proofs</span><br>
+      <span class="indent">Mock Concepts</span><br>
+      <span class="indent">Wordpress, Figma</span></p>
 
-        <p><strong>&gt;Posters&lt;</strong><br>
-        <strong>&gt;Photography&lt;</strong><br>
-        <strong>&gt;Writing&lt;</strong></p>
-      </div>
-    </section>
+      <p><b>&gt;Zines&lt;</b><br>
+      <span class="indent">RIP@WSU.EDU</span><br>
+      <span class="indent">Language, Text & Technology</span><br>
+      <span class="indent">Does Home Depot feel</span><br>
+      <span class="indent">like a sacred space to you?</span></p>
 
-    <footer>
-      <p>&copy; 2025 Ryan Baybars Ferrell</p>
-    </footer>
+      <p><b>&gt;Posters&lt;</b><br>
+      <b>&gt;Photography&lt;</b><br>
+      <b>&gt;Writing&lt;</b></p>
+    </div>
+
   </div>
 </body>
 </html>
