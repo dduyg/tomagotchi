@@ -1,145 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Place for Confidence</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Arial:wght@400;700;900&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Porrrell</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: Helvetica, sans-serif;
+    background-color: #d9e3e2;
+    color: #000;
+    text-align: center;
+    line-height: 1.5;
+    /* subtle scanline background */
+    background-image: repeating-linear-gradient(
+      to bottom,
+      #e8f2f1 0px,
+      #e8f2f1 1px,
+      transparent 2px,
+      transparent 3px
+    );
+  }
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #000;
-      background-color: #e8f2f1;
-      background-image: repeating-linear-gradient(
-        0deg,
-        #d3e1e0 0px,
-        #d3e1e0 1px,
-        #e8f2f1 1px,
-        #e8f2f1 4px
-      );
-      background-size: 100% 4px;
-      line-height: 1.5;
-    }
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
 
-    .container {
-      width: 90%;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 0;
-      text-align: center;
-    }
+  .top-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
 
-    img.main-collage {
-      width: 300px;
-      height: auto;
-      display: block;
-      margin: 0 auto 20px;
-    }
+  .top-section img {
+    width: 280px;
+    object-fit: cover;
+    border: none;
+  }
 
-    .comment-box {
-      background: #000;
-      color: #fff;
-      display: inline-block;
-      padding: 10px 15px;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      margin-top: 10px;
-    }
+  .comment {
+    background: #000;
+    color: white;
+    font-size: 14px;
+    padding: 12px;
+    border-radius: 5px;
+    text-align: left;
+    max-width: 280px;
+  }
 
-    .comment-box .username {
-      color: #ff5533;
-    }
+  .comment .username {
+    color: #f04;
+    font-weight: bold;
+  }
 
-    h1, h2, h3, h4 {
-      margin: 0.5em 0;
-    }
+  .title-section {
+    margin-top: 40px;
+    text-align: center;
+  }
 
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 900;
-    }
+  .title-section h1 {
+    font-size: 60px;
+    font-weight: 900;
+    margin-bottom: 10px;
+  }
 
-    h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
+  .title-section h2 {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
 
-    .subtext {
-      font-size: 1rem;
-      margin-bottom: 40px;
-      color: #333;
-    }
+  .title-section h3 {
+    font-size: 16px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
 
-    .section-title {
-      font-size: 1.4rem;
-      font-weight: 800;
-      margin-top: 60px;
-    }
+  .skills {
+    text-align: left;
+    margin-top: 50px;
+    display: inline-block;
+  }
 
-    .skills {
-      text-align: left;
-      max-width: 500px;
-      margin: 0 auto;
-      line-height: 1.8;
-      font-size: 1rem;
-    }
+  .skills h2 {
+    font-size: 28px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    text-align: center;
+  }
 
-    .skills strong {
-      display: block;
-      font-weight: 800;
-      margin-top: 20px;
-    }
+  .skill-group {
+    margin-bottom: 30px;
+  }
 
-    .skills em {
-      display: block;
-      margin-left: 20px;
-    }
-  </style>
+  .skill-group h3 {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .skill-group h3::before {
+    content: ">";
+    color: #000;
+    margin-right: 3px;
+  }
+
+  .skill-group h3::after {
+    content: "<";
+    color: #000;
+    margin-left: 3px;
+  }
+
+  .skill-group ul {
+    list-style: none;
+    margin-top: 5px;
+  }
+
+  .skill-group li {
+    margin-left: 20px;
+    font-size: 16px;
+  }
+
+  .zine-note {
+    margin-top: 5px;
+    margin-left: 20px;
+    font-size: 15px;
+    line-height: 1.4;
+  }
+</style>
 </head>
 <body>
   <div class="container">
-    <img src="your-collage.jpg" alt="Collage Artwork" class="main-collage">
-    <div class="comment-box">
-      <span class="username">@corporate_entity</span> 11 days ago<br>
-      this is really good.<br>
-      👍 1  💬 Reply
+    <div class="top-section">
+      <img src="https://via.placeholder.com/280x280.png?text=Collage+Image" alt="Collage Image">
+      <div class="comment">
+        <p><span class="username">@corporate_entity</span> 11 days ago<br>this is really good.</p>
+        <p>👍 1 &nbsp; 💬 1</p>
+      </div>
     </div>
 
-    <h3>ARAN BAYBARS FERRELL</h3>
-    <p>-PRESENTS-</p>
-
-    <h1>a PORTFOLIO</h1>
-    <p class="subtext">a place for confidence and craftmanship...</p>
-
-    <h2 class="section-title">Practiced Skills</h2>
+    <div class="title-section">
+      <h3>ALAN BAYBARS FERRELL</h3>
+      <p>-PRESENTS-</p>
+      <h1>a PORTFOLIO</h1>
+      <h2>a place for confidence and craftmanship...</h2>
+    </div>
 
     <div class="skills">
-      <strong>&gt;Collages&lt;</strong>
-      <em>Physical</em>
-      <em>Digital</em>
+      <h2>Practiced Skills</h2>
 
-      <strong>&gt;Iconography&lt;</strong>
-      <em>Sketches</em>
-      <em>Proof of Concepts</em>
-      <em>Design Pitches</em>
-      <em>Moodboards</em>
+      <div class="skill-group">
+        <h3>Collages</h3>
+        <ul>
+          <li>Physical</li>
+          <li>Digital</li>
+        </ul>
+      </div>
 
-      <strong>&gt;Websites&lt;</strong>
-      <em>HTML/CSS</em>
-      <em>Wireframe Proofs</em>
-      <em>Mock Concepts</em>
-      <em>Wordpress, Figma</em>
+      <div class="skill-group">
+        <h3>Iconography</h3>
+        <ul>
+          <li>Sketches</li>
+          <li>Proof of Concepts</li>
+          <li>Design Pitches</li>
+          <li>Moodboards</li>
+        </ul>
+      </div>
 
-      <strong>&gt;Zines&lt;</strong>
-      <em>RIP@WSU.EDU</em>
-      <em>Language, Text & Technology</em>
-      <em>Does Home Depot feel<br>like a sacred space to you?</em>
+      <div class="skill-group">
+        <h3>Websites</h3>
+        <ul>
+          <li>HTML/CSS</li>
+          <li>Wireframe Proofs</li>
+          <li>Mock Concepts</li>
+          <li>Wordpress, Figma</li>
+        </ul>
+      </div>
 
-      <strong>&gt;Posters&lt;</strong>
-      <strong>&gt;Photography&lt;</strong>
-      <strong>&gt;Writing&lt;</strong>
+      <div class="skill-group">
+        <h3>Zines</h3>
+        <div class="zine-note">
+          RIP@WSU.EDU<br>
+          Language, Text & Technology<br>
+          Does Home Depot feel<br>
+          like a sacred space to you?
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Posters</h3>
+      </div>
+
+      <div class="skill-group">
+        <h3>Photography</h3>
+      </div>
+
+      <div class="skill-group">
+        <h3>Writing</h3>
+      </div>
     </div>
   </div>
 </body>
