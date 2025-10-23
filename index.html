@@ -7,13 +7,15 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         @font-face {
-            font-family: "Gravity Variable";
-            src: url("https://type.cargo.site/files/abc-fixes/CargoGravityVariable.woff2") format("woff2-variations");
-            font-style: normal;
-            font-weight: 900;
+  font-family: 'ABC Gravity Variable';
+  src: url('/fonts/CargoGravityVariable.woff2') format('woff2-variations'),
+       url('/fonts/CargoGravityVariable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-stretch: 50% 200%;
+  font-style: normal;
         }
         body {
-            font-family: "Gravity Variable", sans-serif;
+            font-family: monospace;
             position: relative;
             overflow-x: hidden;
         }
@@ -70,24 +72,28 @@
             font-weight: 900;
             margin-bottom: 10px;
             line-height: 1;
+    font-family: 'ABC Gravity Variable', sans-serif;
+    font-weight: 700;      /* example weight within range */
+    font-stretch: 100%;    /* normal width: 100% */
         }
         .subtitle {
             font-size: 24px;
             font-weight: bold;
             margin-bottom: 60px;
+  font-family: 'ABC Gravity Variable', sans-serif;
+  font-variation-settings: "wght" 600, "wdth" 120;
         }
 
-        /* Skills Section */
-        .skills-title {
+        /* List Section */
+        .list {
+            text-align: right;
+        }
+        .list-title {
             font-size: 56px;
             font-weight: 900;
-            text-align: right;
             margin-bottom: 40px;
         }
-        .skills-list {
-            text-align: right;
-        }
-        .skill-category {
+        .category {
             margin-bottom: 40px;
         }
         .category-title {
@@ -95,12 +101,9 @@
             font-weight: bold;
             margin-bottom: 10px;
         }
-        .skill-items {
+        .items {
             font-size: 20px;
             line-height: 1.6;
-        }
-        .skill-items div {
-            margin-bottom: 5px;
         }
         .zine-question {
             font-size: 18px;
@@ -110,9 +113,9 @@
 
         @media (max-width: 768px) {
             .presents { font-size: 56px; }
-            .skills-title { font-size: 36px; }
+            .list-title { font-size: 36px; }
             .category-title { font-size: 22px; }
-            .skill-items { font-size: 16px; }
+            .items { font-size: 16px; }
         }
     </style>
 </head>
@@ -130,60 +133,54 @@
             <div class="subtitle">a place for confidence</div>
         </div>
 
-        <!-- Skills Section -->
-        <div class="skills-title">Practiced Skills</div>
-
-        <div class="skills-list">
-            <div class="skill-category">
+        <!-- List Section -->
+        <div class="list">
+            <div class="list-title">Practiced Skills</div>
+            
+            <div class="category">
                 <div class="category-title">>Collages<</div>
-                <div class="skill-items">
-                    <div>Physical</div>
-                    <div>Digital</div>
+                <div class="items">
+                    <p>Physical</p>
+                    <p>Digital</p>
                 </div>
             </div>
 
-            <div class="skill-category">
+            <div class="category">
                 <div class="category-title">>Iconography<</div>
-                <div class="skill-items">
-                    <div>Sketches</div>
-                    <div>Proof of Concepts</div>
-                    <div>Design Pitches</div>
-                    <div>Moodboards</div>
+                <div class="items">
+                    <p>Sketches</p>
+                    <p>Proof of Concepts</p>
+                    <p>Design Pitches</p>
+                    <p>Moodboards</p>
                 </div>
             </div>
 
-            <div class="skill-category">
+            <div class="category">
                 <div class="category-title">>Websites<</div>
-                <div class="skill-items">
-                    <div>HTML/CSS</div>
-                    <div>Wireframe Proofs</div>
-                    <div>Mock Concepts</div>
-                    <div>Wordpress, Figma</div>
+                <div class="items">
+                    <p>HTML/CSS</p>
+                    <p>Wireframe Proofs</p>
+                    <p>Mock Concepts</p>
+                    <p>Wordpress, Figma</p>
                 </div>
             </div>
 
-            <div class="skill-category">
+            <div class="category">
                 <div class="category-title">>Zines<</div>
-                <div class="skill-items">
-                    <div>RIP@WSU.EDU</div>
-                    <div>Language, Text & Technology</div>
-                    <div>Does Home Depot feel</div>
-                    <div>like a sacred space to you?</div>
+                <div class="items">
+                    <p>RIP@WSU.EDU</p>
+                    <p>Language, Text & Technology</p>
+                    <p>Does Home Depot feel</p>
+                    <p>like a sacred space to you?</p>
                 </div>
             </div>
 
-            <div class="skill-category">
+            <div class="category">
                 <div class="category-title">>Posters<</div>
-            </div>
-
-            <div class="skill-category">
                 <div class="category-title">>Photography<</div>
-            </div>
-
-            <div class="skill-category">
                 <div class="category-title">>Writing<</div>
             </div>
         </div>
     </div>
 </body>
-  </html>
+</html>
