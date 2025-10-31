@@ -1,0 +1,212 @@
+@import url("https://fonts.cdnfonts.com/css/pp-neue-montreal");
+
+@font-face {
+  font-family: "PPSupplyMono";
+  src: url("https://assets.codepen.io/7558/PPSupplyMono-Regular.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-mono: "PPSupplyMono", monospace;
+  --font-sans: "PP Neue Montreal", sans-serif;
+  --color-bg: #000;
+  --color-text: #fff;
+  --color-text-muted: rgba(255, 255, 255, 0.8);
+  --color-text-light: rgba(255, 255, 255, 0.6);
+  --color-accent: #fff;
+  --font-size-mono: clamp(10px, 1.2vw, 12px);
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  overflow: hidden;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.slider-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.webgl-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Current slide number at middle left - UPDATED: 12px uppercase */
+.slide-number {
+  position: absolute;
+  top: 50%;
+  left: var(--spacing-md);
+  transform: translateY(-50%);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text);
+  z-index: 3;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Total slides at middle right - UPDATED: 12px uppercase */
+.slide-total {
+  position: absolute;
+  top: 50%;
+  right: var(--spacing-md);
+  transform: translateY(-50%);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text);
+  z-index: 3;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.slides-navigation {
+  position: absolute;
+  bottom: var(--spacing-md);
+  left: var(--spacing-md);
+  right: var(--spacing-md);
+  display: flex;
+  gap: 0;
+  z-index: 3;
+  pointer-events: all;
+}
+
+.slide-nav-item {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  flex: 1;
+  border: none;
+  background: none;
+}
+
+.slide-progress-line {
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  margin-bottom: 8px;
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.slide-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--color-accent);
+  transition: width 0.1s ease, opacity 0.3s ease;
+  border-radius: 1px;
+}
+
+.slide-nav-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-muted);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.slide-nav-item.active .slide-nav-title {
+  color: var(--color-text);
+}
+
+.help-text {
+  position: absolute;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  z-index: 3;
+}
+
+/* Tweakpane Styling */
+.tp-dfwv {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  z-index: 1000 !important;
+  max-width: 320px !important;
+  background: rgba(0, 0, 0, 0.9) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+          backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+}
+
+.tp-dfwv .tp-btnv_b {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+  font-family: var(--font-mono) !important;
+  border-radius: 4px !important;
+}
+
+.tp-dfwv .tp-btnv_b:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+@media (max-width: 600px) {
+  .slides-navigation {
+    bottom: var(--spacing-sm);
+    left: var(--spacing-sm);
+    right: var(--spacing-sm);
+  }
+
+  .slide-nav-item {
+    padding: 0.75rem;
+  }
+
+  .help-text {
+    top: var(--spacing-sm);
+    left: var(--spacing-sm);
+  }
+
+  .slide-number {
+    left: var(--spacing-sm);
+  }
+
+  .slide-total {
+    right: var(--spacing-sm);
+  }
+
+  .tp-dfwv {
+    top: 10px !important;
+    right: 10px !important;
+    max-width: 280px !important;
+  }
+}
+
+/* Preloader styles */
+.slider-wrapper {
+  opacity: 0;
+  transition: opacity 1.5s ease-in;
+  pointer-events: none;
+}
+
+.slider-wrapper.loaded {
+  opacity: 1;
+  pointer-events: auto;
+}
