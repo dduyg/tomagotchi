@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rob Farmer - Designer</title>
+    <title>Rob Farmer - Designer Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -17,28 +17,26 @@
             overflow-x: hidden;
         }
 
-        .header {
+        .fixed-text {
             position: fixed;
-            top: 0;
-            left: 0;
-            padding: 40px;
+            top: 20px;
+            left: 20px;
             z-index: 100;
-            mix-blend-mode: difference;
-            color: white;
-            font-size: 32px;
+            font-size: 2rem;
             line-height: 1.3;
             font-weight: 400;
-            max-width: 700px;
+            max-width: 600px;
+            color: black;
+            mix-blend-mode: difference;
         }
 
-        .header a {
-            color: inherit;
-            text-decoration: none;
-            border-bottom: 1px solid currentColor;
+        .fixed-text .highlight {
+            color: white;
         }
 
         .gallery {
             padding-top: 100px;
+            padding-bottom: 100px;
         }
 
         .gallery-item {
@@ -50,192 +48,207 @@
             padding: 40px;
         }
 
-        .gallery-item:nth-child(1) {
-            background: #00C853;
+        .gallery-item.green {
+            background: #3CB371;
         }
 
-        .gallery-item:nth-child(2) {
-            background: #E0F7FA;
+        .gallery-item.white {
+            background: white;
         }
 
-        .gallery-item:nth-child(3) {
-            background: #FFE082;
-        }
-
-        .gallery-item:nth-child(4) {
-            background: #FF6B9D;
+        .gallery-item.blue {
+            background: #87CEEB;
         }
 
         .image-container {
-            max-width: 700px;
+            max-width: 600px;
             width: 100%;
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
         }
 
-        .instagram-post {
+        .mock-image {
+            width: 100%;
+            aspect-ratio: 1;
             background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .instagram-post {
+            width: 90%;
+            height: 90%;
+            background: #f5f5f5;
             border-radius: 8px;
-            overflow: hidden;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
         }
 
         .post-content {
-            padding: 200px 40px;
-            background: #f5f5f5;
-            text-align: center;
-            position: relative;
-            min-height: 400px;
+            flex: 1;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            font-size: 1.2rem;
+            color: #333;
+            text-align: center;
+            position: relative;
         }
 
         .password-dots {
             position: absolute;
-            inset: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             padding: 20px;
         }
 
-        .dot-group {
+        .dot-pill {
             background: #ddd;
             border-radius: 20px;
             padding: 8px 16px;
-            font-size: 20px;
-            letter-spacing: 3px;
+            font-size: 1rem;
             color: black;
-            transform: rotate(var(--rotation));
+            letter-spacing: 2px;
         }
 
         .post-text {
             position: relative;
-            z-index: 1;
-            font-size: 18px;
-            color: black;
+            z-index: 2;
+            background: rgba(255,255,255,0.9);
+            padding: 10px 20px;
+            border-radius: 8px;
         }
 
         .post-actions {
-            padding: 16px;
             display: flex;
-            gap: 16px;
-            align-items: center;
-            border-top: 1px solid #eee;
+            gap: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            margin-top: 15px;
         }
 
         .action-icon {
             width: 24px;
             height: 24px;
-            cursor: pointer;
+            border: 2px solid #333;
+            border-radius: 50%;
         }
 
-        .bookmark {
-            margin-left: auto;
-        }
-
-        .project-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 8px;
-        }
-
-        .caption {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #666;
+        .credit {
+            padding: 40px;
             text-align: center;
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .credit a {
+            color: #333;
+            text-decoration: underline;
         }
 
         @media (max-width: 768px) {
-            .header {
-                font-size: 24px;
-                padding: 20px;
+            .fixed-text {
+                font-size: 1.5rem;
+                top: 15px;
+                left: 15px;
             }
 
             .gallery-item {
                 padding: 20px;
+                min-height: 80vh;
             }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        Rob Farmer is a designer working between New York & Melbourne on brand, illustration, motion & graphic design.<br>
-        Say <a href="mailto:hello@robfarmer.xyz">hello@robfarmer.xyz</a>,<br>
-        or check out more <a href="#" target="_blank">@robfarmer.xyz</a>.
+    <div class="fixed-text">
+        Rob Farmer is a designer working between<br>
+        New York & Melbourne on brand,<br>
+        <span class="highlight">illustration, motion & graphic design.</span><br>
+        Say <span class="highlight">hello@robfarmer.xyz</span>,<br>
+        or <span class="highlight">check out more @robfarmer.xyz</span>.
     </div>
 
     <div class="gallery">
-        <div class="gallery-item">
+        <div class="gallery-item green">
             <div class="image-container">
-                <div class="instagram-post">
-                    <div class="post-content">
-                        <div class="password-dots">
-                            <span class="dot-group" style="--rotation: 5deg;">......</span>
-                            <span class="dot-group" style="--rotation: -3deg;">........</span>
-                            <span class="dot-group" style="--rotation: 8deg;">....</span>
-                            <span class="dot-group" style="--rotation: -5deg;">.......</span>
-                            <span class="dot-group" style="--rotation: 3deg;">.....</span>
-                            <span class="dot-group" style="--rotation: -8deg;">......</span>
-                            <span class="dot-group" style="--rotation: 6deg;">....</span>
-                            <span class="dot-group" style="--rotation: -2deg;">........</span>
-                            <span class="dot-group" style="--rotation: 4deg;">.....</span>
-                            <span class="dot-group" style="--rotation: -6deg;">.......</span>
-                            <span class="dot-group" style="--rotation: 7deg;">......</span>
-                            <span class="dot-group" style="--rotation: -4deg;">....</span>
-                            <span class="dot-group" style="--rotation: 2deg;">.....</span>
-                            <span class="dot-group" style="--rotation: -7deg;">........</span>
-                            <span class="dot-group" style="--rotation: 5deg;">......</span>
-                            <span class="dot-group" style="--rotation: -1deg;">....</span>
+                <div class="mock-image">
+                    <div class="instagram-post">
+                        <div class="post-content">
+                            <div class="password-dots">
+                                <span class="dot-pill">••••••</span>
+                                <span class="dot-pill">•••</span>
+                                <span class="dot-pill">••••••••</span>
+                                <span class="dot-pill">••••</span>
+                                <span class="dot-pill">•••••</span>
+                                <span class="dot-pill">••••••</span>
+                                <span class="dot-pill">•••</span>
+                                <span class="dot-pill">••••••••</span>
+                                <span class="dot-pill">•••••</span>
+                                <span class="dot-pill">••••</span>
+                                <span class="dot-pill">•••••••</span>
+                                <span class="dot-pill">••••</span>
+                                <span class="dot-pill">•••</span>
+                                <span class="dot-pill">••••••</span>
+                                <span class="dot-pill">•••••</span>
+                            </div>
+                            <div class="post-text">
+                                What the ••••• was my password?
+                            </div>
                         </div>
-                        <p class="post-text">What the ..... was my password?</p>
-                    </div>
-                    <div class="post-actions">
-                        <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                        </svg>
-                        <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                        </svg>
-                        <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path>
-                        </svg>
-                        <svg class="action-icon bookmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
-                        </svg>
+                        <div class="post-actions">
+                            <div class="action-icon"></div>
+                            <div class="action-icon"></div>
+                            <div class="action-icon"></div>
+                        </div>
                     </div>
                 </div>
-                <p class="caption">Google Chrome Brand 2024. Via <a href="#">AthleticsNYC</a>.</p>
             </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item white">
             <div class="image-container">
-                <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=800&q=80" alt="Design work" class="project-image">
-                <p class="caption">Brand identity project 2024</p>
+                <div class="mock-image" style="background: #f0f0f0;">
+                    <p style="color: #999; font-size: 1.2rem;">Project Image 2</p>
+                </div>
             </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item blue">
             <div class="image-container">
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Design work" class="project-image">
-                <p class="caption">Motion graphics exploration</p>
+                <div class="mock-image">
+                    <p style="color: #999; font-size: 1.2rem;">Project Image 3</p>
+                </div>
             </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="gallery-item white">
             <div class="image-container">
-                <img src="https://images.unsplash.com/photo-1634120187022-e0c3d3da6e3d?w=800&q=80" alt="Design work" class="project-image">
-                <p class="caption">Editorial illustration series</p>
+                <div class="mock-image" style="background: #f0f0f0;">
+                    <p style="color: #999; font-size: 1.2rem;">Project Image 4</p>
+                </div>
             </div>
         </div>
+    </div>
+
+    <div class="credit">
+        Google Chrome Brand 2024. Via <a href="#">AthleticsNYC</a>.
     </div>
 </body>
 </html>
