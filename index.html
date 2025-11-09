@@ -3,216 +3,202 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Mix-blend-mode demo — fixed text + gallery</title>
+<title>Blend-mode fixed text over gallery</title>
+
+<!-- Use a classy serif similar to the screenshot; fall back to Georgia/serif -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
+
 <style>
   :root{
-    --page-bg: #ffffff;
-    --green-art: #2ea24a; /* the green art block color */
+    --text-size: clamp(28px, 4.6vw, 56px);
+    --serif: "Playfair Display", Georgia, serif;
   }
 
   html,body{
     height:100%;
     margin:0;
-    font-family: "Georgia", "Times New Roman", serif;
-    background:var(--page-bg);
-    color:#111;
+    background:#ffffff;
+    font-family: var(--serif);
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale;
   }
 
-  /* fixed intro text in top-left */
-  .intro {
-    position: fixed;
-    left: 28px;
-    top: 20px;
-    width: 44vw;                 /* behave like your screenshot */
-    max-width: 520px;
-    line-height: 1.02;
-    font-size: clamp(22px, 4.2vw, 52px); /* responsive large type */
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    color: #fff;                 /* IMPORTANT: white text */
-    mix-blend-mode: difference;  /* the magic */
-    z-index: 20;                 /* above the gallery */
-    pointer-events: none;        /* don't block scroll/clicks */
+  /* Container holds the page content */
+  .page {
+    position:relative;
+    min-height:100vh;
+    overflow-x:hidden;
   }
 
-  /* gallery container */
+  /* Fixed text block — top-left */
+  .hero-text{
+    position:fixed;
+    left:28px;
+    top:18px;
+    z-index:50;                 /* sits above gallery visually */
+    width:42ch;                 /* similar column width like screenshot */
+    font-size:var(--text-size);
+    line-height:1.03;
+    color:#111;                 /* base color (will be blended) */
+    pointer-events:none;        /* lets you interact with gallery below */
+    mix-blend-mode:difference;  /* primary blend mode */
+    /* subtle text rendering helpers */
+    -webkit-text-stroke: 0.0px rgba(0,0,0,0); 
+  }
+
+  /* If browser supports exclusion, prefer it (as you suspected) */
+  @supports (mix-blend-mode: exclusion) {
+    .hero-text { mix-blend-mode: exclusion; }
+  }
+
+  /* Provide a tiny highlight on small screens so text doesn't cover everything */
+  @media (max-width:600px){
+    .hero-text{ left:14px; top:12px; width:calc(100% - 28px); font-size: clamp(20px,6vw,34px); }
+  }
+
+  /* The gallery: a vertical column of artwork tiles beneath the fixed text */
   .gallery {
-    margin-top: 260px; /* so intro sits above initial content */
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 120px;
-    padding: 40px 60px 200px 60px;
-    max-width: 1100px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: 220px; /* push below top area; hero text sits visually over first tiles */
+    padding: 24px;
+    display:flex;
+    flex-direction:column;
+    gap:60px;
+    max-width:900px;
+    margin-left: 28px;
+    margin-right: 28px;
+    z-index:1;
+    position:relative;
   }
 
-  /* each art block (simulating the green artwork area) */
-  .art {
-    background: var(--green-art);
-    border-radius: 6px;
-    padding: 56px 56px;
-    min-height: 480px;
-    box-shadow: 0 6px 0 rgba(0,0,0,0.04) inset;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  /* inside the art we put a white framed "post" to mimic the image */
-  .post {
-    width: min(520px, 70%);
-    aspect-ratio: 1 / 1; /* square card */
-    background: #fff;
-    border-radius: 14px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  .tile {
+    height: 520px;
+    border-radius: 8px;
+    overflow:hidden;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
     display:flex;
     align-items:center;
     justify-content:center;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
-    font-size:14px;
-    color:#333;
-    position: relative;
-  }
-
-  /* decorative "password pills" inside the white card */
-  .pills {
-    width: 86%;
-    height: 78%;
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    align-content:flex-start;
-    justify-content:center;
-    padding:18px;
-    box-sizing:border-box;
-  }
-  .pill {
-    width: 62px;
-    height: 22px;
-    background: rgba(0,0,0,0.07);
-    border-radius: 14px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow: 0 2px 0 rgba(0,0,0,0.03);
-  }
-  .dot {
-    width:4px;
-    height:4px;
-    background:#111;
-    border-radius:50%;
-    margin:0 2px;
-    box-shadow: 6px 0 0 #111, 12px 0 0 #111; /* quick 3 dots */
-  }
-
-  /* small caption under each art block */
-  .caption {
-    margin-top: 14px;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     font-size: 14px;
-    color: #333;
-    text-align: center;
+    color: #222;
+    background-size: cover;
+    background-position: center;
   }
 
-  /* footer / spacer content to allow long scroll */
-  .spacer {
-    height: 1200px;
+  /* A sample green tile that will interact with the text to produce the pinkish color */
+  .tile--green {
+    background-color: #25A14A; /* green similar to screenshot */
+    /* add an artwork-like white rounded square in the center */
+    position:relative;
+  }
+  .tile--green::after{
+    content:"";
+    width:64%;
+    height:64%;
+    background:#fff;
+    border-radius:18px;
+    box-shadow: 0 8px 0 rgba(0,0,0,0.05);
+    position:absolute;
   }
 
-  /* responsive tweaks */
-  @media (max-width:800px){
-    .intro {
-      left:16px;
-      top:12px;
-      width: 72vw;
-      font-size: clamp(18px, 6.4vw, 36px);
-    }
-    .gallery { padding: 24px; gap: 48px; margin-top: 180px; }
-    .art { padding: 28px; min-height: 360px; }
+  /* Another tile with patterned "art" (gray pills like screenshot) */
+  .tile--art {
+    background: linear-gradient(180deg,#fff,#f6f6f6);
+    display:block;
+    position:relative;
   }
+  /* create a center poster-like element with dots/pills using inline SVG as background */
+  .tile--art .poster {
+    width:64%;
+    height:64%;
+    border-radius:18px;
+    background-color:white;
+    position:relative;
+    z-index:2;
+    box-shadow:0 6px 18px rgba(0,0,0,0.06);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .pills {
+    width:86%;
+    height:86%;
+    background-image: url("data:image/svg+xml;utf8,\
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'>\
+        <rect width='100%' height='100%' fill='white'/>\
+        <g fill='%23e6e7e9'>\
+          <rect x='20' y='20' rx='20' ry='20' width='40' height='80'/>\
+          <rect x='90' y='40' rx='20' ry='20' width='40' height='70'/>\
+          <rect x='160' y='10' rx='20' ry='20' width='40' height='90'/>\
+          <rect x='220' y='60' rx='20' ry='20' width='40' height='60'/>\
+          <rect x='300' y='35' rx='20' ry='20' width='40' height='75'/>\
+        </g>\
+        <g fill='%23999'>\
+          <circle cx='40' cy='40' r='3'/>\
+          <circle cx='40' cy='60' r='3'/>\
+          <circle cx='40' cy='80' r='3'/>\
+          <circle cx='110' cy='55' r='3'/>\
+          <circle cx='110' cy='75' r='3'/>\
+          <circle cx='110' cy='95' r='3'/>\
+        </g>\
+      </svg>");
+    background-size:cover;
+    background-position:center;
+    border-radius:12px;
+  }
+
+  /* simple typographic credit below the tiles */
+  .credit {
+    margin-top: 12px;
+    color:#333;
+    font-size:14px;
+  }
+
+  /* large spacer at bottom so you can scroll */
+  .spacer { height: 800px; }
+
 </style>
 </head>
 <body>
+  <div class="page">
 
-  <!-- Fixed text (top-left) -->
-  <div class="intro" aria-hidden="true">
-    Rob Farmer is a designer working between<br>
-    New York &amp; Melbourne on brand.<br><span style="display:block; margin-top:6px;">
-    illustration, motion &amp; graphic design.<br>
-    Say hello@robfarmer.xyz,<br>or check out more @robfarmerxyz.</span>
+    <!-- HERO: fixed text on top-left that blends with underlying tiles -->
+    <div class="hero-text" aria-hidden="true">
+      Rob Farmer is a designer working between<br>
+      New York &amp; Melbourne on brand.<br>
+      illustration, motion &amp; graphic design.<br>
+      Say hello@robfarmer.xyz,<br>
+      or check out more @robfarmerxyz.
+    </div>
+
+    <!-- SCROLLABLE GALLERY -->
+    <main class="gallery" role="main" aria-label="Art gallery">
+      <!-- An art tile that is green — the hero text will visually change when it passes over this tile -->
+      <article class="tile tile--green" aria-label="Green artwork tile">
+        <!-- optional content within tile -->
+      </article>
+
+      <!-- A tile showing the 'password pills' poster-like artwork -->
+      <article class="tile tile--art" aria-label="Poster artwork tile">
+        <div class="poster" role="img" aria-label="Poster: what the --- was my password?">
+          <div class="pills"></div>
+        </div>
+      </article>
+
+      <!-- More sample tiles with different colors / images to demonstrate blending -->
+      <article class="tile" style="background:linear-gradient(180deg,#fef3e6,#ffd6a5);" aria-label="Warm toned artwork">
+        <div style="padding:28px; text-align:center; max-width:60%;">Sample warm artwork</div>
+      </article>
+
+      <article class="tile" style="background:linear-gradient(180deg,#e6f7ff,#d2f1ff);" aria-label="Cool toned artwork">
+        <div style="padding:28px; text-align:center; max-width:60%;">Sample cool artwork</div>
+      </article>
+
+      <div class="credit">Google Chrome Brand 2024. Via <a href="#" onclick="event.preventDefault()">AthleticsNYC</a>.</div>
+
+      <div class="spacer"></div>
+    </main>
   </div>
-
-  <!-- Main scrolling content (gallery) -->
-  <main>
-    <section class="gallery" role="list">
-      <!-- repeated art blocks to emulate the design feed -->
-      <article class="art" role="listitem" aria-label="Artwork 1">
-        <div>
-          <div class="post" role="img" aria-label="Instagram-style post">
-            <div class="pills" aria-hidden="true">
-              <!-- generate many decorative pills -->
-              <!-- (you can duplicate/remove these blocks to tweak) -->
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-            </div>
-          </div>
-          <div class="caption">Google Chrome Brand 2024. Via AthleticsNYC.</div>
-        </div>
-      </article>
-
-      <!-- second block -->
-      <article class="art" role="listitem" aria-label="Artwork 2">
-        <div>
-          <div class="post" role="img" aria-label="Instagram-style post">
-            <div class="pills" aria-hidden="true">
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-            </div>
-          </div>
-          <div class="caption">Another piece. (simulated)</div>
-        </div>
-      </article>
-
-      <!-- add more if you like -->
-      <article class="art" role="listitem" aria-label="Artwork 3">
-        <div>
-          <div class="post" role="img" aria-label="Instagram-style post">
-            <div class="pills" aria-hidden="true">
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-              <div class="pill"><span class="dot"></span></div>
-            </div>
-          </div>
-          <div class="caption">Third piece — scroll to see interaction</div>
-        </div>
-      </article>
-    </section>
-
-    <div class="spacer" aria-hidden="true"></div>
-  </main>
-
 </body>
 </html>
