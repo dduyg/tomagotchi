@@ -1,204 +1,236 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Blend-mode fixed text over gallery</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiminalLoop</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background: white;
+            overflow-x: hidden;
+        }
 
-<!-- Use a classy serif similar to the screenshot; fall back to Georgia/serif -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&display=swap" rel="stylesheet">
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 40px;
+            z-index: 100;
+            mix-blend-mode: difference;
+            color: white;
+            font-size: 32px;
+            line-height: 1.3;
+            font-weight: 400;
+            max-width: 700px;
+        }
 
-<style>
-  :root{
-    --text-size: clamp(28px, 4.6vw, 56px);
-    --serif: "Playfair Display", Georgia, serif;
-  }
+        .header a {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px solid currentColor;
+        }
 
-  html,body{
-    height:100%;
-    margin:0;
-    background:#ffffff;
-    font-family: var(--serif);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-  }
+        .gallery {
+            padding-top: 100px;
+        }
 
-  /* Container holds the page content */
-  .page {
-    position:relative;
-    min-height:100vh;
-    overflow-x:hidden;
-  }
+        .gallery-item {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
 
-  /* Fixed text block — top-left */
-  .hero-text{
-    position:fixed;
-    left:28px;
-    top:18px;
-    z-index:50;                 /* sits above gallery visually */
-    width:42ch;                 /* similar column width like screenshot */
-    font-size:var(--text-size);
-    line-height:1.03;
-    color:#111;                 /* base color (will be blended) */
-    pointer-events:none;        /* lets you interact with gallery below */
-    mix-blend-mode:difference;  /* primary blend mode */
-    /* subtle text rendering helpers */
-    -webkit-text-stroke: 0.0px rgba(0,0,0,0); 
-  }
+        .gallery-item:nth-child(1) {
+            background: #00C853;
+        }
 
-  /* If browser supports exclusion, prefer it (as you suspected) */
-  @supports (mix-blend-mode: exclusion) {
-    .hero-text { mix-blend-mode: exclusion; }
-  }
+        .gallery-item:nth-child(2) {
+            background: #E0F7FA;
+        }
 
-  /* Provide a tiny highlight on small screens so text doesn't cover everything */
-  @media (max-width:600px){
-    .hero-text{ left:14px; top:12px; width:calc(100% - 28px); font-size: clamp(20px,6vw,34px); }
-  }
+        .gallery-item:nth-child(3) {
+            background: #FFE082;
+        }
 
-  /* The gallery: a vertical column of artwork tiles beneath the fixed text */
-  .gallery {
-    margin-top: 220px; /* push below top area; hero text sits visually over first tiles */
-    padding: 24px;
-    display:flex;
-    flex-direction:column;
-    gap:60px;
-    max-width:900px;
-    margin-left: 28px;
-    margin-right: 28px;
-    z-index:1;
-    position:relative;
-  }
+        .gallery-item:nth-child(4) {
+            background: #FF6B9D;
+        }
 
-  .tile {
-    height: 520px;
-    border-radius: 8px;
-    overflow:hidden;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.08);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    font-size: 14px;
-    color: #222;
-    background-size: cover;
-    background-position: center;
-  }
+        .image-container {
+            max-width: 700px;
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
 
-  /* A sample green tile that will interact with the text to produce the pinkish color */
-  .tile--green {
-    background-color: #25A14A; /* green similar to screenshot */
-    /* add an artwork-like white rounded square in the center */
-    position:relative;
-  }
-  .tile--green::after{
-    content:"";
-    width:64%;
-    height:64%;
-    background:#fff;
-    border-radius:18px;
-    box-shadow: 0 8px 0 rgba(0,0,0,0.05);
-    position:absolute;
-  }
+        .instagram-post {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
 
-  /* Another tile with patterned "art" (gray pills like screenshot) */
-  .tile--art {
-    background: linear-gradient(180deg,#fff,#f6f6f6);
-    display:block;
-    position:relative;
-  }
-  /* create a center poster-like element with dots/pills using inline SVG as background */
-  .tile--art .poster {
-    width:64%;
-    height:64%;
-    border-radius:18px;
-    background-color:white;
-    position:relative;
-    z-index:2;
-    box-shadow:0 6px 18px rgba(0,0,0,0.06);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-  }
-  .pills {
-    width:86%;
-    height:86%;
-    background-image: url("data:image/svg+xml;utf8,\
-      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'>\
-        <rect width='100%' height='100%' fill='white'/>\
-        <g fill='%23e6e7e9'>\
-          <rect x='20' y='20' rx='20' ry='20' width='40' height='80'/>\
-          <rect x='90' y='40' rx='20' ry='20' width='40' height='70'/>\
-          <rect x='160' y='10' rx='20' ry='20' width='40' height='90'/>\
-          <rect x='220' y='60' rx='20' ry='20' width='40' height='60'/>\
-          <rect x='300' y='35' rx='20' ry='20' width='40' height='75'/>\
-        </g>\
-        <g fill='%23999'>\
-          <circle cx='40' cy='40' r='3'/>\
-          <circle cx='40' cy='60' r='3'/>\
-          <circle cx='40' cy='80' r='3'/>\
-          <circle cx='110' cy='55' r='3'/>\
-          <circle cx='110' cy='75' r='3'/>\
-          <circle cx='110' cy='95' r='3'/>\
-        </g>\
-      </svg>");
-    background-size:cover;
-    background-position:center;
-    border-radius:12px;
-  }
+        .post-content {
+            padding: 200px 40px;
+            background: #f5f5f5;
+            text-align: center;
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
 
-  /* simple typographic credit below the tiles */
-  .credit {
-    margin-top: 12px;
-    color:#333;
-    font-size:14px;
-  }
+        .password-dots {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px;
+        }
 
-  /* large spacer at bottom so you can scroll */
-  .spacer { height: 800px; }
+        .dot-group {
+            background: #ddd;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 20px;
+            letter-spacing: 3px;
+            color: black;
+            transform: rotate(var(--rotation));
+        }
 
-</style>
+        .post-text {
+            position: relative;
+            z-index: 1;
+            font-size: 18px;
+            color: black;
+        }
+
+        .post-actions {
+            padding: 16px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            border-top: 1px solid #eee;
+        }
+
+        .action-icon {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .bookmark {
+            margin-left: auto;
+        }
+
+        .project-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .caption {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                font-size: 24px;
+                padding: 20px;
+            }
+
+            .gallery-item {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="page">
-
-    <!-- HERO: fixed text on top-left that blends with underlying tiles -->
-    <div class="hero-text" aria-hidden="true">
-      Rob Farmer is a designer working between<br>
-      New York &amp; Melbourne on brand.<br>
-      illustration, motion &amp; graphic design.<br>
-      Say hello@robfarmer.xyz,<br>
-      or check out more @robfarmerxyz.
+    <div class="header">
+        Rob Farmer is a designer working between New York & Melbourne on brand, illustration, motion & graphic design.<br>
+        Say <a href="mailto:hello@robfarmer.xyz">hello@robfarmer.xyz</a>,<br>
+        or check out more <a href="#" target="_blank">@robfarmer.xyz</a>.
     </div>
 
-    <!-- SCROLLABLE GALLERY -->
-    <main class="gallery" role="main" aria-label="Art gallery">
-      <!-- An art tile that is green — the hero text will visually change when it passes over this tile -->
-      <article class="tile tile--green" aria-label="Green artwork tile">
-        <!-- optional content within tile -->
-      </article>
-
-      <!-- A tile showing the 'password pills' poster-like artwork -->
-      <article class="tile tile--art" aria-label="Poster artwork tile">
-        <div class="poster" role="img" aria-label="Poster: what the --- was my password?">
-          <div class="pills"></div>
+    <div class="gallery">
+        <div class="gallery-item">
+            <div class="image-container">
+                <div class="instagram-post">
+                    <div class="post-content">
+                        <div class="password-dots">
+                            <span class="dot-group" style="--rotation: 5deg;">......</span>
+                            <span class="dot-group" style="--rotation: -3deg;">........</span>
+                            <span class="dot-group" style="--rotation: 8deg;">....</span>
+                            <span class="dot-group" style="--rotation: -5deg;">.......</span>
+                            <span class="dot-group" style="--rotation: 3deg;">.....</span>
+                            <span class="dot-group" style="--rotation: -8deg;">......</span>
+                            <span class="dot-group" style="--rotation: 6deg;">....</span>
+                            <span class="dot-group" style="--rotation: -2deg;">........</span>
+                            <span class="dot-group" style="--rotation: 4deg;">.....</span>
+                            <span class="dot-group" style="--rotation: -6deg;">.......</span>
+                            <span class="dot-group" style="--rotation: 7deg;">......</span>
+                            <span class="dot-group" style="--rotation: -4deg;">....</span>
+                            <span class="dot-group" style="--rotation: 2deg;">.....</span>
+                            <span class="dot-group" style="--rotation: -7deg;">........</span>
+                            <span class="dot-group" style="--rotation: 5deg;">......</span>
+                            <span class="dot-group" style="--rotation: -1deg;">....</span>
+                        </div>
+                        <p class="post-text">What the ..... was my password?</p>
+                    </div>
+                    <div class="post-actions">
+                        <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                        <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                        </svg>
+                        <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path>
+                        </svg>
+                        <svg class="action-icon bookmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <p class="caption">Google Chrome Brand 2024. Via <a href="#">AthleticsNYC</a>.</p>
+            </div>
         </div>
-      </article>
 
-      <!-- More sample tiles with different colors / images to demonstrate blending -->
-      <article class="tile" style="background:linear-gradient(180deg,#fef3e6,#ffd6a5);" aria-label="Warm toned artwork">
-        <div style="padding:28px; text-align:center; max-width:60%;">Sample warm artwork</div>
-      </article>
+        <div class="gallery-item">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=800&q=80" alt="Design work" class="project-image">
+                <p class="caption">Brand identity project 2024</p>
+            </div>
+        </div>
 
-      <article class="tile" style="background:linear-gradient(180deg,#e6f7ff,#d2f1ff);" aria-label="Cool toned artwork">
-        <div style="padding:28px; text-align:center; max-width:60%;">Sample cool artwork</div>
-      </article>
+        <div class="gallery-item">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Design work" class="project-image">
+                <p class="caption">Motion graphics exploration</p>
+            </div>
+        </div>
 
-      <div class="credit">Google Chrome Brand 2024. Via <a href="#" onclick="event.preventDefault()">AthleticsNYC</a>.</div>
-
-      <div class="spacer"></div>
-    </main>
-  </div>
+        <div class="gallery-item">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1634120187022-e0c3d3da6e3d?w=800&q=80" alt="Design work" class="project-image">
+                <p class="caption">Editorial illustration series</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
