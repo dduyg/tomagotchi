@@ -1,159 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/x-icon" href="https://freight.cargo.site/t/original/i/M2044577048262324370853889076687/.ico">
-    <title>li๓iຖคll🎁🐼p</title>
-    <link href="https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: "Luxurious Roman", serif;
-            background-color: #f5f5f5;
-            padding: 40px 0;
-            overflow-x: hidden;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Isle of Any - Contact Panel</title>
+<style>
+/* Basic resets and font */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Onsite Standard', sans-serif; background-color: #000; color: #fff; overflow: hidden; font-size: 14px; line-height: 1.38; }
+a { color: inherit; text-decoration: none; }
+label { cursor: pointer; line-height: 1; position: relative; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.4); }
+label:after { content: ""; width: 6px; height: 6px; border-radius: 50%; background-color: rgba(255,255,255,0.38); transition: background-color 0.67s ease; }
+input[type="checkbox"] { display: none; }
+input:checked ~ div { opacity: 1; height: auto; transition: opacity 0.5s ease, height 0.5s ease; }
+input:checked + label:after { height: 2px; width: 12px; border-radius: 2px; background-color: #fff; }
 
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding: 20px 7px;
-            z-index: 100;
-            mix-blend-mode: difference;
-            color: white;
-            font-size: 18px;
-            line-height: 1.1;
-        }
-        /* If browser supports exclusion */
-        @supports (mix-blend-mode: exclusion) {
-            header { mix-blend-mode: exclusion; }
-        }
+/* Panel layout */
+.panel { position: absolute; left: 0; bottom: 0; width: 100%; padding: 2rem 1rem; max-width: 430px; opacity: 1; }
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.gap-y-6 { row-gap: 1.5rem; }
+.w-full { width: 100%; }
+.w-1/2 { width: 50%; }
+.pb-4 { padding-bottom: 1rem; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+a:hover { text-decoration: underline; }
 
-        .gallery {
-            padding-top: 100px;
-            padding-bottom: 500px;
-            display: flex;
-            flex-direction: column;
-            gap: 60px;
-        }
-        .item {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 0;
-            align-items: center;
-            width: 100%;
-        }
-
-        .content {
-            width: 100%;
-            background: white;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .content:hover { transform: translateX(-15px); }
-        .content img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-    </style>
+/* Responsive */
+@media (min-width: 768px) {
+    .panel { max-width: 430px; padding: 1.5rem 2.25rem; }
+    label { padding: 1.5rem 0; }
+}
+</style>
 </head>
 <body>
-    <header>A widower raising his son in a seaside village hires a new teacher — the same woman he once promised forever to, before life pulled them apart.</header>
-   
-    <div class="gallery">
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/conn3cting168.png">
-            </div>
+
+<div class="panel">
+  <section>
+    <span class="py-4 flex">A new ideas company.</span>
+  </section>
+
+  <section>
+    <input type="checkbox" name="contact" id="contact">
+    <label for="contact" class="py-4">Contact</label>
+    <div style="opacity:0; transition: opacity 0.5s ease;">
+      <div class="pb-4 flex flex-wrap gap-y-6">
+        <div class="w-1/2 flex flex-col">
+          <span>Work with us:</span>
+          <a href="mailto:work@example.com">work@example.com</a>
         </div>
 
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media3.giphy.com/media/j14J3fmRGXvb5FQtyn/giphy.gif">
-            </div>
-        </div>
-        
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media4.giphy.com/media/xTiTnps3h3f7GPA8wg/giphy.gif">
-            </div>
-        </div>
-        
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media0.giphy.com/media/26BkNCKYk8pPwOPwA/giphy.gif">
-            </div>
-        </div>
-        
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media3.giphy.com/media/3oEduZzYvfbaNQ8kQU/giphy.gif">
-            </div>
+        <div class="w-1/2 flex flex-col">
+          <span>Join us:</span>
+          <a href="mailto:join@example.com">join@example.com</a>
         </div>
 
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media1.giphy.com/media/l0Ex8elTidZkK2rv2/giphy.gif">
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media2.giphy.com/media/3o7bufRjEvRIp682D6/giphy.gif">
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media4.giphy.com/media/gk9APG7KGlwvtkZBu1/giphy.gif">
-            </div>
-        </div>
-        
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media4.giphy.com/media/3o7TKsh55ZuNIUpOjC/giphy.gif">
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media1.giphy.com/media/5qfMdJr94jpaSnCyao/giphy.gif">
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media3.giphy.com/media/3oEduHk3Iteb3udYGc/giphy.gif">
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media1.giphy.com/media/3oriO4HpCgFQI2kA3S/giphy.gif">
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/analogWaves.gif">
-            </div>
-        </div>    
+        <a href="https://instagram.com/isleofany/" target="_blank" rel="noopener noreferrer">@isleofany</a>
+        <span class="w-full">168 Canal Street, New York, NY 10013.</span>
+      </div>
     </div>
+  </section>
+</div>
+
 </body>
 </html>
