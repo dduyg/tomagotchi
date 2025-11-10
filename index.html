@@ -3,72 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery Showcase</title>
+    <title>LiminalLoop</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: Cantarell, serif;
-            background-color: #f5f5f5;
-            padding: 40px 0;
+            font-family: Arial, serif;
+            background: white;
             overflow-x: hidden;
         }
 
-        .gallery {
-            display: flex;
-            flex-direction: column;
-            gap: 60px;
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 10px;
+            z-index: 100;
+            mix-blend-mode: difference;
+            color: white;
+            font-size: 20px;
+            line-height: 1.2;
         }
-        .item {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 0;
-            align-items: center;
-            width: 100%;
+        .header a {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px solid currentColor;
         }
 
-        .content {
+        .gallery {
+            padding-top: 100px;
+        }
+
+        .gallery-item {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .gallery-item:nth-child(1) {
+            background: #00C853;
+        }
+
+        .gallery-item:nth-child(2) {
+            background: #E0F7FA;
+        }
+
+        .gallery-item:nth-child(3) {
+            background: #FFE082;
+        }
+
+        .gallery-item:nth-child(4) {
+            background: #FF6B9D;
+        }
+
+        .image-container {
+            max-width: 700px;
             width: 100%;
             background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .instagram-post {
+            background: white;
+            border-radius: 8px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .content:hover {
-            transform: translateX(-5px);
+
+        .post-content {
+            padding: 200px 40px;
+            background: #f5f5f5;
+            text-align: center;
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
-        .content img {
+
+        .password-dots {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px;
+        }
+
+        .dot-group {
+            background: #ddd;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 20px;
+            letter-spacing: 3px;
+            color: black;
+            transform: rotate(var(--rotation));
+        }
+
+        .post-text {
+            position: relative;
+            z-index: 1;
+            font-size: 18px;
+            color: black;
+        }
+
+        .post-actions {
+            padding: 16px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            border-top: 1px solid #eee;
+        }
+
+        .action-icon {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .bookmark {
+            margin-left: auto;
+        }
+
+        .project-image {
             width: 100%;
             height: auto;
             display: block;
+            border-radius: 8px;
+        }
+
+        .caption {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                font-size: 24px;
+                padding: 20px;
+            }
+
+            .gallery-item {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="header">
+        Rob Farmer is a designer working between New York & Melbourne on brand, illustration, motion & graphic design.<br>
+        Say <a href="mailto:hello@robfarmer.xyz">hello@robfarmer.xyz</a>,<br>
+        or check out more <a href="#" target="_blank">@robfarmer.xyz</a>.
+    </div>
+
     <div class="gallery">
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://images.unsplash.com/photo-1502933691298-84fc14542831?w=800&q=80" alt="Beach sunset with palm trees">
+        <div class="gallery-item">
+            <div class="image-container">
+                <div class="instagram-post">
+                    <div class="post-content">
+                        <div class="password-dots">
+                            <span class="dot-group" style="--rotation: 5deg;">......</span>
+                            <span class="dot-group" style="--rotation: -3deg;">........</span>
+                            <span class="dot-group" style="--rotation: 8deg;">....</span>
+                            <span class="dot-group" style="--rotation: -5deg;">.......</span>
+                            <span class="dot-group" style="--rotation: 3deg;">.....</span>
+                            <span class="dot-group" style="--rotation: -8deg;">......</span>
+                            <span class="dot-group" style="--rotation: 6deg;">....</span>
+                            <span class="dot-group" style="--rotation: -2deg;">........</span>
+                            <span class="dot-group" style="--rotation: 4deg;">.....</span>
+                            <span class="dot-group" style="--rotation: -6deg;">.......</span>
+                            <span class="dot-group" style="--rotation: 7deg;">......</span>
+                            <span class="dot-group" style="--rotation: -4deg;">....</span>
+                            <span class="dot-group" style="--rotation: 2deg;">.....</span>
+                            <span class="dot-group" style="--rotation: -7deg;">........</span>
+                            <span class="dot-group" style="--rotation: 5deg;">......</span>
+                            <span class="dot-group" style="--rotation: -1deg;">....</span>
+                        </div>
+                        <p class="post-text">What the ..... was my password?</p>
+                    </div>
+                    <div class="post-actions">
+                        <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                        <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                        </svg>
+                        <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path>
+                        </svg>
+                        <svg class="action-icon bookmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <p class="caption">Google Chrome Brand 2024. Via <a href="#">AthleticsNYC</a>.</p>
             </div>
         </div>
 
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80" alt="Recess poster">
+        <div class="gallery-item">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?w=800&q=80" alt="Design work" class="project-image">
+                <p class="caption">Brand identity project 2024</p>
             </div>
         </div>
 
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80" alt="Mountain landscape">
+        <div class="gallery-item">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80" alt="Design work" class="project-image">
+                <p class="caption">Motion graphics exploration</p>
             </div>
         </div>
 
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Mountain peaks">
+        <div class="gallery-item">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1634120187022-e0c3d3da6e3d?w=800&q=80" alt="Design work" class="project-image">
+                <p class="caption">Editorial illustration series</p>
             </div>
         </div>
     </div>
