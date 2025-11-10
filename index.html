@@ -3,65 +3,304 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Isle of Any - Contact Panel</title>
+<title>isle of any</title>
 <style>
-/* Basic resets and font */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Onsite Standard', sans-serif; background-color: #000; color: #fff; overflow: hidden; font-size: 14px; line-height: 1.38; }
-a { color: inherit; text-decoration: none; }
-label { cursor: pointer; line-height: 1; position: relative; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.4); }
-label:after { content: ""; width: 6px; height: 6px; border-radius: 50%; background-color: rgba(255,255,255,0.38); transition: background-color 0.67s ease; }
-input[type="checkbox"] { display: none; }
-input:checked ~ div { opacity: 1; height: auto; transition: opacity 0.5s ease, height 0.5s ease; }
-input:checked + label:after { height: 2px; width: 12px; border-radius: 2px; background-color: #fff; }
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+}
 
-/* Panel layout */
-.panel { position: absolute; left: 0; bottom: 0; width: 100%; padding: 2rem 1rem; max-width: 430px; opacity: 1; }
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.flex-wrap { flex-wrap: wrap; }
-.gap-y-6 { row-gap: 1.5rem; }
-.w-full { width: 100%; }
-.w-1/2 { width: 50%; }
-.pb-4 { padding-bottom: 1rem; }
-.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
-.py-8 { padding-top: 2rem; padding-bottom: 2rem; }
-a:hover { text-decoration: underline; }
+body { 
+    font-family: 'Helvetica Neue', Arial, sans-serif; 
+    color: #fff; 
+    overflow: hidden; 
+    font-size: 16px; 
+    line-height: 1.4;
+    height: 100vh;
+    position: relative;
+}
 
-/* Responsive */
-@media (min-width: 768px) {
-    .panel { max-width: 430px; padding: 1.5rem 2.25rem; }
-    label { padding: 1.5rem 0; }
+/* Background */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Header */
+.header {
+    position: absolute;
+    top: 48px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 10;
+}
+
+.header h1 {
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: white;
+}
+
+.header h1 .italic {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* Logo */
+.logo-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.logo {
+    width: 240px;
+    height: 240px;
+}
+
+.logo svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
+}
+
+/* Panel */
+.panel {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 800px;
+    padding: 0 36px;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px);
+}
+
+.panel-section {
+    width: 100%;
+}
+
+.tagline {
+    padding: 24px 0;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Contact Toggle */
+input[type="checkbox"] { 
+    display: none; 
+}
+
+.contact-label {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    position: relative;
+}
+
+.toggle-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+input:checked + .contact-label .toggle-indicator {
+    width: 14px;
+    height: 2px;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+/* Contact Content */
+.contact-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+input:checked ~ .contact-content {
+    max-height: 400px;
+    opacity: 1;
+    padding: 32px 0;
+}
+
+.contact-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    row-gap: 24px;
+}
+
+.contact-item {
+    width: calc(50% - 16px);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.contact-item-label {
+    font-size: 16px;
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+.contact-item a {
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.contact-item a:hover {
+    opacity: 0.7;
+}
+
+.social-handle {
+    width: 100%;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    padding-bottom: 24px;
+}
+
+.address {
+    width: 100%;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 768px) {
+    .panel {
+        padding: 0 24px;
+    }
+    
+    .contact-item {
+        width: 100%;
+    }
+    
+    .header h1 {
+        font-size: 28px;
+    }
+    
+    .logo {
+        width: 200px;
+        height: 200px;
+    }
 }
 </style>
 </head>
 <body>
 
-<div class="panel">
-  <section>
-    <span class="py-4 flex">A new ideas company.</span>
-  </section>
+<!-- Background Image -->
+<div class="background">
+    <img src="https://images.unsplash.com/photo-1500964757637-c85e8a162699?w=1200&q=80" alt="Background with flowers and sky">
+</div>
 
-  <section>
-    <input type="checkbox" name="contact" id="contact">
-    <label for="contact" class="py-4">Contact</label>
-    <div style="opacity:0; transition: opacity 0.5s ease;">
-      <div class="pb-4 flex flex-wrap gap-y-6">
-        <div class="w-1/2 flex flex-col">
-          <span>Work with us:</span>
-          <a href="mailto:work@example.com">work@example.com</a>
-        </div>
+<!-- Header -->
+<div class="header">
+    <h1>isle of <span class="italic">any</span></h1>
+</div>
 
-        <div class="w-1/2 flex flex-col">
-          <span>Join us:</span>
-          <a href="mailto:join@example.com">join@example.com</a>
-        </div>
-
-        <a href="https://instagram.com/isleofany/" target="_blank" rel="noopener noreferrer">@isleofany</a>
-        <span class="w-full">168 Canal Street, New York, NY 10013.</span>
-      </div>
+<!-- Logo -->
+<div class="logo-container">
+    <div class="logo">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <g>
+                <!-- Main flowing shape resembling 'i' with dot -->
+                <circle cx="55" cy="50" r="12" fill="white" opacity="0.95"/>
+                
+                <!-- Flowing 'i' body -->
+                <path d="M 50 75 Q 48 90 52 105 Q 56 120 58 135 Q 60 150 55 165" 
+                      stroke="white" 
+                      stroke-width="18" 
+                      fill="none" 
+                      stroke-linecap="round"
+                      opacity="0.95"/>
+                
+                <!-- Flowing connecting curve -->
+                <path d="M 58 135 Q 75 140 95 138 Q 115 136 130 130 Q 145 124 155 115" 
+                      stroke="white" 
+                      stroke-width="18" 
+                      fill="none" 
+                      stroke-linecap="round"
+                      opacity="0.95"/>
+                
+                <!-- Second flowing element -->
+                <path d="M 155 115 Q 158 100 152 85 Q 146 70 135 60 Q 124 50 110 48" 
+                      stroke="white" 
+                      stroke-width="18" 
+                      fill="none" 
+                      stroke-linecap="round"
+                      opacity="0.95"/>
+            </g>
+        </svg>
     </div>
-  </section>
+</div>
+
+<!-- Contact Panel -->
+<div class="panel">
+    <section class="panel-section">
+        <div class="tagline">A new ideas company.</div>
+    </section>
+
+    <section class="panel-section">
+        <input type="checkbox" name="contact" id="contact">
+        <label for="contact" class="contact-label">
+            <span>Contact</span>
+            <span class="toggle-indicator"></span>
+        </label>
+        
+        <div class="contact-content">
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <span class="contact-item-label">Work with us:</span>
+                    <a href="mailto:hello@isleofany.com">hello@isleofany.com</a>
+                </div>
+
+                <div class="contact-item">
+                    <span class="contact-item-label">Join us:</span>
+                    <a href="mailto:joinus@isleofany.com">joinus@isleofany.com</a>
+                </div>
+
+                <a href="https://instagram.com/isleofany/" target="_blank" rel="noopener noreferrer" class="social-handle">@isleofany</a>
+                
+                <span class="address">168 Canal Street, New York, NY 10013.</span>
+            </div>
+        </div>
+    </section>
 </div>
 
 </body>
