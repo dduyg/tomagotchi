@@ -54,8 +54,11 @@
             width: 100%;
             height: auto;
             fill: #ffffff;
+            opacity: 0.5;
             filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
+            transition: opacity 0.2s ease;
         }
+        .badge:hover { opacity: 1; }
         
         /* Footer panel */
         .panel {
@@ -72,10 +75,6 @@
             font-size: 1rem;
             font-weight: 300;
             letter-spacing: 0.3px;
-            transition: opacity 0.2s ease;
-        }
-        .toggle:checked ~ .title {
-            opacity: 0.7;
         }
         
         .panel-container {
@@ -131,16 +130,8 @@
             gap: 0.5rem;
         }
 
-.label-text {
-    font-size: 0.95rem;
-    opacity: 0.9;
-}
-.social {
-    font-size: 0.95rem;
-    margin-bottom: 1rem;
-    transition: opacity 0.2s ease;
-}
-.social:hover { opacity: 0.7; }
+        .label-text { font-size: 0.95em; opacity: 0.9;}
+        .social { font-size: 0.95em; margin-top: 1rem; }
     </style>
 </head>
 <body>
