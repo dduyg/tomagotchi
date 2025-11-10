@@ -13,13 +13,12 @@
             overflow-x: hidden;
         }
 
-        .gallery-container {
+        .gallery {
             display: flex;
             flex-direction: column;
             gap: 60px;
         }
-
-        .gallery-item {
+        .item {
             display: grid;
             grid-template-columns: 1fr 2fr;
             gap: 0;
@@ -27,62 +26,54 @@
             width: 100%;
         }
 
-        .empty-space {
-            /* This creates the empty left column */
-        }
-
-        .item-content {
+        .content {
             width: 100%;
             background: white;
             overflow: hidden;
-            box-shadow: -4px 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        .item-content:hover {
+        .content:hover {
             transform: translateX(-5px);
-            box-shadow: -8px 8px 12px rgba(0, 0, 0, 0.15);
         }
-
-        .item-content img {
+        .content img {
             width: 100%;
             height: auto;
             display: block;
         }
 
         @media (max-width: 768px) {
-            .gallery-item {
+            .item {
                 grid-template-columns: 0.5fr 2fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="gallery-container">
-        <div class="gallery-item">
+    <div class="gallery">
+        <div class="item">
             <div class="empty-space"></div>
-            <div class="item-content">
+            <div class="content">
                 <img src="https://images.unsplash.com/photo-1502933691298-84fc14542831?w=800&q=80" alt="Beach sunset with palm trees">
             </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="item">
             <div class="empty-space"></div>
-            <div class="item-content">
+            <div class="content">
                 <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800&q=80" alt="Recess poster">
             </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="item">
             <div class="empty-space"></div>
-            <div class="item-content">
+            <div class="content">
                 <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80" alt="Mountain landscape">
             </div>
         </div>
 
-        <div class="gallery-item">
+        <div class="item">
             <div class="empty-space"></div>
-            <div class="item-content">
+            <div class="content">
                 <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Mountain peaks">
             </div>
         </div>
