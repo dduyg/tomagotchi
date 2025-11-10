@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>isle of any</title>
+<title>Isle of Any</title>
 <style>
 * { 
     box-sizing: border-box; 
@@ -12,294 +12,234 @@
 }
 
 body { 
-    font-family: 'Helvetica Neue', Arial, sans-serif; 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1422"><rect fill="%23a8b5c0" width="800" height="1422"/></svg>') center/cover no-repeat;
     color: #fff; 
-    overflow: hidden; 
-    font-size: 16px; 
-    line-height: 1.4;
     height: 100vh;
+    overflow: hidden;
     position: relative;
 }
 
-/* Background */
-.background {
-    position: fixed;
+/* Background image overlay */
+body::before {
+    content: '';
+    position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
-
-.background img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.9;
+    z-index: -1;
 }
 
 /* Header */
 .header {
-    position: absolute;
-    top: 48px;
-    left: 0;
-    right: 0;
     text-align: center;
-    z-index: 10;
-}
-
-.header h1 {
-    font-size: 32px;
+    padding: 2rem 1rem;
+    font-size: 1.5rem;
     font-weight: 300;
-    letter-spacing: 1px;
-    color: white;
+    letter-spacing: 0.5px;
 }
 
-.header h1 .italic {
-    font-family: 'Georgia', serif;
+.header-any {
     font-style: italic;
     font-weight: 400;
 }
 
-/* Logo */
+/* Logo container */
 .logo-container {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 10;
+    width: 280px;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .logo {
-    width: 240px;
-    height: 240px;
-}
-
-.logo svg {
     width: 100%;
-    height: 100%;
+    height: auto;
     filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
 }
 
-/* Panel */
+/* Footer panel */
 .panel {
     position: fixed;
     left: 0;
-    bottom: 4%;
+    bottom: 0;
     width: 100%;
-    max-width: 800px;
-    padding: 0 36px;
-    z-index: 100;
-}
-
-.panel-section {
-    width: 100%;
+    padding: 0 1.5rem 1.5rem;
+    z-index: 10;
 }
 
 .tagline {
-    padding: 24px 0;
-    font-size: 18px;
+    padding: 1rem 0;
+    font-size: 1rem;
     font-weight: 300;
     letter-spacing: 0.3px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-/* Contact Toggle */
-input[type="checkbox"] { 
-    display: none; 
+/* Contact toggle */
+.contact-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.contact-toggle {
+    display: none;
 }
 
 .contact-label {
-    cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 0;
-    font-size: 18px;
-    font-weight: 300;
-    letter-spacing: 0.3px;
+    padding: 1.25rem 0;
+    cursor: pointer;
+    font-size: 1rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-    position: relative;
+    transition: all 0.3s ease;
 }
 
-.toggle-indicator {
-    width: 8px;
-    height: 8px;
+.contact-indicator {
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.5);
     transition: all 0.3s ease;
 }
 
-input:checked + .contact-label .toggle-indicator {
-    width: 14px;
+.contact-toggle:checked + .contact-label .contact-indicator {
+    width: 12px;
     height: 2px;
-    border-radius: 2px;
-    background-color: rgba(255, 255, 255, 1);
+    border-radius: 1px;
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
-/* Contact Content */
+/* Contact content */
 .contact-content {
     max-height: 0;
     overflow: hidden;
     opacity: 0;
-    transition: max-height 0.4s ease, opacity 0.4s ease;
+    transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
 }
 
-input:checked ~ .contact-content {
-    max-height: 400px;
+.contact-toggle:checked ~ .contact-content {
+    max-height: 500px;
     opacity: 1;
-    padding: 32px 0;
+    padding-top: 1.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .contact-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 32px;
-    row-gap: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .contact-item {
-    width: calc(50% - 16px);
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 0.5rem;
 }
 
-.contact-item-label {
-    font-size: 16px;
-    font-weight: 300;
+.contact-label-text {
+    font-size: 0.95rem;
     opacity: 0.9;
 }
 
-.contact-item a {
-    font-size: 18px;
-    font-weight: 300;
-    letter-spacing: 0.3px;
-    color: white;
+.contact-link {
+    font-size: 0.95rem;
     text-decoration: none;
+    color: #fff;
     transition: opacity 0.2s ease;
 }
 
-.contact-item a:hover {
+.contact-link:hover {
     opacity: 0.7;
 }
 
-.social-handle {
-    width: 100%;
-    font-size: 18px;
-    font-weight: 300;
-    letter-spacing: 0.3px;
-    padding-bottom: 24px;
+.social-link {
+    display: block;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    color: #fff;
+    transition: opacity 0.2s ease;
+}
+
+.social-link:hover {
+    opacity: 0.7;
 }
 
 .address {
-    width: 100%;
-    font-size: 18px;
-    font-weight: 300;
-    letter-spacing: 0.3px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    font-size: 0.95rem;
+    opacity: 0.9;
+    line-height: 1.5;
 }
 
-@media (max-width: 768px) {
-    .panel {
-        padding: 0 24px;
+@media (max-width: 480px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
     }
     
-    .contact-item {
-        width: 100%;
-    }
-    
-    .header h1 {
-        font-size: 28px;
-    }
-    
-    .logo {
-        width: 200px;
-        height: 200px;
+    .logo-container {
+        width: 220px;
+        height: 220px;
     }
 }
 </style>
 </head>
 <body>
 
-<!-- Background Image -->
-<div class="background">
-    <img src="https://images.unsplash.com/photo-1500964757637-c85e8a162699?w=1200&q=80" alt="Background with flowers and sky">
-</div>
-
 <!-- Header -->
 <div class="header">
-    <h1>isle of <span class="italic">any</span></h1>
+    isle of <span class="header-any">any</span>
 </div>
 
 <!-- Logo -->
 <div class="logo-container">
-    <div class="logo">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <g>
-                <!-- Main flowing shape resembling 'i' with dot -->
-                <circle cx="55" cy="50" r="12" fill="white" opacity="0.95"/>
-                
-                <!-- Flowing 'i' body -->
-                <path d="M 50 75 Q 48 90 52 105 Q 56 120 58 135 Q 60 150 55 165" 
-                      stroke="white" 
-                      stroke-width="18" 
-                      fill="none" 
-                      stroke-linecap="round"
-                      opacity="0.95"/>
-                
-                <!-- Flowing connecting curve -->
-                <path d="M 58 135 Q 75 140 95 138 Q 115 136 130 130 Q 145 124 155 115" 
-                      stroke="white" 
-                      stroke-width="18" 
-                      fill="none" 
-                      stroke-linecap="round"
-                      opacity="0.95"/>
-                
-                <!-- Second flowing element -->
-                <path d="M 155 115 Q 158 100 152 85 Q 146 70 135 60 Q 124 50 110 48" 
-                      stroke="white" 
-                      stroke-width="18" 
-                      fill="none" 
-                      stroke-linecap="round"
-                      opacity="0.95"/>
-            </g>
-        </svg>
-    </div>
+    <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Stylized "in" logo -->
+        <circle cx="45" cy="70" r="18" fill="white"/>
+        <path d="M 85 60 Q 90 50, 100 50 Q 130 50, 140 80 Q 145 100, 135 130 Q 125 150, 100 150 Q 80 150, 75 135" 
+              stroke="white" stroke-width="20" fill="none" stroke-linecap="round"/>
+    </svg>
 </div>
 
-<!-- Contact Panel -->
+<!-- Footer Panel -->
 <div class="panel">
-    <section class="panel-section">
-        <div class="tagline">A new ideas company.</div>
-    </section>
-
-    <section class="panel-section">
-        <input type="checkbox" name="contact" id="contact">
-        <label for="contact" class="contact-label">
+    <div class="tagline">A new ideas company.</div>
+    
+    <div class="contact-section">
+        <input type="checkbox" id="contact-toggle" class="contact-toggle">
+        <label for="contact-toggle" class="contact-label">
             <span>Contact</span>
-            <span class="toggle-indicator"></span>
+            <span class="contact-indicator"></span>
         </label>
         
         <div class="contact-content">
             <div class="contact-grid">
                 <div class="contact-item">
-                    <span class="contact-item-label">Work with us:</span>
-                    <a href="#">hello@isleofany.com</a>
+                    <span class="contact-label-text">Work with us:</span>
+                    <a href="mailto:hello@isleofany.com" class="contact-link">hello@isleofany.com</a>
                 </div>
-
                 <div class="contact-item">
-                    <span class="contact-item-label">Join us:</span>
-                    <a href="#">joinus@isleofany.com</a>
+                    <span class="contact-label-text">Join us:</span>
+                    <a href="mailto:joinus@isleofany.com" class="contact-link">joinus@isleofany.com</a>
                 </div>
-
-                <a href="#" rel="noopener noreferrer" class="social-handle">@isleofany</a>
-                
-                <span class="address">168 Canal Street, New York, NY 10013.</span>
             </div>
+            
+            <a href="https://instagram.com/isleofany" class="social-link" target="_blank" rel="noopener noreferrer">@isleofany</a>
+            
+            <div class="address">168 Canal Street, New York, NY 10013.</div>
         </div>
-    </section>
+    </div>
 </div>
-
 </body>
 </html>
