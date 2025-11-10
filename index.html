@@ -1,90 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Isle of Any</title>
-<style>
-* { 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0; 
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiminalLoop</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: Arial, sans-serif;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1422"><rect fill="%23a8b5c0" width="800" height="1422"/></svg>') center/cover no-repeat;
+            color: #fff; 
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        /* Background image overlay */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url('https://media2.giphy.com/media/l41lVGibLF8k4pRUA/giphy.gif');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.9;
+            z-index: -1;
+        }
 
-body { 
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1422"><rect fill="%23a8b5c0" width="800" height="1422"/></svg>') center/cover no-repeat;
-    color: #fff; 
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-}
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        .header em { font-weight: 400; }
 
-/* Background image overlay */
-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('https://media2.giphy.com/media/l41lVGibLF8k4pRUA/giphy.gif');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.9;
-    z-index: -1;
-}
-
-/* Header */
-.header {
-    text-align: center;
-    padding: 2rem 1rem;
-    font-size: 1.5rem;
-    font-weight: 300;
-    letter-spacing: 0.5px;
-}
-
-.header-any {
-    font-style: italic;
-    font-weight: 400;
-}
-
-/* Logo container */
-.logo-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 280px;
-    height: 280px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.logo {
-    width: 100%;
-    height: auto;
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
-}
-
-/* Footer panel */
-.panel {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    padding: 0 1.5rem 1.5rem;
-    z-index: 10;
-}
-
-.tagline {
-    padding: 1rem 0;
-    font-size: 1rem;
-    font-weight: 300;
-    letter-spacing: 0.3px;
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
-}
+        /* Center badge */
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .badge {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
+        }
+        
+        /* Footer panel */
+        .panel {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            padding: 0 1.5rem 1.5rem;
+            z-index: 10;
+        }
+        
+        .title {
+            padding: 1rem 0;
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+        }
 
 /* Contact section with borders */
 .contact-section {
@@ -183,39 +168,19 @@ body::before {
     opacity: 0.9;
     line-height: 1.5;
 }
-
-@media (max-width: 480px) {
-    .contact-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .logo-container {
-        width: 220px;
-        height: 220px;
-    }
-}
-</style>
+    </style>
 </head>
 <body>
+    <header>the <em>accidental</em> text</header>
 
-<!-- Header -->
-<div class="header">
-    isle of <span class="header-any">any</span>
-</div>
-
-<!-- Logo -->
-<div class="logo-container">
-    <svg class="logo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <!-- Stylized "in" logo -->
-        <circle cx="45" cy="70" r="18" fill="white"/>
-        <path d="M 85 60 Q 90 50, 100 50 Q 130 50, 140 80 Q 145 100, 135 130 Q 125 150, 100 150 Q 80 150, 75 135" 
-              stroke="white" stroke-width="20" fill="none" stroke-linecap="round"/>
-    </svg>
-</div>
-
-<!-- Footer Panel -->
-<div class="panel">
-    <div class="tagline">A new ideas company.</div>
+    <div class="center">
+        <svg class="badge" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="45" cy="70" r="18" fill="white"/><path d="M 85 60 Q 90 50, 100 50 Q 130 50, 140 80 Q 145 100, 135 130 Q 125 150, 100 150 Q 80 150, 75 135" stroke="white" stroke-width="20" fill="none" stroke-linecap="round"/>
+        </svg>
+    </div>
+    
+    <div class="panel">
+        <div class="title">A new ideas company.</div>
     
     <div class="contact-section">
         <input type="checkbox" id="contact-toggle" class="contact-toggle">
@@ -228,15 +193,15 @@ body::before {
             <div class="contact-grid">
                 <div class="contact-item">
                     <span class="contact-label-text">Work with us:</span>
-                    <a href="mailto:hello@isleofany.com" class="contact-link">hello@isleofany.com</a>
+                    <a href="#" class="contact-link">hello@isleofany.com</a>
                 </div>
                 <div class="contact-item">
                     <span class="contact-label-text">Join us:</span>
-                    <a href="mailto:joinus@isleofany.com" class="contact-link">joinus@isleofany.com</a>
+                    <a href="#" class="contact-link">joinus@isleofany.com</a>
                 </div>
             </div>
             
-            <a href="https://instagram.com/isleofany" class="social-link" target="_blank" rel="noopener noreferrer">@isleofany</a>
+            <a href="#" class="social-link">@isleofany</a>
             
             <div class="address">168 Canal Street, New York, NY 10013.</div>
         </div>
