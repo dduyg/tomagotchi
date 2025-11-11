@@ -1,182 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liminal💿Loop</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        @font-face {
-            font-family: "Switzer";
-            src: url("https://cdn.jsdelivr.net/gh/dduyg/tomagotchi@main/Switzer-Regular.woff2") format("woff2");
-            font-weight: normal;
-            font-style: normal;
-        }
-        @font-face {
-            font-family: 'Gravity Variable';
-            src: url('https://type.cargo.site/files/abc-fixes/CargoGravityVariable.woff2') format('woff2-variations'),
-                 url('https://type.cargo.site/files/abc-fixes/CargoGravityVariable.woff2') format('woff2');
-            font-weight: 100 900;
-            font-stretch: 50% 200%;
-            font-style: normal;
-        }
-        body {
-            font-family: "Switzer", sans-serif;
-            position: relative;
-            overflow-x: hidden;
-        }
-        /* Scanline Background Effect */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: 
-                repeating-linear-gradient(
-                    to bottom,
-                    #B6C1E0 0px,
-                    #B6C1E0 4px,
-                    #BEC8D4 4px,
-                    #BEC8D4 7px
-                );
-            z-index: -1;
-            pointer-events: none;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LiminalLoop</title>
+<style> 
+  * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: sans-serif;
+    color: #857979;
+    text-align: center;
+    background-color: #FEDBB5;
+    background-image: repeating-linear-gradient(
+        180deg,
+        #C04ABC 0px,
+        #C04ABC 1px,
+        transparent 2px, transparent 3px);
+    background-size: auto 3px;
+  }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 2% 3%;
-        }
-
-        /* Top-pins Section */
-        .top-pins {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            width: 100%;
-            position: fixed;
-            left: 0; top: 0;
-            padding: 2%;
-            margin-bottom: 40px;
-        }
-        .l-pin { width: 160px; }
-        .r-pin { width: 150px; }
-
-        /* Header Section */
-        .header {
-            text-align: center;
-            margin: 240px 0 50px;
-        }
-        .subtitle { font-size: 20px; }
-        .title {
-            font-size: 60px;
-            line-height: 1;
-            font-family: 'Gravity Variable', sans-serif;
-            font-variation-settings: "wght" 700, "wdth" 120;
-            margin: 20px 0 80px;
-        }
-
-        /* List Section */
-        .list {
-            text-align: right;
-            font-size: 15px;
-            line-height: 1.2;
-        }
-        .category {
-            margin-bottom: 65px;
-        }
-        .cat-title {
-            font-size: 19px;
-            font-weight: bold;
-        }
-
-        @media (max-width: 768px) {
-            .title { font-size: 40px; }
-            .subtitle { font-size: 17px; }
-            .list { font-size: 14px; }
-            .cat-title  { font-size: 17px; }
-        }
-    </style>
+  /* ==== Layout ==== */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  h1 {
+    font-size: clamp(2.5rem, 8vw, 5.5rem);
+    font-weight: 300;
+    line-height: 0.95;
+    margin-bottom: 15px;
+  }
+  p { margin-top: 5px; }
+</style>
 </head>
 <body>
-    <div class="container">
-        <!-- Fixed Top-pins Images -->
-        <div class="top-pins">
-            <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/Saint_Catalog.png" class="l-pin">
-            <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/Saint_Catalog.gif" class="r-pin">
-        </div>
-
-        <!-- Header Section -->
-        <div class="header">
-            <div class="subtitle">-a place for confidence-</div>
-            <div class="title">SAINT CATALOG</div>
-        </div>
-
-        <!-- List Section -->
-        <div class="list">        
-            <div class="category">
-                <p class="cat-title">&gt;Palm Grid&lt;</p>
-                <p>network_latency_flow_map.json</p>
-                <p>memory_preservation_network.sql</p>
-            </div>
-
-            <div class="category">
-                <p class="cat-title">&gt;Echo Chambers&lt;</p>
-                <p>signal_quality_logs.sql</p>
-                <p>nostalgia_posts.json</p>
-                <p>obsolete_tech_timeline.sql</p>
-                <p>aesthetic_device_photos.csv</p>
-                <p>echo_chamber_influence_index.csv</p>
-            </div>
-
-            <div class="category">
-                <p class="cat-title">&gt;Pastel Economies&lt;</p>
-                <p>virtual_item_catalog.csv</p>
-                <p>purchases_by_color.sql</p>
-                <p>holographic_transactions_ledger.json</p>
-                <p>trend_cycle_history.csv</p>
-            </div>
-
-            <div class="category">
-                <p class="cat-title">&gt;Fauna Simulation&lt;</p>
-                <p>synthetic_species_catalog.sql</p>
-                <p>signal_distortion.csv</p>
-                <p>glitch_ecology_simulation.json</p>
-                <p>aesthetic_zone_mapping.sql</p>
-                <p>ecosystem_interaction_network.json</p>
-            </div>
-
-            <div class="category">
-                <p class="cat-title">&gt;Synthetic Seasons&lt;</p>
-                <p>liquid_simulation_frames.csv</p>
-                <p>ai_reminiscence_logs.sql</p>
-                <p>surface_color_index.csv</p>
-            </div>
-
-            <div class="category">
-                <p class="cat-title">&gt;Retro-Futurist Arcade&lt;</p>
-                <p>game_memory_records.csv</p>
-                <p>arcade_machine_data.json</p>
-                <p>timeline_entries.sql</p>
-                <p>tape_degradation_rates.sql</p>
-                <p>player_profiles.csv</p>
-            </div>
-
-            <div class="category">
-                <p class="cat-title">&gt;Neural Travel Nostalgia&lt;</p>
-                <p>emotional_forecast_model.sql</p>
-                <p>synthetic_mood_patterns.csv</p>
-                <p>simulated_signals.json</p>
-                <p>text_emotion_analysis.sql</p>
-            </div>
-
-            <div class="category">
-                <p class="cat-title">>Wireframe Proofs<</p>
-                <p class="cat-title">>Netwave<</p>
-                <p class="cat-title">>Writing<</p>
-            </div>
-        </div>
-    </div>
+  <div class="container">
+    <h1 onclick="window.location.href='https://nl.wikipedia.org/wiki/Wingdings'">Wingdings: ☠︎ᘉ⬥︎</h1>
+    <p>&#x3E;Proof of Concepts&#x3C;</p>
+    <p>&gt;Collages 🧚🏻‍♀️]Sketches&lt;</p>
+    
+    <p style="margin-top: 50px;">zddKbx)p+qwN/yZzFrQ4</p>
+    <p>wOC^*zGYD8B.7</p>
+    <p>v@Dj6y?m&lCvtVaazb+lv@#B6zu</p>
+    <p>v@Dm1B.tc8wGVe8A+O@>y?mU</p>
+    <p>B8UY2BAg/aay]4[z/6DiB7]-gz/b</p>
+  </div>
 </body>
 </html>
