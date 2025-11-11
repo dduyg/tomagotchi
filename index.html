@@ -3,185 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/x-icon" href="https://freight.cargo.site/t/original/i/M2044577048262324370853889076687/.ico">
-    <title>li๓iຖคll🎁🐼p</title>
-    <link href="https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap" rel="stylesheet">
+    <title>[gsap/component] ❍ Full Screen Image Zoom on Hover</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: "Luxurious Roman", serif;
-            background-color: #f5f5f5;
-            overflow-x: hidden;
-        }
+      @font-face {
+  src: url("https://fonts.cdnfonts.com/css/pp-neue-montreal") format("woff2");
+  font-family: "PP Neue Montreal", sans-serif;
+  font-weight: 400;
+}
 
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding: 10px 7px;
-            z-index: 100;
-            mix-blend-mode: difference;
-            color: white;
-            font-size: 18px;
-            line-height: 1.1;
-        }
-        /* If browser supports exclusion */
-        @supports (mix-blend-mode: exclusion) {
-            header { mix-blend-mode: exclusion; }
-        }
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-        .gallery {
-            padding-top: 100px;
-            padding-bottom: 500px;
-            display: flex;
-            flex-direction: column;
-            gap: 60px;
-        }
-        .item {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 0;
-            align-items: center;
-            width: 100%;
-        }
+:root {
+  --warm-off-black: #1a1917;
+  --warm-off-white: #f8f5f2;
+}
 
-        .content {
-            width: 100%;
-            background: white;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .content:hover { transform: translateX(-15px); }
-        .content img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
 
-        footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            width: 100%;
-            padding: 5px 10px;
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            font-size: 1.2rem;
-            line-height: 1;
-        }
+body {
+  font-family: "PP Neue Montreal", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--warm-off-black);
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  color: var(--warm-off-white);
+  position: relative;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Animated noise effect */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: transparent
+    url("http://assets.iceable.com/img/noise-transparent.png") repeat 0 0;
+  background-size: 300px 300px;
+  -webkit-animation: noise-animation 0.3s steps(5) infinite;
+          animation: noise-animation 0.3s steps(5) infinite;
+  opacity: 0.9;
+  will-change: transform;
+  z-index: 100;
+  pointer-events: none;
+}
+
+@keyframes noise-animation {
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-2%, -3%);
+  }
+  20% {
+    transform: translate(-4%, 2%);
+  }
+  30% {
+    transform: translate(2%, -4%);
+  }
+  40% {
+    transform: translate(-2%, 5%);
+  }
+  50% {
+    transform: translate(-4%, 2%);
+  }
+  60% {
+    transform: translate(3%, 0);
+  }
+  70% {
+    transform: translate(0, 3%);
+  }
+  80% {
+    transform: translate(-3%, 0);
+  }
+  90% {
+    transform: translate(2%, 2%);
+  }
+  100% {
+    transform: translate(1%, 0);
+  }
+}
+
+/* Container for centering */
+.container {
+  width: 100%;
+  max-width: 1000px; /* Increased width */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  position: relative;
+}
+
+/* Full-screen background image */
+#background-image-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+#background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transform: scale(1.2); /* Start zoomed in */
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0;
+}
+
+/* Projects Container */
+.projects-container {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 20px;
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.projects-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Project Item Styles */
+.project-item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.7rem 0; /* Further reduced padding for smaller line height */
+  border-bottom: 1px solid rgba(248, 245, 242, 0.1);
+  cursor: pointer;
+}
+
+/* Project title and year */
+.project-title,
+.project-year {
+  font-size: 1.8rem;
+  position: relative;
+  z-index: 2;
+  mix-blend-mode: exclusion;
+}
+
+/* List view hover animation with exclusion blend mode */
+.project-item::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: var(--warm-off-white);
+  z-index: 1;
+  pointer-events: none;
+  transition: height 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0s;
+}
+
+.project-item:hover::before {
+  height: 100%;
+}
+
+.project-item:not(:hover)::before {
+  transition-duration: 0.8s;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .project-title,
+  .project-year {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-item {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+    }
     </style>
-</head>
-<body>
-    <header>A widower raising his son in a seaside village hires a new teacher — the same woman he once promised forever to, before life pulled them apart.</header>
-   
-    <div class="gallery">
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/byte777.jpg">
-            </div>
-        </div>
+  </head>   
+  <body>
+  <div id="background-image-container">
+  <img id="background-image" crossorigin="anonymous" alt="">
+</div>
 
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/doomscroller.png">
-            </div>
-        </div>
-        
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/conn3cting168.png">
-            </div>
-        </div>
+<div class="container">
+  <div class="projects-container">
+    <!-- Projects will be rendered here by JavaScript -->
+  </div>
+</div>
+    <script  src="./script.js"></script>
 
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media0.giphy.com/media/W38MfwCwkS13VRUBnw/giphy.gif">
-            </div>
-        </div>
-        
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media4.giphy.com/media/xTiTnps3h3f7GPA8wg/giphy.gif">
-            </div>
-        </div>
-        
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media0.giphy.com/media/26BkNCKYk8pPwOPwA/giphy.gif">
-            </div>
-        </div>
-        
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media3.giphy.com/media/3oEduZzYvfbaNQ8kQU/giphy.gif">
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media1.giphy.com/media/l0Ex8elTidZkK2rv2/giphy.gif">
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media2.giphy.com/media/3o7bufRjEvRIp682D6/giphy.gif">
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media4.giphy.com/media/gk9APG7KGlwvtkZBu1/giphy.gif">
-            </div>
-        </div>
-        
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media4.giphy.com/media/3o7TKsh55ZuNIUpOjC/giphy.gif">
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media1.giphy.com/media/5qfMdJr94jpaSnCyao/giphy.gif">
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media3.giphy.com/media/3oEduHk3Iteb3udYGc/giphy.gif">
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://media1.giphy.com/media/3oriO4HpCgFQI2kA3S/giphy.gif">
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="empty-space"></div>
-            <div class="content">
-                <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/analogWaves.gif">
-            </div>
-        </div>    
-    </div>
-
-    <footer><div>꧁☬꧂</div><div>🪨🪢🦇</div></footer>
-</body>
+  </body>
+  
 </html>
