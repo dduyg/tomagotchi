@@ -74,21 +74,34 @@
             line-height: 1;
             font-family: 'Gravity Variable', sans-serif;
             font-variation-settings: "wght" 700, "wdth" 120;
+            margin-bottom: 60px;
         }
         .subtitle {
             font-size: 26px;
-            margin-bottom: 60px;
         }
 
         /* List Section */
         .list {
-            text-align: right;
-            font-size: 16px;
+            padding-top: 20px;
+            padding-bottom: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            font-size: 15px;
             line-height: 1.2;
-        }
+        }       
         .category {
-            margin-bottom: 40px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 0;
+            align-items: center;
+            width: 100%;
         }
+        .content {
+            width: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: right; }
+        .content:hover { transform: translateX(-15px); }
         .cat-title {
             font-size: 20px;
             font-weight: bold;
