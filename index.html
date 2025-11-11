@@ -3,190 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lïmïñål Lððþ</title>
-    <link href="https://fonts.cdnfonts.com/css/felicidade" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="https://freight.cargo.site/t/original/i/M2044577048262324370853889076687/.ico">
+    <title>li๓iຖคll🎁🐼p</title>
+    <link href="https://fonts.googleapis.com/css2?family=Luxurious+Roman&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; outline: none; }
-        @font-face {
-            font-family: "Helvetica Neue";
-            src: url("https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/HelveticaNeue.woff2") format("woff2");
-            font-weight: normal;
-            font-style: normal;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: "Helvetica Neue", sans-serif;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1422"><rect fill="%23a8b5c0" width="800" height="1422"/></svg>') center/cover no-repeat;
-            color: #fff;
-            line-height: 1.38;
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-        }
-        /* Background image overlay */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: url('https://media2.giphy.com/media/l41lVGibLF8k4pRUA/giphy.gif');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.9;
-            z-index: -1;
+            font-family: "Luxurious Roman", serif;
+            background-color: #f5f5f5;
+            padding: 40px 0;
+            overflow-x: hidden;
         }
 
-        /* Header */
         header {
-            text-align: center;
-            padding: 2rem 1rem;
-            font-size: 1.6rem;
-            font-weight: 300;
-            letter-spacing: 0.5px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 20px 7px;
+            z-index: 100;
+            mix-blend-mode: difference;
+            color: white;
+            font-size: 18px;
+            line-height: 1.1;
         }
-        header em { 
-            font-weight: 400;
-            font-family: 'Felicidade', sans-serif;
+        /* If browser supports exclusion */
+        @supports (mix-blend-mode: exclusion) {
+            header { mix-blend-mode: exclusion; }
         }
 
-        /* Center badge */
-        .center {
-            position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 230px;
-            height: 230px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .badge {
-            width: 100%;
-            height: auto;
-            fill: #ffffff;
-            opacity: 0.6;
-            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
-            transition: opacity 0.2s ease;
-        }
-        .badge:hover { opacity: 0.8; }
-        
-        /* Footer panel */
-        .panel {
-            position: fixed;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            padding: 0 1.5rem 1.5rem;
-            z-index: 10;
-        }
-        
-        .title {
-            padding: 1rem 0;
-            font-size: 1rem;
-            font-weight: 300;
-            letter-spacing: 0.3px;
-            font-size: 14px;
-        }
-        
-        .panel-container {
-            border-top: 1px solid rgba(255, 255, 255, 0.4);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-        }
-        .toggle { display: none; }
-        .label {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.25rem 0;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        .indicator {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.5);
-            transition: all 0.3s ease;
-        }
-        .toggle:checked + .label .indicator {
-            width: 12px;
-            height: 2px;
-            border-radius: 1px;
-            background-color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .content {
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease;
-        }
-        
-        .toggle:checked ~ .content {
-            max-height: 500px;
-            opacity: 1;
-            padding-top: 0;
-            padding-bottom: 1.5rem;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .grid-item {
+        .gallery {
+            padding-top: 100px;
+            padding-bottom: 500px;
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
-            font-size: 12px;
+            gap: 60px;
         }
-        .grid-item span:first-child {font-size: 0.9em; opacity: 0.8;}
-        .grid-item span:last-child {font-size: 12px;}    
-        .address {font-size: 12px; margin-top: 1rem;}
+        .item {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 0;
+            align-items: center;
+            width: 100%;
+        }
 
-        @media (max-width: 480px) {
-            .center {
-                width: 160px;
-                height: 160px;
-            }
+        .content {
+            width: 100%;
+            background: white;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .content:hover { transform: translateX(-15px); }
+        .content img {
+            width: 100%;
+            height: auto;
+            display: block;
         }
     </style>
 </head>
 <body>
-    <header>the <em>accidental</em> text</header>
-
-    <div class="center">
-        <svg class="badge" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-            <path d="M267.982 22.29c-17.095 0-30.953 13.86-30.953 30.954 0 17.096 13.857 30.953 30.952 30.953 17.096 0 30.954-13.857 30.954-30.953 0-17.095-13.858-30.953-30.954-30.953zm-2.77 9.33c-1.963.883-3.61 2.304-5.22 3.915-7.128 7.128-7.344 18.743-.217 25.87 7.128 7.13 18.96 7.13 26.088 0 1.707-1.705 2.808-3.775 3.698-5.87-.526 4.734-2.46 9.416-6.087 13.043-8.487 8.487-22.166 8.268-30.653-.217h-.002c-8.484-8.483-8.703-22.166-.216-30.65 3.48-3.48 8.08-5.463 12.61-6.09zm-89.09 2.294c-23.916 0-43.302 19.384-43.302 43.3 0 23.914 19.386 43.3 43.3 43.3 3.23 0 6.375-.365 9.403-1.035 1.283 15.915 14.596 28.434 30.842 28.434 17.096 0 30.953-13.858 30.953-30.953 0-16.374-12.717-29.77-28.812-30.87.597-2.866.916-5.834.916-8.877 0-23.915-19.386-43.3-43.3-43.3zm-6.476 15.88c-2.674 1.203-4.917 3.14-7.11 5.333-9.717 9.716-10.012 25.55-.298 35.266 9.715 9.716 25.845 9.716 35.56 0 2.328-2.327 3.827-5.15 5.04-8.002-.718 6.454-3.354 12.837-8.3 17.782-11.565 11.568-30.216 11.27-41.782-.297h-.002c-11.566-11.566-11.863-30.22-.295-41.785 4.742-4.743 11.014-7.443 17.186-8.297zM324.49 87.196c-32.255 0-58.402 26.147-58.402 58.403 0 32.255 26.147 58.402 58.402 58.402 32.256 0 58.403-26.147 58.403-58.402 0-32.256-26.147-58.403-58.403-58.403zm-111.57 11.74c-1.85.83-3.4 2.17-4.918 3.688-6.72 6.72-6.926 17.668-.207 24.387 6.718 6.718 17.873 6.718 24.594 0 1.608-1.61 2.642-3.56 3.48-5.533-.494 4.46-2.317 8.873-5.735 12.293-8 8-20.896 7.794-28.895-.205-7.998-7.998-8.206-20.895-.207-28.894 3.28-3.28 7.618-5.15 11.887-5.738zm104.89 2.717c-3.913 1.76-7.193 4.592-10.404 7.803-14.21 14.21-14.644 37.37-.433 51.582 14.21 14.21 37.803 14.21 52.013 0 3.402-3.404 5.596-7.53 7.37-11.704-1.05 9.438-4.905 18.773-12.137 26.006-16.92 16.92-44.2 16.485-61.118-.434-16.92-16.92-17.353-44.198-.434-61.117 6.937-6.936 16.11-10.887 25.14-12.136zm-96.124 68.07c-23.87 0-43.22 19.348-43.22 43.217 0 23.87 19.35 43.22 43.22 43.22 23.87 0 43.216-19.35 43.216-43.22 0-23.868-19.347-43.215-43.216-43.215zm-3.52 11.803c-2.824 1.27-5.192 3.316-7.512 5.633-10.262 10.262-10.572 26.98-.31 37.242 10.262 10.262 27.294 10.262 37.554 0 2.456-2.457 4.04-5.436 5.32-8.45-.756 6.815-3.54 13.555-8.763 18.778-12.215 12.215-31.912 11.903-44.127-.312h-.002c-12.215-12.215-12.53-31.914-.312-44.13 5.008-5.007 11.632-7.86 18.152-8.76zm82.322 68.106c-14.153 0-26.078 9.5-29.767 22.47-5.014-.097-10.057-.166-15.154-.166-64.15 0-122.217 7.86-165.02 20.92-21.403 6.53-39.006 14.3-51.93 23.623-14.435 12.847-25.627 24.45-20.85 42.916 5.49 36.45 32.217 68.37 70.718 91.483 43.34 26.017 102.216 41.702 167.08 41.702 64.865 0 123.74-15.685 167.08-41.703 38.48-23.103 65.2-55 70.71-91.427.707-4.507 1.486-9.716.51-14-2.14-11.28-10.294-21-21.344-28.973-12.925-9.324-30.528-17.092-51.93-23.623-25.175-7.682-55.657-13.545-89.524-17.087-2.313-14.808-15.12-26.137-30.578-26.137zm-1.26 11.597c-1.85.832-3.4 2.17-4.92 3.688-6.718 6.72-6.923 17.668-.204 24.387 6.718 6.718 17.87 6.718 24.59 0 1.61-1.61 2.647-3.56 3.486-5.534-.496 4.464-2.32 8.876-5.74 12.296-7.997 8-20.894 7.794-28.893-.205-8-7.997-8.204-20.894-.205-28.893 3.28-3.28 7.618-5.148 11.887-5.737zm-43.662 29.405c5.286 0 10.512.074 15.707.183 4.226 12.065 15.707 20.72 29.215 20.72 12.17 0 22.69-7.023 27.748-17.235 33.278 3.444 62.996 9.144 86.897 16.437 20.132 6.144 36.143 13.47 46.447 20.903 9.27 6.687 13.307 12.79 14.027 17.976-.107 1.926-.283 3.845-.54 5.755-1.483 4.648-5.58 9.927-13.487 15.63-2.407 1.737-5.137 3.468-8.146 5.18-60.55-67.602-319.786-71.505-397.23-.867-2.423-1.428-4.647-2.867-6.65-4.312-7.927-5.72-12.026-11.013-13.5-15.67-.25-1.888-.423-3.784-.53-5.688.708-5.192 4.744-11.306 14.03-18.005 10.305-7.434 26.315-14.76 46.448-20.903 40.265-12.287 96.956-20.105 159.564-20.105zM52.376 394.617c10.775 5.7 23.588 10.725 38.17 15.174 42.803 13.063 100.87 20.92 165.02 20.92s122.22-7.857 165.024-20.92c14.576-4.447 27.384-9.47 38.158-15.167-10.695 14.855-26.175 28.496-45.725 40.232-39.745 23.86-95.63 39.04-157.46 39.04-61.828 0-117.714-15.18-157.46-39.04-19.552-11.737-35.033-25.38-45.728-40.238z"></path>
-        </svg>
-    </div>
-    
-    <div class="panel">
-        <div class="title">A holographic data wrangler.</div>   
-    
-        <div class="panel-container">
-            <input type="checkbox" id="toggle" class="toggle">
-            <label for="toggle" class="label">
-                <span style="font-size: 14px;">Contact</span>
-                <span class="indicator"></span>
-            </label>
-        
+    <header>A widower raising his son in a seaside village hires a new teacher — the same woman he once promised forever to, before life pulled them apart.</header>
+   
+    <div class="gallery">
+        <div class="item">
+            <div class="empty-space"></div>
             <div class="content">
-                <div class="grid">
-                <div class="grid-item">
-                    <span>Work with us:</span>
-                    <span>datatowers@auroragrid</span>
-                </div>
-                <div class="grid-item">
-                    <span>Join us:</span>
-                    <span>sector1A@terrace</span>
-                </div>
+                <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/conn3cting168.png">
             </div>
-            
-            <div class="address">Suite 7, 12:00 AM Loop, 88 Avenue, Endless Byte 777 Gardens.</div>
         </div>
-    </div>
-</div>
 
+        <div class="item">
+            <div class="empty-space"></div>
+            <div class="content">
+                <img src="https://media3.giphy.com/media/j14J3fmRGXvb5FQtyn/giphy.gif">
+            </div>
+        </div>
+        
+        <div class="item">
+            <div class="empty-space"></div>
+            <div class="content">
+                <img src="https://media4.giphy.com/media/xTiTnps3h3f7GPA8wg/giphy.gif">
+            </div>
+        </div>
+        
+        <div class="item">
+            <div class="empty-space"></div>
+            <div class="content">
+                <img src="https://media0.giphy.com/media/26BkNCKYk8pPwOPwA/giphy.gif">
+            </div>
+        </div>
+        
+        <div class="item">
+            <div class="empty-space"></div>
+            <div class="content">
+                <img src="https://media3.giphy.com/media/3oEduZzYvfbaNQ8kQU/giphy.gif">
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="empty-space"></div>
+            <div class="content">
+                <img src="https://media1.giphy.com/media/l0Ex8elTidZkK2rv2/giphy.gif">
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="empty-space"></div>
+            <div class="content">
+                <img src="https://media2.giphy.com/media/3o7bufRjEvRIp682D6/giphy.gif">
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="empty-space"></div>
+            <div class="content">
+                <img src="https://media4.giphy.com/media/gk9APG7KGlwvtkZBu1/giphy.gif">
+            </div>
+        </div>
+        
+        <div class="item">
+            <div class="empty-space"></div>
+            <div class="content">
+                <img src="https://media4.giphy.com/media/3o7TKsh55ZuNIUpOjC/giphy.gif">
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="empty-space"></div>
+            <div class="content">
+                <img src="https://media1.giphy.com/media/5qfMdJr94jpaSnCyao/giphy.gif">
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="empty-space"></div>
+            <div class="content">
+                <img src="https://media3.giphy.com/media/3oEduHk3Iteb3udYGc/giphy.gif">
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="empty-space"></div>
+            <div class="content">
+                <img src="https://media1.giphy.com/media/3oriO4HpCgFQI2kA3S/giphy.gif">
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="empty-space"></div>
+            <div class="content">
+                <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/analogWaves.gif">
+            </div>
+        </div>    
+    </div>
 </body>
 </html>
