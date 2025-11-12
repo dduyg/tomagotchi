@@ -3,210 +3,82 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yep! That's Me.</title>
+  <title>LiminalLoop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Handjet&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
     body {
-      font-family: 'Libre Baskerville', 'Baskerville', serif;
-      background: #f7f8fa;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      overflow-x: hidden;
-      position: relative;
+      font-family: "Handjet", sans-serif;
+      color: #1D1B1C;
+      background-color: #F7F4ED;
     }
 
-    .container {
-      max-width: 1200px;
-      width: 100%;
-      display: flex;
-      gap: 40px;
+    header {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: 1rem;
+      padding: 2rem;
       align-items: flex-start;
-      justify-content: center;
-      flex-wrap: nowrap;
-      transform-origin: center center;
-      transition: transform 0.3s ease;
-      position: relative;
-      z-index: 2;
-    }
-
-    .card {
-      border-radius: 12px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-      overflow: hidden;
-      max-width: 500px;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 10;
+      color: white;
       width: 100%;
-      position: relative;
-      flex-shrink: 0;
-      background: white;
-    }
-
-    .browser-bar {
-      background: #e8e8e8;
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .browser-controls {
-      display: flex;
-      gap: 8px;
-    }
-
-    .browser-button {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
-    .browser-button.red { background: #ff5f57; }
-    .browser-button.yellow { background: #ffbd2e; }
-    .browser-button.green { background: #28ca42; }
-
-    .filename {
-      font-size: 11px;
-      color: #666;
-    }
-
-    .card img {
-      width: 100%;
+      mix-blend-mode: difference;
       overflow: hidden;
-      aspect-ratio: 3/4;
-      object-fit: cover;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      mix-blend-mode: difference;
+    }
+    .title {
+      grid-column: 1 / 3;
+      display: flex;
+      align-items: flex-start;
+      font-size: clamp(0.8rem, 1vw, 1rem);
+      min-width: 0;
+    }
+    .nav {
+      grid-column: 4 / 10;
+      font-size: clamp(0.7rem, 1vw, 0.95rem);
+      min-width: 0;
+      list-style-type: upper-roman;
+    }
+    .nav li {
       display: block;
+      margin-bottom: 0.35rem;
     }
-
-    .folders {
+    .cta {
+      grid-column: 10 / 13;
       display: flex;
-      flex-direction: column;
-      gap: 30px;
-      align-items: center;
-      flex-shrink: 0;
+      justify-content: flex-end;
+      font-size: clamp(0.7rem, 1vw, 0.95rem);
+      min-width: 0;
     }
 
-    .folder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .folder:hover {
-      transform: translateY(-5px);
-    }
-
-    /* Updated Folder Look */
-    .folder-icon {
-      width: 120px;
-      height: 90px;
-      background: linear-gradient(180deg, #96CCF2 0%, #5FA8E0 100%);
-      border-radius: 8px 8px 12px 12px;
-      position: relative;
-      box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.1);
-    }
-
-    .folder-icon::before {
-      content: '';
-      position: absolute;
-      top: -8px;
-      left: 0;
-      width: 50px;
-      height: 12px;
-      background: linear-gradient(180deg, #96CCF2 0%, #6EB9E8 100%);
-      border-radius: 4px 4px 0 0;
-    }
-
-    .folder-label {
-      margin-top: 12px;
-      font-size: 14px;
-      color: #333;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    }
-
-    /* Decorative Text Elements */
-    .yep {
-      position: absolute;
-      top: 40px;
-      left: 60px;
-      font-size: 100px;
-      color: #0b0b2c;
-      font-weight: 600;
-      font-family: 'Baskerville', 'Libre Baskerville', serif;
-      letter-spacing: -2px;
-      z-index: 1;
-    }
-
-    .thats-me {
-      position: absolute;
-      bottom: 80px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      color: #0b0b2c;
-      font-family: 'Baskerville', 'Libre Baskerville', serif;
-    }
-
-    .thats-me h1 {
-      font-size: 80px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .thats-me p {
-      font-size: 16px;
-      font-weight: 400;
-      letter-spacing: 0.5px;
-      color: #333;
-    }
-
-    /* Responsive Shrinking */
     @media (max-width: 768px) {
-      .container { transform: scale(0.7); }
-      .yep { font-size: 60px; left: 30px; }
-      .thats-me h1 { font-size: 50px; }
-      .thats-me p { font-size: 13px; }
+      header { column-gap: 0.5rem; padding: 1rem; }
+      .title { grid-column: 1 / 4; }
+      .nav { grid-column: 4 / 10; }
+      .cta { grid-column: 10 / 13; }
     }
   </style>
 </head>
 <body>
-  <div class="yep">Yep!</div>
+  <header>
+    <div class="title"><span onclick="window.location.href='https://nl.wikipedia.org/wiki/Wingdings'">Wingdings: ☠︎ᘉ⬥︎</span></div>
+    <ol class="nav">
+      <li>wOC^*zGYD8B.7</li>
+      <li>zddKbx)p+qwN/yZzFrQ4</li>
+      <li>v@Dm1B.tc8wGVe8A+O@>y?mU</li>
+      <li>B8UY2BAg/aay]4[z/6DiB7]-gz/b</li>
+      <li>v@Dj6y?m&lCvtVaazb+lv@#B6zu</li>
+    </ol>
+    <div class="cta">Proof of Concepts<br>Collages Sketch</div>
+  </header>
 
-  <div class="container">
-    <div class="card">
-      <div class="browser-bar">
-        <div class="browser-controls">
-          <div class="browser-button red"></div>
-          <div class="browser-button yellow"></div>
-          <div class="browser-button green"></div>
-        </div>
-        <div class="filename">📄 IMG_6780.HEIC</div>
-      </div>
-      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=800&fit=crop" alt="">
-    </div>
-
-    <div class="folders">
-      <div class="folder">
-        <div class="folder-icon"></div>
-        <div class="folder-label">life</div>
-      </div>
-      <div class="folder">
-        <div class="folder-icon"></div>
-        <div class="folder-label">design</div>
-      </div>
-      <div class="folder">
-        <div class="folder-icon"></div>
-        <div class="folder-label">random</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="thats-me">
-    <h1>That’s Me.</h1>
-    <p>this is who you’re not dealing with (sorry sorry)</p>
-  </div>
 </body>
 </html>
