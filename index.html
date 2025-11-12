@@ -60,10 +60,18 @@
             justify-content: flex-end;
             font-size: clamp(0.7rem, 1vw, 0.95rem);
             min-width: 0;
-            mix-blend-mode: normal !important;
         }
-        .cta img { width: 100px; }
-
+        .no-blendmode-wrap {
+            isolation: isolate;
+            position: relative;
+            z-index: 2;
+        }
+        .no-blendmode-wrap img { 
+            mix-blend-mode: normal;
+            display: block;
+            width: 100px;
+        }
+        
         main {
             margin: 30% auto 50px;
             max-width: 1000px;
@@ -235,7 +243,9 @@
          <li>B8UY2BAg/aay]4[z/6DiB7]-gz/b</li>
          <li>v@Dj6y?m&lCvtVaazb+lv@#B6zu</li>
       </ol>
-      <div class="cta"><img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/ProofofConcepts.png"></div> 
+      <div class="cta">
+          <div class="no-blendmode-wrap"><img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/ProofofConcepts.png"></div>
+      </div>
     </header>
 
     <main>
