@@ -5,15 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yep! That's Me.</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Baskerville', 'Libre Baskerville', serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: #f5f7fa;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,13 +17,13 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             width: 100%;
             display: flex;
             gap: 40px;
             align-items: flex-start;
             justify-content: center;
-            flex-wrap: nowrap; /* keep side by side */
+            flex-wrap: nowrap;
         }
 
         .main-card {
@@ -49,18 +44,15 @@
             align-items: center;
             gap: 8px;
         }
-
         .browser-buttons {
             display: flex;
             gap: 8px;
         }
-
         .browser-button {
             width: 12px;
             height: 12px;
             border-radius: 50%;
         }
-
         .browser-button.red { background: #ff5f57; }
         .browser-button.yellow { background: #ffbd2e; }
         .browser-button.green { background: #28ca42; }
@@ -82,8 +74,6 @@
 
         .image-container {
             position: relative;
-            padding: 40px;
-            background: white;
         }
 
         .yep-text {
@@ -101,27 +91,26 @@
             width: 100%;
             aspect-ratio: 3/4;
             overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-
         .photo-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
+        aside {
+            position: absolute;
+            right: 0;
+            bottom: -20px;
+            z-index: 2;}
+            
         .thats-me-text {
             font-size: 80px;
             font-style: italic;
             color: #1a1a4d;
             text-align: center;
-            margin-top: -20px;
             font-weight: 400;
-            position: relative;
-            z-index: 2;
         }
-
         .subtitle {
             text-align: center;
             font-size: 16px;
@@ -249,7 +238,7 @@
                 </div>
                 <div class="browser-controls">
                     <span>⬅️ ➡️</span>
-                    <span class="filename">📄 IMG_6780.HEIC ▼</span>
+                    <span class="filename">📄 IMG_6780.HEIC</span>
                 </div>
             </div>
             
@@ -259,14 +248,13 @@
                 <div class="photo-frame">
                     <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=800&fit=crop" alt="Profile photo">
                 </div>
-                
-                <div class="thats-me-text">That's Me.</div>
             </div>
-            
+   
+            <aside><div class="thats-me-text">That's Me.</div>
             <div class="subtitle">
                 this is who you're dealing with<br>
                 (sorry not sorry)
-            </div>
+            </div></aside>
         </div>
 
         <div class="folders-section">
