@@ -16,19 +16,20 @@
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
+            overflow-x: auto; /* ✅ enable horizontal scrolling */
+            overflow-y: hidden;
             padding: 20px;
         }
 
         .container {
-            max-width: 1200px;
-            width: 100%;
             display: flex;
+            flex-wrap: nowrap; /* ✅ keep items side by side */
             gap: 40px;
             align-items: flex-start;
             justify-content: center;
-            flex-wrap: nowrap; /* keep side by side */
+            min-width: max-content; /* ✅ ensure it doesn't shrink */
         }
 
         .main-card {
@@ -37,9 +38,8 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
             overflow: hidden;
             max-width: 500px;
-            flex: 1 1 400px; /* allow shrinking */
             position: relative;
-            transition: all 0.3s ease;
+            flex-shrink: 0; /* ✅ prevent card from shrinking */
         }
 
         .browser-bar {
@@ -136,8 +136,7 @@
             display: flex;
             flex-direction: column;
             gap: 30px;
-            flex: 0 1 200px;
-            transition: all 0.3s ease;
+            flex-shrink: 0; /* ✅ prevent shrinking */
         }
 
         .folder {
@@ -179,20 +178,21 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
-        /* Responsive shrink */
-        @media (max-width: 900px) {
+        /* ✅ Remove stacking on smaller screens */
+        @media (max-width: 768px) {
+            body {
+                overflow-x: auto;
+            }
+
             .container {
+                flex-direction: row;
+                flex-wrap: nowrap;
                 gap: 20px;
+                min-width: max-content;
             }
 
             .main-card {
-                max-width: 380px;
-                flex: 1 1 300px;
-            }
-
-            .folders-section {
-                flex: 0 1 150px;
-                transform: scale(0.9);
+                max-width: 400px;
             }
 
             .yep-text {
@@ -206,34 +206,6 @@
             .subtitle {
                 font-size: 12px;
                 letter-spacing: 4px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .main-card {
-                max-width: 300px;
-            }
-
-            .folders-section {
-                transform: scale(0.8);
-                gap: 20px;
-            }
-
-            .folder-icon {
-                width: 90px;
-                height: 70px;
-            }
-
-            .folder-label {
-                font-size: 12px;
-            }
-
-            .yep-text {
-                font-size: 36px;
-            }
-
-            .thats-me-text {
-                font-size: 42px;
             }
         }
     </style>
