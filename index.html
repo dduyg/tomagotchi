@@ -1,207 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yep! That's Me.</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Baskerville', 'Libre Baskerville', serif;
-            background: #c3cfe2;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            overflow-x: hidden;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yep! That's Me.</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        .container {
-            max-width: 1200px;
-            width: 100%;
-            display: flex;
-            gap: 40px;
-            align-items: flex-start;
-            justify-content: center;
-            flex-wrap: nowrap;
-            transform-origin: center center;
-            transition: transform 0.3s ease;
-        }
+    body {
+      font-family: 'Libre Baskerville', 'Baskerville', serif;
+      background: #f7f8fa;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-        .card {
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-            max-width: 500px;
-            width: 100%;
-            position: relative;
-            flex-shrink: 0;
-        }
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+      justify-content: center;
+      flex-wrap: nowrap;
+      transform-origin: center center;
+      transition: transform 0.3s ease;
+      position: relative;
+      z-index: 2;
+    }
 
-        .text-overlay {
-            position: absolute;
-            font-family: 'Baskerville', 'Libre Baskerville', serif;
-            font-style: italic;
-            color: #1a1a4d;
-            z-index: 10;
-        }
+    .card {
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      max-width: 500px;
+      width: 100%;
+      position: relative;
+      flex-shrink: 0;
+      background: white;
+    }
 
-        .yep-text {
-            top: 20px;
-            left: -80px;
-            font-size: 120px;
-            font-weight: 300;
-            line-height: 0.9;
-        }
+    .browser-bar {
+      background: #e8e8e8;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-        .thats-me-text {
-            bottom: -40px;
-            right: -120px;
-            font-size: 120px;
-            font-weight: 300;
-            line-height: 0.9;
-        }
+    .browser-controls {
+      display: flex;
+      gap: 8px;
+    }
 
-        .subtitle {
-            position: absolute;
-            bottom: -90px;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            font-family: 'Baskerville', 'Libre Baskerville', serif;
-            font-size: 18px;
-            color: #1a1a4d;
-            white-space: nowrap;
-            letter-spacing: 8px;
-            word-spacing: 15px;
-        }
+    .browser-button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .browser-button.red { background: #ff5f57; }
+    .browser-button.yellow { background: #ffbd2e; }
+    .browser-button.green { background: #28ca42; }
 
-        .browser-bar {
-            background: #e8e8e8;
-            padding: 12px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .browser-controls {
-            display: flex;
-            gap: 8px;
-        }
-        .browser-button {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-        .browser-button.red { background: #ff5f57; }
-        .browser-button.yellow { background: #ffbd2e; }
-        .browser-button.green { background: #28ca42; }
-        .filename {
-            font-size: 11px;
-            color: #666;
-        }
+    .filename {
+      font-size: 11px;
+      color: #666;
+    }
 
-        .card img {
-            width: 100%;
-            overflow: hidden;
-            aspect-ratio: 3/4;
-            object-fit: cover;
-        }
+    .card img {
+      width: 100%;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+    }
 
-        .folders {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            align-items: center;
-            flex-shrink: 0;
-        }
-        .folder {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .folder:hover {
-            transform: translateY(-5px);
-        }
-        .folder-icon {
-            width: 120px;
-            height: 90px;
-            background: linear-gradient(135deg, #8fc5e8 0%, #6eb4dd 50%, #5b9fc9 100%);
-            border-radius: 8px 8px 12px 12px;
-            position: relative;
-            box-shadow: 
-                3px 0 8px rgba(0, 0, 0, 0.15),
-                0 8px 16px rgba(0, 0, 0, 0.1);
-        }
-        .folder-icon::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            left: 0;
-            width: 50px;
-            height: 12px;
-            background: linear-gradient(135deg, #8fc5e8 0%, #6eb4dd 100%);
-            border-radius: 4px 4px 0 0;
-        }
-        .folder-icon::after {
-            content: '';
-            position: absolute;
-            right: -2px;
-            top: 0;
-            bottom: 0;
-            width: 8px;
-            background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.08));
-            border-radius: 0 8px 12px 0;
-        }
-        .folder-label {
-            margin-top: 12px;
-            font-size: 14px;
-            color: #333;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        }
+    .folders {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+      flex-shrink: 0;
+    }
 
-        /* --- Responsive Shrinking --- */
-        @media (max-width: 768px) {
-            .container {transform: scale(0.7);}
-        }
-    </style>
+    .folder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .folder:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Updated Folder Look */
+    .folder-icon {
+      width: 120px;
+      height: 90px;
+      background: linear-gradient(180deg, #96CCF2 0%, #5FA8E0 100%);
+      border-radius: 8px 8px 12px 12px;
+      position: relative;
+      box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.2), 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .folder-icon::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: 0;
+      width: 50px;
+      height: 12px;
+      background: linear-gradient(180deg, #96CCF2 0%, #6EB9E8 100%);
+      border-radius: 4px 4px 0 0;
+    }
+
+    .folder-label {
+      margin-top: 12px;
+      font-size: 14px;
+      color: #333;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    /* Decorative Text Elements */
+    .yep {
+      position: absolute;
+      top: 40px;
+      left: 60px;
+      font-size: 100px;
+      color: #0b0b2c;
+      font-weight: 600;
+      font-family: 'Baskerville', 'Libre Baskerville', serif;
+      letter-spacing: -2px;
+      z-index: 1;
+    }
+
+    .thats-me {
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: #0b0b2c;
+      font-family: 'Baskerville', 'Libre Baskerville', serif;
+    }
+
+    .thats-me h1 {
+      font-size: 80px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .thats-me p {
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      color: #333;
+    }
+
+    /* Responsive Shrinking */
+    @media (max-width: 768px) {
+      .container { transform: scale(0.7); }
+      .yep { font-size: 60px; left: 30px; }
+      .thats-me h1 { font-size: 50px; }
+      .thats-me p { font-size: 13px; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="card">
-            <div class="text-overlay yep-text">Yep!</div>
-            <div class="text-overlay thats-me-text">That's Me.</div>
-            <div class="subtitle">this is who you're dealing with<br>(sorry not sorry)</div>
-            
-            <div class="browser-bar">
-                <div class="browser-controls">
-                    <div class="browser-button red"></div>
-                    <div class="browser-button yellow"></div>
-                    <div class="browser-button green"></div>
-                </div>
-                <div class="filename">📄 IMG_6780.HEIC</div>
-            </div>
-            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=800&fit=crop">
-        </div>
+  <div class="yep">Yep!</div>
 
-        <div class="folders">
-            <div class="folder">
-                <div class="folder-icon"></div>
-                <div class="folder-label">life</div>
-            </div>
-            
-            <div class="folder">
-                <div class="folder-icon"></div>
-                <div class="folder-label">design</div>
-            </div>
-            
-            <div class="folder">
-                <div class="folder-icon"></div>
-                <div class="folder-label">random</div>
-            </div>
+  <div class="container">
+    <div class="card">
+      <div class="browser-bar">
+        <div class="browser-controls">
+          <div class="browser-button red"></div>
+          <div class="browser-button yellow"></div>
+          <div class="browser-button green"></div>
         </div>
+        <div class="filename">📄 IMG_6780.HEIC</div>
+      </div>
+      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=800&fit=crop" alt="">
     </div>
+
+    <div class="folders">
+      <div class="folder">
+        <div class="folder-icon"></div>
+        <div class="folder-label">life</div>
+      </div>
+      <div class="folder">
+        <div class="folder-icon"></div>
+        <div class="folder-label">design</div>
+      </div>
+      <div class="folder">
+        <div class="folder-icon"></div>
+        <div class="folder-label">random</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="thats-me">
+    <h1>That’s Me.</h1>
+    <p>this is who you’re not dealing with (sorry sorry)</p>
+  </div>
 </body>
 </html>
