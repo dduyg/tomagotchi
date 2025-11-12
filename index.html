@@ -59,10 +59,18 @@
       min-width: 0;
     }
     
-    .pin {
+    #myVideo {
       position: fixed;
       bottom: 1%; left: 1%;
-      width: 120px;
+      width: 120px; height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      cursor: pointer;
+    }
+    #myVideo:hover {
+      transform: scale(1.03);
+      transition: transform 0.2s ease;
     }
 
     @media (max-width: 768px) {
@@ -86,17 +94,15 @@
     <div class="cta">Proof of Concepts<br>Collages Sketch</div>
   </header>
   
-  <div class="pin">
-    <video id="myVideo" autoplay loop playsinline>
-      <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/shelf/06/AşırıKemalist.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
-
+  <video id="myVideo" autoplay loop playsinline>
+    <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/shelf/06/AşırıKemalist.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  
 <script>
   const video = document.getElementById('myVideo');
 
-  // Try to play automatically
+  // Try autoplay
   video.play().catch(() => {
     // If blocked, wait for user click
     document.body.addEventListener('click', () => {
