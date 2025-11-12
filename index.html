@@ -1,541 +1,336 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timeline on Facebook</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Yep — That's Me</title>
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef3 100%);
-            padding: 20px;
-            min-height: 100vh;
-        }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            padding: 60px;
-            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
+  <style>
+    :root{
+      --bg: #fafafa;
+      --shadow: 0 18px 40px rgba(20,20,30,0.12);
+      --muted: #8d8d92;
+      --accent: #0e1030;
+    }
 
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
+      color: #111;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
 
-        .header h1 {
-            font-size: 14px;
-            color: #333;
-            font-weight: 400;
-        }
+    /* page container */
+    .wrap{
+      max-width:1100px;
+      margin:48px auto;
+      padding:48px;
+      position:relative;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      gap:40px;
+    }
 
-        .header p {
-            font-size: 12px;
-            color: #666;
-            margin-top: 5px;
-        }
+    /* left main area */
+    .main{
+      position:relative;
+      width:640px;
+      min-width:420px;
+    }
 
-        .content {
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            gap: 40px;
-            align-items: center;
-            position: relative;
-        }
+    /* decorative "Yep!" */
+    .big-script-top{
+      position:absolute;
+      top:-28px;
+      left:-18px;
+      font-family: "Great Vibes", cursive;
+      font-size:106px;
+      line-height:0.85;
+      color: #0c2147;
+      text-shadow: 0 6px 20px rgba(12,33,71,0.15);
+      z-index:10;
+      transform: rotate(-2deg);
+    }
 
-        .left-section {
-            position: relative;
-        }
+    /* mac window mock */
+    .mac-window{
+      background: #fff;
+      border-radius:10px;
+      box-shadow: var(--shadow);
+      overflow:visible;
+      border: 1px solid rgba(20,20,20,0.06);
+    }
 
-        .tuesday-box {
-            background: white;
-            padding: 30px 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
-            margin-bottom: 20px;
-        }
+    .mac-toolbar{
+      height:38px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:0 12px;
+      background: linear-gradient(#fff,#fafafa);
+      border-top-left-radius:10px;
+      border-top-right-radius:10px;
+      box-shadow: inset 0 -1px 0 rgba(0,0,0,0.02);
+      position:relative;
+    }
 
-        .tuesday-title {
-            font-size: 48px;
-            font-weight: 800;
-            color: #2c5aa0;
-            margin-bottom: 5px;
-            letter-spacing: -1px;
-        }
+    .mac-controls{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .ctrl{
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.08) inset;
+    }
+    .ctrl.red{ background:#ff5f57; }
+    .ctrl.yellow{ background:#ffbd2e; }
+    .ctrl.green{ background:#28c840; }
 
-        .freedom-title {
-            font-size: 32px;
-            color: #ccc;
-            font-weight: 300;
-            margin-bottom: 20px;
-        }
+    .toolbar-title{
+      margin-left:14px;
+      font-size:13px;
+      color:#444;
+      opacity:0.9;
+      font-weight:600;
+    }
 
-        .divider {
-            width: 5px;
-            height: 80px;
-            background: #2c5aa0;
-            margin: 20px 0;
-        }
+    .mac-content{
+      padding:14px;
+      background: #fff;
+      border-bottom-left-radius:10px;
+      border-bottom-right-radius:10px;
+    }
 
-        .description {
-            font-size: 13px;
-            line-height: 1.8;
-            color: #333;
-            text-align: justify;
-        }
+    .photo-window{
+      width:100%;
+      height:820px;
+      background: #ddd;
+      border-radius:6px;
+      overflow:hidden;
+      position:relative;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
 
-        .highlight {
-            background: #ffd700;
-            padding: 2px 4px;
-        }
+    /* image inside (make it cover like screenshot) */
+    .photo-window img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transform-origin:center;
+      /* slight perspective tilt like screenshot */
+      transform: translateZ(0);
+    }
 
-        .liked-by {
-            margin-top: 20px;
-            font-size: 12px;
-            color: #2c5aa0;
-        }
+    /* light inner drop shadow to match screenshot's inset */
+    .photo-window::after{
+      content:'';
+      position:absolute;
+      inset:0;
+      box-shadow: inset 0 -40px 80px rgba(0,0,0,0.06);
+      pointer-events:none;
+    }
 
-        .liked-by span {
-            color: #666;
-        }
+    /* bottom big serif "That's Me." */
+    .big-title{
+      margin-top:28px;
+      font-family: "Playfair Display", serif;
+      font-size:110px;
+      font-weight:700;
+      color: #0b1940;
+      line-height:0.9;
+      text-align:center;
+      text-shadow: 0 12px 30px rgba(11,25,64,0.06);
+      letter-spacing: -1px;
+    }
 
-        .font-sample {
-            font-size: 36px;
-            color: #2c5aa0;
-            font-weight: 300;
-            margin-top: 20px;
-        }
+    /* small tagline under the title: multiple segments spaced to match screenshot */
+    .tagline{
+      margin-top:10px;
+      display:flex;
+      justify-content:center;
+      gap:18px;
+      font-family: "Inter", sans-serif;
+      color: #444;
+      font-size:13px;
+    }
+    .tagline .small{
+      font-size:12px;
+      color:var(--muted);
+      text-align:center;
+      width:120px;
+    }
+    .tagline .small strong{
+      display:block;
+      font-weight:600;
+      color:#222;
+      margin-bottom:6px;
+    }
 
-        .center-section {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
+    /* right column folders */
+    .right-col{
+      width:140px;
+      display:flex;
+      flex-direction:column;
+      gap:28px;
+      align-items:flex-start;
+      margin-top:60px;
+    }
 
-        .main-image-container {
-            position: relative;
-            width: 100%;
-            max-width: 400px;
-        }
+    /* folder icon using CSS */
+    .folder{
+      width:110px;
+      height:72px;
+      position:relative;
+      background: linear-gradient(180deg,#bfe4ff,#a7d7ff);
+      border-radius:6px;
+      box-shadow: 0 14px 30px rgba(10,20,40,0.08);
+      display:flex;
+      align-items:center;
+      padding-left:12px;
+      padding-top:6px;
+      color:#fff;
+      font-weight:600;
+      font-family: "Inter", sans-serif;
+      font-size:14px;
+    }
+    .folder::before{
+      content:'';
+      position:absolute;
+      left:0;
+      top:-12px;
+      width:44px;
+      height:22px;
+      background: linear-gradient(180deg,#cfe9ff,#b6deff);
+      border-top-left-radius:6px;
+      border-top-right-radius:6px;
+      border-bottom-right-radius:6px;
+      border-bottom-left-radius:6px;
+      transform: translateX(10px);
+      box-shadow: 0 6px 10px rgba(10,20,40,0.06);
+    }
+    .folder-label{
+      margin-top:8px;
+      margin-left:6px;
+      color:#0e1330;
+      font-weight:500;
+      text-transform:lowercase;
+      font-size:14px;
+    }
 
-        .circle-bg {
-            width: 350px;
-            height: 350px;
-            background: #f0f0f0;
-            border-radius: 50%;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-        }
+    /* separate label under folder (matching screenshot style) */
+    .folder-wrap{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-direction:column;
+      width:110px;
+    }
+    .folder-caption{
+      margin-top:6px;
+      font-size:14px;
+      color:#222;
+      text-transform:lowercase;
+      font-family: "Inter", sans-serif;
+    }
 
-        .person-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: relative;
-            z-index: 2;
-        }
+    /* small screen adjustments */
+    @media (max-width:980px){
+      .wrap{ padding:14px; gap:16px; }
+      .main{ width:100%; min-width:unset; }
+      .photo-window{ height:620px; }
+      .big-title{ font-size:64px; }
+      .big-script-top{ font-size:86px; left:-6px; top:-34px; }
+      .right-col{ flex-direction:row; width:100%; justify-content:space-between; margin-top:20px; }
+    }
 
-        .headphones {
-            position: absolute;
-            bottom: -30px;
-            right: -40px;
-            width: 200px;
-            height: 200px;
-            z-index: 3;
-        }
-
-        .cookies {
-            position: absolute;
-            bottom: -60px;
-            left: -30px;
-            z-index: 4;
-        }
-
-        .cookie {
-            width: 120px;
-            height: 80px;
-            background: #c8956b;
-            border-radius: 15px;
-            position: relative;
-            margin-bottom: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .cookie::before {
-            content: 'Lotus';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 18px;
-            font-style: italic;
-            color: #8b6433;
-            font-weight: 600;
-        }
-
-        .cookie::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 50%;
-            bottom: 0;
-            left: 0;
-            background: linear-gradient(180deg, transparent, rgba(0,0,0,0.1));
-            border-radius: 0 0 15px 15px;
-        }
-
-        .doodles {
-            position: absolute;
-            font-size: 24px;
-        }
-
-        .doodle-1 { top: 10%; left: -10%; transform: rotate(-15deg); }
-        .doodle-2 { top: 30%; right: -15%; transform: rotate(25deg); }
-        .doodle-3 { bottom: 20%; left: -5%; }
-        .doodle-4 { bottom: 30%; right: 10%; font-size: 40px; }
-
-        .right-section {
-            position: relative;
-        }
-
-        .playlist-box {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
-            margin-bottom: 30px;
-        }
-
-        .playlist-header {
-            margin-bottom: 20px;
-        }
-
-        .whats-on {
-            font-size: 18px;
-            color: #ccc;
-            font-weight: 300;
-        }
-
-        .my-playlist {
-            font-size: 24px;
-            color: #2c5aa0;
-            font-weight: 700;
-        }
-
-        .playlist-subtitle {
-            font-size: 11px;
-            color: #666;
-            margin-top: 5px;
-        }
-
-        .song-item {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            margin: 8px 0;
-            background: #f8f9fa;
-            border-radius: 10px;
-            gap: 12px;
-        }
-
-        .song-cover {
-            width: 45px;
-            height: 45px;
-            border-radius: 8px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            flex-shrink: 0;
-        }
-
-        .song-cover.green {
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-        }
-
-        .song-cover.red {
-            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
-        }
-
-        .song-info {
-            flex: 1;
-        }
-
-        .song-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 3px;
-        }
-
-        .song-artist {
-            font-size: 10px;
-            color: #999;
-            text-transform: uppercase;
-        }
-
-        .star {
-            color: #2c5aa0;
-            font-size: 16px;
-        }
-
-        .star.gray {
-            color: #ccc;
-        }
-
-        .hunter-section {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
-            font-size: 12px;
-            margin-bottom: 20px;
-        }
-
-        .hunter-number {
-            font-size: 18px;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 5px;
-        }
-
-        .hunter-text {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .font-sample-right {
-            font-size: 36px;
-            color: #2c5aa0;
-            font-weight: 300;
-            margin-bottom: 20px;
-        }
-
-        .pantone-section {
-            margin-top: 20px;
-        }
-
-        .pantone-title {
-            font-size: 12px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .color-circles {
-            display: flex;
-            gap: 10px;
-        }
-
-        .color-circle {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 2px solid #e0e0e0;
-        }
-
-        .color-circle.blue { background: #4a90e2; }
-        .color-circle.brown { background: #9b6b4b; }
-        .color-circle.gray { background: #d0d0d0; }
-
-        .bottom-section {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        .control-text {
-            font-size: 11px;
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .influence-text {
-            font-size: 10px;
-            color: #999;
-            margin-bottom: 10px;
-        }
-
-        .footer-credit {
-            font-size: 10px;
-            color: #999;
-            margin-top: 30px;
-        }
-
-        .posted-in {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: #f8f9fa;
-            padding: 10px 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-        }
-
-        .posted-text {
-            font-size: 11px;
-            color: #666;
-        }
-
-        .date {
-            font-size: 11px;
-            color: #999;
-        }
-
-        @media (max-width: 968px) {
-            .content {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-            
-            .container {
-                padding: 30px;
-            }
-        }
-    </style>
+    /* optional subtle vignette on page edges like screenshot */
+    .wrap::before{
+      content:'';
+      position:absolute;
+      inset:-40px;
+      box-shadow: inset 0 120px 120px rgba(0,0,0,0.02);
+      pointer-events:none;
+      border-radius:12px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Timeline on Facebook</h1>
-            <p>page one</p>
+
+  <div class="wrap" role="main" aria-label="Mockup page">
+    <div class="main">
+      <div class="big-script-top" aria-hidden="true">Yep!</div>
+
+      <div class="mac-window" role="region" aria-label="Photo window">
+        <div class="mac-toolbar" aria-hidden="true">
+          <div class="mac-controls" aria-hidden="true">
+            <div class="ctrl red"></div>
+            <div class="ctrl yellow"></div>
+            <div class="ctrl green"></div>
+          </div>
+          <div class="toolbar-title">IMG_6780.HEIC</div>
         </div>
 
-        <div class="content">
-            <!-- Left Section -->
-            <div class="left-section">
-                <div class="tuesday-box">
-                    <div class="tuesday-title">TUESDAY</div>
-                    <div class="freedom-title">freedom</div>
-                    <div class="divider"></div>
-                    <div class="description">
-                        Hola amig@s lindos, Me siento feliz de poderles <span class="highlight">traer mil momentos especiales</span> de journaling con ustedes. Hoy les quiero hablar un poquito de la sensación que tengo desde que ingrese por nuestros oidos, hasta cuando ingrese hasta nuestra mente y crearas lo nuestra sos. Estoy segura que la sorpresa va <span class="highlight">¡Acompañarme! Lo amarás.</span>
-                    </div>
-                    <div class="liked-by">
-                        Liked by <span>2.5 mil people 💙</span>
-                    </div>
-                </div>
-                <div class="font-sample">Aa.</div>
-                <div class="posted-in">
-                    <div class="posted-text">POSTED IN @avyspace</div>
-                    <div class="date">01 02 03</div>
-                    <div style="margin-left: auto; color: #666;">( + )</div>
-                </div>
-            </div>
-
-            <!-- Center Section -->
-            <div class="center-section">
-                <div class="main-image-container">
-                    <div class="doodles doodle-1">✏️</div>
-                    <div class="doodles doodle-2">✨</div>
-                    <div class="doodles doodle-3">📎</div>
-                    <div class="doodles doodle-4">♥</div>
-                    
-                    <div class="circle-bg">
-                        <!-- Placeholder for person image -->
-                        <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 18px;">
-                            [Person Photo]
-                        </div>
-                    </div>
-                    
-                    <!-- Headphones SVG -->
-                    <svg class="headphones" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M100 30C65 30 35 60 35 95V130H55V95C55 71 76 50 100 50C124 50 145 71 145 95V130H165V95C165 60 135 30 100 30Z" fill="#e8e8e8" stroke="#ccc" stroke-width="3"/>
-                        <rect x="30" y="120" width="30" height="50" rx="15" fill="#e8e8e8" stroke="#ccc" stroke-width="3"/>
-                        <rect x="140" y="120" width="30" height="50" rx="15" fill="#e8e8e8" stroke="#ccc" stroke-width="3"/>
-                    </svg>
-                    
-                    <div class="cookies">
-                        <div class="cookie"></div>
-                        <div class="cookie"></div>
-                    </div>
-                </div>
-                
-                <div style="position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%); font-size: 11px; color: #999;">
-                    Finding new paths to <span style="color: #2c5aa0;">express myself</span> before back in mind.
-                </div>
-            </div>
-
-            <!-- Right Section -->
-            <div class="right-section">
-                <div class="playlist-box">
-                    <div class="playlist-header">
-                        <div class="whats-on">WHAT'S</div>
-                        <div class="my-playlist">MY PLAYLIST?</div>
-                        <div class="playlist-subtitle">Connected by Spotify Terms ✨<br>From Avy's new music added</div>
-                    </div>
-
-                    <div class="song-item">
-                        <div class="song-cover"></div>
-                        <div class="song-info">
-                            <div class="song-title">Without You</div>
-                            <div class="song-artist">PERFIL BEATS CANICA</div>
-                        </div>
-                        <div class="star">★</div>
-                    </div>
-
-                    <div class="song-item">
-                        <div class="song-cover green"></div>
-                        <div class="song-info">
-                            <div class="song-title">Desire</div>
-                            <div class="song-artist">YEARS & YEARS FT. BRITISH REMIX</div>
-                        </div>
-                        <div class="star gray">☆</div>
-                    </div>
-
-                    <div class="song-item">
-                        <div class="song-cover red"></div>
-                        <div class="song-info">
-                            <div class="song-title">Que Hicimos</div>
-                            <div class="song-artist">RECODEMOS FT. PANDA LABORA</div>
-                        </div>
-                        <div class="star">★</div>
-                    </div>
-                </div>
-
-                <div class="hunter-section">
-                    <div class="hunter-number">01 Hunter dice:</div>
-                    <div class="hunter-text">
-                        "Muy cierto. La música nos hace sentir un poco más..."
-                    </div>
-                </div>
-
-                <div class="font-sample-right">Ee.</div>
-
-                <div class="pantone-section">
-                    <div class="pantone-title">Pantone Feels</div>
-                    <div class="color-circles">
-                        <div class="color-circle blue"></div>
-                        <div class="color-circle brown"></div>
-                        <div class="color-circle gray"></div>
-                    </div>
-                </div>
-            </div>
+        <div class="mac-content">
+          <div class="photo-window" aria-label="Photo preview">
+            <!-- Replace this src with your actual image file name or url -->
+            <img src="IMG_6780.HEIC" alt="Photo preview (replace src with your image)">
+          </div>
         </div>
+      </div>
 
-        <div class="bottom-section">
-            <div class="control-text">
-                <strong>GEVIN' DEEP UNDER CONTROL</strong><br>
-                Under the influence by <strong>Letterdood</strong>
-            </div>
-            
-            <div class="footer-credit">
-                Handscripted by <em>Ive.User</em><br>
-                better known as <strong>LETHLEWE</strong><br>
-                ( 2 0 2 5 / CoAcFolio :)
-            </div>
+      <div class="big-title" aria-hidden="true">That's Me.</div>
+
+      <div class="tagline" aria-hidden="true">
+        <div class="small">
+          <strong>this</strong>
+          is
         </div>
+        <div class="small">
+          <strong>who</strong>
+          you're
+        </div>
+        <div class="small">
+          <strong>dealing</strong>
+          with
+        </div>
+        <div class="small">
+          <strong>(sorry</strong>
+          not
+        </div>
+        <div class="small">
+          <strong>sorry)</strong>
+        </div>
+      </div>
     </div>
+
+    <aside class="right-col" aria-label="Folders">
+      <div class="folder-wrap">
+        <div class="folder" role="img" aria-hidden="true"></div>
+        <div class="folder-caption">life</div>
+      </div>
+
+      <div class="folder-wrap">
+        <div class="folder" role="img" aria-hidden="true" style="background: linear-gradient(180deg,#cfe8ff,#bfe0ff);"></div>
+        <div class="folder-caption">design</div>
+      </div>
+
+      <div class="folder-wrap">
+        <div class="folder" role="img" aria-hidden="true" style="background: linear-gradient(180deg,#dff3ff,#c6e9ff);"></div>
+        <div class="folder-caption">random</div>
+      </div>
+    </aside>
+  </div>
+
 </body>
 </html>
