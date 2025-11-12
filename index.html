@@ -160,7 +160,7 @@
             width: 50px;
             height: 12px;
             background: linear-gradient(135deg, #96CCF2 0%, #7AB8E0 100%);
-            /* background: linear-gradient(180deg, #7db9de 0%, #6baed6 100%); */         
+            /* background: linear-gradient(180deg, #7db9de 0%, #6baed6 100%); */
             border-radius: 4px 4px 0 0;
             box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
         }
@@ -190,20 +190,30 @@
             position: absolute;
             bottom: -14%;
             left: 25%;
-            text-align: center;
             z-index: 10;
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .title {
             font-size: 85px;
             font-weight: 400;
             color: #1a2e5a;
             line-height: 0.9;
+            text-align: center;
         }
         .subtitle {
             font-size: 17px;
             letter-spacing: 3px;
             word-spacing: 15px;
+            text-align: center;
+            max-width: fit-content;
+        }
+        .subtitle-line2 {
+            display: block;
+            text-align: justify;
+            text-align-last: justify;
         }
 
         @media (max-width: 768px) {
@@ -255,7 +265,10 @@
 
             <div class="thats-me">
                 <div class="title"><em>T</em>hat's <em>M</em>e.</div>
-                <div class="subtitle">this is who you're dealing with<br><span style="text-align: justify;">(sorry not sorry)</span></div>
+                <div class="subtitle">
+                    this is who you're dealing with
+                    <span class="subtitle-line2">(sorry not sorry)</span>
+                </div>
             </div>
         </div>
 
