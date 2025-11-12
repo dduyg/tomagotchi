@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yep! That's Me.</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Baskerville', 'Libre Baskerville', serif;
+            background: #c3cfe2;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            justify-content: center;
+            flex-wrap: nowrap;
+            transform-origin: center center;
+            transition: transform 0.3s ease;
+        }
+
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .browser-bar {
+            background: #e8e8e8;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .browser-controls {
+            display: flex;
+            gap: 8px;
+        }
+        .browser-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .browser-button.red { background: #ff5f57; }
+        .browser-button.yellow { background: #ffbd2e; }
+        .browser-button.green { background: #28ca42; }
+        .filename {
+            font-size: 11px;
+            color: #666;
+        }
+
+        .card img {
+            width: 100%;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+        }
+
+        .folders {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .folder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .folder:hover {
+            transform: translateY(-5px);
+        }
+        .folder-icon {
+            width: 120px;
+            height: 90px;
+            background: linear-gradient(135deg, #96CCF2 0%, #6FB5E8 50%, #5AA3DC 100%);
+            border-radius: 8px 8px 12px 12px;
+            position: relative;
+            box-shadow: 
+                4px 6px 12px rgba(0, 0, 0, 0.25),
+                2px 3px 6px rgba(0, 0, 0, 0.15);
+        }
+        .folder-icon::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 0;
+            width: 50px;
+            height: 12px;
+            background: linear-gradient(135deg, #96CCF2 0%, #7ABFED 100%);
+            border-radius: 4px 4px 0 0;
+            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+        }
+        .folder-label {
+            margin-top: 12px;
+            font-size: 14px;
+            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        /* Decorative Text Elements */
+        .yep-text {
+            position: fixed;
+            top: 80px;
+            left: 50px;
+            font-size: 120px;
+            font-weight: 400;
+            color: #1a1464;
+            font-family: 'Baskerville', 'Libre Baskerville', serif;
+            font-style: italic;
+            z-index: 10;
+            pointer-events: none;
+            line-height: 0.9;
+        }
+
+        .thats-me-container {
+            position: fixed;
+            bottom: 100px;
+            right: 80px;
+            text-align: center;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .thats-me-text {
+            font-size: 100px;
+            font-weight: 400;
+            color: #1a1464;
+            font-family: 'Baskerville', 'Libre Baskerville', serif;
+            font-style: italic;
+            line-height: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .subtitle-text {
+            font-size: 18px;
+            color: #1a1464;
+            font-family: 'Baskerville', 'Libre Baskerville', serif;
+            letter-spacing: 4px;
+            word-spacing: 12px;
+        }
+
+        /* --- Responsive Shrinking --- */
+        @media (max-width: 768px) {
+            .container {transform: scale(0.7);}
+            .yep-text {font-size: 60px; top: 40px; left: 20px;}
+            .thats-me-container {bottom: 40px; right: 20px;}
+            .thats-me-text {font-size: 50px;}
+            .subtitle-text {font-size: 12px;}
+        }
+    </style>
+</head>
+<body>
+    <div class="yep-text">Yep!</div>
+    
+    <div class="thats-me-container">
+        <div class="thats-me-text">That's Me.</div>
+        <div class="subtitle-text">this is who you're dealing with<br>(sorry not sorry)</div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div class="browser-bar">
+                <div class="browser-controls">
+                    <div class="browser-button red"></div>
+                    <div class="browser-button yellow"></div>
+                    <div class="browser-button green"></div>
+                </div>
+                <div class="filename">📄 IMG_6780.HEIC</div>
+            </div>
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=800&fit=crop">
+        </div>
+
+        <div class="folders">
+            <div class="folder">
+                <div class="folder-icon"></div>
+                <div class="folder-label">life</div>
+            </div>
+            
+            <div class="folder">
+                <div class="folder-icon"></div>
+                <div class="folder-label">design</div>
+            </div>
+            
+            <div class="folder">
+                <div class="folder-icon"></div>
+                <div class="folder-label">random</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
