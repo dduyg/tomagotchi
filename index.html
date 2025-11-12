@@ -32,11 +32,16 @@
         .card {
             border-radius: 12px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
+            overflow: visible;
             max-width: 500px;
             width: 100%;
             position: relative;
             flex-shrink: 0;
+        }
+        
+        .card-inner {
+            border-radius: 12px;
+            overflow: hidden;
         }
 
         .browser-bar {
@@ -117,9 +122,9 @@
 
         /* Decorative Text Elements */
         .yep-text {
-            position: fixed;
-            top: 80px;
-            left: 50px;
+            position: absolute;
+            top: -40px;
+            left: -80px;
             font-size: 120px;
             font-weight: 400;
             color: #1a1464;
@@ -131,9 +136,9 @@
         }
 
         .thats-me-container {
-            position: fixed;
-            bottom: 100px;
-            right: 80px;
+            position: absolute;
+            bottom: -180px;
+            right: -120px;
             text-align: center;
             z-index: 10;
             pointer-events: none;
@@ -168,24 +173,26 @@
     </style>
 </head>
 <body>
-    <div class="yep-text">Yep!</div>
-    
-    <div class="thats-me-container">
-        <div class="thats-me-text">That's Me.</div>
-        <div class="subtitle-text">this is who you're dealing with<br>(sorry not sorry)</div>
-    </div>
-
     <div class="container">
         <div class="card">
-            <div class="browser-bar">
-                <div class="browser-controls">
-                    <div class="browser-button red"></div>
-                    <div class="browser-button yellow"></div>
-                    <div class="browser-button green"></div>
-                </div>
-                <div class="filename">📄 IMG_6780.HEIC</div>
+            <div class="yep-text">Yep!</div>
+            
+            <div class="thats-me-container">
+                <div class="thats-me-text">That's Me.</div>
+                <div class="subtitle-text">this is who you're dealing with<br>(sorry not sorry)</div>
             </div>
-            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=800&fit=crop">
+            
+            <div class="card-inner">
+                <div class="browser-bar">
+                    <div class="browser-controls">
+                        <div class="browser-button red"></div>
+                        <div class="browser-button yellow"></div>
+                        <div class="browser-button green"></div>
+                    </div>
+                    <div class="filename">📄 IMG_6780.HEIC</div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=800&fit=crop">
+            </div>
         </div>
 
         <div class="folders">
