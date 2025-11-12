@@ -5,14 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LiminalLoop</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      outline: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
     body {
       font-family: sans-serif;
       color: #1D1B1C;
@@ -26,16 +19,13 @@
       padding: 1.5rem 2rem;
       align-items: center;
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 10;
       color: white;
       width: 100%;
       mix-blend-mode: difference;
       overflow: hidden;
     }
-
     header::before {
       content: "";
       position: absolute;
@@ -55,13 +45,12 @@
 
     .nav {
       grid-column: 4 / 10;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      gap: clamp(0.5rem, 2vw, 1.25rem);
       font-size: clamp(0.7rem, 1vw, 0.95rem);
-      overflow: hidden;
       min-width: 0;
+    }
+    .nav li {
+      display: block;
+      margin-bottom: 0.35rem;
     }
 
     .cta {
@@ -74,25 +63,14 @@
       min-width: 0;
     }
 
-    /* Responsive grid behavior — still grid, just adapt spacing */
     @media (max-width: 768px) {
       header {
         column-gap: 0.5rem;
         padding: 1rem 1.25rem;
       }
-
-      .title {
-        grid-column: 1 / 4;
-      }
-
-      .nav {
-        grid-column: 4 / 10;
-        justify-content: space-evenly;
-      }
-
-      .cta {
-        grid-column: 10 / 13;
-      }
+      .title { grid-column: 1 / 4; }
+      .nav { grid-column: 4 / 10; }
+      .cta { grid-column: 10 / 13; }
     }
   </style>
 </head>
