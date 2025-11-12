@@ -3,19 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LiminalLoop</title>
+<title>Autoplay Loop Video with Sound</title>
+
 <style>
-  /* Make the page fill the screen */
-  html, body {
+  /* Make the video fill the viewport elegantly */
+  body {
     margin: 0;
     padding: 0;
-    height: 100%;
-    overflow: hidden;
     background-color: black;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
   }
 
-  /* Style the video to cover the whole background */
-  #myVideo {
+  video {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -24,41 +27,38 @@
     width: auto;
     height: auto;
     transform: translate(-50%, -50%);
-    object-fit: cover;
-    z-index: -1; /* Put it behind other content */
+    object-fit: cover; /* fills the area without stretching */
+    filter: brightness(0.9) contrast(1.1) saturate(1.1);
+    transition: opacity 0.5s ease-in-out;
   }
 
-  /* Optional: Add overlay content (like title or button) */
-  .content {
-    position: relative;
-    z-index: 1;
-    color: white;
+  /* Optional overlay for cinematic look */
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  /* Optional start hint */
+  .hint {
+    position: absolute;
+    bottom: 30px;
+    width: 100%;
     text-align: center;
-    top: 40%;
-    font-family: 'Helvetica Neue', sans-serif;
-  }
-
-  .content h1 {
-    font-size: 3rem;
-    letter-spacing: 2px;
-    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-  }
-
-  .content button {
-    margin-top: 20px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 2px solid white;
     color: white;
-    padding: 12px 28px;
-    border-radius: 50px;
+    font-family: Arial, sans-serif;
     font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
+    opacity: 0.8;
+    animation: pulse 2s infinite;
   }
 
-  .content button:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.05);
+  @keyframes pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.3; }
   }
 </style>
 </head>
@@ -69,26 +69,20 @@
   Your browser does not support the video tag.
 </video>
 
-<div class="content">
-  <h1>Liminal Loop</h1>
-  <button>Play Sound</button>
-</div>
+<div class="overlay"></div>
+<div class="hint">🔊 Tap anywhere to unmute</div>
 
 <script>
   const video = document.getElementById('myVideo');
-  const button = document.querySelector('button');
 
-  // Try to autoplay
+  // Try autoplay; if blocked, play after first click
   video.play().catch(() => {
-    // If autoplay with sound is blocked
-    button.style.display = 'inline-block';
-  });
-
-  // Play when user clicks button
-  button.addEventListener('click', () => {
-    video.play();
-    button.style.display = 'none';
+    document.body.addEventListener('click', () => {
+      video.play();
+      document.querySelector('.hint').style.display = 'none';
+    }, { once: true });
   });
 </script>
+
 </body>
 </html>
