@@ -22,7 +22,7 @@
             width: 100%;
             display: flex;
             gap: 40px;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             flex-wrap: nowrap;
             transform-origin: center center;
@@ -63,57 +63,19 @@
             color: #666;
         }
 
-        .photo-frame {
-            position: relative;
-        }
-
-        .yep-text {
-            position: absolute;
-            top: 20px;
-            left: 40px;
-            font-size: 72px;
-            font-style: italic;
-            color: #1a1a4d;
-            font-weight: 400;
-            z-index: 2;
-        }
-
-        .photo-frame img {
+        .card img {
             width: 100%;
             aspect-ratio: 3/4;
             object-fit: cover;
         }
 
-        .thats-me-text {
-            font-size: 80px;
-            font-style: italic;
-            color: #1a1a4d;
-            text-align: center;
-            margin-top: -20px;
-            font-weight: 400;
-            position: absolute;   
-            z-index: 2;
-        }
-        .subtitle {
-            text-align: center;
-            font-size: 16px;
-            color: #333;
-            margin-top: 20px;
-            padding: 0 40px 40px;
-            letter-spacing: 8px;
-            word-spacing: 20px;
-            position: absolute;
-            z-index: 2;
-        }
-
-        .folders-section {
+        .folders {
             display: flex;
             flex-direction: column;
             gap: 30px;
             align-items: center;
             flex-shrink: 0;
         }
-
         .folder {
             display: flex;
             flex-direction: column;
@@ -121,11 +83,9 @@
             cursor: pointer;
             transition: transform 0.2s;
         }
-
         .folder:hover {
             transform: translateY(-5px);
         }
-
         .folder-icon {
             width: 120px;
             height: 90px;
@@ -134,7 +94,6 @@
             position: relative;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
-
         .folder-icon::before {
             content: '';
             position: absolute;
@@ -145,7 +104,6 @@
             background: linear-gradient(180deg, #7db9de 0%, #6baed6 100%);
             border-radius: 4px 4px 0 0;
         }
-
         .folder-label {
             margin-top: 12px;
             font-size: 14px;
@@ -170,21 +128,10 @@
                 </div>
                 <div class="filename">📄 IMG_6780.HEIC</div>
             </div>
-            
-            <div class="photo-frame">
-                <div class="yep-text">Yep!</div>
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=800&fit=crop">
-                
-                <div class="thats-me-text">That's Me.</div>
-            </div>
-            
-            <div class="subtitle">
-                this is who you're dealing with<br>
-                (sorry not sorry)
-            </div>
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=800&fit=crop">
         </div>
 
-        <div class="folders-section">
+        <div class="folders">
             <div class="folder">
                 <div class="folder-icon"></div>
                 <div class="folder-label">life</div>
