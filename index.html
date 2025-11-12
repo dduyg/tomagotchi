@@ -58,14 +58,6 @@
       font-size: clamp(0.7rem, 1vw, 0.95rem);
       min-width: 0;
     }
-    
-    #myVideo {
-      position: fixed;
-      bottom: 1%; left: 1%;
-      width: 130px; height: auto;
-      z-index: 1000;
-      cursor: pointer;
-    }
 
     @media (max-width: 768px) {
       header { column-gap: 0.5rem; padding: 1rem; }
@@ -87,22 +79,6 @@
     </ol>
     <div class="cta">Proof of Concepts<br>Collages Sketch</div>
   </header>
-  
-  <video id="myVideo" autoplay loop playsinline>
-    <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/shelf/06/AşırıKemalist.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  
-<script>
-  const video = document.getElementById('myVideo');
 
-  // Try autoplay
-  video.play().catch(() => {
-    // If blocked, wait for user click
-    document.body.addEventListener('click', () => {
-      video.play();
-    }, { once: true });
-  });
-</script>
 </body>
 </html>
