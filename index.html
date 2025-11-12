@@ -58,20 +58,12 @@
       font-size: clamp(0.7rem, 1vw, 0.95rem);
       min-width: 0;
     }
-
-.pin {
-  position: fixed;
-  bottom: 1%; left: 1%;
-  width: 200px;
-  background: white;
-  padding: 0.5rem 1rem;
-  box-sizing: border-box;
-}
-.pin-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+    
+    .pin {
+      position: fixed;
+      bottom: 1%; left: 1%;
+      width: 120px;
+    }
 
     @media (max-width: 768px) {
       header { column-gap: 0.5rem; padding: 1rem; }
@@ -93,11 +85,24 @@
     </ol>
     <div class="cta">Proof of Concepts<br>Collages Sketch</div>
   </header>
+  
+  <div class="pin">
+    <video id="myVideo" autoplay loop playsinline>
+      <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/shelf/06/AşırıKemalist.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
 
-<div class="pin">
-  <video class="pin-video" autoplay loop muted playsinline>
-    <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/shelf/06/AşırıKemalist.mp4" type="video/mp4">
-  </video>
-</div>
+<script>
+  const video = document.getElementById('myVideo');
+
+  // Try to play automatically
+  video.play().catch(() => {
+    // If blocked, wait for user click
+    document.body.addEventListener('click', () => {
+      video.play();
+    }, { once: true });
+  });
+</script>
 </body>
 </html>
