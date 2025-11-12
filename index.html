@@ -1,43 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yep! That's Me.</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: 'Baskerville', 'Libre Baskerville', serif;
       background: #f5f7fa;
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 20px;
-      overflow-x: hidden;
+      padding: 40px 20px;
     }
 
-    .container {
-      max-width: 1200px;
-      width: 100%;
+    .top-row {
       display: flex;
-      gap: 60px;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
+      gap: 60px;
       flex-wrap: nowrap;
-      position: relative;
     }
 
-    /* --- Main Card --- */
     .main-card {
-      position: relative;
       background: white;
       border-radius: 12px;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
       overflow: hidden;
       max-width: 500px;
       width: 100%;
+      position: relative;
       flex-shrink: 0;
     }
 
@@ -47,8 +47,6 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      position: relative;
-      z-index: 2;
     }
 
     .browser-buttons {
@@ -61,6 +59,7 @@
       height: 12px;
       border-radius: 50%;
     }
+
     .browser-button.red { background: #ff5f57; }
     .browser-button.yellow { background: #ffbd2e; }
     .browser-button.green { background: #28ca42; }
@@ -74,22 +73,35 @@
       color: #666;
       flex: 1;
     }
+
     .filename {
       font-size: 11px;
       color: #333;
     }
 
-    /* --- Image Fills the Card --- */
     .image-container {
       position: relative;
       width: 100%;
       height: 600px;
+      background: white;
       overflow: hidden;
+    }
+
+    .photo-frame {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .yep-text {
       position: absolute;
-      top: 20px;
+      top: 40px;
       left: 40px;
       font-size: 72px;
       font-style: italic;
@@ -98,35 +110,27 @@
       z-index: 2;
     }
 
-    .photo-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    /* --- Outside Text Section --- */
+    .bottom-text {
+      text-align: center;
+      margin-top: -40px; /* overlaps slightly over the card */
     }
 
-    /* --- That's Me & Subtitle outside the card --- */
     .thats-me-text {
-      position: absolute;
-      bottom: -60px;
-      right: -40px;
       font-size: 80px;
       font-style: italic;
       color: #1a1a4d;
       font-weight: 400;
+      position: relative;
       z-index: 3;
-      white-space: nowrap;
     }
 
     .subtitle {
-      position: absolute;
-      bottom: -100px;
-      right: 0;
       font-size: 16px;
       color: #333;
+      margin-top: 10px;
       letter-spacing: 6px;
-      word-spacing: 16px;
-      text-align: right;
+      word-spacing: 12px;
     }
 
     /* --- Folder Section --- */
@@ -178,20 +182,26 @@
     }
 
     /* --- Responsive --- */
-    @media (max-width: 700px) {
-      .container { flex-direction: column; gap: 80px; transform: scale(0.9); }
-      .thats-me-text, .subtitle {
-        position: static;
-        text-align: center;
-        margin-top: 20px;
-        right: auto;
-        bottom: auto;
+    @media (max-width: 900px) {
+      .top-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .folders-section {
+        flex-direction: row;
+      }
+
+      .bottom-text {
+        margin-top: -20px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="top-row">
+    <!-- Main Card -->
     <div class="main-card">
       <div class="browser-bar">
         <div class="browser-buttons">
@@ -208,17 +218,12 @@
       <div class="image-container">
         <div class="yep-text">Yep!</div>
         <div class="photo-frame">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=800&fit=crop" alt="Profile photo">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=800&fit=crop" alt="Profile photo" />
         </div>
-      </div>
-
-      <div class="thats-me-text">That's Me.</div>
-      <div class="subtitle">
-        this is who you're dealing with<br>
-        (sorry not sorry)
       </div>
     </div>
 
+    <!-- Folders -->
     <div class="folders-section">
       <div class="folder">
         <div class="folder-icon"></div>
@@ -233,6 +238,12 @@
         <div class="folder-label">random</div>
       </div>
     </div>
+  </div>
+
+  <!-- Outside text -->
+  <div class="bottom-text">
+    <div class="thats-me-text">That's Me.</div>
+    <div class="subtitle">this is who you're dealing with (sorry not sorry)</div>
   </div>
 </body>
 </html>
