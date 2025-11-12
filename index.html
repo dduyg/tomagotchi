@@ -1,336 +1,247 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Yep — That's Me</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yep! That's Me.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+        body {
+            font-family: 'Baskerville', 'Libre Baskerville', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
 
-  <style>
-    :root{
-      --bg: #fafafa;
-      --shadow: 0 18px 40px rgba(20,20,30,0.12);
-      --muted: #8d8d92;
-      --accent: #0e1030;
-    }
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
-    html,body{
-      height:100%;
-      margin:0;
-      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
-      color: #111;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
+        .main-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            max-width: 500px;
+            position: relative;
+        }
 
-    /* page container */
-    .wrap{
-      max-width:1100px;
-      margin:48px auto;
-      padding:48px;
-      position:relative;
-      display:flex;
-      align-items:flex-start;
-      justify-content:center;
-      gap:40px;
-    }
+        .browser-bar {
+            background: #e8e8e8;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-    /* left main area */
-    .main{
-      position:relative;
-      width:640px;
-      min-width:420px;
-    }
+        .browser-buttons {
+            display: flex;
+            gap: 8px;
+        }
 
-    /* decorative "Yep!" */
-    .big-script-top{
-      position:absolute;
-      top:-28px;
-      left:-18px;
-      font-family: "Great Vibes", cursive;
-      font-size:106px;
-      line-height:0.85;
-      color: #0c2147;
-      text-shadow: 0 6px 20px rgba(12,33,71,0.15);
-      z-index:10;
-      transform: rotate(-2deg);
-    }
+        .browser-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
 
-    /* mac window mock */
-    .mac-window{
-      background: #fff;
-      border-radius:10px;
-      box-shadow: var(--shadow);
-      overflow:visible;
-      border: 1px solid rgba(20,20,20,0.06);
-    }
+        .browser-button.red { background: #ff5f57; }
+        .browser-button.yellow { background: #ffbd2e; }
+        .browser-button.green { background: #28ca42; }
 
-    .mac-toolbar{
-      height:38px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:0 12px;
-      background: linear-gradient(#fff,#fafafa);
-      border-top-left-radius:10px;
-      border-top-right-radius:10px;
-      box-shadow: inset 0 -1px 0 rgba(0,0,0,0.02);
-      position:relative;
-    }
+        .browser-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-left: 16px;
+            font-size: 11px;
+            color: #666;
+            flex: 1;
+        }
 
-    .mac-controls{
-      display:flex;
-      gap:8px;
-      align-items:center;
-    }
-    .ctrl{
-      width:12px;
-      height:12px;
-      border-radius:50%;
-      box-shadow: 0 1px 0 rgba(0,0,0,0.08) inset;
-    }
-    .ctrl.red{ background:#ff5f57; }
-    .ctrl.yellow{ background:#ffbd2e; }
-    .ctrl.green{ background:#28c840; }
+        .filename {
+            font-size: 11px;
+            color: #333;
+        }
 
-    .toolbar-title{
-      margin-left:14px;
-      font-size:13px;
-      color:#444;
-      opacity:0.9;
-      font-weight:600;
-    }
+        .image-container {
+            position: relative;
+            padding: 40px;
+            background: white;
+        }
 
-    .mac-content{
-      padding:14px;
-      background: #fff;
-      border-bottom-left-radius:10px;
-      border-bottom-right-radius:10px;
-    }
+        .yep-text {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            font-size: 72px;
+            font-style: italic;
+            color: #1a1a4d;
+            font-weight: 400;
+            z-index: 2;
+        }
 
-    .photo-window{
-      width:100%;
-      height:820px;
-      background: #ddd;
-      border-radius:6px;
-      overflow:hidden;
-      position:relative;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-    }
+        .photo-frame {
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
 
-    /* image inside (make it cover like screenshot) */
-    .photo-window img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      transform-origin:center;
-      /* slight perspective tilt like screenshot */
-      transform: translateZ(0);
-    }
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-    /* light inner drop shadow to match screenshot's inset */
-    .photo-window::after{
-      content:'';
-      position:absolute;
-      inset:0;
-      box-shadow: inset 0 -40px 80px rgba(0,0,0,0.06);
-      pointer-events:none;
-    }
+        .thats-me-text {
+            font-size: 80px;
+            font-style: italic;
+            color: #1a1a4d;
+            text-align: center;
+            margin-top: -20px;
+            font-weight: 400;
+            position: relative;
+            z-index: 2;
+        }
 
-    /* bottom big serif "That's Me." */
-    .big-title{
-      margin-top:28px;
-      font-family: "Playfair Display", serif;
-      font-size:110px;
-      font-weight:700;
-      color: #0b1940;
-      line-height:0.9;
-      text-align:center;
-      text-shadow: 0 12px 30px rgba(11,25,64,0.06);
-      letter-spacing: -1px;
-    }
+        .subtitle {
+            text-align: center;
+            font-size: 16px;
+            color: #333;
+            margin-top: 20px;
+            padding: 0 40px 40px;
+            letter-spacing: 8px;
+            word-spacing: 20px;
+        }
 
-    /* small tagline under the title: multiple segments spaced to match screenshot */
-    .tagline{
-      margin-top:10px;
-      display:flex;
-      justify-content:center;
-      gap:18px;
-      font-family: "Inter", sans-serif;
-      color: #444;
-      font-size:13px;
-    }
-    .tagline .small{
-      font-size:12px;
-      color:var(--muted);
-      text-align:center;
-      width:120px;
-    }
-    .tagline .small strong{
-      display:block;
-      font-weight:600;
-      color:#222;
-      margin-bottom:6px;
-    }
+        .folders-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
 
-    /* right column folders */
-    .right-col{
-      width:140px;
-      display:flex;
-      flex-direction:column;
-      gap:28px;
-      align-items:flex-start;
-      margin-top:60px;
-    }
+        .folder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
 
-    /* folder icon using CSS */
-    .folder{
-      width:110px;
-      height:72px;
-      position:relative;
-      background: linear-gradient(180deg,#bfe4ff,#a7d7ff);
-      border-radius:6px;
-      box-shadow: 0 14px 30px rgba(10,20,40,0.08);
-      display:flex;
-      align-items:center;
-      padding-left:12px;
-      padding-top:6px;
-      color:#fff;
-      font-weight:600;
-      font-family: "Inter", sans-serif;
-      font-size:14px;
-    }
-    .folder::before{
-      content:'';
-      position:absolute;
-      left:0;
-      top:-12px;
-      width:44px;
-      height:22px;
-      background: linear-gradient(180deg,#cfe9ff,#b6deff);
-      border-top-left-radius:6px;
-      border-top-right-radius:6px;
-      border-bottom-right-radius:6px;
-      border-bottom-left-radius:6px;
-      transform: translateX(10px);
-      box-shadow: 0 6px 10px rgba(10,20,40,0.06);
-    }
-    .folder-label{
-      margin-top:8px;
-      margin-left:6px;
-      color:#0e1330;
-      font-weight:500;
-      text-transform:lowercase;
-      font-size:14px;
-    }
+        .folder:hover {
+            transform: translateY(-5px);
+        }
 
-    /* separate label under folder (matching screenshot style) */
-    .folder-wrap{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      flex-direction:column;
-      width:110px;
-    }
-    .folder-caption{
-      margin-top:6px;
-      font-size:14px;
-      color:#222;
-      text-transform:lowercase;
-      font-family: "Inter", sans-serif;
-    }
+        .folder-icon {
+            width: 120px;
+            height: 90px;
+            background: linear-gradient(180deg, #7db9de 0%, #5da5d5 100%);
+            border-radius: 8px 8px 12px 12px;
+            position: relative;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
 
-    /* small screen adjustments */
-    @media (max-width:980px){
-      .wrap{ padding:14px; gap:16px; }
-      .main{ width:100%; min-width:unset; }
-      .photo-window{ height:620px; }
-      .big-title{ font-size:64px; }
-      .big-script-top{ font-size:86px; left:-6px; top:-34px; }
-      .right-col{ flex-direction:row; width:100%; justify-content:space-between; margin-top:20px; }
-    }
+        .folder-icon::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 0;
+            width: 50px;
+            height: 12px;
+            background: linear-gradient(180deg, #7db9de 0%, #6baed6 100%);
+            border-radius: 4px 4px 0 0;
+        }
 
-    /* optional subtle vignette on page edges like screenshot */
-    .wrap::before{
-      content:'';
-      position:absolute;
-      inset:-40px;
-      box-shadow: inset 0 120px 120px rgba(0,0,0,0.02);
-      pointer-events:none;
-      border-radius:12px;
-    }
-  </style>
+        .folder-label {
+            margin-top: 12px;
+            font-size: 14px;
+            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .yep-text {
+                font-size: 48px;
+            }
+
+            .thats-me-text {
+                font-size: 56px;
+            }
+
+            .subtitle {
+                font-size: 12px;
+                letter-spacing: 4px;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <div class="wrap" role="main" aria-label="Mockup page">
-    <div class="main">
-      <div class="big-script-top" aria-hidden="true">Yep!</div>
-
-      <div class="mac-window" role="region" aria-label="Photo window">
-        <div class="mac-toolbar" aria-hidden="true">
-          <div class="mac-controls" aria-hidden="true">
-            <div class="ctrl red"></div>
-            <div class="ctrl yellow"></div>
-            <div class="ctrl green"></div>
-          </div>
-          <div class="toolbar-title">IMG_6780.HEIC</div>
+    <div class="container">
+        <div class="main-card">
+            <div class="browser-bar">
+                <div class="browser-buttons">
+                    <div class="browser-button red"></div>
+                    <div class="browser-button yellow"></div>
+                    <div class="browser-button green"></div>
+                </div>
+                <div class="browser-controls">
+                    <span>⬅️ ➡️</span>
+                    <span class="filename">📄 IMG_6780.HEIC ▼</span>
+                </div>
+            </div>
+            
+            <div class="image-container">
+                <div class="yep-text">Yep!</div>
+                
+                <div class="photo-frame">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=800&fit=crop" alt="Profile photo">
+                </div>
+                
+                <div class="thats-me-text">That's Me.</div>
+            </div>
+            
+            <div class="subtitle">
+                this is who you're dealing with<br>
+                (sorry not sorry)
+            </div>
         </div>
 
-        <div class="mac-content">
-          <div class="photo-window" aria-label="Photo preview">
-            <!-- Replace this src with your actual image file name or url -->
-            <img src="IMG_6780.HEIC" alt="Photo preview (replace src with your image)">
-          </div>
+        <div class="folders-section">
+            <div class="folder">
+                <div class="folder-icon"></div>
+                <div class="folder-label">life</div>
+            </div>
+            
+            <div class="folder">
+                <div class="folder-icon"></div>
+                <div class="folder-label">design</div>
+            </div>
+            
+            <div class="folder">
+                <div class="folder-icon"></div>
+                <div class="folder-label">random</div>
+            </div>
         </div>
-      </div>
-
-      <div class="big-title" aria-hidden="true">That's Me.</div>
-
-      <div class="tagline" aria-hidden="true">
-        <div class="small">
-          <strong>this</strong>
-          is
-        </div>
-        <div class="small">
-          <strong>who</strong>
-          you're
-        </div>
-        <div class="small">
-          <strong>dealing</strong>
-          with
-        </div>
-        <div class="small">
-          <strong>(sorry</strong>
-          not
-        </div>
-        <div class="small">
-          <strong>sorry)</strong>
-        </div>
-      </div>
     </div>
-
-    <aside class="right-col" aria-label="Folders">
-      <div class="folder-wrap">
-        <div class="folder" role="img" aria-hidden="true"></div>
-        <div class="folder-caption">life</div>
-      </div>
-
-      <div class="folder-wrap">
-        <div class="folder" role="img" aria-hidden="true" style="background: linear-gradient(180deg,#cfe8ff,#bfe0ff);"></div>
-        <div class="folder-caption">design</div>
-      </div>
-
-      <div class="folder-wrap">
-        <div class="folder" role="img" aria-hidden="true" style="background: linear-gradient(180deg,#dff3ff,#c6e9ff);"></div>
-        <div class="folder-caption">random</div>
-      </div>
-    </aside>
-  </div>
-
 </body>
 </html>
