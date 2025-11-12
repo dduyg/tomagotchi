@@ -1,88 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Autoplay Loop Video with Sound</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yep! That's Me.</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Baskerville', 'Libre Baskerville', serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
 
-<style>
-  /* Make the video fill the viewport elegantly */
-  body {
-    margin: 0;
-    padding: 0;
-    background-color: black;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            justify-content: center;
+            flex-wrap: nowrap;
+        }
 
-  video {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%);
-    object-fit: cover; /* fills the area without stretching */
-    filter: brightness(0.9) contrast(1.1) saturate(1.1);
-    transition: opacity 0.5s ease-in-out;
-  }
+        .main-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            max-width: 500px;
+            flex: 1 1 400px; /* allow shrinking */
+            position: relative;
+            transition: all 0.3s ease;
+        }
 
-  /* Optional overlay for cinematic look */
-  .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    background: rgba(0, 0, 0, 0.2);
-  }
+        .browser-bar {
+            background: #2D363B;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .browser-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        .browser-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .browser-button.red { background: #FF8584; }
+        .browser-button.yellow { background: #FED072; }
+        .browser-button.green { background: #75ED94; }
 
-  /* Optional start hint */
-  .hint {
-    position: absolute;
-    bottom: 30px;
-    width: 100%;
-    text-align: center;
-    color: white;
-    font-family: Arial, sans-serif;
-    font-size: 1rem;
-    opacity: 0.8;
-    animation: pulse 2s infinite;
-  }
+        .browser-controls {
+            margin-left: 16px;
+            font-size: 11px;
+            color: #333;
+            flex: 1;
+        }
 
-  @keyframes pulse {
-    0%, 100% { opacity: 0.8; }
-    50% { opacity: 0.3; }
-  }
-</style>
+        .image-container {
+            position: relative;
+        }
+
+        .yep-text {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            font-size: 72px;
+            font-style: italic;
+            color: #1a1a4d;
+            font-weight: 400;
+            z-index: 2;
+        }
+
+        .photo-frame {
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+        }
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        aside {
+            position: absolute;
+            right: 0;
+            bottom: -200px;
+            z-index: 2;
+        }
+            
+        .thats-me-text {
+            font-size: 80px;
+            font-style: italic;
+            color: #1a1a4d;
+            text-align: center;
+            font-weight: 400;
+        }
+        .subtitle {
+            text-align: center;
+            font-size: 16px;
+            color: #333;
+            margin-top: 20px;
+            padding: 0 40px 40px;
+            letter-spacing: 8px;
+            word-spacing: 20px;
+        }
+
+        .folders-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            flex: 0 1 200px;
+            transition: all 0.3s ease;
+        }
+
+        .folder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .folder:hover {
+            transform: translateY(-5px);
+        }
+
+        .folder-icon {
+            width: 120px;
+            height: 90px;
+            background: linear-gradient(180deg, #7db9de 0%, #5da5d5 100%);
+            border-radius: 8px 8px 12px 12px;
+            position: relative;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .folder-icon::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 0;
+            width: 50px;
+            height: 12px;
+            background: linear-gradient(180deg, #7db9de 0%, #6baed6 100%);
+            border-radius: 4px 4px 0 0;
+        }
+
+        .folder-label {
+            margin-top: 12px;
+            font-size: 14px;
+            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        /* Responsive shrink */
+        @media (max-width: 900px) {
+            .container {
+                gap: 20px;
+            }
+
+            .main-card {
+                max-width: 380px;
+                flex: 1 1 300px;
+            }
+
+            .folders-section {
+                flex: 0 1 150px;
+                transform: scale(0.9);
+            }
+
+            .yep-text {
+                font-size: 48px;
+            }
+
+            .thats-me-text {
+                font-size: 56px;
+            }
+
+            .subtitle {
+                font-size: 12px;
+                letter-spacing: 4px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .main-card {
+                max-width: 300px;
+            }
+
+            .folders-section {
+                transform: scale(0.8);
+                gap: 20px;
+            }
+
+            .folder-icon {
+                width: 90px;
+                height: 70px;
+            }
+
+            .folder-label {
+                font-size: 12px;
+            }
+
+            .yep-text {
+                font-size: 36px;
+            }
+
+            .thats-me-text {
+                font-size: 42px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <div class="main-card">
+            <div class="browser-bar">
+                <div class="browser-buttons">
+                    <div class="browser-button red"></div>
+                    <div class="browser-button yellow"></div>
+                    <div class="browser-button green"></div>
+                </div>
+                <div class="browser-controls">📄 IMG_6780.HEIC</div>
+            </div>
+            
+            <div class="image-container">
+                <div class="yep-text">Yep!</div>
+                
+                <div class="photo-frame">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=800&fit=crop" alt="Profile photo">
+                </div>
+            </div>
+   
+            <aside>
+                <div class="thats-me-text">That's Me.</div>
+                <div class="subtitle">
+                    this is who you're dealing with<br>
+                    (sorry not sorry)
+                </div>
+            </aside>
+        </div>
 
-<video id="myVideo" autoplay loop playsinline>
-  <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/shelf/06/AşırıKemalist.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
-<div class="overlay"></div>
-<div class="hint">🔊 Tap anywhere to unmute</div>
-
-<script>
-  const video = document.getElementById('myVideo');
-
-  // Try autoplay; if blocked, play after first click
-  video.play().catch(() => {
-    document.body.addEventListener('click', () => {
-      video.play();
-      document.querySelector('.hint').style.display = 'none';
-    }, { once: true });
-  });
-</script>
-
+        <div class="folders-section">
+            <div class="folder">
+                <div class="folder-icon"></div>
+                <div class="folder-label">life</div>
+            </div>
+            
+            <div class="folder">
+                <div class="folder-icon"></div>
+                <div class="folder-label">design</div>
+            </div>
+            
+            <div class="folder">
+                <div class="folder-icon"></div>
+                <div class="folder-label">random</div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
