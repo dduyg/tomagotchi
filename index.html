@@ -1,107 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LiminalLoop</title>
-  <link href="https://fonts.googleapis.com/css2?family=Handjet&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
-    body {
-      font-family: "Handjet", sans-serif;
-      color: #1D1B1C;
-      background-color: #F7F4ED;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LiminalLoop</title>
+<style>
+  /* Make the page fill the screen */
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background-color: black;
+  }
 
-    header {
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      column-gap: 1rem;
-      padding: 2rem;
-      align-items: flex-start;
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 10;
-      color: white;
-      width: 100%;
-      mix-blend-mode: difference;
-      overflow: hidden;
-    }
-    header::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      mix-blend-mode: difference;
-    }
-    .title {
-      grid-column: 1 / 3;
-      display: flex;
-      align-items: flex-start;
-      font-size: clamp(0.8rem, 1vw, 1rem);
-      min-width: 0;
-    }
-    .nav {
-      grid-column: 4 / 10;
-      font-size: clamp(0.7rem, 1vw, 0.95rem);
-      min-width: 0;
-      list-style-type: upper-roman;
-    }
-    .nav li {
-      display: block;
-      margin-bottom: 0.35rem;
-    }
-    .cta {
-      grid-column: 10 / 13;
-      display: flex;
-      justify-content: flex-end;
-      font-size: clamp(0.7rem, 1vw, 0.95rem);
-      min-width: 0;
-    }
-    
-    .pin {
-      position: fixed;
-      bottom: 1%; left: 1%;
-      width: 120px;
-    }
+  /* Style the video to cover the whole background */
+  #myVideo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: -1; /* Put it behind other content */
+  }
 
-    @media (max-width: 768px) {
-      header { column-gap: 0.5rem; padding: 1rem; }
-      .title { grid-column: 1 / 4; }
-      .nav { grid-column: 4 / 10; }
-      .cta { grid-column: 10 / 13; }
-    }
-  </style>
+  /* Optional: Add overlay content (like title or button) */
+  .content {
+    position: relative;
+    z-index: 1;
+    color: white;
+    text-align: center;
+    top: 40%;
+    font-family: 'Helvetica Neue', sans-serif;
+  }
+
+  .content h1 {
+    font-size: 3rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  }
+
+  .content button {
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid white;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .content button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+  }
+</style>
 </head>
 <body>
-  <header>
-    <div class="title"><span onclick="window.location.href='https://nl.wikipedia.org/wiki/Wingdings'">Wingdings: ☠︎ᘉ⬥︎</span></div>
-    <ol class="nav">
-      <li>wOC^*zGYD8B.7</li>
-      <li>zddKbx)p+qwN/yZzFrQ4</li>
-      <li>v@Dm1B.tc8wGVe8A+O@>y?mU</li>
-      <li>B8UY2BAg/aay]4[z/6DiB7]-gz/b</li>
-      <li>v@Dj6y?m&lCvtVaazb+lv@#B6zu</li>
-    </ol>
-    <div class="cta">Proof of Concepts<br>Collages Sketch</div>
-  </header>
-  
-  <div class="pin">
-    <video id="myVideo" autoplay loop playsinline>
-      <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/shelf/06/AşırıKemalist.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
+
+<video id="myVideo" autoplay loop playsinline>
+  <source src="https://raw.githubusercontent.com/dduyg/LiminalLoop/shelf/06/AşırıKemalist.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<div class="content">
+  <h1>Liminal Loop</h1>
+  <button>Play Sound</button>
+</div>
 
 <script>
   const video = document.getElementById('myVideo');
+  const button = document.querySelector('button');
 
-  // Try to play automatically
+  // Try to autoplay
   video.play().catch(() => {
-    // If blocked, wait for user click
-    document.body.addEventListener('click', () => {
-      video.play();
-    }, { once: true });
+    // If autoplay with sound is blocked
+    button.style.display = 'inline-block';
+  });
+
+  // Play when user clicks button
+  button.addEventListener('click', () => {
+    video.play();
+    button.style.display = 'none';
   });
 </script>
 </body>
