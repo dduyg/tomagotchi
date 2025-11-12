@@ -32,16 +32,11 @@
         .card {
             border-radius: 12px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            overflow: visible;
+            overflow: hidden;
             max-width: 500px;
             width: 100%;
             position: relative;
             flex-shrink: 0;
-        }
-
-        .card-inner {
-            border-radius: 12px;
-            overflow: hidden;
         }
 
         .browser-bar {
@@ -73,7 +68,6 @@
             overflow: hidden;
             aspect-ratio: 3/4;
             object-fit: cover;
-            display: block;
         }
 
         .folders {
@@ -96,13 +90,10 @@
         .folder-icon {
             width: 120px;
             height: 90px;
-            background: linear-gradient(135deg, #96CCF2 0%, #7AB8E0 100%);
+            background: linear-gradient(180deg, #7db9de 0%, #5da5d5 100%);
             border-radius: 8px 8px 12px 12px;
             position: relative;
-            box-shadow: 
-                2px 3px 8px rgba(0, 0, 0, 0.15),
-                4px 6px 16px rgba(0, 0, 0, 0.12),
-                inset -2px -2px 4px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         }
         .folder-icon::before {
             content: '';
@@ -111,9 +102,8 @@
             left: 0;
             width: 50px;
             height: 12px;
-            background: linear-gradient(135deg, #96CCF2 0%, #7AB8E0 100%);
+            background: linear-gradient(180deg, #7db9de 0%, #6baed6 100%);
             border-radius: 4px 4px 0 0;
-            box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
         }
         .folder-label {
             margin-top: 12px;
@@ -122,89 +112,24 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
-        .yep-text {
-            position: absolute;
-            top: -40px;
-            left: -80px;
-            font-size: 120px;
-            font-weight: 400;
-            font-style: italic;
-            color: #1a2e5a;
-            z-index: 10;
-            font-family: 'Baskerville', 'Libre Baskerville', serif;
-            line-height: 0.9;
-        }
-
-        .thats-me-container {
-            position: absolute;
-            bottom: -60px;
-            right: -120px;
-            text-align: center;
-            z-index: 10;
-        }
-
-        .thats-me-text {
-            font-size: 100px;
-            font-weight: 400;
-            font-style: italic;
-            color: #1a2e5a;
-            font-family: 'Baskerville', 'Libre Baskerville', serif;
-            line-height: 0.9;
-            margin-bottom: 10px;
-        }
-
-        .subtitle-text {
-            font-size: 18px;
-            color: #333;
-            font-family: 'Baskerville', 'Libre Baskerville', serif;
-            letter-spacing: 3px;
-            word-spacing: 15px;
-        }
-
         /* --- Responsive Shrinking --- */
         @media (max-width: 768px) {
             .container {transform: scale(0.7);}
-            .yep-text {
-                font-size: 60px;
-                top: -20px;
-                left: -40px;
-            }
-            .thats-me-container {
-                bottom: -30px;
-                right: -60px;
-            }
-            .thats-me-text {
-                font-size: 50px;
-            }
-            .subtitle-text {
-                font-size: 12px;
-                letter-spacing: 2px;
-                word-spacing: 8px;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="card">
-            <div class="yep-text">Yep!</div>
-            
-            <div class="card-inner">
-                <div class="browser-bar">
-                    <div class="browser-controls">
-                        <div class="browser-button red"></div>
-                        <div class="browser-button yellow"></div>
-                        <div class="browser-button green"></div>
-                    </div>
-                    <div class="filename">📄 IMG_6780.HEIC</div>
+            <div class="browser-bar">
+                <div class="browser-controls">
+                    <div class="browser-button red"></div>
+                    <div class="browser-button yellow"></div>
+                    <div class="browser-button green"></div>
                 </div>
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=800&fit=crop">
+                <div class="filename">📄 IMG_6780.HEIC</div>
             </div>
-
-            <div class="thats-me-container">
-                <div class="thats-me-text">That's Me.</div>
-                <div class="subtitle-text">this is who you're dealing with<br>(sorry not sorry)</div>
-            </div>
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=800&fit=crop">
         </div>
 
         <div class="folders">
