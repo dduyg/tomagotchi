@@ -1,239 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yep! That's Me.</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yep! That's Me.</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Baskerville', 'Libre Baskerville', serif;
+            background: #c3cfe2;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
 
-    body {
-      font-family: 'Baskerville', 'Libre Baskerville', serif;
-      background: #f5f7fa;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 40px;
-      overflow-x: hidden;
-    }
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            justify-content: center;
+            flex-wrap: nowrap; /* Keep them side-by-side always */
+            transform-origin: center center;
+            transition: transform 0.3s ease;
+        }
 
-    .container {
-      display: flex;
-      align-items: flex-end;
-      gap: 60px;
-      flex-wrap: nowrap;
-      position: relative;
-    }
+        .main-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            flex-shrink: 0;
+        }
 
-    /* --- Main Card --- */
-    .main-card {
-      position: relative;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-      overflow: hidden;
-      max-width: 480px;
-      width: 100%;
-      flex-shrink: 0;
-    }
+        .browser-bar {
+            background: #e8e8e8;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-    .browser-bar {
-      background: #e8e8e8;
-      padding: 12px 16px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+        .browser-buttons {
+            display: flex;
+            gap: 8px;
+        }
 
-    .browser-buttons {
-      display: flex;
-      gap: 8px;
-    }
+        .browser-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
 
-    .browser-button {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-    }
+        .browser-button.red { background: #ff5f57; }
+        .browser-button.yellow { background: #ffbd2e; }
+        .browser-button.green { background: #28ca42; }
 
-    .browser-button.red { background: #ff5f57; }
-    .browser-button.yellow { background: #ffbd2e; }
-    .browser-button.green { background: #28ca42; }
+        .browser-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-left: 16px;
+            font-size: 11px;
+            color: #666;
+            flex: 1;
+        }
 
-    .browser-controls {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-left: 16px;
-      font-size: 11px;
-      color: #666;
-      flex: 1;
-    }
+        .filename {
+            font-size: 11px;
+            color: #333;
+        }
 
-    .filename {
-      font-size: 11px;
-      color: #333;
-    }
+        .image-container {
+            position: relative;
+            padding: 40px;
+            background: white;
+        }
 
-    /* --- Image Section --- */
-    .image-container {
-      position: relative;
-      width: 100%;
-      height: 600px;
-      overflow: hidden;
-    }
+        .yep-text {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            font-size: 72px;
+            font-style: italic;
+            color: #1a1a4d;
+            font-weight: 400;
+            z-index: 2;
+        }
 
-    .image-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+        .photo-frame {
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
 
-    .yep-text {
-      position: absolute;
-      top: 20px;
-      left: 40px;
-      font-size: 72px;
-      font-style: italic;
-      color: #1a1a4d;
-      font-weight: 400;
-      z-index: 2;
-    }
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-    /* --- Floating Text Outside the Card --- */
-    .thats-me-text {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: -60px;
-      font-size: 80px;
-      font-style: italic;
-      color: #1a1a4d;
-      font-weight: 400;
-      text-align: center;
-      white-space: nowrap;
-    }
+        .thats-me-text {
+            font-size: 80px;
+            font-style: italic;
+            color: #1a1a4d;
+            text-align: center;
+            margin-top: -20px;
+            font-weight: 400;
+            position: relative;
+            z-index: 2;
+        }
 
-    .subtitle {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: -110px;
-      text-align: center;
-      font-size: 16px;
-      color: #333;
-      letter-spacing: 6px;
-      word-spacing: 16px;
-    }
+        .subtitle {
+            text-align: center;
+            font-size: 16px;
+            color: #333;
+            margin-top: 20px;
+            padding: 0 40px 40px;
+            letter-spacing: 8px;
+            word-spacing: 20px;
+        }
 
-    /* --- Folder Section --- */
-    .folders-section {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      align-items: center;
-      flex-shrink: 0;
-    }
+        .folders-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+            flex-shrink: 0;
+        }
 
-    .folder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
+        .folder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
 
-    .folder:hover {
-      transform: translateY(-5px);
-    }
+        .folder:hover {
+            transform: translateY(-5px);
+        }
 
-    .folder-icon {
-      width: 120px;
-      height: 90px;
-      background: linear-gradient(180deg, #7db9de 0%, #5da5d5 100%);
-      border-radius: 8px 8px 12px 12px;
-      position: relative;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    }
+        .folder-icon {
+            width: 120px;
+            height: 90px;
+            background: linear-gradient(180deg, #7db9de 0%, #5da5d5 100%);
+            border-radius: 8px 8px 12px 12px;
+            position: relative;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
 
-    .folder-icon::before {
-      content: '';
-      position: absolute;
-      top: -8px;
-      left: 0;
-      width: 50px;
-      height: 12px;
-      background: linear-gradient(180deg, #7db9de 0%, #6baed6 100%);
-      border-radius: 4px 4px 0 0;
-    }
+        .folder-icon::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 0;
+            width: 50px;
+            height: 12px;
+            background: linear-gradient(180deg, #7db9de 0%, #6baed6 100%);
+            border-radius: 4px 4px 0 0;
+        }
 
-    .folder-label {
-      margin-top: 12px;
-      font-size: 14px;
-      color: #333;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    }
+        .folder-label {
+            margin-top: 12px;
+            font-size: 14px;
+            color: #333;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
 
-    /* --- Responsive --- */
-    @media (max-width: 700px) {
-      .container {
-        flex-direction: column;
-        align-items: center;
-        gap: 100px;
-      }
-      .thats-me-text, .subtitle {
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: -80px;
-      }
-    }
-  </style>
+        /* --- Responsive Shrinking Instead of Stacking --- */
+        @media (max-width: 1100px) {
+            .container {
+                transform: scale(0.9);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                transform: scale(0.8);
+            }
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                transform: scale(0.7);
+            }
+        }
+
+        @media (max-width: 550px) {
+            .container {
+                transform: scale(0.6);
+            }
+        }
+
+        @media (max-width: 450px) {
+            .container {
+                transform: scale(0.5);
+            }
+        }
+
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="main-card">
-      <div class="browser-bar">
-        <div class="browser-buttons">
-          <div class="browser-button red"></div>
-          <div class="browser-button yellow"></div>
-          <div class="browser-button green"></div>
+    <div class="container">
+        <div class="main-card">
+            <div class="browser-bar">
+                <div class="browser-buttons">
+                    <div class="browser-button red"></div>
+                    <div class="browser-button yellow"></div>
+                    <div class="browser-button green"></div>
+                </div>
+                <div class="browser-controls">
+                    <span>⬅️ ➡️</span>
+                    <span class="filename">📄 IMG_6780.HEIC ▼</span>
+                </div>
+            </div>
+            
+            <div class="image-container">
+                <div class="yep-text">Yep!</div>
+                
+                <div class="photo-frame">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=800&fit=crop" alt="Profile photo">
+                </div>
+                
+                <div class="thats-me-text">That's Me.</div>
+            </div>
+            
+            <div class="subtitle">
+                this is who you're dealing with<br>
+                (sorry not sorry)
+            </div>
         </div>
-        <div class="browser-controls">
-          <span>⬅️ ➡️</span>
-          <span class="filename">📄 IMG_6780.HEIC ▼</span>
+
+        <div class="folders-section">
+            <div class="folder">
+                <div class="folder-icon"></div>
+                <div class="folder-label">life</div>
+            </div>
+            
+            <div class="folder">
+                <div class="folder-icon"></div>
+                <div class="folder-label">design</div>
+            </div>
+            
+            <div class="folder">
+                <div class="folder-icon"></div>
+                <div class="folder-label">random</div>
+            </div>
         </div>
-      </div>
-
-      <div class="image-container">
-        <div class="yep-text">Yep!</div>
-        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&h=800&fit=crop" alt="Profile photo">
-      </div>
-
-      <!-- Overlapping Text -->
-      <div class="thats-me-text">That's Me.</div>
-      <div class="subtitle">this is who you're dealing with (sorry not sorry)</div>
     </div>
-
-    <!-- Folder Icons -->
-    <div class="folders-section">
-      <div class="folder">
-        <div class="folder-icon"></div>
-        <div class="folder-label">life</div>
-      </div>
-      <div class="folder">
-        <div class="folder-icon"></div>
-        <div class="folder-label">design</div>
-      </div>
-      <div class="folder">
-        <div class="folder-icon"></div>
-        <div class="folder-label">random</div>
-      </div>
-    </div>
-  </div>
 </body>
 </html>
