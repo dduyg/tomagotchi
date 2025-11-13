@@ -3,152 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Typography System</title>
+    <title>LiminalLoop</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            padding: 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #333;
+            background: white;
+            color: #ff00ff;
+            font-family: monospace;
+            overflow-x: hidden;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(#0a0a0f 1px, transparent 1px),
+                linear-gradient(90deg, #0a0a0f 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes gridMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
         }
 
         .container {
-            max-width: 1200px;
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
             margin: 0 auto;
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: clamp(1rem, 5vw, 4rem);
         }
 
-        /* Fluid typography classes - automatically scale */
-        .display {
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 1rem;
+        .terminal-line {
+            margin: 0.5rem 0;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
         }
+        .terminal-line:nth-child(2) { animation-delay: 0.5s; }
+        .terminal-line:nth-child(3) { animation-delay: 1s; }
+        .terminal-line:nth-child(4) { animation-delay: 1.5s; }
+        .terminal-line:nth-child(5) { animation-delay: 2s; }
+        @keyframes fadeIn { to { opacity: 1; } }
 
-        .heading {
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 0.8rem;
-        }
-
-        .subheading {
-            font-weight: 600;
-            line-height: 1.4;
-            margin-bottom: 0.6rem;
-        }
-
-        .body {
-            font-weight: 400;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .small {
-            font-weight: 400;
-            line-height: 1.5;
-        }
-
-        .demo-section {
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background: #f8f9fa;
-            border-radius: 12px;
-        }
-
-        .label {
+        .cursor {
             display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+            width: 10px;
+            height: 1em;
+            background: #ffff00;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="display">Automatic Responsive Typography</h1>
-        <p class="body">This system automatically scales all text based on screen size. No media queries needed!</p>
 
-        <div class="demo-section">
-            <span class="label">Display Text</span>
-            <div class="display">Display Size - Perfect for heroes</div>
-        </div>
-
-        <div class="demo-section">
-            <span class="label">Heading Text</span>
-            <div class="heading">Heading Size - Great for titles</div>
-        </div>
-
-        <div class="demo-section">
-            <span class="label">Subheading Text</span>
-            <div class="subheading">Subheading Size - Nice for sections</div>
-        </div>
-
-        <div class="demo-section">
-            <span class="label">Body Text</span>
-            <div class="body">Body Size - Perfect for paragraphs and main content. This text automatically adjusts based on your screen size, making it readable on any device from mobile phones to large desktop monitors.</div>
-        </div>
-
-        <div class="demo-section">
-            <span class="label">Small Text</span>
-            <div class="small">Small Size - Ideal for captions, footnotes, and supplementary information.</div>
+        <div class="terminal">
+            <div class="terminal-line">[SYSTEM@NEUROMANCER ~]$</div>
+            <div class="terminal-line">Initializing neural interface</div>
+            <div class="terminal-line">Loading cyberdeck modules</div>
+            <div class="terminal-line">Access granted.</div>
+            <div class="terminal-line"><span class="cursor"></span></div>
         </div>
     </div>
-
-    <script>
-        // Automatic responsive typography system
-        function setFluidTypography() {
-            const minWidth = 320;  // Minimum viewport width (mobile)
-            const maxWidth = 1920; // Maximum viewport width (desktop)
-            
-            // Define min and max font sizes for each type (in pixels)
-            const typeSizes = {
-                '.display': { min: 32, max: 72 },
-                '.heading': { min: 24, max: 48 },
-                '.subheading': { min: 18, max: 32 },
-                '.body': { min: 14, max: 18 },
-                '.small': { min: 12, max: 14 }
-            };
-            
-            const viewportWidth = Math.min(Math.max(window.innerWidth, minWidth), maxWidth);
-            const ratio = (viewportWidth - minWidth) / (maxWidth - minWidth);
-            
-            // Apply calculated sizes to each type
-            Object.keys(typeSizes).forEach(selector => {
-                const elements = document.querySelectorAll(selector);
-                const { min, max } = typeSizes[selector];
-                const fontSize = min + (max - min) * ratio;
-                
-                elements.forEach(el => {
-                    el.style.fontSize = `${fontSize}px`;
-                });
-            });
-        }
-        
-        // Run on load and resize
-        setFluidTypography();
-        window.addEventListener('resize', setFluidTypography);
-        
-        // Optional: Debounce resize for better performance
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(setFluidTypography, 100);
-        });
-    </script>
 </body>
 </html>
