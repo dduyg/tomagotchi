@@ -3,57 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vaporwave Grid Layout</title>
+  <title>Seapunk Grid Layout</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: "Poppins", sans-serif;
       margin: 20px;
       display: flex;
       justify-content: center;
-      background-color: #1a0033;
-      background-image: linear-gradient(180deg, #1a0033 0%, #2b004f 100%);
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       color: white;
     }
 
     .grid-container {
-      width: 900px;
+      width: 800px;
       display: grid;
-      gap: 20px;
+      gap: 15px;
     }
 
     /* Row Layouts */
-    .row1 { display: grid; grid-template-columns: 3fr 7fr; gap: 15px; }
-    .row2 { display: grid; grid-template-columns: 3fr 5fr 2fr; gap: 15px; }
-    .row3 { display: grid; grid-template-columns: 8fr 2fr; gap: 15px; }
-    .row4 { display: grid; grid-template-columns: 5fr 5fr; gap: 15px; }
+    .row1 { display: grid; grid-template-columns: 3fr 7fr; gap: 10px; }
+    .row2 { display: grid; grid-template-columns: 3fr 5fr 2fr; gap: 10px; }
+    .row3 { display: grid; grid-template-columns: 8fr 2fr; gap: 10px; }
+    .row4 { display: grid; grid-template-columns: 5fr 5fr; gap: 10px; }
 
     .box {
       padding: 25px;
-      border-radius: 16px;
+      border-radius: 14px;
       text-align: center;
-      font-weight: 700;
-      font-size: 1.3rem;
-      text-shadow: 0 0 8px rgba(255,255,255,0.5);
-      box-shadow: 0 0 15px rgba(255,255,255,0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-weight: 600;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .box:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(255,255,255,0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
     }
 
-    /* Vaporwave Color Palette */
-    .box1 { background: linear-gradient(135deg, #ff71ce, #b967ff); }
-    .box2 { background: linear-gradient(135deg, #01cdfe, #05ffa1); }
-    .box3 { background: linear-gradient(135deg, #ff71ce, #fffb96); }
-    .box4 { background: linear-gradient(135deg, #b967ff, #ff71ce); }
-    .box5 { background: linear-gradient(135deg, #01cdfe, #b967ff); }
-    .box6 { background: linear-gradient(135deg, #fffb96, #ff71ce); }
-    .box7 { background: linear-gradient(135deg, #05ffa1, #01cdfe); }
-    .box8 { background: linear-gradient(135deg, #b967ff, #01cdfe); }
-    .box9 { background: linear-gradient(135deg, #ff71ce, #05ffa1); }
-
+    /* Seapunk-inspired colors */
+    .box1 { background-color: #00f0b5; } /* neon aqua */
+    .box2 { background-color: #00b3c6; } /* ocean cyan */
+    .box3 { background-color: #6ef9f5; color: #0a3c46; } /* soft mint */
+    .box4 { background-color: #ff92d0; } /* pink coral */
+    .box5 { background-color: #7f5af0; } /* electric violet */
+    .box6 { background-color: #1be7ff; color: #08343a; } /* bright turquoise */
+    .box7 { background-color: #38b6ff; } /* light teal */
+    .box8 { background-color: #05ffa1; color: #062f24; } /* neon green-mint */
+    .box9 { background-color: #b388eb; } /* pastel purple */
   </style>
 </head>
 <body>
