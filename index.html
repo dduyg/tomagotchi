@@ -64,7 +64,7 @@
         }
         
         main {
-            margin: 30% auto 50px;
+            margin: 30% auto 100px;
             max-width: 1000px;
             width: 100%;
             display: flex;
@@ -215,6 +215,32 @@
             text-align: justify;
             text-align-last: justify;
         }
+        
+        footer { display: grid; gap: 60px; }
+        .row1 { display: grid; grid-template-columns: 3fr 7fr; }
+        .row2 { display: grid; grid-template-columns: 3fr 5fr 2fr; }
+        .row3 { display: grid; grid-template-columns: 8fr 2fr; }
+        .row4 { display: grid; grid-template-columns: 5fr 5fr; }
+        
+        .box {
+            color: white;
+            padding: 20px;
+            text-shadow: 0 0 5px rgba(255,255,255,0.7);
+            transition: transform 0.2s ease;
+        }
+        .box:hover {
+            transform: translateY(-4px);
+            animation: shimmer 5s infinite alternate;
+        }
+        @keyframes shimmer {
+            from {filter: hue-rotate(0deg);}
+            to {filter: hue-rotate(360deg);}
+        }
+        /* Seapunk-inspired colors */
+        .row1 .box {background: #0f2027;}
+        .row2 .box {background: #203a43;}
+        .row3 .box {background: #00f5a0;}
+        .row4 .box {background: #2c5364;}
 
         @media (max-width: 768px) {
             header { column-gap: 0.5rem; padding: 1rem; font-size: clamp(0.7rem, 1vw, 0.95rem); }
@@ -289,5 +315,25 @@
             </div>
         </div>
     </main>
+    
+    <footer>
+        <div class="row1">
+            <div class="box">3</div>
+            <div></div>
+        </div>
+        <div class="row2">
+            <div></div>
+            <div class="box">5</div>
+            <div></div>
+        </div>
+        <div class="row3">
+            <div></div>
+            <div class="box">8</div>
+        </div>
+        <div class="row4">
+            <div class="box">5</div>
+            <div></div>
+        </div>
+    </footer>
 </body>
 </html>
