@@ -3,76 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LiminalLoop</title>
+    <title>Responsive Typography System</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background: white;
-            color: #ff00ff;
-            font-family: monospace;
-            overflow-x: hidden;
-            position: relative;
-        }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(#0a0a0f 1px, transparent 1px),
-                linear-gradient(90deg, #0a0a0f 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridMove 20s linear infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
-        @keyframes gridMove {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(50px); }
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
         }
 
         .container {
-            position: relative;
-            z-index: 1;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: clamp(1rem, 5vw, 4rem);
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
 
-        .terminal-line {
-            margin: 5rem 0;
-            opacity: 0;
-            animation: fadeIn 0.5s forwards;
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #eee;
         }
-        .terminal-line:nth-child(2) { animation-delay: 0.5s; }
-        .terminal-line:nth-child(3) { animation-delay: 1s; }
-        .terminal-line:nth-child(4) { animation-delay: 1.5s; }
-        .terminal-line:nth-child(5) { animation-delay: 2s; }
-        @keyframes fadeIn { to { opacity: 1; } }
 
-        .cursor {
+        .size-indicator {
             display: inline-block;
-            width: 10px;
-            height: 1em;
-            background: #ffff00;
-            animation: blink 1s infinite;
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
         }
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
+
+        .content-section {
+            margin-bottom: 2rem;
+        }
+
+        .text-sample {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .label {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive Typography Classes */
+        .heading-xl {
+            font-weight: 800;
+            line-height: 1.2;
+            color: #1a1a1a;
+        }
+
+        .heading-lg {
+            font-weight: 700;
+            line-height: 1.3;
+            color: #2a2a2a;
+        }
+
+        .heading-md {
+            font-weight: 600;
+            line-height: 1.4;
+            color: #3a3a3a;
+        }
+
+        .heading-sm {
+            font-weight: 600;
+            line-height: 1.4;
+            color: #4a4a4a;
+        }
+
+        .body-lg {
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .body-md {
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .body-sm {
+            line-height: 1.5;
+            color: #777;
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="header">
+            <h1 class="heading-xl">Responsive Typography System</h1>
+            <div class="size-indicator" id="sizeIndicator">Loading...</div>
+        </div>
 
-        <div class="terminal">
-            <div class="terminal-line">[SYSTEM@NEUROMANCER ~]$</div>
-            <div class="terminal-line">Initializing neural interface</div>
-            <div class="terminal-line">Loading cyberdeck modules</div>
-            <div class="terminal-line">Access granted.</div>
-            <div class="terminal-line"><span class="cursor"></span></div>
+        <div class="content-section">
+            <div class="text-sample">
+                <div class="label">Extra Large Heading</div>
+                <h1 class="heading-xl">The Quick Brown Fox Jumps Over</h1>
+            </div>
+
+            <div class="text-sample">
+                <div class="label">Large Heading</div>
+                <h2 class="heading-lg">Creating Beautiful Typography at Scale</h2>
+            </div>
+
+            <div class="text-sample">
+                <div class="label">Medium Heading</div>
+                <h3 class="heading-md">Responsive Design for Modern Web</h3>
+            </div>
+
+            <div class="text-sample">
+                <div class="label">Small Heading</div>
+                <h4 class="heading-sm">Adapts to Every Screen Size</h4>
+            </div>
+
+            <div class="text-sample">
+                <div class="label">Large Body Text</div>
+                <p class="body-lg">This typography system automatically scales based on your viewport size, ensuring optimal readability across all devices from mobile phones to large desktop screens.</p>
+            </div>
+
+            <div class="text-sample">
+                <div class="label">Medium Body Text</div>
+                <p class="body-md">The scaling uses a combination of viewport width calculations and breakpoints to create smooth, proportional sizing that looks great everywhere. Resize your browser to see it in action!</p>
+            </div>
+
+            <div class="text-sample">
+                <div class="label">Small Body Text</div>
+                <p class="body-sm">Fine print and smaller details scale down proportionally while maintaining readability. Perfect for captions, footnotes, and supplementary information.</p>
+            </div>
         </div>
     </div>
+
+    <script>
+        // Responsive Typography Scaling System
+        class ResponsiveTypography {
+            constructor() {
+                this.breakpoints = {
+                    mobile: 320,
+                    tablet: 768,
+                    desktop: 1024,
+                    large: 1440
+                };
+
+                this.typescale = {
+                    'heading-xl': { min: 32, max: 72 },
+                    'heading-lg': { min: 24, max: 48 },
+                    'heading-md': { min: 20, max: 36 },
+                    'heading-sm': { min: 18, max: 28 },
+                    'body-lg': { min: 18, max: 24 },
+                    'body-md': { min: 16, max: 20 },
+                    'body-sm': { min: 14, max: 16 }
+                };
+
+                this.init();
+            }
+
+            init() {
+                this.updateSizes();
+                window.addEventListener('resize', () => this.debounce(() => this.updateSizes(), 100));
+            }
+
+            calculateSize(min, max) {
+                const vw = window.innerWidth;
+                const minVw = this.breakpoints.mobile;
+                const maxVw = this.breakpoints.large;
+
+                if (vw <= minVw) return min;
+                if (vw >= maxVw) return max;
+
+                // Linear interpolation between min and max based on viewport
+                const slope = (max - min) / (maxVw - minVw);
+                return min + slope * (vw - minVw);
+            }
+
+            updateSizes() {
+                // Update all typography elements
+                Object.keys(this.typescale).forEach(className => {
+                    const elements = document.querySelectorAll(`.${className}`);
+                    const { min, max } = this.typescale[className];
+                    const size = this.calculateSize(min, max);
+
+                    elements.forEach(el => {
+                        el.style.fontSize = `${size}px`;
+                    });
+                });
+
+                // Update size indicator
+                this.updateIndicator();
+            }
+
+            updateIndicator() {
+                const vw = window.innerWidth;
+                const indicator = document.getElementById('sizeIndicator');
+                
+                let sizeName = 'Mobile';
+                if (vw >= this.breakpoints.large) sizeName = 'Large Desktop';
+                else if (vw >= this.breakpoints.desktop) sizeName = 'Desktop';
+                else if (vw >= this.breakpoints.tablet) sizeName = 'Tablet';
+
+                indicator.textContent = `${sizeName} - ${vw}px wide`;
+            }
+
+            debounce(func, wait) {
+                clearTimeout(this.timeout);
+                this.timeout = setTimeout(func, wait);
+            }
+        }
+
+        // Initialize the system
+        new ResponsiveTypography();
+    </script>
 </body>
 </html>
