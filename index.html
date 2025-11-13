@@ -20,8 +20,8 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             background-image: 
-                linear-gradient(rgba(0,0,0, 0.7) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,0,0, 0.7) 1px, transparent 1px);
+                linear-gradient(rgba(0,0,0, 0.6) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0, 0.6) 1px, transparent 1px);
             background-size: 50px 50px;
             pointer-events: none;
             z-index: 0;
@@ -33,37 +33,35 @@
             else: 1vw);
             result: clamp(var(--font-min), var(--scalar) + var(--font-min), var(--font-max));
         }
-        @supports (font-size: if(style(--foo: bar): 1vw; else: 2vw)) {h1 {
-        --header-min: 24px;
-        --header-max: 36px;
-        font-size: --fluid-type(var(--header-min), var(--header-max), 'header');
-      }
+        @supports (font-size: if(style(--foo: bar): 1vw; else: 2vw)) {
+            h1 {
+                --header-min: 24px;
+                --header-max: 36px;
+                font-size: --fluid-type(var(--header-min), var(--header-max), 'header');
+            }
+            p {
+                --copy-min: 16px;
+                --copy-max: 24px;
+                font-size: --fluid-type(var(--copy-min), var(--copy-max), 'copy');
+            }
+        }
 
-      p {
-        --copy-min: 16px;
-        --copy-max: 24px;
-        font-size: --fluid-type(var(--copy-min), var(--copy-max), 'copy');
-      }
-    }
-
-        .container {
+        .terminal {
             position: relative;
             z-index: 1;
             max-width: 1000px;
             margin: 20vh auto 0;
             padding: clamp(1rem, 5vw, 4rem);
         }
-
-        .terminal-line {
-            margin: 0.5rem 0;
+        h1, p {
             opacity: 0;
             animation: fadeIn 0.5s forwards;
         }
-        .terminal-line:nth-child(2) { animation-delay: 0.5s; }
-        .terminal-line:nth-child(3) { animation-delay: 1s; }
-        .terminal-line:nth-child(4) { animation-delay: 1.5s; }
-        .terminal-line:nth-child(5) { animation-delay: 2s; }
-        @keyframes fadeIn { to { opacity: 1; } }
+        p:nth-child(1) { animation-delay: 0.5s; }
+        p:nth-child(2) { animation-delay: 1s; }
+        p:nth-child(3) { animation-delay: 1.5s; }
+        p:nth-child(4) { animation-delay: 2s; }
+        @keyframes fadeIn { to {opacity: 1;} }
 
         .cursor {
             display: inline-block;
@@ -79,21 +77,12 @@
     </style>
 </head>
 <body>
-    <div class="container">
-
-      <h1>Heading Scales Fluidly</h1>
-  <p>
-    This paragraph uses a slower scaling factor and will stay within its min and max values.
-    Resize the browser to see how both texts adapt differently.
-  </p>  
-        
-        <div class="terminal">
-            <div class="terminal-line">[SYSTEM@NEUROMANCER ~]$</div>
-            <div class="terminal-line">Initializing neural interface</div>
-            <div class="terminal-line">Loading cyberdeck modules</div>
-            <div class="terminal-line">Access granted.</div>
-            <div class="terminal-line"><span class="cursor"></span></div>
-        </div>
+    <div class="terminal">
+        <h1>[SYSTEM@NEUROMANCER ~]$</h1>
+        <p>This paragraph uses a slower scaling factor</p>
+        <p>and will stay within its min and max values.</p>
+        <p>Resize the browser to see how both texts adapt differently.</p>  
+        <p><span class="cursor"></span></p>     
     </div>
 </body>
 </html>
