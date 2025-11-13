@@ -225,22 +225,19 @@
         .box {
             color: white;
             padding: 20px;
+            border: 1px dashed #1D1B1C;
             text-shadow: 0 0 5px rgba(255,255,255,0.7);
-            transition: transform 0.2s ease;
         }
-        .box:hover {
-            transform: translateY(-4px);
-            animation: shimmer 5s infinite alternate;
-        }
+        .box:hover {animation: shimmer 5s infinite alternate;}
         @keyframes shimmer {
             from {filter: hue-rotate(0deg);}
             to {filter: hue-rotate(360deg);}
         }
         /* Seapunk-inspired colors */
-        .row1 .box {background: linear-gradient(160deg, #001f3f 0%, #0074d9 50%, #00ffff 100%);}
-        .row2 .box {background: linear-gradient(90deg, #0a001f 0%, #6f00ff 40%, #ff00cc 100%);}
+        .row1 .box {background: linear-gradient(135deg, #001100 0%, #003300 40%, #00ff88 100%);}
+        .row2 .box {background: linear-gradient(to right, #7AA1D2, #DBD4B4, #CC95C0);}
         .row3 .box {background: #00f5a0;}             
-        .row4 .box {background: linear-gradient(120deg, #0f0c29 0%, #302b63 50%, #24243e 100%);}
+        .row4 .box {background: linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E);}
 
         @media (max-width: 768px) {
             header { column-gap: 0.5rem; padding: 1rem; font-size: clamp(0.7rem, 1vw, 0.95rem); }
