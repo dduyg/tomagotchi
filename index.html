@@ -3,69 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Custom Grid Layout with Colors</title>
+  <title>Vaporwave Grid Layout</title>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       margin: 20px;
       display: flex;
       justify-content: center;
-      background-color: #f4f4f4;
+      background-color: #1a0033;
+      background-image: linear-gradient(180deg, #1a0033 0%, #2b004f 100%);
+      color: white;
     }
 
     .grid-container {
-      width: 800px;
+      width: 900px;
       display: grid;
-      gap: 15px;
+      gap: 20px;
     }
 
-    /* Row 1: 3/7 */
-    .row1 {
-      display: grid;
-      grid-template-columns: 3fr 7fr;
-      gap: 10px;
-    }
-
-    /* Row 2: 3/5/2 */
-    .row2 {
-      display: grid;
-      grid-template-columns: 3fr 5fr 2fr;
-      gap: 10px;
-    }
-
-    /* Row 3: 8/2 */
-    .row3 {
-      display: grid;
-      grid-template-columns: 8fr 2fr;
-      gap: 10px;
-    }
-
-    /* Row 4: 5/5 */
-    .row4 {
-      display: grid;
-      grid-template-columns: 5fr 5fr;
-      gap: 10px;
-    }
+    /* Row Layouts */
+    .row1 { display: grid; grid-template-columns: 3fr 7fr; gap: 15px; }
+    .row2 { display: grid; grid-template-columns: 3fr 5fr 2fr; gap: 15px; }
+    .row3 { display: grid; grid-template-columns: 8fr 2fr; gap: 15px; }
+    .row4 { display: grid; grid-template-columns: 5fr 5fr; gap: 15px; }
 
     .box {
-      color: white;
-      padding: 20px;
-      border-radius: 10px;
+      padding: 25px;
+      border-radius: 16px;
       text-align: center;
-      font-weight: bold;
-      font-size: 1.2rem;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-shadow: 0 0 8px rgba(255,255,255,0.5);
+      box-shadow: 0 0 15px rgba(255,255,255,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    /* Unique colors for each box */
-    .box1 { background-color: #4e79a7; }
-    .box2 { background-color: #f28e2b; }
-    .box3 { background-color: #e15759; }
-    .box4 { background-color: #76b7b2; }
-    .box5 { background-color: #59a14f; }
-    .box6 { background-color: #edc948; }
-    .box7 { background-color: #b07aa1; }
-    .box8 { background-color: #ff9da7; }
-    .box9 { background-color: #9c755f; }
+    .box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px rgba(255,255,255,0.5);
+    }
+
+    /* Vaporwave Color Palette */
+    .box1 { background: linear-gradient(135deg, #ff71ce, #b967ff); }
+    .box2 { background: linear-gradient(135deg, #01cdfe, #05ffa1); }
+    .box3 { background: linear-gradient(135deg, #ff71ce, #fffb96); }
+    .box4 { background: linear-gradient(135deg, #b967ff, #ff71ce); }
+    .box5 { background: linear-gradient(135deg, #01cdfe, #b967ff); }
+    .box6 { background: linear-gradient(135deg, #fffb96, #ff71ce); }
+    .box7 { background: linear-gradient(135deg, #05ffa1, #01cdfe); }
+    .box8 { background: linear-gradient(135deg, #b967ff, #01cdfe); }
+    .box9 { background: linear-gradient(135deg, #ff71ce, #05ffa1); }
+
   </style>
 </head>
 <body>
