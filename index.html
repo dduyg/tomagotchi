@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LiminalLoop Items</title>
+  <title>LiminalLoop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Micro+5+Charted&display=swap" rel="stylesheet">
   <style>
+    * { -webkit-tap-highlight-color: transparent; }
     body {
       margin: 0;
       padding: 6em 1em 0;
       background: #f0ede4;
       color: black;
-      font-family: Georgia, serif;
     }
 
-    .container {
+    nav {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 2rem;
     }
 
     .item {
@@ -64,29 +64,61 @@
     .item:hover > .holder {
       transform: translateX(1em);
     }
-
     .item:hover > .holder::before {
       transform: translateX(-100%);
+    }
+  
+    footer {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      padding: 20px;
+      font-family: "Micro 5 Charted", sans-serif;
+    }
+    .glitch {
+      font-size: 1.7rem;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      position: relative;
+      color: #551B8C;
+    }
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      overflow: hidden;
+      background: none;
+      clip: rect(0, 900px, 0, 0);
+    }
+    .glitch::before {
+      animation: glitch 3s infinite linear;
+      color: #ff6b6b;
+    }
+    .glitch::after {
+      animation: glitch 2.5s infinite linear reverse;
+      color: #1dd1a1;
+    }
+    @keyframes glitch {
+      0% {clip: rect(0, 900px, 0, 0);}
+      25% {clip: rect(20px, 900px, 60px, 0);}
+      50% {clip: rect(40px, 900px, 80px, 0);}
+      75% {clip: rect(60px, 900px, 100px, 0);}
+      100% {clip: rect(0, 900px, 0, 0);}
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="item">
-      <div class="holder">Home</div>
-    </div>
-    
-    <div class="item">
-      <div class="holder">Blog</div>
-    </div>
-    
-    <div class="item">
-      <div class="holder">Contact</div>
-    </div>
-    
-    <div class="item">
-      <div class="holder">Portfolio</div>
-    </div>
-  </div>
+  <nav>
+    <div class="item"><div class="holder">Node</div></div>
+    <div class="item"><div class="holder">Gemini</div></div>   
+    <div class="item"><div class="holder">Daeho</div></div>    
+    <div class="item"><div class="holder">Wavy</div></div>
+    <div class="item"><div class="holder">Void</div></div>
+    <div class="item"><div class="holder">Outlier</div></div>
+  </nav>
+  
+  <footer><div class="glitch" data-text="hexadecimal">hexadecimal</div></footer>
 </body>
 </html>
