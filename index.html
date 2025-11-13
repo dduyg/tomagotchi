@@ -221,9 +221,19 @@
         .row1 {display: grid; grid-template-columns: 3fr 7fr;}
         .row2 {display: grid; grid-template-columns: 3fr 5fr 2fr;}
         .row3 {display: grid; grid-template-columns: 8fr 2fr;}
-        .row-txt {font-size: 1.6rem; text-align: center; font-family: "Sometype Mono", monospace;}
         .row4 {display: grid; grid-template-columns: 5fr 5fr;}
-        
+
+        .row-txt {
+            font-size: 1.6rem;
+            text-align: center;
+            font-family: "Sometype Mono", monospace;
+            opacity: 0.8;
+            animation: pulse 2s infinite;      
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 0.3; }
+        }
         .box {
             font-family: "Jacquard 12", serif;
             text-align: center;
@@ -249,12 +259,9 @@
             main {transform: scale(0.7);}
             .folder {transform: scale(0.8);}
             .text, .title {font-size: 57px;}
-            .subtitle {
-                font-size: 12px;
-                letter-spacing: 2px;
-                word-spacing: 8px;
-            }
+            .subtitle {font-size: 12px; letter-spacing: 2px; word-spacing: 8px;}
             .row3 .box img {width: 50px;}
+            .row-txt {font-size: 1.4rem}
         }
   </style>
 </head>
