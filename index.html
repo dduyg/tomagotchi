@@ -12,42 +12,59 @@
       color: white;
     }
 
-    footer { display: grid; gap: 30px; }
+    footer { display: grid; gap: 60px; }
     .row1 { display: grid; grid-template-columns: 3fr 7fr; }
     .row2 { display: grid; grid-template-columns: 3fr 5fr 2fr; }
     .row3 { display: grid; grid-template-columns: 8fr 2fr; }
     .row4 { display: grid; grid-template-columns: 5fr 5fr; }
 
     .box {
+      color: white;
+      text-align: center;
+      padding: 20px;
+      border-radius: 12px;
+      font-family: 'Courier New', monospace;
+      text-shadow: 0 0 5px rgba(255,255,255,0.7);
       font-size: 1.2rem;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      /* transition: transform 0.2s ease; */
     }
-    .box:hover { transform: translateY(-4px); }
-
+    .box:hover { 
+      /* transform: translateY(-4px); */
+      animation: shimmer 5s infinite alternate;
+    }
+    @keyframes shimmer {
+      from {filter: hue-rotate(0deg);}
+      to {filter: hue-rotate(360deg);}
+    }
     /* Seapunk-inspired colors */
-    .box1 { background-color: #00f0b5; }
-    .box2 { background-color: #ff92d0; }
-    .box3 { background-color: #1be7ff; }
-    .box4 { background-color: #b388eb; }
+    .row1 .box {background: linear-gradient(135deg, #00f5d4, #00bbf9);}
+    .row2 .box {background: linear-gradient(135deg, #9b5de5, #f15bb5);}
+    .row3 .box {background: linear-gradient(135deg, #00f5a0, #00d9f5);}
+    .row4 .box {background: linear-gradient(135deg, #40c9ff, #e81cff);}  
+    
+    .box1 { background: #00f0b5; }
+    .box2 { background: #ff92d0; }
+    .box3 { background: #1be7ff; }
+    .box4 { background: #b388eb; }
   </style>
 </head>
 <body>
   <footer>
     <div class="row1">
-      <div class="box box1">3</div>
+      <div class="box">3</div>
       <div></div>
     </div>
     <div class="row2">
       <div></div>
-      <div class="box box2">5</div>
+      <div class="box">5</div>
       <div></div>
     </div>
     <div class="row3">
       <div></div>
-      <div class="box box3">8</div>
+      <div class="box">8</div>
     </div>
     <div class="row4">
-      <div class="box box4">5</div>
+      <div class="box">5</div>
       <div></div>
     </div>
   </footer>
