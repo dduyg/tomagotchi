@@ -1,78 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LiminalLoop Click Arrow</title>
-  <style>
-    :root {
-      --arrow-svg: url("data:image/svg+xml;utf8,\
-        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 542 62'>\
-          <path d='M510.2 61.1l-2.1-2.2 27.3-26.4H.7v-3h534.8L508.1 3.1l2.1-2.2L541.3 31l-31.1 30.1z'/>\
-        </svg>");
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arrow Items</title>
+<style>
+body {
+  margin: 0;
+  padding: 2em;
+  background: #f0ede4;
+  font-family: sans-serif;
+}
 
-    body {
-      margin: 0;
-      padding: 3em;
-      background: #f0ede4;
-      font-family: serif;
-    }
+.item {
+  position: relative;
+  font-size: 3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 1em 0;
+  cursor: pointer;
+  display: inline-block;
+  overflow: hidden;
+  padding-left: 3em; /* space for arrow */
+}
 
-    .item {
-      position: relative;
-      display: inline-block;
-      text-transform: uppercase;
-      font-size: 3.5rem;
-      padding-left: 1.5em;
-      cursor: pointer;
-      margin: 0.5em 0;
-      transition: transform 1s cubic-bezier(0.165, 0.875, 0.02, 1);
-    }
+.item::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 2em;
+  height: 2em;
+  background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 542 62" xmlns="http://www.w3.org/2000/svg"><path d="M510.2 61.1l-2.1-2.2 27.3-26.4H.7v-3h534.8L508.1 3.1l2.1-2.2L541.3 31l-31.1 30.1z" fill="black"/></svg>');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: translate(-120%, -50%);
+  transition: transform 1s cubic-bezier(0.165, 0.875, 0.02, 1);
+}
 
-    /* Arrow pseudo-element */
-    .item::before {
-      content: "";
-      position: absolute;
-      top: 20%;
-      left: 0;
-      width: 1.4em;
-      height: 60%;
+.item:hover::before {
+  transform: translate(-100%, -50%);
+}
 
-      -webkit-mask-image: var(--arrow-svg);
-      mask-image: var(--arrow-svg);
-      -webkit-mask-size: contain;
-      mask-size: contain;
-      -webkit-mask-repeat: no-repeat;
-      mask-repeat: no-repeat;
+.item span {
+  display: inline-block;
+  transition: transform 1s cubic-bezier(0.165, 0.875, 0.02, 1);
+}
 
-      background: black;
-
-      transform: translateX(-120%);
-      transition: transform 1s cubic-bezier(0.165, 0.875, 0.02, 1);
-    }
-
-    /* ACTIVE state */
-    .item.active {
-      transform: translateX(1em);
-    }
-
-    .item.active::before {
-      transform: translateX(-100%);
-    }
-  </style>
+.item:hover span {
+  transform: translateX(1em);
+}
+</style>
 </head>
 <body>
-  <div class="item">Home</div>
-  <div class="item">Blog</div>
-  <div class="item">Contact</div>
 
-  <script>
-    document.querySelectorAll('.item').forEach(item => {
-      item.addEventListener('click', () => {
-        item.classList.toggle('active');
-      });
-    });
-  </script>
+<div class="item"><span>Home</span></div>
+<div class="item"><span>Blog</span></div>
+<div class="item"><span>Contact</span></div>
+
 </body>
 </html>
