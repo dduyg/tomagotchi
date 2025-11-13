@@ -140,10 +140,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            color: inherit;
+            text-decoration: none;
             cursor: pointer;
             transition: transform 0.2s;
         }
-        .folder:hover { transform: translateY(-5px); }
+        .folder:hover {transform: translateY(-5px);}
         .folder-icon {
             width: 120px;
             height: 90px;
@@ -308,18 +310,18 @@
         </div>
 
         <div class="folders">
-            <div class="folder"><div class="folder-icon"></div><div class="folder-label">life</div></div>     
-            <div class="folder"><div class="folder-icon"></div><div class="folder-label">code</div></div>     
-            <div class="folder"><div class="folder-icon"></div><div class="folder-label">random</div></div>
+            <a href="#life" class="folder"><div class="folder-icon"></div><div class="folder-label">life</div></a>   
+            <a href="#code" class="folder"><div class="folder-icon"></div><div class="folder-label">code</div></a>    
+            <a href="#random" class="folder"><div class="folder-icon"></div><div class="folder-label">random</div></a>
         </div>
     </main>
     
     <footer>
-        <div class="row1"><div class="box">Metapolis, Hwaseong</div><div></div></div>
+        <div class="row1" id="life"><div class="box">Metapolis, Hwaseong</div><div></div></div>
         <div class="row2"><div></div><div class="box">Monte Carlo</div><div></div></div>
-        <div class="row3"><div></div><div class="box"><img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/ProofofConcepts.png"></div></div>
+        <div class="row3" id="code"><div></div><div class="box"><img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/ProofofConcepts.png"></div></div>
         <div class="row-txt">low tide at the dryin' out facility<br>☹︎♓︎❍︎♓︎■︎♋︎●︎☹︎</div>
-        <div class="row4"><div class="box">Kyoo-tae</div><div></div></div>
+        <div class="row4" id="random"><div class="box">Kyoo-tae</div><div></div></div>
     </footer>
 </body>
 </html>
