@@ -29,207 +29,126 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
 
-        .header {
-            text-align: center;
+        /* Fluid typography classes - automatically scale */
+        .display {
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .heading {
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 0.8rem;
+        }
+
+        .subheading {
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 0.6rem;
+        }
+
+        .body {
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .small {
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .demo-section {
             margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 2px solid #eee;
-        }
-
-        .size-indicator {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-        }
-
-        .content-section {
-            margin-bottom: 2rem;
-        }
-
-        .text-sample {
-            margin-bottom: 1.5rem;
-            padding: 1rem;
+            padding: 2rem;
             background: #f8f9fa;
-            border-radius: 10px;
+            border-radius: 12px;
         }
 
         .label {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
             font-weight: 600;
-            color: #667eea;
             margin-bottom: 0.5rem;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Responsive Typography Classes */
-        .heading-xl {
-            font-weight: 800;
-            line-height: 1.2;
-            color: #1a1a1a;
-        }
-
-        .heading-lg {
-            font-weight: 700;
-            line-height: 1.3;
-            color: #2a2a2a;
-        }
-
-        .heading-md {
-            font-weight: 600;
-            line-height: 1.4;
-            color: #3a3a3a;
-        }
-
-        .heading-sm {
-            font-weight: 600;
-            line-height: 1.4;
-            color: #4a4a4a;
-        }
-
-        .body-lg {
-            line-height: 1.7;
-            color: #555;
-        }
-
-        .body-md {
-            line-height: 1.6;
-            color: #666;
-        }
-
-        .body-sm {
-            line-height: 1.5;
-            color: #777;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1 class="heading-xl">Responsive Typography System</h1>
-            <div class="size-indicator" id="sizeIndicator">Loading...</div>
+        <h1 class="display">Automatic Responsive Typography</h1>
+        <p class="body">This system automatically scales all text based on screen size. No media queries needed!</p>
+
+        <div class="demo-section">
+            <span class="label">Display Text</span>
+            <div class="display">Display Size - Perfect for heroes</div>
         </div>
 
-        <div class="content-section">
-            <div class="text-sample">
-                <div class="label">Extra Large Heading</div>
-                <h1 class="heading-xl">The Quick Brown Fox Jumps Over</h1>
-            </div>
+        <div class="demo-section">
+            <span class="label">Heading Text</span>
+            <div class="heading">Heading Size - Great for titles</div>
+        </div>
 
-            <div class="text-sample">
-                <div class="label">Large Heading</div>
-                <h2 class="heading-lg">Creating Beautiful Typography at Scale</h2>
-            </div>
+        <div class="demo-section">
+            <span class="label">Subheading Text</span>
+            <div class="subheading">Subheading Size - Nice for sections</div>
+        </div>
 
-            <div class="text-sample">
-                <div class="label">Medium Heading</div>
-                <h3 class="heading-md">Responsive Design for Modern Web</h3>
-            </div>
+        <div class="demo-section">
+            <span class="label">Body Text</span>
+            <div class="body">Body Size - Perfect for paragraphs and main content. This text automatically adjusts based on your screen size, making it readable on any device from mobile phones to large desktop monitors.</div>
+        </div>
 
-            <div class="text-sample">
-                <div class="label">Small Heading</div>
-                <h4 class="heading-sm">Adapts to Every Screen Size</h4>
-            </div>
-
-            <div class="text-sample">
-                <div class="label">Large Body Text</div>
-                <p class="body-lg">This typography system automatically scales based on your viewport size, ensuring optimal readability across all devices from mobile phones to large desktop screens.</p>
-            </div>
-
-            <div class="text-sample">
-                <div class="label">Medium Body Text</div>
-                <p class="body-md">The scaling uses a combination of viewport width calculations and breakpoints to create smooth, proportional sizing that looks great everywhere. Resize your browser to see it in action!</p>
-            </div>
-
-            <div class="text-sample">
-                <div class="label">Small Body Text</div>
-                <p class="body-sm">Fine print and smaller details scale down proportionally while maintaining readability. Perfect for captions, footnotes, and supplementary information.</p>
-            </div>
+        <div class="demo-section">
+            <span class="label">Small Text</span>
+            <div class="small">Small Size - Ideal for captions, footnotes, and supplementary information.</div>
         </div>
     </div>
 
     <script>
-        // Responsive Typography Scaling System
-        class ResponsiveTypography {
-            constructor() {
-                this.breakpoints = {
-                    mobile: 320,
-                    tablet: 768,
-                    desktop: 1024,
-                    large: 1440
-                };
-
-                this.typescale = {
-                    'heading-xl': { min: 32, max: 72 },
-                    'heading-lg': { min: 24, max: 48 },
-                    'heading-md': { min: 20, max: 36 },
-                    'heading-sm': { min: 18, max: 28 },
-                    'body-lg': { min: 18, max: 24 },
-                    'body-md': { min: 16, max: 20 },
-                    'body-sm': { min: 14, max: 16 }
-                };
-
-                this.init();
-            }
-
-            init() {
-                this.updateSizes();
-                window.addEventListener('resize', () => this.debounce(() => this.updateSizes(), 100));
-            }
-
-            calculateSize(min, max) {
-                const vw = window.innerWidth;
-                const minVw = this.breakpoints.mobile;
-                const maxVw = this.breakpoints.large;
-
-                if (vw <= minVw) return min;
-                if (vw >= maxVw) return max;
-
-                // Linear interpolation between min and max based on viewport
-                const slope = (max - min) / (maxVw - minVw);
-                return min + slope * (vw - minVw);
-            }
-
-            updateSizes() {
-                // Update all typography elements
-                Object.keys(this.typescale).forEach(className => {
-                    const elements = document.querySelectorAll(`.${className}`);
-                    const { min, max } = this.typescale[className];
-                    const size = this.calculateSize(min, max);
-
-                    elements.forEach(el => {
-                        el.style.fontSize = `${size}px`;
-                    });
-                });
-
-                // Update size indicator
-                this.updateIndicator();
-            }
-
-            updateIndicator() {
-                const vw = window.innerWidth;
-                const indicator = document.getElementById('sizeIndicator');
+        // Automatic responsive typography system
+        function setFluidTypography() {
+            const minWidth = 320;  // Minimum viewport width (mobile)
+            const maxWidth = 1920; // Maximum viewport width (desktop)
+            
+            // Define min and max font sizes for each type (in pixels)
+            const typeSizes = {
+                '.display': { min: 32, max: 72 },
+                '.heading': { min: 24, max: 48 },
+                '.subheading': { min: 18, max: 32 },
+                '.body': { min: 14, max: 18 },
+                '.small': { min: 12, max: 14 }
+            };
+            
+            const viewportWidth = Math.min(Math.max(window.innerWidth, minWidth), maxWidth);
+            const ratio = (viewportWidth - minWidth) / (maxWidth - minWidth);
+            
+            // Apply calculated sizes to each type
+            Object.keys(typeSizes).forEach(selector => {
+                const elements = document.querySelectorAll(selector);
+                const { min, max } = typeSizes[selector];
+                const fontSize = min + (max - min) * ratio;
                 
-                let sizeName = 'Mobile';
-                if (vw >= this.breakpoints.large) sizeName = 'Large Desktop';
-                else if (vw >= this.breakpoints.desktop) sizeName = 'Desktop';
-                else if (vw >= this.breakpoints.tablet) sizeName = 'Tablet';
-
-                indicator.textContent = `${sizeName} - ${vw}px wide`;
-            }
-
-            debounce(func, wait) {
-                clearTimeout(this.timeout);
-                this.timeout = setTimeout(func, wait);
-            }
+                elements.forEach(el => {
+                    el.style.fontSize = `${fontSize}px`;
+                });
+            });
         }
-
-        // Initialize the system
-        new ResponsiveTypography();
+        
+        // Run on load and resize
+        setFluidTypography();
+        window.addEventListener('resize', setFluidTypography);
+        
+        // Optional: Debounce resize for better performance
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(setFluidTypography, 100);
+        });
     </script>
 </body>
 </html>
