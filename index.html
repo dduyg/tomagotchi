@@ -3,34 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyberpunk Coder</title>
+    <title>LiminalLoop</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --neon-cyan: #00ffff;
-            --neon-magenta: #ff00ff;
-            --neon-yellow: #ffff00;
-            --dark-bg: #0a0a0f;
-            --grid-color: rgba(0, 255, 255, 0.1);
-        }
-
         body {
-            background: var(--dark-bg);
-            color: var(--neon-cyan);
-            font-family: 'Courier New', monospace;
+            background: white;
+            color: #ff00ff;
+            font-family: monospace;
             overflow-x: hidden;
             position: relative;
         }
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background-image: 
-                linear-gradient(var(--grid-color) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+                linear-gradient(#0a0a0f 1px, transparent 1px),
+                linear-gradient(90deg, #0a0a0f 1px, transparent 1px);
             background-size: 50px 50px;
             animation: gridMove 20s linear infinite;
             pointer-events: none;
@@ -44,51 +34,13 @@
         .container {
             position: relative;
             z-index: 1;
-            max-width: 1400px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: clamp(1rem, 5vw, 4rem);
         }
 
-     
-        .tagline {
-            font-size: clamp(1.25rem, 3vw + 0.5rem, 2rem);
-            color: var(--neon-yellow);
-            animation: glitch 3s infinite;
-            margin-bottom: clamp(2rem, 5vw, 4rem);
-        }
-        @keyframes glitch {
-            0%, 100% { transform: translate(0); }
-            33% { transform: translate(-2px, 2px); }
-            66% { transform: translate(2px, -2px); }
-        }
-
-        .code-block {
-            background: rgba(255, 0, 255, 0.1);
-            border: 2px solid var(--neon-magenta);
-            border-radius: 8px;
-            padding: clamp(1rem, 3vw, 2rem);
-            margin: clamp(1.5rem, 4vw, 3rem) 0;
-            position: relative;
-            overflow: hidden;
-        }
-        .code-block::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
-            animation: scan 3s infinite;
-        }
-        @keyframes scan {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
         .terminal-line {
-            color: var(--neon-cyan);
-            margin: 0.5rem 0;
+            margin: 5rem 0;
             opacity: 0;
             animation: fadeIn 0.5s forwards;
         }
@@ -96,15 +48,13 @@
         .terminal-line:nth-child(3) { animation-delay: 1s; }
         .terminal-line:nth-child(4) { animation-delay: 1.5s; }
         .terminal-line:nth-child(5) { animation-delay: 2s; }
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
+        @keyframes fadeIn { to { opacity: 1; } }
 
         .cursor {
             display: inline-block;
             width: 10px;
             height: 1em;
-            background: var(--neon-cyan);
+            background: #ffff00;
             animation: blink 1s infinite;
         }
         @keyframes blink {
@@ -115,62 +65,14 @@
 </head>
 <body>
     <div class="container">
-        <p class="tagline">ine at a time</p>
 
         <div class="terminal">
             <div class="terminal-line">[SYSTEM@NEUROMANCER ~]$</div>
-            <div class="terminal-line">> Initializing neural interface...</div>
-            <div class="terminal-line">> Loading cyberdeck modules...</div>
-            <div class="terminal-line">> Access granted. Welcome, Runner.</div>
-            <div class="terminal-line">> <span class="cursor"></span></div>
+            <div class="terminal-line">Initializing neural interface</div>
+            <div class="terminal-line">Loading cyberdeck modules</div>
+            <div class="terminal-line">Access granted.</div>
+            <div class="terminal-line"><span class="cursor"></span></div>
         </div>
-
-        
-        <div class="code-block">
-            <ul>
-            <li>JavaScript/TypeScript - The language of the web matrix</li>
-            <li>Python - For AI training and data manipulation</li>
-            <li>Rust - Systems to the machine's soul</li>
-           </ul>
-        </div>
-
-    <script>
-        function hackTheSystem() {
-            const messages = [
-                "Initiating connection...",
-                "Bypassing firewall...",
-                "Decrypting mainframe...",
-                "ACCESS GRANTED",
-                "Welcome to the Grid, Runner."
-            ];
-            
-            let i = 0;
-            const interval = setInterval(() => {
-                if (i < messages.length) {
-                    alert(messages[i]);
-                    i++;
-                } else {
-                    clearInterval(interval);
-                }
-            }, 800);
-        }
-
-        // Random glitch effect on hover
-        document.querySelectorAll('.skill-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = `translateY(-5px) rotate(${Math.random() * 2 - 1}deg)`;
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) rotate(0deg)';
-            });
-        });
-
-        // Flickering text effect
-        setInterval(() => {
-            const h1 = document.querySelector('h1');
-            h1.style.opacity = Math.random() > 0.95 ? 0.5 : 1;
-        }, 100);
-    </script>
+    </div>
 </body>
-                                                                                                          </html>
+</html>
