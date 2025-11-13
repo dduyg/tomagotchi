@@ -1,68 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LiminalLoop - Clean SVG Arrow Hover</title>
-<style>
-  body {
-    margin: 0;
-    padding: 6em 1em 0;
-    background: #f0ede4;
-    font-family: sans-serif;
-    color: black;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LiminalLoop - Clean Version</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 6em 1em 0;
+      background: #f0ede4;
+      font-family: sans-serif;
+      color: black;
+    }
 
-  .container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
 
-  .item {
-    font-size: 3.5rem;
-    line-height: 1;
-    text-transform: uppercase;
-    letter-spacing: -0.05em;
-    cursor: pointer;
-    position: relative;
-    color: black;
-    text-decoration: none;
-    transition: color 0.3s ease, padding-left 0.3s ease;
-    padding-left: 0;
-  }
+    a {
+      display: block;
+      font-size: 3.5rem;
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -0.1em;
+      color: black;
+      text-decoration: none;
+      position: relative;
+      padding-right: 1.5em; /* space for the arrow */
+      transition: transform 1s cubic-bezier(0.165, 0.875, 0.02, 1);
+    }
 
-  /* Arrow pseudo-element */
-  .item::before {
-    content: url('data:image/svg+xml;utf8,<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>');
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 1.2rem;
-    height: 1.2rem;
-    transform: translateY(-50%) translateX(-100%);
-    opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-  }
+    /* Arrow SVG as ::before pseudo-element */
+    a::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 1.2em;
+      aspect-ratio: 542 / 62;
+      background-color: black;
+      -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 542 62" xmlns="http://www.w3.org/2000/svg"><path d="M510.2 61.1l-2.1-2.2 27.3-26.4H.7v-3h534.8L508.1 3.1l2.1-2.2L541.3 31l-31.1 30.1z"/></svg>');
+      mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 542 62" xmlns="http://www.w3.org/2000/svg"><path d="M510.2 61.1l-2.1-2.2 27.3-26.4H.7v-3h534.8L508.1 3.1l2.1-2.2L541.3 31l-31.1 30.1z"/></svg>');
+      -webkit-mask-size: contain;
+      mask-size: contain;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      mask-position: center;
+      transform: translateX(120%);
+      transition: transform 1s cubic-bezier(0.165, 0.875, 0.02, 1);
+      transform-origin: center;
+      pointer-events: none;
+      transform: translateY(-50%) translateX(120%);
+    }
 
-  /* Hover effects */
-  .item:hover {
-    color: rgb(205, 205, 0);
-    padding-left: 1.5rem;
-  }
+    /* Slide text and arrow on hover */
+    a:hover {
+      transform: translateX(1em);
+      color: rgb(205, 205, 0);
+    }
 
-  .item:hover::before {
-    transform: translateY(-50%) translateX(0);
-    opacity: 1;
-  }
-</style>
+    a:hover::before {
+      transform: translateY(-50%) translateX(0);
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <a href="#" class="item">Gemini</a>
-    <a href="#" class="item">Daeho</a>
-    <a href="#" class="item">Wavy</a>
-    <a href="#" class="item">Outlier</a>
+    <a href="#">Gemini</a>
+    <a href="#">Daeho</a>
+    <a href="#">Wavy</a>
+    <a href="#">Outlier</a>
   </div>
 </body>
 </html>
