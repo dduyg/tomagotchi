@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cyberpunk Coder</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --neon-cyan: #00ffff;
             --neon-magenta: #ff00ff;
@@ -26,8 +21,6 @@
             overflow-x: hidden;
             position: relative;
         }
-
-        /* Animated grid background */
         body::before {
             content: '';
             position: fixed;
@@ -43,7 +36,6 @@
             pointer-events: none;
             z-index: 0;
         }
-
         @keyframes gridMove {
             0% { transform: translateY(0); }
             100% { transform: translateY(50px); }
@@ -57,37 +49,13 @@
             padding: clamp(1rem, 5vw, 4rem);
         }
 
-        /* Fluid Typography */
-        h1 {
-            font-size: clamp(2rem, 8vw + 1rem, 6rem);
-            line-height: 1.1;
-            margin-bottom: clamp(1rem, 3vw, 2rem);
-            text-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
-            animation: glitch 3s infinite;
-        }
-
-        h2 {
-            font-size: clamp(1.5rem, 4vw + 0.5rem, 3rem);
-            line-height: 1.2;
-            margin: clamp(1.5rem, 4vw, 3rem) 0 clamp(1rem, 2vw, 1.5rem);
-            color: var(--neon-magenta);
-            text-shadow: 0 0 10px var(--neon-magenta);
-        }
-
-        p, li {
-            font-size: clamp(1rem, 2vw + 0.25rem, 1.25rem);
-            line-height: 1.6;
-            margin-bottom: clamp(0.75rem, 2vw, 1.25rem);
-        }
-
+     
         .tagline {
             font-size: clamp(1.25rem, 3vw + 0.5rem, 2rem);
             color: var(--neon-yellow);
-            text-shadow: 0 0 15px var(--neon-yellow);
+            animation: glitch 3s infinite;
             margin-bottom: clamp(2rem, 5vw, 4rem);
         }
-
-        /* Glitch effect */
         @keyframes glitch {
             0%, 100% { transform: translate(0); }
             33% { transform: translate(-2px, 2px); }
@@ -103,7 +71,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .code-block::before {
             content: '';
             position: absolute;
@@ -114,15 +81,9 @@
             background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
             animation: scan 3s infinite;
         }
-
         @keyframes scan {
             0% { left: -100%; }
             100% { left: 100%; }
-        }
-
-        code {
-            color: var(--neon-cyan);
-            text-shadow: 0 0 5px var(--neon-cyan);
         }
 
         .skill-grid {
@@ -141,32 +102,7 @@
             cursor: pointer;
         }
 
-        .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 30px var(--neon-cyan);
-            background: rgba(0, 255, 255, 0.1);
-        }
 
-        .skill-card h3 {
-            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-            color: var(--neon-yellow);
-            margin-bottom: 1rem;
-        }
-
-        .terminal {
-            background: #000;
-            border: 3px solid var(--neon-cyan);
-            border-radius: 8px;
-            padding: clamp(1rem, 3vw, 2rem);
-            margin: clamp(2rem, 5vw, 4rem) 0;
-            box-shadow: 0 0 50px rgba(0, 255, 255, 0.5);
-        }
-
-        .terminal-header {
-            color: var(--neon-magenta);
-            margin-bottom: 1rem;
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
-        }
 
         .terminal-line {
             color: var(--neon-cyan);
@@ -174,12 +110,10 @@
             opacity: 0;
             animation: fadeIn 0.5s forwards;
         }
-
         .terminal-line:nth-child(2) { animation-delay: 0.5s; }
         .terminal-line:nth-child(3) { animation-delay: 1s; }
         .terminal-line:nth-child(4) { animation-delay: 1.5s; }
         .terminal-line:nth-child(5) { animation-delay: 2s; }
-
         @keyframes fadeIn {
             to { opacity: 1; }
         }
@@ -191,62 +125,25 @@
             background: var(--neon-cyan);
             animation: blink 1s infinite;
         }
-
         @keyframes blink {
             0%, 50% { opacity: 1; }
             51%, 100% { opacity: 0; }
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: clamp(0.75rem, 2vw, 1.25rem) clamp(1.5rem, 4vw, 3rem);
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            background: transparent;
-            border: 2px solid var(--neon-magenta);
-            color: var(--neon-magenta);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            margin: clamp(1rem, 3vw, 2rem) 0;
-        }
-
-        .cta-button:hover {
-            background: var(--neon-magenta);
-            color: var(--dark-bg);
-            box-shadow: 0 0 30px var(--neon-magenta);
-            transform: scale(1.05);
-        }
-
-        ul {
-            list-style: none;
-            padding-left: clamp(1rem, 3vw, 2rem);
-        }
-
-        ul li::before {
-            content: '▶ ';
-            color: var(--neon-yellow);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>CYBER_CODER.EXE</h1>
         <p class="tagline">&lt;/&gt; Breaking the matrix, one line at a time</p>
 
         <div class="terminal">
-            <div class="terminal-header">[SYSTEM@NEUROMANCER ~]$</div>
+            <div class="terminal-line">[SYSTEM@NEUROMANCER ~]$</div>
             <div class="terminal-line">> Initializing neural interface...</div>
             <div class="terminal-line">> Loading cyberdeck modules...</div>
-            <div class="terminal-line">> Connecting to the Grid...</div>
             <div class="terminal-line">> Access granted. Welcome, Runner.</div>
             <div class="terminal-line">> <span class="cursor"></span></div>
         </div>
 
-        <h2>// ABOUT THE CODER</h2>
-        <p>In the neon-lit streets of the digital frontier, I navigate through layers of data and code. A ghost in the machine, crafting algorithms that dance between reality and virtuality. My neural implants are wired directly into the source code of tomorrow.</p>
-
+        
         <div class="code-block">
             <code>
 const coder = {<br>
@@ -287,13 +184,6 @@ console.log(`${coder.name} is jacked in...`);
             <li>Solidity - Smart contracts on the blockchain</li>
             <li>C++ - Low-level access to the machine's soul</li>
         </ul>
-
-        <h2>// MISSION STATEMENT</h2>
-        <p>I exist in the liminal space between human and machine. Every project is a heist, every bug a locked door waiting to be cracked. I don't just write code—I architect digital realities where anything is possible.</p>
-
-        <p>The future isn't written yet, but I'm compiling it one function at a time. In this neon-drenched dystopia, code is power, and I'm here to redistribute it.</p>
-
-        <button class="cta-button" onclick="hackTheSystem()">JACK IN</button>
     </div>
 
     <script>
