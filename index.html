@@ -8,8 +8,9 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: white;
-            color: #ff00ff;
-            font-family: monospace;
+            color: red;
+            line-height: 1.5;
+            font-family: sans-serif;
             overflow-x: hidden;
             position: relative;
         }
@@ -25,6 +26,25 @@
             pointer-events: none;
             z-index: 0;
         }
+        
+        @function --fluid-type(--font-min, --font-max, --type: 'header') {
+            --scalar: if(style(--type: 'header'): 4vw;
+            style(--type: 'copy'): 0.5vw;
+            else: 1vw);
+            result: clamp(var(--font-min), var(--scalar) + var(--font-min), var(--font-max));
+        }
+        @supports (font-size: if(style(--foo: bar): 1vw; else: 2vw)) {h1 {
+        --header-min: 24px;
+        --header-max: 36px;
+        font-size: --fluid-type(var(--header-min), var(--header-max), 'header');
+      }
+
+      p {
+        --copy-min: 16px;
+        --copy-max: 24px;
+        font-size: --fluid-type(var(--copy-min), var(--copy-max), 'copy');
+      }
+    }
 
         .container {
             position: relative;
@@ -49,7 +69,7 @@
             display: inline-block;
             width: 10px;
             height: 1em;
-            background: #ffff00;
+            background: red;
             animation: blink 1s infinite;
         }
         @keyframes blink {
@@ -61,6 +81,12 @@
 <body>
     <div class="container">
 
+      <h1>Heading Scales Fluidly</h1>
+  <p>
+    This paragraph uses a slower scaling factor and will stay within its min and max values.
+    Resize the browser to see how both texts adapt differently.
+  </p>  
+        
         <div class="terminal">
             <div class="terminal-line">[SYSTEM@NEUROMANCER ~]$</div>
             <div class="terminal-line">Initializing neural interface</div>
