@@ -14,65 +14,37 @@
         body {
             min-height: 100vh;
             position: relative;
-            padding-bottom: 150px;
-            font-family: Arial, sans-serif;
+            padding-bottom: 40vh;
         }
 
-        main {
-            padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+        .content {
+            padding: 2rem;
         }
 
         footer {
             position: absolute;
             bottom: 0;
             left: 0;
-            right: 0;
-            height: 150px;
-            background: repeating-linear-gradient(
-                90deg,
-                transparent,
-                transparent 15px,
-                #333 15px,
-                #333 17px
+            width: 100%;
+            height: 40vh;
+            background: linear-gradient(
+                to right,
+                #000 0%,
+                #000 2px,
+                transparent 2px,
+                transparent 20px
             );
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        footer .content {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px 40px;
-            border-radius: 8px;
-        }
-
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        p {
-            line-height: 1.6;
-            color: #666;
-            margin-bottom: 15px;
+            background-size: 20px 100%;
+            background-repeat: repeat-x;
         }
     </style>
 </head>
 <body>
-    <main>
-        <h1>Page Content</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-    </main>
+    <div class="content">
+        <h1>Your Content Here</h1>
+        <p>This is the main content of your page. Scroll down to see the footer with vertical lines pattern.</p>
+    </div>
 
-    <footer>
-        <div class="content">
-            <p><strong>Footer Content</strong></p>
-            <p>© 2025 Your Company. All rights reserved.</p>
-        </div>
-    </footer>
+    <footer></footer>
 </body>
 </html>
