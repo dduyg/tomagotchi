@@ -1,186 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scroll Transition Color Effects</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Nav Example</title>
+  <style>
+    :root {
+      --color-light-main: #ffffff;
+      --color-main: #ff6347;
+      --mono-font: 'Courier New', monospace;
+    }
 
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #1a1a2e, #16213e);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
 
-        .spacer {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
-        }
+    nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: table;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0.75rem 1rem;
+      background-color: #333;
+      color: var(--color-light-main);
+    }
 
-        .animated-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
+    .home-badge {
+      display: table-cell;
+      vertical-align: middle;
+      width: 25%;
+      cursor: pointer;
+    }
 
-        .image-card {
-            width: 400px;
-            height: 300px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
+    #badge {
+      display: inline-block;
+      width: 4.5rem;
+    }
 
-        .image-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    #menu {
+      display: table-cell;
+      vertical-align: middle;
+      width: 75%;
+      text-align: right;
+      letter-spacing: 1px;
+      color: var(--color-light-main);
+      font-family: var(--mono-font);
+    }
 
-        /* Apply the different animation effects */
-        .effect-1 {
-            animation: scrollTransitionColorIn-1 1.5s ease-out forwards;
-        }
+    /* Dropdown menu styles */
+    .dropdown-btn {
+      position: relative;
+      display: inline-block;
+      font-size: 1em;
+      margin-right: 1rem;
+      letter-spacing: 3px;
+      cursor: pointer;
+    }
 
-        .effect-2 {
-            animation: scrollTransitionColorIn-2 1.5s ease-out forwards;
-        }
+    .dropdown-btn::before {
+      content: '';
+      display: inline-block;
+      width: 0.75em;
+      height: 0.75em;
+      border-radius: 50%;
+      background-color: black;
+      margin-right: 0.5em;
+      animation: rotate 1.5s ease-in-out infinite;
+    }
 
-        .effect-3 {
-            animation: scrollTransitionColorIn-3 1.5s ease-out forwards;
-        }
+    @keyframes rotate {
+      0% { transform: rotateX(0deg); }
+      100% { transform: rotateX(360deg); }
+    }
 
-        /* Keyframe animations */
-        @keyframes scrollTransitionColorIn-1 {  
-            0% {  
-                filter: saturate(50%);
-                opacity: 0.7;
-                transform: translateY(30px);
-            }  
-            32% {  
-                filter: saturate(100%);
-                opacity: 1;
-                transform: translateY(0);
-            }  
-        }  
-        
-        @keyframes scrollTransitionColorIn-2 {  
-            0% {  
-                filter: saturate(25%);
-                opacity: 0.5;
-                transform: scale(0.95);
-            }  
-            32% {  
-                filter: saturate(100%);
-                opacity: 1;
-                transform: scale(1);
-            }  
-        }  
-        
-        @keyframes scrollTransitionColorIn-3 {  
-            0% {  
-                filter: saturate(0%);
-                opacity: 0.3;
-                transform: translateX(-30px);
-            }  
-            32% {  
-                filter: saturate(100%);
-                opacity: 1;
-                transform: translateX(0);
-            }  
-        }
+    .dropdown-btn:hover::before,
+    .dropdown-btn:focus::before,
+    .dropdown-btn:active::before {
+      animation: none;
+    }
 
-        /* Remove animation initially */
-        .image-card {
-            opacity: 0;
-        }
+    .dropdown-content {
+      display: none; /* Hide dropdown content by default */
+      position: absolute;
+      top: 5rem;
+      right: 2rem;
+      width: 85%;
+      max-width: 550px;
+      background-color: #444;
+      color: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      z-index: 11;
+    }
 
-        /* Apply animation when element is visible */
-        .image-card.visible {
-            opacity: 1;
-        }
+    /* Styles for larger screens (min-width: 30em) */
+    @media screen and (min-width: 30em) {
+      nav {
+        padding: 0.75rem 4rem;
+      }
 
-        h2 {
-            color: white;
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-        }
+      .dropdown-btn,
+      .dropdown-content {
+        display: none;
+      }
 
-        .content-wrapper {
-            text-align: center;
-        }
-    </style>
+      #menu {
+        text-align: right;
+      }
+
+      #menu .item {
+        display: inline-block;
+        font-size: 1.1em;
+        margin-right: 2rem;
+      }
+
+      .item.active {
+        color: #232b2b;
+      }
+
+      .item.active::before {
+        content: '';
+        display: inline-block;
+        width: 0.6em;
+        height: 0.6em;
+        border-radius: 50%;
+        background-color: var(--color-main);
+        margin-right: 0.3em;
+        animation: rotate 1.5s ease-in-out infinite;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="spacer">
-        <h1>Scroll Down to See Effects</h1>
+  <nav>
+    <div class="home-badge" onclick="alert('Go Home!')">
+      <img id="badge" src="https://via.placeholder.com/72" alt="Home Badge">
     </div>
 
-    <div class="animated-section">
-        <div class="content-wrapper">
-            <h2>Effect 1 - 50% Saturation Start</h2>
-            <div class="image-card effect-1" data-animation="effect-1">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" alt="Mountain landscape">
-            </div>
-        </div>
+    <div id="menu">
+      <!-- Dropdown button for small screens -->
+      <div class="dropdown-btn" onclick="toggleDropdown()">MENU</div>
+      <div class="dropdown-content" id="dropdown-menu">
+        <a href="#" style="display:block; margin-bottom:0.5rem; color:white;">Home</a>
+        <a href="#" style="display:block; margin-bottom:0.5rem; color:white;">About</a>
+        <a href="#" style="display:block; margin-bottom:0.5rem; color:white;">Services</a>
+        <a href="#" style="display:block; color:white;">Contact</a>
+      </div>
+
+      <!-- Standard menu for larger screens -->
+      <div class="item active">Home</div>
+      <div class="item">About</div>
+      <div class="item">Services</div>
+      <div class="item">Contact</div>
     </div>
+  </nav>
 
-    <div class="animated-section">
-        <div class="content-wrapper">
-            <h2>Effect 2 - 25% Saturation Start</h2>
-            <div class="image-card effect-2" data-animation="effect-2">
-                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop" alt="Forest path">
-            </div>
-        </div>
-    </div>
-
-    <div class="animated-section">
-        <div class="content-wrapper">
-            <h2>Effect 3 - Grayscale to Color</h2>
-            <div class="image-card effect-3" data-animation="effect-3">
-                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop" alt="Beach sunset">
-            </div>
-        </div>
-    </div>
-
-    <div class="spacer">
-        <h1>End of Demo</h1>
-    </div>
-
-    <script>
-        // Intersection Observer to trigger animations when elements are visible
-        const observerOptions = {
-            threshold: 0.3,
-            rootMargin: '0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    // Optional: stop observing after animation triggers once
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        // Observe all animated elements
-        document.querySelectorAll('.image-card').forEach(card => {
-            observer.observe(card);
-        });
-    </script>
+  <script>
+    function toggleDropdown() {
+      const menu = document.getElementById('dropdown-menu');
+      if (menu.style.display === 'block') {
+        menu.style.display = 'none';
+      } else {
+        menu.style.display = 'block';
+      }
+    }
+  </script>
 </body>
 </html>
