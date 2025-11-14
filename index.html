@@ -3,116 +3,104 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCD Orb Bubble Dashboard</title>
+<title>SCD Orb Gravity Playground</title>
 <style>
   body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: radial-gradient(circle at center, #0b0b1a, #1a1a2f);
-    height: 100vh;
     overflow: hidden;
+    height: 100vh;
+    background: radial-gradient(circle at center, #0a0a0a, #1a1a2f);
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
   }
 
-  .orb {
+  #orb {
     position: absolute;
-    border-radius: 50%;
-    transition: transform 0.2s, filter 0.2s;
-    cursor: pointer;
-  }
-
-  .orb:hover {
-    transform: scale(1.3);
-    filter: drop-shadow(0 0 20px #0ff);
+    width: 100px;
+    height: 100px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: grab;
     z-index: 10;
   }
 
-  .tooltip {
+  .particle {
     position: absolute;
-    padding: 5px 10px;
-    background: rgba(0,0,0,0.8);
-    color: #0ff;
-    border-radius: 5px;
-    font-size: 0.9rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #0ff;
     pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.2s;
   }
 </style>
 </head>
 <body>
 
-<div class="tooltip" id="tooltip"></div>
+<img src="scd-ball.svg" id="orb" alt="Central Orb">
 
 <script>
-const tooltip = document.getElementById('tooltip');
+const orb = document.getElementById('orb');
+const particles = [];
+const particleCount = 50;
 
-// Creative dataset: Tech Startup Dashboard
-const dataPoints = [
-  { label: "Active Users", value: 1200, category: "Users" },
-  { label: "New Signups", value: 450, category: "Users" },
-  { label: "Monthly Revenue ($k)", value: 320, category: "Revenue" },
-  { label: "Website Sessions", value: 1500, category: "Traffic" },
-  { label: "Mobile App Sessions", value: 800, category: "Traffic" },
-  { label: "Support Tickets", value: 90, category: "Support" },
-  { label: "Completed Orders", value: 720, category: "Orders" },
-  { label: "Pending Orders", value: 150, category: "Orders" },
-  { label: "Product Reviews", value: 230, category: "Engagement" },
-  { label: "App Downloads", value: 500, category: "Growth" },
-  { label: "Churned Users", value: 75, category: "Users" },
-  { label: "Referral Signups", value: 120, category: "Growth" },
-  { label: "Customer Feedback", value: 45, category: "Support" },
-  { label: "Feature Requests", value: 60, category: "Engagement" }
-];
+const orbState = { x: window.innerWidth/2, y: window.innerHeight/2 };
 
-// Define colors for categories
-const categoryColors = {
-  "Users": "#00ffff",
-  "Revenue": "#ffcc00",
-  "Traffic": "#ff66cc",
-  "Support": "#66ff66",
-  "Orders": "#ff6600",
-  "Engagement": "#9966ff",
-  "Growth": "#00ff99"
-};
-
-const maxValue = Math.max(...dataPoints.map(d => d.value));
-
-// Create orbs
-dataPoints.forEach(d => {
-  const orb = document.createElement('img');
-  orb.src = 'scd-ball.svg';
-  orb.className = 'orb';
-
-  // Random position for demo; could map to real metrics
-  orb.style.left = Math.random() * (window.innerWidth - 60) + 'px';
-  orb.style.top = Math.random() * (window.innerHeight - 60) + 'px';
-
-  // Size proportional to value
-  const size = 40 + (d.value / maxValue) * 80; // 40px min, 120px max
-  orb.style.width = size + 'px';
-  orb.style.height = size + 'px';
-
-  // Color based on category
-  const hue = categoryColors[d.category] || "#ffffff";
-  orb.style.filter = `drop-shadow(0 0 15px ${hue})`;
-
-  // Tooltip
-  orb.addEventListener('mousemove', e => {
-    tooltip.style.left = e.clientX + 10 + 'px';
-    tooltip.style.top = e.clientY + 10 + 'px';
-    tooltip.innerHTML = `<strong>${d.label}</strong>: ${d.value}`;
-    tooltip.style.opacity = 1;
+// Create particles
+for(let i=0; i<particleCount; i++){
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.style.left = Math.random() * window.innerWidth + 'px';
+  p.style.top = Math.random() * window.innerHeight + 'px';
+  document.body.appendChild(p);
+  particles.push({
+    element: p,
+    x: parseFloat(p.style.left),
+    y: parseFloat(p.style.top),
+    vx: (Math.random()-0.5)*2,
+    vy: (Math.random()-0.5)*2
   });
-  orb.addEventListener('mouseleave', () => {
-    tooltip.style.opacity = 0;
-  });
+}
 
-  document.body.appendChild(orb);
+// Drag orb
+let dragging = false;
+orb.addEventListener('mousedown', () => dragging = true);
+document.addEventListener('mouseup', () => dragging = false);
+document.addEventListener('mousemove', e => {
+  if(dragging){
+    orbState.x = e.clientX;
+    orbState.y = e.clientY;
+    orb.style.left = orbState.x + 'px';
+    orb.style.top = orbState.y + 'px';
+  }
 });
+
+// Animate particles with gravity towards orb
+function animate(){
+  particles.forEach(p => {
+    const dx = orbState.x - p.x;
+    const dy = orbState.y - p.y;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const force = Math.min(5, 200/dist); // simple gravity force
+    p.vx += dx/dist * force * 0.1;
+    p.vy += dy/dist * force * 0.1;
+
+    // friction
+    p.vx *= 0.95;
+    p.vy *= 0.95;
+
+    p.x += p.vx;
+    p.y += p.vy;
+
+    p.element.style.left = p.x + 'px';
+    p.element.style.top = p.y + 'px';
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
 </script>
 
 </body>
