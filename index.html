@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCD Orb Data Viz</title>
+<title>SCD Orb Heatmap</title>
 <style>
   body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: radial-gradient(circle at center, #0c0c0c, #1b1b2f);
+    background: radial-gradient(circle at center, #0a0a0a, #111022);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,7 +19,8 @@
 
   #canvas {
     position: absolute;
-    top: 0; left: 0;
+    top: 0;
+    left: 0;
   }
 
   #orb {
@@ -29,7 +30,6 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    cursor: pointer;
     z-index: 10;
   }
 
@@ -55,7 +55,6 @@
 <script>
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
-const orb = document.getElementById('orb');
 const tooltip = document.getElementById('tooltip');
 
 canvas.width = window.innerWidth;
@@ -63,7 +62,7 @@ canvas.height = window.innerHeight;
 
 const center = { x: canvas.width/2, y: canvas.height/2 };
 
-// Example data array
+// Example data
 const data = [
   { label: "Users", value: 120 },
   { label: "Sales", value: 80 },
@@ -72,40 +71,35 @@ const data = [
   { label: "Orders", value: 60 }
 ];
 
-// Convert data to nodes around the orb
-const nodes = data.map((d, i) => {
-  const angle = (i / data.length) * Math.PI * 2;
-  const distance = 200 + Math.random()*50; // distance from orb
-  return {
-    x: center.x + distance * Math.cos(angle),
-    y: center.y + distance * Math.sin(angle),
-    radius: Math.sqrt(d.value)*5, // size based on value
-    color: `hsl(${i*60}, 80%, 60%)`,
+// Calculate total
+const total = data.reduce((sum, d) => sum + d.value, 0);
+
+// Convert to radial segments
+let startAngle = -Math.PI/2;
+const segments = data.map(d => {
+  const angle = (d.value / total) * Math.PI * 2;
+  const seg = {
+    start: startAngle,
+    end: startAngle + angle,
+    color: `hsl(${Math.random()*360}, 70%, 60%)`,
     label: d.label,
     value: d.value
-  }
+  };
+  startAngle += angle;
+  return seg;
 });
 
-// Draw loop
+// Draw segments
 function draw() {
-  ctx.clearRect(0,0,canvas.width, canvas.height);
-
-  // Draw lines from orb to nodes
-  nodes.forEach(node => {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  segments.forEach(seg => {
     ctx.beginPath();
     ctx.moveTo(center.x, center.y);
-    ctx.lineTo(node.x, node.y);
-    ctx.strokeStyle = 'rgba(0,255,255,0.3)';
-    ctx.lineWidth = 1;
-    ctx.stroke();
-
-    // Draw node
-    ctx.beginPath();
-    ctx.arc(node.x, node.y, node.radius, 0, Math.PI*2);
-    ctx.fillStyle = node.color;
+    ctx.arc(center.x, center.y, 200, seg.start, seg.end);
+    ctx.closePath();
+    ctx.fillStyle = seg.color;
     ctx.fill();
   });
-
   requestAnimationFrame(draw);
 }
 
@@ -113,18 +107,26 @@ draw();
 
 // Hover detection
 canvas.addEventListener('mousemove', e => {
+  const dx = e.clientX - center.x;
+  const dy = e.clientY - center.y;
+  const distance = Math.sqrt(dx*dx + dy*dy);
+  const angle = Math.atan2(dy, dx);
   let found = false;
-  nodes.forEach(node => {
-    const dx = e.clientX - node.x;
-    const dy = e.clientY - node.y;
-    if (Math.sqrt(dx*dx + dy*dy) < node.radius) {
-      tooltip.style.left = e.clientX + 10 + 'px';
-      tooltip.style.top = e.clientY + 10 + 'px';
-      tooltip.innerHTML = `${node.label}: ${node.value}`;
-      tooltip.style.opacity = 1;
-      found = true;
-    }
-  });
+  if(distance <= 200) {
+    segments.forEach(seg => {
+      let segStart = seg.start;
+      let segEnd = seg.end;
+      let a = angle;
+      if(a < -Math.PI/2) a += Math.PI*2; // normalize
+      if(a >= segStart && a <= segEnd) {
+        tooltip.style.left = e.clientX + 10 + 'px';
+        tooltip.style.top = e.clientY + 10 + 'px';
+        tooltip.innerHTML = `${seg.label}: ${seg.value}`;
+        tooltip.style.opacity = 1;
+        found = true;
+      }
+    });
+  }
   if(!found) tooltip.style.opacity = 0;
 });
 </script>
