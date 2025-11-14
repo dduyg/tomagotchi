@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Orb Music Visualizer</title>
+<title>Life of the Orbs</title>
 
 <style>
     body {
@@ -11,141 +10,170 @@
         background: #050510;
         overflow: hidden;
         font-family: Arial, sans-serif;
-        color: #0ff;
+        color: #9fe8ff;
     }
-    #controls {
+
+    #stats {
         position: absolute;
-        top: 20px;
-        left: 20px;
-        z-index: 10;
-        background: rgba(0,0,0,0.5);
-        padding: 15px;
-        border-radius: 10px;
+        top: 15px;
+        left: 15px;
+        background: rgba(0,0,0,0.4);
         border: 1px solid #0ff;
-    }
-    #controls input {
-        width: 260px;
-        padding: 6px;
-        margin-bottom: 10px;
+        padding: 10px 15px;
+        border-radius: 10px;
         font-size: 14px;
     }
-    #controls button {
-        padding: 8px 12px;
-        background: #0ff;
-        border: none;
-        cursor: pointer;
-        color: #000;
-        font-weight: bold;
-        margin-right: 5px;
-    }
-    #canvas {
+
+    .energy-node {
         position: absolute;
-        top: 0;
-        left: 0;
+        width: 14px;
+        height: 14px;
+        background: #0ff;
+        border-radius: 50%;
+        box-shadow: 0 0 8px #0ff;
     }
 </style>
 </head>
 
 <body>
 
-<div id="controls">
-    <input id="urlInput" placeholder="Paste YouTube / Spotify URL">
-    <button onclick="handleURL()">Load</button>
-    <br>
-    <input type="file" id="fileInput" accept="audio/*">
-    <button onclick="playFile()">Play File</button>
+<div id="stats">
+    <div>Orbs alive: <span id="count">0</span></div>
 </div>
 
 <canvas id="canvas"></canvas>
 
 <script>
-let audio, audioCtx, analyser, dataArray;
-let canvas = document.getElementById("canvas");
-let ctx = canvas.getContext("2d");
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 
-let orbs = [];
-
-function handleURL() {
-    alert("For YouTube/Spotify: Browser cannot extract audio directly.\nUpload audio file OR use helper server.");
-}
-
-function playFile() {
-    const fileInput = document.getElementById("fileInput");
-    if (!fileInput.files.length) return alert("Pick an audio file.");
-
-    if (audio) audio.pause();
-
-    audio = new Audio(URL.createObjectURL(fileInput.files[0]));
-    audio.crossOrigin = "anonymous";
-    audio.play();
-
-    setupAudio();
-}
-
-function setupAudio() {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    analyser = audioCtx.createAnalyser();
-    let source = audioCtx.createMediaElementSource(audio);
-
-    source.connect(analyser);
-    analyser.connect(audioCtx.destination);
-
-    analyser.fftSize = 256;
-    let bufferLength = analyser.frequencyBinCount;
-    dataArray = new Uint8Array(bufferLength);
-
-    animate();
-}
-
+// ************************************
+// ORB CREATURE CLASS
+// ************************************
 class Orb {
-    constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = 20;
-        this.speed = 0.5 + Math.random() * 1.5;
-        this.angle = Math.random() * Math.PI * 2;
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.energy = 100;
+        this.size = 35;
+        this.angle = Math.random()*Math.PI*2;
+        this.speed = 0.7 + Math.random()*0.8;
+        this.img = new Image();
+        this.img.src = "scd-ball.svg";
+        this.glow = "#0f0"; // default healthy glow
     }
 
-    update(force) {
-        this.x += Math.cos(this.angle) * this.speed * (force/100);
-        this.y += Math.sin(this.angle) * this.speed * (force/100);
-        this.size = 20 + force/4;
+    update() {
+        // wander
+        this.angle += (Math.random()-0.5)*0.2;
+        this.x += Math.cos(this.angle)*this.speed;
+        this.y += Math.sin(this.angle)*this.speed;
 
-        if (this.x < -100) this.x = canvas.width + 100;
-        if (this.x > canvas.width + 100) this.x = -100;
-        if (this.y < -100) this.y = canvas.height + 100;
-        if (this.y > canvas.height + 100) this.y = -100;
+        // boundaries
+        if (this.x < -40) this.x = canvas.width+40;
+        if (this.x > canvas.width+40) this.x = -40;
+        if (this.y < -40) this.y = canvas.height+40;
+        if (this.y > canvas.height+40) this.y = -40;
+
+        // energy decay
+        this.energy -= 0.07;
+
+        // glow color
+        if (this.energy > 70) this.glow = "#0f0";       // healthy
+        else if (this.energy > 40) this.glow = "#ff0";  // hungry
+        else this.glow = "#f00";                        // starving
+
+        // reproduction
+        if (this.energy > 140) {
+            this.energy = 70;
+            spawnOrb(this.x, this.y);
+        }
+
+        // death
+        if (this.energy <= 0) {
+            orbs.splice(orbs.indexOf(this), 1);
+        }
     }
 
     draw() {
-        let img = new Image();
-        img.src = "scd-ball.svg";
-        ctx.drawImage(img, this.x, this.y, this.size, this.size);
+        ctx.save();
+        ctx.shadowColor = this.glow;
+        ctx.shadowBlur = 30;
+        ctx.drawImage(this.img, this.x, this.y, this.size, this.size);
+        ctx.restore();
     }
 }
 
-for (let i=0; i<50; i++) orbs.push(new Orb());
+// ************************************
+// ENERGY FOOD NODE
+// ************************************
+class EnergyNode {
+    constructor() {
+        this.x = Math.random()*canvas.width;
+        this.y = Math.random()*canvas.height;
+    }
+    draw() {
+        ctx.fillStyle = "#0ff";
+        ctx.shadowColor = "#0ff";
+        ctx.shadowBlur = 10;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, 5, 0, Math.PI*2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+    }
+}
 
+let orbs = [];
+let nodes = [];
+
+// spawn initial orbs
+for (let i=0; i<10; i++) {
+    spawnOrb(Math.random()*canvas.width, Math.random()*canvas.height);
+}
+
+// spawn energy nodes
+for (let i=0; i<25; i++) {
+    nodes.push(new EnergyNode());
+}
+
+function spawnOrb(x, y) {
+    orbs.push(new Orb(x, y));
+}
+
+// ************************************
+// MAIN LOOP
+// ************************************
 function animate() {
     requestAnimationFrame(animate);
-
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    analyser.getByteFrequencyData(dataArray);
 
-    let bass = dataArray[1];
-    let mids = dataArray[64];
-    let highs = dataArray[128];
+    // draw nodes
+    for (let node of nodes) node.draw();
 
-    let force = bass * 0.8 + mids * 0.5 + highs * 0.3;
+    // orb updates
+    for (let orb of orbs) {
+        // check collisions with energy nodes
+        for (let node of nodes) {
+            const dx = orb.x - node.x;
+            const dy = orb.y - node.y;
+            if (dx*dx + dy*dy < 700) {
+                orb.energy += 40;
+                nodes.splice(nodes.indexOf(node), 1);
+                nodes.push(new EnergyNode());
+            }
+        }
+        orb.update();
+        orb.draw();
+    }
 
-    orbs.forEach(o => {
-        o.update(force);
-        o.draw();
-    });
+    // update UI
+    document.getElementById("count").textContent = orbs.length;
 }
+
+animate();
 
 window.onresize = () => {
     canvas.width = innerWidth;
