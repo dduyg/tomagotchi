@@ -3,114 +3,162 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bubble Dashboard</title>
+<title>SCD Orb Network Mapper</title>
 <style>
   body {
     margin: 0;
-    font-family: monospace;
-    height: 100vh;
     overflow: hidden;
+    background: #0a0a0a;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: Arial, sans-serif;
   }
 
-  .orb {
+  #centralOrb {
     position: absolute;
-    border-radius: 50%;
-    transition: transform 1s, filter 1s;
-    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
   }
 
-  .orb:hover {
-    transform: scale(1.5) rotate(720deg);
-    filter: drop-shadow(0 0 20px #0ff);
-    z-index: 10;
+  .node {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
   }
 
   .tooltip {
     position: absolute;
     padding: 5px 10px;
-    background: rgba(0,0,0,0.5);
-    color: white;
+    background: rgba(0,0,0,0.8);
     border-radius: 5px;
-    font-size: 0.8rem;
-    z-index: 100;
+    color: #0ff;
+    font-size: 0.9rem;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.2s;
+  }
+
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 </style>
 </head>
 <body>
 
+<img src="scd-ball.svg" id="centralOrb" alt="Central Orb">
 <div class="tooltip" id="tooltip"></div>
+<canvas id="lines"></canvas>
 
 <script>
+const canvas = document.getElementById('lines');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
 const tooltip = document.getElementById('tooltip');
 
-// Data
-const dataPoints = [
-  { label: "Active Users", value: 1200, category: "Users" },
-  { label: "New Signups", value: 450, category: "Users" },
-  { label: "Monthly Revenue ($k)", value: 320, category: "Revenue" },
-  { label: "Website Sessions", value: 1500, category: "Traffic" },
-  { label: "Mobile App Sessions", value: 800, category: "Traffic" },
-  { label: "Support Tickets", value: 90, category: "Support" },
-  { label: "Completed Orders", value: 720, category: "Orders" },
-  { label: "Pending Orders", value: 150, category: "Orders" },
-  { label: "Product Reviews", value: 230, category: "Engagement" },
-  { label: "App Downloads", value: 500, category: "Growth" },
-  { label: "Churned Users", value: 75, category: "Users" },
-  { label: "Referral Signups", value: 120, category: "Growth" },
-  { label: "Customer Feedback", value: 45, category: "Support" },
-  { label: "Feature Requests", value: 60, category: "Engagement" }
+const center = { x: window.innerWidth/2, y: window.innerHeight/2 };
+
+// Example dataset
+const nodesData = [
+  { label: "Node A" }, { label: "Node B" }, { label: "Node C" },
+  { label: "Node D" }, { label: "Node E" }, { label: "Node F" }
 ];
 
-// Defined colors for categories
-const categoryColors = {
-  "Users": "#6c5ce7",
-  "Revenue": "#00b894",
-  "Traffic": "#fdcb6e",
-  "Support": "#B96B57",
-  "Orders": "#C387E9",
-  "Engagement": "#DEE987",
-  "Growth": "#AF0136"
-};
+const nodes = nodesData.map(d => {
+  const el = document.createElement('img');
+  el.src = 'scd-ball.svg';
+  el.className = 'node';
+  document.body.appendChild(el);
+  return {
+    element: el,
+    label: d.label,
+    x: Math.random()*window.innerWidth,
+    y: Math.random()*window.innerHeight,
+    vx: 0,
+    vy: 0
+  };
+});
 
-const maxValue = Math.max(...dataPoints.map(d => d.value));
+// Force-directed layout parameters
+const k = 200; // link length
+const repulsion = 5000;
 
-// Create orbs
-dataPoints.forEach(d => {
-  const orb = document.createElement('img');
-  orb.src = 'https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/BLOBs/scd-ball.svg';
-  orb.className = 'orb';
-
-  // Random position for demo; could map to real metrics
-  orb.style.left = Math.random() * (window.innerWidth - 60) + 'px';
-  orb.style.top = Math.random() * (window.innerHeight - 60) + 'px';
-
-  // Size proportional to value
-  const size = 40 + (d.value / maxValue) * 80; // 40px min, 120px max
-  orb.style.width = size + 'px';
-  orb.style.height = size + 'px';
-
-  // Color based on category
-  const hue = categoryColors[d.category] || "#ffffff";
-  orb.style.filter = `drop-shadow(0 0 15px ${hue})`;
-
-  // Tooltip
-  orb.addEventListener('mousemove', e => {
+// Hover tooltip
+nodes.forEach(n=>{
+  n.element.addEventListener('mousemove', e=>{
     tooltip.style.left = e.clientX + 10 + 'px';
     tooltip.style.top = e.clientY + 10 + 'px';
-    tooltip.innerHTML = `<strong>${d.label}</strong>: ${d.value}`;
+    tooltip.innerHTML = n.label;
     tooltip.style.opacity = 1;
   });
-  orb.addEventListener('mouseleave', () => {
-    tooltip.style.opacity = 0;
+  n.element.addEventListener('mouseleave', ()=> tooltip.style.opacity = 0);
+});
+
+// Animate network
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  nodes.forEach(n=>{
+    // Attractive force to center
+    const dx = center.x - n.x;
+    const dy = center.y - n.y;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const force = (dist - k) * 0.01;
+    n.vx += dx/dist * force;
+    n.vy += dy/dist * force;
+
+    // Simple repulsion between nodes
+    nodes.forEach(other=>{
+      if(other!==n){
+        const dxo = n.x - other.x;
+        const dyo = n.y - other.y;
+        const d = Math.sqrt(dxo*dxo + dyo*dyo) || 0.01;
+        if(d<100){
+          const rep = (100 - d)/1000;
+          n.vx += dxo/d * rep;
+          n.vy += dyo/d * rep;
+        }
+      }
+    });
+
+    // Update positions
+    n.vx *= 0.9;
+    n.vy *= 0.9;
+    n.x += n.vx;
+    n.y += n.vy;
+
+    n.element.style.left = n.x + 'px';
+    n.element.style.top = n.y + 'px';
+
+    // Draw line to center orb
+    ctx.beginPath();
+    ctx.moveTo(n.x, n.y);
+    ctx.lineTo(center.x, center.y);
+    ctx.strokeStyle = '#0ff';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
   });
 
-  document.body.appendChild(orb);
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+// Handle window resize
+window.addEventListener('resize', ()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 });
 </script>
 
