@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LiminalLoop</title>
+<style>
+  body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #111;
+    font-family: sans-serif;
+  }
+
+  .box {
+    width: 150px;
+    height: 150px;
+    background:#222;
+    border:2px solid #666;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+
+    /* Hover triggers animation */
+    .helix2:hover {animation: Helix-2 2s infinite alternate ease-in-out;}
+    .helix3:hover {animation: Helix-3 2s infinite alternate ease-in-out;}
+    .conv2:hover {animation: Conveyor-2 2.5s infinite ease-out;}
+    .conv3:hover {animation: Conveyor-3 2.5s infinite ease-out;}
+    .twistup2:hover {animation: TwistUp-2 1.2s ease-out forwards;}
+    .twistup3:hover {animation: TwistUp-3 1.2s ease-out forwards;}
+    .rebound-2:hover {animation: Rebound-2 1s forwards;}
+    .rebound-3:hover {animation: Rebound-3 1s forwards;}
+    .loosehinge-1:hover {animation: LooseHinge-1 1s forwards;}
+    .loosehinge-2:hover {animation: LooseHinge-2 1s forwards;}    
+
+/* -------------------- KEYFRAMES  -------------------- */
+@keyframes Helix-2 {
+    0% { transform: perspective(3000px) rotatey(60deg) rotatez(2deg); }
+    100% { transform: perspective(3000px) rotatey(-60deg) rotatez(-2deg); }
+}
+@keyframes Helix-3 {
+    0% { transform: perspective(2000px) rotatey(90deg) rotatez(3deg); }
+    100% { transform: perspective(2000px) rotatey(-90deg) rotatez(-3deg); }
+}
+
+@keyframes Conveyor-2 {
+    0% { transform: perspective(2400px) translateZ(30em) rotateX(60deg); }
+    50% { transform: perspective(2400px) rotateX(0deg); }
+    100% { transform: perspective(2400px) rotateX(0deg); }
+}
+@keyframes Conveyor-3 {
+    0% { transform: perspective(2300px) translateZ(45em) rotateX(85deg); }
+    60% { transform: perspective(2300px) rotateX(0deg); }
+    100% { transform: perspective(2300px) rotateX(0deg); }
+}
+
+  @keyframes Rebound-2 {
+      0% {transform: perspective(1800px) translateZ(-50em) rotateX(70deg); transform-origin: 50% 100%;}
+      47% {transform: perspective(1800px) translateZ(0em) rotateX(0deg); transform-origin: 50% 50%;}
+      53% {transform: perspective(1800px) translateZ(0em) rotateX(0deg); transform-origin: 50% 50%;}
+      100% {transform: perspective(1800px) translateZ(-50em) rotateX(-70deg); transform-origin: 50% 0%;}
+  }
+  @keyframes Rebound-3 {
+      0% {transform: perspective(1300px) translateZ(-70em) rotateX(90deg); transform-origin: 50% 100%;}
+      47% {transform: perspective(1300px) translateZ(0em) rotateX(0deg);transform-origin: 50% 50%;}
+      53% {transform: perspective(1300px) translateZ(0em) rotateX(0deg); transform-origin: 50% 50%;}
+      100% {transform: perspective(1300px) translateZ(-70em) rotateX(-90deg); transform-origin: 50% 0%;}
+  }
+
+  @keyframes LooseHinge-1 {
+      0% {transform: rotate(5deg); transform-origin: 0% 0%;}
+      50% {transform: rotate(0deg); transform-origin: 50% 50%;}
+      100% {transform: rotate(5deg); transform-origin: 100% 100%;}
+  }
+  @keyframes LooseHinge-2 {
+      0% {transform: rotate(10deg); transform-origin: 0% 0%;}
+      50% {transform: rotate(0deg); transform-origin: 50% 50%;}
+      100% {transform: rotate(10deg); transform-origin: 100% 100%;}
+  }  
+
+@keyframes TwistUp-2 {
+    0% { opacity: 0; transform: translateY(40px) rotateY(35deg) rotateZ(2deg) perspective(3000px); }
+    25% { opacity: 1; transform: translateY(0vh); }
+}
+@keyframes TwistUp-3 {
+    0% { opacity: 0; transform: translateY(65px) rotateY(40deg) rotateZ(3deg) perspective(2000px); }
+    25% { opacity: 1; transform: translateY(0vh); }
+}
+</style>
+</head>
+<body>
+    <div class="box helix2">Helix 2</div>
+    <div class="box helix3">Helix 3</div>
+    <div class="box conv2">Conveyor 2</div>
+    <div class="box conv3">Conveyor 3</div>
+    <div class="box twistup2">TwistUp 2</div>
+    <div class="box twistup3">TwistUp 3</div>
+    <div class="box rebound-2">Rebound 2</div>
+    <div class="box rebound-3">Rebound 3</div>
+    <div class="box loosehinge-1">Hinge 1</div>
+    <div class="box loosehinge-2">Hinge 2</div>
+</body>
+</html>
