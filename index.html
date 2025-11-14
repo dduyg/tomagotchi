@@ -3,110 +3,116 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCD Orb Music Visualizer</title>
+<title>SCD Orb Notification Stream</title>
+
 <style>
-  body {
-    margin: 0;
-    background: radial-gradient(circle at center, #0a0a0a, #111122);
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-  }
+    body {
+        margin: 0;
+        background: #0d0f17;
+        color: #e0e0e0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+    }
 
-  #centralOrb {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
+    #streamBox {
+        width: 320px;
+        height: 100vh;
+        overflow: hidden;
+        background: rgba(255,255,255,0.04);
+        border-right: 2px solid #222;
+        padding: 20px;
+        box-sizing: border-box;
+    }
 
-  .orb {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
+    .event {
+        display: flex;
+        align-items: center;
+        background: rgba(255,255,255,0.06);
+        border-radius: 12px;
+        padding: 10px;
+        margin-bottom: 18px;
+        opacity: 0;
+        transform: translateX(-40px);
+        transition: 0.4s ease;
+    }
 
-  input[type=file] {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 10;
-  }
+    .event img {
+        width: 40px;
+        height: 40px;
+        margin-right: 12px;
+    }
+
+    .eventMessage {
+        font-size: 0.95rem;
+        line-height: 1.3rem;
+    }
+
+    .event.show {
+        opacity: 1;
+        transform: translateX(0);
+    }
 </style>
 </head>
 <body>
 
-<input type="file" id="audioInput" accept="audio/*">
-<img src="scd-ball.svg" id="centralOrb" alt="Central Orb">
+<div id="streamBox"></div>
 
 <script>
-const centralOrb = document.getElementById('centralOrb');
-const audioInput = document.getElementById('audioInput');
+// Dataset for the event notifications
+const events = [
+    "Orb detected a proximity shift.",
+    "Energy pulse measured at 3.8 units.",
+    "Orb scanning environment changes.",
+    "Data sync between nodes completed.",
+    "New signal source detected.",
+    "Sensor network reached 98% stability.",
+    "Orb measured micro-vibrations.",
+    "Transmission packets optimized.",
+    "Light spectrum shift observed.",
+    "Orb registered environmental anomaly."
+];
 
-let audioCtx, source, analyser;
-let dataArray, bufferLength;
+const streamBox = document.getElementById("streamBox");
 
-const orbitOrbs = [];
+// Create a new event card
+function addEvent(message) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "event";
 
-// Create orbiting orbs
-for(let i=0;i<12;i++){
-  const orb = document.createElement('img');
-  orb.src = 'scd-ball.svg';
-  orb.className = 'orb';
-  document.body.appendChild(orb);
-  orbitOrbs.push({ element: orb, angle: i * (Math.PI*2/12), radius: 200 });
+    const orb = document.createElement("img");
+    orb.src = "scd-ball.svg";
+
+    const msg = document.createElement("div");
+    msg.className = "eventMessage";
+    msg.innerText = message;
+
+    wrapper.appendChild(orb);
+    wrapper.appendChild(msg);
+
+    streamBox.prepend(wrapper);
+
+    // Animate
+    setTimeout(() => wrapper.classList.add("show"), 50);
+
+    // Limit feed size
+    const eventsOnScreen = streamBox.querySelectorAll('.event');
+    if (eventsOnScreen.length > 12) {
+        eventsOnScreen[eventsOnScreen.length - 1].remove();
+    }
 }
 
-// Audio setup
-audioInput.addEventListener('change', function(){
-  const file = this.files[0];
-  if(!file) return;
-  const audio = new Audio(URL.createObjectURL(file));
-  audio.loop = true;
-  audio.play();
+// Add events gradually
+let index = 0;
+addEvent(events[index++]);
 
-  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  source = audioCtx.createMediaElementSource(audio);
-  analyser = audioCtx.createAnalyser();
-  source.connect(analyser);
-  analyser.connect(audioCtx.destination);
-  analyser.fftSize = 64;
-  bufferLength = analyser.frequencyBinCount;
-  dataArray = new Uint8Array(bufferLength);
-
-  animate();
-});
-
-// Animate orbs
-function animate(){
-  requestAnimationFrame(animate);
-  analyser.getByteFrequencyData(dataArray);
-
-  // Pulse central orb based on average amplitude
-  let sum = dataArray.reduce((a,b)=>a+b,0);
-  let avg = sum / dataArray.length;
-  let scale = 1 + avg/256;
-  centralOrb.style.transform = `translate(-50%, -50%) scale(${scale})`;
-
-  // Orbiting orbs
-  orbitOrbs.forEach((o,i)=>{
-    o.angle += 0.02;
-    const amp = dataArray[i % dataArray.length] / 128;
-    const radius = 150 + amp*100;
-    const x = window.innerWidth/2 + radius * Math.cos(o.angle);
-    const y = window.innerHeight/2 + radius * Math.sin(o.angle);
-    o.element.style.left = x + 'px';
-    o.element.style.top = y + 'px';
-    o.element.style.transform = `translate(-50%, -50%) scale(${0.5 + amp})`;
-  });
-}
+setInterval(() => {
+    addEvent(events[index % events.length]);
+    index++;
+}, 1800);
 </script>
 
 </body>
