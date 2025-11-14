@@ -13,82 +13,39 @@
       margin: 0;
       padding: 40px 20px 0;
     }
-
     header {
       margin-bottom: 36px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .title {
-      font-size: 1.6rem;
-      font-weight: bold;
-      font-family: monospace;
-      color: #222;
-    }
     .symbols {
       border: 1.2px solid #222;
       border-radius: 26px;
-      padding: 7px 20px;
       font-size: 1.09rem;
       font-weight: 500;
-      background: none;
       line-height: 1.1;
       display: inline-block;  
       text-align: right;
-    }
-
-    h1 {
-      margin: 0 0 28px 0;
-      font-size: 2rem;
-      font-weight: normal;
-    }
-
-    .tab-container {
-      display: flex;
-      flex-direction: row;
-      gap: 14px;
-      margin-bottom: 38px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .tab {
-      font-size: 2rem;
-      font-weight: 400;
-      border-radius: 26px;
-      border: 1px solid #222;
       padding: 0.26em 0.95em 0.32em 0.95em;
-      background: none;
       color: #222;
-      transition: background 0.16s, color 0.16s;
-      line-height: 1.07;
-      cursor: pointer;
-      min-width: 0;
-      white-space: nowrap;
-    }
-    .tab.active {
-      background: #98ffa6;
-      border: none;
-      color: #222;
-    }
-    .tab.dark {
-      background: #2d2d2d;
-      border: none;
-      color: #fcfcfc;
     }
 
-    @font-face {
-      font-family: 'Basteleur Moonlight';
-      src: url('Basteleur-Moonlight.woff2') format('woff2');
-      font-weight: normal;
-      font-style: normal;
-    }
-    p {
-      font-family: 'Basteleur Moonlight', sans-serif;
-      margin-top: 40px;
-      font-size: 1.5rem;
-      margin-left: 1px;
-    }
+    .fly-in-1 {
+animation: scrollAnimationFlyIn-1 1s ease-out forwards;
+}
+
+.fly-in-2 {
+    animation: scrollAnimationFlyIn-2 1.2s ease-out forwards;
+}
+
+.fly-in-3 {
+    animation: scrollAnimationFlyIn-3 1.3s ease-out forwards;
+}
+
+.fly-in-fade {
+    animation: scrollAnimationFlyInFadeIn-1 1s ease-out forwards;
+}
 
 @keyframes scrollAnimationFlyIn-1 {
     0% {transform: translateY(5vh)}
@@ -114,13 +71,6 @@
     0% {opacity: .4; transform: translateY(25px)}
     50% {opacity: 1; transform: translateY(0px)}
 }
-
-    @media (max-width: 430px) {
-      .tab {
-        font-size: 1.2rem;
-        padding: 0.22em 0.7em;
-      }
-    }
   </style>
 </head>
 <body>
@@ -128,12 +78,9 @@
     <span class="title">Data2ASCII</span>
     <span class="symbols">⣤ ⣧ ⠙</span>
   </header>
-  <h1>Upload your dataset or explore with the built-in samples</h1>
-  <div class="tab-container">
-    <button class="tab">Planetary Data</button>
-    <button class="tab active">RPG Stats</button>
-    <button class="tab dark">Ice Cream Survey</button>
-  </div>
-  <p>Upload your dataset</p>
+<div class="fly-in-1">Item 1</div>
+<div class="fly-in-2">Item 2</div>
+<div class="fly-in-3">Item 3</div>
+<div class="fly-in-fade">Fades In</div>
 </body>
 </html>
