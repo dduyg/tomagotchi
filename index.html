@@ -27,8 +27,8 @@
    /* Hover triggers animation */
   .blur:hover {animation: BlurIn 1s forwards;}
   .scale:hover {animation: ScaleOut 0.4s forwards;}
+  .helix1:hover {animation: Helix-1 2s infinite alternate ease-in-out;}
   .helix2:hover {animation: Helix-2 2s infinite alternate ease-in-out;}
-  .helix3:hover {animation: Helix-3 2s infinite alternate ease-in-out;}
   .conv:hover {animation: Conveyor 3s infinite ease-out;}
   .twistup:hover {animation: TwistUp 2s ease-out forwards;}
   .rebound:hover {animation: Rebound 1s forwards;}
@@ -46,11 +46,11 @@
      100% {transform: scale(0.6); transform-origin: 50% 100%;}
   }
 
-  @keyframes Helix-2 {
+  @keyframes Helix-1 {
      0% {transform: perspective(3000px) rotatey(60deg) rotatez(2deg);}
      100% {transform: perspective(3000px) rotatey(-60deg) rotatez(-2deg);}
   }
-  @keyframes Helix-3 {
+  @keyframes Helix-2 {
      0% {transform: perspective(2000px) rotatey(90deg) rotatez(3deg);}
      100% {transform: perspective(2000px) rotatey(-90deg) rotatez(-3deg);}
   }
@@ -80,8 +80,8 @@
 <body>
     <div class="box blur">Blur</div>
     <div class="box scale">Scale</div
+    <div class="box helix1">Helix 1</div>
     <div class="box helix2">Helix 2</div>
-    <div class="box helix3">Helix 3</div>
     <div class="box conv">Conveyor</div>
     <div class="box twistup">Twist Up</div>
     <div class="box rebound">Rebound</div>
