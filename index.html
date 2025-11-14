@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SCD Orb Gravity Playground</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    background: radial-gradient(circle at center, #0a0a0a, #1a1a2f);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #orb {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: grab;
+    z-index: 10;
+  }
+
+  .particle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #0ff;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<img src="scd-ball.svg" id="orb" alt="Central Orb">
+
+<script>
+const orb = document.getElementById('orb');
+const particles = [];
+const particleCount = 50;
+
+const orbState = { x: window.innerWidth/2, y: window.innerHeight/2 };
+
+// Create particles
+for(let i=0; i<particleCount; i++){
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.style.left = Math.random() * window.innerWidth + 'px';
+  p.style.top = Math.random() * window.innerHeight + 'px';
+  document.body.appendChild(p);
+  particles.push({
+    element: p,
+    x: parseFloat(p.style.left),
+    y: parseFloat(p.style.top),
+    vx: (Math.random()-0.5)*2,
+    vy: (Math.random()-0.5)*2
+  });
+}
+
+// Drag orb
+let dragging = false;
+orb.addEventListener('mousedown', () => dragging = true);
+document.addEventListener('mouseup', () => dragging = false);
+document.addEventListener('mousemove', e => {
+  if(dragging){
+    orbState.x = e.clientX;
+    orbState.y = e.clientY;
+    orb.style.left = orbState.x + 'px';
+    orb.style.top = orbState.y + 'px';
+  }
+});
+
+// Animate particles with gravity towards orb
+function animate(){
+  particles.forEach(p => {
+    const dx = orbState.x - p.x;
+    const dy = orbState.y - p.y;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const force = Math.min(5, 200/dist); // simple gravity force
+    p.vx += dx/dist * force * 0.1;
+    p.vy += dy/dist * force * 0.1;
+
+    // friction
+    p.vx *= 0.95;
+    p.vy *= 0.95;
+
+    p.x += p.vx;
+    p.y += p.vy;
+
+    p.element.style.left = p.x + 'px';
+    p.element.style.top = p.y + 'px';
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>
