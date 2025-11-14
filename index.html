@@ -1,115 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Hover Blur Effects Demo</title>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hover Animations</title>
 <style>
-/* Your Animations ------------------------------------------------------------*/
-@keyframes BlurIn-1 {
-    0% {
-        filter: blur(5px);
-        transform: scale(0.992);
-    }
-    25% {
-        filter: blur(0px);
-        transform: scale(1);
-    }
-}
-
-@keyframes BlurIn-2 {
-    0% {
-        filter: blur(8px);
-        transform: scale(0.992);
-    }
-    25% {
-        filter: blur(0px);
-        transform: scale(1);
-    }
-}
-
-@keyframes BlurIn-3 {
-    0% {
-        filter: blur(13px);
-        transform: scale(0.992);
-    }
-    25% {
-        filter: blur(0px);
-        transform: scale(1);
-    }
-}
-
-@keyframes loopTranslate {
-    0% {
-        transform: translateZ(0px);
-    }
-    50% {
-        transform: translateZ(1px);
-    }
-    100% {
-        transform: translateZ(0px);
-    }
-}
-
-/* Page Styling --------------------------------------------------------------*/
-body {
-    font-family: Arial, sans-serif;
-    background: #111;
-    color: white;
-    text-align: center;
-    padding: 50px;
-}
-
-.container {
+  body {
     display: flex;
+    flex-wrap: wrap;
     gap: 40px;
     justify-content: center;
-    margin-top: 40px;
-}
-
-.box {
-    width: 180px;
-    height: 180px;
-    background: #222;
-    border-radius: 12px;
-    display: flex;
-    justify-content: center;
     align-items: center;
-    transition: 0.4s ease;
+    min-height: 100vh;
+    background: #f0f0f0;
+    font-family: Arial, sans-serif;
+  }
+
+  .box {
+    width: 150px;
+    height: 150px;
+    background: #3498db;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 12px;
     cursor: pointer;
-    font-size: 1.2rem;
-}
+    transition: transform 0.3s;
+  }
 
-/* Hover Effects -------------------------------------------------------------*/
-.box.one:hover {
-    animation: BlurIn-1 0.6s forwards;
-}
+  /* Rebound Animations */
+  @keyframes Rebound-1 {
+      0% {
+          transform: perspective(1500px) translateZ(0em) rotateX(30deg);
+          transform-origin: 50% 100%;
+          opacity: 0;
+      }
+      25% {
+          transform: perspective(1500px) translateZ(0em) rotateX(0deg);
+          transform-origin: 50% 50%;
+          opacity: 1;
+      }
+  }
 
-.box.two:hover {
-    animation: BlurIn-2 0.6s forwards;
-}
+  @keyframes Rebound-2 {
+      0% {
+          transform: perspective(1800px) translateZ(-50em) rotateX(70deg);
+          transform-origin: 50% 100%;
+      }
+      47% {
+          transform: perspective(1800px) translateZ(0em) rotateX(0deg);
+          transform-origin: 50% 50%;
+      }
+      53% {
+          transform: perspective(1800px) translateZ(0em) rotateX(0deg);
+          transform-origin: 50% 50%;
+      }
+      100% {
+          transform: perspective(1800px) translateZ(-50em) rotateX(-70deg);
+          transform-origin: 50% 0%;
+      }
+  }
 
-.box.three:hover {
-    animation: BlurIn-3 0.75s forwards;
-}
+  @keyframes Rebound-3 {
+      0% {
+          transform: perspective(1300px) translateZ(-70em) rotateX(90deg);
+          transform-origin: 50% 100%;
+      }
+      47% {
+          transform: perspective(1300px) translateZ(0em) rotateX(0deg);
+          transform-origin: 50% 50%;
+      }
+      53% {
+          transform: perspective(1300px) translateZ(0em) rotateX(0deg);
+          transform-origin: 50% 50%;
+      }
+      100% {
+          transform: perspective(1300px) translateZ(-70em) rotateX(-90deg);
+          transform-origin: 50% 0%;
+      }
+  }
 
-.box.translate:hover {
-    animation: loopTranslate 0.8s infinite linear;
-}
+  /* LooseHinge Animations */
+  @keyframes LooseHinge-1 {
+      0% {
+          transform: rotate(5deg);
+          transform-origin: 0% 0%;
+      }
+      50% {
+          transform: rotate(0deg);
+          transform-origin: 50% 50%;
+      }
+      100% {
+          transform: rotate(5deg);
+          transform-origin: 100% 100%;
+      }
+  }
+
+  @keyframes LooseHinge-2 {
+      0% {
+          transform: rotate(10deg);
+          transform-origin: 0% 0%;
+      }
+      50% {
+          transform: rotate(0deg);
+          transform-origin: 50% 50%;
+      }
+      100% {
+          transform: rotate(10deg);
+          transform-origin: 100% 100%;
+      }
+  }
+
+  @keyframes LooseHinge-3 {
+      0% {
+          transform: rotate(30deg);
+          transform-origin: 0% 0%;
+      }
+      50% {
+          transform: rotate(0deg);
+          transform-origin: 50% 50%;
+      }
+      100% {
+          transform: rotate(30deg);
+          transform-origin: 100% 100%;
+      }
+  }
+
+  /* Hover Effects */
+  .rebound-1:hover {
+    animation: Rebound-1 1s forwards;
+  }
+
+  .rebound-2:hover {
+    animation: Rebound-2 1s forwards;
+  }
+
+  .rebound-3:hover {
+    animation: Rebound-3 1s forwards;
+  }
+
+  .loosehinge-1:hover {
+    animation: LooseHinge-1 1s forwards;
+  }
+
+  .loosehinge-2:hover {
+    animation: LooseHinge-2 1s forwards;
+  }
+
+  .loosehinge-3:hover {
+    animation: LooseHinge-3 1s forwards;
+  }
 </style>
 </head>
-
 <body>
 
-<h1>Hover Animation Demo</h1>
+  <div class="box rebound-1">Rebound 1</div>
+  <div class="box rebound-2">Rebound 2</div>
+  <div class="box rebound-3">Rebound 3</div>
 
-<div class="container">
-    <div class="box one">BlurIn-1</div>
-    <div class="box two">BlurIn-2</div>
-    <div class="box three">BlurIn-3</div>
-    <div class="box translate">Translate</div>
-</div>
+  <div class="box loosehinge-1">Hinge 1</div>
+  <div class="box loosehinge-2">Hinge 2</div>
+  <div class="box loosehinge-3">Hinge 3</div>
 
 </body>
 </html>
