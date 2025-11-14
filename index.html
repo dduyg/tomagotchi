@@ -3,100 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Orb of Colors</title>
+  <title>SCD Portal</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       height: 100vh;
-      background: radial-gradient(circle at center, #0d0d0d, #1a1a1a);
       display: flex;
       justify-content: center;
       align-items: center;
+      background: radial-gradient(circle at center, #0a0a0a, #111);
       overflow: hidden;
       color: white;
     }
 
-    .orb-container {
+    .portal-container {
       position: relative;
       width: 200px;
       height: 200px;
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: transform 0.3s;
     }
 
-    .orb-container:hover {
-      transform: scale(1.1);
-    }
-
-    .orb-container img {
+    .portal-container img {
       width: 100%;
       height: 100%;
-      transition: filter 0.3s;
-      filter: drop-shadow(0 0 20px #ffcc00);
+      transition: transform 1s, filter 1s;
+      filter: drop-shadow(0 0 20px #00f);
     }
 
-    .particles {
+    .portal-container.open img {
+      transform: scale(1.5) rotate(720deg);
+      filter: drop-shadow(0 0 60px #0ff);
+    }
+
+    .message {
       position: absolute;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-
-    .particle {
-      position: absolute;
-      width: 5px;
-      height: 5px;
-      background: #ffcc00;
-      border-radius: 50%;
-      animation: floatParticle linear infinite;
-    }
-
-    @keyframes floatParticle {
-      0% { transform: translate(0,0); opacity: 1; }
-      100% { transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)); opacity: 0; }
-    }
-
-    h1 {
-      position: absolute;
-      bottom: 40px;
-      width: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
       text-align: center;
-      font-size: 2rem;
-      color: #fff;
-      text-shadow: 0 0 10px #000;
+      font-size: 1.5rem;
+      opacity: 0;
+      transition: transform 1s, opacity 1s;
+    }
+
+    .portal-container.open + .message {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+
+    /* Subtle animated background lines */
+    .bg-lines {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: repeating-linear-gradient(45deg, rgba(0,255,255,0.05) 0 2px, transparent 2px 10px);
+      animation: moveLines 10s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes moveLines {
+      0% { transform: translate(0,0); }
+      100% { transform: translate(-100px, -100px); }
     }
   </style>
 </head>
 <body>
 
-  <div class="orb-container" id="orb">
-    <img src="scd-ball.svg" alt="SCD Ball" id="orbImage">
-    <div class="particles" id="particles"></div>
+  <div class="bg-lines"></div>
+
+  <div class="portal-container" id="portal">
+    <img src="scd-ball.svg" alt="SCD Portal">
+  </div>
+  <div class="message" id="message">
+    Welcome to the SCD Universe!
   </div>
 
-  <h1>Click the Orb to Change Its Colors!</h1>
-
   <script>
-    const orb = document.getElementById('orb');
-    const orbImage = document.getElementById('orbImage');
-    const particlesContainer = document.getElementById('particles');
+    const portal = document.getElementById('portal');
+    const message = document.getElementById('message');
 
-    // Generate random particles
-    for (let i = 0; i < 30; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.setProperty('--x', (Math.random() - 0.5) * 200);
-      particle.style.setProperty('--y', (Math.random() - 0.5) * 200);
-      particle.style.animationDuration = `${Math.random() * 3 + 2}s`;
-      particle.style.background = `hsl(${Math.random() * 360}, 80%, 60%)`;
-      particlesContainer.appendChild(particle);
-    }
-
-    // Click to change orb color
-    orb.addEventListener('click', () => {
-      const hue = Math.floor(Math.random() * 360);
-      orbImage.style.filter = `drop-shadow(0 0 25px hsl(${hue}, 80%, 60%)) hue-rotate(${hue}deg)`;
+    portal.addEventListener('click', () => {
+      portal.classList.toggle('open');
     });
   </script>
 
