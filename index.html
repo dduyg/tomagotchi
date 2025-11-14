@@ -3,35 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LiminalLoop</title>
+<title>SCD Orb Radial Story</title>
 <style>
   body {
     margin: 0;
     font-family: sans-serif;
+    background: red;
     height: 100vh;
-    background: url("https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/detail-2.jpg") center/cover no-repeat;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-  }
-  /* Liminal lines overlay */
-  body::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none; /* Prevent blocking interactions */
-    background: repeating-linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0.15) 0 1px
-      transparent 1px 10px
-    );
-    animation: moveLines 12s linear infinite;
-  }
-  @keyframes moveLines {
-    from { background-position: 0 0; }
-    to   { background-position: 200px 200px; }
   }
 
   #orb {
@@ -69,13 +52,13 @@
 </style>
 </head>
 <body>
-  
-  <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/BLOBs/blob-13.gif" id="orb">
-  
-  <div class="panel" id="panel1">Chapter 1: Awakening</div>
-  <div class="panel" id="panel2">Chapter 2: Journey</div>
-  <div class="panel" id="panel3">Chapter 3: Challenge</div>
-  <div class="panel" id="panel4">Chapter 4: Revelation</div>
+
+<img src="scd-ball.svg" id="orb" alt="SCD Orb">
+
+<div class="panel" id="panel1">Chapter 1: Awakening</div>
+<div class="panel" id="panel2">Chapter 2: Journey</div>
+<div class="panel" id="panel3">Chapter 3: Challenge</div>
+<div class="panel" id="panel4">Chapter 4: Revelation</div>
 
 <script>
 const orb = document.getElementById('orb');
