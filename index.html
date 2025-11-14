@@ -1,80 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Animation Demo</title>
 
 <style>
-    body {
-        background: #111;
-        color: white;
-        font-family: Arial, sans-serif;
-        height: 100vh;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 30px;
-    }
+/* ====== YOUR ANIMATIONS ====== */
+@keyframes BlurIn-1 {
+    0% { filter: blur(5px); }
+    10% { filter: blur(5px); }
+    30% { filter: blur(0px); }
+}
 
-    .box {
-        width: 80px;
-        height: 80px;
-        background: #4CAF50;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        animation-duration: 3s;
-        animation-timing-function: ease-in-out;
-        animation-iteration-count: infinite;
-    }
+@keyframes BlurIn-2 {
+    0% { filter: blur(8px); }
+    12.5% { filter: blur(8px); }
+    35% { filter: blur(0px); }
+}
 
-    /* === Your Animations === */
+@keyframes BlurIn-3 {
+    0% { filter: blur(13px); }
+    15% { filter: blur(13px); }
+    40% { filter: blur(0px); }
+}
 
-    @keyframes FlyOut-3 {
-        35% {transform: scale(1)}
-        65% {transform: scale(1)}
-        100% {transform: translateY(-20vh)}
-    }
+@keyframes ScaleInOut-1 {
+    0% { transform: scale(0.875); transform-origin: 50% 0%; }
+    50% { transform: scale(1); transform-origin: 50% 50%; }
+    100% { transform: scale(0.875); transform-origin: 50% 100%; }
+}
 
-    @keyframes FlyInOut-1 {
-        0% {transform: translateY(5vh)}
-        35% {transform: scale(1)}
-        85% {transform: scale(1)}
-        100% {transform: translateY(-5vh)}
-    }
+@keyframes ScaleInOut-2 {
+    0% { transform: scale(0.6); transform-origin: 50% 0%; }
+    50% { transform: scale(1); transform-origin: 50% 50%; }
+    100% { transform: scale(0.6); transform-origin: 50% 100%; }
+}
 
-    @keyframes FlyInOut-2 {
-        0% {transform: translateY(10vh)}
-        35% {transform: scale(1)}
-        70% {transform: scale(1)}
-        100% {transform: translateY(-10vh)}
-    }
+@keyframes ScaleInOut-3 {
+    0% { transform: scale(0.4); transform-origin: 50% 0%; }
+    50% { transform: scale(1); transform-origin: 50% 50%; }
+    100% { transform: scale(0.4); transform-origin: 50% 100%; }
+}
 
-    @keyframes FlyInOut-3 {
-        0% {transform: translateY(20vh)}
-        35% {transform: scale(1)}
-        65% {transform: scale(1)}
-        100% {transform: translateY(-20vh)}
-    }
+/* ====== DEMO STYLING ====== */
+body {
+    font-family: Arial, sans-serif;
+    background: #121212;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 30px;
+}
 
-    /* Assign animations to boxes */
+.box {
+    width: 120px;
+    height: 120px;
+    background: #4a90e2;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: bold;
+}
 
-    .box1 { animation-name: FlyInOut-1; }
-    .box2 { animation-name: FlyInOut-2; }
-    .box3 { animation-name: FlyInOut-3; }
-    .box4 { animation-name: FlyOut-3; background: #ff9800; }
+/* Apply animations */
+.box:nth-child(1) {
+    animation:
+        BlurIn-1 1.5s ease forwards,
+        ScaleInOut-1 3s ease-in-out infinite;
+}
 
+.box:nth-child(2) {
+    animation:
+        BlurIn-2 1.7s ease forwards,
+        ScaleInOut-2 3.4s ease-in-out infinite;
+}
+
+.box:nth-child(3) {
+    animation:
+        BlurIn-3 2s ease forwards,
+        ScaleInOut-3 3.8s ease-in-out infinite;
+}
 </style>
 </head>
 
 <body>
-    <div class="box box1">1</div>
-    <div class="box box2">2</div>
-    <div class="box box3">3</div>
-    <div class="box box4">Out</div>
+
+<div class="box">1</div>
+<div class="box">2</div>
+<div class="box">3</div>
+
 </body>
 </html>
