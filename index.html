@@ -3,96 +3,130 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCD Data Dashboard Orb</title>
+<title>SCD Orb Data Viz</title>
 <style>
   body {
     margin: 0;
     font-family: Arial, sans-serif;
-    height: 100vh;
+    background: radial-gradient(circle at center, #0c0c0c, #1b1b2f);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(circle at center, #0a0a0a, #1a1a1a);
-    color: #fff;
+    height: 100vh;
     overflow: hidden;
+    color: white;
   }
 
-  .orb-container {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    margin-bottom: 40px;
-  }
-
-  .orb-container img {
-    width: 100%;
-    height: 100%;
-    transition: transform 0.3s, filter 0.3s;
-  }
-
-  .data-display {
-    font-size: 2rem;
-    text-align: center;
-    text-shadow: 0 0 10px #0ff;
-  }
-
-  /* glowing pulse behind the orb */
-  .glow {
+  #canvas {
     position: absolute;
-    top: 50%;
+    top: 0; left: 0;
+  }
+
+  #orb {
+    position: absolute;
+    width: 100px;
+    height: 100px;
     left: 50%;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,255,255,0.3), transparent);
+    top: 50%;
     transform: translate(-50%, -50%);
-    filter: blur(20px);
-    transition: all 0.3s;
-    z-index: -1;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .tooltip {
+    position: absolute;
+    padding: 5px 10px;
+    background: rgba(0,0,0,0.8);
+    color: #0ff;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
   }
 </style>
 </head>
 <body>
 
-<div class="orb-container">
-  <img src="scd-ball.svg" id="orb" alt="SCD Ball">
-  <div class="glow" id="glow"></div>
-</div>
-
-<div class="data-display">
-  Data Value: <span id="dataValue">0</span>
-</div>
+<img src="scd-ball.svg" id="orb" alt="SCD Orb">
+<canvas id="canvas"></canvas>
+<div class="tooltip" id="tooltip"></div>
 
 <script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
 const orb = document.getElementById('orb');
-const glow = document.getElementById('glow');
-const dataValue = document.getElementById('dataValue');
+const tooltip = document.getElementById('tooltip');
 
-// Simulated dynamic data
-function generateData() {
-  // Random value between 0 and 100
-  return Math.floor(Math.random() * 101);
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const center = { x: canvas.width/2, y: canvas.height/2 };
+
+// Example data array
+const data = [
+  { label: "Users", value: 120 },
+  { label: "Sales", value: 80 },
+  { label: "Revenue", value: 200 },
+  { label: "Sessions", value: 150 },
+  { label: "Orders", value: 60 }
+];
+
+// Convert data to nodes around the orb
+const nodes = data.map((d, i) => {
+  const angle = (i / data.length) * Math.PI * 2;
+  const distance = 200 + Math.random()*50; // distance from orb
+  return {
+    x: center.x + distance * Math.cos(angle),
+    y: center.y + distance * Math.sin(angle),
+    radius: Math.sqrt(d.value)*5, // size based on value
+    color: `hsl(${i*60}, 80%, 60%)`,
+    label: d.label,
+    value: d.value
+  }
+});
+
+// Draw loop
+function draw() {
+  ctx.clearRect(0,0,canvas.width, canvas.height);
+
+  // Draw lines from orb to nodes
+  nodes.forEach(node => {
+    ctx.beginPath();
+    ctx.moveTo(center.x, center.y);
+    ctx.lineTo(node.x, node.y);
+    ctx.strokeStyle = 'rgba(0,255,255,0.3)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // Draw node
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, node.radius, 0, Math.PI*2);
+    ctx.fillStyle = node.color;
+    ctx.fill();
+  });
+
+  requestAnimationFrame(draw);
 }
 
-function updateOrb(data) {
-  // Update the orb size based on data
-  const scale = 1 + data / 200; // scales 1 to 1.5
-  orb.style.transform = `scale(${scale})`;
+draw();
 
-  // Update glow color based on data
-  const hue = Math.floor(data * 1.2); // hue from 0 to 120
-  glow.style.background = `radial-gradient(circle, hsl(${hue}, 80%, 60%), transparent)`;
-
-  // Update data readout
-  dataValue.textContent = data;
-}
-
-// Update data every second
-setInterval(() => {
-  const data = generateData();
-  updateOrb(data);
-}, 1000);
+// Hover detection
+canvas.addEventListener('mousemove', e => {
+  let found = false;
+  nodes.forEach(node => {
+    const dx = e.clientX - node.x;
+    const dy = e.clientY - node.y;
+    if (Math.sqrt(dx*dx + dy*dy) < node.radius) {
+      tooltip.style.left = e.clientX + 10 + 'px';
+      tooltip.style.top = e.clientY + 10 + 'px';
+      tooltip.innerHTML = `${node.label}: ${node.value}`;
+      tooltip.style.opacity = 1;
+      found = true;
+    }
+  });
+  if(!found) tooltip.style.opacity = 0;
+});
 </script>
 
 </body>
