@@ -3,88 +3,96 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCD Interactive Portal</title>
+<title>SCD Data Dashboard Orb</title>
 <style>
   body {
     margin: 0;
     font-family: Arial, sans-serif;
-    overflow: hidden;
     height: 100vh;
-    background: radial-gradient(circle at center, #0c0c0c, #1b1b2f);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
+    background: radial-gradient(circle at center, #0a0a0a, #1a1a1a);
+    color: #fff;
+    overflow: hidden;
   }
 
-  .orb {
+  .orb-container {
+    position: relative;
     width: 150px;
     height: 150px;
-    cursor: pointer;
-    transition: transform 0.3s;
-    z-index: 10;
+    margin-bottom: 40px;
   }
 
-  .orb:hover {
-    transform: scale(1.1) rotate(10deg);
+  .orb-container img {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s, filter 0.3s;
   }
 
-  .section {
+  .data-display {
+    font-size: 2rem;
+    text-align: center;
+    text-shadow: 0 0 10px #0ff;
+  }
+
+  /* glowing pulse behind the orb */
+  .glow {
     position: absolute;
-    width: 300px;
+    top: 50%;
+    left: 50%;
+    width: 200px;
     height: 200px;
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
-    border: 2px solid #0ff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
-    opacity: 0;
-    transition: all 1s ease;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,255,255,0.3), transparent);
+    transform: translate(-50%, -50%);
+    filter: blur(20px);
+    transition: all 0.3s;
+    z-index: -1;
   }
-
-  .section.show {
-    opacity: 1;
-  }
-
-  .section1 { top: -250px; left: 50%; transform: translateX(-50%); }
-  .section2 { bottom: -250px; left: 50%; transform: translateX(-50%); }
-  .section3 { left: -350px; top: 50%; transform: translateY(-50%); }
-  .section4 { right: -350px; top: 50%; transform: translateY(-50%); }
-
-  .section1.show { top: 50px; }
-  .section2.show { bottom: 50px; }
-  .section3.show { left: 50px; }
-  .section4.show { right: 50px; }
 </style>
 </head>
 <body>
 
-<img src="scd-ball.svg" class="orb" id="orb" alt="SCD Ball">
+<div class="orb-container">
+  <img src="scd-ball.svg" id="orb" alt="SCD Ball">
+  <div class="glow" id="glow"></div>
+</div>
 
-<div class="section section1" id="sec1">Section 1: Welcome</div>
-<div class="section section2" id="sec2">Section 2: About</div>
-<div class="section section3" id="sec3">Section 3: Features</div>
-<div class="section section4" id="sec4">Section 4: Contact</div>
+<div class="data-display">
+  Data Value: <span id="dataValue">0</span>
+</div>
 
 <script>
 const orb = document.getElementById('orb');
-const sections = [
-  document.getElementById('sec1'),
-  document.getElementById('sec2'),
-  document.getElementById('sec3'),
-  document.getElementById('sec4')
-];
+const glow = document.getElementById('glow');
+const dataValue = document.getElementById('dataValue');
 
-let open = false;
-orb.addEventListener('click', () => {
-  open = !open;
-  sections.forEach(sec => {
-    if(open) sec.classList.add('show');
-    else sec.classList.remove('show');
-  });
-});
+// Simulated dynamic data
+function generateData() {
+  // Random value between 0 and 100
+  return Math.floor(Math.random() * 101);
+}
+
+function updateOrb(data) {
+  // Update the orb size based on data
+  const scale = 1 + data / 200; // scales 1 to 1.5
+  orb.style.transform = `scale(${scale})`;
+
+  // Update glow color based on data
+  const hue = Math.floor(data * 1.2); // hue from 0 to 120
+  glow.style.background = `radial-gradient(circle, hsl(${hue}, 80%, 60%), transparent)`;
+
+  // Update data readout
+  dataValue.textContent = data;
+}
+
+// Update data every second
+setInterval(() => {
+  const data = generateData();
+  updateOrb(data);
+}, 1000);
 </script>
 
 </body>
