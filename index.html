@@ -3,83 +3,102 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SCD Ball Page</title>
+  <title>Orb of Colors</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       height: 100vh;
+      background: radial-gradient(circle at center, #0d0d0d, #1a1a1a);
       display: flex;
       justify-content: center;
       align-items: center;
-      background: radial-gradient(circle at center, #1e3c72, #2a5298);
       overflow: hidden;
       color: white;
-      perspective: 1000px;
     }
 
-    .ball-container {
+    .orb-container {
       position: relative;
-      width: 150px;
-      height: 150px;
-      animation: float 3s ease-in-out infinite alternate;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-40px); }
-    }
-
-    .ball-container img {
-      width: 100%;
-      height: 100%;
-      animation: spin 5s linear infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: rotateY(0deg); }
-      100% { transform: rotateY(360deg); }
-    }
-
-    .glow {
-      position: absolute;
-      top: 50%;
-      left: 50%;
       width: 200px;
       height: 200px;
-      background: radial-gradient(circle, rgba(255,255,255,0.4), transparent);
-      transform: translate(-50%, -50%);
-      border-radius: 50%;
-      filter: blur(25px);
-      animation: pulse 2s ease-in-out infinite;
-      z-index: -1;
+      cursor: pointer;
+      transition: transform 0.2s;
     }
 
-    @keyframes pulse {
-      0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; }
-      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
-      100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; }
+    .orb-container:hover {
+      transform: scale(1.1);
+    }
+
+    .orb-container img {
+      width: 100%;
+      height: 100%;
+      transition: filter 0.3s;
+      filter: drop-shadow(0 0 20px #ffcc00);
+    }
+
+    .particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: #ffcc00;
+      border-radius: 50%;
+      animation: floatParticle linear infinite;
+    }
+
+    @keyframes floatParticle {
+      0% { transform: translate(0,0); opacity: 1; }
+      100% { transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)); opacity: 0; }
     }
 
     h1 {
       position: absolute;
-      bottom: 50px;
-      font-size: 2rem;
-      text-align: center;
+      bottom: 40px;
       width: 100%;
+      text-align: center;
+      font-size: 2rem;
       color: #fff;
-      text-shadow: 0 0 10px rgba(0,0,0,0.5);
+      text-shadow: 0 0 10px #000;
     }
   </style>
 </head>
 <body>
 
-  <div class="ball-container">
-    <img src="scd-ball.svg" alt="SCD Ball">
-    <div class="glow"></div>
+  <div class="orb-container" id="orb">
+    <img src="scd-ball.svg" alt="SCD Ball" id="orbImage">
+    <div class="particles" id="particles"></div>
   </div>
 
-  <h1>Welcome to the SCD Experience</h1>
+  <h1>Click the Orb to Change Its Colors!</h1>
+
+  <script>
+    const orb = document.getElementById('orb');
+    const orbImage = document.getElementById('orbImage');
+    const particlesContainer = document.getElementById('particles');
+
+    // Generate random particles
+    for (let i = 0; i < 30; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.setProperty('--x', (Math.random() - 0.5) * 200);
+      particle.style.setProperty('--y', (Math.random() - 0.5) * 200);
+      particle.style.animationDuration = `${Math.random() * 3 + 2}s`;
+      particle.style.background = `hsl(${Math.random() * 360}, 80%, 60%)`;
+      particlesContainer.appendChild(particle);
+    }
+
+    // Click to change orb color
+    orb.addEventListener('click', () => {
+      const hue = Math.floor(Math.random() * 360);
+      orbImage.style.filter = `drop-shadow(0 0 25px hsl(${hue}, 80%, 60%)) hue-rotate(${hue}deg)`;
+    });
+  </script>
 
 </body>
 </html>
