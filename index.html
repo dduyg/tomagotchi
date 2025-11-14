@@ -1,100 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SCD Ball Game</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-      height: 100vh;
-      background: linear-gradient(to bottom, #1e3c72, #2a5298);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      color: white;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SCD Interactive Portal</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    background: radial-gradient(circle at center, #0c0c0c, #1b1b2f);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
 
-    #ball {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      cursor: grab;
-      user-select: none;
-      transition: box-shadow 0.2s;
-    }
+  .orb {
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    z-index: 10;
+  }
 
-    #ball:active {
-      cursor: grabbing;
-      box-shadow: 0 0 20px #fff;
-    }
+  .orb:hover {
+    transform: scale(1.1) rotate(10deg);
+  }
 
-    #score {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      font-size: 1.5rem;
-      text-shadow: 0 0 5px black;
-    }
-  </style>
+  .section {
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    border: 2px solid #0ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: all 1s ease;
+  }
+
+  .section.show {
+    opacity: 1;
+  }
+
+  .section1 { top: -250px; left: 50%; transform: translateX(-50%); }
+  .section2 { bottom: -250px; left: 50%; transform: translateX(-50%); }
+  .section3 { left: -350px; top: 50%; transform: translateY(-50%); }
+  .section4 { right: -350px; top: 50%; transform: translateY(-50%); }
+
+  .section1.show { top: 50px; }
+  .section2.show { bottom: 50px; }
+  .section3.show { left: 50px; }
+  .section4.show { right: 50px; }
+</style>
 </head>
 <body>
 
-  <div id="score">Bounces: 0</div>
-  <img src="scd-ball.svg" id="ball" alt="SCD Ball">
+<img src="scd-ball.svg" class="orb" id="orb" alt="SCD Ball">
 
-  <script>
-    const ball = document.getElementById('ball');
-    const scoreDisplay = document.getElementById('score');
-    let score = 0;
+<div class="section section1" id="sec1">Section 1: Welcome</div>
+<div class="section section2" id="sec2">Section 2: About</div>
+<div class="section section3" id="sec3">Section 3: Features</div>
+<div class="section section4" id="sec4">Section 4: Contact</div>
 
-    let velocity = { x: 3, y: 2 };
-    let pos = { x: window.innerWidth / 2 - 50, y: window.innerHeight / 2 - 50 };
-    let dragging = false;
+<script>
+const orb = document.getElementById('orb');
+const sections = [
+  document.getElementById('sec1'),
+  document.getElementById('sec2'),
+  document.getElementById('sec3'),
+  document.getElementById('sec4')
+];
 
-    ball.style.left = pos.x + 'px';
-    ball.style.top = pos.y + 'px';
-
-    ball.addEventListener('mousedown', () => dragging = true);
-    document.addEventListener('mouseup', () => dragging = false);
-
-    document.addEventListener('mousemove', (e) => {
-      if (dragging) {
-        pos.x = e.clientX - ball.offsetWidth / 2;
-        pos.y = e.clientY - ball.offsetHeight / 2;
-        ball.style.left = pos.x + 'px';
-        ball.style.top = pos.y + 'px';
-      }
-    });
-
-    function animate() {
-      if (!dragging) {
-        pos.x += velocity.x;
-        pos.y += velocity.y;
-
-        // Bounce off walls
-        if (pos.x <= 0 || pos.x + ball.offsetWidth >= window.innerWidth) {
-          velocity.x *= -1;
-          score++;
-        }
-        if (pos.y <= 0 || pos.y + ball.offsetHeight >= window.innerHeight) {
-          velocity.y *= -1;
-          score++;
-        }
-
-        ball.style.left = pos.x + 'px';
-        ball.style.top = pos.y + 'px';
-        scoreDisplay.textContent = 'Bounces: ' + score;
-      }
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-  </script>
+let open = false;
+orb.addEventListener('click', () => {
+  open = !open;
+  sections.forEach(sec => {
+    if(open) sec.classList.add('show');
+    else sec.classList.remove('show');
+  });
+});
+</script>
 
 </body>
 </html>
