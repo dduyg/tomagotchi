@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCD Orb Network Mapper</title>
+<title>SCD Orb Data Pulse Map</title>
 <style>
   body {
     margin: 0;
     overflow: hidden;
-    background: #0a0a0a;
+    background: #0a0a0f;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -16,149 +16,125 @@
     font-family: Arial, sans-serif;
   }
 
-  #centralOrb {
+  #hub {
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
   }
 
-  .node {
+  .dataOrb {
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     transform: translate(-50%, -50%);
     cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .dataOrb:hover {
+    transform: translate(-50%, -50%) scale(1.5);
+    filter: drop-shadow(0 0 15px #0ff);
   }
 
   .tooltip {
     position: absolute;
     padding: 5px 10px;
     background: rgba(0,0,0,0.8);
-    border-radius: 5px;
     color: #0ff;
-    font-size: 0.9rem;
+    border-radius: 5px;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.2s;
-  }
-
-  canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
+    font-size: 0.9rem;
   }
 </style>
 </head>
 <body>
 
-<img src="scd-ball.svg" id="centralOrb" alt="Central Orb">
+<img src="scd-ball.svg" id="hub" alt="Data Hub">
 <div class="tooltip" id="tooltip"></div>
-<canvas id="lines"></canvas>
 
 <script>
-const canvas = document.getElementById('lines');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
+const hub = document.getElementById('hub');
 const tooltip = document.getElementById('tooltip');
-
-const center = { x: window.innerWidth/2, y: window.innerHeight/2 };
+const dataOrbs = [];
 
 // Example dataset
-const nodesData = [
-  { label: "Node A" }, { label: "Node B" }, { label: "Node C" },
-  { label: "Node D" }, { label: "Node E" }, { label: "Node F" }
+const dataset = [
+  {id:1,type:"Sensor",value:120},
+  {id:2,type:"Packet",value:80},
+  {id:3,type:"Alert",value:60},
+  {id:4,type:"Event",value:150},
+  {id:5,type:"Log",value:45},
+  {id:6,type:"Packet",value:90},
+  {id:7,type:"Sensor",value:130},
+  {id:8,type:"Alert",value:70}
 ];
 
-const nodes = nodesData.map(d => {
-  const el = document.createElement('img');
-  el.src = 'scd-ball.svg';
-  el.className = 'node';
-  document.body.appendChild(el);
-  return {
-    element: el,
-    label: d.label,
+// Create data orbs
+dataset.forEach(d=>{
+  const orb = document.createElement('img');
+  orb.src = 'scd-ball.svg';
+  orb.className = 'dataOrb';
+  orb.dataset.type = d.type;
+  orb.dataset.value = d.value;
+  document.body.appendChild(orb);
+  dataOrbs.push({
+    element: orb,
     x: Math.random()*window.innerWidth,
     y: Math.random()*window.innerHeight,
-    vx: 0,
-    vy: 0
-  };
-});
+    vx: (Math.random()-0.5)*2,
+    vy: (Math.random()-0.5)*2
+  });
 
-// Force-directed layout parameters
-const k = 200; // link length
-const repulsion = 5000;
-
-// Hover tooltip
-nodes.forEach(n=>{
-  n.element.addEventListener('mousemove', e=>{
-    tooltip.style.left = e.clientX + 10 + 'px';
-    tooltip.style.top = e.clientY + 10 + 'px';
-    tooltip.innerHTML = n.label;
+  // Tooltip
+  orb.addEventListener('mousemove', e=>{
+    tooltip.style.left = e.clientX+10+'px';
+    tooltip.style.top = e.clientY+10+'px';
+    tooltip.innerHTML = `${d.type}: ${d.value}`;
     tooltip.style.opacity = 1;
   });
-  n.element.addEventListener('mouseleave', ()=> tooltip.style.opacity = 0);
+  orb.addEventListener('mouseleave', ()=>{
+    tooltip.style.opacity = 0;
+  });
 });
 
-// Animate network
+// Animate data flow toward hub
 function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  nodes.forEach(n=>{
-    // Attractive force to center
-    const dx = center.x - n.x;
-    const dy = center.y - n.y;
-    const dist = Math.sqrt(dx*dx + dy*dy);
-    const force = (dist - k) * 0.01;
-    n.vx += dx/dist * force;
-    n.vy += dy/dist * force;
-
-    // Simple repulsion between nodes
-    nodes.forEach(other=>{
-      if(other!==n){
-        const dxo = n.x - other.x;
-        const dyo = n.y - other.y;
-        const d = Math.sqrt(dxo*dxo + dyo*dyo) || 0.01;
-        if(d<100){
-          const rep = (100 - d)/1000;
-          n.vx += dxo/d * rep;
-          n.vy += dyo/d * rep;
-        }
-      }
-    });
-
-    // Update positions
-    n.vx *= 0.9;
-    n.vy *= 0.9;
-    n.x += n.vx;
-    n.y += n.vy;
-
-    n.element.style.left = n.x + 'px';
-    n.element.style.top = n.y + 'px';
-
-    // Draw line to center orb
-    ctx.beginPath();
-    ctx.moveTo(n.x, n.y);
-    ctx.lineTo(center.x, center.y);
-    ctx.strokeStyle = '#0ff';
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
-  });
-
   requestAnimationFrame(animate);
+  const hubX = window.innerWidth/2;
+  const hubY = window.innerHeight/2;
+
+  dataOrbs.forEach(o=>{
+    const dx = hubX - o.x;
+    const dy = hubY - o.y;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const force = 0.05;
+
+    // Move orb slightly toward hub
+    o.vx += dx/dist * force;
+    o.vy += dy/dist * force;
+
+    // Update position
+    o.vx *= 0.95;
+    o.vy *= 0.95;
+    o.x += o.vx;
+    o.y += o.vy;
+
+    o.element.style.left = o.x+'px';
+    o.element.style.top = o.y+'px';
+  });
 }
 
 animate();
 
-// Handle window resize
+// Resize handling
 window.addEventListener('resize', ()=>{
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  // Orbs adapt naturally; hub stays centered
 });
 </script>
 
