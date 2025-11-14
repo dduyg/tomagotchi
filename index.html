@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LiminalLoop</title>
-<link href="https://fonts.cdnfonts.com/css/ravenous-caterpillar-brk" rel="stylesheet">               
-<style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>LiminalLoop</title>               
+ <style>
   * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
+  @font-face {
+   font-family: 'Mercury';
+   src: url('https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@main/fonts/Mercury.woff2') format('woff2');
+   font-weight: normal;
+   font-style: normal;
+  }
   body {
-    font-family: 'Ravenous Caterpillar BRK', sans-serif;
+    font-family: 'Mercury', serif;
     background: #838071;
     color: #3B322D;
     height: 100vh;
@@ -20,10 +25,8 @@
   }
   #orb {
     position: absolute;
-    width: 150px;
-    height: 150px;
-    left: 50%;
-    top: 50%;
+    width: 150px; height: 150px;
+    left: 50%; top: 50%;
     transform: translate(-50%, -50%);
     cursor: pointer;
     transition: transform 0.5s;
@@ -31,8 +34,7 @@
   }
   .panel {
     position: absolute;
-    width: 120px;
-    height: 170px;
+    width: 120px; height: 150px;
     border: 3px dotted;
     display: flex;
     justify-content: center;
@@ -43,7 +45,7 @@
     text-align: center;
   }
   .panel.show {opacity: 1;}
-</style>
+  </style>
 </head>
 <body>
   <img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/VHScloud.png" id="orb">
