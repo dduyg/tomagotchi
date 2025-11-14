@@ -3,18 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCD Orb Time Machine</title>
+<title>SCD Orb Story Compass</title>
 <style>
   body {
     margin: 0;
     overflow: hidden;
+    background: radial-gradient(circle at center, #0b0b1a, #111122);
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #0b0b1a;
     font-family: Arial, sans-serif;
-    transition: background 1s;
   }
 
   #orb {
@@ -29,62 +28,60 @@
     z-index: 10;
   }
 
-  .effect {
+  .quadrant {
     position: absolute;
-    width: 10px;
-    height: 10px;
-    background: #0ff;
-    border-radius: 50%;
-    pointer-events: none;
+    width: 250px;
+    height: 150px;
+    background: rgba(0,255,255,0.1);
+    border: 2px solid #0ff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.1rem;
+    opacity: 0;
+    transition: opacity 0.5s;
   }
+
+  #north { top: 50px; left: 50%; transform: translateX(-50%); }
+  #south { bottom: 50px; left: 50%; transform: translateX(-50%); }
+  #east { top: 50%; right: 50px; transform: translateY(-50%); }
+  #west { top: 50%; left: 50px; transform: translateY(-50%); }
 </style>
 </head>
 <body>
 
 <img src="scd-ball.svg" id="orb" alt="SCD Orb">
 
+<div class="quadrant" id="north">North Content: Ideas & Vision</div>
+<div class="quadrant" id="south">South Content: Actions & Tasks</div>
+<div class="quadrant" id="east">East Content: Growth & Expansion</div>
+<div class="quadrant" id="west">West Content: Reflection & Learning</div>
+
 <script>
 const orb = document.getElementById('orb');
-const effects = [];
-const themes = [
-  { bg: '#0b0b1a', color: '#0ff' }, // Cosmic
-  { bg: '#111100', color: '#ffcc00' }, // Ancient
-  { bg: '#001122', color: '#66ffcc' }, // Futuristic
-  { bg: '#220000', color: '#ff6666' }, // Volcanic
+const quadrants = [
+  document.getElementById('north'),
+  document.getElementById('east'),
+  document.getElementById('south'),
+  document.getElementById('west')
 ];
-let currentTheme = 0;
 
-// Click orb to travel through time
+let current = 0;
+
+// Click orb to rotate to next quadrant
 orb.addEventListener('click', () => {
-  currentTheme = (currentTheme + 1) % themes.length;
-  document.body.style.background = themes[currentTheme].bg;
+  current = (current + 1) % quadrants.length;
+  orb.style.transform = `translate(-50%, -50%) rotate(${current * 90}deg)`;
+
+  quadrants.forEach((q, index) => {
+    q.style.opacity = index === current ? 1 : 0;
+  });
 });
 
-// Create floating particles for visual effect
-for(let i=0;i<50;i++){
-  const e = document.createElement('div');
-  e.className = 'effect';
-  e.style.background = themes[currentTheme].color;
-  e.style.left = Math.random()*window.innerWidth+'px';
-  e.style.top = Math.random()*window.innerHeight+'px';
-  document.body.appendChild(e);
-  effects.push({ element: e, dx: Math.random()*2-1, dy: Math.random()*2-1 });
-}
-
-// Animate particles
-function animate(){
-  requestAnimationFrame(animate);
-  effects.forEach(e=>{
-    let left = parseFloat(e.element.style.left) + e.dx;
-    let top = parseFloat(e.element.style.top) + e.dy;
-    if(left<0 || left>window.innerWidth) e.dx *= -1;
-    if(top<0 || top>window.innerHeight) e.dy *= -1;
-    e.element.style.left = left+'px';
-    e.element.style.top = top+'px';
-    e.element.style.background = themes[currentTheme].color;
-  });
-}
-animate();
+// Initialize first quadrant
+quadrants[current].style.opacity = 1;
 </script>
 
 </body>
