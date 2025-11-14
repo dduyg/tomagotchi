@@ -30,9 +30,6 @@
     }
 
     /* Hover triggers animation */
-    .helix1:hover {
-        animation: Helix-1 2s infinite alternate ease-in-out;
-    }
     .helix2:hover {
         animation: Helix-2 2s infinite alternate ease-in-out;
     }
@@ -40,9 +37,6 @@
         animation: Helix-3 2s infinite alternate ease-in-out;
     }
 
-    .conv1:hover {
-        animation: Conveyor-1 2.5s infinite ease-out;
-    }
     .conv2:hover {
         animation: Conveyor-2 2.5s infinite ease-out;
     }
@@ -52,12 +46,6 @@
 
 
 /* -------------------- KEYFRAMES YOU PROVIDED -------------------- */
-
-@keyframes Helix-1 {
-    0% { transform: perspective(4000px) rotatey(35deg) rotatez(1.5deg); }
-    100% { transform: perspective(4000px) rotatey(-35deg) rotatez(-1.5deg); }
-}
-
 @keyframes Helix-2 {
     0% { transform: perspective(3000px) rotatey(60deg) rotatez(2deg); }
     100% { transform: perspective(3000px) rotatey(-60deg) rotatez(-2deg); }
@@ -66,12 +54,6 @@
 @keyframes Helix-3 {
     0% { transform: perspective(2000px) rotatey(90deg) rotatez(3deg); }
     100% { transform: perspective(2000px) rotatey(-90deg) rotatez(-3deg); }
-}
-
-@keyframes Conveyor-1 {
-    0% { transform: perspective(2500px) translateZ(25em) rotateX(45deg); }
-    40% { transform: perspective(2500px) rotateX(0deg); }
-    100% { transform: perspective(2500px) rotateX(0deg); }
 }
 
 @keyframes Conveyor-2 {
@@ -89,14 +71,10 @@
 </style>
 </head>
 <body>
-
-    <div class="box helix1">Helix 1</div>
     <div class="box helix2">Helix 2</div>
     <div class="box helix3">Helix 3</div>
 
-    <div class="box conv1">Conveyor 1</div>
     <div class="box conv2">Conveyor 2</div>
     <div class="box conv3">Conveyor 3</div>
-
 </body>
 </html>
