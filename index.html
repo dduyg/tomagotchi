@@ -3,132 +3,154 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCD Orb Constellation Map</title>
+<title>Orb Music Visualizer</title>
 
 <style>
     body {
         margin: 0;
+        background: #050510;
         overflow: hidden;
-        background: radial-gradient(circle at center, #0d0f18, #05050a 80%);
         font-family: Arial, sans-serif;
-        color: #fff;
-    }
-
-    #canvas {
-        position: fixed;
-        left: 0; 
-        top: 0;
-        width: 100vw;
-        height: 100vh;
-    }
-
-    .node {
-        position: absolute;
-        width: 34px;
-        height: 34px;
-        cursor: pointer;
-        transform: translate(-50%, -50%);
-        transition: transform 0.2s ease;
-    }
-
-    .node:hover {
-        transform: translate(-50%, -50%) scale(1.4);
-        filter: drop-shadow(0 0 12px #0ff);
-    }
-
-    #infoBox {
-        position: absolute;
-        padding: 15px;
-        background: rgba(0,0,0,0.75);
-        border: 1px solid #0ff;
-        border-radius: 10px;
-        width: 240px;
-        display: none;
-        z-index: 10;
-    }
-
-    #infoTitle {
         color: #0ff;
-        margin-bottom: 8px;
-        font-size: 1.1rem;
+    }
+    #controls {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 10;
+        background: rgba(0,0,0,0.5);
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid #0ff;
+    }
+    #controls input {
+        width: 260px;
+        padding: 6px;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+    #controls button {
+        padding: 8px 12px;
+        background: #0ff;
+        border: none;
+        cursor: pointer;
+        color: #000;
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    #canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
     }
 </style>
 </head>
+
 <body>
 
-<canvas id="canvas"></canvas>
-<div id="infoBox">
-    <div id="infoTitle"></div>
-    <div id="infoText"></div>
+<div id="controls">
+    <input id="urlInput" placeholder="Paste YouTube / Spotify URL">
+    <button onclick="handleURL()">Load</button>
+    <br>
+    <input type="file" id="fileInput" accept="audio/*">
+    <button onclick="playFile()">Play File</button>
 </div>
 
+<canvas id="canvas"></canvas>
+
 <script>
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+let audio, audioCtx, analyser, dataArray;
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
 
-let W = canvas.width = window.innerWidth;
-let H = canvas.height = window.innerHeight;
+canvas.width = innerWidth;
+canvas.height = innerHeight;
 
-// Dataset for constellation nodes
-const stars = [
-    {name:"Alpha Orb", info:"Primary navigation beacon.", x:200, y:160},
-    {name:"Beta Orb", info:"Transmits sensor patterns.", x:600, y:240},
-    {name:"Gamma Orb", info:"Stores cosmic logs.", x:900, y:140},
-    {name:"Delta Orb", info:"Analyzes signal energy.", x:420, y:400},
-    {name:"Epsilon Orb", info:"Processes real-time flux.", x:760, y:460},
-    {name:"Zeta Orb", info:"Detects irregular pulses.", x:300, y:500}
-];
+let orbs = [];
 
-let nodes = [];
-
-// Create HTML nodes for each star
-stars.forEach(star => {
-    let img = document.createElement("img");
-    img.src = "scd-ball.svg";
-    img.className = "node";
-    img.style.left = star.x + "px";
-    img.style.top = star.y + "px";
-    document.body.appendChild(img);
-
-    img.addEventListener("click", e => {
-        infoBox.style.left = (star.x + 40) + "px";
-        infoBox.style.top = (star.y + 20) + "px";
-        infoTitle.innerText = star.name;
-        infoText.innerText = star.info;
-        infoBox.style.display = "block";
-    });
-
-    nodes.push({ img, ...star });
-});
-
-// Draw connecting lines between nodes
-function drawConstellation() {
-    ctx.clearRect(0, 0, W, H);
-    ctx.strokeStyle = "rgba(0,255,255,0.25)";
-    ctx.lineWidth = 1;
-
-    ctx.beginPath();
-    for (let i = 0; i < nodes.length; i++) {
-        for (let j = i+1; j < nodes.length; j++) {
-            ctx.moveTo(nodes[i].x, nodes[i].y);
-            ctx.lineTo(nodes[j].x, nodes[j].y);
-        }
-    }
-    ctx.stroke();
+function handleURL() {
+    alert("For YouTube/Spotify: Browser cannot extract audio directly.\nUpload audio file OR use helper server.");
 }
+
+function playFile() {
+    const fileInput = document.getElementById("fileInput");
+    if (!fileInput.files.length) return alert("Pick an audio file.");
+
+    if (audio) audio.pause();
+
+    audio = new Audio(URL.createObjectURL(fileInput.files[0]));
+    audio.crossOrigin = "anonymous";
+    audio.play();
+
+    setupAudio();
+}
+
+function setupAudio() {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    analyser = audioCtx.createAnalyser();
+    let source = audioCtx.createMediaElementSource(audio);
+
+    source.connect(analyser);
+    analyser.connect(audioCtx.destination);
+
+    analyser.fftSize = 256;
+    let bufferLength = analyser.frequencyBinCount;
+    dataArray = new Uint8Array(bufferLength);
+
+    animate();
+}
+
+class Orb {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = 20;
+        this.speed = 0.5 + Math.random() * 1.5;
+        this.angle = Math.random() * Math.PI * 2;
+    }
+
+    update(force) {
+        this.x += Math.cos(this.angle) * this.speed * (force/100);
+        this.y += Math.sin(this.angle) * this.speed * (force/100);
+        this.size = 20 + force/4;
+
+        if (this.x < -100) this.x = canvas.width + 100;
+        if (this.x > canvas.width + 100) this.x = -100;
+        if (this.y < -100) this.y = canvas.height + 100;
+        if (this.y > canvas.height + 100) this.y = -100;
+    }
+
+    draw() {
+        let img = new Image();
+        img.src = "scd-ball.svg";
+        ctx.drawImage(img, this.x, this.y, this.size, this.size);
+    }
+}
+
+for (let i=0; i<50; i++) orbs.push(new Orb());
 
 function animate() {
-    drawConstellation();
     requestAnimationFrame(animate);
+
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    analyser.getByteFrequencyData(dataArray);
+
+    let bass = dataArray[1];
+    let mids = dataArray[64];
+    let highs = dataArray[128];
+
+    let force = bass * 0.8 + mids * 0.5 + highs * 0.3;
+
+    orbs.forEach(o => {
+        o.update(force);
+        o.draw();
+    });
 }
 
-animate();
-
-// Resize support
-window.addEventListener("resize", () => {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-});
+window.onresize = () => {
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+};
 </script>
 
 </body>
