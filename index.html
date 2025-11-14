@@ -32,7 +32,7 @@
   }
 
     /* Hover triggers animation */
-    .blur2:hover {animation: BlurIn-2 1s forwards;}
+    .blur:hover {animation: BlurIn 1s forwards;}
     .scale2:hover {animation: ScaleOut-2 0.4s forwards;}
     .helix2:hover {animation: Helix-2 2s infinite alternate ease-in-out;}
     .helix3:hover {animation: Helix-3 2s infinite alternate ease-in-out;}
@@ -42,11 +42,10 @@
     .twistup3:hover {animation: TwistUp-3 1.2s ease-out forwards;}
     .rebound-2:hover {animation: Rebound-2 1s forwards;}
     .rebound-3:hover {animation: Rebound-3 1s forwards;}
-    .loosehinge-1:hover {animation: LooseHinge-1 1s forwards;}
-    .loosehinge-2:hover {animation: LooseHinge-2 1s forwards;}    
+    .loosehinge:hover {animation: LooseHinge 1s forwards;}    
 
 /* -------------------- KEYFRAMES  -------------------- */
-@keyframes BlurIn-2 {
+@keyframes BlurIn {
     0% { filter: blur(8px); }
     12.5% { filter: blur(8px); }
     35% { filter: blur(0px); }
@@ -91,12 +90,7 @@
       100% {transform: perspective(1300px) translateZ(-70em) rotateX(-90deg); transform-origin: 50% 0%;}
   }
 
-  @keyframes LooseHinge-1 {
-      0% {transform: rotate(5deg); transform-origin: 0% 0%;}
-      50% {transform: rotate(0deg); transform-origin: 50% 50%;}
-      100% {transform: rotate(5deg); transform-origin: 100% 100%;}
-  }
-  @keyframes LooseHinge-2 {
+  @keyframes LooseHinge {
       0% {transform: rotate(10deg); transform-origin: 0% 0%;}
       50% {transform: rotate(0deg); transform-origin: 50% 50%;}
       100% {transform: rotate(10deg); transform-origin: 100% 100%;}
@@ -113,7 +107,7 @@
 </style>
 </head>
 <body>
-    <div class="box blur2">Blur 2</div>
+    <div class="box blur">Blur</div>
     <div class="box scale2">Scale 2</div
     <div class="box helix2">Helix 2</div>
     <div class="box helix3">Helix 3</div>
@@ -123,7 +117,6 @@
     <div class="box twistup3">TwistUp 3</div>
     <div class="box rebound-2">Rebound 2</div>
     <div class="box rebound-3">Rebound 3</div>
-    <div class="box loosehinge-1">Hinge 1</div>
-    <div class="box loosehinge-2">Hinge 2</div>
+    <div class="box loosehinge">Hinge</div>
 </body>
 </html>
