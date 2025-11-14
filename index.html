@@ -1,577 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Neural Network Visualizer</title>
-<style>
-  :root{
-    --bg:#051026;
-    --panel:#07122a;
-    --accent:#0ff;
-    --muted:#9fb7c9;
-  }
-  html,body{height:100%; margin:0; font-family:Inter,Arial,system-ui; background:var(--bg); color:#eaf6ff}
-  .app {
-    display:flex; height:100vh; gap:18px; padding:18px;
-  }
-  .left {
-    width:360px;
-    background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-    border-radius:12px;
-    padding:18px;
-    box-shadow: 0 6px 30px rgba(0,0,0,0.6);
-    box-sizing:border-box;
-    border:1px solid rgba(255,255,255,0.04);
-  }
-  .left h2 { margin:6px 0 12px 0; color:var(--accent) }
-  .controls label{ display:block; font-size:13px; color:var(--muted); margin-top:12px }
-  input[type=range] { width:100% }
-  .btn { display:inline-block; background:var(--accent); color:#001; padding:8px 12px; border-radius:8px; border:none; cursor:pointer; font-weight:700; margin-right:8px; }
-  .btn.ghost { background:transparent; color:var(--accent); border:1px solid rgba(255,255,255,0.06) }
-  .small { font-size:13px; color:var(--muted); margin-top:8px }
-  .foot { font-size:12px; color:#9fb7c9; margin-top:10px }
-  .layers { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px }
-  .layerBtn { background:transparent; border:1px solid rgba(255,255,255,0.04); padding:6px 8px; border-radius:8px; color:var(--muted); cursor:pointer}
-  .layerBtn.active { border-color:var(--accent); color:var(--accent); box-shadow: 0 6px 18px rgba(0,255,255,0.04) }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SCD Portal</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #0a0a0a, #111);
+      overflow: hidden;
+      color: white;
+    }
 
-  .canvas-wrap {
-    flex:1; position:relative; border-radius:12px; overflow:hidden;
-    background: radial-gradient(circle at 10% 20%, rgba(0,255,255,0.03), rgba(255,255,255,0.01) 30%), var(--panel);
-    border:1px solid rgba(255,255,255,0.03);
-  }
+    .portal-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
 
-  canvas { width:100%; height:100%; display:block }
-  .neuron {
-    position:absolute; width:56px; height:56px; transform:translate(-50%,-50%); pointer-events:auto;
-    transition: transform 220ms ease, filter 220ms ease;
-  }
-  .neuron:hover { transform:translate(-50%,-50%) scale(1.12); filter: drop-shadow(0 0 18px rgba(0,255,255,0.25)) }
-  .tooltip {
-    position:fixed; pointer-events:none; background:rgba(0,0,0,0.8); color:var(--accent); padding:8px 10px; border-radius:8px; font-size:13px; border:1px solid rgba(0,255,255,0.08);
-    transform:translate(-50%,-120%); white-space:nowrap; display:none; z-index:9999;
-  }
+    .portal-container img {
+      width: 100%;
+      height: 100%;
+      transition: transform 1s, filter 1s;
+      filter: drop-shadow(0 0 20px #00f);
+    }
 
-  .row { display:flex; gap:8px; align-items:center; margin-top:6px }
-  .muted { color:var(--muted) }
+    .portal-container.open img {
+      transform: scale(1.5) rotate(720deg);
+      filter: drop-shadow(0 0 60px #0ff);
+    }
 
-  .inputs { margin-top:12px; }
-  .inputLabel { font-size:13px; color:var(--muted); margin-bottom:6px }
-  .inputRow { display:flex; gap:8px; align-items:center; margin-bottom:8px }
+    .message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      text-align: center;
+      font-size: 1.5rem;
+      opacity: 0;
+      transition: transform 1s, opacity 1s;
+    }
 
-  /* small responsive */
-  @media (max-width:900px){
-    .left { width:320px }
-    .neuron { width:46px; height:46px }
-  }
+    .portal-container.open + .message {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
 
-</style>
+    /* Subtle animated background lines */
+    .bg-lines {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: repeating-linear-gradient(45deg, rgba(0,255,255,0.05) 0 2px, transparent 2px 10px);
+      animation: moveLines 10s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes moveLines {
+      0% { transform: translate(0,0); }
+      100% { transform: translate(-100px, -100px); }
+    }
+  </style>
 </head>
 <body>
 
-<div class="app">
-  <div class="left" id="leftPanel">
-    <h2>SCD Orb — Neural Network Visualizer</h2>
-    <div class="small">Configure a feed-forward network, set inputs, randomize weights and watch activations flow as animated orbs.</div>
+  <div class="bg-lines"></div>
 
-    <div class="controls">
-      <label>Architecture (layers):</label>
-      <div class="layers" id="archBtns"></div>
-      <div style="margin-top:10px">
-        <button class="btn" id="addLayerBtn">+ Add Hidden Layer</button>
-        <button class="btn ghost" id="resetBtn">Reset</button>
-      </div>
-
-      <label>Activation function:</label>
-      <div class="row">
-        <button class="layerBtn active" data-act="sigmoid">Sigmoid</button>
-        <button class="layerBtn" data-act="relu">ReLU</button>
-        <button class="layerBtn" data-act="tanh">Tanh</button>
-      </div>
-
-      <label style="margin-top:12px">Controls:</label>
-      <div style="margin-top:8px">
-        <button class="btn" id="randomize">Randomize Weights</button>
-        <button class="btn" id="forwardBtn">Run Forward Pass</button>
-        <button class="btn ghost" id="stepBtn">Step (animate)</button>
-      </div>
-
-      <div class="inputs">
-        <div class="inputLabel">Inputs (adjust values):</div>
-        <div id="inputsArea"></div>
-      </div>
-
-      <label style="margin-top:12px">Visualization:</label>
-      <div class="small">Line thickness = |weight|, line color intensity = sign*activation contribution</div>
-
-      <div class="foot">Tip: hover nodes/lines to inspect numbers. Drag network by hold-drag on blank space.</div>
-    </div>
+  <div class="portal-container" id="portal">
+    <img src="scd-ball.svg" alt="SCD Portal">
+  </div>
+  <div class="message" id="message">
+    Welcome to the SCD Universe!
   </div>
 
-  <div class="canvas-wrap" id="canvasWrap">
-    <canvas id="mainCanvas"></canvas>
-    <!-- neurons are DOM images positioned above canvas for easy hover -->
-    <div id="neuronLayer"></div>
-    <div id="tooltip" class="tooltip"></div>
-  </div>
-</div>
+  <script>
+    const portal = document.getElementById('portal');
+    const message = document.getElementById('message');
 
-<script>
-/* ==========================
-   Neural Network Visualizer
-   ==========================
+    portal.addEventListener('click', () => {
+      portal.classList.toggle('open');
+    });
+  </script>
 
-   - Uses your scd-ball.svg file next to this HTML.
-   - No external libs.
-   - Feed-forward network, animated forward pass visualization.
-*/
-
-// --- state / model ---
-let network = {
-  // layers array: each element = neuron count for that layer; input layer is layer 0
-  layers: [3, 5, 4, 2], // default: 3 inputs, two hidden layers (5,4), 2 outputs
-  act: 'sigmoid',
-  weights: [], // weights[l][i][j] weight from neuron i in layer l to neuron j in layer l+1
-  biases: [],  // biases for layers l+1
-  activations: [] // activations per layer
-};
-
-const canvas = document.getElementById('mainCanvas');
-const ctx = canvas.getContext('2d');
-const wrap = document.getElementById('canvasWrap');
-const neuronLayer = document.getElementById('neuronLayer');
-const tooltip = document.getElementById('tooltip');
-
-function resize() {
-  canvas.width = wrap.clientWidth;
-  canvas.height = wrap.clientHeight;
-  layoutNetwork();
-}
-window.addEventListener('resize', resize);
-resize();
-
-// --- utilities ---
-const rand = (a,b)=>(Math.random()*(b-a)+a);
-const sigmoid = x => 1/(1+Math.exp(-x));
-const dsigmoid = y => y*(1-y);
-const relu = x => Math.max(0,x);
-const drelu = x => x>0?1:0;
-const tanh_ = x => Math.tanh(x);
-const dtanh = y => 1 - y*y;
-
-// activation selector
-function activate(x){
-  if(network.act==='sigmoid') return sigmoid(x);
-  if(network.act==='relu') return relu(x);
-  if(network.act==='tanh') return tanh_(x);
-  return sigmoid(x);
-}
-
-// initialize network weights & biases
-function initNetwork() {
-  network.weights = [];
-  network.biases = [];
-  network.activations = [];
-
-  for(let l=0;l<network.layers.length-1;l++){
-    const nFrom = network.layers[l];
-    const nTo = network.layers[l+1];
-    const W = [];
-    const B = [];
-    for(let i=0;i<nFrom;i++){
-      W[i] = [];
-      for(let j=0;j<nTo;j++){
-        W[i][j] = rand(-1,1);
-      }
-    }
-    for(let j=0;j<nTo;j++) B[j] = rand(-0.5,0.5);
-    network.weights.push(W);
-    network.biases.push(B);
-  }
-  // zero activations
-  for(let l=0;l<network.layers.length;l++){
-    network.activations[l] = new Array(network.layers[l]).fill(0);
-  }
-}
-
-// build UI for architecture and inputs
-const archBtns = document.getElementById('archBtns');
-function renderArchUI() {
-  archBtns.innerHTML = '';
-  for(let i=0;i<network.layers.length;i++){
-    const btn = document.createElement('button');
-    btn.className = 'layerBtn';
-    btn.textContent = (i===0? 'Input' : (i===network.layers.length-1? 'Output' : 'Hidden')) + ` (${network.layers[i]})`;
-    btn.title = 'Click to edit neurons';
-    btn.onclick = () => {
-      const newCount = parseInt(prompt('Set neurons for this layer:', network.layers[i]));
-      if(!isNaN(newCount) && newCount>0) {
-        network.layers[i] = newCount;
-        initNetwork();
-        renderInputs();
-        layoutNetwork();
-      }
-    };
-    archBtns.appendChild(btn);
-  }
-}
-renderArchUI();
-
-document.getElementById('addLayerBtn').addEventListener('click', () => {
-  const pos = Math.max(1, network.layers.length-1);
-  const n = parseInt(prompt('Neurons in new hidden layer (e.g. 4):', 4)) || 4;
-  network.layers.splice(pos,0,n);
-  initNetwork(); renderArchUI(); renderInputs(); layoutNetwork();
-});
-document.getElementById('resetBtn').addEventListener('click', () => {
-  network.layers = [3,5,4,2];
-  initNetwork(); renderArchUI(); renderInputs(); layoutNetwork();
-});
-
-// activation function buttons
-document.querySelectorAll('[data-act]').forEach(b=>{
-  b.addEventListener('click', ()=> {
-    document.querySelectorAll('[data-act]').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');
-    network.act = b.dataset.act;
-  });
-});
-
-// inputs area
-const inputsArea = document.getElementById('inputsArea');
-function renderInputs(){
-  inputsArea.innerHTML = '';
-  const count = network.layers[0];
-  for(let i=0;i<count;i++){
-    const row = document.createElement('div');
-    row.className = 'inputRow';
-    const label = document.createElement('div');
-    label.style.width='40px';
-    label.style.color='var(--muted)';
-    label.textContent = 'x' + (i+1);
-    const input = document.createElement('input');
-    input.type = 'range'; input.min = -1; input.max = 1; input.step = 0.01;
-    input.value = 0; input.dataset.idx = i;
-    const val = document.createElement('div'); val.style.width='40px'; val.style.textAlign='right'; val.style.color='#cfeffb';
-    val.textContent = '0.00';
-    input.oninput = (e)=>{
-      val.textContent = Number(e.target.value).toFixed(2);
-      network.activations[0][i] = parseFloat(e.target.value);
-      drawNetwork();
-    }
-    row.appendChild(label); row.appendChild(input); row.appendChild(val);
-    inputsArea.appendChild(row);
-  }
-}
-renderInputs();
-
-// randomize, forward, step
-document.getElementById('randomize').addEventListener('click', ()=>{
-  initNetwork(); drawNetwork();
-});
-document.getElementById('forwardBtn').addEventListener('click', ()=>{
-  forwardPass(true); // animate
-});
-document.getElementById('stepBtn').addEventListener('click', ()=>{
-  forwardPass(false);
-});
-
-// --- network layout & DOM neurons ---
-let neuronPositions = []; // [layer][i] -> {x,y,dom}
-function layoutNetwork() {
-  neuronLayer.innerHTML = '';
-  neuronPositions = [];
-  const W = wrap.clientWidth; const H = wrap.clientHeight;
-  const layers = network.layers.length;
-  const paddingX = 120;
-  const usableW = W - paddingX*2;
-  for(let l=0;l<layers;l++){
-    const n = network.layers[l];
-    neuronPositions[l] = [];
-    const x = paddingX + (usableW) * (l/(layers-1));
-    // vertical layout centered
-    const spacing = Math.min(120, (wrap.clientHeight-120)/Math.max(1,n-1));
-    const totalH = spacing*(n-1);
-    for(let i=0;i<n;i++){
-      const y = wrap.clientHeight/2 - totalH/2 + spacing*i;
-      // create DOM neuron image
-      const img = document.createElement('img');
-      img.src = 'scd-ball.svg';
-      img.className = 'neuron';
-      img.style.left = x + 'px'; img.style.top = y + 'px';
-      img.dataset.layer = l; img.dataset.idx = i;
-      img.onmouseenter = (ev)=> showNeuronTooltip(ev, l, i);
-      img.onmousemove = (ev)=> moveTooltip(ev);
-      img.onmouseleave = hideTooltip;
-      neuronLayer.appendChild(img);
-      neuronPositions[l][i] = {x,y,dom:img};
-    }
-  }
-  drawNetwork();
-}
-
-// draw connections and neurons
-function drawNetwork(highlightPaths) {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  // draw connections
-  ctx.lineCap = 'round';
-  for(let l=0;l<network.weights.length;l++){
-    const W = network.weights[l];
-    for(let i=0;i<W.length;i++){
-      for(let j=0;j<W[i].length;j++){
-        const from = neuronPositions[l][i];
-        const to = neuronPositions[l+1][j];
-        if(!from || !to) continue;
-        const w = W[i][j];
-        const absw = Math.min(6, Math.abs(w)*4 + 0.4);
-        // color: positive = cyan-ish, negative = orange-ish
-        const intensity = Math.min(1, Math.abs(w));
-        const col = w>=0 ? `rgba(0,255,255,${0.12 + intensity*0.55})` : `rgba(255,155,0,${0.12 + intensity*0.45})`;
-        ctx.strokeStyle = col;
-        ctx.lineWidth = absw;
-        ctx.beginPath();
-        ctx.moveTo(from.x, from.y);
-        // slight curve
-        const mx = (from.x + to.x)/2;
-        ctx.quadraticCurveTo(mx, from.y, to.x, to.y);
-        ctx.stroke();
-      }
-    }
-  }
-
-  // overlay activation glow for neurons
-  for(let l=0;l<neuronPositions.length;l++){
-    for(let i=0;i<neuronPositions[l].length;i++){
-      const npos = neuronPositions[l][i];
-      const act = network.activations[l] && network.activations[l][i] !== undefined ? network.activations[l][i] : 0;
-      const size = 14 + Math.min(40, Math.abs(act)*60);
-      // glow circle
-      ctx.beginPath();
-      const gx = npos.x; const gy = npos.y;
-      ctx.fillStyle = `rgba(0,255,255,${0.03 + Math.abs(act)*0.25})`;
-      ctx.arc(gx, gy, 28 + Math.abs(act)*22, 0, Math.PI*2);
-      ctx.fill();
-      // small intensity ring
-      ctx.beginPath();
-      ctx.strokeStyle = `rgba(0,255,255,${0.08 + Math.abs(act)*0.5})`;
-      ctx.lineWidth = 2;
-      ctx.arc(gx, gy, 8 + Math.abs(act)*8, 0, Math.PI*2);
-      ctx.stroke();
-      // neuron DOM image may be styled via CSS (hover etc)
-    }
-  }
-}
-
-// tooltip for neuron
-function showNeuronTooltip(e, layer, idx){
-  const act = network.activations[layer] && network.activations[layer][idx] !== undefined ? network.activations[layer][idx] : 0;
-  tooltip.style.display = 'block';
-  tooltip.innerHTML = `<strong>Layer ${layer}</strong> • Neuron ${idx}<br>Activation: ${Number(act).toFixed(4)}`;
-  moveTooltip(e);
-}
-function moveTooltip(e){
-  tooltip.style.left = (e.clientX + 12) + 'px';
-  tooltip.style.top = (e.clientY - 12) + 'px';
-}
-function hideTooltip(){ tooltip.style.display='none'; }
-
-// show connection tooltip on click/tap area (we add canvas mousemove)
-canvas.addEventListener('mousemove', (e) => {
-  const mx = e.offsetX, my = e.offsetY;
-  // test proximity to curves by sampling weights positions
-  let found = false;
-  outer: for(let l=0;l<network.weights.length;l++){
-    const W = network.weights[l];
-    for(let i=0;i<W.length;i++){
-      for(let j=0;j<W[i].length;j++){
-        const from = neuronPositions[l][i];
-        const to = neuronPositions[l+1][j];
-        if(!from || !to) continue;
-        // approximate nearest point on straight line (from -> to)
-        const ax = from.x, ay = from.y, bx = to.x, by = to.y;
-        const t = Math.max(0, Math.min(1, ((mx-ax)*(bx-ax)+(my-ay)*(by-ay))/((bx-ax)*(bx-ax)+(by-ay)*(by-ay))));
-        const px = ax + (bx-ax)*t, py = ay + (by-ay)*t;
-        const dx = mx - px, dy = my - py;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        if(dist < 8) {
-          // show tooltip for this weight
-          tooltip.style.display = 'block';
-          tooltip.innerHTML = `<strong>w&nbsp;L${l}[${i}→${j}]</strong><br>Value: ${Number(W[i][j]).toFixed(4)}`;
-          tooltip.style.left = (e.clientX+12) + 'px';
-          tooltip.style.top = (e.clientY - 12) + 'px';
-          found = true;
-          break outer;
-        }
-      }
-    }
-  }
-  if(!found && tooltip.style.display==='block'){
-    // if tooltip currently over neuron (mouseenter handled), don't hide; else hide
-    // but for simplicity hide only if not over neuron (neuron mouse enter sets display)
-    // we check if event target is neuron
-    if(e.target.tagName !== 'IMG') tooltip.style.display='none';
-  }
-});
-
-// forward pass (animated if animate=true)
-async function forwardPass(animateFlag=true) {
-  // ensure inputs defined
-  const L = network.layers.length;
-  // copy inputs from range controls
-  // (they already write to network.activations[0])
-
-  // compute layer by layer
-  for(let l=0;l<network.weights.length;l++){
-    const W = network.weights[l];
-    const B = network.biases[l];
-    const fromActs = network.activations[l];
-    const toCount = network.layers[l+1];
-    const nextActs = new Array(toCount).fill(0);
-    // compute weighted sums
-    for(let j=0;j<toCount;j++){
-      let s = B[j];
-      for(let i=0;i<fromActs.length;i++){
-        s += fromActs[i] * W[i][j];
-      }
-      nextActs[j] = activate(s);
-    }
-    // update activations step-by-step for animation
-    if(animateFlag) {
-      // animate contribution pulses on connections
-      await animateLayerPropagation(l, fromActs, nextActs);
-    }
-    network.activations[l+1] = nextActs;
-    drawNetwork();
-    // small pause
-    if(animateFlag) await sleep(150);
-  }
-  drawNetwork();
-}
-
-function sleep(ms){ return new Promise(r=>setTimeout(r,ms)) }
-
-// animate propagation from layer l -> l+1 based on contributions
-function animateLayerPropagation(l, fromActs, nextActs) {
-  return new Promise(async resolve => {
-    const W = network.weights[l];
-    const contributions = [];
-    // compute contribution magnitudes for each connection
-    for(let i=0;i<W.length;i++){
-      contributions[i] = [];
-      for(let j=0;j<W[i].length;j++){
-        const contrib = Math.abs(fromActs[i] * W[i][j]);
-        contributions[i][j] = contrib;
-      }
-    }
-    // We'll animate several frames where line alpha & width grow according to normalized contrib
-    const flat = contributions.flat();
-    const maxc = Math.max(...flat, 1e-6);
-    const frames = 18;
-    for(let f=0; f<=frames; f++){
-      const t = f/frames;
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      // draw connections emphasizing those with higher contribution at this t
-      for(let i=0;i<W.length;i++){
-        for(let j=0;j<W[i].length;j++){
-          const from = neuronPositions[l][i];
-          const to = neuronPositions[l+1][j];
-          if(!from || !to) continue;
-          const basew = W[i][j];
-          const c = contributions[i][j] / maxc;
-          const alpha = 0.06 + c * t * 0.9;
-          const width = 0.6 + Math.min(8, Math.abs(basew)*4 + c*6*t);
-          const color = basew>=0 ? `rgba(0,255,255,${alpha})` : `rgba(255,155,0,${alpha})`;
-          ctx.strokeStyle = color;
-          ctx.lineWidth = width;
-          ctx.beginPath();
-          ctx.moveTo(from.x, from.y);
-          const mx = (from.x + to.x)/2;
-          ctx.quadraticCurveTo(mx, from.y, to.x, to.y);
-          ctx.stroke();
-        }
-      }
-      // draw glow for neurons with partial activation
-      for(let idx=0; idx<network.activations[l].length; idx++){
-        const npos = neuronPositions[l][idx];
-        const a = network.activations[l][idx];
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(0,255,255,${0.02 + Math.abs(a)*0.12 * (0.25 + t*0.75)})`;
-        ctx.arc(npos.x, npos.y, 28 + Math.abs(a)*8, 0, Math.PI*2);
-        ctx.fill();
-      }
-      // also highlight target neurons growth
-      for(let j=0;j<nextActs.length;j++){
-        const tpos = neuronPositions[l+1][j];
-        const a = nextActs[j];
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(0,255,255,${0.02 + Math.abs(a)*0.12 * (0.25 + t*0.75)})`;
-        ctx.arc(tpos.x, tpos.y, 20 + Math.abs(a)*8 * t, 0, Math.PI*2);
-        ctx.fill();
-      }
-      await sleep(16);
-    }
-    resolve();
-  });
-}
-
-// random init & UI wiring
-initNetwork(); renderArchUI(); renderInputs(); layoutNetwork();
-
-// randomize initial weights on load
-// create UI for randomize etc wired above
-
-document.getElementById('randomize').addEventListener('click', ()=>{
-  initNetwork(); drawNetwork();
-});
-
-// allow dragging the whole network (pan)
-let isPanning = false;
-let panStart = null;
-wrap.addEventListener('mousedown', (e)=>{
-  if(e.target.tagName === 'CANVAS' || e.target === wrap) {
-    isPanning = true;
-    panStart = {x:e.clientX, y:e.clientY};
-    wrap.style.cursor = 'grabbing';
-  }
-});
-window.addEventListener('mouseup', ()=>{ isPanning=false; wrap.style.cursor='default'; });
-window.addEventListener('mousemove', (e)=>{
-  if(isPanning && panStart){
-    const dx = e.clientX - panStart.x;
-    const dy = e.clientY - panStart.y;
-    // shift all neurons by dx,dy (temporary reposition)
-    for(let l=0;l<neuronPositions.length;l++){
-      for(let i=0;i<neuronPositions[l].length;i++){
-        neuronPositions[l][i].x += dx;
-        neuronPositions[l][i].y += dy;
-        neuronPositions[l][i].dom.style.left = neuronPositions[l][i].x + 'px';
-        neuronPositions[l][i].dom.style.top = neuronPositions[l][i].y + 'px';
-      }
-    }
-    panStart = {x:e.clientX, y:e.clientY};
-    drawNetwork();
-  }
-});
-
-// allow clicking a neuron to manually set activation (for hidden/output layer)
-neuronLayer.addEventListener('click', (e)=>{
-  if(e.target.tagName !== 'IMG') return;
-  const l = parseInt(e.target.dataset.layer,10);
-  const i = parseInt(e.target.dataset.idx,10);
-  const val = parseFloat(prompt(`Set activation for Layer ${l} Neuron ${i} (value -1..1):`, (network.activations[l][i]||0).toFixed(2)));
-  if(!isNaN(val)){
-    network.activations[l][i] = val;
-    drawNetwork();
-  }
-});
-
-// keyboard quick actions
-window.addEventListener('keydown', (e)=>{
-  if(e.key === ' ') { forwardPass(true); } // space to animate forward
-  if(e.key === 'r') { initNetwork(); drawNetwork(); }
-});
-
-</script>
 </body>
 </html>
