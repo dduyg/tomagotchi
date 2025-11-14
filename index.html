@@ -3,20 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Emoji Popularity Orb Visualization</title>
+<title>SCD Orb Bubble Dashboard</title>
 <style>
   body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: radial-gradient(circle at center, #0a0a0a, #111022);
+    background: radial-gradient(circle at center, #0b0b1a, #1a1a2f);
     height: 100vh;
     overflow: hidden;
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
   }
 
   .orb {
     position: absolute;
+    border-radius: 50%;
     transition: transform 0.2s, filter 0.2s;
     cursor: pointer;
   }
@@ -24,6 +27,7 @@
   .orb:hover {
     transform: scale(1.3);
     filter: drop-shadow(0 0 20px #0ff);
+    z-index: 10;
   }
 
   .tooltip {
@@ -46,56 +50,61 @@
 <script>
 const tooltip = document.getElementById('tooltip');
 
-// Fun dataset: Social media emoji usage
+// Creative dataset: Tech Startup Dashboard
 const dataPoints = [
-  { label: "😂", value: 230, category: "Smileys" },
-  { label: "❤️", value: 190, category: "Symbols" },
-  { label: "🔥", value: 160, category: "Objects" },
-  { label: "🥰", value: 140, category: "Smileys" },
-  { label: "🐶", value: 110, category: "Animals" },
-  { label: "🍕", value: 100, category: "Food" },
-  { label: "🎉", value: 95, category: "Activities" },
-  { label: "🤯", value: 80, category: "Smileys" },
-  { label: "🌟", value: 70, category: "Symbols" },
-  { label: "🏀", value: 60, category: "Activities" }
+  { label: "Active Users", value: 1200, category: "Users" },
+  { label: "New Signups", value: 450, category: "Users" },
+  { label: "Monthly Revenue ($k)", value: 320, category: "Revenue" },
+  { label: "Website Sessions", value: 1500, category: "Traffic" },
+  { label: "Mobile App Sessions", value: 800, category: "Traffic" },
+  { label: "Support Tickets", value: 90, category: "Support" },
+  { label: "Completed Orders", value: 720, category: "Orders" },
+  { label: "Pending Orders", value: 150, category: "Orders" },
+  { label: "Product Reviews", value: 230, category: "Engagement" },
+  { label: "App Downloads", value: 500, category: "Growth" },
+  { label: "Churned Users", value: 75, category: "Users" },
+  { label: "Referral Signups", value: 120, category: "Growth" },
+  { label: "Customer Feedback", value: 45, category: "Support" },
+  { label: "Feature Requests", value: 60, category: "Engagement" }
 ];
 
-// Map category to hue for color
-const categoryHue = {
-  "Smileys": 50,
-  "Symbols": 200,
-  "Objects": 0,
-  "Animals": 120,
-  "Food": 30,
-  "Activities": 280
+// Define colors for categories
+const categoryColors = {
+  "Users": "#00ffff",
+  "Revenue": "#ffcc00",
+  "Traffic": "#ff66cc",
+  "Support": "#66ff66",
+  "Orders": "#ff6600",
+  "Engagement": "#9966ff",
+  "Growth": "#00ff99"
 };
 
-// Calculate max value for scaling
 const maxValue = Math.max(...dataPoints.map(d => d.value));
 
-dataPoints.forEach((d, i) => {
+// Create orbs
+dataPoints.forEach(d => {
   const orb = document.createElement('img');
-  orb.src = 'scd-ball.svg'; // Your orb image
+  orb.src = 'scd-ball.svg';
   orb.className = 'orb';
 
-  // Random position (can later map to X/Y values)
+  // Random position for demo; could map to real metrics
   orb.style.left = Math.random() * (window.innerWidth - 60) + 'px';
   orb.style.top = Math.random() * (window.innerHeight - 60) + 'px';
 
-  // Size proportional to emoji popularity
-  const size = 30 + (d.value / maxValue) * 70;
+  // Size proportional to value
+  const size = 40 + (d.value / maxValue) * 80; // 40px min, 120px max
   orb.style.width = size + 'px';
   orb.style.height = size + 'px';
 
-  // Color hue based on category
-  const hue = categoryHue[d.category] || Math.random()*360;
-  orb.style.filter = `hue-rotate(${hue}deg)`;
+  // Color based on category
+  const hue = categoryColors[d.category] || "#ffffff";
+  orb.style.filter = `drop-shadow(0 0 15px ${hue})`;
 
   // Tooltip
   orb.addEventListener('mousemove', e => {
     tooltip.style.left = e.clientX + 10 + 'px';
     tooltip.style.top = e.clientY + 10 + 'px';
-    tooltip.innerHTML = `${d.label} (${d.category}): ${d.value}K uses`;
+    tooltip.innerHTML = `<strong>${d.label}</strong>: ${d.value}`;
     tooltip.style.opacity = 1;
   });
   orb.addEventListener('mouseleave', () => {
