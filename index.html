@@ -3,85 +3,132 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCD Orb Story Compass</title>
+<title>SCD Orb Constellation Map</title>
+
 <style>
-  body {
-    margin: 0;
-    overflow: hidden;
-    background: radial-gradient(circle at center, #0b0b1a, #111122);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-  }
+    body {
+        margin: 0;
+        overflow: hidden;
+        background: radial-gradient(circle at center, #0d0f18, #05050a 80%);
+        font-family: Arial, sans-serif;
+        color: #fff;
+    }
 
-  #orb {
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-    transition: transform 0.5s;
-    z-index: 10;
-  }
+    #canvas {
+        position: fixed;
+        left: 0; 
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+    }
 
-  .quadrant {
-    position: absolute;
-    width: 250px;
-    height: 150px;
-    background: rgba(0,255,255,0.1);
-    border: 2px solid #0ff;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 1.1rem;
-    opacity: 0;
-    transition: opacity 0.5s;
-  }
+    .node {
+        position: absolute;
+        width: 34px;
+        height: 34px;
+        cursor: pointer;
+        transform: translate(-50%, -50%);
+        transition: transform 0.2s ease;
+    }
 
-  #north { top: 50px; left: 50%; transform: translateX(-50%); }
-  #south { bottom: 50px; left: 50%; transform: translateX(-50%); }
-  #east { top: 50%; right: 50px; transform: translateY(-50%); }
-  #west { top: 50%; left: 50px; transform: translateY(-50%); }
+    .node:hover {
+        transform: translate(-50%, -50%) scale(1.4);
+        filter: drop-shadow(0 0 12px #0ff);
+    }
+
+    #infoBox {
+        position: absolute;
+        padding: 15px;
+        background: rgba(0,0,0,0.75);
+        border: 1px solid #0ff;
+        border-radius: 10px;
+        width: 240px;
+        display: none;
+        z-index: 10;
+    }
+
+    #infoTitle {
+        color: #0ff;
+        margin-bottom: 8px;
+        font-size: 1.1rem;
+    }
 </style>
 </head>
 <body>
 
-<img src="scd-ball.svg" id="orb" alt="SCD Orb">
-
-<div class="quadrant" id="north">North Content: Ideas & Vision</div>
-<div class="quadrant" id="south">South Content: Actions & Tasks</div>
-<div class="quadrant" id="east">East Content: Growth & Expansion</div>
-<div class="quadrant" id="west">West Content: Reflection & Learning</div>
+<canvas id="canvas"></canvas>
+<div id="infoBox">
+    <div id="infoTitle"></div>
+    <div id="infoText"></div>
+</div>
 
 <script>
-const orb = document.getElementById('orb');
-const quadrants = [
-  document.getElementById('north'),
-  document.getElementById('east'),
-  document.getElementById('south'),
-  document.getElementById('west')
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+let W = canvas.width = window.innerWidth;
+let H = canvas.height = window.innerHeight;
+
+// Dataset for constellation nodes
+const stars = [
+    {name:"Alpha Orb", info:"Primary navigation beacon.", x:200, y:160},
+    {name:"Beta Orb", info:"Transmits sensor patterns.", x:600, y:240},
+    {name:"Gamma Orb", info:"Stores cosmic logs.", x:900, y:140},
+    {name:"Delta Orb", info:"Analyzes signal energy.", x:420, y:400},
+    {name:"Epsilon Orb", info:"Processes real-time flux.", x:760, y:460},
+    {name:"Zeta Orb", info:"Detects irregular pulses.", x:300, y:500}
 ];
 
-let current = 0;
+let nodes = [];
 
-// Click orb to rotate to next quadrant
-orb.addEventListener('click', () => {
-  current = (current + 1) % quadrants.length;
-  orb.style.transform = `translate(-50%, -50%) rotate(${current * 90}deg)`;
+// Create HTML nodes for each star
+stars.forEach(star => {
+    let img = document.createElement("img");
+    img.src = "scd-ball.svg";
+    img.className = "node";
+    img.style.left = star.x + "px";
+    img.style.top = star.y + "px";
+    document.body.appendChild(img);
 
-  quadrants.forEach((q, index) => {
-    q.style.opacity = index === current ? 1 : 0;
-  });
+    img.addEventListener("click", e => {
+        infoBox.style.left = (star.x + 40) + "px";
+        infoBox.style.top = (star.y + 20) + "px";
+        infoTitle.innerText = star.name;
+        infoText.innerText = star.info;
+        infoBox.style.display = "block";
+    });
+
+    nodes.push({ img, ...star });
 });
 
-// Initialize first quadrant
-quadrants[current].style.opacity = 1;
+// Draw connecting lines between nodes
+function drawConstellation() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.strokeStyle = "rgba(0,255,255,0.25)";
+    ctx.lineWidth = 1;
+
+    ctx.beginPath();
+    for (let i = 0; i < nodes.length; i++) {
+        for (let j = i+1; j < nodes.length; j++) {
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+        }
+    }
+    ctx.stroke();
+}
+
+function animate() {
+    drawConstellation();
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+// Resize support
+window.addEventListener("resize", () => {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+});
 </script>
 
 </body>
