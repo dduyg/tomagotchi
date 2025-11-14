@@ -3,109 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCD Orb Magic Painter</title>
+<title>SCD Orb Time Machine</title>
 <style>
   body {
     margin: 0;
     overflow: hidden;
-    background: radial-gradient(circle at center, #0b0b1a, #111122);
-    cursor: none;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #0b0b1a;
+    font-family: Arial, sans-serif;
+    transition: background 1s;
   }
 
   #orb {
     position: absolute;
-    width: 80px;
-    height: 80px;
-    pointer-events: none;
-    transition: transform 0.1s;
+    width: 120px;
+    height: 120px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: transform 0.5s;
     z-index: 10;
   }
 
-  canvas {
+  .effect {
     position: absolute;
-    top: 0;
-    left: 0;
+    width: 10px;
+    height: 10px;
+    background: #0ff;
+    border-radius: 50%;
+    pointer-events: none;
   }
 </style>
 </head>
 <body>
 
-<canvas id="canvas"></canvas>
-<img src="scd-ball.svg" id="orb" alt="Magic Orb">
+<img src="scd-ball.svg" id="orb" alt="SCD Orb">
 
 <script>
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
 const orb = document.getElementById('orb');
+const effects = [];
+const themes = [
+  { bg: '#0b0b1a', color: '#0ff' }, // Cosmic
+  { bg: '#111100', color: '#ffcc00' }, // Ancient
+  { bg: '#001122', color: '#66ffcc' }, // Futuristic
+  { bg: '#220000', color: '#ff6666' }, // Volcanic
+];
+let currentTheme = 0;
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let mouse = { x: canvas.width/2, y: canvas.height/2 };
-let isDrawing = false;
-
-// Track mouse movement
-document.addEventListener('mousemove', e => {
-  mouse.x = e.clientX;
-  mouse.y = e.clientY;
-  orb.style.left = mouse.x + 'px';
-  orb.style.top = mouse.y + 'px';
+// Click orb to travel through time
+orb.addEventListener('click', () => {
+  currentTheme = (currentTheme + 1) % themes.length;
+  document.body.style.background = themes[currentTheme].bg;
 });
 
-// Enable drawing
-document.addEventListener('mousedown', () => isDrawing = true);
-document.addEventListener('mouseup', () => isDrawing = false);
-
-// Particle array
-const particles = [];
-
-function animate() {
-  requestAnimationFrame(animate);
-
-  // Draw semi-transparent background for trail effect
-  ctx.fillStyle = 'rgba(11,11,26,0.1)';
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-
-  if(isDrawing){
-    // Add new particles at orb location
-    for(let i=0;i<3;i++){
-      particles.push({
-        x: mouse.x + Math.random()*10-5,
-        y: mouse.y + Math.random()*10-5,
-        vx: Math.random()*2-1,
-        vy: Math.random()*2-1,
-        alpha: 1,
-        radius: Math.random()*8+2,
-        color: `hsl(${Math.random()*360}, 80%, 60%)`
-      });
-    }
-  }
-
-  // Draw and update particles
-  for(let i=particles.length-1;i>=0;i--){
-    const p = particles[i];
-    p.x += p.vx;
-    p.y += p.vy;
-    p.alpha -= 0.02;
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.radius, 0, Math.PI*2);
-    ctx.fillStyle = `rgba(${p.color.replace('hsl','').split(',').join(',')},${p.alpha})`;
-    ctx.fill();
-    if(p.alpha <= 0) particles.splice(i,1);
-  }
+// Create floating particles for visual effect
+for(let i=0;i<50;i++){
+  const e = document.createElement('div');
+  e.className = 'effect';
+  e.style.background = themes[currentTheme].color;
+  e.style.left = Math.random()*window.innerWidth+'px';
+  e.style.top = Math.random()*window.innerHeight+'px';
+  document.body.appendChild(e);
+  effects.push({ element: e, dx: Math.random()*2-1, dy: Math.random()*2-1 });
 }
 
+// Animate particles
+function animate(){
+  requestAnimationFrame(animate);
+  effects.forEach(e=>{
+    let left = parseFloat(e.element.style.left) + e.dx;
+    let top = parseFloat(e.element.style.top) + e.dy;
+    if(left<0 || left>window.innerWidth) e.dx *= -1;
+    if(top<0 || top>window.innerHeight) e.dy *= -1;
+    e.element.style.left = left+'px';
+    e.element.style.top = top+'px';
+    e.element.style.background = themes[currentTheme].color;
+  });
+}
 animate();
-
-// Resize canvas dynamically
-window.addEventListener('resize', () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
 </script>
 
 </body>
