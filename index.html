@@ -3,166 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hover Animations</title>
+<title>Scroll-Based Saturation</title>
 <style>
-  body {
+body {
+    height: 200vh; /* Make page scrollable */
+    margin: 0;
+    font-family: sans-serif;
     display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    min-height: 100vh;
-    background: #f0f0f0;
-    font-family: Arial, sans-serif;
-  }
+    justify-content: start;
+}
 
-  .box {
-    width: 150px;
-    height: 150px;
-    background: #3498db;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.box {
+    width: 200px;
+    height: 200px;
+    margin: 100px 0;
+    background-image: url('https://via.placeholder.com/200');
+    background-size: cover;
+    border-radius: 10px;
+    transition: filter 0.1s;
+    text-align: center;
+    line-height: 200px;
     font-weight: bold;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: transform 0.3s;
-  }
-
-  /* Rebound Animations */
-  @keyframes Rebound-1 {
-      0% {
-          transform: perspective(1500px) translateZ(0em) rotateX(30deg);
-          transform-origin: 50% 100%;
-          opacity: 0;
-      }
-      25% {
-          transform: perspective(1500px) translateZ(0em) rotateX(0deg);
-          transform-origin: 50% 50%;
-          opacity: 1;
-      }
-  }
-
-  @keyframes Rebound-2 {
-      0% {
-          transform: perspective(1800px) translateZ(-50em) rotateX(70deg);
-          transform-origin: 50% 100%;
-      }
-      47% {
-          transform: perspective(1800px) translateZ(0em) rotateX(0deg);
-          transform-origin: 50% 50%;
-      }
-      53% {
-          transform: perspective(1800px) translateZ(0em) rotateX(0deg);
-          transform-origin: 50% 50%;
-      }
-      100% {
-          transform: perspective(1800px) translateZ(-50em) rotateX(-70deg);
-          transform-origin: 50% 0%;
-      }
-  }
-
-  @keyframes Rebound-3 {
-      0% {
-          transform: perspective(1300px) translateZ(-70em) rotateX(90deg);
-          transform-origin: 50% 100%;
-      }
-      47% {
-          transform: perspective(1300px) translateZ(0em) rotateX(0deg);
-          transform-origin: 50% 50%;
-      }
-      53% {
-          transform: perspective(1300px) translateZ(0em) rotateX(0deg);
-          transform-origin: 50% 50%;
-      }
-      100% {
-          transform: perspective(1300px) translateZ(-70em) rotateX(-90deg);
-          transform-origin: 50% 0%;
-      }
-  }
-
-  /* LooseHinge Animations */
-  @keyframes LooseHinge-1 {
-      0% {
-          transform: rotate(5deg);
-          transform-origin: 0% 0%;
-      }
-      50% {
-          transform: rotate(0deg);
-          transform-origin: 50% 50%;
-      }
-      100% {
-          transform: rotate(5deg);
-          transform-origin: 100% 100%;
-      }
-  }
-
-  @keyframes LooseHinge-2 {
-      0% {
-          transform: rotate(10deg);
-          transform-origin: 0% 0%;
-      }
-      50% {
-          transform: rotate(0deg);
-          transform-origin: 50% 50%;
-      }
-      100% {
-          transform: rotate(10deg);
-          transform-origin: 100% 100%;
-      }
-  }
-
-  @keyframes LooseHinge-3 {
-      0% {
-          transform: rotate(30deg);
-          transform-origin: 0% 0%;
-      }
-      50% {
-          transform: rotate(0deg);
-          transform-origin: 50% 50%;
-      }
-      100% {
-          transform: rotate(30deg);
-          transform-origin: 100% 100%;
-      }
-  }
-
-  /* Hover Effects */
-  .rebound-1:hover {
-    animation: Rebound-1 1s forwards;
-  }
-
-  .rebound-2:hover {
-    animation: Rebound-2 1s forwards;
-  }
-
-  .rebound-3:hover {
-    animation: Rebound-3 1s forwards;
-  }
-
-  .loosehinge-1:hover {
-    animation: LooseHinge-1 1s forwards;
-  }
-
-  .loosehinge-2:hover {
-    animation: LooseHinge-2 1s forwards;
-  }
-
-  .loosehinge-3:hover {
-    animation: LooseHinge-3 1s forwards;
-  }
+    color: white;
+    font-size: 24px;
+}
 </style>
 </head>
 <body>
 
-  <div class="box rebound-1">Rebound 1</div>
-  <div class="box rebound-2">Rebound 2</div>
-  <div class="box rebound-3">Rebound 3</div>
+<div class="box" data-start-saturate="50">Box 1</div>
+<div class="box" data-start-saturate="25">Box 2</div>
+<div class="box" data-start-saturate="0">Box 3</div>
 
-  <div class="box loosehinge-1">Hinge 1</div>
-  <div class="box loosehinge-2">Hinge 2</div>
-  <div class="box loosehinge-3">Hinge 3</div>
+<script>
+// Function to update saturation based on scroll
+function updateSaturation() {
+    const boxes = document.querySelectorAll('.box');
+    const windowHeight = window.innerHeight;
+
+    boxes.forEach(box => {
+        const rect = box.getBoundingClientRect();
+        const startSaturate = parseFloat(box.dataset.startSaturate);
+        const endSaturate = 100;
+
+        // Calculate how visible the element is
+        let visibleRatio = 1 - (rect.top / windowHeight);
+        visibleRatio = Math.min(Math.max(visibleRatio, 0), 1); // clamp between 0 and 1
+
+        // Map visibleRatio to 0% -> 32% scroll like your keyframes
+        let saturation;
+        if (visibleRatio < 0.32) {
+            saturation = startSaturate + ((endSaturate - startSaturate) * (visibleRatio / 0.32));
+        } else {
+            saturation = endSaturate;
+        }
+
+        box.style.filter = `saturate(${saturation}%)`;
+    });
+}
+
+// Initial update
+updateSaturation();
+
+// Update on scroll
+window.addEventListener('scroll', updateSaturation);
+window.addEventListener('resize', updateSaturation);
+</script>
 
 </body>
 </html>
