@@ -3,163 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCD Orb Network Mapper</title>
+<title>SCD Orb Time Machine</title>
 <style>
   body {
     margin: 0;
     overflow: hidden;
-    background: #0a0a0a;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #0b0b1a;
     font-family: Arial, sans-serif;
+    transition: background 1s;
   }
 
-  #centralOrb {
+  #orb {
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: transform 0.5s;
     z-index: 10;
   }
 
-  .node {
+  .effect {
     position: absolute;
-    width: 50px;
-    height: 50px;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-  }
-
-  .tooltip {
-    position: absolute;
-    padding: 5px 10px;
-    background: rgba(0,0,0,0.8);
-    border-radius: 5px;
-    color: #0ff;
-    font-size: 0.9rem;
+    width: 10px;
+    height: 10px;
+    background: #0ff;
+    border-radius: 50%;
     pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-
-  canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
   }
 </style>
 </head>
 <body>
 
-<img src="scd-ball.svg" id="centralOrb" alt="Central Orb">
-<div class="tooltip" id="tooltip"></div>
-<canvas id="lines"></canvas>
+<img src="scd-ball.svg" id="orb" alt="SCD Orb">
 
 <script>
-const canvas = document.getElementById('lines');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-const tooltip = document.getElementById('tooltip');
-
-const center = { x: window.innerWidth/2, y: window.innerHeight/2 };
-
-// Example dataset
-const nodesData = [
-  { label: "Node A" }, { label: "Node B" }, { label: "Node C" },
-  { label: "Node D" }, { label: "Node E" }, { label: "Node F" }
+const orb = document.getElementById('orb');
+const effects = [];
+const themes = [
+  { bg: '#0b0b1a', color: '#0ff' }, // Cosmic
+  { bg: '#111100', color: '#ffcc00' }, // Ancient
+  { bg: '#001122', color: '#66ffcc' }, // Futuristic
+  { bg: '#220000', color: '#ff6666' }, // Volcanic
 ];
+let currentTheme = 0;
 
-const nodes = nodesData.map(d => {
-  const el = document.createElement('img');
-  el.src = 'scd-ball.svg';
-  el.className = 'node';
-  document.body.appendChild(el);
-  return {
-    element: el,
-    label: d.label,
-    x: Math.random()*window.innerWidth,
-    y: Math.random()*window.innerHeight,
-    vx: 0,
-    vy: 0
-  };
+// Click orb to travel through time
+orb.addEventListener('click', () => {
+  currentTheme = (currentTheme + 1) % themes.length;
+  document.body.style.background = themes[currentTheme].bg;
 });
 
-// Force-directed layout parameters
-const k = 200; // link length
-const repulsion = 5000;
-
-// Hover tooltip
-nodes.forEach(n=>{
-  n.element.addEventListener('mousemove', e=>{
-    tooltip.style.left = e.clientX + 10 + 'px';
-    tooltip.style.top = e.clientY + 10 + 'px';
-    tooltip.innerHTML = n.label;
-    tooltip.style.opacity = 1;
-  });
-  n.element.addEventListener('mouseleave', ()=> tooltip.style.opacity = 0);
-});
-
-// Animate network
-function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-
-  nodes.forEach(n=>{
-    // Attractive force to center
-    const dx = center.x - n.x;
-    const dy = center.y - n.y;
-    const dist = Math.sqrt(dx*dx + dy*dy);
-    const force = (dist - k) * 0.01;
-    n.vx += dx/dist * force;
-    n.vy += dy/dist * force;
-
-    // Simple repulsion between nodes
-    nodes.forEach(other=>{
-      if(other!==n){
-        const dxo = n.x - other.x;
-        const dyo = n.y - other.y;
-        const d = Math.sqrt(dxo*dxo + dyo*dyo) || 0.01;
-        if(d<100){
-          const rep = (100 - d)/1000;
-          n.vx += dxo/d * rep;
-          n.vy += dyo/d * rep;
-        }
-      }
-    });
-
-    // Update positions
-    n.vx *= 0.9;
-    n.vy *= 0.9;
-    n.x += n.vx;
-    n.y += n.vy;
-
-    n.element.style.left = n.x + 'px';
-    n.element.style.top = n.y + 'px';
-
-    // Draw line to center orb
-    ctx.beginPath();
-    ctx.moveTo(n.x, n.y);
-    ctx.lineTo(center.x, center.y);
-    ctx.strokeStyle = '#0ff';
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
-  });
-
-  requestAnimationFrame(animate);
+// Create floating particles for visual effect
+for(let i=0;i<50;i++){
+  const e = document.createElement('div');
+  e.className = 'effect';
+  e.style.background = themes[currentTheme].color;
+  e.style.left = Math.random()*window.innerWidth+'px';
+  e.style.top = Math.random()*window.innerHeight+'px';
+  document.body.appendChild(e);
+  effects.push({ element: e, dx: Math.random()*2-1, dy: Math.random()*2-1 });
 }
 
+// Animate particles
+function animate(){
+  requestAnimationFrame(animate);
+  effects.forEach(e=>{
+    let left = parseFloat(e.element.style.left) + e.dx;
+    let top = parseFloat(e.element.style.top) + e.dy;
+    if(left<0 || left>window.innerWidth) e.dx *= -1;
+    if(top<0 || top>window.innerHeight) e.dy *= -1;
+    e.element.style.left = left+'px';
+    e.element.style.top = top+'px';
+    e.element.style.background = themes[currentTheme].color;
+  });
+}
 animate();
-
-// Handle window resize
-window.addEventListener('resize', ()=>{
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
 </script>
 
 </body>
