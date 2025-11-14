@@ -3,139 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCD Orb Data Pulse Map</title>
+<title>SCD Orb Music Visualizer</title>
 <style>
   body {
     margin: 0;
+    background: radial-gradient(circle at center, #0a0a0a, #111122);
     overflow: hidden;
-    background: #0a0a0f;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
     font-family: Arial, sans-serif;
   }
 
-  #hub {
+  #centralOrb {
     position: absolute;
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    z-index: 10;
   }
 
-  .dataOrb {
+  .orb {
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     transform: translate(-50%, -50%);
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-
-  .dataOrb:hover {
-    transform: translate(-50%, -50%) scale(1.5);
-    filter: drop-shadow(0 0 15px #0ff);
-  }
-
-  .tooltip {
-    position: absolute;
-    padding: 5px 10px;
-    background: rgba(0,0,0,0.8);
-    color: #0ff;
-    border-radius: 5px;
     pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.2s;
-    font-size: 0.9rem;
+  }
+
+  input[type=file] {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
   }
 </style>
 </head>
 <body>
 
-<img src="scd-ball.svg" id="hub" alt="Data Hub">
-<div class="tooltip" id="tooltip"></div>
+<input type="file" id="audioInput" accept="audio/*">
+<img src="scd-ball.svg" id="centralOrb" alt="Central Orb">
 
 <script>
-const hub = document.getElementById('hub');
-const tooltip = document.getElementById('tooltip');
-const dataOrbs = [];
+const centralOrb = document.getElementById('centralOrb');
+const audioInput = document.getElementById('audioInput');
 
-// Example dataset
-const dataset = [
-  {id:1,type:"Sensor",value:120},
-  {id:2,type:"Packet",value:80},
-  {id:3,type:"Alert",value:60},
-  {id:4,type:"Event",value:150},
-  {id:5,type:"Log",value:45},
-  {id:6,type:"Packet",value:90},
-  {id:7,type:"Sensor",value:130},
-  {id:8,type:"Alert",value:70}
-];
+let audioCtx, source, analyser;
+let dataArray, bufferLength;
 
-// Create data orbs
-dataset.forEach(d=>{
+const orbitOrbs = [];
+
+// Create orbiting orbs
+for(let i=0;i<12;i++){
   const orb = document.createElement('img');
   orb.src = 'scd-ball.svg';
-  orb.className = 'dataOrb';
-  orb.dataset.type = d.type;
-  orb.dataset.value = d.value;
+  orb.className = 'orb';
   document.body.appendChild(orb);
-  dataOrbs.push({
-    element: orb,
-    x: Math.random()*window.innerWidth,
-    y: Math.random()*window.innerHeight,
-    vx: (Math.random()-0.5)*2,
-    vy: (Math.random()-0.5)*2
-  });
-
-  // Tooltip
-  orb.addEventListener('mousemove', e=>{
-    tooltip.style.left = e.clientX+10+'px';
-    tooltip.style.top = e.clientY+10+'px';
-    tooltip.innerHTML = `${d.type}: ${d.value}`;
-    tooltip.style.opacity = 1;
-  });
-  orb.addEventListener('mouseleave', ()=>{
-    tooltip.style.opacity = 0;
-  });
-});
-
-// Animate data flow toward hub
-function animate(){
-  requestAnimationFrame(animate);
-  const hubX = window.innerWidth/2;
-  const hubY = window.innerHeight/2;
-
-  dataOrbs.forEach(o=>{
-    const dx = hubX - o.x;
-    const dy = hubY - o.y;
-    const dist = Math.sqrt(dx*dx + dy*dy);
-    const force = 0.05;
-
-    // Move orb slightly toward hub
-    o.vx += dx/dist * force;
-    o.vy += dy/dist * force;
-
-    // Update position
-    o.vx *= 0.95;
-    o.vy *= 0.95;
-    o.x += o.vx;
-    o.y += o.vy;
-
-    o.element.style.left = o.x+'px';
-    o.element.style.top = o.y+'px';
-  });
+  orbitOrbs.push({ element: orb, angle: i * (Math.PI*2/12), radius: 200 });
 }
 
-animate();
+// Audio setup
+audioInput.addEventListener('change', function(){
+  const file = this.files[0];
+  if(!file) return;
+  const audio = new Audio(URL.createObjectURL(file));
+  audio.loop = true;
+  audio.play();
 
-// Resize handling
-window.addEventListener('resize', ()=>{
-  // Orbs adapt naturally; hub stays centered
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  source = audioCtx.createMediaElementSource(audio);
+  analyser = audioCtx.createAnalyser();
+  source.connect(analyser);
+  analyser.connect(audioCtx.destination);
+  analyser.fftSize = 64;
+  bufferLength = analyser.frequencyBinCount;
+  dataArray = new Uint8Array(bufferLength);
+
+  animate();
 });
+
+// Animate orbs
+function animate(){
+  requestAnimationFrame(animate);
+  analyser.getByteFrequencyData(dataArray);
+
+  // Pulse central orb based on average amplitude
+  let sum = dataArray.reduce((a,b)=>a+b,0);
+  let avg = sum / dataArray.length;
+  let scale = 1 + avg/256;
+  centralOrb.style.transform = `translate(-50%, -50%) scale(${scale})`;
+
+  // Orbiting orbs
+  orbitOrbs.forEach((o,i)=>{
+    o.angle += 0.02;
+    const amp = dataArray[i % dataArray.length] / 128;
+    const radius = 150 + amp*100;
+    const x = window.innerWidth/2 + radius * Math.cos(o.angle);
+    const y = window.innerHeight/2 + radius * Math.sin(o.angle);
+    o.element.style.left = x + 'px';
+    o.element.style.top = y + 'px';
+    o.element.style.transform = `translate(-50%, -50%) scale(${0.5 + amp})`;
+  });
+}
 </script>
 
 </body>
