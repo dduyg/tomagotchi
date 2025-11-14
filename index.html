@@ -3,87 +3,129 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCD Interactive Portal</title>
+<title>SCD Orb Data Viz</title>
 <style>
   body {
     margin: 0;
     font-family: Arial, sans-serif;
-    overflow: hidden;
-    height: 100vh;
     background: radial-gradient(circle at center, #0c0c0c, #1b1b2f);
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    overflow: hidden;
     color: white;
   }
 
-  .orb {
-    width: 150px;
-    height: 150px;
+  #canvas {
+    position: absolute;
+    top: 0; left: 0;
+  }
+
+  #orb {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     cursor: pointer;
-    transition: transform 0.3s;
     z-index: 10;
   }
 
-  .orb:hover {
-    transform: scale(1.1) rotate(10deg);
-  }
-
-  .section {
+  .tooltip {
     position: absolute;
-    width: 300px;
-    height: 200px;
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
-    border: 2px solid #0ff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2rem;
+    padding: 5px 10px;
+    background: rgba(0,0,0,0.8);
+    color: #0ff;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    pointer-events: none;
     opacity: 0;
-    transition: all 1s ease;
+    transition: opacity 0.2s;
   }
-
-  .section.show {
-    opacity: 1;
-  }
-
-  .section1 { top: -250px; left: 50%; transform: translateX(-50%); }
-  .section2 { bottom: -250px; left: 50%; transform: translateX(-50%); }
-  .section3 { left: -350px; top: 50%; transform: translateY(-50%); }
-  .section4 { right: -350px; top: 50%; transform: translateY(-50%); }
-
-  .section1.show { top: 50px; }
-  .section2.show { bottom: 50px; }
-  .section3.show { left: 50px; }
-  .section4.show { right: 50px; }
 </style>
 </head>
 <body>
 
-<img src="scd-ball.svg" class="orb" id="orb" alt="SCD Ball">
-
-<div class="section section1" id="sec1">Section 1: Welcome</div>
-<div class="section section2" id="sec2">Section 2: About</div>
-<div class="section section3" id="sec3">Section 3: Features</div>
-<div class="section section4" id="sec4">Section 4: Contact</div>
+<img src="scd-ball.svg" id="orb" alt="SCD Orb">
+<canvas id="canvas"></canvas>
+<div class="tooltip" id="tooltip"></div>
 
 <script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
 const orb = document.getElementById('orb');
-const sections = [
-  document.getElementById('sec1'),
-  document.getElementById('sec2'),
-  document.getElementById('sec3'),
-  document.getElementById('sec4')
+const tooltip = document.getElementById('tooltip');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const center = { x: canvas.width/2, y: canvas.height/2 };
+
+// Example data array
+const data = [
+  { label: "Users", value: 120 },
+  { label: "Sales", value: 80 },
+  { label: "Revenue", value: 200 },
+  { label: "Sessions", value: 150 },
+  { label: "Orders", value: 60 }
 ];
 
-let open = false;
-orb.addEventListener('click', () => {
-  open = !open;
-  sections.forEach(sec => {
-    if(open) sec.classList.add('show');
-    else sec.classList.remove('show');
+// Convert data to nodes around the orb
+const nodes = data.map((d, i) => {
+  const angle = (i / data.length) * Math.PI * 2;
+  const distance = 200 + Math.random()*50; // distance from orb
+  return {
+    x: center.x + distance * Math.cos(angle),
+    y: center.y + distance * Math.sin(angle),
+    radius: Math.sqrt(d.value)*5, // size based on value
+    color: `hsl(${i*60}, 80%, 60%)`,
+    label: d.label,
+    value: d.value
+  }
+});
+
+// Draw loop
+function draw() {
+  ctx.clearRect(0,0,canvas.width, canvas.height);
+
+  // Draw lines from orb to nodes
+  nodes.forEach(node => {
+    ctx.beginPath();
+    ctx.moveTo(center.x, center.y);
+    ctx.lineTo(node.x, node.y);
+    ctx.strokeStyle = 'rgba(0,255,255,0.3)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // Draw node
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, node.radius, 0, Math.PI*2);
+    ctx.fillStyle = node.color;
+    ctx.fill();
   });
+
+  requestAnimationFrame(draw);
+}
+
+draw();
+
+// Hover detection
+canvas.addEventListener('mousemove', e => {
+  let found = false;
+  nodes.forEach(node => {
+    const dx = e.clientX - node.x;
+    const dy = e.clientY - node.y;
+    if (Math.sqrt(dx*dx + dy*dy) < node.radius) {
+      tooltip.style.left = e.clientX + 10 + 'px';
+      tooltip.style.top = e.clientY + 10 + 'px';
+      tooltip.innerHTML = `${node.label}: ${node.value}`;
+      tooltip.style.opacity = 1;
+      found = true;
+    }
+  });
+  if(!found) tooltip.style.opacity = 0;
 });
 </script>
 
