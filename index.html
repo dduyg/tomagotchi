@@ -1,82 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Hover Scale Animations</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hover ScaleOut Effects</title>
+
 <style>
-/* ========================= */
-/*  Your Keyframes           */
-/* ========================= */
-
-@keyframes ScaleIn-1 {
-    0% { transform: scale(0.875); transform-origin: 50% 0%; }
-    50% { transform: scale(1); transform-origin: 50% 0%; }
-    100% { transform: scale(1); transform-origin: 50% 0%; }
+/* ---- Keyframes from your prompt ---- */
+@keyframes ScaleOut-1 {
+    0% { transform: scale(1); transform-origin: 50% 100%; }
+    50% { transform: scale(1); transform-origin: 50% 100%; }
+    100% { transform: scale(0.875); transform-origin: 50% 100%; }
 }
 
-@keyframes ScaleIn-2 {
-    0% { transform: scale(0.6); transform-origin: 50% 0%; }
-    50% { transform: scale(1); transform-origin: 50% 0%; }
-    100% { transform: scale(1); transform-origin: 50% 0%; }
+@keyframes ScaleOut-2 {
+    0% { transform: scale(1); transform-origin: 50% 100%; }
+    50% { transform: scale(1); transform-origin: 50% 100%; }
+    100% { transform: scale(0.6); transform-origin: 50% 100%; }
 }
 
-@keyframes ScaleIn-3 {
-    0% { transform: scale(0.4); transform-origin: 50% 0%; }
-    50% { transform: scale(1); transform-origin: 50% 0%; }
-    100% { transform: scale(1); transform-origin: 50% 0%; }
+@keyframes ScaleOut-3 {
+    0% { transform: scale(1); transform-origin: 50% 100%; }
+    50% { transform: scale(1); transform-origin: 50% 100%; }
+    100% { transform: scale(0.4); transform-origin: 50% 100%; }
 }
 
-/* ========================= */
-/*  Basic Styling             */
-/* ========================= */
-
+/* ---- General styling ---- */
 body {
+    background: #f3f3f3;
     font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    padding: 50px;
-}
-
-.container {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     gap: 40px;
 }
 
 .box {
-    width: 150px;
-    height: 150px;
-    background: #333;
-    border-radius: 10px;
+    width: 120px;
+    height: 120px;
+    background: #4c8bf5;
+    border-radius: 12px;
+    transition: transform 0.3s ease-out;
     cursor: pointer;
-    transition: transform 0.3s ease;
 }
 
-/* ========================= */
-/*  Hover Animations         */
-/* ========================= */
-
-.box1:hover {
-    animation: ScaleIn-1 0.4s forwards;
+/* ---- Hover animations ---- */
+.box.scale1:hover {
+    animation: ScaleOut-1 0.4s forwards;
 }
 
-.box2:hover {
-    animation: ScaleIn-2 0.4s forwards;
+.box.scale2:hover {
+    animation: ScaleOut-2 0.4s forwards;
 }
 
-.box3:hover {
-    animation: ScaleIn-3 0.4s forwards;
+.box.scale3:hover {
+    animation: ScaleOut-3 0.4s forwards;
 }
 </style>
 </head>
 
 <body>
 
-<h2>Hover to See Scale Animations</h2>
-
-<div class="container">
-    <div class="box box1" style="background:#6c5ce7;"></div>
-    <div class="box box2" style="background:#00b894;"></div>
-    <div class="box box3" style="background:#fdcb6e;"></div>
-</div>
+<div class="box scale1"></div>
+<div class="box scale2"></div>
+<div class="box scale3"></div>
 
 </body>
 </html>
