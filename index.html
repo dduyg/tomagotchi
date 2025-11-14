@@ -1,73 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scroll-Based Saturation with IntersectionObserver</title>
-<style>
-body {
-    height: 200vh; /* make page scrollable */
-    margin: 0;
-    font-family: sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: start;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Transition Color Effects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.box {
-    width: 200px;
-    height: 200px;
-    margin: 100px 0;
-    background-image: url('https://via.placeholder.com/200');
-    background-size: cover;
-    border-radius: 10px;
-    transition: filter 0.3s ease-out;
-    text-align: center;
-    line-height: 200px;
-    font-weight: bold;
-    color: white;
-    font-size: 24px;
-    filter: saturate(0%); /* default start */
-}
-</style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #1a1a2e, #16213e);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .spacer {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .animated-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .image-card {
+            width: 400px;
+            height: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Apply the different animation effects */
+        .effect-1 {
+            animation: scrollTransitionColorIn-1 1.5s ease-out forwards;
+        }
+
+        .effect-2 {
+            animation: scrollTransitionColorIn-2 1.5s ease-out forwards;
+        }
+
+        .effect-3 {
+            animation: scrollTransitionColorIn-3 1.5s ease-out forwards;
+        }
+
+        /* Keyframe animations */
+        @keyframes scrollTransitionColorIn-1 {  
+            0% {  
+                filter: saturate(50%);
+                opacity: 0.7;
+                transform: translateY(30px);
+            }  
+            32% {  
+                filter: saturate(100%);
+                opacity: 1;
+                transform: translateY(0);
+            }  
+        }  
+        
+        @keyframes scrollTransitionColorIn-2 {  
+            0% {  
+                filter: saturate(25%);
+                opacity: 0.5;
+                transform: scale(0.95);
+            }  
+            32% {  
+                filter: saturate(100%);
+                opacity: 1;
+                transform: scale(1);
+            }  
+        }  
+        
+        @keyframes scrollTransitionColorIn-3 {  
+            0% {  
+                filter: saturate(0%);
+                opacity: 0.3;
+                transform: translateX(-30px);
+            }  
+            32% {  
+                filter: saturate(100%);
+                opacity: 1;
+                transform: translateX(0);
+            }  
+        }
+
+        /* Remove animation initially */
+        .image-card {
+            opacity: 0;
+        }
+
+        /* Apply animation when element is visible */
+        .image-card.visible {
+            opacity: 1;
+        }
+
+        h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .content-wrapper {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+    <div class="spacer">
+        <h1>Scroll Down to See Effects</h1>
+    </div>
 
-<div class="box" data-start-saturate="50">Box 1</div>
-<div class="box" data-start-saturate="25">Box 2</div>
-<div class="box" data-start-saturate="0">Box 3</div>
+    <div class="animated-section">
+        <div class="content-wrapper">
+            <h2>Effect 1 - 50% Saturation Start</h2>
+            <div class="image-card effect-1" data-animation="effect-1">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop" alt="Mountain landscape">
+            </div>
+        </div>
+    </div>
 
-<script>
-// Function to calculate saturation based on intersection ratio
-function setSaturation(entry) {
-    const box = entry.target;
-    const startSaturate = parseFloat(box.dataset.startSaturate);
-    const endSaturate = 100;
+    <div class="animated-section">
+        <div class="content-wrapper">
+            <h2>Effect 2 - 25% Saturation Start</h2>
+            <div class="image-card effect-2" data-animation="effect-2">
+                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&h=600&fit=crop" alt="Forest path">
+            </div>
+        </div>
+    </div>
 
-    // Map intersection ratio (0-1) to 0% -> 32% of scroll (like keyframes)
-    let ratio = entry.intersectionRatio / 0.32;
-    ratio = Math.min(Math.max(ratio, 0), 1); // clamp between 0 and 1
+    <div class="animated-section">
+        <div class="content-wrapper">
+            <h2>Effect 3 - Grayscale to Color</h2>
+            <div class="image-card effect-3" data-animation="effect-3">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=600&fit=crop" alt="Beach sunset">
+            </div>
+        </div>
+    </div>
 
-    const saturation = startSaturate + (endSaturate - startSaturate) * ratio;
-    box.style.filter = `saturate(${saturation}%)`;
-}
+    <div class="spacer">
+        <h1>End of Demo</h1>
+    </div>
 
-// IntersectionObserver options
-const options = {
-    root: null,           // viewport
-    rootMargin: '0px',
-    threshold: Array.from({length: 101}, (_, i) => i/100) // 0,0.01,...1
-};
+    <script>
+        // Intersection Observer to trigger animations when elements are visible
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px'
+        };
 
-// Create observer
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(setSaturation);
-}, options);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Optional: stop observing after animation triggers once
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
 
-// Observe all boxes
-document.querySelectorAll('.box').forEach(box => observer.observe(box));
-</script>
-
+        // Observe all animated elements
+        document.querySelectorAll('.image-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
