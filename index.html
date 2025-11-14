@@ -1,88 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Animation Demo</title>
 
 <style>
-/* ----------------- Your animations ------------------- */
-@keyframes FlyInFadeIn-2 {
-    0% {opacity: 0; transform: translateY(50px)}
-    50% {opacity: 1; transform: translateY(0vh)}
-}
+    body {
+        background: #111;
+        color: white;
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+    }
 
-@keyframes FlyInFadeIn-3 {
-    0% {opacity: 0; transform: translateY(100px)}
-    50% {opacity: 1; transform: translateY(0vh)}
-}
+    .box {
+        width: 80px;
+        height: 80px;
+        background: #4CAF50;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        animation-duration: 3s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+    }
 
-@keyframes FlyOut-1 {
-    35% {transform: scale(1)}
-    85% {transform: scale(1)}
-    100% {transform: translateY(-5vh)}
-}
+    /* === Your Animations === */
 
-@keyframes FlyOut-2 {
-    35% {transform: scale(1)}
-    70% {transform: scale(1)}
-    100% {transform: translateY(-10vh)}
-}
+    @keyframes FlyOut-3 {
+        35% {transform: scale(1)}
+        65% {transform: scale(1)}
+        100% {transform: translateY(-20vh)}
+    }
 
-/* ---------- Demo styling ------------- */
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding-top: 50px;
-}
+    @keyframes FlyInOut-1 {
+        0% {transform: translateY(5vh)}
+        35% {transform: scale(1)}
+        85% {transform: scale(1)}
+        100% {transform: translateY(-5vh)}
+    }
 
-.box {
-    width: 250px;
-    padding: 20px;
-    background: #4A90E2;
-    color: white;
-    border-radius: 8px;
-    text-align: center;
-    font-size: 1.2rem;
-}
+    @keyframes FlyInOut-2 {
+        0% {transform: translateY(10vh)}
+        35% {transform: scale(1)}
+        70% {transform: scale(1)}
+        100% {transform: translateY(-10vh)}
+    }
 
-/* apply animations */
-.in-2 {
-    animation: FlyInFadeIn-2 1s ease forwards;
-}
+    @keyframes FlyInOut-3 {
+        0% {transform: translateY(20vh)}
+        35% {transform: scale(1)}
+        65% {transform: scale(1)}
+        100% {transform: translateY(-20vh)}
+    }
 
-.in-3 {
-    animation: FlyInFadeIn-3 1.2s ease forwards;
-}
+    /* Assign animations to boxes */
 
-.out-1 {
-    animation: FlyOut-1 1s ease forwards;
-}
+    .box1 { animation-name: FlyInOut-1; }
+    .box2 { animation-name: FlyInOut-2; }
+    .box3 { animation-name: FlyInOut-3; }
+    .box4 { animation-name: FlyOut-3; background: #ff9800; }
 
-.out-2 {
-    animation: FlyOut-2 1.2s ease forwards;
-}
 </style>
 </head>
 
 <body>
-
-<h2>Animation Demo</h2>
-
-<div class="box in-2">Fly In Fade In (50px)</div>
-<div class="box in-3">Fly In Fade In (100px)</div>
-
-<button onclick="flyOut()">Trigger Fly-Out Animations</button>
-
-<script>
-function flyOut() {
-    document.querySelectorAll('.box')[0].className = 'box out-1';
-    document.querySelectorAll('.box')[1].className = 'box out-2';
-}
-</script>
-
+    <div class="box box1">1</div>
+    <div class="box box2">2</div>
+    <div class="box box3">3</div>
+    <div class="box box4">Out</div>
 </body>
 </html>
