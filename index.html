@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hover Rebound & Twist Effects Demo</title>
+
+<style>
+/* ----------------------------------
+   YOUR KEYFRAMES
+---------------------------------- */
+
+@keyframes Rebound-1 {
+    0% { transform: perspective(2100px) translateZ(-30em) rotateX(50deg); transform-origin: 50% 100%; }
+    47% { transform: perspective(2100px) translateZ(0em) rotateX(0deg); transform-origin: 50% 50%; }
+    53% { transform: perspective(2100px) translateZ(0em) rotateX(0deg); transform-origin: 50% 50%; }
+    100% { transform: perspective(2100px) translateZ(-30em) rotateX(-50deg); transform-origin: 50% 0%; }
+}
+
+@keyframes Rebound-2 {
+    0% { transform: perspective(1800px) translateZ(-50em) rotateX(70deg); transform-origin: 50% 100%; }
+    47% { transform: perspective(1800px) translateZ(0em) rotateX(0deg); transform-origin: 50% 50%; }
+    53% { transform: perspective(1800px) translateZ(0em) rotateX(0deg); transform-origin: 50% 50%; }
+    100% { transform: perspective(1800px) translateZ(-50em) rotateX(-70deg); transform-origin: 50% 0%; }
+}
+
+@keyframes Rebound-3 {
+    0% { transform: perspective(1300px) translateZ(-70em) rotateX(90deg); transform-origin: 50% 100%; }
+    47% { transform: perspective(1300px) translateZ(0em) rotateX(0deg); transform-origin: 50% 50%; }
+    53% { transform: perspective(1300px) translateZ(0em) rotateX(0deg); transform-origin: 50% 50%; }
+    100% { transform: perspective(1300px) translateZ(-70em) rotateX(-90deg); transform-origin: 50% 0%; }
+}
+
+@keyframes TwistUp-1 {
+    0% { opacity: 0; transform: translateY(25px) rotateY(27deg) rotateZ(1.5deg) perspective(4000px); }
+    25% { opacity: 1; transform: translateY(0vh); }
+}
+
+@keyframes TwistUp-2 {
+    0% { opacity: 0; transform: translateY(40px) rotateY(35deg) rotateZ(2deg) perspective(3000px); }
+    25% { opacity: 1; transform: translateY(0vh); }
+}
+
+@keyframes TwistUp-3 {
+    0% { opacity: 0; transform: translateY(65px) rotateY(40deg) rotateZ(3deg) perspective(2000px); }
+    25% { opacity: 1; transform: translateY(0vh); }
+}
+
+/* ----------------------------------
+   PAGE STYLE
+---------------------------------- */
+
+body {
+    background: #111;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 40px;
+}
+
+.box {
+    width: 170px;
+    height: 170px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #222;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1.2rem;
+}
+
+/* ----------------------------------
+   HOVER ANIMATIONS
+---------------------------------- */
+
+.box1:hover {
+    animation: Rebound-1 1.6s ease-out forwards;
+}
+
+.box2:hover {
+    animation: Rebound-2 1.6s ease-out forwards;
+}
+
+.box3:hover {
+    animation: Rebound-3 1.6s ease-out forwards;
+}
+
+.box4:hover {
+    animation: TwistUp-1 1.2s ease-out forwards;
+}
+
+.box5:hover {
+    animation: TwistUp-2 1.2s ease-out forwards;
+}
+
+.box6:hover {
+    animation: TwistUp-3 1.2s ease-out forwards;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="box box1">Rebound 1</div>
+<div class="box box2">Rebound 2</div>
+<div class="box box3">Rebound 3</div>
+<div class="box box4">TwistUp 1</div>
+<div class="box box5">TwistUp 2</div>
+<div class="box box6">TwistUp 3</div>
+
+</body>
+</html>
