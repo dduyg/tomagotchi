@@ -3,26 +3,47 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCD Orb Magic Painter</title>
+<title>SCD Orb Network Mapper</title>
 <style>
   body {
     margin: 0;
     overflow: hidden;
-    background: radial-gradient(circle at center, #0b0b1a, #111122);
-    cursor: none;
+    background: #0a0a0a;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: Arial, sans-serif;
   }
 
-  #orb {
+  #centralOrb {
     position: absolute;
-    width: 80px;
-    height: 80px;
-    pointer-events: none;
-    transition: transform 0.1s;
+    width: 100px;
+    height: 100px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     z-index: 10;
+  }
+
+  .node {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
+
+  .tooltip {
+    position: absolute;
+    padding: 5px 10px;
+    background: rgba(0,0,0,0.8);
+    border-radius: 5px;
+    color: #0ff;
+    font-size: 0.9rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
   }
 
   canvas {
@@ -34,75 +55,108 @@
 </head>
 <body>
 
-<canvas id="canvas"></canvas>
-<img src="scd-ball.svg" id="orb" alt="Magic Orb">
+<img src="scd-ball.svg" id="centralOrb" alt="Central Orb">
+<div class="tooltip" id="tooltip"></div>
+<canvas id="lines"></canvas>
 
 <script>
-const canvas = document.getElementById('canvas');
+const canvas = document.getElementById('lines');
 const ctx = canvas.getContext('2d');
-const orb = document.getElementById('orb');
-
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let mouse = { x: canvas.width/2, y: canvas.height/2 };
-let isDrawing = false;
+const tooltip = document.getElementById('tooltip');
 
-// Track mouse movement
-document.addEventListener('mousemove', e => {
-  mouse.x = e.clientX;
-  mouse.y = e.clientY;
-  orb.style.left = mouse.x + 'px';
-  orb.style.top = mouse.y + 'px';
+const center = { x: window.innerWidth/2, y: window.innerHeight/2 };
+
+// Example dataset
+const nodesData = [
+  { label: "Node A" }, { label: "Node B" }, { label: "Node C" },
+  { label: "Node D" }, { label: "Node E" }, { label: "Node F" }
+];
+
+const nodes = nodesData.map(d => {
+  const el = document.createElement('img');
+  el.src = 'scd-ball.svg';
+  el.className = 'node';
+  document.body.appendChild(el);
+  return {
+    element: el,
+    label: d.label,
+    x: Math.random()*window.innerWidth,
+    y: Math.random()*window.innerHeight,
+    vx: 0,
+    vy: 0
+  };
 });
 
-// Enable drawing
-document.addEventListener('mousedown', () => isDrawing = true);
-document.addEventListener('mouseup', () => isDrawing = false);
+// Force-directed layout parameters
+const k = 200; // link length
+const repulsion = 5000;
 
-// Particle array
-const particles = [];
+// Hover tooltip
+nodes.forEach(n=>{
+  n.element.addEventListener('mousemove', e=>{
+    tooltip.style.left = e.clientX + 10 + 'px';
+    tooltip.style.top = e.clientY + 10 + 'px';
+    tooltip.innerHTML = n.label;
+    tooltip.style.opacity = 1;
+  });
+  n.element.addEventListener('mouseleave', ()=> tooltip.style.opacity = 0);
+});
 
-function animate() {
-  requestAnimationFrame(animate);
+// Animate network
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
 
-  // Draw semi-transparent background for trail effect
-  ctx.fillStyle = 'rgba(11,11,26,0.1)';
-  ctx.fillRect(0,0,canvas.width,canvas.height);
+  nodes.forEach(n=>{
+    // Attractive force to center
+    const dx = center.x - n.x;
+    const dy = center.y - n.y;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const force = (dist - k) * 0.01;
+    n.vx += dx/dist * force;
+    n.vy += dy/dist * force;
 
-  if(isDrawing){
-    // Add new particles at orb location
-    for(let i=0;i<3;i++){
-      particles.push({
-        x: mouse.x + Math.random()*10-5,
-        y: mouse.y + Math.random()*10-5,
-        vx: Math.random()*2-1,
-        vy: Math.random()*2-1,
-        alpha: 1,
-        radius: Math.random()*8+2,
-        color: `hsl(${Math.random()*360}, 80%, 60%)`
-      });
-    }
-  }
+    // Simple repulsion between nodes
+    nodes.forEach(other=>{
+      if(other!==n){
+        const dxo = n.x - other.x;
+        const dyo = n.y - other.y;
+        const d = Math.sqrt(dxo*dxo + dyo*dyo) || 0.01;
+        if(d<100){
+          const rep = (100 - d)/1000;
+          n.vx += dxo/d * rep;
+          n.vy += dyo/d * rep;
+        }
+      }
+    });
 
-  // Draw and update particles
-  for(let i=particles.length-1;i>=0;i--){
-    const p = particles[i];
-    p.x += p.vx;
-    p.y += p.vy;
-    p.alpha -= 0.02;
+    // Update positions
+    n.vx *= 0.9;
+    n.vy *= 0.9;
+    n.x += n.vx;
+    n.y += n.vy;
+
+    n.element.style.left = n.x + 'px';
+    n.element.style.top = n.y + 'px';
+
+    // Draw line to center orb
     ctx.beginPath();
-    ctx.arc(p.x, p.y, p.radius, 0, Math.PI*2);
-    ctx.fillStyle = `rgba(${p.color.replace('hsl','').split(',').join(',')},${p.alpha})`;
-    ctx.fill();
-    if(p.alpha <= 0) particles.splice(i,1);
-  }
+    ctx.moveTo(n.x, n.y);
+    ctx.lineTo(center.x, center.y);
+    ctx.strokeStyle = '#0ff';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  });
+
+  requestAnimationFrame(animate);
 }
 
 animate();
 
-// Resize canvas dynamically
-window.addEventListener('resize', () => {
+// Handle window resize
+window.addEventListener('resize', ()=>{
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
