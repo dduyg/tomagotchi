@@ -18,59 +18,53 @@
   }
 
   .box {
-    width: 100px;
-    height: 100px;
+    width: 95px;
+    height: 95px;
     background:#222;
     border:2px solid #666;
     color: white;
     text-align: center;
     border-radius: 12px;
+    padding: 15px;
     cursor: pointer;
   }
 
-    /* Hover triggers animation */
-    .blur:hover {animation: BlurIn 1s forwards;}
-    .scale:hover {animation: ScaleOut 0.4s forwards;}
-    .helix2:hover {animation: Helix-2 2s infinite alternate ease-in-out;}
-    .helix3:hover {animation: Helix-3 2s infinite alternate ease-in-out;}
-    .conv2:hover {animation: Conveyor-2 2.5s infinite ease-out;}
-    .conv3:hover {animation: Conveyor-3 2.5s infinite ease-out;}
-    .twistup:hover {animation: TwistUp 2s ease-out forwards;}
-    .rebound:hover {animation: Rebound 1s forwards;}
-    .loosehinge:hover {animation: LooseHinge 1s forwards;}    
+   /* Hover triggers animation */
+  .blur:hover {animation: BlurIn 1s forwards;}
+  .scale:hover {animation: ScaleOut 0.4s forwards;}
+  .helix2:hover {animation: Helix-2 2s infinite alternate ease-in-out;}
+  .helix3:hover {animation: Helix-3 2s infinite alternate ease-in-out;}
+  .conv:hover {animation: Conveyor 3s infinite ease-out;}
+  .twistup:hover {animation: TwistUp 2s ease-out forwards;}
+  .rebound:hover {animation: Rebound 1s forwards;}
+  .loosehinge:hover {animation: LooseHinge 1s forwards;}    
 
-/* -------------------- KEYFRAMES  -------------------- */
-@keyframes BlurIn {
-    0% { filter: blur(8px); }
-    12.5% { filter: blur(8px); }
-    35% { filter: blur(0px); }
-}
-@keyframes ScaleOut {
-    0% { transform: scale(1); transform-origin: 50% 100%; }
-    50% { transform: scale(1); transform-origin: 50% 100%; }
-    100% { transform: scale(0.6); transform-origin: 50% 100%; }
-}
+  /* ---------- KEYFRAMES  ---------- */
+  @keyframes BlurIn {
+     0% {filter: blur(8px);}
+     12.5% {filter: blur(8px);}
+     35% {filter: blur(0px);}
+  }
+  @keyframes ScaleOut {
+     0% {transform: scale(1); transform-origin: 50% 100%;}
+     50% {transform: scale(1); transform-origin: 50% 100%;}
+     100% {transform: scale(0.6); transform-origin: 50% 100%;}
+  }
 
-@keyframes Helix-2 {
-    0% { transform: perspective(3000px) rotatey(60deg) rotatez(2deg); }
-    100% { transform: perspective(3000px) rotatey(-60deg) rotatez(-2deg); }
-}
-@keyframes Helix-3 {
-    0% { transform: perspective(2000px) rotatey(90deg) rotatez(3deg); }
-    100% { transform: perspective(2000px) rotatey(-90deg) rotatez(-3deg); }
-}
+  @keyframes Helix-2 {
+     0% {transform: perspective(3000px) rotatey(60deg) rotatez(2deg);}
+     100% {transform: perspective(3000px) rotatey(-60deg) rotatez(-2deg);}
+  }
+  @keyframes Helix-3 {
+     0% {transform: perspective(2000px) rotatey(90deg) rotatez(3deg);}
+     100% {transform: perspective(2000px) rotatey(-90deg) rotatez(-3deg);}
+  }
 
-@keyframes Conveyor-2 {
-    0% { transform: perspective(2400px) translateZ(30em) rotateX(60deg); }
-    50% { transform: perspective(2400px) rotateX(0deg); }
-    100% { transform: perspective(2400px) rotateX(0deg); }
-}
-@keyframes Conveyor-3 {
-    0% { transform: perspective(2300px) translateZ(45em) rotateX(85deg); }
-    60% { transform: perspective(2300px) rotateX(0deg); }
-    100% { transform: perspective(2300px) rotateX(0deg); }
-}
-
+  @keyframes Conveyor {
+      0% {transform: perspective(2300px) translateZ(45em) rotateX(85deg);}
+      60% {transform: perspective(2300px) rotateX(0deg);}
+      100% {transform: perspective(2300px) rotateX(0deg);}
+  }
   @keyframes Rebound {
       0% {transform: perspective(1800px) translateZ(-50em) rotateX(70deg); transform-origin: 50% 100%;}
       47% {transform: perspective(1800px) translateZ(0em) rotateX(0deg); transform-origin: 50% 50%;}
@@ -83,8 +77,8 @@
       100% {transform: rotate(10deg); transform-origin: 100% 100%;}
   }  
   @keyframes TwistUp {
-      0% { opacity: 0; transform: translateY(40px) rotateY(35deg) rotateZ(2deg) perspective(3000px); }
-      25% { opacity: 1; transform: translateY(0vh); }
+      0% {opacity: 0; transform: translateY(40px) rotateY(35deg) rotateZ(2deg) perspective(3000px);}
+      25% {opacity: 1; transform: translateY(0vh);}
   }
 </style>
 </head>
@@ -93,8 +87,7 @@
     <div class="box scale">Scale</div
     <div class="box helix2">Helix 2</div>
     <div class="box helix3">Helix 3</div>
-    <div class="box conv2">Conveyor 2</div>
-    <div class="box conv3">Conveyor 3</div>
+    <div class="box conv">Conveyor</div>
     <div class="box twistup">Twist Up</div>
     <div class="box rebound">Rebound</div>
     <div class="box loosehinge">Hinge</div>
