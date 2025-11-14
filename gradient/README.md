@@ -1,2 +1,0 @@
-- [ ] gradient top right only
-- [ ] gradient color pink, dots on text blue
