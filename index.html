@@ -35,8 +35,7 @@
     .helix3:hover {animation: Helix-3 2s infinite alternate ease-in-out;}
     .conv2:hover {animation: Conveyor-2 2.5s infinite ease-out;}
     .conv3:hover {animation: Conveyor-3 2.5s infinite ease-out;}
-    .twistup2:hover {animation: TwistUp-2 1.2s ease-out forwards;}
-    .twistup3:hover {animation: TwistUp-3 1.2s ease-out forwards;}
+    .twistup:hover {animation: TwistUp 2s ease-out forwards;}
     .rebound:hover {animation: Rebound 1s forwards;}
     .loosehinge:hover {animation: LooseHinge 1s forwards;}    
 
@@ -83,15 +82,10 @@
       50% {transform: rotate(0deg); transform-origin: 50% 50%;}
       100% {transform: rotate(10deg); transform-origin: 100% 100%;}
   }  
-
-@keyframes TwistUp-2 {
-    0% { opacity: 0; transform: translateY(40px) rotateY(35deg) rotateZ(2deg) perspective(3000px); }
-    25% { opacity: 1; transform: translateY(0vh); }
-}
-@keyframes TwistUp-3 {
-    0% { opacity: 0; transform: translateY(65px) rotateY(40deg) rotateZ(3deg) perspective(2000px); }
-    25% { opacity: 1; transform: translateY(0vh); }
-}
+  @keyframes TwistUp {
+      0% { opacity: 0; transform: translateY(40px) rotateY(35deg) rotateZ(2deg) perspective(3000px); }
+      25% { opacity: 1; transform: translateY(0vh); }
+  }
 </style>
 </head>
 <body>
@@ -101,8 +95,7 @@
     <div class="box helix3">Helix 3</div>
     <div class="box conv2">Conveyor 2</div>
     <div class="box conv3">Conveyor 3</div>
-    <div class="box twistup2">TwistUp 2</div>
-    <div class="box twistup3">TwistUp 3</div>
+    <div class="box twistup">Twist Up</div>
     <div class="box rebound">Rebound</div>
     <div class="box loosehinge">Hinge</div>
 </body>
