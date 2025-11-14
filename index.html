@@ -3,105 +3,156 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCD Orb Radial Story</title>
+<title>SCD Orb Constellation</title>
 <style>
   body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: radial-gradient(circle at center, #0b0b1a, #1a1a2f);
-    height: 100vh;
+    background: radial-gradient(circle at center, #000010, #000022);
     overflow: hidden;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: Arial, sans-serif;
     color: white;
     position: relative;
   }
 
-  #orb {
+  #centralOrb {
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    cursor: pointer;
-    transition: transform 0.5s;
     z-index: 10;
+    cursor: pointer;
   }
 
-  .panel {
+  .orbitOrb {
     position: absolute;
-    width: 250px;
-    height: 150px;
-    background: rgba(255,255,255,0.1);
-    border: 2px solid #0ff;
-    backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.1rem;
-    opacity: 0;
-    transition: all 0.8s ease, opacity 0.8s ease;
-    text-align: center;
-    border-radius: 10px;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: transform 0.2s;
   }
 
-  .panel.show {
-    opacity: 1;
+  .orbitOrb:hover {
+    transform: translate(-50%, -50%) scale(1.3);
+    filter: drop-shadow(0 0 15px #0ff);
+  }
+
+  .tooltip {
+    position: absolute;
+    padding: 5px 10px;
+    background: rgba(0,0,0,0.8);
+    border-radius: 5px;
+    color: #0ff;
+    font-size: 0.9rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  canvas {
+    position: absolute;
+    top: 0; left: 0;
   }
 </style>
 </head>
 <body>
 
-<img src="scd-ball.svg" id="orb" alt="SCD Orb">
-
-<div class="panel" id="panel1">Chapter 1: The Awakening</div>
-<div class="panel" id="panel2">Chapter 2: The Journey</div>
-<div class="panel" id="panel3">Chapter 3: The Challenge</div>
-<div class="panel" id="panel4">Chapter 4: The Revelation</div>
+<img src="scd-ball.svg" id="centralOrb" alt="Central Orb">
+<div class="tooltip" id="tooltip"></div>
+<canvas id="stars"></canvas>
 
 <script>
-const orb = document.getElementById('orb');
-const panels = [
-  document.getElementById('panel1'),
-  document.getElementById('panel2'),
-  document.getElementById('panel3'),
-  document.getElementById('panel4')
-];
+const centralOrb = document.getElementById('centralOrb');
+const tooltip = document.getElementById('tooltip');
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
 
-const radius = 200; // distance from orb
-const center = { x: window.innerWidth/2, y: window.innerHeight/2 };
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-let clickCount = 0;
-
-function positionPanels() {
-  const angleStep = (2 * Math.PI) / panels.length;
-  panels.forEach((panel, index) => {
-    const angle = angleStep * index + clickCount * 0.5; // rotate on each click
-    const x = center.x + radius * Math.cos(angle) - panel.offsetWidth/2;
-    const y = center.y + radius * Math.sin(angle) - panel.offsetHeight/2;
-    panel.style.left = x + 'px';
-    panel.style.top = y + 'px';
-    panel.classList.add('show');
+// Generate star background
+const starCount = 100;
+const stars = [];
+for(let i=0;i<starCount;i++){
+  stars.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: Math.random() * 1.5,
+    alpha: Math.random()
   });
 }
 
-orb.addEventListener('click', () => {
-  clickCount++;
-  // rotate orb for effect
-  orb.style.transform = `translate(-50%, -50%) rotate(${clickCount * 45}deg)`;
-  positionPanels();
+function drawStars(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  stars.forEach(s=>{
+    ctx.beginPath();
+    ctx.arc(s.x,s.y,s.radius,0,Math.PI*2);
+    ctx.fillStyle = `rgba(255,255,255,${s.alpha})`;
+    ctx.fill();
+  });
+}
+
+// Orbiting orbs data
+const orbitOrbsData = [
+  { label:"Users", value:120 },
+  { label:"Revenue", value:80 },
+  { label:"Orders", value:60 },
+  { label:"Sessions", value:150 },
+  { label:"Feedback", value:45 },
+  { label:"Downloads", value:90 }
+];
+
+const orbitOrbs = orbitOrbsData.map((d,i)=>{
+  const orb = document.createElement('img');
+  orb.src = 'scd-ball.svg';
+  orb.className = 'orbitOrb';
+  orb.dataset.label = d.label;
+  orb.dataset.value = d.value;
+  document.body.appendChild(orb);
+  return {
+    element: orb,
+    radius: 150 + i*20,
+    angle: Math.random() * Math.PI*2,
+    speed: 0.01 + Math.random()*0.01
+  }
 });
 
-// initial positioning
-positionPanels();
+// Animate orbits
+function animate(){
+  drawStars();
+  orbitOrbs.forEach(o=>{
+    o.angle += o.speed;
+    const x = window.innerWidth/2 + o.radius*Math.cos(o.angle);
+    const y = window.innerHeight/2 + o.radius*Math.sin(o.angle);
+    o.element.style.left = x + 'px';
+    o.element.style.top = y + 'px';
+  });
+  requestAnimationFrame(animate);
+}
 
-// optional: reposition on window resize
-window.addEventListener('resize', () => {
-  center.x = window.innerWidth/2;
-  center.y = window.innerHeight/2;
-  positionPanels();
+animate();
+
+// Tooltip
+orbitOrbs.forEach(o=>{
+  o.element.addEventListener('mousemove', e=>{
+    tooltip.style.left = e.clientX + 10 + 'px';
+    tooltip.style.top = e.clientY + 10 + 'px';
+    tooltip.innerHTML = `${o.element.dataset.label}: ${o.element.dataset.value}`;
+    tooltip.style.opacity = 1;
+  });
+  o.element.addEventListener('mouseleave', ()=> tooltip.style.opacity = 0);
+});
+
+// Resize canvas
+window.addEventListener('resize', ()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 });
 </script>
 
