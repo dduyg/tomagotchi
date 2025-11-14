@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCD Orb Story Portal</title>
+<title>SCD Orb Radial Story</title>
 <style>
   body {
     margin: 0;
@@ -20,8 +20,8 @@
 
   #orb {
     position: absolute;
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -32,42 +32,34 @@
 
   .panel {
     position: absolute;
-    width: 300px;
-    height: 180px;
+    width: 250px;
+    height: 150px;
     background: rgba(255,255,255,0.1);
     border: 2px solid #0ff;
     backdrop-filter: blur(10px);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     opacity: 0;
-    transition: all 1s ease;
+    transition: all 0.8s ease, opacity 0.8s ease;
+    text-align: center;
+    border-radius: 10px;
   }
 
   .panel.show {
     opacity: 1;
   }
-
-  .panel1 { top: -250px; left: 50%; transform: translateX(-50%); }
-  .panel2 { bottom: -250px; left: 50%; transform: translateX(-50%); }
-  .panel3 { left: -350px; top: 50%; transform: translateY(-50%); }
-  .panel4 { right: -350px; top: 50%; transform: translateY(-50%); }
-
-  .panel1.show { top: 50px; }
-  .panel2.show { bottom: 50px; }
-  .panel3.show { left: 50px; }
-  .panel4.show { right: 50px; }
 </style>
 </head>
 <body>
 
 <img src="scd-ball.svg" id="orb" alt="SCD Orb">
 
-<div class="panel panel1" id="panel1">Chapter 1: The Awakening</div>
-<div class="panel panel2" id="panel2">Chapter 2: The Journey</div>
-<div class="panel panel3" id="panel3">Chapter 3: The Challenge</div>
-<div class="panel panel4" id="panel4">Chapter 4: The Revelation</div>
+<div class="panel" id="panel1">Chapter 1: The Awakening</div>
+<div class="panel" id="panel2">Chapter 2: The Journey</div>
+<div class="panel" id="panel3">Chapter 3: The Challenge</div>
+<div class="panel" id="panel4">Chapter 4: The Revelation</div>
 
 <script>
 const orb = document.getElementById('orb');
@@ -78,18 +70,38 @@ const panels = [
   document.getElementById('panel4')
 ];
 
+const radius = 200; // distance from orb
+const center = { x: window.innerWidth/2, y: window.innerHeight/2 };
+
 let clickCount = 0;
-orb.addEventListener('click', () => {
+
+function positionPanels() {
+  const angleStep = (2 * Math.PI) / panels.length;
   panels.forEach((panel, index) => {
-    if(index === clickCount % panels.length){
-      panel.classList.add('show');
-    } else {
-      panel.classList.remove('show');
-    }
+    const angle = angleStep * index + clickCount * 0.5; // rotate on each click
+    const x = center.x + radius * Math.cos(angle) - panel.offsetWidth/2;
+    const y = center.y + radius * Math.sin(angle) - panel.offsetHeight/2;
+    panel.style.left = x + 'px';
+    panel.style.top = y + 'px';
+    panel.classList.add('show');
   });
-  // Animate orb
-  orb.style.transform = `translate(-50%, -50%) rotate(${clickCount * 45}deg) scale(${1 + (clickCount%2)*0.2})`;
+}
+
+orb.addEventListener('click', () => {
   clickCount++;
+  // rotate orb for effect
+  orb.style.transform = `translate(-50%, -50%) rotate(${clickCount * 45}deg)`;
+  positionPanels();
+});
+
+// initial positioning
+positionPanels();
+
+// optional: reposition on window resize
+window.addEventListener('resize', () => {
+  center.x = window.innerWidth/2;
+  center.y = window.innerHeight/2;
+  positionPanels();
 });
 </script>
 
