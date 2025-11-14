@@ -1,86 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LiminalLoop</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-  <style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Scroll Animation Demo</title>
+
+<style>
+    /* -------------------------------
+       Your Keyframe Animations
+    -------------------------------- */
+    @keyframes scrollAnimationFlyIn-1 {
+        0% {transform: translateY(5vh)}
+        15% {transform: scale(1)}
+        85% {transform: scale(1)}
+        100% {transform: scale(1)}
+    }
+
+    @keyframes scrollAnimationFlyIn-2 {
+        0% {transform: translateY(10vh)}
+        30% {transform: scale(1)}
+        70% {transform: scale(1)}
+        100% {transform: scale(1)}
+    }
+
+    @keyframes scrollAnimationFlyIn-3 {
+        0% {transform: translateY(20vh)}
+        35% {transform: scale(1)}
+        65% {transform: scale(1)}
+        100% {transform: scale(1)}
+    }
+
+    @keyframes scrollAnimationFlyInFadeIn-1 {
+        0% {opacity: .4; transform: translateY(25px)}
+        50% {opacity: 1; transform: translateY(0px)}
+    }
+
+    /* -------------------------------
+       Base scroll animation setup
+    -------------------------------- */
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.2s ease-out;
+    }
+
+    /* When triggered, animation runs */
+    .animate-on-scroll.active.fly-1 {
+        animation: scrollAnimationFlyIn-1 1s ease-out forwards;
+    }
+
+    .animate-on-scroll.active.fly-2 {
+        animation: scrollAnimationFlyIn-2 1s ease-out forwards;
+    }
+
+    .animate-on-scroll.active.fly-3 {
+        animation: scrollAnimationFlyIn-3 1s ease-out forwards;
+    }
+
+    .animate-on-scroll.active.fade {
+        animation: scrollAnimationFlyInFadeIn-1 1s ease-out forwards;
+    }
+
+    /* Page styling (optional) */
     body {
-      font-family: 'Inter', sans-serif;
-      background: #fcfcfc;      
-      color: #191919;
-      margin: 0;
-      padding: 40px 20px 0;
-    }
-    header {
-      margin-bottom: 36px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .symbols {
-      border: 1.2px solid #222;
-      border-radius: 26px;
-      font-size: 1.09rem;
-      font-weight: 500;
-      line-height: 1.1;
-      display: inline-block;  
-      text-align: right;
-      padding: 0.26em 0.95em 0.32em 0.95em;
-      color: #222;
+        font-family: Arial, sans-serif;
+        padding: 40px;
     }
 
-    .fly-in-1 {
-animation: scrollAnimationFlyIn-1 1s ease-out forwards;
-}
-
-.fly-in-2 {
-    animation: scrollAnimationFlyIn-2 1.2s ease-out forwards;
-}
-
-.fly-in-3 {
-    animation: scrollAnimationFlyIn-3 1.3s ease-out forwards;
-}
-
-.fly-in-fade {
-    animation: scrollAnimationFlyInFadeIn-1 1s ease-out forwards;
-}
-
-@keyframes scrollAnimationFlyIn-1 {
-    0% {transform: translateY(5vh)}
-    15% {transform: scale(1)}
-    85% {transform: scale(1)}
-    100% {transform: scale(1)}
-}
-@keyframes scrollAnimationFlyIn-2 {
-    0% {transform: translateY(10vh)}
-    30% {transform: scale(1)}
-    70% {transform: scale(1)}
-    100% {transform: scale(1)}
-}
-
-@keyframes scrollAnimationFlyIn-3 {
-    0% {transform: translateY(20vh)}
-    35% {transform: scale(1)}
-    65% {transform: scale(1)}
-    100% {transform: scale(1)}
-}
-
-@keyframes scrollAnimationFlyInFadeIn-1 {
-    0% {opacity: .4; transform: translateY(25px)}
-    50% {opacity: 1; transform: translateY(0px)}
-}
-  </style>
+    .box {
+        background: #eaeaea;
+        margin: 60px 0;
+        padding: 40px;
+        font-size: 24px;
+        border-radius: 10px;
+    }
+</style>
 </head>
+
 <body>
-  <header>
-    <span class="title">Data2ASCII</span>
-    <span class="symbols">⣤ ⣧ ⠙</span>
-  </header>
-<div class="fly-in-1">Item 1</div>
-<div class="fly-in-2">Item 2</div>
-<div class="fly-in-3">Item 3</div>
-<div class="fly-in-fade">Fades In</div>
+
+<h1>Scroll Animation Example</h1>
+
+<div class="box animate-on-scroll fly-1">Flying in (Animation 1)</div>
+<div class="box animate-on-scroll fly-2">Flying in (Animation 2)</div>
+<div class="box animate-on-scroll fly-3">Flying in (Animation 3)</div>
+<div class="box animate-on-scroll fade">Fade + Fly In</div>
+
+<script>
+    /* Intersection Observer to trigger animation on scroll */
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+            }
+        });
+    });
+
+    /* Observe all elements with the class */
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>
