@@ -3,104 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCD Orb Gravity Playground</title>
+<title>SCD Orb Story Portal</title>
 <style>
   body {
     margin: 0;
-    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at center, #0b0b1a, #1a1a2f);
     height: 100vh;
-    background: radial-gradient(circle at center, #0a0a0a, #1a1a2f);
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
+    position: relative;
   }
 
   #orb {
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    cursor: grab;
+    cursor: pointer;
+    transition: transform 0.5s;
     z-index: 10;
   }
 
-  .particle {
+  .panel {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #0ff;
-    pointer-events: none;
+    width: 300px;
+    height: 180px;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid #0ff;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: all 1s ease;
   }
+
+  .panel.show {
+    opacity: 1;
+  }
+
+  .panel1 { top: -250px; left: 50%; transform: translateX(-50%); }
+  .panel2 { bottom: -250px; left: 50%; transform: translateX(-50%); }
+  .panel3 { left: -350px; top: 50%; transform: translateY(-50%); }
+  .panel4 { right: -350px; top: 50%; transform: translateY(-50%); }
+
+  .panel1.show { top: 50px; }
+  .panel2.show { bottom: 50px; }
+  .panel3.show { left: 50px; }
+  .panel4.show { right: 50px; }
 </style>
 </head>
 <body>
 
-<img src="scd-ball.svg" id="orb" alt="Central Orb">
+<img src="scd-ball.svg" id="orb" alt="SCD Orb">
+
+<div class="panel panel1" id="panel1">Chapter 1: The Awakening</div>
+<div class="panel panel2" id="panel2">Chapter 2: The Journey</div>
+<div class="panel panel3" id="panel3">Chapter 3: The Challenge</div>
+<div class="panel panel4" id="panel4">Chapter 4: The Revelation</div>
 
 <script>
 const orb = document.getElementById('orb');
-const particles = [];
-const particleCount = 50;
+const panels = [
+  document.getElementById('panel1'),
+  document.getElementById('panel2'),
+  document.getElementById('panel3'),
+  document.getElementById('panel4')
+];
 
-const orbState = { x: window.innerWidth/2, y: window.innerHeight/2 };
-
-// Create particles
-for(let i=0; i<particleCount; i++){
-  const p = document.createElement('div');
-  p.className = 'particle';
-  p.style.left = Math.random() * window.innerWidth + 'px';
-  p.style.top = Math.random() * window.innerHeight + 'px';
-  document.body.appendChild(p);
-  particles.push({
-    element: p,
-    x: parseFloat(p.style.left),
-    y: parseFloat(p.style.top),
-    vx: (Math.random()-0.5)*2,
-    vy: (Math.random()-0.5)*2
+let clickCount = 0;
+orb.addEventListener('click', () => {
+  panels.forEach((panel, index) => {
+    if(index === clickCount % panels.length){
+      panel.classList.add('show');
+    } else {
+      panel.classList.remove('show');
+    }
   });
-}
-
-// Drag orb
-let dragging = false;
-orb.addEventListener('mousedown', () => dragging = true);
-document.addEventListener('mouseup', () => dragging = false);
-document.addEventListener('mousemove', e => {
-  if(dragging){
-    orbState.x = e.clientX;
-    orbState.y = e.clientY;
-    orb.style.left = orbState.x + 'px';
-    orb.style.top = orbState.y + 'px';
-  }
+  // Animate orb
+  orb.style.transform = `translate(-50%, -50%) rotate(${clickCount * 45}deg) scale(${1 + (clickCount%2)*0.2})`;
+  clickCount++;
 });
-
-// Animate particles with gravity towards orb
-function animate(){
-  particles.forEach(p => {
-    const dx = orbState.x - p.x;
-    const dy = orbState.y - p.y;
-    const dist = Math.sqrt(dx*dx + dy*dy);
-    const force = Math.min(5, 200/dist); // simple gravity force
-    p.vx += dx/dist * force * 0.1;
-    p.vy += dy/dist * force * 0.1;
-
-    // friction
-    p.vx *= 0.95;
-    p.vy *= 0.95;
-
-    p.x += p.vx;
-    p.y += p.vy;
-
-    p.element.style.left = p.x + 'px';
-    p.element.style.top = p.y + 'px';
-  });
-
-  requestAnimationFrame(animate);
-}
-
-animate();
 </script>
 
 </body>
