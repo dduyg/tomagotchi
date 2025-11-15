@@ -4,115 +4,197 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LiminalLoop</title>
-  <style>
-    * { padding: 0; margin: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Space Mono', monospace;
-      color: #3E474F;
-    }
+<style>
+  * { padding: 0; margin: 0; box-sizing: border-box; font-size: 0.9rem; line-height: 1.4;}
+ 
+  code { background: #9F4248; color: #EBE6E2; font-weight: bold; padding: 0.125em; border-radius: 0.25em; font-family: "Courier New", Courier, monospace;}
+  table { width: 100%; border-collapse: collapse; table-layout: auto; display: block; overflow-x: auto; margin: 0; padding: 0; }
+  @media screen and (max-width: 600px) { table {font-size: 0.75em;} }
+  th, td { padding: 0.5em; border-bottom: 1px solid #9F4248; text-align: left; color: #9F4248; word-wrap: break-word; }
+  th { background: rgba(0, 0, 0, 0.1); border-bottom: 2px solid #9F4248; font-weight: bold; font-size: 1.17em; letter-spacing: 0.07em; text-transform: uppercase; }
 
-.wrapper {
-    max-width: 600px;
-    width: 100%;
-    margin: 10vh auto;
-}
+  .icon { font-size: 1em; }
+  ul { list-style-type: disc; sec
+      ul li { margin-bottom: 0.625em; }
+h3 {color: #62110E;}
 
-h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    text-align:center;
-}
+<di"tab">
+    <input type="radio" name="syntax-serenity" id="section-2">
+    <label for="section-2" class="tab__label">What's a naming convention?</label>
+    <div class="tab__content">
+      <section>
+      <p>Naming conventions are guidelines for choosing meaningful and consistent names for variables, functions, classes, and other elements in your code. They help keep your code organized and readable, making it easier for you and others to understand and work with. Let's start with universal guidelines that should be followed regardless of the programming language being used:</p>
+      <ul>
+        <li><strong>Descriptive and Meaningful Names:</strong> Use meaningful names that convey the purpose of the variable or function. Avoid single-letter names unless they are used for very short-lived variables like loop counters.</li>
+        <li><strong>Avoid Naming Conflicts:</strong> Ensure that your names don't conflict with keywords or reserved words in your programming language.</li>
+        <li><strong>Use nouns for variables and classes:</strong> Variables and class names should typically represent nouns or noun phrases that describe the entity they represent.</li>
+        <li><strong>Use verbs for function and method names:</strong> Function and method names should represent actions or operations. They should typically start with a verb or verb phrase that describes what the function does.</li>
+        <li><strong>Use meaningful prefixes or suffixes:</strong> Sometimes, adding prefixes like <code>is_</code> or <code>has_</code> can make boolean variables clearer. Similarly, suffixes like <code>List</code>, <code>Map</code>, or <code>Collection</code> can clarify the type of a variable.</li>
+        <li><strong>Use Singular Names for Single Objects:</strong> Use singular names for variables representing single instances and plural names for collections.</li>
+        <li><strong>Consider readability over brevity:</strong> While shorter names might seem more concise, prioritize readability over brevity. A slightly longer, descriptive name is preferable if it makes the code more understandable.</li>
+        <li><strong>Avoid Hungarian Notation:</strong> Hungarian notation, where variable names include type information (e.g., <code>strName</code>, <code>intCount</code>), is generally discouraged in modern programming languages. With strongly typed languages and modern IDEs, this practice is unnecessary and can make code harder to read.</li>
+        <li><strong>Be mindful of scope:</strong> Use names that reflect the scope of the variable or function. For example, use descriptive names for global variables and more concise names for local variables.</li>
+        <li><strong>Be Consistent:</strong> Maintain consistency in naming across your codebase. If you start with CamelCase or snake_case, stick with it throughout your project.</li>
+        <li><strong>Use domain-specific terminology:</strong> If you're working within a specific domain or framework, use terminology consistent with that domain. It makes your code more understandable to domain experts.</li>
+      </ul>
+      </section>
+    </div>
+  </div>
+  <div class="tab">
+    <input type="radio" name="syntax-serenity" id="section-3">
+    <label for="section-3" class="tab__label">Comparing Python and R</label>
+    <div class="tab__content">
+      <section style="margin: 0; padding: 0;">
+      <table>
+        <tr>
+          <th></th>
+          <th>Python <i class="fab fa-python icon"></i></th>
+          <th>R <i class="fab fa-r-project icon"></i></th>
+        </tr>
+        <tr>
+          <td>Function Naming</td>
+          <td>snake_case</td>
+          <td>camelCase, snake_case</td>
+        </tr>
+        <tr>
+          <td>Variable Naming</td>
+          <td>lowercase e.g. <code>x</code> or <code>var</code>, snake_case</td>
+          <td>camelCase, snake_case</td>
+        </tr>
+        <tr>
+          <td>Classes</td>
+          <td>PascalCase</td>
+          <td>camelCase, snake_case</td>
+        </tr>
+        <tr>
+          <td>Methods</td>
+          <td>snake_case, lowercase</td>
+          <td>camelCase</td>
+        </tr>
+        <tr>
+          <td>Constants</td>
+          <td>UPPERCASE, SCREAMING_SNAKE_CASE</td>
+          <td>UPPERCASE, SCREAMING_SNAKE_CASE</td>
+        </tr>
+        <tr>
+          <td>Packages</td>
+          <td>lowercase, flatcase e.g. <code>pythonpackage</code></td>
+          <td>lowercase, flatcase</td>
+        </tr>
+        <tr>
+          <td>File Names</td>
+          <td>lowercase.py, snake_case.py</td>
+          <td>snake_case.R</td>
+        </tr>
+        <tr>
+          <td>Comments</td>
+          <td># Single line<br>""" Multi-line """ or ''' Multi-line  '''</td>
+          <td># Single line<br># Multi-line</td>
+        </tr>
+      </table>
+      </section>
+    </div>
+  </div>
+  <div class="tab">
+    <input type="radio" name="syntax-serenity" id="section-4">
+    <label for="section-4" class="tab__label">Python naming conventions</label>
+    <div class="tab__content">
+      <section>
+      <p>Python follows the PEP 8 style guide for naming conventions. Here are some key points:</p>
+      <h3>Variables and Functions</h3>
+      <ul>
+        <li>Use lowercase letters for variable names.</li>
+        <li>Separate words with underscores to improve readability.</li>
+        <li>Variable names should be descriptive and meaningful.</li>
+        <li>Functions should have descriptive names that indicate their purpose.</li>
+        <li>Avoid using single character names except for loop counters or temporary variables.</li>
+      </ul>
+      <h3>Constants</h3>
+      <ul>
+        <li>Use uppercase letters for constants.</li>
+        <li>Separate words with underscores.</li>
+        <li>Constants should represent fixed values that do not change during the execution of the program.</li>
+      </ul>
+      <h3>Classes</h3>
+      <ul>
+        <li>Use PascalCase for class names.</li>
+        <li>Class names should be nouns and start with a capital letter.</li>
+        <li>Use descriptive names that indicate the purpose of the class.</li>
+      </ul>
+      <h3>Modules and Packages</h3>
+      <ul>
+        <li>Use lowercase names for modules and packages.</li>
+        <li>Separate words with underscores if needed.</li>
+        <li>Module names should be short and descriptive.</li>
+        <li>Avoid using names that conflict with standard Python modules or built-in functions.</li>
+      </ul>
+      </section>
+    </div>
+  </div>
+  <div class="tab">
+    <input type="radio" name="syntax-serenity" id="section-5">
+    <label for="section-5" class="tab__label">R naming conventions</label>    
+    <div class="tab__content">
+      <section>
+      <p>R programming language follows its own set of naming conventions. Here are the key points:</p>
+      <h3>Variables and Functions</h3>
+      <ul>
+        <li>Use lowercase letters for variable names.</li>
+        <li>Separate words with underscores or use camelCase.</li>
+        <li>Variable names should be descriptive and meaningful.</li>
+        <li>Functions should have descriptive names that indicate their purpose.</li>
+        <li>Avoid using reserved words as variable names.</li>
+      </ul>
+      <h3>Constants</h3>
+      <ul>
+        <li>Constants are not explicitly defined in R, but conventionally use uppercase letters for variables that are not intended to be modified.</li>
+      </ul>
+      <h3>Classes</h3>
+      <ul>
+        <li>R uses S3 and S4 class systems for object-oriented programming.</li>
+        <li>Class names should be meaningful and follow the same conventions as variable names.</li>
+      </ul>
+      <h3>Packages</h3>
+      <ul>
+        <li>Package names should be descriptive and lowercase.</li>
+        <li>Avoid using names that conflict with existing R packages.</li>
+      </ul>
+      </section>
+    </div>
+  </div>
+</div>
 
-input {
-    display: none;
-}
 
-label {
-    display: flex;
-    width: 100%;
-    height: 50px;
-    cursor: pointer;
-    border: 3px solid #3E474F;
-    user-select: none;
-}
-
-label div:first-child {
-    width: 100%;
-    line-height: 45px;
-    margin-left: 10px;
-    font-size: 1.2em;
-}
-
-.cross{
-    margin-right:15px;
-    margin-top:3px;
-}
-
-.cross:before,.cross:after {
-    content: '';
-    border-top: 2px solid #3E474F;
-    width: 15px;
-    display: block;
-    margin-top: 18px;
-    transition: 0.3s;
-}
-
-.cross:after {
-    transform: rotate(90deg);
-    margin-top: -2px;
-}
-
-.content {
-    box-sizing: border-box;
-    font-size: 0.9em;
-    margin: 10px 10px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height, .5s;
-}
-
-input:checked ~ .content {
-    max-height: 400px;
-    transition: max-height, 1s;
-}
-
-input:checked ~ label .cross:before {
-    transform: rotate(180deg);
-}
-
-input:checked ~ label .cross:after {
-    transform: rotate(0deg);
-}
-
-.questions{
-    margin-top:20px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height, .5s;
-}
-
-.questions label{
-    border:none;
-    box-shadow: none;
-    margin:0;
-}
-
-input:checked ~ .questions {
-    max-height: 400px;
-    border-bottom:2px solid #3E474F;
-    transition: 1s;
-}
+input {display: none;}
+label {display: flex; width: 100%; height: 50px; cursor: pointer; border: 3px solid #62110E; user-select: none;}
+label div:first-child {width: 100%; line-height: 45px; margin-left: 10px; font-size: 1.2em;}
+.cross { margin-right:15px; margin-top:3px;}
+.cross:before,.cross:after {content: ''; border-top: 2px solid #62110E; width: 15px; display: block; margin-top: 18px; transition: 0.3s;}
+.cross:after {transform: rotate(90deg); margin-top: -2px;}
+.content { box-sizing: border-box; font-size: 0.9rem; margin: 10px 0; max-height: 0; overflow: hidden; transition: max-height, .5s; }
+input:checked ~ .content { max-height: 400px; transition: max-height, 1s; }
+input:checked ~ label .cross:before { transform: rotate(180deg); }
+input:checked ~ label .cross:after { transform: rotate(0deg); }
   </style>
 </head>
 <body>
-  <div class="wrapper">
+  <div class="app-container">
     <h1>Mollitia</h1>
-
-  <div class="wrap-1">
-    <input type="radio" id="tab-1" name="tabs">
-    <label for="tab-1"><div>tab one</div><div class="cross"></div></label>
-    <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia autem quasi inventore unde nobis voluptatibus illum quae rerum laudantium minima, excepturi quis maiores. Eaque quae, nam delectus explicabo, deserunt ipsum!</div>
-  </div>
+    
+    <div>
+      <input type="radio" id="tab-1" name="tabs">
+      <label for="tab-1"><div>tab one</div><div class="cross"></div></label>
+      <div class="content">Lo
+        
+        
+<input">
+           
+        
+        
+        
+        
+        rem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia autem quasi inventore unde nobis voluptatibus illum quae rerum laudantium minima, excepturi quis maiores. Eaque quae, nam delectus explicabo, deserunt ipsum!</div>
+    </div>
 
   <div class="wrap-2">
     <input type="radio" id="tab-2" name="tabs">
