@@ -3,12 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cross Product</title>
-<style>body {margin:0px; padding:0px; overflow: hidden}</style>
+<title>code</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0b0b1a;
+    font-family: Arial, sans-serif;
+    transition: background 1s;
+  }
+
+  #orb {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: transform 0.5s;
+    z-index: 10;
+  }
+
+  .effect {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #0ff;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+</style>
 </head>
 <body>
-  <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.8/p5.js"></script>
-  <script  src="./script.js"></script>
+<img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/Enchant_Relic_Render.png" id="orb">
 
+<script>
+const orb = document.getElementById('orb');
+const effects = [];
+const themes = [
+  { bg: '#0b0b1a', color: '#0ff' }, // Cosmic
+  { bg: '#111100', color: '#ffcc00' }, // Ancient
+  { bg: '#001122', color: '#66ffcc' }, // Futuristic
+  { bg: '#220000', color: '#ff6666' }, // Volcanic
+];
+let currentTheme = 0;
+
+// Click orb to travel through time
+orb.addEventListener('click', () => {
+  currentTheme = (currentTheme + 1) % themes.length;
+  document.body.style.background = themes[currentTheme].bg;
+});
+
+// Create floating particles for visual effect
+for(let i=0;i<50;i++){
+  const e = document.createElement('div');
+  e.className = 'effect';
+  e.style.background = themes[currentTheme].color;
+  e.style.left = Math.random()*window.innerWidth+'px';
+  e.style.top = Math.random()*window.innerHeight+'px';
+  document.body.appendChild(e);
+  effects.push({ element: e, dx: Math.random()*2-1, dy: Math.random()*2-1 });
+}
+
+// Animate particles
+function animate(){
+  requestAnimationFrame(animate);
+  effects.forEach(e=>{
+    let left = parseFloat(e.element.style.left) + e.dx;
+    let top = parseFloat(e.element.style.top) + e.dy;
+    if(left<0 || left>window.innerWidth) e.dx *= -1;
+    if(top<0 || top>window.innerHeight) e.dy *= -1;
+    e.element.style.left = left+'px';
+    e.element.style.top = top+'px';
+    e.element.style.background = themes[currentTheme].color;
+  });
+}
+animate();
+</script>
 </body>
 </html>
