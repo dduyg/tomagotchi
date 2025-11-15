@@ -1,113 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Music Visualizer</title>
-<style>
-  body {
-    margin: 0;
-    background: url("https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/M%E2%88%86TERI%E2%88%86.gif") center/cover no-repeat;
-    font-family: sans-serif;   
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
 
-  #centralOrb {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
+  <head>
+    <meta charset="UTF-8">
+    <title>Accordion Menu + Tooltip</title>
+    <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="./style.css">
 
-  .orb {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-  }
+  </head>
+    
+  <body>
+  <div class="wrapper">
 
-  input[type=file] {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 10;
-  }
-</style>
-</head>
-<body>
+  <h1>Accordion Menu + Tooltip</h1>
 
-<input type="file" id="audioInput" accept="audio/*">
-<img src="https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/syntax-serenity.gif" id="centralOrb">
+  <div class="wrap-1">
+    <input type="radio" id="tab-1" name="tabs">
+    <label for="tab-1"><div>tab one</div><div class="cross"></div></label>
+    <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia autem quasi inventore unde nobis voluptatibus illum quae rerum laudantium minima, excepturi quis maiores. Eaque quae, nam delectus explicabo, deserunt ipsum!</div>
+  </div>
 
-<script>
-const centralOrb = document.getElementById('centralOrb');
-const audioInput = document.getElementById('audioInput');
+  <div class="wrap-2">
+    <input type="radio" id="tab-2" name="tabs">
+    <label for="tab-2"><div>tab two</div><div class="cross"></div></label>
+    <div class="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia autem quasi inventore unde nobis voluptatibus illum quae rerum laudantium minima, excepturi quis maiores. Eaque quae, nam delectus <span class="tip" data-tip="Eaque quae, nam delectus explicabo, deserunt ipsum!">explicabo</span>,
+      deserunt ipsum! Lorem ipsum dolor sit amet, consectetur adipisicing elit. <span class="tip" data-tip="Lorem ipsum dolor sit amet, consectetur adipisicing elit.">Mollitia</span> autem quasi inventore unde nobis voluptatibus illum quae rerum laudantium
+      minima, excepturi quis maiores. Eaque quae, nam delectus explicabo, <span class="tip" data-tip="Lorem ipsum dolor sit amet.">deserunt</span> ipsum!</div>
+  </div>
 
-let audioCtx, source, analyser;
-let dataArray, bufferLength;
+  <div class="wrap-3">
+    <input type="radio" id="tab-3" name="tabs">
+    <label for="tab-3"><div>tab three</div><div class="cross"></div></label>
+    <div class="questions">
+      <div class="question-wrap">
+        <input type="radio" id="question-1" name="question">
+        <label for="question-1"><div>question one</div> <div class="cross"></div></label>
+        <div class="content">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam atque, soluta doloribus distinctio saepe labore voluptates facere illum alias perferendis praesentium quia vel accusamus incidunt corporis veniam sapiente. Voluptate, quasi.
+        </div>
+      </div>
+      <div class="question-wrap">
+        <input type="radio" id="question-2" name="question">
+        <label for="question-2"><div>question two</div> <div class="cross"></div></label>
+        <div class="content">
+          Ipsam atque, soluta doloribus distinctio saepe labore voluptates facere illum alias perferendis praesentium quia vel accusamus incidunt corporis veniam sapiente. Voluptate, quasi.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <script  src="./script.js"></script>
 
-const orbitOrbs = [];
-
-// Create orbiting orbs
-for(let i=0;i<12;i++){
-  const orb = document.createElement('img');
-  orb.src = 'https://cdn.jsdelivr.net/gh/dduyg/LiminalLoop@shelf/06/Enchant_Relic_Render.png';
-  orb.className = 'orb';
-  document.body.appendChild(orb);
-  orbitOrbs.push({ element: orb, angle: i * (Math.PI*2/12), radius: 200 });
-}
-
-// Audio setup
-audioInput.addEventListener('change', function(){
-  const file = this.files[0];
-  if(!file) return;
-  const audio = new Audio(URL.createObjectURL(file));
-  audio.loop = true;
-  audio.play();
-
-  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  source = audioCtx.createMediaElementSource(audio);
-  analyser = audioCtx.createAnalyser();
-  source.connect(analyser);
-  analyser.connect(audioCtx.destination);
-  analyser.fftSize = 64;
-  bufferLength = analyser.frequencyBinCount;
-  dataArray = new Uint8Array(bufferLength);
-
-  animate();
-});
-
-// Animate orbs
-function animate(){
-  requestAnimationFrame(animate);
-  analyser.getByteFrequencyData(dataArray);
-
-  // Pulse central orb based on average amplitude
-  let sum = dataArray.reduce((a,b)=>a+b,0);
-  let avg = sum / dataArray.length;
-  let scale = 1 + avg/256;
-  centralOrb.style.transform = `translate(-50%, -50%) scale(${scale})`;
-
-  // Orbiting orbs
-  orbitOrbs.forEach((o,i)=>{
-    o.angle += 0.02;
-    const amp = dataArray[i % dataArray.length] / 128;
-    const radius = 150 + amp*100;
-    const x = window.innerWidth/2 + radius * Math.cos(o.angle);
-    const y = window.innerHeight/2 + radius * Math.sin(o.angle);
-    o.element.style.left = x + 'px';
-    o.element.style.top = y + 'px';
-    o.element.style.transform = `translate(-50%, -50%) scale(${0.5 + amp})`;
-  });
-}
-</script>
-
-</body>
+  </body>
+  
 </html>
