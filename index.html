@@ -1,128 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IK3 Multi Arms</title>
-    <style> body { margin:0; padding:0; overflow:hidden; } </style>
-</head>
-<body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js" integrity="sha512-3RlxD1bW34eFKPwj9gUXEWtdSMC59QqIqHnD8O/NoTwSJhgxRizdcFVQhUMFyTp5RwLTDL0Lbcqtl8b7bFAzog==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>Cross Product</title>
+    <link rel="stylesheet" href="./style.css">
 
-<script>
-let segmentLengths, jointAngles;
-const nArms = 12;
+  </head>
+    
+  <body>
+  <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.8/p5.js"></script>
+    <script  src="./script.js"></script>
 
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  segmentLengths = [150, 100, 50];
-  jointAngles = new Array(nArms).fill().map(() => [0, 0, 0]);
-}
-
-function draw() {
-  background('#DDFFCD');
-
-  const target = createVector(mouseX, mouseY);
-
-  for (let i = 0; i < jointAngles.length; i ++) {
-    const origin = createVector(width / (nArms + 1) * (i + 1), height / 2 + sumArray(segmentLengths) / 2);
-    jointAngles[i] = calculateIK3(origin, target, segmentLengths, jointAngles[i]);
-    drawArm(origin, segmentLengths, jointAngles[i], 256);
-  }
-}
-
-function calculateIK3(origin, target, lengths, angles) {
-  const tempAngles1 = predictIK3(origin, target, lengths, angles, sumArray(angles));
-  const tempAbsAngle = tempAngles1[0] + tempAngles1[1] + angles[2];
-  const tempAngles2 = predictIK3(origin, target, lengths, angles, sumArray([tempAngles1[0], tempAngles1[1], angles[2]]));
-  const tempAngles3 = predictIK3(origin, target, lengths, angles, lerp(sumArray(tempAngles1), sumArray(tempAngles2), 0.5));
-  return tempAngles3;
-}
-
-function predictIK3(origin, target, lengths, angles, thirdAngleAbs) {
-  const tempTarget = target.copy().sub(createVector(cos(thirdAngleAbs) * lengths[2], sin(thirdAngleAbs) * lengths[2]));
-  const tempAngles = calculateIK2(origin, tempTarget, lengths[0], lengths[1]);
-  const tempPositions = calculatePositions(origin, [lengths[0], lengths[1]], tempAngles);
-  const tempLastAngle = atan2(target.y - tempPositions[2].y, target.x - tempPositions[2].x) - (tempAngles[0] + tempAngles[1]);
-  return [...tempAngles, tempLastAngle];
-}
-
-function sumArray(array) {
-  return array.reduce((a, b) => a + b, 0);
-}
-
-function calculateIK2(origin, target, lengthA, lengthB) {
-  const dx = target.x - origin.x;
-  const dy = target.y - origin.y;
-
-  const cosC = (lengthA * lengthA + lengthB * lengthB - (dx * dx + dy * dy)) / (2 * lengthA * lengthB);
-  const angle2 = PI - acos(constrain(cosC, -1, 1));
-
-  const D = lengthA + lengthB * cos(angle2);
-  const angle1 = atan2(dy, dx) - atan2(lengthB * sin(angle2), D);
-
-  return [angle1, angle2];
-}
-
-function calculatePositions(origin, lengths, angles) {
-  let angle = 0;
-  let head = origin.copy();
-  const positions = [origin.copy()];
-  for (let i = 0; i < lengths.length; i ++) {
-    angle += angles[i];
-    positions.push(
-      positions[i].copy().add(
-        createVector(lengths[i] * cos(angle), lengths[i] * sin(angle))
-      )
-    );
-  }
-  return positions;
-}
-
-function drawArm(origin, lengths, angles) {
-  let head = origin;
-  let angle = 0;
-  rect(head.x - 4, head.y - 4, 8, 8);
-
-  for (let i = 0; i < lengths.length; i ++) {
-    drawLabel(head.x, head.y + 24, round(degrees(angles[i])));
-    angle += angles[i];
-    const nextHead = head.copy().add(createVector(lengths[i] * cos(angle), lengths[i] * sin(angle)));
-
-    stroke(0);
-    line(head.x, head.y, nextHead.x, nextHead.y);
-    noStroke();
-    fill(0);
-    ellipse(nextHead.x, nextHead.y, 8, 8);
-
-    head = nextHead;
-  }
-}
-
-function drawSegment(start, end, opacity = 255) {
-  stroke(0, 0, 0, opacity);
-  line(start.x, start.y, end.x, end.y);
-  noStroke();
-  fill(0, 0, 0, opacity);
-  circle(end.x, end.y, 8);
-}
-
-function drawLabel(x, y, label, align = CENTER) {
-  push();
-  strokeWeight(0);
-  textFont("monospace");
-  textSize(14);
-  textAlign(align);
-  if (align === LEFT) { x += 6; }
-  if (align === RIGHT) { x -= 6; }
-  text(label, x, y);
-  pop();
-}
-
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-}
-</script>
-
-</body>
+  </body>
+  
 </html>
