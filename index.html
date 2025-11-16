@@ -890,8 +890,6 @@
                 shaderMaterial.uniforms.accentColor.value.fromArray(
                     preset.accentColor.map((c) => c / 255)
                 );
-                
-                colorThemeToggle.textContent = themeName;
             });
         });
 
@@ -909,14 +907,8 @@
                 // Update effect type
                 params.effectType = effectValue;
                 shaderMaterial.uniforms.effectType.value = effectValue;
-                
-                effectTypeToggle.textContent = effectName;
             });
         });
-
-        // Set initial button text
-        colorThemeToggle.textContent = params.colorPreset;
-        effectTypeToggle.textContent = 'Ripple';
 
         // Mouse event listeners
         window.addEventListener("mousemove", (event) => {
