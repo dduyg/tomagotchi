@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flection</title>
+    <title>Eollection</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Courier New', monospace;
-            color: white;
-            background: #000;
+            background-color: #0a0a0a;
+            color: #fff;
             overflow-x: hidden;
         }
 
@@ -23,163 +23,223 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 40px;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
             z-index: 1000;
-            background: rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .header-item {
+        .header-left {
             font-size: 14px;
             letter-spacing: 2px;
             font-weight: bold;
         }
 
-        /* Main Content */
-        .hero-section {
-            position: relative;
+        .header-right {
+            font-size: 14px;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
             height: 100vh;
-            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
             overflow: hidden;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
         }
 
         .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: blur(3px) brightness(0.8);
+            opacity: 0.7;
+            filter: blur(2px);
         }
 
-        /* Footer Navigation */
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .hero-title {
+            font-size: 72px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #ffd4a3 0%, #ff8c42 50%, #ffd4a3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            letter-spacing: 4px;
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+
+        /* Footer */
         footer {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(0, 0, 0, 0.9);
-            padding: 30px 0;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px 40px;
         }
 
-        .footer-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
             max-width: 100%;
-            padding: 0 40px;
         }
 
-        .nav-item {
-            flex: 1;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .footer-column {
+            text-align: center;
             padding: 0 10px;
         }
 
-        .nav-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .nav-underline {
+        .footer-divider {
             width: 100%;
             height: 2px;
-            background: white;
-            margin-bottom: 10px;
+            background-color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 12px;
         }
 
-        .nav-label {
+        .footer-title {
             font-size: 11px;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             font-weight: bold;
-            white-space: nowrap;
+            color: #fff;
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+            }
+
+            .hero-title {
+                font-size: 48px;
+            }
+        }
+
         @media (max-width: 768px) {
             header {
                 padding: 15px 20px;
             }
 
-            .header-item {
+            .header-left, .header-right {
                 font-size: 12px;
             }
 
-            .footer-nav {
-                padding: 0 20px;
-                flex-wrap: wrap;
+            .hero-title {
+                font-size: 36px;
+                letter-spacing: 4px;
             }
 
-            .nav-item {
-                flex: 0 0 33.333%;
-                margin-bottom: 20px;
-                padding: 0 5px;
+            .hero-subtitle {
+                font-size: 14px;
             }
 
-            .nav-label {
-                font-size: 9px;
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            footer {
+                padding: 20px;
             }
         }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content {
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .footer-column {
+            animation: fadeIn 1s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .footer-column:nth-child(1) { animation-delay: 0.1s; }
+        .footer-column:nth-child(2) { animation-delay: 0.2s; }
+        .footer-column:nth-child(3) { animation-delay: 0.3s; }
+        .footer-column:nth-child(4) { animation-delay: 0.4s; }
+        .footer-column:nth-child(5) { animation-delay: 0.5s; }
+        .footer-column:nth-child(6) { animation-delay: 0.6s; }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <div class="header-item">04</div>
-        <div class="header-item">06</div>
+        <div class="header-left">04</div>
+        <div class="header-right">08</div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero-section">
-        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1600&h=900&fit=crop" alt="Fashion model" class="hero-image">
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">ETHEREAL</h1>
+            <p class="hero-subtitle">Beauty Collection</p>
+        </div>
     </section>
 
-    <!-- Footer Navigation -->
+    <!-- Footer -->
     <footer>
-        <nav class="footer-nav">
-            <div class="nav-item">
-                <div class="nav-underline"></div>
-                <div class="nav-label">Ethereal Glow</div>
+        <div class="footer-content">
+            <div class="footer-column">
+                <div class="footer-divider"></div>
+                <div class="footer-title">ETHEREAL GLOW</div>
             </div>
-            <div class="nav-item">
-                <div class="nav-underline"></div>
-                <div class="nav-label">Rose Mirage</div>
+            <div class="footer-column">
+                <div class="footer-divider"></div>
+                <div class="footer-title">ROSE MIRAGE</div>
             </div>
-            <div class="nav-item">
-                <div class="nav-underline"></div>
-                <div class="nav-label">Velvet Mystique</div>
+            <div class="footer-column">
+                <div class="footer-divider"></div>
+                <div class="footer-title">VELVET MYSTIQUE</div>
             </div>
-            <div class="nav-item">
-                <div class="nav-underline"></div>
-                <div class="nav-label">Golden Hour</div>
+            <div class="footer-column">
+                <div class="footer-divider"></div>
+                <div class="footer-title">GOLDEN HOUR</div>
             </div>
-            <div class="nav-item">
-                <div class="nav-underline"></div>
-                <div class="nav-label">Midnight Dreams</div>
+            <div class="footer-column">
+                <div class="footer-divider"></div>
+                <div class="footer-title">MIDNIGHT DREAMS</div>
             </div>
-            <div class="nav-item">
-                <div class="nav-underline"></div>
-                <div class="nav-label">Silver Light</div>
+            <div class="footer-column">
+                <div class="footer-divider"></div>
+                <div class="footer-title">SILVER LIGHT</div>
             </div>
-        </nav>
+        </div>
     </footer>
-
-    <script>
-        // Add click interactions for navigation items
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', function() {
-                // Remove active state from all items
-                document.querySelectorAll('.nav-item').forEach(i => {
-                    i.style.opacity = '0.6';
-                });
-                // Add active state to clicked item
-                this.style.opacity = '1';
-            });
-        });
-
-        // Set first item as active by default
-        document.querySelector('.nav-item').style.opacity = '1';
-        document.querySelectorAll('.nav-item').forEach((item, index) => {
-            if (index !== 0) item.style.opacity = '0.6';
-        });
-    </script>
 </body>
 </html>
