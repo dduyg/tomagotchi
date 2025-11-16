@@ -5,14 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1309-V01</title>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono&display=swap");
-      
-      * { 
-        box-sizing: border-box; 
-        margin: 0; 
-        padding: 0; 
-      }
-
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono&display=swap");  
+      * { box-sizing: border-box; margin: 0; padding: 0; }
       body {
         font-family: "Inter", sans-serif;
         background-color: #0e0e10;
@@ -22,13 +16,10 @@
         position: relative;
         font-weight: 400;
       }
-
       canvas {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
         z-index: -1;
       }
 
@@ -37,43 +28,34 @@
         justify-content: space-between;
         padding: 1rem 2rem;
         position: fixed;
-        top: 0; 
-        left: 0; 
-        right: 0;
+        top: 0; left: 0; right: 0;
+        width: 100%
         z-index: 10;
-        font-size: 0.875rem;
+        font-size: 0.8rem;
         font-family: "Space Mono", monospace;
         text-transform: uppercase;
       }
       
       .links {
         display: flex;
-        gap: 16px;
-      }
-      
+        gap: 15px;
+      }    
       .links a {
         color: #f0f0f0;
         text-decoration: none;
         margin-left: 16px;
-      }
-      
-      .links a:hover { 
-        text-decoration: underline; 
-      }
+      }     
+      .links a:hover { text-decoration: underline; }
 
       .grid-container {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        gap: 0;
-        padding: 0;
+        gap: 0; padding: 0;
         margin: 0 auto;
         align-items: flex-end;
         height: 100vh;
-      }
-      
-      .grid-item { 
-        text-align: left; 
-      }
+      }    
+      .grid-item { text-align: left; }
 
       .grid-item__text {
         margin-bottom: 16px;
@@ -82,19 +64,14 @@
         line-height: 1.4;
         font-family: "Space Mono", monospace;
         text-transform: uppercase;
-      }
-      
+      }    
       .grid-item__text h2 {
         font-size: 1.5rem;
         margin-bottom: 1rem;
         font-family: "Inter", sans-serif;
         letter-spacing: -0.02em;
-      }
-      
-      .grid-item__text span { 
-        display: block; 
-      }
-
+      }  
+      .grid-item__text span { display: block; }
       .grid-item__image {
         width: 100%;
         height: 500px;
