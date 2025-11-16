@@ -24,29 +24,19 @@
             --eye-glow-color: #ffff00;
         }
 
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-        }
-
+        * { margin: 0; padding: 0;  box-sizing: border-box; }
         html, body {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             overflow: hidden;
             background-color: #111;
             letter-spacing: -0.03em;
             position: relative;
         }
-
-        /* Background noise effect with will-change optimization */
         body::before {
             content: "";
             position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
             background: transparent url("http://assets.iceable.com/img/noise-transparent.png") repeat 0 0;
             background-size: 300px 300px;
             animation: noise-animation 0.3s steps(5) infinite;
@@ -55,7 +45,6 @@
             z-index: 100;
             pointer-events: none;
         }
-
         @keyframes noise-animation {
             0% { transform: translate(0, 0); }
             10% { transform: translate(-2%, -3%); }
@@ -73,10 +62,8 @@
         /* Content to be revealed */
         .content {
             position: fixed;
-            top: 0; 
-            left: 0;
-            width: 100%; 
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -90,8 +77,7 @@
             max-width: 90%;
             overflow: hidden;
         }
-
-        .quote {
+        .tA {
             font-family: var(--primary-font);
             font-size: var(--quote-size);
             line-height: 0.9;
@@ -101,8 +87,7 @@
             opacity: 1;
             text-transform: uppercase;
         }
-
-        .author {
+        .tB {
             font-family: var(--secondary-font);
             font-size: var(--author-size);
             font-style: italic;
@@ -114,38 +99,28 @@
         canvas {
             display: block;
             position: fixed !important;
-            top: 0 !important; 
-            left: 0 !important;
-            width: 100vw; 
-            height: 100vh;
-            margin: 0 !important;
-            padding: 0 !important;
+            top: 0 !important; left: 0 !important;
+            width: 100vw; height: 100vh;
+            margin: 0 !important; padding: 0 !important;
             z-index: 2;
             pointer-events: none;
         }
 
         /* Navigation Bar */
-        .navbar {
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            padding: 20px 40px;
-            z-index: 200;
-            background: rgba(17, 17, 17, 0.7);
-            backdrop-filter: blur(10px);
+            top: 0; left: 0; right: 0;
+            padding: 4% 5%;
+            z-index: 200;    
         }
-
-        .dropdown {
-            position: relative;
-        }
-
+        .dropdown { position: relative; }
         .dropdown-toggle {
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
             color: #fff;
             padding: 10px 20px;
             font-family: var(--primary-font);
@@ -154,15 +129,10 @@
             border-radius: 4px;
             transition: all 0.3s ease;
         }
-
-        .dropdown-toggle:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
+        .dropdown-toggle:hover { background: rgba(255, 255, 255, 0.2); }
         .dropdown-menu {
             position: absolute;
-            top: 100%;
-            left: 0;
+            top: 100%; left: 0;
             margin-top: 5px;
             background: rgba(17, 17, 17, 0.95);
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -171,10 +141,7 @@
             display: none;
             z-index: 201;
         }
-
-        .dropdown-menu.show {
-            display: block;
-        }
+        .dropdown-menu.show { display: block; }
 
         .dropdown-item {
             padding: 10px 20px;
@@ -184,24 +151,13 @@
             cursor: pointer;
             transition: background 0.2s ease;
         }
-
-        .dropdown-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .dropdown-item.active {
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .dropdown.right .dropdown-menu {
-            left: auto;
-            right: 0;
-        }
+        .dropdown-item:hover { background: rgba(255, 255, 255, 0.1); }
+        .dropdown-item.active { background: rgba(255, 255, 255, 0.15); }
+        .dropdown.right .dropdown-menu { left: auto; right: 0; }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <div class="navbar">
+    <nav>
         <div class="dropdown">
             <button class="dropdown-toggle" id="colorThemeToggle">Color Theme</button>
             <div class="dropdown-menu" id="colorThemeMenu">
@@ -217,7 +173,6 @@
                 <div class="dropdown-item active" data-theme="Golden Hour">Golden Hour</div>
             </div>
         </div>
-
         <div class="dropdown right">
             <button class="dropdown-toggle" id="effectTypeToggle">Effect Type</button>
             <div class="dropdown-menu" id="effectTypeMenu">
@@ -231,12 +186,12 @@
                 <div class="dropdown-item" data-effect="7">Wave Grid</div>
             </div>
         </div>
-    </div>
+    </nav>
 
     <div class="content">
         <div class="text">
-            <div class="quote">The universe doesn't speak in words</div>
-            <div class="author">it hums in frequency</div>
+            <div class="tA">The universe doesn't speak in words</div>
+            <div class="tB">it hums in frequency</div>
         </div>
     </div>
   
