@@ -3,170 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashion Collection</title>
+    <title>LiminalLoop</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Courier New', monospace;
-            background: #000;
-            color: #fff;
-            overflow-x: hidden;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -10%; 
+            width: 50%; height: 100%;
+            background: radial-gradient(circle, rgba(255, 140, 90, 0.4) 0%, transparent 70%);
+            filter: blur(100px);
+            z-index: 0;
+        }
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 40%; height: 80%;
+            background: radial-gradient(circle, rgba(120, 200, 180, 0.3) 0%, transparent 70%);
+            filter: blur(80px);
+            z-index: 0;
         }
 
         /* Header */
         header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 40px;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .header-left {
-            font-size: 14px;
-            letter-spacing: 2px;
-            font-weight: bold;
-        }
-
-        .header-right {
-            font-size: 14px;
-            letter-spacing: 2px;
-            font-weight: bold;
-        }
-
-        /* Main Hero Section */
-        .hero {
-            height: 100vh;
-            width: 100%;
+            padding: 30px 50px;
             position: relative;
-            overflow: hidden;
+            z-index: 10;
         }
 
-        .hero-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: blur(3px) brightness(0.8);
+        .header-item {
+            font-size: 14px;
+            letter-spacing: 2px;
+            font-weight: bold;
         }
 
-        /* Footer Navigation */
+        /* Main content area */
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .blur-overlay {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 160, 100, 0.6) 0%, rgba(80, 80, 80, 0.4) 50%, transparent 70%);
+            filter: blur(60px);
+            border-radius: 50%;
+        }
+
+        /* Footer */
         footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.9);
-            padding: 30px 40px;
+            padding: 30px 50px;
+            position: relative;
+            z-index: 10;
         }
 
-        .footer-nav {
+        .footer-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             gap: 20px;
-            max-width: 100%;
+            width: 100%;
         }
 
-        .footer-item {
-            text-align: left;
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
-        .footer-item h3 {
+        .footer-line {
+            width: 100%;
+            height: 2px;
+            background: white;
+            margin-bottom: 10px;
+        }
+
+        .footer-label {
             font-size: 11px;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             font-weight: bold;
             text-transform: uppercase;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #fff;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            white-space: nowrap;
         }
 
-        .footer-item h3:hover {
-            color: #ff6b35;
-            border-bottom-color: #ff6b35;
-        }
-
-        /* Responsive Design */
         @media (max-width: 1024px) {
-            .footer-nav {
+            .footer-grid {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 30px;
             }
         }
 
-        @media (max-width: 768px) {
-            header {
-                padding: 15px 20px;
+        @media (max-width: 600px) {
+            header, footer {
+                padding: 20px 25px;
             }
 
-            .header-left,
-            .header-right {
-                font-size: 12px;
-            }
-
-            .footer-nav {
+            .footer-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 25px;
+                gap: 15px;
             }
 
-            footer {
-                padding: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .footer-nav {
-                grid-template-columns: 1fr;
-                gap: 20px;
+            .footer-label {
+                font-size: 9px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
-        <div class="header-left">04</div>
-        <div class="header-right">08</div>
+        <div class="header-item">04</div>
+        <div class="header-item">08</div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1600&h=900&fit=crop" alt="Fashion Model" class="hero-image">
-    </section>
+    <main>
+        <div class="blur-overlay"></div>
+    </main>
 
-    <!-- Footer Navigation -->
     <footer>
-        <nav class="footer-nav">
-            <div class="footer-item">
-                <h3>ETHEREAL GLOW</h3>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <div class="footer-line"></div>
+                <div class="footer-label">Ethereal Glow</div>
             </div>
-            <div class="footer-item">
-                <h3>ROSE MIRAGE</h3>
+            <div class="footer-column">
+                <div class="footer-line"></div>
+                <div class="footer-label">Rose Mirage</div>
             </div>
-            <div class="footer-item">
-                <h3>VELVET MYSTIQUE</h3>
+            <div class="footer-column">
+                <div class="footer-line"></div>
+                <div class="footer-label">Velvet Mystique</div>
             </div>
-            <div class="footer-item">
-                <h3>GOLDEN HOUR</h3>
+            <div class="footer-column">
+                <div class="footer-line"></div>
+                <div class="footer-label">Golden Hour</div>
             </div>
-            <div class="footer-item">
-                <h3>MIDNIGHT DREAMS</h3>
+            <div class="footer-column">
+                <div class="footer-line"></div>
+                <div class="footer-label">Midnight Dreams</div>
             </div>
-            <div class="footer-item">
-                <h3>SILVER LIGHT</h3>
+            <div class="footer-column">
+                <div class="footer-line"></div>
+                <div class="footer-label">Silver Light</div>
             </div>
-        </nav>
+        </div>
     </footer>
 </body>
 </html>
