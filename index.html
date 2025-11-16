@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Collection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-left {
+            font-size: 14px;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .header-right {
+            font-size: 14px;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        /* Main Hero Section */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: blur(3px) brightness(0.8);
+        }
+
+        /* Footer Navigation */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 30px 40px;
+        }
+
+        .footer-nav {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+            max-width: 100%;
+        }
+
+        .footer-item {
+            text-align: left;
+        }
+
+        .footer-item h3 {
+            font-size: 11px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .footer-item h3:hover {
+            color: #ff6b35;
+            border-bottom-color: #ff6b35;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .footer-nav {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .header-left,
+            .header-right {
+                font-size: 12px;
+            }
+
+            .footer-nav {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            footer {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-nav {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-left">04</div>
+        <div class="header-right">08</div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1600&h=900&fit=crop" alt="Fashion Model" class="hero-image">
+    </section>
+
+    <!-- Footer Navigation -->
+    <footer>
+        <nav class="footer-nav">
+            <div class="footer-item">
+                <h3>ETHEREAL GLOW</h3>
+            </div>
+            <div class="footer-item">
+                <h3>ROSE MIRAGE</h3>
+            </div>
+            <div class="footer-item">
+                <h3>VELVET MYSTIQUE</h3>
+            </div>
+            <div class="footer-item">
+                <h3>GOLDEN HOUR</h3>
+            </div>
+            <div class="footer-item">
+                <h3>MIDNIGHT DREAMS</h3>
+            </div>
+            <div class="footer-item">
+                <h3>SILVER LIGHT</h3>
+            </div>
+        </nav>
+    </footer>
+</body>
+</html>
