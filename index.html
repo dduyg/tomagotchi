@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💛👽</title>
+    <title>📿🎛</title>
     <style>
   @font-face {
   src: url("https://fonts.cdnfonts.com/css/cabinet-grotesk") format("woff2");
@@ -24,14 +24,9 @@
   --eye-glow-color: #ffff00;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-html,
-body {
+html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -60,49 +55,9 @@ body::before {
   pointer-events: none;
 }
 
-@-webkit-keyframes noise-animation {
-  0% {
-    transform: translate(0, 0);
-  }
-  10% {
-    transform: translate(-2%, -3%);
-  }
-  20% {
-    transform: translate(-4%, 2%);
-  }
-  30% {
-    transform: translate(2%, -4%);
-  }
-  40% {
-    transform: translate(-2%, 5%);
-  }
-  50% {
-    transform: translate(-4%, 2%);
-  }
-  60% {
-    transform: translate(3%, 0);
-  }
-  70% {
-    transform: translate(0, 3%);
-  }
-  80% {
-    transform: translate(-3%, 0);
-  }
-  90% {
-    transform: translate(2%, 2%);
-  }
-  100% {
-    transform: translate(1%, 0);
-  }
-}
-
 @keyframes noise-animation {
-  0% {
-    transform: translate(0, 0);
-  }
-  10% {
-    transform: translate(-2%, -3%);
-  }
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-2%, -3%); }
   20% {
     transform: translate(-4%, 2%);
   }
@@ -135,10 +90,8 @@ body::before {
 /* Content to be revealed */
 .content {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -146,14 +99,12 @@ body::before {
   z-index: 20;
   padding: 20px;
   text-align: center;
-  color: var(--primary-color);
 }
 
-.quote-container {
+.text {
   max-width: 90%;
   overflow: hidden;
 }
-
 .quote {
   font-family: var(--primary-font);
   font-size: var(--quote-size);
@@ -164,20 +115,12 @@ body::before {
   opacity: 1;
   text-transform: uppercase;
 }
-
 .author {
   font-family: var(--secondary-font);
   font-size: var(--author-size);
   font-style: italic;
   opacity: 0.7;
   margin-top: 2vh;
-}
-
-.book {
-  font-family: var(--secondary-font);
-  font-size: var(--author-size);
-  opacity: 0.5;
-  margin-top: 1vh;
 }
 
 /* Canvas overlay - Fixed to be below noise effect */
@@ -191,88 +134,15 @@ canvas {
   z-index: 2; /* Above content but below noise */
   pointer-events: none; /* Allow clicking through to content */
 }
-
-.info {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  color: white;
-  font-family: monospace;
-  font-size: 12px;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 5px 10px;
-  border-radius: 3px;
-  pointer-events: none;
-  z-index: 10;
-}
-
-.profile-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px;
-  max-width: 300px;
-  width: 100%;
-  position: fixed;
-  bottom: 16px;
-  left: 16px;
-  z-index: 999;
-  color: var(--primary-color);
-  line-height: inherit;
-}
-
-.profile-image {
-  flex-shrink: 0;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.profile-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.profile-name {
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.profile-twitter {
-  font-size: 12px;
-  color: #71717a;
-}
-
-.profile-twitter a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.profile-twitter a:hover {
-  text-decoration: underline;
-  }
     </style>
 </head>
 <body>
   <div class="content">
-    <div class="quote-container">
+    <div class="text">
       <div class="quote">The universe doesn't speak in words</div>
       <div class="author">it hums in frequency</div>
     </div>
   </div>
-
-<div class="profile-card">
-  <img class="profile-image" src="https://filip-zrnzevic-portfolio-2025-v3.vercel.app/_next/image?url=%2Fimages%2Fprofile003.jpg&w=48&q=75" alt="Filip Zrnzević">
-  <div class="profile-info">
-    <p class="profile-name">Filip Zrnzević</p>
-    <p class="profile-twitter">
-      <a href="#"_blank">@filipz</a>
-    </p>
-  </div>
-</div>
   
 <script type="module" src="./script.js"></script>
 </body>
