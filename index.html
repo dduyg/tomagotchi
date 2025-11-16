@@ -34,7 +34,7 @@
             -ms-overflow-style: none;
         }
         .scroll::-webkit-scrollbar { display: none; }
-        .content {
+        .wrapper {
             position: relative;
             width: 100vw;
             min-height: 100vh;
@@ -51,22 +51,24 @@
             gap: 0; width: 100%;
             align-items: center;   
         }
-        .item {
+        .content {
             width: 100%;
-            background: white;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding-right: 4%;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .item:hover { transform: translateX(-15px); }
+        .content:hover { transform: translateX(-15px); }
     </style>
 </head>
 <body>
 <div id="shader"></div>
     <main>
-        <div class="scroll"><div class="content">
+        <div class="scroll"><div class="wrapper">
             <section>
                 <div class="empty-space"></div>
-                <div class="item">During a downpour, a workaholic architect grabs the wrong umbrella from a café. Inside, she finds love letters someone's been too scared to send. She's determined to find him and play cupid—unaware he's her annoying neighbor.</div>
+                <div class="content">During a downpour, a workaholic architect grabs the wrong umbrella from a café. Inside, she finds love letters someone's been too scared to send. She's determined to find him and play cupid—unaware he's her annoying neighbor.</div>
             </section>
         </div></div>
     </main>
