@@ -36,34 +36,27 @@ canvas {
   z-index: -1;
 }
 
-.navbar {
+nav {
   display: flex;
   justify-content: space-between;
   padding: 1rem 2rem;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 10;
   font-size: 0.875rem;
   font-family: var(--font-secondary);
   text-transform: uppercase;
 }
-
-.navbar__links {
+.links {
   display: flex;
   gap: var(--gutter);
 }
-
-.navbar__links a {
+.links a {
   color: var(--color-foreground);
   text-decoration: none;
   margin-left: var(--gutter);
 }
-
-.navbar__links a:hover {
-  text-decoration: underline;
-}
+.links a:hover { text-decoration: underline; }
 
 .grid-container {
   display: grid;
@@ -74,10 +67,7 @@ canvas {
   align-items: flex-end;
   height: 100vh;
 }
-
-.grid-item {
-  text-align: left;
-}
+.grid-item { text-align: left; }
 
 .grid-item__text {
   margin-bottom: var(--gutter);
@@ -87,40 +77,32 @@ canvas {
   font-family: var(--font-secondary);
   text-transform: uppercase;
 }
-
 .grid-item__text h2 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   font-family: var(--font-primary);
   letter-spacing: -0.02em;
 }
-
-.grid-item__text span {
-  display: block;
-}
+.grid-item__text span { display: block; }
 
 .grid-item__image {
   width: 100%;
   height: 500px;
   -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.dg.ac {
-  z-index: 9999 !important;
+  object-fit: cover;
 }
     </style>
 </head>
 <body>
-  <div class="navbar">
-  <div class="navbar__logo">( BLADE RUNNER )</div>
-  <div class="navbar__links">
-    <a href="#">Replicants</a>
-    <a href="#">Off-World Colonies</a>
-    <a href="#">Cityscape</a>
-    <a href="#">Contact</a>
-  </div>
-</div>
+  <nav>
+      <div class="navbar__logo">( BLADE RUNNER )</div>
+      <div class="links">
+          <a href="#">Replicants</a>
+          <a href="#">Off-World Colonies</a>
+          <a href="#">Cityscape</a>
+          <a href="#">Cnct</a>
+      </div>
+  </nav>
 
 <div class="grid-container">
   <div class="grid-item">
