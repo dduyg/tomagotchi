@@ -15,12 +15,9 @@
             overflow: hidden;
         }
 
-        /* Header */
         header {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -28,15 +25,11 @@
             z-index: 100;
             font-size: 14px;
             letter-spacing: 2px;
-        }
-
-        .header-left,
-        .header-right {
             font-weight: bold;
         }
 
         /* Main Content Area */
-        .main-content {
+        main {
             flex: 1;
             position: relative;
             background: linear-gradient(135deg, #1a1a1a 0%, #2d4a4a 50%, #8fa8a8 100%);
@@ -45,59 +38,44 @@
             justify-content: center;
             overflow: hidden;
         }
-
-        .main-content::before {
+        main::before {
             content: '';
             position: absolute;
-            top: -10%;
-            left: 20%;
-            width: 300px;
-            height: 300px;
+            top: -10%; left: 20%;
+            width: 300px; height: 300px;
             background: radial-gradient(circle, rgba(255, 140, 80, 0.6), transparent 70%);
             filter: blur(60px);
             border-radius: 50%;
         }
-
-        .main-content::after {
+        main::after {
             content: '';
             position: absolute;
-            top: 5%;
-            left: 15%;
-            width: 200px;
-            height: 200px;
+            top: 5%; left: 15%;
+            width: 200px; height: 200px;
             background: radial-gradient(circle, rgba(255, 180, 120, 0.5), transparent 70%);
             filter: blur(50px);
             border-radius: 50%;
         }
 
-        /* Footer */
         footer {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             padding: 30px 40px;
             z-index: 100;
         }
-
-        .footer-products {
+        .grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             gap: 20px;
         }
-
-        .product-item {
-            position: relative;
-        }
-
-        .product-line {
+        .item { position: relative; }
+        .line {
             width: 100%;
             height: 2px;
             background-color: white;
             margin-bottom: 10px;
         }
-
-        .product-name {
+        .name {
             font-size: 11px;
             letter-spacing: 1.5px;
             text-transform: uppercase;
@@ -105,63 +83,45 @@
             white-space: nowrap;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .footer-products {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 15px;
-            }
-            
-            header {
-                padding: 15px 20px;
-                font-size: 12px;
-            }
-            
-            footer {
-                padding: 20px;
-            }
-            
-            .product-name {
-                font-size: 9px;
-            }
+            .grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }         
+            header { padding: 15px 20px; font-size: 12px; }       
+            footer { padding: 20px; }     
+            .name { font-size: 9px; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-left">04</div>
-        <div class="header-right">08</div>
-    </header>
-
-    <div class="main-content">
-        <!-- Background visual effects are created with CSS -->
-    </div>
+    <header>div>04</div><div>08</div></header>
+    <main>
+      <!-- Background visual effects are created with CSS -->
+    </main>
 
     <footer>
-        <div class="footer-products">
-            <div class="product-item">
-                <div class="product-line"></div>
-                <div class="product-name">ETHEREAL GLOW</div>
+        <div class="grid">
+            <div class="item">
+                <div class="line"></div>
+                <div class="name">ETHEREAL GLOW</div>
             </div>
-            <div class="product-item">
-                <div class="product-line"></div>
-                <div class="product-name">ROSE MIRAGE</div>
+            <div class="item">
+                <div class="line"></div>
+                <div class="name">ROSE MIRAGE</div>
             </div>
-            <div class="product-item">
-                <div class="product-line"></div>
-                <div class="product-name">VELVET MYSTIQUE</div>
+            <div class="item">
+                <div class="line"></div>
+                <div class="name">VELVET MYSTIQUE</div>
             </div>
-            <div class="product-item">
-                <div class="product-line"></div>
-                <div class="product-name">GOLDEN HOUR</div>
+            <div class="item">
+                <div class="line"></div>
+                <div class="name">GOLDEN HOUR</div>
             </div>
-            <div class="product-item">
-                <div class="product-line"></div>
-                <div class="product-name">MIDNIGHT DREAMS</div>
+            <div class="item">
+                <div class="line"></div>
+                <div class="name">MIDNIGHT DREAMS</div>
             </div>
-            <div class="product-item">
-                <div class="product-line"></div>
-                <div class="product-name">SILVER LIGHT</div>
+            <div class="item">
+                <div class="line"></div>
+                <div class="name">SILVER LIGHT</div>
             </div>
         </div>
     </footer>
