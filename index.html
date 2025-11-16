@@ -5,298 +5,273 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LiminalLoop</title>
     <style>
-     @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=IBM+Plex+Mono&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=IBM+Plex+Mono&display=swap");
+        * { box-sizing: border-box; }
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: "Barlow Condensed", sans-serif;
+            background: radial-gradient(circle at 10% 20%, rgb(255, 235, 0) 0%, rgb(255, 200, 0) 90%);
+            color: rgb(0, 0, 0);
+            letter-spacing: -0.03em;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: transparent url("http://assets.iceable.com/img/noise-transparent.png") repeat 0 0;
+            background-size: 300px 300px;
+            animation: noise-animation 0.3s steps(5) infinite;
+            opacity: 0.9;
+            will-change: transform;
+            z-index: 100;
+            pointer-events: none;
+        }
+        @keyframes noise-animation {
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(-2%, -3%); }
+            20% { transform: translate(-4%, 2%); }
+            30% { transform: translate(2%, -4%); }
+            40% { transform: translate(-2%, 5%); }
+            50% { transform: translate(-4%, 2%); }
+            60% { transform: translate(3%, 0); }
+            70% { transform: translate(0, 3%); }
+            80% { transform: translate(-3%, 0); }
+            90% { transform: translate(2%, 2%); }
+            100% { transform: translate(1%, 0); }
+        }
 
-* {box-sizing: border-box;}
-:root {
-  --color-background: rgb(255, 235, 0); /* Bright yellow */
-  --color-foreground: rgb(0, 0, 0); /* Black */
-  --color-accent: rgb(255, 255, 255); /* White */
-  --indicator-height: 400px;
-  --line-height: 4px;
-  --line-padding: 12px;
-  --margin: 32px;
-  --gutter: 16px;
-  --font-primary: "Barlow Condensed", sans-serif;
-  --font-secondary: "IBM Plex Mono", mono;
-}
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            text-align: center;
+            position: relative;
+            padding: 2rem;
+        }
+        .content h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgb(0, 0, 0);
+            font-family: "Barlow Condensed", sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            max-width: 20ch;
+            line-height: 0.85;
+            margin: auto 0;
+        }
+        .line {
+            font-size: 0.75rem;
+            font-weight: 400;
+            font-family: "IBM Plex Mono", monospace;
+            background-color: rgb(0, 0, 0);
+            color: rgb(255, 235, 0);
+            padding: 5px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
 
-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 500vh;
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-primary);
-  background: radial-gradient(
-    circle at 10% 20%,
-    rgb(255, 235, 0) 0%,
-    rgb(255, 200, 0) 90%
-  );
-  color: var(--color-foreground);
-  letter-spacing: -0.03em;
-  position: relative;
-}
-body::before {
-  content: "";
-  position: fixed;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: transparent
-    url("http://assets.iceable.com/img/noise-transparent.png") repeat 0 0;
-  background-size: 300px 300px;
-  -webkit-animation: noise-animation 0.3s steps(5) infinite;
-          animation: noise-animation 0.3s steps(5) infinite;
-  opacity: 0.9;
-  will-change: transform;
-  z-index: 100;
-  pointer-events: none;
-}
-
-@-webkit-keyframes noise-animation {
-  0% {
-    transform: translate(0, 0);
-  }
-  10% {
-    transform: translate(-2%, -3%);
-  }
-  20% {
-    transform: translate(-4%, 2%);
-  }
-  30% {
-    transform: translate(2%, -4%);
-  }
-  40% {
-    transform: translate(-2%, 5%);
-  }
-  50% {
-    transform: translate(-4%, 2%);
-  }
-  60% {
-    transform: translate(3%, 0);
-  }
-  70% {
-    transform: translate(0, 3%);
-  }
-  80% {
-    transform: translate(-3%, 0);
-  }
-  90% {
-    transform: translate(2%, 2%);
-  }
-  100% {
-    transform: translate(1%, 0);
-  }
-}
-
-@keyframes noise-animation {
-  0% {
-    transform: translate(0, 0);
-  }
-  10% {
-    transform: translate(-2%, -3%);
-  }
-  20% {
-    transform: translate(-4%, 2%);
-  }
-  30% {
-    transform: translate(2%, -4%);
-  }
-  40% {
-    transform: translate(-2%, 5%);
-  }
-  50% {
-    transform: translate(-4%, 2%);
-  }
-  60% {
-    transform: translate(3%, 0);
-  }
-  70% {
-    transform: translate(0, 3%);
-  }
-  80% {
-    transform: translate(-3%, 0);
-  }
-  90% {
-    transform: translate(2%, 2%);
-  }
-  100% {
-    transform: translate(1%, 0);
-  }
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  text-align: center;
-  position: relative;
-  min-height: 100vh;
-  padding: 2rem;
-}
-.content h1 {
-  font-size: 6rem;
-  font-weight: 900;
-  color: var(--color-foreground);
-  font-family: var(--font-primary);
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  max-width: 20ch;
-  line-height: 0.85;
-}
-.content .small-text {
-  font-size: 0.75rem;
-  font-weight: 400;
-  font-family: var(--font-secondary);
-  background-color: var(--color-foreground);
-  color: var(--color-background);
-  padding: 5px 10px;
-  border-radius: 4px;
-  text-transform: uppercase;
-}
-
-.hover-indicator {
-  position: fixed;
-  left: var(--margin);
-  top: 50%;
-  transform: translateY(-50%);
-  width: 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0;
-  margin: 2rem 0;
-}
-
-.hover-indicator__line-container {
-  position: relative;
-  width: 100%;
-  padding: var(--line-padding) 0;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-.hover-indicator__number {
-  opacity: 0;
-  position: absolute;
-  left: -16px;
-  font-size: 0.625rem;
-  transition: opacity 0.3s ease, left 0.3s ease;
-  letter-spacing: 0.02em;
-}
-
-/* Make the number appear only on hover */
-.hover-indicator__line-container:hover .hover-indicator__number {opacity: 1;}
-
-.hover-indicator__line {
-  width: 100%;
-  height: var(--line-height);
-  background-color: var(--color-foreground);
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  transform-origin: left center;
-}
-
-.hover-indicator__text {
-  position: absolute;
-  left: calc(100% + 35px);
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: var(--color-foreground);
-  color: var(--color-background);
-  padding: 5px 10px;
-  border-radius: 4px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-  white-space: nowrap;
-}
-
-.hover-indicator__text::before {
-  content: "";
-  position: absolute;
-  left: -5px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 0;
-  height: 0;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-right: 5px solid var(--color-foreground);
-}
-
-.hover-indicator:hover .hover-indicator__line {
-  opacity: 0.2; /* This is controlled in JS */
-}
-
-.hover-indicator__line-container:hover .hover-indicator__line {
-  opacity: 1 !important;
-  transform: scaleX(1.75); /* This is controlled in JS */
-}
-
-.hover-indicator__line-container:hover .hover-indicator__text,
-.hover-indicator__line-container:hover .hover-indicator__number {
-  opacity: 1;
-  } 
+        .nav {
+            position: fixed;
+            left: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0;
+            margin: 2rem 0;
+        }
+        .nav-item {
+            position: relative;
+            width: 100%;
+            padding: 12px 0;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .nav-number {
+            opacity: 0;
+            position: absolute;
+            left: -16px;
+            font-size: 0.625rem;
+            transition: opacity 0.3s ease, left 0.3s ease;
+            letter-spacing: 0.02em;
+        }
+        .nav-item:hover .nav-number { opacity: 1; }
+        .nav-line {
+            width: 100%;
+            height: 4px;
+            background-color: rgb(0, 0, 0);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            transform-origin: left center;
+        }
+        .nav-label {
+            position: absolute;
+            left: calc(100% + 35px);
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgb(0, 0, 0);
+            color: rgb(255, 235, 0);
+            padding: 5px 10px;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .nav-label::before {
+            content: "";
+            position: absolute;
+            left: -5px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-right: 5px solid rgb(0, 0, 0);
+        }
+        .nav:hover .nav-line { opacity: 0.2; }
+        .nav-item:hover .nav-line {
+            opacity: 1 !important;
+            transform: scaleX(1.75);
+        }
+        .nav-item:hover .nav-label,
+        .nav-item:hover .nav-number {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
     <div class="content">
-        <h2 class="small-text">Embrace the silence within.</h2>
-        <h1 class="text-line">You'll hear the whispers of creation.</h1>
-        <h2 class="small-text">guide your hand.</h2>
+        <h2 class="line">Embrace the silence within.</h2>
+        <h1>You'll hear the whispers of creation.</h1>
+        <h2 class="line">guide your hand.</h2>
     </div>
 
-  <div class="hover-indicator" id="hoverIndicator">
-    <div class="hover-indicator__line-container">
-      <span class="hover-indicator__number">01</span>
-      <div class="hover-indicator__line"></div>
-      <span class="hover-indicator__text">Listen deeply</span>
+    <div class="nav" id="nav">
+        <div class="nav-item">
+            <span class="nav-number">01</span>
+            <div class="nav-line"></div>
+            <span class="nav-label">Listen deeply</span>
+        </div>
+        <div class="nav-item">
+            <span class="nav-number">02</span>
+            <div class="nav-line"></div>
+            <span class="nav-label">Embrace uncertainty</span>
+        </div>
+        <div class="nav-item">
+            <span class="nav-number">03</span>
+            <div class="nav-line"></div>
+            <span class="nav-label">Follow curiosity</span>
+        </div>
+        <div class="nav-item">
+            <span class="nav-number">04</span>
+            <div class="nav-line"></div>
+            <span class="nav-label">Trust your instincts</span>
+        </div>
+        <div class="nav-item">
+            <span class="nav-number">05</span>
+            <div class="nav-line"></div>
+            <span class="nav-label">Cultivate stillness</span>
+        </div>
+        <div class="nav-item">
+            <span class="nav-number">06</span>
+            <div class="nav-line"></div>
+            <span class="nav-label">Explore the unknown</span>
+        </div>
+        <div class="nav-item">
+            <span class="nav-number">07</span>
+            <div class="nav-line"></div>
+            <span class="nav-label">Embrace imperfection</span>
+        </div>
+        <div class="nav-item">
+            <span class="nav-number">08</span>
+            <div class="nav-line"></div>
+            <span class="nav-label">Find your rhythm</span>
+        </div>
     </div>
-    <div class="hover-indicator__line-container">
-      <span class="hover-indicator__number">02</span>
-      <div class="hover-indicator__line"></div>
-      <span class="hover-indicator__text">Embrace uncertainty</span>
-    </div>
-    <div class="hover-indicator__line-container">
-      <span class="hover-indicator__number">03</span>
-      <div class="hover-indicator__line"></div>
-      <span class="hover-indicator__text">Follow curiosity</span>
-    </div>
-    <div class="hover-indicator__line-container">
-      <span class="hover-indicator__number">04</span>
-      <div class="hover-indicator__line"></div>
-      <span class="hover-indicator__text">Trust your instincts</span>
-    </div>
-    <div class="hover-indicator__line-container">
-      <span class="hover-indicator__number">05</span>
-      <div class="hover-indicator__line"></div>
-      <span class="hover-indicator__text">Cultivate stillness</span>
-    </div>
-    <div class="hover-indicator__line-container">
-      <span class="hover-indicator__number">06</span>
-      <div class="hover-indicator__line"></div>
-      <span class="hover-indicator__text">Explore the unknown</span>
-    </div>
-    <div class="hover-indicator__line-container">
-      <span class="hover-indicator__number">07</span>
-      <div class="hover-indicator__line"></div>
-      <span class="hover-indicator__text">Embrace imperfection</span>
-    </div>
-    <div class="hover-indicator__line-container">
-      <span class="hover-indicator__number">08</span>
-      <div class="hover-indicator__line"></div>
-      <span class="hover-indicator__text">Find your rhythm</span>
-    </div>
-  </div>
-    
-<script src='https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.3.0/simplex-noise.min.js'></script>
-<script  src="./script.js"></script>
-</body> 
+
+    <script>
+        const nav = document.getElementById("nav");
+
+        nav.addEventListener("mousemove", (event) => {
+            const rect = nav.getBoundingClientRect();
+            const mouseY = event.clientY - rect.top;
+            const items = nav.children;
+            const itemHeight = rect.height / items.length;
+
+            let activeIndex = Math.floor(mouseY / itemHeight);
+            activeIndex = Math.max(0, Math.min(activeIndex, items.length - 1));
+
+            if (mouseY > rect.height - itemHeight / 2) {
+                activeIndex = items.length - 1;
+            } else if (mouseY < itemHeight / 2) {
+                activeIndex = 0;
+            }
+
+            Array.from(items).forEach((item, index) => {
+                const distanceFromActive = Math.abs(index - activeIndex);
+                const maxScaleDistance = 2;
+
+                let scale;
+                if (distanceFromActive === 0) {
+                    scale = 1.75;
+                } else if (distanceFromActive <= maxScaleDistance) {
+                    scale = 1 + (maxScaleDistance - distanceFromActive + 1) * 0.25;
+                } else {
+                    scale = 1;
+                }
+
+                const itemCenter = (index + 0.5) * itemHeight;
+                const distance = Math.abs(mouseY - itemCenter);
+                const maxDistance = rect.height / 2;
+                const opacity = Math.max(0.2, 1 - distance / maxDistance);
+
+                const line = item.querySelector(".nav-line");
+                const number = item.querySelector(".nav-number");
+                const label = item.querySelector(".nav-label");
+
+                line.style.opacity = opacity;
+                number.style.opacity = opacity;
+                line.style.transform = `scaleX(${scale})`;
+
+                if (index === activeIndex) {
+                    item.setAttribute("data-active", "true");
+                    label.style.opacity = "1";
+                } else {
+                    item.removeAttribute("data-active");
+                    label.style.opacity = "0";
+                }
+            });
+        });
+
+        nav.addEventListener("mouseleave", () => {
+            nav.querySelectorAll(".nav-line, .nav-number, .nav-label").forEach((el) => {
+                el.style.opacity = "";
+                if (el.classList.contains("nav-line")) {
+                    el.style.transform = "";
+                }
+            });
+
+            nav.querySelectorAll("[data-active]").forEach((item) => {
+                item.removeAttribute("data-active");
+            });
+        });
+    </script>
+</body>
 </html>
