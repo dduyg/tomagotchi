@@ -1,15 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  <head>
+<head>
     <meta charset="UTF-8">
-    <title>Hover Nav Indicator with Proximity Scaling and Tooltip</title>
-    <link rel="stylesheet" href="https://public.codepenassets.com/css/normalize-5.0.0.min.css">
-<link rel="stylesheet" href="./style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiminalLoop</title>
+    <style>
+     @import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=IBM+Plex+Mono&display=swap");
 
-  </head>
-    
-  <body>
+* {box-sizing: border-box;}
+:root {
+  --color-background: rgb(255, 235, 0); /* Bright yellow */
+  --color-foreground: rgb(0, 0, 0); /* Black */
+  --color-accent: rgb(255, 255, 255); /* White */
+  --indicator-height: 400px;
+  --line-height: 4px;
+  --line-padding: 12px;
+  --margin: 32px;
+  --gutter: 16px;
+  --font-primary: "Barlow Condensed", sans-serif;
+  --font-secondary: "IBM Plex Mono", mono;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 500vh;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-primary);
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgb(255, 235, 0) 0%,
+    rgb(255, 200, 0) 90%
+  );
+
+  color: var(--color-foreground);
+  letter-spacing: -0.03em;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: transparent
+    url("http://assets.iceable.com/img/noise-transparent.png") repeat 0 0;
+  background-size: 300px 300px;
+  -webkit-animation: noise-animation 0.3s steps(5) infinite;
+          animation: noise-animation 0.3s steps(5) infinite;
+  opacity: 0.9;
+  will-change: transform;
+  z-index: 100;
+  pointer-events: none;
+}
+
+@-webkit-keyframes noise-animation {
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-2%, -3%);
+  }
+  20% {
+    transform: translate(-4%, 2%);
+  }
+  30% {
+    transform: translate(2%, -4%);
+  }
+  40% {
+    transform: translate(-2%, 5%);
+  }
+  50% {
+    transform: translate(-4%, 2%);
+  }
+  60% {
+    transform: translate(3%, 0);
+  }
+  70% {
+    transform: translate(0, 3%);
+  }
+  80% {
+    transform: translate(-3%, 0);
+  }
+  90% {
+    transform: translate(2%, 2%);
+  }
+  100% {
+    transform: translate(1%, 0);
+  }
+}
+
+@keyframes noise-animation {
+  0% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-2%, -3%);
+  }
+  20% {
+    transform: translate(-4%, 2%);
+  }
+  30% {
+    transform: translate(2%, -4%);
+  }
+  40% {
+    transform: translate(-2%, 5%);
+  }
+  50% {
+    transform: translate(-4%, 2%);
+  }
+  60% {
+    transform: translate(3%, 0);
+  }
+  70% {
+    transform: translate(0, 3%);
+  }
+  80% {
+    transform: translate(-3%, 0);
+  }
+  90% {
+    transform: translate(2%, 2%);
+  }
+  100% {
+    transform: translate(1%, 0);
+  }
+}
+
+.navbar {
+  width: 100%;
+  padding: var(--gutter) var(--margin);
+  display: flex;
+  justify-content: space-between;
+  background: transparent;
+  z-index: 101;
+  height: 80px;
+  position: fixed;
+}
+
+.navbar a {
+  color: var(--color-foreground);
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.text-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.text-wrapper h1 {
+  font-size: 6rem;
+  font-weight: 900;
+  color: var(--color-foreground);
+  font-family: var(--font-primary);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  max-width: 20ch;
+  line-height: 0.85;
+}
+
+.text-wrapper .small-text {
+  font-size: 0.75rem;
+  font-weight: 400;
+  font-family: var(--font-secondary);
+  background-color: var(--color-foreground);
+  color: var(--color-background);
+  padding: 5px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.hover-indicator {
+  position: fixed;
+  left: var(--margin);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+.hover-indicator__line-container {
+  position: relative;
+  width: 100%;
+  padding: var(--line-padding) 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.hover-indicator__number {
+  opacity: 0;
+  position: absolute;
+  left: -16px;
+  font-size: 0.625rem;
+  transition: opacity 0.3s ease, left 0.3s ease;
+  letter-spacing: 0.02em;
+}
+
+/* Make the number appear only on hover */
+.hover-indicator__line-container:hover .hover-indicator__number {
+  opacity: 1;
+}
+
+.hover-indicator__line {
+  width: 100%;
+  height: var(--line-height);
+  background-color: var(--color-foreground);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: left center;
+}
+
+.hover-indicator__text {
+  position: absolute;
+  left: calc(100% + 35px);
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--color-foreground);
+  color: var(--color-background);
+  padding: 5px 10px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.hover-indicator__text::before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid var(--color-foreground);
+}
+
+.hover-indicator:hover .hover-indicator__line {
+  opacity: 0.2; /* This is controlled in JS */
+}
+
+.hover-indicator__line-container:hover .hover-indicator__line {
+  opacity: 1 !important;
+  transform: scaleX(1.75); /* This is controlled in JS */
+}
+
+.hover-indicator__line-container:hover .hover-indicator__text,
+.hover-indicator__line-container:hover .hover-indicator__number {
+  opacity: 1;
+  } 
+    </style>
+</head>
+<body>
   <nav class="navbar">
   <a href="#">Artistic Exploration</a>
   <a href="#">Mindful Creation</a>
@@ -70,8 +334,8 @@
     </div>
   </div>
 </div>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.3.0/simplex-noise.min.js'></script><script  src="./script.js"></script>
-
-  </body>
-  
+    
+<script src='https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.3.0/simplex-noise.min.js'></script>
+<script  src="./script.js"></script>
+</body> 
 </html>
