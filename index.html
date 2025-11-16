@@ -35,12 +35,10 @@ body {
     rgb(255, 235, 0) 0%,
     rgb(255, 200, 0) 90%
   );
-
   color: var(--color-foreground);
   letter-spacing: -0.03em;
   position: relative;
 }
-
 body::before {
   content: "";
   position: fixed;
@@ -131,28 +129,7 @@ body::before {
   }
 }
 
-.navbar {
-  width: 100%;
-  padding: var(--gutter) var(--margin);
-  display: flex;
-  justify-content: space-between;
-  background: transparent;
-  z-index: 101;
-  height: 80px;
-  position: fixed;
-}
-
-.navbar a {
-  color: var(--color-foreground);
-  text-decoration: none;
-  font-size: 1.25rem;
-}
-
-.navbar a:hover {
-  text-decoration: underline;
-}
-
-.text-wrapper {
+.content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -163,8 +140,7 @@ body::before {
   min-height: 100vh;
   padding: 2rem;
 }
-
-.text-wrapper h1 {
+.content h1 {
   font-size: 6rem;
   font-weight: 900;
   color: var(--color-foreground);
@@ -174,8 +150,7 @@ body::before {
   max-width: 20ch;
   line-height: 0.85;
 }
-
-.text-wrapper .small-text {
+.content .small-text {
   font-size: 0.75rem;
   font-weight: 400;
   font-family: var(--font-secondary);
@@ -218,9 +193,7 @@ body::before {
 }
 
 /* Make the number appear only on hover */
-.hover-indicator__line-container:hover .hover-indicator__number {
-  opacity: 1;
-}
+.hover-indicator__line-container:hover .hover-indicator__number {opacity: 1;}
 
 .hover-indicator__line {
   width: 100%;
@@ -274,22 +247,11 @@ body::before {
     </style>
 </head>
 <body>
-  <nav class="navbar">
-  <a href="#">Artistic Exploration</a>
-  <a href="#">Mindful Creation</a>
-  <a href="#">Sonic Landscapes</a>
-  <a href="#">Intuitive Flow</a>
-</nav>
-
-<div class="content">
-  <div class="text-wrapper">
-    <h2 class="small-text">Embrace the silence within.</h2>
-    <h1 class="text-line">
-      Your art is a portal to the universe.<br>
-      In stillness, you'll hear the whispers of creation.
-    </h1>
-    <h2 class="small-text">Let the muse guide your hand.</h2>
-  </div>
+    <div class="content">
+        <h2 class="small-text">Embrace the silence within.</h2>
+        <h1 class="text-line">You'll hear the whispers of creation.</h1>
+        <h2 class="small-text">guide your hand.</h2>
+    </div>
 
   <div class="hover-indicator" id="hoverIndicator">
     <div class="hover-indicator__line-container">
@@ -333,7 +295,6 @@ body::before {
       <span class="hover-indicator__text">Find your rhythm</span>
     </div>
   </div>
-</div>
     
 <script src='https://cdnjs.cloudflare.com/ajax/libs/simplex-noise/2.3.0/simplex-noise.min.js'></script>
 <script  src="./script.js"></script>
