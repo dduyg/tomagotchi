@@ -8,7 +8,7 @@
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono&display=swap");  
       * { box-sizing: border-box; margin: 0; padding: 0; }
       body {
-        font-family: "Inter", sans-serif;
+        font-family: "Space Mono", monospace;
         background-color: #0e0e10;
         color: #f0f0f0;
         line-height: 1.2;
@@ -32,13 +32,10 @@
         width: 100%
         z-index: 10;
         font-size: 0.7rem;
-        font-family: "Space Mono", monospace;
         text-transform: uppercase;
-      }
-      
-      .links { display: flex; gap: 10px; }    
-      .links a { color: inherit; text-decoration: none; }     
-      .links a:hover { text-decoration: underline; }
+      }   
+      nav a { color: inherit; text-decoration: none; }     
+      nav a:hover { text-decoration: underline; }
 
       .grid {
         display: grid;
@@ -54,7 +51,6 @@
       .text {
         margin-bottom: 15px;
         font-size: 0.87rem;
-        font-family: "Space Mono", monospace;
         text-transform: uppercase;
       }    
       .text h2 {
@@ -73,11 +69,9 @@
 <body>
   <nav>
       <div class="badge">( BLADE RUNNER )</div>
-      <div class="links">
-          <a href="#">Replicants</a>
-          <a href="#">Off-World Colonies</a>
-          <a href="#">6.43</a>
-      </div>
+      <a href="#">Replicants</a>
+      <a href="#">Off-World Colonies</a>
+      <a href="#">6.43</a>
   </nav>
 
   <div class="grid">
@@ -99,8 +93,7 @@
   </div>
   
   <script src='https://d3js.org/d3-delaunay.v6.min.js'></script>
-  <script src='https://unpkg.com/three@0.126.0/examples/js/loaders/OBJLoader.js'></script>
-  
+  <script src='https://unpkg.com/three@0.126.0/examples/js/loaders/OBJLoader.js'></script>  
   <script type="module">
     import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
     import { OrbitControls } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/controls/OrbitControls.js";
