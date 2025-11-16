@@ -833,19 +833,25 @@
         colorThemeToggle.addEventListener('click', (e) => {
             e.stopPropagation();
             colorThemeMenu.classList.toggle('show');
+            colorThemeToggle.parentElement.classList.toggle('active');
             effectTypeMenu.classList.remove('show');
+            effectTypeToggle.parentElement.classList.remove('active');
         });
 
         effectTypeToggle.addEventListener('click', (e) => {
             e.stopPropagation();
             effectTypeMenu.classList.toggle('show');
+            effectTypeToggle.parentElement.classList.toggle('active');
             colorThemeMenu.classList.remove('show');
+            colorThemeToggle.parentElement.classList.remove('active');
         });
 
         // Close dropdowns when clicking outside
         document.addEventListener('click', () => {
             colorThemeMenu.classList.remove('show');
             effectTypeMenu.classList.remove('show');
+            colorThemeToggle.parentElement.classList.remove('active');
+            effectTypeToggle.parentElement.classList.remove('active');
         });
 
         // Color theme selection
