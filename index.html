@@ -3,85 +3,78 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Fixed SVG Button</title>
+<title>142235666</title>
 <style>
-  body {
-    margin: 0;
-    font-family: sans-serif;
-    height: 2000px; /* just to show scroll */
-  }
+  body { height: 2000px; font-family: sans-serif;}
 
-  /* Floating Button */
-  .floating-btn {
+  /* Fixed button container */
+  #svgBtn {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
+    top: 20px; right: 20px;
+    width: 70px; height: 70px;
     border: none;
-    border-radius: 50%;
-    background: #ffffffdd;
+    background: rgba(0,0,0,0.3);
     backdrop-filter: blur(6px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-radius: 50%;
+    padding: 5px;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 9999;
     transition: transform 0.2s ease;
     overflow: hidden;
-    z-index: 9999;
   }
 
-  .floating-btn svg {
-    width: 70%;
-    height: 70%;
+  #svgBtn:hover { transform: scale(1.1); }
+
+  #svgBtn svg {
+    width: 100%;
+    height: 100%;
+    fill: #000;
   }
 
-  .floating-btn:active {
-    transform: scale(0.9);
-  }
-
-  /* Ripple Effect */
-  .floating-btn::after {
-    content: "";
+  /* Ripple effect */
+  .ripple {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    background: rgba(0,150,255,0.45);
+    width: 10px;
+    height: 10px;
+    background: rgba(0, 150, 255, 0.5);
     border-radius: 50%;
+    transform: scale(0);
+    pointer-events: none;
     opacity: 0;
-    transform: scale(1);
-    transition: transform 0.6s ease, opacity 0.6s ease;
+    animation: none;
   }
-
-  .floating-btn.clicked::after {
-    opacity: 1;
-    transform: scale(8);
-    opacity: 0;
+  @keyframes ripple-anim {
+    to { transform: scale(15); opacity: 0; }
+  }
+  #svgBtn.clicked .ripple {
+    animation: ripple-anim 0.6s ease-out;
   }
 </style>
 </head>
-
 <body>
 
-<button id="topRightBtn" class="floating-btn">
-  <!-- Your SVG -->
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 110">
-    <g transform="translate(0,110) scale(0.1,-0.1)">
-      <path d="M1042 943 c-24 -8 -70 -40 -103 -70 -169 -157 -221 -497 -97 -647 88 -107 265 -115 394 -17 62 47 125 142 153 231 l23 71 170 -3 170 -3 136 -143 c90 -93 150 -147 174 -157 25 -10 72 -15 138 -15 l100 0 0 -35 0 -35 100 0 100 0 0 100 0 100 -99 0 -100 0 -3 -33 -3 -32 -94 -3 c-52 -1 -106 2 -120 8 -24 9 -241 230 -241 244 0 4 186 5 413 4 l412 -3 5 -37 5 -37 85 49 c47 28 85 55 85 61 0 5 -38 32 -85 59 l-85 49 -5 -37 -5 -37 -542 -3 c-299 -1 -543 2 -543 6 0 5 51 62 114 128 l113 119 114 3 c113 4 115 3 128 -21 24 -45 80 -59 131 -32 71 37 67 136 -7 174 -44 22 -102 6 -124 -35 -12 -23 -17 -24 -118 -24 -125 0 -167 -16 -231 -88 -81 -91 -201 -212 -220 -222 -10 -5 -28 -10 -39 -10 -20 0 -21 6 -21 84 0 103 -21 172 -68 227 -50 58 -100 79 -192 78 -41 0 -94 -7 -118 -16z m193 -164 c44 -39 59 -91 52 -189 -12 -184 -106 -298 -234 -288 -90 8 -133 69 -133 191 0 181 97 317 227 317 44 0 58 -5 88 -31z"/>
-      <path d="M201 578 c-30 -205 -55 -384 -55 -398 -1 -25 0 -25 97 -28 171 -5 255 21 352 110 176 161 208 533 55 634 -63 42 -121 54 -264 54 l-131 0 -54 -372z m329 187 c16 -9 39 -34 51 -57 44 -85 7 -252 -72 -326 -57 -54 -199 -84 -199 -43 0 25 59 422 65 440 7 18 112 8 155 -14z"/>
-    </g>
-  </svg>
+<!-- Fixed Button with SVG -->
+<button id="svgBtn">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 110"><g transform="translate(0,110) scale(0.1,-0.1)"><path d="M1042 943 c-24 -8 -70 -40 -103 -70 -169 -157 -221 -497 -97 -647 88 -107 265 -115 394 -17 62 47 125 142 153 231 l23 71 170 -3 170 -3 136 -143 c90 -93 150 -147 174 -157 25 -10 72 -15 138 -15 l100 0 0 -35 0 -35 100 0 100 0 0 100 0 100 -99 0 -100 0 -3 -33 -3 -32 -94 -3 c-52 -1 -106 2 -120 8 -24 9 -241 230 -241 244 0 4 186 5 413 4 l412 -3 5 -37 5 -37 85 49 c47 28 85 55 85 61 0 5 -38 32 -85 59 l-85 49 -5 -37 -5 -37 -542 -3 c-299 -1 -543 2 -543 6 0 5 51 62 114 128 l113 119 114 3 c113 4 115 3 128 -21 24 -45 80 -59 131 -32 71 37 67 136 -7 174 -44 22 -102 6 -124 -35 -12 -23 -17 -24 -118 -24 -125 0 -167 -16 -231 -88 -81 -91 -201 -212 -220 -222 -10 -5 -28 -10 -39 -10 -20 0 -21 6 -21 84 0 103 -21 172 -68 227 -50 58 -100 79 -192 78 -41 0 -94 -7 -118 -16z m193 -164 c44 -39 59 -91 52 -189 -12 -184 -106 -298 -234 -288 -90 8 -133 69 -133 191 0 181 97 317 227 317 44 0 58 -5 88 -31z"/><path d="M201 578 c-30 -205 -55 -384 -55 -398 -1 -25 0 -25 97 -28 171 -5 255 21 352 110 176 161 208 533 55 634 -63 42 -121 54 -264 54 l-131 0 -54 -372z m329 187 c16 -9 39 -34 51 -57 44 -85 7 -252 -72 -326 -57 -54 -199 -84 -199 -43 0 25 59 422 65 440 7 18 112 8 155 -14z"/></g></svg>
+  <span class="ripple"></span>
 </button>
 
 <script>
-  const btn = document.getElementById('topRightBtn');
+  const btn = document.getElementById("svgBtn");
+  const ripple = btn.querySelector(".ripple");
 
-  btn.addEventListener('click', () => {
+  btn.addEventListener("click", (e) => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - 5;
+    const y = e.clientY - rect.top - 5;
+
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+
+    btn.classList.remove("clicked");
+    void btn.offsetWidth; // reflow
     btn.classList.add("clicked");
-    setTimeout(() => btn.classList.remove("clicked"), 600);
   });
 </script>
-
 </body>
 </html>
