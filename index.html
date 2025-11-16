@@ -1,82 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Repebpage</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: #000;
-      color: #fff;
-      overflow-x: hidden;
-    }
-    header {
-      width: 100%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      display: flex;
-      justify-content: space-between;
-      padding: 20px 30px;
-      font-size: 14px;
-      letter-spacing: 2px;
-      z-index: 10;
-    }
-    .hero {
-      width: 100%;
-      height: 100vh;
-      background-size: cover;
-      background-position: center;
-      filter: blur(0px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-    footer {
-      width: 100%;
-      position: fixed;
-      bottom: 20px;
-      left: 0;
-      display: flex;
-      justify-content: center;
-      gap: 50px;
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-    footer div {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    footer div::before {
-      content: "";
-      width: 50px;
-      height: 1px;
-      background: #fff;
-      margin-bottom: 5px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiminalLoop</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Courier New', monospace;
+            color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            z-index: 100;
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        .header-left,
+        .header-right {
+            font-weight: bold;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            position: relative;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d4a4a 50%, #8fa8a8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .main-content::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            left: 20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 140, 80, 0.6), transparent 70%);
+            filter: blur(60px);
+            border-radius: 50%;
+        }
+
+        .main-content::after {
+            content: '';
+            position: absolute;
+            top: 5%;
+            left: 15%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 180, 120, 0.5), transparent 70%);
+            filter: blur(50px);
+            border-radius: 50%;
+        }
+
+        /* Footer */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px 40px;
+            z-index: 100;
+        }
+
+        .footer-products {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+        }
+
+        .product-item {
+            position: relative;
+        }
+
+        .product-line {
+            width: 100%;
+            height: 2px;
+            background-color: white;
+            margin-bottom: 10px;
+        }
+
+        .product-name {
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .footer-products {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+            
+            header {
+                padding: 15px 20px;
+                font-size: 12px;
+            }
+            
+            footer {
+                padding: 20px;
+            }
+            
+            .product-name {
+                font-size: 9px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div>04</div>
-    <div>08</div>
-  </header>
+    <header>
+        <div class="header-left">04</div>
+        <div class="header-right">08</div>
+    </header>
 
-  <div class="hero" style="background-image: url('https://images.unsplash.com/photo-1585157603881-3bfc18eb2ed1');"></div>
+    <div class="main-content">
+        <!-- Background visual effects are created with CSS -->
+    </div>
 
-  <footer>
-    <div>Ethereal Glow</div>
-    <div>Rose Mirage</div>
-    <div>Velvet Mystique</div>
-    <div>Golden Hour</div>
-    <div>Midnight Dreams</div>
-    <div>Silver Light</div>
-  </footer>
+    <footer>
+        <div class="footer-products">
+            <div class="product-item">
+                <div class="product-line"></div>
+                <div class="product-name">ETHEREAL GLOW</div>
+            </div>
+            <div class="product-item">
+                <div class="product-line"></div>
+                <div class="product-name">ROSE MIRAGE</div>
+            </div>
+            <div class="product-item">
+                <div class="product-line"></div>
+                <div class="product-name">VELVET MYSTIQUE</div>
+            </div>
+            <div class="product-item">
+                <div class="product-line"></div>
+                <div class="product-name">GOLDEN HOUR</div>
+            </div>
+            <div class="product-item">
+                <div class="product-line"></div>
+                <div class="product-name">MIDNIGHT DREAMS</div>
+            </div>
+            <div class="product-item">
+                <div class="product-line"></div>
+                <div class="product-name">SILVER LIGHT</div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
