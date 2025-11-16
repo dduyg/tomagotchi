@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1309-V01</title>
+    <title>LiminalLoop</title>
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono&display=swap");  
       * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -31,46 +31,38 @@
         top: 0; left: 0; right: 0;
         width: 100%
         z-index: 10;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         font-family: "Space Mono", monospace;
         text-transform: uppercase;
       }
       
-      .links {
-        display: flex;
-        gap: 10px;
-      }    
-      .links a {
-        color: #f0f0f0;
-        text-decoration: none;
-      }     
+      .links { display: flex; gap: 10px; }    
+      .links a { color: inherit; text-decoration: none; }     
       .links a:hover { text-decoration: underline; }
 
       .grid {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        gap: 0; padding: 3%;
+        gap: 0; padding: 2%;
         margin: 0 auto;
         align-items: flex-end;
-        height: 80vh;
+        height: 70vh;
       }    
       .grid-item { text-align: left; }
 
-      .grid-item__text {
-        margin-bottom: 16px;
+      .text {
+        margin-bottom: 15px;
         font-size: 0.87rem;
-        padding: 1rem 2rem;
-        line-height: 1.4;
         font-family: "Space Mono", monospace;
         text-transform: uppercase;
       }    
-      .grid-item__text h2 {
+      .text h2 {
         font-size: 1.5rem;
         font-family: "Inter", sans-serif;
         letter-spacing: -0.02em;
       }  
-      .grid-item__text span { display: block; }
-      .grid-item__image {
+      .text span { display: block; }
+      .grid-item img {
         width: 100%;
         height: 200px;
         object-fit: cover;
@@ -79,29 +71,29 @@
 </head>
 <body>
   <nav>
-      <div class="navbar__logo">( BLADE RUNNER )</div>
+      <div class="badge">( BLADE RUNNER )</div>
       <div class="links">
           <a href="#">Replicants</a>
           <a href="#">Off-World Colonies</a>
-          <a href="#">Cityscape</a>
+          <a href="#">6.43</a>
       </div>
   </nav>
 
   <div class="grid">
     <div class="grid-item">
-      <div class="grid-item__text">
+      <div class="text">
         <h2>NEON DISTRICT</h2>
         <p><span>(urban landscapes)</span>
           Dark alleys lit by holograms, where replicants hide in plain sight.</p>
       </div>
-      <img src="https://images.unsplash.com/photo-1680622343869-89b9be54554a?q=80&w=2487&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Neon District" class="grid-item__image" />
+      <img src="https://images.unsplash.com/photo-1680622343869-89b9be54554a?q=80&w=2487&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
     </div>
     <div class="grid-item">
-      <div class="grid-item__text">
+      <div class="text">
         <h2>OFF-WORLD MINES</h2>
         <p>(extraction zones)<br />Mines where replicants toil, harvesting rare minerals for the elite.</p>
       </div>
-      <img src="https://images.unsplash.com/photo-1679589102491-bc489d798a5e?q=80&w=2487&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Off-World Mines" class="grid-item__image" />
+      <img src="https://images.unsplash.com/photo-1679589102491-bc489d798a5e?q=80&w=2487&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"/>
     </div>
   </div>
   
