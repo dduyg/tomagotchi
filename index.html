@@ -11,143 +11,163 @@
       background: white;
       overflow-x: hidden;
     } 
+
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
-      width: 100%;  
-      padding: 4%;
+      width: 100%;
+      padding: 20px;
       display: flex;
       justify-content: space-between;
       z-index: 1000;
+      background: white;
     }
 
     .badge {
       font-size: 20px;
       font-style: italic;
     }
+
     .spring-icon {
       width: 30px; height: 30px;
       display: inline-block;
     }
-    
+
     nav {
       position: relative;
       display: flex;
       gap: 9px;
+      align-items: center;
     }
-    
-  .active-item {
-    font-size: 24px;
-    background: black;
-    color: white;
-    padding: 2px;
-    border-radius: 5px;
-    text-transform: uppercase;
-  }
-  .menu-button {
-    width: 32px; height: 32px;
-    border: 2px solid black;
-    border-radius: 50%;
-    cursor: pointer;
-    position: relative;
-  }
-  .menu-button::after {
-    content: '';
-    position: absolute;
-    width: 6px; height: 6px;
-    background: black;
-    border-radius: 50%;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-  }
 
-  /* Menu Overlay */
-  .menu-overlay {    
-    position: absolute;
-    top: 100%; left: 0;
-    display: none;
-    flex-direction: column;
-    padding-top: 10px;
-    z-index: 999;
-  }
+    .active-item {
+      font-size: 24px;
+      background: black;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 5px;
+      text-transform: uppercase;
+    }
 
-  .item {
-    font-size: 24px;
-    margin: 10px;
-    border: 1.5px solid black;
-    border-radius: 5px;
-    padding: 2px;
-    text-transform: uppercase;
-    width: fit-content;
-  }
+    .menu-button {
+      width: 32px; height: 32px;
+      border: 2px solid black;
+      border-radius: 50%;
+      cursor: pointer;
+      position: relative;
+    }
+    .menu-button::after {
+      content: '';
+      position: absolute;
+      width: 6px; height: 6px;
+      background: black;
+      border-radius: 50%;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
 
-  .close-btn {
-    width: 60px; height: 60px;
-    border: 1.5px solid black;
-    border-radius: 50%;
-    font-size: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    margin-left: 10px;
-    margin-top: 10px;
-  }
+    /* MENU OVERLAY */
+    .menu-overlay {
+      position: absolute;
+      top: 100%;         /* directly below nav */
+      left: 0;           /* align with active-item start */
+      display: none;
+      flex-direction: column;
+      padding-top: 10px;
+      z-index: 999;
+      background: white;
+    }
 
-  /* Page Content */
-  .content {
-    margin-top: 180px;
-    background: black;
-    color: white;
-    padding: 40px 20px;
-  }
+    .item {
+      font-size: 24px;
+      margin: 10px 0;
+      border: 1.5px solid black;
+      border-radius: 5px;
+      padding: 2px 6px;
+      width: fit-content;
+      text-transform: uppercase;
+    }
 
-  .title {
-    font-size: 32px;
-    font-weight: 600;
-  }
+    .close-btn {
+      width: 60px; height: 60px;
+      border: 1.5px solid black;
+      border-radius: 50%;
+      font-size: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      margin-top: 10px;
+    }
 
-  .thumbnail {
-    width: 100%;
-    margin-top: 20px;
-  }
+    /* Page Content */
+    .content {
+      margin-top: 180px;
+      background: black;
+      color: white;
+      padding: 40px 20px;
+    }
 
-  .thumbnail img {
-    width: 100%;
-    height: auto;
-  }
+    .title {
+      font-size: 32px;
+      font-weight: 600;
+    }
+
+    .thumbnail {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: auto;
+    }
   </style>
 </head>
 <body>
+
 <header>
-  <div class="badge">In<svg class="spring-icon" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><ellipse cx="15" cy="8" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/><ellipse cx="15" cy="12" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/><ellipse cx="15" cy="16" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/><ellipse cx="15" cy="20" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/></svg>ex</div>
+  <div class="badge">
+    In
+    <svg class="spring-icon" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="15" cy="8" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/>
+      <ellipse cx="15" cy="12" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/>
+      <ellipse cx="15" cy="16" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/>
+      <ellipse cx="15" cy="20" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/>
+    </svg>
+    ex
+  </div>
+
   <nav>
-    <div class="activeItem">Index</div>   
-    <div class="menu-button" onclick="openMenu()"" onclick="openMenu()"></div>
+    <div class="active-item">Index</div>
+    <div class="menu-button" onclick="openMenu()"></div>
+
+    <div class="menu-overlay" id="menu">
+      <div class="item">Programming</div>
+      <div class="item">About</div>
+      <div class="item">Resources</div>
+      <div class="item">Locations</div>
+      <div class="close-btn" onclick="closeMenu()">×</div>
+    </div>
   </nav>
 </header>
-
-<div class="menu-overlay" id="menu">
-  <div class="item">Programming</div>
-  <div class="item">About</div>
-  <div class="item">Resources</div>
-  <div class="item">Locations</div>
-  <div class="close-btn" onclick="closeMenu()">×</div>
-</div>
 
 <div class="content">
   <div class="title">SEEOVES30</div>
   <p>OFF-MENU MAG</p>
-  <div class="thumbnail"><img src="https://images.unsplash.com/photo-1762324858968-d131280714ff"></div>
+  <div class="thumbnail">
+    <img src="https://images.unsplash.com/photo-1762324858968-d131280714ff">
+  </div>
 </div>
-  
-  <script>
-    function openMenu() {
-      document.getElementById('menu').style.display = 'flex';
-    }
-    function closeMenu() {
-      document.getElementById('menu').style.display = 'none';
-    }
-  </script>
+
+<script>
+  function openMenu() {
+    document.getElementById('menu').style.display = 'flex';
+  }
+  function closeMenu() {
+    document.getElementById('menu').style.display = 'none';
+  }
+</script>
+
 </body>
 </html>
