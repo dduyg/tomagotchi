@@ -14,10 +14,10 @@
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
-      padding: 4% 5%;
+      width: 100%;  
+      padding: 4%;
       display: flex;
       justify-content: space-between;
-      align-items: center;
       z-index: 1000;
     }
 
@@ -30,12 +30,15 @@
       display: inline-block;
     }
     
-  .activeItem {
+    nav { position: relative; }
+    
+  .active-item {
     font-size: 24px;
     background: black;
     color: white;
-    padding: 5px 15px;
-    margin-right: 15px;
+    padding: 2px;
+    border-radius: 5px;
+    margin-right: 9px;
     text-transform: uppercase;
   }
   .menu-button {
@@ -56,23 +59,22 @@
   }
 
   /* Menu Overlay */
-  .menu-overlay {
-    position: fixed;
-    top: 0; right: 0;
-    width: 100%;
-    height: auto;
+  #menu {
+    position: absolute;
+    top: 100%; left: 0;
+    margin-top: 5px;
     display: none;
-    flex-direction: column;
-    padding-top: 100px;
     z-index: 999;
-    background: white;
   }
 
-  .menu-item {
+  .item {
     font-size: 24px;
     margin: 10px;
     border: 1.5px solid black;
-    padding: 5px;
+    border-radius: 5px;
+    padding: 2px;
+    text-transform: uppercase;
+    width: fit-content;
   }
 
   .close-btn {
@@ -115,17 +117,17 @@
 <body>
 <header>
   <div class="badge">In<svg class="spring-icon" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><ellipse cx="15" cy="8" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/><ellipse cx="15" cy="12" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/><ellipse cx="15" cy="16" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/><ellipse cx="15" cy="20" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/></svg>ex</div>
-  <div>
+  <nav>
     <div class="activeItem">Index</div>   
     <div class="menu-button" onclick="openMenu()"" onclick="openMenu()"></div>
-  </div>
+  </nav>
 </header>
 
-<div class="menu-overlay" id="menu">
-  <div class="menu-item">PROGRAMMING</div>
-  <div class="menu-item">ABOUT</div>
-  <div class="menu-item">RESOURCES</div>
-  <div class="menu-item">LOCATIONS</div>
+<div id="menu">
+  <div class="item">Programming</div>
+  <div class="item">About</div>
+  <div class="item">Resources</div>
+  <div class="item">Locations</div>
   <div class="close-btn" onclick="closeMenu()">×</div>
 </div>
 
@@ -139,7 +141,7 @@
 
 <script>
   function openMenu() {
-    document.getElementById('menu').style.display = 'flex';
+    document.getElementById('menu').style.display = 'block';
   }
   function closeMenu() {
     document.getElementById('menu').style.display = 'none';
