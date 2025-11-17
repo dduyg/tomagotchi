@@ -23,13 +23,8 @@
   }
   .badge {
     font-size: 32px;
-    display: flex;
-    align-items: center;
-    flex-shrink: 1;
-    min-width: 0;
-  }
-  .spring {
-    width: 24px; height: 24px;
+    display: inline-block;
+    transition: all 0.1s ease-in-out;
   }
 
   nav {
@@ -131,17 +126,7 @@
 <body>
 
 <header>
-  <div class="badge">
-    In
-    <svg class="spring" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="15" cy="8" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/>
-      <ellipse cx="15" cy="12" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/>
-      <ellipse cx="15" cy="16" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/>
-      <ellipse cx="15" cy="20" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/>
-    </svg>
-    ex
-  </div>
-
+  <div class="badge" id="badge">Index</div>
   <nav>
     <div class="nav-container">
       <!-- Active label appears after selection -->
@@ -205,6 +190,24 @@
       menu.style.display = 'none';
     });
   });
+</script>
+<script>
+const badge = document.getElementById('badge');
+const text = "Index";
+const symbols = ['◓', '▲', '☍', '▣', '⛃', '♆', '⛬', '☋', '✺', '✴', '✣', '⛮', '✹', '✦', '☙', '❥'];
+
+function getRandomSymbolOrLetter(letter) {
+    // 40% chance to show a symbol, 60% to keep the original letter
+    return Math.random() < 0.4 ? symbols[Math.floor(Math.random() * symbols.length)] : letter;
+}
+
+function glitchText() {
+    let chars = text.split('').map(char => getRandomSymbolOrLetter(char));
+    badge.textContent = chars.join('');
+}
+
+// Update rapidly for smooth animation
+setInterval(glitchText, 100);
 </script>
 </body>
 </html>
