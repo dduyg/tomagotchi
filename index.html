@@ -7,7 +7,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: Arial, sans-serif;
+      font-family: sans-serif;
       background: white;
       overflow-x: hidden;
     }
@@ -25,17 +25,14 @@
       align-items: center;
       z-index: 1000;
     }
-
     .badge {
-      font-size: 22px;
-      font-style: italic;
+      font-size: 24px;
       display: flex;
       align-items: center;
-      gap: 4px;
       flex-shrink: 1;
       min-width: 0; /* allows shrinking */
     }
-    .spring-icon {
+    .spring {
       width: 24px; height: 24px;
     }
 
@@ -51,21 +48,21 @@
       font-size: 22px;
       background: black;
       color: white;
-      padding: 4px 8px;
+      padding: 2px 4px;
       border-radius: 5px;
       text-transform: uppercase;
       white-space: nowrap;
     }
 
-    .menu-button {
+    .nav-btn {
       width: 30px; height: 30px;
-      border: 2px solid black;
+      border: 1.4px solid;
       border-radius: 50%;
       cursor: pointer;
       position: relative;
       flex-shrink: 0;
     }
-    .menu-button::after {
+    .nav-btn::after {
       content: '';
       position: absolute;
       width: 6px; height: 6px;
@@ -84,22 +81,20 @@
       padding-top: 10px;
       z-index: 9999;
     }
-
     .item {
       font-size: 22px;
       margin: 6px 0;
-      border: 1.5px solid;
+      border: 1.4px solid;
       border-radius: 5px;
-      padding: 4px 8px;
+      padding: 2px 4px;
       width: fit-content;
       text-transform: uppercase;
       cursor: pointer;
       background: white;
     }
-
     .close-btn {
       width: 50px; height: 50px;
-      border: 1.5px solid;
+      border: 1.4px solid;
       border-radius: 50%;
       font-size: 32px;
       display: flex;
@@ -134,7 +129,7 @@
 <header>
   <div class="badge">
     In
-    <svg class="spring-icon" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+    <svg class="spring" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
       <ellipse cx="15" cy="8" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/>
       <ellipse cx="15" cy="12" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/>
       <ellipse cx="15" cy="16" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/>
@@ -145,7 +140,7 @@
 
   <nav>
     <div class="active-item">Index</div>
-    <div class="menu-button" onclick="openMenu()"></div>
+    <div class="nav-btn" onclick="openMenu()"></div>
 
     <div class="menu-overlay" id="menu">
       <div class="item">Programming</div>
@@ -159,7 +154,7 @@
 
 <div class="content">
   <div class="title">SEEOVES30</div>
-  <p>OFF-MENU MAG</p>
+  <p>OFMAG</p>
   <img class="thumbnail" src="https://images.unsplash.com/photo-1580920659896-7e8663eb956a">
 </div>
 
@@ -167,15 +162,12 @@
   function openMenu() {
     document.getElementById('menu').style.display = 'flex';
   }
-
   function closeMenu() {
     document.getElementById('menu').style.display = 'none';
   }
-
   document.addEventListener("DOMContentLoaded", () => {
     const activeItem = document.querySelector(".active-item");
     const menuItems = document.querySelectorAll(".menu-overlay .item");
-
     menuItems.forEach(item => {
       item.addEventListener("click", () => {
         activeItem.textContent = item.textContent;
