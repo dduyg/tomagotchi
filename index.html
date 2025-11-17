@@ -27,7 +27,7 @@
     }
 
     .badge {
-      font-size: 18px;
+      font-size: 22px;
       font-style: italic;
       display: flex;
       align-items: center;
@@ -37,7 +37,6 @@
     }
     .spring-icon {
       width: 24px; height: 24px;
-      flex-shrink: 0;
     }
 
     nav {
@@ -49,7 +48,7 @@
     }
 
     .active-item {
-      font-size: 18px;
+      font-size: 22px;
       background: black;
       color: white;
       padding: 4px 8px;
@@ -79,19 +78,17 @@
     /* MENU DROPDOWN */
     .menu-overlay {
       position: absolute;
-      top: 100%;
-      left: 0;
+      top: 100%; left: 0;
       display: none;
       flex-direction: column;
       padding-top: 10px;
       z-index: 9999;
-      background: white;
     }
 
     .item {
-      font-size: 18px;
+      font-size: 22px;
       margin: 6px 0;
-      border: 1.5px solid black;
+      border: 1.5px solid;
       border-radius: 5px;
       padding: 4px 8px;
       width: fit-content;
@@ -102,7 +99,7 @@
 
     .close-btn {
       width: 50px; height: 50px;
-      border: 1.5px solid black;
+      border: 1.5px solid;
       border-radius: 50%;
       font-size: 32px;
       display: flex;
@@ -126,12 +123,10 @@
       font-weight: 600;
     }
     .thumbnail {
-      width: 100%;
       margin-top: 20px;
-    }
-    .thumbnail img {
       width: 100%;
-      height: auto;
+      height: 180px;
+      object-fit: cover;
     }
   </style>
 </head>
@@ -165,9 +160,7 @@
 <div class="content">
   <div class="title">SEEOVES30</div>
   <p>OFF-MENU MAG</p>
-  <div class="thumbnail">
-    <img src="https://images.unsplash.com/photo-1762324858968-d131280714ff">
-  </div>
+  <img class="thumbnail" src="https://images.unsplash.com/photo-1580920659896-7e8663eb956a">
 </div>
 
 <script>
