@@ -12,9 +12,8 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
-            background-color: #000;
-            color: #fff;
+            font-family: sans-serif;
+            background-color: white;
         }
 
         /* Header */
@@ -36,14 +35,11 @@
             padding: 8px 40px;
             border-radius: 10px;
             font-size: 28px;
-            letter-spacing: 8px;
-            font-weight: bold;
         }
 
         /* Menu Button */
         .menu-button {
-            width: 60px;
-            height: 60px;
+            width: 60px; height: 60px;
             border-radius: 50%;
             border: 3px solid #000;
             background-color: #fff;
@@ -55,7 +51,6 @@
             font-weight: bold;
             transition: all 0.3s ease;
         }
-
         .menu-button:hover {
             background-color: #f0f0f0;
         }
@@ -63,24 +58,18 @@
         /* Menu Overlay */
         .menu-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(255, 255, 255, 0.98);
+            top: 0; left: 0;
+            right: 0; bottom: 0;
+            background-color: pink; 
             z-index: 999;
             display: none;
-            padding-top: 100px;
+            padding-top: 30px;
         }
-
         .menu-overlay.active {
             display: block;
         }
 
         .close-button {
-            position: absolute;
-            top: 25px;
-            right: 30px;
             width: 60px;
             height: 60px;
             border-radius: 50%;
@@ -102,7 +91,7 @@
         }
 
         .menu-item {
-            font-size: 48px;
+            font-size: 28px;
             color: #000;
             text-decoration: none;
             border: 3px solid #000;
@@ -129,11 +118,11 @@
     </header>
 
     <div class="menu-overlay" id="menuOverlay">
-        <button class="close-button" onclick="closeMenu()">×</button>
         <nav class="menu-items">
             <a href="#" class="menu-item" onclick="setActivePage('ABOUT')">ABOUT</a>
             <a href="#" class="menu-item" onclick="setActivePage('RESOURCES')">RESOURCES</a>
             <a href="#" class="menu-item" onclick="setActivePage('LOCATIONS')">LOCATIONS</a>
+            <button class="close-button" onclick="closeMenu()">×</button>
         </nav>
     </div>
 
