@@ -1,144 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LiminalLoop</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: white;
-      overflow-x: hidden;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>roves</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  /* Header */
-  .header {
-    position: fixed;
-    top: 0; right: 0;
-    display: flex;
-    align-items: center;
-    padding: 20px 5%;
-    z-index: 1000;
-  }
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #000;
+            color: #fff;
+        }
 
-  .logo {
-    font-size: 28px;
-    font-weight: 700;
-    background: black;
-    color: white;
-    padding: 5px 15px;
-    margin-right: 15px;
-  }
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            padding: 15px 30px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-  .menu-button {
-    width: 32px; height: 32px;
-    border: 2px solid black;
-    border-radius: 50%;
-    cursor: pointer;
-    position: relative;
-  }
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
 
-  .menu-button::after {
-    content: '';
-    position: absolute;
-    width: 6px; height: 6px;
-    background: black;
-    border-radius: 50%;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-  }
+        .logo {
+            font-size: 32px;
+            color: #000;
+            font-weight: normal;
+            font-style: italic;
+        }
 
-  /* Menu Overlay */
-  .menu-overlay {
-    position: fixed;
-    top: 0; right: 0;
-    width: 100%;
-    height: auto;
-    display: none;
-    flex-direction: column;
-    padding-top: 100px;
-    z-index: 999;
-    background: white;
-  }
+        .spring-icon {
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+        }
 
-  .menu-item {
-    font-size: 48px;
-    font-weight: 600;
-    margin: 10px 20px;
-    border: 3px solid black;
-    padding: 10px 20px;
-    width: fit-content;
-  }
+        .active-page {
+            background-color: #000;
+            color: #fff;
+            padding: 8px 40px;
+            border-radius: 10px;
+            font-size: 28px;
+            letter-spacing: 8px;
+            font-weight: bold;
+        }
 
-  .close-btn {
-    width: 60px;
-    height: 60px;
-    border: 3px solid black;
-    border-radius: 50%;
-    font-size: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    margin-left: 20px;
-    margin-top: 20px;
-  }
+        /* Menu Button */
+        .menu-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid #000;
+            background-color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
 
-  /* Page Content */
-  .content {
-    margin-top: 180px;
-    background: black;
-    color: white;
-    padding: 40px 20px;
-  }
+        .menu-button:hover {
+            background-color: #f0f0f0;
+        }
 
-  .title {
-    font-size: 32px;
-    font-weight: 600;
-  }
+        /* Menu Overlay */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.98);
+            z-index: 999;
+            display: none;
+            padding-top: 100px;
+        }
 
-  .thumbnail {
-    width: 100%;
-    margin-top: 20px;
-  }
+        .menu-overlay.active {
+            display: block;
+        }
 
-  .thumbnail img {
-    width: 100%;
-    height: auto;
-  }
-</style>
+        .close-button {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid #000;
+            background-color: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: 300;
+        }
+
+        .menu-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-left: 30px;
+        }
+
+        .menu-item {
+            font-size: 48px;
+            color: #000;
+            text-decoration: none;
+            border: 3px solid #000;
+            border-radius: 15px;
+            padding: 15px 40px;
+            display: inline-block;
+            width: fit-content;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 100px;
+            padding: 40px 30px;
+        }
+
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .event-title {
+            font-size: 48px;
+            line-height: 1.2;
+            max-width: 700px;
+            font-weight: normal;
+        }
+
+        .price {
+            font-size: 56px;
+            font-weight: normal;
+        }
+
+        .subtitle {
+            font-size: 36px;
+            margin-bottom: 30px;
+            font-weight: normal;
+        }
+
+        .magazine-tag {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .magazine-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #8B4513;
+            border-radius: 8px;
+        }
+
+        .magazine-text {
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+
+        .event-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <div class="logo-section">
+            <div class="logo">
+                In<svg class="spring-icon" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="15" cy="8" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1.5"/>
+                    <ellipse cx="15" cy="12" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1.5"/>
+                    <ellipse cx="15" cy="16" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1.5"/>
+                    <ellipse cx="15" cy="20" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1.5"/>
+                </svg>ex
+            </div>
+            <div class="active-page" id="activePage">PROGRAMMING</div>
+        </div>
+        <button class="menu-button" onclick="openMenu()">•</button>
+    </header>
 
-<div class="header">
-  <div class="logo">INDEX</div>
-  <div class="menu-button" onclick="openMenu()"" onclick="openMenu()"></div>
-</div>
+    <div class="menu-overlay" id="menuOverlay">
+        <button class="close-button" onclick="closeMenu()">×</button>
+        <nav class="menu-items">
+            <a href="#" class="menu-item" onclick="setActivePage('ABOUT')">ABOUT</a>
+            <a href="#" class="menu-item" onclick="setActivePage('RESOURCES')">RESOURCES</a>
+            <a href="#" class="menu-item" onclick="setActivePage('LOCATIONS')">LOCATIONS</a>
+        </nav>
+    </div>
 
-<div class="menu-overlay" id="menu">
-  <div class="menu-item">PROGRAMMING</div>
-  <div class="menu-item">ABOUT</div>
-  <div class="menu-item">RESOURCES</div>
-  <div class="menu-item">LOCATIONS</div>
-  <div class="close-btn" onclick="closeMenu()">×</div>
-</div>
+    <main>
+        <div class="event-header">
+            <h1 class="event-title">SEEKING THE OLIVE GROVES: A GUIDED TASTING</h1>
+            <div class="price">$30</div>
+        </div>
+        
+        <div class="magazine-tag">
+            <div class="magazine-icon"></div>
+            <span class="magazine-text">OFF-MENU MAG</span>
+        </div>
 
-<div class="content">
-  <div class="title">SEEKING GROVES: A GUIDED TASTING — $30</div>
-  <p>OFF-MENU MAG</p>
-  <div class="thumbnail">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Olive_trees.jpg" alt="Olive Trees" />
-  </div>
-</div>
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 700'%3E%3Cdefs%3E%3ClinearGradient id='sky' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2387CEEB;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23B0E0E6;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='700' fill='url(%23sky)'/%3E%3Cg%3E%3Cellipse cx='200' cy='400' rx='60' ry='180' fill='%23556B2F' opacity='0.6'/%3E%3Cellipse cx='200' cy='350' rx='70' ry='150' fill='%236B8E23' opacity='0.5'/%3E%3Cpath d='M 180 500 Q 200 350 220 500' stroke='%234A4A4A' stroke-width='8' fill='none'/%3E%3C/g%3E%3Cg%3E%3Cellipse cx='400' cy='420' rx='55' ry='170' fill='%23808080' opacity='0.4'/%3E%3Cellipse cx='400' cy='380' rx='65' ry='140' fill='%23A9A9A9' opacity='0.5'/%3E%3Cpath d='M 385 520 Q 400 380 415 520' stroke='%234A4A4A' stroke-width='7' fill='none'/%3E%3C/g%3E%3Cg%3E%3Cellipse cx='600' cy='410' rx='58' ry='175' fill='%239ACD32' opacity='0.4'/%3E%3Cellipse cx='600' cy='370' rx='68' ry='145' fill='%23BDB76B' opacity='0.5'/%3E%3Cpath d='M 582 520 Q 600 370 618 520' stroke='%234A4A4A' stroke-width='8' fill='none'/%3E%3C/g%3E%3C/svg%3E" alt="Olive grove landscape" class="event-image">
+    </main>
 
-<script>
-  function openMenu() {
-    document.getElementById('menu').style.display = 'flex';
-  }
-  function closeMenu() {
-    document.getElementById('menu').style.display = 'none';
-  }
-</script>
+    <script>
+        function openMenu() {
+            document.getElementById('menuOverlay').classList.add('active');
+        }
+
+        function closeMenu() {
+            document.getElementById('menuOverlay').classList.remove('active');
+        }
+
+        function setActivePage(pageName) {
+            document.getElementById('activePage').textContent = pageName;
+            closeMenu();
+        }
+
+        // Close menu when clicking outside
+        document.getElementById('menuOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeMenu();
+            }
+        });
+    </script>
 </body>
 </html>
