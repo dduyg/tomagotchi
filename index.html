@@ -49,29 +49,31 @@
             font-weight: bold;
         }
 
-        /* Main */
+        /* Main content area */
         main {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
             position: relative;
             z-index: 1;
         }
 
-        /* Same exact visual position as original */
+        /* NEW wrapper so overlay doesn't break centering */
+        .center-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .blur-overlay {
-            position: absolute;
             width: 300px;
             height: 300px;
-            inset: 0;
-            margin: auto;
             background: radial-gradient(circle, rgba(255, 160, 100, 0.6) 0%, rgba(80, 80, 80, 0.4) 50%, transparent 70%);
             filter: blur(60px);
             border-radius: 50%;
-            pointer-events: none;
-            z-index: -1;
+            position: absolute;
         }
 
         .title {
@@ -81,7 +83,6 @@
             margin-bottom: 20px;
             text-transform: uppercase;
         }
-
         .subtitle {
             font-size: 18px;
             letter-spacing: 4px;
@@ -113,8 +114,8 @@
             height: 2px;
             background: #fff;
         }
-
-        /* Animations */
+        
+        /* Animation */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -142,11 +143,13 @@
     <header><div>04</div><div>08</div></header>
 
     <main>
-        <div class="blur-overlay"></div>
+        <div class="center-wrap">
+            <div class="blur-overlay"></div>
 
-        <div class="content">
-            <h1 class="title">ETHEREAL</h1>
-            <p class="subtitle">567 Collection</p>
+            <div class="content">
+                <h1 class="title">ETHEREAL</h1>
+                <p class="subtitle">567 Collection</p>
+            </div>
         </div>
     </main>
 
