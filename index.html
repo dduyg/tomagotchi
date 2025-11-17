@@ -5,10 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LiminalLoop</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: sans-serif; background: white; overflow-x: hidden; }
 
-  /* HEADER */
   header {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -31,7 +30,7 @@
     gap: 8px;
   }
 
-  /* Active label that appears next to button */
+  /* Dynamic active label */
   .active-label {
     font-size: 22px;
     background: black;
@@ -39,6 +38,7 @@
     padding: 2px 6px;
     border-radius: 5px;
     text-transform: uppercase;
+    display: none; /* initially hidden */
   }
 
   .nav-btn {
@@ -62,8 +62,8 @@
   /* MENU DROPDOWN */
   .menu-overlay {
     position: absolute;
-    top: 100%;
-    right: 0;           /* appear aligned to the button */
+    top: 100%;      /* directly under nav button */
+    left: 0;        /* aligned with nav button */
     display: none;
     flex-direction: column;
     padding-top: 10px;
@@ -132,7 +132,7 @@
   </div>
 
   <nav>
-    <div class="active-label" id="activeLabel">Index</div>
+    <div class="active-label" id="activeLabel"></div>
     <div class="nav-btn" onclick="toggleMenu()"></div>
 
     <div class="menu-overlay" id="menu">
@@ -163,15 +163,15 @@
     menu.style.display = 'none';
   }
 
-  // Handle clicking on a menu item
   document.querySelectorAll('.menu-overlay .item').forEach(item => {
     item.addEventListener('click', () => {
       // Remove active from all items
       document.querySelectorAll('.menu-overlay .item').forEach(i => i.classList.remove('active'));
       // Set clicked item as active
       item.classList.add('active');
-      // Update active label text next to nav button
+      // Show label next to nav button
       activeLabel.textContent = item.textContent;
+      activeLabel.style.display = 'block';
       // Close menu
       closeMenu();
     });
