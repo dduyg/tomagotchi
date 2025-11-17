@@ -59,11 +59,12 @@
   }
 
   /* Menu Overlay */
-  #menu {
+  .menu-overlay {    
     position: absolute;
     top: 100%; left: 0;
-    margin-top: 5px;
     display: none;
+    flex-direction: column;
+    padding-top: 10px;
     z-index: 999;
   }
 
@@ -123,7 +124,7 @@
   </nav>
 </header>
 
-<div id="menu">
+<div class="menu-overlay" id="menu">
   <div class="item">Programming</div>
   <div class="item">About</div>
   <div class="item">Resources</div>
@@ -132,20 +133,18 @@
 </div>
 
 <div class="content">
-  <div class="title">SEEKING GROVES30</div>
+  <div class="title">SEEOVES30</div>
   <p>OFF-MENU MAG</p>
-  <div class="thumbnail">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Olive_trees.jpg" alt="Olive Trees" />
-  </div>
+  <div class="thumbnail"><img src="https://images.unsplash.com/photo-1762324858968-d131280714ff"></div>
 </div>
-
-<script>
-  function openMenu() {
-    document.getElementById('menu').style.display = 'block';
-  }
-  function closeMenu() {
-    document.getElementById('menu').style.display = 'none';
-  }
-</script>
+  
+  <script>
+    function openMenu() {
+      document.getElementById('menu').style.display = 'flex';
+    }
+    function closeMenu() {
+      document.getElementById('menu').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
