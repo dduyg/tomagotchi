@@ -6,9 +6,10 @@
 <title>LiminalLoop</title>
 <link href="https://fonts.googleapis.com/css2?family=Oranienbaum&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans+SemiExpanded&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Almarai&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: "Zalando Sans SemiExpanded", sans-serif; text-transform: uppercase; background: white; overflow-x: hidden; }
+  body { font-family: "Almarai", sans-serif; text-transform: uppercase; background: white; overflow-x: hidden; }
 
   /* =====================
      HEADER
@@ -24,11 +25,14 @@
     z-index: 1000;
   }
   .badge {
-    font-size: 29px;
-    display: inline-block;
-    width: 5ch;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
     font-family: "Oranienbaum", serif;
     text-transform: none;
+  }
+  .spring {
+    width: 24px; height: 24px;
   }
 
   nav {
@@ -131,7 +135,17 @@
 <body>
 
 <header>
-  <div class="badge" id="badge">Index</div>
+  <div class="badge">
+    In
+    <svg class="spring" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="15" cy="8" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/>
+      <ellipse cx="15" cy="12" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/>
+      <ellipse cx="15" cy="16" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/>
+      <ellipse cx="15" cy="20" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/>
+    </svg>
+    ex
+  </div>
+
   <nav>
     <div class="nav-container">
       <!-- Active label appears after selection -->
@@ -195,30 +209,6 @@
       menu.style.display = 'none';
     });
   });
-</script>
-<script>
-const badge = document.getElementById('badge');
-const text = "Index";
-const symbols = ['◓', '▲', '☍', '▣', '⛃', '♆', '⛬', '☋', '✺', '✴', '✣', '⛮', '✹', '✦', '☙', '❥'];
-
-function animateOneLetter() {
-    const chars = text.split('');
-    
-    // Pick a random index to replace
-    const randomIndex = Math.floor(Math.random() * chars.length);
-    
-    // Pick a random symbol
-    const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
-    
-    // Replace that index with the symbol
-    chars[randomIndex] = randomSymbol;
-    
-    // Update badge
-    badge.textContent = chars.join('');
-}
-
-// Animate every 800ms (slower)
-setInterval(animateOneLetter, 800);
 </script>
 </body>
 </html>
