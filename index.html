@@ -24,7 +24,7 @@
   .badge {
     font-size: 32px;
     display: inline-block;
-    transition: all 0.1s ease-in-out;
+    width: 5ch;
   }
 
   nav {
@@ -196,18 +196,24 @@ const badge = document.getElementById('badge');
 const text = "Index";
 const symbols = ['◓', '▲', '☍', '▣', '⛃', '♆', '⛬', '☋', '✺', '✴', '✣', '⛮', '✹', '✦', '☙', '❥'];
 
-function getRandomSymbolOrLetter(letter) {
-    // 40% chance to show a symbol, 60% to keep the original letter
-    return Math.random() < 0.4 ? symbols[Math.floor(Math.random() * symbols.length)] : letter;
-}
-
-function glitchText() {
-    let chars = text.split('').map(char => getRandomSymbolOrLetter(char));
+function animateOneLetter() {
+    const chars = text.split('');
+    
+    // Pick a random index to replace
+    const randomIndex = Math.floor(Math.random() * chars.length);
+    
+    // Pick a random symbol
+    const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+    
+    // Replace that index with the symbol
+    chars[randomIndex] = randomSymbol;
+    
+    // Update badge
     badge.textContent = chars.join('');
 }
 
-// Update rapidly for smooth animation
-setInterval(glitchText, 100);
+// Animate every 800ms (slower)
+setInterval(animateOneLetter, 800);
 </script>
 </body>
 </html>
