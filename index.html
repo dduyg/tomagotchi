@@ -34,17 +34,17 @@
     background: black;
     color: white;
     padding: 5px 15px;
-    margin-right: 15px;
+    margin-left: 20px;
   }
 
   .menu-button {
-    width: 32px;
-    height: 32px;
-    border: 1.5px solid black;
+    width: 32px; height: 32px;
+    border: 2px solid black;
     border-radius: 50%;
     cursor: pointer;
     position: relative;
   }
+
   .menu-button::after {
     content: '';
     position: absolute;
@@ -119,10 +119,8 @@
 
 <div class="header">
   <div class="logo">Index</div>
-  <div>
-    <div class="prog">PROGRAMMING</div>
-    <div class="menu-button" onclick="openMenu()"" onclick="openMenu()"></div>
-  </div>
+  <div class="prog">PROGRAMMING</div>
+  <div class="menu-button" onclick="openMenu()"" onclick="openMenu()"></div>
 </div>
 
 <div class="menu-overlay" id="menu">
@@ -140,14 +138,14 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Olive_trees.jpg" alt="Olive Trees" />
   </div>
 </div>
-  
-  <script>
-    function openMenu() {
-      document.getElementById('menu').style.display = 'flex';
-    }
-    function closeMenu() {
-      document.getElementById('menu').style.display = 'none';
-    }
+
+<script>
+  function openMenu() {
+    document.getElementById('menu').style.display = 'flex';
+  }
+  function closeMenu() {
+    document.getElementById('menu').style.display = 'none';
+  }
 </script>
 </body>
 </html>
