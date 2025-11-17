@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LiminalLoop</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: white;
+    overflow-x: hidden;
+  }
+
+  /* Header */
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    z-index: 1000;
+    background: white;
+  }
+
+  .logo {
+    font-size: 32px;
+    font-weight: 300;
+  }
+
+  .menu-button {
+    width: 32px;
+    height: 32px;
+    border: 2px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .menu-button::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: black;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Menu Overlay */
+  .menu-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: auto;
+    display: none;
+    flex-direction: column;
+    padding-top: 100px;
+    z-index: 999;
+    background: white;
+  }
+
+  .menu-item {
+    font-size: 48px;
+    font-weight: 600;
+    margin: 10px 20px;
+    border: 3px solid black;
+    padding: 10px 20px;
+    width: fit-content;
+  }
+
+  .close-btn {
+    width: 60px;
+    height: 60px;
+    border: 3px solid black;
+    border-radius: 50%;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
+
+  /* Page Content */
+  .content {
+    margin-top: 180px;
+    background: black;
+    color: white;
+    padding: 40px 20px;
+  }
+
+  .title {
+    font-size: 32px;
+    font-weight: 600;
+  }
+
+  .thumbnail {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .thumbnail img {
+    width: 100%;
+    height: auto;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">Index</div>
+  <div class="menu-button" onclick="openMenu()"></div>
+</div>
+
+<div class="menu-overlay" id="menu">
+  <div class="menu-item">PROGRAMMING</div>
+  <div class="menu-item">ABOUT</div>
+  <div class="menu-item">RESOURCES</div>
+  <div class="menu-item">LOCATIONS</div>
+  <div class="close-btn" onclick="closeMenu()">×</div>
+</div>
+
+<div class="content">
+  <div class="title">SEEKING GROVES: A GUIDED TASTING — $30</div>
+  <p>OFF-MENU MAG</p>
+  <div class="thumbnail">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Olive_trees.jpg" alt="Olive Trees" />
+  </div>
+</div>
+
+<script>
+function openMenu() {
+  document.getElementById('menu').style.display = 'flex';
+}
+
+function closeMenu() {
+  document.getElementById('menu').style.display = 'none';
+}
+</script>
+</body>
+</html>
