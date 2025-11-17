@@ -66,11 +66,10 @@
       transform: translate(-50%, -50%);
     }
 
-    /* MENU OVERLAY */
     .menu-overlay {
       position: absolute;
-      top: 100%;         /* directly below nav */
-      left: 0;           /* align with active-item start */
+      top: 100%;
+      left: 0;
       display: none;
       flex-direction: column;
       padding-top: 10px;
@@ -86,6 +85,7 @@
       padding: 2px 6px;
       width: fit-content;
       text-transform: uppercase;
+      cursor: pointer;
     }
 
     .close-btn {
@@ -100,7 +100,6 @@
       margin-top: 10px;
     }
 
-    /* Page Content */
     .content {
       margin-top: 180px;
       background: black;
@@ -164,9 +163,22 @@
   function openMenu() {
     document.getElementById('menu').style.display = 'flex';
   }
+
   function closeMenu() {
     document.getElementById('menu').style.display = 'none';
   }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const activeItem = document.querySelector(".active-item");
+    const menuItems = document.querySelectorAll(".menu-overlay .item");
+
+    menuItems.forEach(item => {
+      item.addEventListener("click", () => {
+        activeItem.textContent = item.textContent;
+        closeMenu();
+      });
+    });
+  });
 </script>
 
 </body>
