@@ -39,7 +39,6 @@
         header {
             position: fixed;
             top: 0; left: 0; right: 0;
-            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -85,7 +84,6 @@
         footer {
             position: fixed;
             bottom: 0; left: 0; right: 0;
-            width: 100%;
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             gap: 20px;
@@ -125,9 +123,9 @@
         .column:nth-child(6) { animation-delay: 0.6s; }
 
         @media (max-width: 768px) {
-            footer { gap: 10px; padding: 20px 10px;}
-            header { padding: 15px 20px; }
-            .column h3 { font-size: 8px; }
+            footer { grid-template-columns: repeat(3, 1fr); gap: 15px; padding: 20px; }
+            header { padding: 15px 20px; font-size: 12px; }
+            .column h3 { font-size: 9px; }
         }
     </style>
 </head>
