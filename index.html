@@ -48,6 +48,7 @@
     gap: 8px;
   }
 
+  /* Active label next to nav-btn */
   .active-item {
     font-size: 22px;
     background: black;
@@ -58,10 +59,12 @@
     white-space: nowrap;
   }
 
+  /* Capsule-shaped nav button */
   .nav-btn {
-    width: 30px; height: 30px;
+    width: 30px;
+    height: 50px;        /* taller for capsule shape */
     border: 1.2px solid black;
-    border-radius: 50%;
+    border-radius: 25px; /* half of height = capsule */
     cursor: pointer;
     position: relative;
     flex-shrink: 0;
@@ -82,12 +85,13 @@
   ===================== */
   .menu-overlay {
     position: absolute;
-    top: 0;   /* vertical alignment with nav button / active label */
-    right: 35px;  /* horizontal alignment with active label */
+    top: 0;        /* vertical alignment with nav button */
+    right: 40px;   /* horizontal offset from nav button */
     display: none;
     flex-direction: column;
     padding: 0;
     z-index: 9999;
+    background: white;
   }
 
   .item {
@@ -131,6 +135,7 @@
 </style>
 </head>
 <body>
+
 <header>
   <div class="badge">
     In
@@ -145,10 +150,10 @@
 
   <nav>
     <div class="nav-container">
-      <!-- Active label will appear here after selection -->
+      <!-- Active label appears after selection -->
       <span class="active-item" id="active-label" style="display:none;"></span>
 
-      <!-- Nav button -->
+      <!-- Capsule nav button -->
       <div class="nav-btn" onclick="toggleMenu()"></div>
 
       <!-- Menu overlay -->
@@ -174,7 +179,15 @@
   const menuItems = document.querySelectorAll('.menu-overlay .item');
 
   function toggleMenu() {
-    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    if(menu.style.display === 'flex') {
+      menu.style.display = 'none';
+      // Show active label after closing menu
+      activeLabel.style.display = activeLabel.textContent ? 'inline-block' : 'none';
+    } else {
+      menu.style.display = 'flex';
+      // Hide active label while menu is open
+      activeLabel.style.display = 'none';
+    }
   }
 
   menuItems.forEach(item => {
@@ -194,5 +207,6 @@
     });
   });
 </script>
+
 </body>
 </html>
