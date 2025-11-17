@@ -4,15 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LiminalLoop</title>
-
   <style>
-    /* GLOBAL RESET + RESPONSIVE BOX MODEL */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: Arial, sans-serif;
       background: white;
@@ -20,7 +13,7 @@
     }
 
     /* ===============================
-       RESPONSIVE HEADER + NAV
+       HEADER + NAV
        =============================== */
     header {
       position: fixed;
@@ -30,7 +23,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: white;
       z-index: 1000;
     }
 
@@ -43,7 +35,6 @@
       flex-shrink: 1;
       min-width: 0; /* allows shrinking */
     }
-
     .spring-icon {
       width: 24px; height: 24px;
       flex-shrink: 0;
@@ -130,61 +121,21 @@
       color: white;
       padding: 40px 20px;
     }
-
     .title {
       font-size: 28px;
       font-weight: 600;
     }
-
     .thumbnail {
       width: 100%;
       margin-top: 20px;
     }
-
     .thumbnail img {
       width: 100%;
       height: auto;
     }
-
-    /* ===============================
-       RESPONSIVE TWEAKS
-       =============================== */
-
-    /* Phones */
-    @media (max-width: 480px) {
-      header {
-        padding: 12px 12px;
-      }
-      .badge {
-        font-size: 16px;
-      }
-      .active-item {
-        font-size: 16px;
-      }
-      .menu-button {
-        width: 28px;
-        height: 28px;
-      }
-      .item {
-        font-size: 16px;
-        padding: 4px 6px;
-      }
-    }
-
-    /* Very small screens */
-    @media (max-width: 360px) {
-      .badge {
-        font-size: 14px;
-      }
-      .active-item {
-        font-size: 14px;
-      }
-    }
-
   </style>
 </head>
 <body>
-
 <header>
   <div class="badge">
     In
@@ -240,6 +191,5 @@
     });
   });
 </script>
-
 </body>
 </html>
