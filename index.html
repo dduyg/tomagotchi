@@ -18,7 +18,7 @@
     padding: 14px 16px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: flex-start; /* top alignment */
     z-index: 1000;
     background: white;
   }
@@ -36,6 +36,12 @@
   }
 
   nav {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  /* Container to position overlay relative to nav button/active label */
+  .nav-container {
     position: relative;
     display: flex;
     align-items: flex-start;
@@ -54,12 +60,13 @@
 
   .nav-btn {
     width: 30px; height: 30px;
-    border: 1.2px solid;
+    border: 1.2px solid black;
     border-radius: 50%;
     cursor: pointer;
     position: relative;
     flex-shrink: 0;
   }
+
   .nav-btn::after {
     content: '';
     position: absolute;
@@ -75,8 +82,8 @@
   ===================== */
   .menu-overlay {
     position: absolute;
-    top: 0;          /* aligns vertically with nav button */
-    left: -100%;     /* places overlay to the left of nav-btn */
+    top: 0;   /* vertical alignment with nav button / active label */
+    left: 0;  /* horizontal alignment with active label */
     display: none;
     flex-direction: column;
     padding: 0;
@@ -139,16 +146,20 @@
   </div>
 
   <nav>
-    <!-- Active item will appear here dynamically -->
-    <span class="active-item" id="active-label" style="display:none;"></span>
+    <div class="nav-container">
+      <!-- Active label will appear here after selection -->
+      <span class="active-item" id="active-label" style="display:none;"></span>
 
-    <div class="nav-btn" onclick="toggleMenu()"></div>
+      <!-- Nav button -->
+      <div class="nav-btn" onclick="toggleMenu()"></div>
 
-    <div class="menu-overlay" id="menu">
-      <div class="item">Programming</div>
-      <div class="item">About</div>
-      <div class="item">Resources</div>
-      <div class="item">Locations</div>
+      <!-- Menu overlay -->
+      <div class="menu-overlay" id="menu">
+        <div class="item">Programming</div>
+        <div class="item">About</div>
+        <div class="item">Resources</div>
+        <div class="item">Locations</div>
+      </div>
     </div>
   </nav>
 </header>
@@ -165,11 +176,7 @@
   const menuItems = document.querySelectorAll('.menu-overlay .item');
 
   function toggleMenu() {
-    if(menu.style.display === 'flex') {
-      menu.style.display = 'none';
-    } else {
-      menu.style.display = 'flex';
-    }
+    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
   }
 
   menuItems.forEach(item => {
@@ -180,11 +187,11 @@
       // Set clicked item active
       item.classList.add('active');
 
-      // Update active label next to nav-btn
+      // Show active label next to nav button
       activeLabel.textContent = item.textContent;
       activeLabel.style.display = 'inline-block';
 
-      // Hide menu after selection
+      // Close menu
       menu.style.display = 'none';
     });
   });
