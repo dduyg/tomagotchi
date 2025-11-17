@@ -4,57 +4,76 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LiminalLoop</title>
+
   <style>
-    body {
+    /* GLOBAL RESET + RESPONSIVE BOX MODEL */
+    *, *::before, *::after {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+
+    body {
       font-family: Arial, sans-serif;
       background: white;
       overflow-x: hidden;
-    } 
+    }
 
+    /* ===============================
+       RESPONSIVE HEADER + NAV
+       =============================== */
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
       width: 100%;
-      padding: 20px;
+      padding: 14px 16px;
       display: flex;
       justify-content: space-between;
-      z-index: 1000;
+      align-items: center;
       background: white;
+      z-index: 1000;
     }
 
     .badge {
-      font-size: 20px;
+      font-size: 18px;
       font-style: italic;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 1;
+      min-width: 0; /* allows shrinking */
     }
 
     .spring-icon {
-      width: 30px; height: 30px;
-      display: inline-block;
+      width: 24px; height: 24px;
+      flex-shrink: 0;
     }
 
     nav {
       position: relative;
       display: flex;
-      gap: 9px;
       align-items: center;
+      gap: 8px;
+      flex-shrink: 0; /* prevents overflow */
     }
 
     .active-item {
-      font-size: 24px;
+      font-size: 18px;
       background: black;
       color: white;
-      padding: 2px 6px;
+      padding: 4px 8px;
       border-radius: 5px;
       text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .menu-button {
-      width: 32px; height: 32px;
+      width: 30px; height: 30px;
       border: 2px solid black;
       border-radius: 50%;
       cursor: pointer;
       position: relative;
+      flex-shrink: 0;
     }
     .menu-button::after {
       content: '';
@@ -66,6 +85,7 @@
       transform: translate(-50%, -50%);
     }
 
+    /* MENU DROPDOWN */
     .menu-overlay {
       position: absolute;
       top: 100%;
@@ -73,26 +93,27 @@
       display: none;
       flex-direction: column;
       padding-top: 10px;
-      z-index: 999;
+      z-index: 9999;
       background: white;
     }
 
     .item {
-      font-size: 24px;
-      margin: 10px 0;
+      font-size: 18px;
+      margin: 6px 0;
       border: 1.5px solid black;
       border-radius: 5px;
-      padding: 2px 6px;
+      padding: 4px 8px;
       width: fit-content;
       text-transform: uppercase;
       cursor: pointer;
+      background: white;
     }
 
     .close-btn {
-      width: 60px; height: 60px;
+      width: 50px; height: 50px;
       border: 1.5px solid black;
       border-radius: 50%;
-      font-size: 40px;
+      font-size: 32px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -100,6 +121,9 @@
       margin-top: 10px;
     }
 
+    /* ===============================
+       PAGE CONTENT
+       =============================== */
     .content {
       margin-top: 180px;
       background: black;
@@ -108,7 +132,7 @@
     }
 
     .title {
-      font-size: 32px;
+      font-size: 28px;
       font-weight: 600;
     }
 
@@ -121,6 +145,42 @@
       width: 100%;
       height: auto;
     }
+
+    /* ===============================
+       RESPONSIVE TWEAKS
+       =============================== */
+
+    /* Phones */
+    @media (max-width: 480px) {
+      header {
+        padding: 12px 12px;
+      }
+      .badge {
+        font-size: 16px;
+      }
+      .active-item {
+        font-size: 16px;
+      }
+      .menu-button {
+        width: 28px;
+        height: 28px;
+      }
+      .item {
+        font-size: 16px;
+        padding: 4px 6px;
+      }
+    }
+
+    /* Very small screens */
+    @media (max-width: 360px) {
+      .badge {
+        font-size: 14px;
+      }
+      .active-item {
+        font-size: 14px;
+      }
+    }
+
   </style>
 </head>
 <body>
