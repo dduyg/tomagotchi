@@ -1,285 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>rov6543333es</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LiminalLoop</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: white;
+      overflow-x: hidden;
+    }
 
-        body {
-            font-family: Georgia, serif;
-            background-color: #000;
-            color: #fff;
-        }
+  /* Header */
+  .header {
+    position: fixed;
+    top: 0; right: 0;
+    display: flex;
+    align-items: center;
+    padding: 20px 5%;
+    z-index: 1000;
+  }
 
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: #fff;
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-        }
+  .logo {
+    font-size: 28px;
+    font-weight: 700;
+    background: black;
+    color: white;
+    padding: 5px 15px;
+    margin-right: 15px;
+  }
 
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+  .menu-button {
+    width: 32px; height: 32px;
+    border: 2px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+  }
 
-        .logo {
-            font-size: 36px;
-            color: #000;
-            font-weight: normal;
-        }
+  .menu-button::after {
+    content: '';
+    position: absolute;
+    width: 6px; height: 6px;
+    background: black;
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-        .logo-spring {
-            display: inline-block;
-            position: relative;
-        }
+  /* Menu Overlay */
+  .menu-overlay {
+    position: fixed;
+    top: 0; right: 0;
+    width: 100%;
+    height: auto;
+    display: none;
+    flex-direction: column;
+    padding-top: 100px;
+    z-index: 999;
+    background: white;
+  }
 
-        .logo-spring::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 50%;
-            height: 20px;
-            border: 2px solid #000;
-            border-radius: 50%;
-            transform: translateY(-50%) scaleY(0.3);
-        }
+  .menu-item {
+    font-size: 48px;
+    font-weight: 600;
+    margin: 10px 20px;
+    border: 3px solid black;
+    padding: 10px 20px;
+    width: fit-content;
+  }
 
-        .logo-spring::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 30%;
-            height: 20px;
-            border: 2px solid #000;
-            border-radius: 50%;
-            transform: translateY(-50%) scaleY(0.3);
-        }
+  .close-btn {
+    width: 60px;
+    height: 60px;
+    border: 3px solid black;
+    border-radius: 50%;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 20px;
+    margin-top: 20px;
+  }
 
-        .active-page {
-            background: #000;
-            color: #fff;
-            padding: 8px 25px;
-            font-size: 24px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
+  /* Page Content */
+  .content {
+    margin-top: 180px;
+    background: black;
+    color: white;
+    padding: 40px 20px;
+  }
 
-        .menu-toggle {
-            width: 50px;
-            height: 50px;
-            border: 2px solid #000;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            background: #fff;
-            transition: all 0.3s;
-        }
+  .title {
+    font-size: 32px;
+    font-weight: 600;
+  }
 
-        .menu-dot {
-            width: 10px;
-            height: 10px;
-            background: #000;
-            border-radius: 50%;
-        }
+  .thumbnail {
+    width: 100%;
+    margin-top: 20px;
+  }
 
-        .menu-close {
-            font-size: 32px;
-            color: #000;
-            font-weight: 300;
-        }
-
-        /* Menu Overlay */
-        .menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: #fff;
-            z-index: 999;
-            display: none;
-            padding-top: 120px;
-        }
-
-        .menu-overlay.active {
-            display: block;
-        }
-
-        .menu-items {
-            padding-left: 260px;
-        }
-
-        .menu-item {
-            font-size: 48px;
-            color: #000;
-            padding: 20px 0;
-            border: 2px solid #000;
-            border-left: none;
-            border-right: none;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.3s;
-        }
-
-        .menu-item:hover {
-            background: #f0f0f0;
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-top: 80px;
-            padding: 40px;
-        }
-
-        .article-header {
-            text-align: left;
-            margin-bottom: 30px;
-        }
-
-        .article-title {
-            font-size: 48px;
-            font-weight: normal;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .article-subtitle {
-            font-size: 48px;
-            font-weight: normal;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .price {
-            font-size: 56px;
-            position: absolute;
-            right: 40px;
-            top: 300px;
-        }
-
-        .magazine-tag {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin: 30px 0;
-        }
-
-        .magazine-icon {
-            width: 60px;
-            height: 60px;
-            background: #8B4513;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-weight: bold;
-        }
-
-        .magazine-text {
-            font-size: 24px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .article-image {
-            width: 100%;
-            max-width: 800px;
-            margin-top: 30px;
-        }
-
-        .article-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-    </style>
+  .thumbnail img {
+    width: 100%;
+    height: auto;
+  }
+</style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="logo-section">
-            <div class="logo">
-                In<span class="logo-spring">s</span>ex
-            </div>
-            <div class="active-page" id="activePage">PROGRAMMING</div>
-        </div>
-        <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
-            <div class="menu-dot" id="menuDot"></div>
-            <div class="menu-close" id="menuClose" style="display: none;">×</div>
-        </div>
-    </header>
 
-    <!-- Menu Overlay -->
-    <div class="menu-overlay" id="menuOverlay">
-        <div class="menu-items">
-            <div class="menu-item" onclick="changePage('ABOUT')">ABOUT</div>
-            <div class="menu-item" onclick="changePage('RESOURCES')">RESOURCES</div>
-            <div class="menu-item" onclick="changePage('LOCATIONS')">LOCATIONS</div>
-        </div>
-    </div>
+<div class="header">
+  <div class="logo">INDEX</div>
+  <div class="menu-button" onclick="openMenu()"" onclick="openMenu()"></div>
+</div>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="article-header">
-            <h1 class="article-title">SEEKING THE OLIVE</h1>
-            <h2 class="article-subtitle">GROVES: A GUIDED TASTING</h2>
-            <div class="price">$30</div>
-        </div>
+<div class="menu-overlay" id="menu">
+  <div class="menu-item">PROGRAMMING</div>
+  <div class="menu-item">ABOUT</div>
+  <div class="menu-item">RESOURCES</div>
+  <div class="menu-item">LOCATIONS</div>
+  <div class="close-btn" onclick="closeMenu()">×</div>
+</div>
 
-        <div class="magazine-tag">
-            <div class="magazine-icon">📖</div>
-            <div class="magazine-text">OFF-MENU MAG</div>
-        </div>
+<div class="content">
+  <div class="title">SEEKING GROVES: A GUIDED TASTING — $30</div>
+  <p>OFF-MENU MAG</p>
+  <div class="thumbnail">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Olive_trees.jpg" alt="Olive Trees" />
+  </div>
+</div>
 
-        <div class="article-image">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600'%3E%3Crect fill='%2387CEEB' width='800' height='600'/%3E%3Ctext x='400' y='300' font-size='24' text-anchor='middle' fill='%23333'%3EOlive Grove Image%3C/text%3E%3C/svg%3E" alt="Olive groves against a blue sky">
-        </div>
-    </main>
-
-    <script>
-        function toggleMenu() {
-            const overlay = document.getElementById('menuOverlay');
-            const menuDot = document.getElementById('menuDot');
-            const menuClose = document.getElementById('menuClose');
-            
-            overlay.classList.toggle('active');
-            
-            if (overlay.classList.contains('active')) {
-                menuDot.style.display = 'none';
-                menuClose.style.display = 'block';
-            } else {
-                menuDot.style.display = 'block';
-                menuClose.style.display = 'none';
-            }
-        }
-
-        function changePage(pageName) {
-            document.getElementById('activePage').textContent = pageName;
-            toggleMenu();
-        }
-    </script>
+<script>
+  function openMenu() {
+    document.getElementById('menu').style.display = 'flex';
+  }
+  function closeMenu() {
+    document.getElementById('menu').style.display = 'none';
+  }
+</script>
 </body>
 </html>
