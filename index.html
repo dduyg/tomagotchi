@@ -21,7 +21,6 @@
     align-items: flex-start;
     z-index: 1000;
   }
-
   .badge {
     font-size: 32px;
     display: flex;
@@ -29,7 +28,6 @@
     flex-shrink: 1;
     min-width: 0;
   }
-
   .spring {
     width: 24px; height: 24px;
   }
@@ -38,8 +36,6 @@
     display: flex;
     align-items: flex-start;
   }
-
-  /* Container to position overlay relative to nav button/active label */
   .nav-container {
     position: relative;
     display: flex;
@@ -56,9 +52,9 @@
     white-space: nowrap;
   }
   .nav-btn {
-    width: 30px; height: 50px;
+    width: 30px; height: 40px;
     border: 1.2px solid black;
-    border-radius: 25px;
+    border-radius: 20px; /* half of height = capsule */
     cursor: pointer;
     position: relative;
     flex-shrink: 0;
@@ -78,15 +74,12 @@
   ===================== */
   .menu-overlay {
     position: absolute;
-    top: 0;        /* vertical alignment with nav button */
-    right: 40px;   /* horizontal offset from nav button */
+    top: 0; right: 40px;
     display: none;
     flex-direction: column;
     padding: 0;
     z-index: 9999;
-    background: white;
   }
-
   .item {
     font-size: 22px;
     margin: 6px 0;
@@ -98,10 +91,21 @@
     cursor: pointer;
     background: white;
   }
-
   .item.active {
     background: black;
     color: white;
+  }
+  .close-btn {
+    width: 50px; height: 50px;
+    border: 1.2px solid black;
+    background: white;
+    border-radius: 50%;
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 10px;
   }
 
   /* =====================
@@ -113,12 +117,10 @@
     color: white;
     padding: 40px 20px;
   }
-
   .title {
     font-size: 28px;
     font-weight: 600;
   }
-
   .thumbnail {
     margin-top: 20px;
     width: 100%;
@@ -155,6 +157,8 @@
         <div class="item">About</div>
         <div class="item">Resources</div>
         <div class="item">Locations</div>
+        <!-- Original close button -->
+        <div class="close-btn" onclick="closeMenu()">×</div>
       </div>
     </div>
   </nav>
@@ -174,13 +178,16 @@
   function toggleMenu() {
     if(menu.style.display === 'flex') {
       menu.style.display = 'none';
-      // Show active label after closing menu
       activeLabel.style.display = activeLabel.textContent ? 'inline-block' : 'none';
     } else {
       menu.style.display = 'flex';
-      // Hide active label while menu is open
       activeLabel.style.display = 'none';
     }
+  }
+
+  function closeMenu() {
+    menu.style.display = 'none';
+    activeLabel.style.display = activeLabel.textContent ? 'inline-block' : 'none';
   }
 
   menuItems.forEach(item => {
