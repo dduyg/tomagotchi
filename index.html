@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>roves</title>
+    <title>SeeGroves</title>
     <style>
         * {
             margin: 0;
@@ -12,137 +12,184 @@
         }
 
         body {
-            font-family: sans-serif;
+            font-family: Georgia, serif;
             background-color: white;
         }
 
         /* Header */
-        header {
+        .header {
             position: fixed;
-            left: 5%; right: 6%;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             z-index: 1000;
         }
 
-        .section {
+        .logo-section {
             display: flex;
             align-items: center;
             gap: 20px;
         }
 
-        .active-page {
-            background-color: #000;
-            color: #fff;
-            padding: 8px 40px;
-            border-radius: 10px;
-            font-size: 28px;
+        .logo {
+            font-size: 36px;
+            color: #000;
+            font-weight: normal;
         }
 
-        /* Menu Button */
-        .menu-button {
-            width: 60px; height: 60px;
+        .logo-spring {
+            display: inline-block;
+            position: relative;
+        }
+
+        .logo-spring::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 20px;
+            border: 2px solid #000;
             border-radius: 50%;
-            border: 3px solid #000;
-            background-color: #fff;
-            cursor: pointer;
+            transform: translateY(-50%) scaleY(0.3);
+        }
+
+        .logo-spring::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 30%;
+            height: 20px;
+            border: 2px solid #000;
+            border-radius: 50%;
+            transform: translateY(-50%) scaleY(0.3);
+        }
+
+        .active-page {
+            background: #000;
+            color: #fff;
+            padding: 8px 25px;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .menu-toggle {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #000;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px;
-            font-weight: bold;
-            transition: all 0.3s ease;
+            cursor: pointer;
+            background: #fff;
+            transition: all 0.3s;
         }
-        .menu-button:hover {
-            background-color: #f0f0f0;
+
+        .menu-dot {
+            width: 10px;
+            height: 10px;
+            background: #000;
+            border-radius: 50%;
+        }
+
+        .menu-close {
+            font-size: 32px;
+            color: #000;
+            font-weight: 300;
         }
 
         /* Menu Overlay */
         .menu-overlay {
             position: fixed;
-            top: 0; left: 0;
-            right: 0; bottom: 0;
-            background-color: pink; 
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #fff;
             z-index: 999;
             display: none;
-            padding-top: 30px;
+            padding-top: 120px;
         }
+
         .menu-overlay.active {
             display: block;
         }
 
-        .close-button {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            border: 3px solid #000;
-            background-color: #fff;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            font-weight: 300;
-        }
-
         .menu-items {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            padding-left: 30px;
+            padding-left: 260px;
         }
 
         .menu-item {
-            font-size: 28px;
+            font-size: 48px;
             color: #000;
-            text-decoration: none;
-            border: 3px solid #000;
-            border-radius: 15px;
-            padding: 15px 40px;
-            display: inline-block;
-            width: fit-content;
+            padding: 20px 0;
+            border: 2px solid #000;
+            border-left: none;
+            border-right: none;
+            cursor: pointer;
+            text-transform: uppercase;
             letter-spacing: 2px;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
         }
 
         .menu-item:hover {
-            background-color: #000;
-            color: #fff;
+            background: #f0f0f0;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="section">
+    <!-- Header -->
+    <header class="header">
+        <div class="logo-section">
+            <div class="logo">
+                In<span class="logo-spring">s</span>ex
+            </div>
             <div class="active-page" id="activePage">PROGRAMMING</div>
-            <button class="menu-button" onclick="openMenu()">•</button>
+        </div>
+        <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
+            <div class="menu-dot" id="menuDot"></div>
+            <div class="menu-close" id="menuClose" style="display: none;">×</div>
         </div>
     </header>
 
+    <!-- Menu Overlay -->
     <div class="menu-overlay" id="menuOverlay">
-        <nav class="menu-items">
-            <a href="#" class="menu-item" onclick="setActivePage('ABOUT')">ABOUT</a>
-            <a href="#" class="menu-item" onclick="setActivePage('RESOURCES')">RESOURCES</a>
-            <a href="#" class="menu-item" onclick="setActivePage('LOCATIONS')">LOCATIONS</a>
-            <button class="close-button" onclick="closeMenu()">×</button>
-        </nav>
-    </div>
+        <div class="menu-items">
+            <div class="menu-item" onclick="changePage('ABOUT')">ABOUT</div>
+            <div class="menu-item" onclick="changePage('RESOURCES')">RESOURCES</div>
+            <div class="menu-item" onclick="changePage('LOCATIONS')">LOCATIONS</div>
+        </div>
+    </div>  
 
     <script>
-        function openMenu() {
-            document.getElementById('menuOverlay').classList.add('active');
-        }
-        function closeMenu() {
-            document.getElementById('menuOverlay').classList.remove('active');
-        }
-        function setActivePage(pageName) {
-            document.getElementById('activePage').textContent = pageName;
-            closeMenu();
-        }
-        // Close menu when clicking outside
-        document.getElementById('menuOverlay').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeMenu();
+        function toggleMenu() {
+            const overlay = document.getElementById('menuOverlay');
+            const menuDot = document.getElementById('menuDot');
+            const menuClose = document.getElementById('menuClose');
+            
+            overlay.classList.toggle('active');
+            
+            if (overlay.classList.contains('active')) {
+                menuDot.style.display = 'none';
+                menuClose.style.display = 'block';
+            } else {
+                menuDot.style.display = 'block';
+                menuClose.style.display = 'none';
             }
-        });
+        }
+
+        function changePage(pageName) {
+            document.getElementById('activePage').textContent = pageName;
+            toggleMenu();
+        }
     </script>
 </body>
 </html>
