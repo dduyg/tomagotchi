@@ -15,15 +15,13 @@
   /* Header */
   .header {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 0; left: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
     z-index: 1000;
-    background: white;
   }
 
   .logo {
@@ -36,35 +34,31 @@
     background: black;
     color: white;
     padding: 5px 15px;
-    margin-left: 20px;
+    margin-right: 15px;
   }
 
   .menu-button {
     width: 32px;
     height: 32px;
-    border: 2px solid black;
+    border: 1.5px solid black;
     border-radius: 50%;
     cursor: pointer;
     position: relative;
   }
-
   .menu-button::after {
     content: '';
     position: absolute;
-    width: 6px;
-    height: 6px;
+    width: 6px; height: 6px;
     background: black;
     border-radius: 50%;
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
   }
 
   /* Menu Overlay */
   .menu-overlay {
     position: fixed;
-    top: 0;
-    right: 0;
+    top: 0; right: 0;
     width: 100%;
     height: auto;
     display: none;
@@ -125,8 +119,10 @@
 
 <div class="header">
   <div class="logo">Index</div>
-  <div class="prog">PROGRAMMING</div>
-  <div class="menu-button" onclick="openMenu()"" onclick="openMenu()"></div>
+  <div>
+    <div class="prog">PROGRAMMING</div>
+    <div class="menu-button" onclick="openMenu()"" onclick="openMenu()"></div>
+  </div>
 </div>
 
 <div class="menu-overlay" id="menu">
