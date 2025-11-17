@@ -15,19 +15,6 @@
             overflow: hidden;
         }
 
-        header {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            z-index: 100;
-            font-size: 14px;
-            letter-spacing: 2px;
-            font-weight: bold;
-        }
-
         /* Main Content Area */
         main {
             flex: 1;
@@ -55,75 +42,12 @@
             background: radial-gradient(circle, rgba(255, 180, 120, 0.5), transparent 70%);
             filter: blur(50px);
             border-radius: 50%;
-        }
-
-        footer {
-            position: fixed;
-            bottom: 0; left: 0; right: 0;
-            padding: 30px 40px;
-            z-index: 100;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 20px;
-        }
-        .item { position: relative; }
-        .line {
-            width: 100%;
-            height: 2px;
-            background-color: white;
-            margin-bottom: 10px;
-        }
-        .name {
-            font-size: 11px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-
-        @media (max-width: 768px) {
-            .grid { grid-template-columns: repeat(3, 1fr); gap: 15px; }         
-            header { padding: 15px 20px; font-size: 12px; }       
-            footer { padding: 20px; }     
-            .name { font-size: 9px; }
-        }
+        }   
     </style>
 </head>
 <body>
-    <header><div>04</div><div>08</div></header>
     <main>
       <!-- Background visual effects are created with CSS -->
     </main>
-
-    <footer>
-        <div class="grid">
-            <div class="item">
-                <div class="line"></div>
-                <div class="name">ETHEREAL GLOW</div>
-            </div>
-            <div class="item">
-                <div class="line"></div>
-                <div class="name">ROSE MIRAGE</div>
-            </div>
-            <div class="item">
-                <div class="line"></div>
-                <div class="name">VELVET MYSTIQUE</div>
-            </div>
-            <div class="item">
-                <div class="line"></div>
-                <div class="name">GOLDEN HOUR</div>
-            </div>
-            <div class="item">
-                <div class="line"></div>
-                <div class="name">MIDNIGHT DREAMS</div>
-            </div>
-            <div class="item">
-                <div class="line"></div>
-                <div class="name">SILVER LIGHT</div>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>
