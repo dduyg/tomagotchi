@@ -1,130 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LiminalLoop</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }   
-    body {
-      font-family: sans-serif;
-      background: white;
-      overflow-x: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LiminalLoop</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: sans-serif; background: white; overflow-x: hidden; }
 
-    /* ===============================
-       HEADER + NAV
-       =============================== */
-    header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      width: 100%;
-      padding: 14px 10% 14px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      z-index: 1000;
-    }
-    .badge {
-      font-size: 32px;
-      display: flex;
-      align-items: center;
-      flex-shrink: 1;
-      min-width: 0; /* allows shrinking */
-    }
-    .spring {
-      width: 24px; height: 24px;
-    }
+  /* ===== HEADER ===== */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    width: 100%;
+    padding: 14px 10% 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    z-index: 1000;
+  }
 
-    nav {
-      position: relative;
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      flex-shrink: 0; /* prevents overflow */
-    }
-    .active-item {
-      font-size: 22px;
-      background: black;
-      color: white;
-      padding: 2px 4px;
-      border-radius: 5px;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-    .nav-btn {
-      width: 30px; height: 30px;
-      border: 1.2px solid;
-      border-radius: 50%;
-      cursor: pointer;
-      position: relative;
-      flex-shrink: 0;
-    }
-    .nav-btn::after {
-      content: '';
-      position: absolute;
-      width: 4px; height: 4px;
-      background: black;
-      border-radius: 50%;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-    }
+  .badge {
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+  }
+  .spring { width: 24px; height: 24px; }
 
-    /* MENU DROPDOWN */
-    .menu-overlay {
-      position: absolute;
-      top: 100%; left: 0;
-      display: none;
-      flex-direction: column;
-      padding-top: 10px;
-      z-index: 9999;
-    }
-    .item {
-      font-size: 22px;
-      margin: 6px 0;
-      border: 1.2px solid;
-      border-radius: 5px;
-      padding: 2px 4px;
-      width: fit-content;
-      text-transform: uppercase;
-      cursor: pointer;
-      background: white;
-    }
-    .close-btn {
-      width: 50px; height: 50px;
-      border: 1.2px solid;
-      background: white;
-      border-radius: 50%;
-      font-size: 32px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      margin-top: 10px;
-    }
+  nav {
+    position: relative;
+  }
 
-    /* ===============================
-       PAGE CONTENT
-       =============================== */
-    .content {
-      margin-top: 180px;
-      background: black;
-      color: white;
-      padding: 40px 20px;
-    }
-    .title {
-      font-size: 28px;
-      font-weight: 600;
-    }
-    .thumbnail {
-      margin-top: 20px;
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-  </style>
+  .nav-btn {
+    width: 30px; height: 30px;
+    border: 1.2px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+  }
+  .nav-btn::after {
+    content: '';
+    position: absolute;
+    width: 4px; height: 4px;
+    background: black;
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* ===== MENU OVERLAY ===== */
+  .menu-overlay {
+    position: absolute;
+    bottom: 100%; /* above nav-btn */
+    right: 0; /* align left edge where active-item was */
+    display: none;
+    flex-direction: column;
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    z-index: 9999;
+  }
+
+  .item {
+    font-size: 22px;
+    margin: 6px 0;
+    border: 1.2px solid black;
+    border-radius: 5px;
+    padding: 2px 4px;
+    width: fit-content;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .item.active {
+    background: black;
+    color: white;
+  }
+
+  .close-btn {
+    width: 50px; height: 50px;
+    border: 1.2px solid black;
+    background: white;
+    border-radius: 50%;
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  /* ===== PAGE CONTENT ===== */
+  .content {
+    margin-top: 180px;
+    background: black;
+    color: white;
+    padding: 40px 20px;
+  }
+  .title { font-size: 28px; font-weight: 600; }
+  .thumbnail {
+    margin-top: 20px;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+</style>
 </head>
 <body>
+
 <header>
   <div class="badge">
     In
@@ -138,14 +121,13 @@
   </div>
 
   <nav>
-    <div class="active-item">Index</div>
-    <div class="nav-btn" onclick="openMenu()"></div>
+    <div class="nav-btn" onclick="toggleMenu()"></div>
 
     <div class="menu-overlay" id="menu">
-      <div class="item">Programming</div>
-      <div class="item">About</div>
-      <div class="item">Resources</div>
-      <div class="item">Locations</div>
+      <div class="item" data-name="Programming">Programming</div>
+      <div class="item" data-name="About">About</div>
+      <div class="item" data-name="Resources">Resources</div>
+      <div class="item" data-name="Locations">Locations</div>
       <div class="close-btn" onclick="closeMenu()">×</div>
     </div>
   </nav>
@@ -158,22 +140,34 @@
 </div>
 
 <script>
-  function openMenu() {
-    document.getElementById('menu').style.display = 'flex';
+  const menu = document.getElementById('menu');
+  const menuItems = document.querySelectorAll('.menu-overlay .item');
+
+  function toggleMenu() {
+    menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
   }
+
   function closeMenu() {
-    document.getElementById('menu').style.display = 'none';
+    menu.style.display = 'none';
   }
-  document.addEventListener("DOMContentLoaded", () => {
-    const activeItem = document.querySelector(".active-item");
-    const menuItems = document.querySelectorAll(".menu-overlay .item");
-    menuItems.forEach(item => {
-      item.addEventListener("click", () => {
-        activeItem.textContent = item.textContent;
-        closeMenu();
-      });
+
+  // Add click events for items
+  menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      // Remove active from others
+      menuItems.forEach(i => i.classList.remove('active'));
+      // Set this item active
+      item.classList.add('active');
+      closeMenu();
     });
   });
+
+  // Optional: Remember last active item on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    const firstActive = document.querySelector('.menu-overlay .item.active');
+    if (!firstActive) menuItems[0].classList.add('active');
+  });
 </script>
+
 </body>
 </html>
