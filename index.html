@@ -6,79 +6,81 @@
   <title>Vaporwave Navigation</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
-    /* Global Styles */
     body {
       margin: 0;
       font-family: 'Press Start 2P', cursive;
-      background: #a0e7e5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      color: #fff;
     }
 
     nav {
       display: flex;
-      gap: 2rem;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 1rem 2rem;
-      border-radius: 15px;
-      backdrop-filter: blur(10px);
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px 0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
     }
-    nav a {
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 50px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
       position: relative;
-      text-decoration: none;
-      color: #fff;
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      transition: color 0.3s ease;
+      font-size: 14px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.2s, color 0.2s;
     }
-    nav a::before, nav a::after {
-      content: attr(data-text);
+
+    nav ul li:hover {
+      color: #00fff7;
+      transform: scale(1.1);
+    }
+
+    /* Pixel-art save-disk motif */
+    .save-disk::before {
+      content: "💾";
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      opacity: 0.8;
-      color: #ff00ff;
-      z-index: -1;
-      transition: all 0.3s ease;
+      left: -25px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
     }
-    nav a::after {
-      color: #00ffff;
-      z-index: -2;
-      transform: translate(2px, 2px);
+
+    /* Optional: vaporwave underline effect */
+    nav ul li::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      height: 2px;
+      background: #00fff7;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
     }
-    nav a:hover::before {
-      transform: translate(-2px, 2px);
-      opacity: 1;
-    }
-    nav a:hover::after {
-      transform: translate(2px, -2px);
-      opacity: 1;
-    }
-    nav a:hover {
-      color: #ffea00;
-    }
-    @keyframes glitch {
-      0% { clip: rect(0, 9999px, 0, 0); }
-      5% { clip: rect(5px, 9999px, 50px, 0); }
-      10% { clip: rect(20px, 9999px, 40px, 0); }
-      15% { clip: rect(0px, 9999px, 30px, 0); }
-      20% { clip: rect(15px, 9999px, 25px, 0); }
-      25% { clip: rect(10px, 9999px, 35px, 0); }
-      30% { clip: rect(0, 9999px, 0, 0); }
-      100% { clip: rect(0, 9999px, 0, 0); }
-    }
-    nav a:hover {
-      animation: glitch 0.5s infinite;
+
+    nav ul li:hover::after {
+      transform: scaleX(1);
     }
   </style>
 </head>
 <body>
+
   <nav>
-    <a href="#" data-text="ABOUT">ABOUT</a>
-    <a href="#" data-text="SERVICES">SERVICES</a>
-    <a href="#" data-text="ARCHIVE">ARCHIVE</a>
+    <ul>
+      <li>Lobby</li>
+      <li>Palm Drive</li>
+      <li>Analog Archive</li>
+      <li class="save-disk">System Memory</li>
+      <li>Cyber Plaza</li>
+    </ul>
   </nav>
+
 </body>
 </html>
