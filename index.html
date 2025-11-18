@@ -3,90 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vaporwave VHS Nav</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <title>Vaporwave Navigation</title>
   <style>
-    /* Global styles */
-    body {
+    /* Reset */
+    * {
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #ff77ff, #77ffff);
-      font-family: 'Press Start 2P', cursive;
+      box-sizing: border-box;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ffb6b9, #8fd3f4);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
 
-    /* Navigation container */
     nav {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 2px solid #fff;
+      border-radius: 12px;
+      padding: 20px 40px;
       display: flex;
-      gap: 40px;
+      gap: 30px;
     }
 
-    /* Navigation items */
     nav a {
-      position: relative;
       color: #fff;
       text-decoration: none;
-      font-size: 16px;
-      letter-spacing: 2px;
-      padding: 10px 20px;
-      text-transform: uppercase;
-      transition: color 0.3s;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+      position: relative;
     }
 
-    /* VHS glitch effect */
-    nav a::before,
-    nav a::after {
-      content: attr(data-text);
+    /* Pixel-art save-disk */
+    .save-disk {
+      width: 24px;
+      height: 24px;
+      background: #ff00ff;
+      border: 2px solid #fff;
+      position: relative;
+    }
+
+    .save-disk::before {
+      content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 4px;
+      left: 4px;
+      width: 16px;
+      height: 16px;
+      background: #00ffff;
+      border: 1px solid #fff;
+    }
+
+    nav a:hover {
       color: #ff00ff;
-      clip: rect(0, 0, 0, 0);
-      animation: none;
+      transform: scale(1.1);
     }
 
-    nav a::after {
-      color: #00ffff;
+    nav a:hover .save-disk {
+      animation: spin 1s linear infinite;
     }
 
-    nav a:hover::before {
-      animation: glitchTop 0.3s infinite linear alternate-reverse;
-    }
-
-    nav a:hover::after {
-      animation: glitchBottom 0.3s infinite linear alternate-reverse;
-    }
-
-    /* Keyframes for glitch */
-    @keyframes glitchTop {
-      0% { clip: rect(0, 9999px, 2px, 0); transform: translate(-2px, -2px); }
-      20% { clip: rect(5px, 9999px, 8px, 0); transform: translate(2px, 2px); }
-      40% { clip: rect(10px, 9999px, 14px, 0); transform: translate(-1px, 1px); }
-      60% { clip: rect(15px, 9999px, 20px, 0); transform: translate(1px, -1px); }
-      80% { clip: rect(20px, 9999px, 24px, 0); transform: translate(-2px, 2px); }
-      100% { clip: rect(0, 9999px, 2px, 0); transform: translate(0, 0); }
-    }
-
-    @keyframes glitchBottom {
-      0% { clip: rect(25px, 9999px, 28px, 0); transform: translate(2px, 2px); }
-      20% { clip: rect(30px, 9999px, 34px, 0); transform: translate(-2px, -2px); }
-      40% { clip: rect(35px, 9999px, 38px, 0); transform: translate(1px, -1px); }
-      60% { clip: rect(40px, 9999px, 44px, 0); transform: translate(-1px, 1px); }
-      80% { clip: rect(45px, 9999px, 48px, 0); transform: translate(2px, -2px); }
-      100% { clip: rect(25px, 9999px, 28px, 0); transform: translate(0, 0); }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
   <nav>
-    <a href="#" data-text="Analog Archive">Analog Archive</a>
-    <a href="#" data-text="Palm Drive">Palm Drive</a>
-    <a href="#" data-text="System Memory">System Memory</a>
+    <a href="#">
+      <span class="save-disk"></span>
+      System Memory
+    </a>
+    <a href="#">Lobby</a>
+    <a href="#">Palm Drive</a>
+    <a href="#">Analog Archive</a>
+    <a href="#">Cyber Plaza</a>
   </nav>
 </body>
 </html>
