@@ -1,213 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>Lïmïñål🌴Lððþ</title>
- <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap" rel="stylesheet">
- <link href="https://fonts.googleapis.com/css2?family=Zalando+Sans+SemiExpanded:wght@290&display=swap" rel="stylesheet">
- <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; outline: none; -webkit-tap-highlight-color: transparent; }
-  body { font-family: Arial, sans-serif; text-transform: uppercase; background: white; overflow-x: hidden; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vaporwave Chrome Nav</title>
 
-  /* =====================
-     HEADER
-  ===================== */
-  header {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    width: 100%;
-    padding: 14px 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-  }
-  .badge {
-    font-size: 25px;
-    display: flex;
-    align-items: center;
-    font-family: "Instrument Serif", serif;
-    text-transform: none;
-  }
-  .spring { width: 25px; height: 25px; }
+<style>
+    body {
+        margin: 0;
+        font-family: "Orbitron", sans-serif;
+        background: #000;
+        color: white;
+        overflow-x: hidden;
+    }
 
-  nav {
-    display: flex;
-    align-items: flex-end;
-  }
-  .nav-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .active-item {
-    font-size: 28px;
-    background: black;
-    color: white;
-    padding: 2px 3px;
-    line-height: 0.9;
-    border: 1.2px solid black;
-    border-radius: 5px;
-    white-space: nowrap;
-  }
-  .nav-btn {
-    width: 30px; height: 36px;
-    border: 1.2px solid;
-    border-radius: 18px; /* half of height = capsule */
-    cursor: pointer;
-    position: relative;
-    flex-shrink: 0;
-  }
-  .nav-btn::after {
-    content: '';
-    position: absolute;
-    width: 5px; height: 5px;
-    background: black;
-    border-radius: 50%;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-  }
+    /* --- Vaporwave Grid Floor Background --- */
+    body::before {
+        content: "";
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 200%;
+        height: 50vh;
+        background:
+            linear-gradient(#ff00ff55 1px, transparent 1px),
+            linear-gradient(90deg, #00ffff55 1px, transparent 1px);
+        background-size: 40px 40px;
+        transform: perspective(500px) rotateX(70deg);
+        transform-origin: bottom;
+        z-index: -1;
+        animation: gridMove 10s linear infinite;
+        opacity: 0.6;
+    }
 
-  /* =====================
-     MENU DROPDOWN
-  ===================== */
-  .menu-overlay {
-    position: absolute;
-    top: 0; right: 40px;
-    display: none;
-    flex-direction: column;
-    font-family: "Zalando Sans SemiExpanded", sans-serif;
-    z-index: 9999;
-  }
-  .item {
-    font-size: 28px;
-    margin: 4.5px 0;
-    border: 1.2px solid;
-    background: white;
-    border-radius: 5px;
-    padding: 2px 3px;
-    line-height: 0.9;
-    width: fit-content;
-    cursor: pointer;
-  }
-  .item.active {
-    background: black;
-    color: white;
-    border: 1.2px solid black;
-  }
-  .close-btn {
-    width: 40px; height: 40px;
-    border: 1.2px solid;
-    background: white;
-    border-radius: 50%;
-    font-size: 32px;
-    margin-top: 4.5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    text-transform: none;
-    cursor: pointer;
-  }
+    @keyframes gridMove {
+        0% { background-position-y: 0; }
+        100% { background-position-y: 40px; }
+    }
 
-  /* =====================
-     PAGE CONTENT
-  ===================== */
-  .content {
-    margin-top: 180px;
-    background: black;
-    color: white;
-    padding: 40px 20px;
-  }
-  .title {
-    font-size: 28px;
-    font-weight: 600;
-  }
-  .thumbnail {
-    margin-top: 20px;
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-  }
+    /* --- Navigation Bar --- */
+    nav {
+        width: 100%;
+        padding: 20px 0;
+        text-align: center;
+        background: linear-gradient(to right, #000000aa, #111111aa, #000000aa);
+        backdrop-filter: blur(4px);
+        position: fixed;
+        top: 0;
+        z-index: 10;
+    }
+
+    nav a {
+        margin: 0 25px;
+        font-size: 28px;
+        text-decoration: none;
+        display: inline-block;
+        color: #fff;
+        position: relative;
+        font-weight: 700;
+        letter-spacing: 2px;
+
+        /* Chrome Text Effect */
+        background: linear-gradient(
+            180deg,
+            #e0e0e0 0%,
+            #ffffff 20%,
+            #c0c0c0 45%,
+            #707070 50%,
+            #ffffff 75%,
+            #d0d0d0 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 10px #ff00ff88,
+                     0 0 20px #00ffff55;
+        transition: transform 0.2s, text-shadow 0.2s;
+    }
+
+    nav a:hover {
+        transform: scale(1.15);
+        text-shadow: 0 0 15px #ff66ffcc,
+                     0 0 25px #00ffffaa;
+    }
+
+    /* Space below navbar */
+    .spacer {
+        height: 120px;
+    }
+
 </style>
+
+<!-- Orbitron font for retro-future aesthetic -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
-<header>
-  <div class="badge">
-    Ha
-    <svg class="spring" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="15" cy="8" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/>
-      <ellipse cx="15" cy="12" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/>
-      <ellipse cx="15" cy="16" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/>
-      <ellipse cx="15" cy="20" rx="8" ry="3" fill="none" stroke="#000" stroke-width="1"/>
-    </svg>
-    ku
-  </div>
+<nav>
+    <a href="#">Cyber Plaza</a>
+    <a href="#">Analog Archive</a>
+    <a href="#">Palm Drive</a>
+    <a href="#">System Memory</a>
+</nav>
 
-  <nav>
-    <div class="nav-container">
-      <!-- Active label appears after selection -->
-      <span class="active-item" id="active-label" style="display:none;"></span>
-      
-      <div class="nav-btn" onclick="toggleMenu()"></div>
+<div class="spacer"></div>
 
-      <div class="menu-overlay" id="menu">
-        <div class="item">Palm Drive</div>
-        <div class="item">Cache</div>
-        <div class="item">Directory</div>
-        <div class="item">Resources</div>
-        <div class="item">Abyssal</div>
-        <div class="close-btn" onclick="closeMenu()">×</div>
-      </div>
-    </div>
-  </nav>
-</header>
-
-<div class="content">
-  <div class="title">Blockchained Souls</div>
-  <p>Shadows on the Surface</p>
-  <img class="thumbnail" src="https://images.unsplash.com/photo-1580920659896-7e8663eb956a">
-</div>
-
-<script>
-  const menu = document.getElementById('menu');
-  const activeLabel = document.getElementById('active-label');
-  const menuItems = document.querySelectorAll('.menu-overlay .item');
-
-  function toggleMenu() {
-    if(menu.style.display === 'flex') {
-      menu.style.display = 'none';
-      activeLabel.style.display = activeLabel.textContent ? 'inline-block' : 'none';
-    } else {
-      menu.style.display = 'flex';
-      activeLabel.style.display = 'none';
-    }
-  }
-
-  function closeMenu() {
-    menu.style.display = 'none';
-    activeLabel.style.display = activeLabel.textContent ? 'inline-block' : 'none';
-  }
-
-  menuItems.forEach(item => {
-    item.addEventListener('click', () => {
-      // Remove active from all items
-      menuItems.forEach(i => i.classList.remove('active'));
-
-      // Set clicked item active
-      item.classList.add('active');
-
-      // Show active label next to nav button
-      activeLabel.textContent = item.textContent;
-      activeLabel.style.display = 'inline-block';
-
-      // Close menu
-      menu.style.display = 'none';
-    });
-  });
-</script>
 </body>
 </html>
