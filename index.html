@@ -70,6 +70,33 @@
         font-size: 22px;
         text-align: right;
       }
+      main a {
+        color: inherit;
+        text-decoration: none;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        position: relative;
+      }
+      main a:hover {
+        color: #00fff7;
+        transform: scale(1.1);
+      }
+      main a::after {
+        content: '';
+        position: absolute;
+        left: 0; bottom: -5px;
+        width: 100%; height: 2px;
+        background: #00fff7;
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+      }
+      main a:hover::after {
+        transform: scaleX(1);
+      }
 
       .badge {
         position: fixed;
@@ -93,11 +120,11 @@
   </nav>
 
   <main>
-    You are a river of power.<br>
-    You are a river of power.<br>
-    You are a river of power.<br>
-    You are a river of power.<br>
-    You are a river of power.
+    <a href="#">You are a river of power.</a><br>
+    <a href="#">You are a river of power.</a><br>
+    <a href="#">You are a river of power.</a><br>
+    <a href="#">You are a river of power.</a><br>
+    <a href="#">You are a river of power.</a>
   </main>
 
 <div class="badge" id="badge">Index</div>
