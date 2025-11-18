@@ -10,14 +10,13 @@
     body {
       margin: 0;
       font-family: 'Press Start 2P', cursive;
-      background: linear-gradient(135deg, #ffb3c1, #a0e7e5);
+      background: #a0e7e5;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
 
-    /* Navigation Styles */
     nav {
       display: flex;
       gap: 2rem;
@@ -26,7 +25,6 @@
       border-radius: 15px;
       backdrop-filter: blur(10px);
     }
-
     nav a {
       position: relative;
       text-decoration: none;
@@ -35,42 +33,32 @@
       letter-spacing: 2px;
       transition: color 0.3s ease;
     }
-
-    nav a::before,
-    nav a::after {
+    nav a::before, nav a::after {
       content: attr(data-text);
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       opacity: 0.8;
       color: #ff00ff;
       z-index: -1;
       transition: all 0.3s ease;
     }
-
     nav a::after {
       color: #00ffff;
       z-index: -2;
       transform: translate(2px, 2px);
     }
-
     nav a:hover::before {
       transform: translate(-2px, 2px);
       opacity: 1;
     }
-
     nav a:hover::after {
       transform: translate(2px, -2px);
       opacity: 1;
     }
-
     nav a:hover {
       color: #ffea00;
     }
-
-    /* Optional: VHS static animation */
     @keyframes glitch {
       0% { clip: rect(0, 9999px, 0, 0); }
       5% { clip: rect(5px, 9999px, 50px, 0); }
@@ -81,20 +69,16 @@
       30% { clip: rect(0, 9999px, 0, 0); }
       100% { clip: rect(0, 9999px, 0, 0); }
     }
-
     nav a:hover {
       animation: glitch 0.5s infinite;
     }
-
   </style>
 </head>
 <body>
   <nav>
-    <a href="#" data-text="HOME">HOME</a>
     <a href="#" data-text="ABOUT">ABOUT</a>
     <a href="#" data-text="SERVICES">SERVICES</a>
     <a href="#" data-text="ARCHIVE">ARCHIVE</a>
-    <a href="#" data-text="CONTACT">CONTACT</a>
   </nav>
 </body>
 </html>
