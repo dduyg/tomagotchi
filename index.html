@@ -5,13 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>𝔏เ๓เภคℓ🎚ℓ๏๏ק</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Courier New', Courier, monospace;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
     body {
       background: linear-gradient(135deg, #ffb6b9, #8fd3f4);
       display: flex;
@@ -41,48 +35,28 @@
       cursor: pointer;
       position: relative;
     }
-
-    /* Pixel-art save-disk */
-    .save-disk {
-      width: 24px;
-      height: 24px;
-      background: #ff00ff;
-      border: 2px solid #fff;
-      position: relative;
-    }
-
-    .save-disk::before {
-      content: '';
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      width: 16px;
-      height: 16px;
-      background: #00ffff;
-      border: 1px solid #fff;
-    }
-
     nav a:hover {
-      color: #ff00ff;
+      color: #00fff7;
       transform: scale(1.1);
     }
 
-    nav a:hover .save-disk {
-      animation: spin 1s linear infinite;
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -5px;
+      width: 100%; height: 2px;
+      background: #00fff7;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
     }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    nav a:hover::after {
+      transform: scaleX(1);
     }
   </style>
 </head>
 <body>
   <nav>
-    <a href="#">
-      <span class="save-disk"></span>
-      System Memory
-    </a>
+    <a href="#">System Memory</a>
     <a href="#">Lobby</a>
     <a href="#">Analog Archive</a>
     <a href="#">Cyber Plaza</a>
