@@ -4,89 +4,83 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vaporwave Navigation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Courier New', Courier, monospace;
-    }
-
     body {
-      background: linear-gradient(135deg, #ffb6b9, #8fd3f4);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      margin: 0;
+      font-family: 'Press Start 2P', cursive;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      color: #fff;
     }
 
     nav {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border: 2px solid #fff;
-      border-radius: 12px;
-      padding: 20px 40px;
       display: flex;
-      gap: 30px;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px 0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
     }
 
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 1.2rem;
+    nav ul {
+      list-style: none;
       display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.3s ease;
+      gap: 50px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
       position: relative;
+      font-size: 14px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.2s, color 0.2s;
     }
 
-    /* Pixel-art save-disk */
-    .save-disk {
-      width: 24px;
-      height: 24px;
-      background: #ff00ff;
-      border: 2px solid #fff;
-      position: relative;
-    }
-
-    .save-disk::before {
-      content: '';
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      width: 16px;
-      height: 16px;
-      background: #00ffff;
-      border: 1px solid #fff;
-    }
-
-    nav a:hover {
-      color: #ff00ff;
+    nav ul li:hover {
+      color: #00fff7;
       transform: scale(1.1);
     }
 
-    nav a:hover .save-disk {
-      animation: spin 1s linear infinite;
+    /* Pixel-art save-disk motif */
+    .save-disk::before {
+      content: "💾";
+      position: absolute;
+      left: -25px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
     }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    /* Optional: vaporwave underline effect */
+    nav ul li::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      height: 2px;
+      background: #00fff7;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    nav ul li:hover::after {
+      transform: scaleX(1);
     }
   </style>
 </head>
 <body>
+
   <nav>
-    <a href="#">
-      <span class="save-disk"></span>
-      System Memory
-    </a>
-    <a href="#">Lobby</a>
-    <a href="#">Palm Drive</a>
-    <a href="#">Analog Archive</a>
-    <a href="#">Cyber Plaza</a>
+    <ul>
+      <li>Lobby</li>
+      <li>Palm Drive</li>
+      <li>Analog Archive</li>
+      <li class="save-disk">System Memory</li>
+      <li>Cyber Plaza</li>
+    </ul>
   </nav>
+
 </body>
 </html>
