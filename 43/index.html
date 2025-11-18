@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>li๓iຖคll໐໐p</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oranienbaum&display=swap" rel="stylesheet">
   <style>
       * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
       @font-face {
@@ -63,6 +64,14 @@
         vertical-align: middle;
         filter: drop-shadow(0 0 5px #fff);
       }
+
+      .badge {
+        position: fixed;
+        bottom: 4%; right: 6%;
+        font-size: 30px;
+        display: inline-block;   
+        font-family: "Oranienbaum", serif;
+      }
   </style>
 </head>
 <body>
@@ -76,5 +85,32 @@
     <a href="#">System Memory</a>
     <a href="#">Cyber Plaza</a>
   </nav>
+
+
+<div class="badge" id="badge">Index</div>
+<script>
+const badge = document.getElementById('badge');
+const text = "Index";
+const symbols = ['◓', '▲', '☍', '▣', '⛃', '♆', '⛬', '☋', '✂', '✾', '✣', '⛮', '✹', '✦', '☙', '❥'];
+
+function animateOneLetter() {
+    const chars = text.split('');
+    
+    // Pick a random index to replace
+    const randomIndex = Math.floor(Math.random() * chars.length);
+    
+    // Pick a random symbol
+    const randomSymbol = symbols[Math.floor(Math.random() * symbols.length)];
+    
+    // Replace that index with the symbol
+    chars[randomIndex] = randomSymbol;
+    
+    // Update badge
+    badge.textContent = chars.join('');
+}
+
+// Animate every 800ms (slower)
+setInterval(animateOneLetter, 800);
+</script>
 </body>
 </html>
