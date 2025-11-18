@@ -1,71 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vaporwave Navigation</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #f3e5f5, #b2ebf2);
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vaporwave Navigation</title>
+<style>
+  /* Body background and font */
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+    color: #fff;
+  }
 
-    nav {
-      display: flex;
-      justify-content: center;
-      background: linear-gradient(90deg, #ffb6c1, #b0e0e6);
-      padding: 1rem 0;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
+  /* Navigation bar styling */
+  nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+  }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-      margin: 0;
-      padding: 0;
-    }
+  /* Nav links */
+  nav a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    position: relative;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+  }
 
-    nav li {
-      position: relative;
-    }
+  /* Hover effect */
+  nav a::after {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 0;
+    background: #fff;
+    transition: width 0.3s;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
 
-    nav a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: 700;
-      font-size: 1.1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: all 0.3s ease;
-    }
+  nav a:hover::after {
+    width: 100%;
+  }
 
-    nav a:hover {
-      transform: scale(1.1);
-      color: #ffde59;
-    }
-
-    .icon {
-      width: 24px;
-      height: 24px;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Head_of_Apollo_Belvedere_Musei_Vaticani.jpg/240px-Head_of_Apollo_Belvedere_Musei_Vaticani.jpg') no-repeat center center;
-      background-size: cover;
-      border-radius: 50%;
-    }
-  </style>
+  /* Icon styling */
+  .icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+    vertical-align: middle;
+    filter: drop-shadow(0 0 5px #fff);
+  }
+</style>
 </head>
 <body>
-  <nav>
-    <ul>
-      <li><a href="#"><span class="icon"></span>Lobby</a></li>
-      <li><a href="#">Palm Drive</a></li>
-      <li><a href="#">Analog Archive</a></li>
-      <li><a href="#">System Memory</a></li>
-      <li><a href="#">Cyber Plaza</a></li>
-    </ul>
-  </nav>
+
+<nav>
+  <a href="#">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Head_of_Apollo_Belvedere_Louvre_Ma399.jpg/64px-Head_of_Apollo_Belvedere_Louvre_Ma399.jpg" alt="Statue" class="icon">
+    Lobby
+  </a>
+  <a href="#">Palm Drive</a>
+  <a href="#">Analog Archive</a>
+  <a href="#">System Memory</a>
+  <a href="#">Cyber Plaza</a>
+</nav>
+
 </body>
 </html>
