@@ -1,84 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LiminalLoop</title>
-
+<title>🎛🪢📿</title>
 <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
     body {
-        margin: 0;
-        padding: 40px;
         font-family: Arial, sans-serif;
-        background: white;
+        background: #f5f5f5;
+        padding: 25px;
     }
 
-    .row {
+    .wrapper {
         display: flex;
         align-items: center;
-        justify-content: center;
-        flex-wrap: nowrap;     /* keep everything on one line */
-        width: 100%;
-        overflow: hidden;      /* prevents spilling off-screen */
-        gap: 20px;
+        margin: 260px auto 0;
     }
 
-    .block {
+    .side-number {
+        margin-right: 15px;
+        font-size: 14px;
+    }
+
+    .panel {
+        width: 90%;
+        padding: 40px 0;
+        border: 1px solid #000;
+        background: #f7f7f7;
         display: flex;
+        justify-content: space-around;
         align-items: center;
+    }
+
+    .circle {
+        border: 1px solid #000;
+        border-radius: 50%;
+        display: flex;
         justify-content: center;
-        padding: 20px 30px;
-        flex-shrink: 1;
+        align-items: center;
+        font-size: 16px;
     }
 
-    .blue {
-        background: #bcd3eb;
-    }
-
-    .pink {
-        background: #f6c7cc;
-    }
-
-    .letter {
-        font-size: clamp(40px, 10vw, 120px);
-        font-weight: 300;
-        font-family: "Helvetica Neue", sans-serif;
-        white-space: nowrap;
-    }
-
-    .face-svg {
-        width: clamp(60px, 15vw, 120px);
-        height: auto;
-        flex-shrink: 0;
-    }
+    /* Sizes matching the visual proportions */
+    .c6 { width: 150px; height: 150px; }
+    .c5 { width: 120px; height: 120px; }
+    .c4 { width: 100px; height: 100px; }
+    .c3 { width: 75px; height: 75px; }
+    .c2 { width: 55px; height: 55px; }
+    .c1 { width: 40px; height: 40px; }
 </style>
 </head>
 <body>
 
-<div class="row">
+<div class="wrapper">
+    <div class="side-number">21</div>
 
-    <div class="block blue">
-        <span class="letter">R.</span>
+    <div class="panel">
+        <div class="circle c6">6</div>
+        <div class="circle c5">5</div>
+        <div class="circle c4">4</div>
+        <div class="circle c3">3</div>
+        <div class="circle c2">2</div>
+        <div class="circle c1">1</div>
     </div>
-
-    <svg class="face-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 272 296">
-        <g transform="translate(0,296) scale(0.1,-0.1)">
-            <path d="M622 2730 c-15 -26 -22 -30 -64 -30 -26 0 -59 -5 -74 -10 -41 -16 -16 -33 53 -36 57 -3 58 -4 57 -31 -1 -15 -57 -174 -124 -353 -240 -640 -309 -889 -340 -1231 -19 -205 12 -394 80 -487 91 -127 254 -142 379 -36 l32 27 32 -30 c51 -48 95 -66 162 -66 66 0 136 29 188 78 l28 26 27 -29 c73 -78 192 -98 288 -49 64 33 140 115 186 202 l35 67 37 -65 c20 -36 60 -91 89 -123 158 -173 370 -130 534 108 131 189 213 425 260 743 25 169 24 527 -1 680 -80 482 -303 718 -556 590 -122 -62 -264 -259 -346 -479 -18 -49 -18 -49 -25 -20 -12 47 -51 428 -47 455 3 21 9 25 58 29 69 6 72 24 4 28 -48 3 -51 5 -63 38 -16 45 -47 43 -70 -3 l-16 -33 -105 1 c-171 2 -219 10 -233 39 -18 37 -44 37 -65 1 l-17 -31 -157 0 c-146 0 -158 1 -158 18 0 21 -18 42 -37 42 -8 0 -22 -13 -31 -30z"/>
-            <path d="M1835 2061 c-46 -20 -115 -112 -115 -156 0 -26 29 -17 45 15 20 39 74 100 89 100 7 0 10 -17 8 -49 -7 -89 44 -127 74 -56 43 104 -11 182 -101 146z"/>
-            <path d="M2215 2054 c-44 -22 -105 -108 -105 -149 0 -26 29 -17 45 15 19 36 74 100 86 100 5 0 9 -24 9 -53 0 -60 17 -91 46 -85 44 8 56 155 14 178 -27 14 -60 12 -95 -6z"/>
-            <path d="M1835 1821 c-63 -26 -148 -171 -100 -171 8 0 21 13 30 30 20 39 74 100 89 100 7 0 10 -17 8 -49 -7 -89 44 -127 74 -56 43 104 -11 182 -101 146z"/>
-            <path d="M2225 1821 c-63 -26 -148 -171 -100 -171 8 0 21 13 30 30 19 36 74 100 86 100 5 0 9 -24 9 -53 0 -60 17 -91 46 -86 42 9 56 136 18 174 -17 16 -57 19 -89 6z"/>
-            <path d="M2022 1570 c-38 -24 -94 -107 -90 -134 6 -37 26 -27 56 27 33 59 63 84 108 89 18 2 29 9 29 18 0 24 -64 24 -103 0z"/>
-            <path d="M1840 1277 c0 -20 20 -42 64 -71 71 -47 179 -28 234 42 31 40 -9 60 -44 21 -57 -63 -141 -63 -198 0 -21 23 -56 28 -56 8z"/>
-            <path d="M1843 1083 c-9 -22 54 -78 105 -94 52 -15 100 -5 151 32 46 33 59 55 43 71 -8 8 -20 3 -44 -17 -18 -15 -48 -34 -67 -42 -30 -13 -39 -13 -76 1 -23 9 -52 28 -65 41 -27 29 -38 31 -47 8z"/>
-        </g>
-    </svg>
-
-    <div class="block pink">
-        <span class="letter">C&amp;S</span>
-    </div>
-
 </div>
-
 </body>
 </html>
