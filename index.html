@@ -1,69 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>🎛🪢📿</title>
+<title>Replicated Logo Page</title>
+
 <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
     body {
+        margin: 0;
+        padding: 40px;
         font-family: Arial, sans-serif;
-        background: #f5f5f5;
-        padding: 25px;
+        background: white;
     }
 
-    .wrapper {
+    .row {
         display: flex;
         align-items: center;
-        margin: 260px auto 0;
+        gap: 20px;
     }
 
-    .side-number {
-        margin-right: 15px;
-        font-size: 14px;
-    }
-
-    .panel {
-        width: 90%;
-        padding: 40px 0;
-        border: 1px solid #000;
-        background: #fff;
+    .block {
         display: flex;
-        justify-content: space-around;
         align-items: center;
-    }
-
-    .circle {
-        border: 1px solid #000;
-        border-radius: 50%;
-        display: flex;
         justify-content: center;
-        align-items: center;
-        font-size: 16px;
+        padding: 20px 30px;
     }
 
-    /* Sizes matching the visual proportions */
-    .c6 { width: 150px; height: 150px; }
-    .c5 { width: 120px; height: 120px; }
-    .c4 { width: 100px; height: 100px; }
-    .c3 { width: 75px; height: 75px; }
-    .c2 { width: 55px; height: 55px; }
-    .c1 { width: 40px; height: 40px; }
+    .blue {
+        background: #bcd3eb;
+    }
+
+    .pink {
+        background: #f6c7cc;
+    }
+
+    .letter {
+        font-size: 140px;
+        font-weight: 300;
+        font-family: "Helvetica Neue", sans-serif;
+    }
+
+    .face-svg {
+        width: 160px;
+        height: 140px;
+    }
 </style>
 </head>
+
 <body>
 
-<div class="wrapper">
-    <div class="side-number">21</div>
+<div class="row">
 
-    <div class="panel">
-        <div class="circle c6">6</div>
-        <div class="circle c5">5</div>
-        <div class="circle c4">4</div>
-        <div class="circle c3">3</div>
-        <div class="circle c2">2</div>
-        <div class="circle c1">1</div>
+    <!-- Left blue block with "R." -->
+    <div class="block blue">
+        <span class="letter">R.</span>
     </div>
+
+    <!-- Middle hand-drawn scribble + face -->
+    <svg class="face-svg" viewBox="0 0 200 200">
+        <!-- Scribble loops -->
+        <path d="M60 40 C40 80, 70 120, 50 160" stroke="black" stroke-width="4" fill="none"/>
+        <path d="M90 40 C70 80, 100 120, 80 160" stroke="black" stroke-width="4" fill="none"/>
+        <path d="M120 40 C100 80, 130 120, 110 160" stroke="black" stroke-width="4" fill="none"/>
+
+        <!-- Face oval -->
+        <ellipse cx="150" cy="100" rx="40" ry="70" stroke="black" stroke-width="5" fill="none"/>
+
+        <!-- Eyes -->
+        <ellipse cx="138" cy="85" rx="6" ry="10" fill="black"/>
+        <ellipse cx="162" cy="85" rx="6" ry="10" fill="black"/>
+
+        <!-- Mouth -->
+        <path d="M135 120 Q150 135 165 120" stroke="black" stroke-width="4" fill="none"/>
+    </svg>
+
+    <!-- Right pink block with "C&S" -->
+    <div class="block pink">
+        <span class="letter">C&amp;S</span>
+    </div>
+
 </div>
+
 </body>
 </html>
