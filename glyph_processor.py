@@ -1,5 +1,5 @@
 """
-Glyph Processor  
+🎛 Glyph Processor  
 - Upload images → Process → Download renamed images + metadata  
 - Unique timestamp + UUID filenames  
 - Shape detection via image analysis  
@@ -179,7 +179,7 @@ def process_glyphs(input_folder, output_folder, github_user="your-username", git
 
 # ---------------------- SCRIPT INTERFACE ----------------------
 
-print("🎛𝙶𝙻𝚈𝙿𝙷 𝙿𝚁𝙾𝙲𝙴𝚂𝚂𝙾𝚁 (𝘷𝘪𝘴𝘶𝘢𝘭 𝘴𝘩𝘢𝘱𝘦 + 𝘤𝘰𝘭𝘰𝘳 𝘥𝘦𝘵𝘦𝘤𝘵𝘪𝘰𝘯)")
+print("🎛 𝙶𝙻𝚈𝙿𝙷 𝙿𝚁𝙾𝙲𝙴𝚂𝚂𝙾𝚁 (𝘷𝘪𝘴𝘶𝘢𝘭 𝘴𝘩𝘢𝘱𝘦 + 𝘤𝘰𝘭𝘰𝘳 𝘥𝘦𝘵𝘦𝘤𝘵𝘪𝘰𝘯)")
 
 # Install OpenCV if not already
 !pip install opencv-python-headless
@@ -205,7 +205,7 @@ github_repo = input("GitHub repo name: ").strip() or "glyph-library"
 print("Processing images …")
 result_dir, glyphs = process_glyphs(input_dir, output_dir, github_user, github_repo)
 
-print("\n📦 Where to save the ZIP in Google Drive?")
+print("\n🗂️ Where to save the ZIP in Google Drive?")
 drive_folder = input("Enter Drive folder name (e.g. 3d-glyph-library): ").strip() or "3d-glyph-library"
 if not os.path.exists("/content/drive"):
     drive.mount("/content/drive")
@@ -221,6 +221,6 @@ with zipfile.ZipFile(zip_path, 'w') as zipf:
             arc = os.path.relpath(full, output_dir)
             zipf.write(full, arc)
 
-print(f"🔘 ZIP saved to: {zip_path}")
+print(f"📦 ZIP saved to: {zip_path}")
 
 print("🎊 All done!")
