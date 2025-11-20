@@ -241,7 +241,7 @@ elif choice == "2":
         try:
             existing_file = repo.get_contents(repo_path, ref=branch)
             repo.update_file(existing_file.path, f"Update {file_path.name}", content, existing_file.sha, branch=branch)
-            print(f"♻️ Updated {repo_path}")
+            print(f"🌀 Updated {repo_path}")
         except Exception:
             repo.create_file(repo_path, f"Add {file_path.name}", content, branch=branch)
             print(f"☑️ Uploaded {repo_path}")
