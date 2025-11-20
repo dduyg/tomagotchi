@@ -1,35 +1,33 @@
 """
-🎛 GLYPH PROCESSOR 
-- Upload images → Process → Generated renamed images + metadata  
-- Unique timestamp + UUID filenames  
-- Shape detection via image analysis  
-- Save ZIP to folder
+🎛 GLYPH PROCESSOR
+- Upload images → Process → Generate renamed images + metadata
+- Shape detection via image analysis
+- Color analysis
+- Unique timestamp + UUID filenames
+- Save options:
+    1. Local ZIP
+    2. Upload directly to GitHub via API (images → glyphs/, data → data/)
 """
 
 import os
 import json
 import colorsys
-import zipfile
 import uuid
 import math
 from pathlib import Path
 from collections import Counter
-from datetime import datetime
+from datetime import datetime, timezone
+import shutil
+import zipfile
+from getpass import getpass
 
 from PIL import Image
-from google.colab import files, drive
-
 import cv2
 import numpy as np
-import shutil
 
 # ---------------------- SHAPE DETECTION ----------------------
 
 def detect_shape_from_image(image_path):
-    """
-    Detect a basic shape category (circle, square, rectangle, triangle, polygon) from the image.
-    Uses contour analysis with OpenCV.
-    """
     img = cv2.imread(str(image_path))
     if img is None:
         return "unknown"
@@ -37,20 +35,16 @@ def detect_shape_from_image(image_path):
     blurred = cv2.GaussianBlur(gray, (5, 5), 0)
     _, thresh = cv2.threshold(blurred, 128, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
     contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
     if not contours:
         return "unknown"
-
     c = max(contours, key=cv2.contourArea)
     area = cv2.contourArea(c)
     peri = cv2.arcLength(c, True)
     if peri == 0:
         return "unknown"
-
     approx = cv2.approxPolyDP(c, 0.04 * peri, True)
     circularity = 4 * math.pi * (area / (peri * peri))
     num_vertices = len(approx)
-
     if circularity > 0.8:
         return "circle"
     elif num_vertices == 4:
@@ -109,7 +103,7 @@ def get_color_name(rgb):
     if h < 290: return "purple"
     return "pink"
 
-# ---------------------- PROCESSING GLYPH ----------------------
+# ---------------------- PROCESSING GLYPHS ----------------------
 
 def process_glyphs(input_folder, output_folder, github_user="your-username", github_repo="glyph-library"):
     os.makedirs(output_folder, exist_ok=True)
@@ -122,19 +116,18 @@ def process_glyphs(input_folder, output_folder, github_user="your-username", git
         color_name = get_color_name(dominant_rgb)
         lab = rgb_to_lab(dominant_rgb)
 
-        with Image.open(image_path) as img:
-            width, height = img.size
-
         shape = detect_shape_from_image(image_path)
-        now = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
+        now = datetime.now(timezone.utc)  # timezone-aware UTC
+        date_str = now.strftime("%Y-%m-%d")
+        time_str = now.strftime("%H:%M:%S")
         unique_id = uuid.uuid4().hex[:8]
 
-        new_filename = f"{shape}_{hex_color}_{now}_{unique_id}.png"
+        new_filename = f"{shape}_{hex_color}_{now.strftime('%Y%m%d_%H%M%S')}_{unique_id}.png"
         out_path = Path(output_folder) / new_filename
         shutil.copy2(image_path, out_path)
 
         glyph_data = {
-            "id": f"{shape}_{hex_color}_{now}_{unique_id}",
+            "id": f"{shape}_{hex_color}_{now.strftime('%Y%m%d_%H%M%S')}_{unique_id}",
             "filename": new_filename,
             "original_filename": image_path.name,
             "shape": shape,
@@ -144,12 +137,12 @@ def process_glyphs(input_folder, output_folder, github_user="your-username", git
                 "rgb": list(dominant_rgb),
                 "lab": [round(x,2) for x in lab]
             },
-            "dimensions": {"width": width, "height": height}
+            "timestamp": {"date": date_str, "time": time_str}
         }
         glyphs.append(glyph_data)
         print(f"Processed {image_path.name} → {new_filename}")
 
-    metadata = {"version": "1.0", "total": len(glyphs), "glyphs": glyphs}
+    metadata = {"version": "3.0", "total": len(glyphs), "glyphs": glyphs}
     json_path = Path(output_folder) / "glyphs-metadata.json"
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(metadata, f, indent=2)
@@ -166,8 +159,8 @@ def process_glyphs(input_folder, output_folder, github_user="your-username", git
             f"rgb:{g['color']['rgb']},"
             f"lab:{g['color']['lab']},"
             f"colorName:'{g['color']['name']}',"
-            f"width:{g['dimensions']['width']},"
-            f"height:{g['dimensions']['height']}"
+            f"date:'{g['timestamp']['date']}',"
+            f"time:'{g['timestamp']['time']}'"
             "},\n"
         )
     js_code += "];\n"
@@ -175,52 +168,93 @@ def process_glyphs(input_folder, output_folder, github_user="your-username", git
     with open(js_path, 'w', encoding='utf-8') as f:
         f.write(js_code)
 
-    return output_folder, glyphs
+    return output_folder, glyphs, json_path, js_path
 
 # ---------------------- INTERACTION LAYER ----------------------
 
 print("🎛 𝙶𝙻𝚈𝙿𝙷 𝙿𝚁𝙾𝙲𝙴𝚂𝚂𝙾𝚁 (𝘷𝘪𝘴𝘶𝘢𝘭 𝘴𝘩𝘢𝘱𝘦 + 𝘤𝘰𝘭𝘰𝘳 𝘥𝘦𝘵𝘦𝘤𝘵𝘪𝘰𝘯)")
 
-# Install OpenCV if not already
-!pip install opencv-python-headless
+!pip install -q opencv-python-headless PyGithub
 
+from google.colab import files
+from github import Github
+
+# Upload images
 uploaded = files.upload()
 if not uploaded:
     print("✖️ No files uploaded.")
     raise SystemExit
 
-input_dir = "/content/input_glyphs"
-output_dir = "/content/output_glyphs"
-os.makedirs(input_dir, exist_ok=True)
+input_dir = Path("/content/input_glyphs")
+output_dir = Path("/content/output_glyphs")
+input_dir.mkdir(exist_ok=True)
+output_dir.mkdir(exist_ok=True)
 
 for fname, content in uploaded.items():
-    with open(f"{input_dir}/{fname}", 'wb') as f:
+    with open(input_dir / fname, 'wb') as f:
         f.write(content)
 
 print(f"☑️ Uploaded {len(uploaded)} images")
 
-github_user = input("GitHub username: ").strip() or "your-username"
-github_repo = input("GitHub repo name: ").strip() or "glyph-library"
+# ---------------------- PROCESS ----------------------
+
+github_user = input("GitHub username (for metadata URLs, optional): ").strip() or "your-username"
+github_repo = input("GitHub repo name (for metadata URLs, optional): ").strip() or "glyph-library"
 
 print("Processing images …")
-result_dir, glyphs = process_glyphs(input_dir, output_dir, github_user, github_repo)
+result_dir, glyphs, json_path, js_path = process_glyphs(input_dir, output_dir, github_user, github_repo)
 
-print("\n🗂️ Where to save the ZIP in Google Drive?")
-drive_folder = input("Enter Drive folder name (e.g. 3d-glyph-library): ").strip() or "3d-glyph-library"
-if not os.path.exists("/content/drive"):
-    drive.mount("/content/drive")
+# ---------------------- SAVE OPTION ----------------------
 
-save_folder = Path(f"/content/drive/MyDrive/{drive_folder}")
-save_folder.mkdir(parents=True, exist_ok=True)
-zip_path = save_folder / "glyphs_processed.zip"
+print("\n🗂️ Where would you like to save the processed files?")
+print("1 = Local ZIP")
+print("2 = Upload directly to GitHub via API")
+choice = input("Choose 1 or 2: ").strip()
 
-with zipfile.ZipFile(zip_path, 'w') as zipf:
-    for root, dirs, files_list in os.walk(output_dir):
-        for f in files_list:
-            full = os.path.join(root, f)
-            arc = os.path.relpath(full, output_dir)
-            zipf.write(full, arc)
+zip_name = "glyphs_processed.zip"
 
-print(f"📦 ZIP saved to: {zip_path}")
+if choice == "1":
+    zip_path = Path(f"/content/{zip_name}")
+    with zipfile.ZipFile(zip_path, 'w') as zipf:
+        for root, dirs, files_list in os.walk(output_dir):
+            for f in files_list:
+                full = os.path.join(root, f)
+                arc = os.path.relpath(full, output_dir)
+                zipf.write(full, arc)
+    save_path = input("Enter local folder path to save ZIP: ").strip()
+    save_folder = Path(save_path)
+    save_folder.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(zip_path, save_folder / zip_name)
+    print(f"📦 ZIP saved locally to: {save_folder / zip_name}")
+
+elif choice == "2":
+    gh_token = getpass("GitHub Personal Access Token (with repo permissions): ").strip()
+    branch = input("Branch name (default: main): ").strip() or "main"
+
+    g = Github(gh_token)
+    repo = g.get_user().get_repo(github_repo)
+
+    def upload_or_update(repo, file_path, repo_path, branch):
+        """Upload file or update if it exists"""
+        with open(file_path, "rb") as f:
+            content = f.read()
+        try:
+            existing_file = repo.get_contents(repo_path, ref=branch)
+            repo.update_file(existing_file.path, f"Update {file_path.name}", content, existing_file.sha, branch=branch)
+            print(f"♻️ Updated {repo_path}")
+        except Exception:
+            repo.create_file(repo_path, f"Add {file_path.name}", content, branch=branch)
+            print(f"✅ Uploaded {repo_path}")
+
+    # Upload images
+    for f in Path(output_dir).glob("*.png"):
+        upload_or_update(repo, f, f"glyphs/{f.name}", branch)
+
+    # Upload metadata files
+    for f in [json_path, js_path]:
+        upload_or_update(repo, f, f"data/{f.name}", branch)
+
+else:
+    print("Invalid option. Files remain in /content/output_glyphs.")
 
 print("🎊 All done!")
