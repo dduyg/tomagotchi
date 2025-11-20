@@ -1,5 +1,5 @@
 """
-🎛 Glyph Processor  
+🎛 GLYPH PROCESSOR 
 - Upload images → Process → Generated renamed images + metadata  
 - Unique timestamp + UUID filenames  
 - Shape detection via image analysis  
