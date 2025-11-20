@@ -179,7 +179,7 @@ def process_glyphs(input_folder, output_folder, github_user="your-username", git
 
 # ---------------------- SCRIPT INTERFACE ----------------------
 
-print("🎛 GLYPH PROCESSOR (visual shape + color detection)")
+print("🎛𝙶𝙻𝚈𝙿𝙷 𝙿𝚁𝙾𝙲𝙴𝚂𝚂𝙾𝚁 (𝘷𝘪𝘴𝘶𝘢𝘭 𝘴𝘩𝘢𝘱𝘦 + 𝘤𝘰𝘭𝘰𝘳 𝘥𝘦𝘵𝘦𝘤𝘵𝘪𝘰𝘯)")
 
 # Install OpenCV if not already
 !pip install opencv-python-headless
