@@ -23,7 +23,7 @@ import cv2
 import numpy as np
 import shutil
 
-# ---------------------- SHAPE DETECTION FUNCTIONS ----------------------
+# ---------------------- SHAPE DETECTION ----------------------
 
 def detect_shape_from_image(image_path):
     """
@@ -62,7 +62,7 @@ def detect_shape_from_image(image_path):
     else:
         return "polygon"
 
-# ---------------------- COLOR FUNCTIONS ----------------------
+# ---------------------- COLOR ANALYSIS ----------------------
 
 def get_dominant_color(image_path):
     try:
@@ -109,7 +109,7 @@ def get_color_name(rgb):
     if h < 290: return "purple"
     return "pink"
 
-# ---------------------- PROCESSING FUNCTION ----------------------
+# ---------------------- PROCESSING GLYPH ----------------------
 
 def process_glyphs(input_folder, output_folder, github_user="your-username", github_repo="glyph-library"):
     os.makedirs(output_folder, exist_ok=True)
