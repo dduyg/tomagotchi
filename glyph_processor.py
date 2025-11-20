@@ -198,8 +198,8 @@ print(f"☑️ Uploaded {len(uploaded)} images")
 
 # ---------------------- PROCESS ----------------------
 
-github_user = input("GitHub username (for metadata URLs, optional): ").strip() or "your-username"
-github_repo = input("GitHub repo name (for metadata URLs, optional): ").strip() or "glyph-library"
+github_user = input("👤 GitHub username: ").strip() or "your-username"
+github_repo = input("🗃️ GitHub repo name: ").strip() or "glyph-library"
 
 print("Processing images …")
 result_dir, glyphs, json_path, js_path = process_glyphs(input_dir, output_dir, github_user, github_repo)
@@ -207,8 +207,8 @@ result_dir, glyphs, json_path, js_path = process_glyphs(input_dir, output_dir, g
 # ---------------------- SAVE OPTION ----------------------
 
 print("\n🗂️ Where would you like to save the processed files?")
-print("1 = Local ZIP")
-print("2 = Upload directly to GitHub via API")
+print("1️⃣ = Local ZIP")
+print("2️⃣ = Upload directly to GitHub via API")
 choice = input("Choose 1 or 2: ").strip()
 
 zip_name = "glyphs_processed.zip"
@@ -244,7 +244,7 @@ elif choice == "2":
             print(f"♻️ Updated {repo_path}")
         except Exception:
             repo.create_file(repo_path, f"Add {file_path.name}", content, branch=branch)
-            print(f"✅ Uploaded {repo_path}")
+            print(f"☑️ Uploaded {repo_path}")
 
     # Upload images
     for f in Path(output_dir).glob("*.png"):
