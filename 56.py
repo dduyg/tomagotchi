@@ -179,7 +179,7 @@ def process_glyphs(input_folder, output_folder, github_user="your-username", git
 
 # ---------------------- SCRIPT INTERFACE ----------------------
 
-print("🎛𝙶𝙻𝚈𝙿𝙷 𝙿𝚁𝙾𝙲𝙴𝚂𝚂𝙾𝚁 (𝘷𝘪𝘴𝘶𝘢𝘭 𝘴𝘩𝘢𝘱𝘦 + 𝘤𝘰𝘭𝘰𝘳 𝘥𝘦𝘵𝘦𝘤𝘵𝘪𝘰𝘯)")
+print("🎛𝙶𝙻𝚈𝙿𝙷 𝙿𝚁𝙾𝙲𝙴𝚂𝚂𝙾𝚁 (visual shape + color detection)")
 
 # Install OpenCV if not already
 !pip install opencv-python-headless
@@ -222,9 +222,5 @@ with zipfile.ZipFile(zip_path, 'w') as zipf:
             zipf.write(full, arc)
 
 print(f"🔘 ZIP saved to: {zip_path}")
-
-print("\nCopy this JS for your HTML:")
-with open(Path(output_dir) / "glyph-data.js", 'r') as f:
-    print(f.read())
 
 print("🎊 All done!")
