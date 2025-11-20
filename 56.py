@@ -1,5 +1,5 @@
 """
-Google Colab Glyph Processor  
+Glyph Processor  
 - Upload images → Process → Download renamed images + metadata  
 - Unique timestamp + UUID filenames  
 - Shape detection via image analysis  
@@ -177,16 +177,16 @@ def process_glyphs(input_folder, output_folder, github_user="your-username", git
 
     return output_folder, glyphs
 
-# ---------------------- COLAB INTERFACE ----------------------
+# ---------------------- SCRIPT INTERFACE ----------------------
 
-print("🎨 GLYPH PROCESSOR (timestamp + visual shape detection)")
+print("🎛 GLYPH PROCESSOR (visual shape + color detection)")
 
 # Install OpenCV if not already
 !pip install opencv-python-headless
 
 uploaded = files.upload()
 if not uploaded:
-    print("❌ No files uploaded.")
+    print("✖️ No files uploaded.")
     raise SystemExit
 
 input_dir = "/content/input_glyphs"
@@ -197,7 +197,7 @@ for fname, content in uploaded.items():
     with open(f"{input_dir}/{fname}", 'wb') as f:
         f.write(content)
 
-print(f"✓ Uploaded {len(uploaded)} images")
+print(f"☑️ Uploaded {len(uploaded)} images")
 
 github_user = input("GitHub username: ").strip() or "your-username"
 github_repo = input("GitHub repo name: ").strip() or "glyph-library"
@@ -221,10 +221,10 @@ with zipfile.ZipFile(zip_path, 'w') as zipf:
             arc = os.path.relpath(full, output_dir)
             zipf.write(full, arc)
 
-print(f"✅ ZIP saved to: {zip_path}")
+print(f"🔘 ZIP saved to: {zip_path}")
 
 print("\nCopy this JS for your HTML:")
 with open(Path(output_dir) / "glyph-data.js", 'r') as f:
     print(f.read())
 
-print("🎉 All done!")
+print("🎊 All done!")
