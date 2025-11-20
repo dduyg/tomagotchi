@@ -1,9 +1,9 @@
 """
 🎛 Glyph Processor  
-- Upload images → Process → Download renamed images + metadata  
+- Upload images → Process → Generated renamed images + metadata  
 - Unique timestamp + UUID filenames  
 - Shape detection via image analysis  
-- Save ZIP to Google Drive folder
+- Save ZIP to folder
 """
 
 import os
