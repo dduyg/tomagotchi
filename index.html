@@ -46,19 +46,15 @@
         z-index: 2;
     }
 
-    /* Retro circle w/ stripes */
-    .circle {
+    .retro-circle {
         position: absolute;
         width: 250px;
         height: 250px;
         background: #27a8a8;
         border-radius: 50%;
         border: 5px solid black;
-        z-index: 1; /* behind left & divider */
-        left: 50%; /* start at the middle */
-        transform: translateX(-125px); /* shift half-width left to show half-circle */
+        left: -125px;
     }
-
     .stripe {
         position: absolute;
         width: 150%;
@@ -67,7 +63,6 @@
         border-bottom: 6px solid black;
         transform: rotate(-15deg);
     }
-
     .stripe:nth-child(1) { top: 60px; left: -30px; }
     .stripe:nth-child(2) { top: 115px; left: -30px; }
     .stripe:nth-child(3) { top: 170px; left: -30px; }
@@ -90,16 +85,13 @@
         display: flex;
         flex-direction: column;
     }
-
     .swatch {
         width: 60px;
         height: 30px;
     }
-
     .swatch.teal { background: #30A9A3; }
     .swatch.orange { background: #e64a2e; }
     .swatch.pink { background: #d24892; }
-
 </style>
 </head>
 <body>
@@ -110,7 +102,7 @@
     </div>
 
     <div class="right">
-        <div class="circle">
+        <div class="retro-circle">
             <div class="stripe"></div>
             <div class="stripe"></div>
             <div class="stripe"></div>
