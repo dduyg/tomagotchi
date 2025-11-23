@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Liminal🫖Loop</title>
     <style>
+        * {margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent;}
         body {
-            margin: 0; padding: 0;
             background: #ffffff;
             font-family: Arial, sans-serif;
             overflow: hidden;
@@ -24,7 +24,7 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            z-index: 2; /* on top of circle */
+            z-index: 2;
         }
         .right-white {
             position: absolute;
@@ -42,74 +42,74 @@
             left: 50%; top: 0; bottom: 0;
             transform: translateX(-50%);
             z-index: 2;
-    }
+        }
 
-    .retro-circle {
-        position: absolute;
-        width: 250px; height: 250px;
-        background: #2C9D9B;
-        border-radius: 50%;
-        border-bottom: 4px solid black;
-        overflow: hidden;
-        left: -125px;
-    }
-    .stripe {
-        position: absolute;
-        width: 150%; height: 14px;
-        background: white;
-        border-top: 4px solid black;
-        transform: rotate(-25deg);
-    }
-    .stripe:nth-child(1) { top: 30px; left: -30px; }
-    .stripe:nth-child(2) { top: 70px; left: -30px; }
-    .stripe:nth-child(3) { top: 110px; left: -30px; }
+        .retro-circle {
+            position: absolute;
+            width: 250px; height: 250px;
+            background: #2C9D9B;
+            border-radius: 50%;
+            border-bottom: 4px solid black;
+            overflow: hidden;
+            left: -125px;
+        }
+        .stripe {
+            position: absolute;
+            width: 150%; height: 14px;
+            background: white;
+            border-top: 4px solid black;
+            transform: rotate(-25deg);
+        }
+        .stripe:nth-child(1) { top: 30px; left: -30px; }
+        .stripe:nth-child(2) { top: 70px; left: -30px; }
+        .stripe:nth-child(3) { top: 110px; left: -30px; }
 
-    /* Number inside left container */
-    .num {
-        font-size: 110px;
-        font-weight: bold;
-        color: #e64a2e;
-        font-family: "Brush Script MT", cursive;
-        text-shadow: 1px 1px 0 black;
-        z-index: 30;
-    }
+        /* Number floating on top of everything */
+        .num {
+            position: absolute;
+            top: 50%;
+            left: 25%; /* center of left side */
+            transform: translate(-50%, -50%);
+            font-size: 110px;
+            font-weight: bold;
+            color: #e64a2e;
+            font-family: "Brush Script MT", cursive;
+            text-shadow: 1px 1px 0 black;
+            z-index: 100;
+        }
 
-    /* Color swatches bottom right */
-    .swatches {
-        position: absolute;
-        bottom: 15vh; right: 0;
-        display: flex;
-        flex-direction: column;
-    }
-    .swatch { width: 60px; height: 30px; }
-    .swatch.teal { background: #2C9D9B; }
-    .swatch.orange { background: #e64a2e; }
-    .swatch.magenta { background: #D34E90; }
-</style>
+        /* Color swatches bottom right */
+        .swatches {
+            position: absolute;
+            bottom: 15vh; right: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .swatch {width: 60px; height: 30px;}
+        .swatch.teal {background: #2C9D9B;}
+        .swatch.orange {background: #e64a2e;}
+        .swatch.magenta {background: #D34E90;}
+    </style>
 </head>
 <body>
-<div class="container">
+    <div class="container">
+        <div class="left-magenta"></div>
+        <div class="right-white">
+            <div class="retro-circle">
+                <div class="stripe"></div>
+                <div class="stripe"></div>
+                <div class="stripe"></div>
+            </div>
+        </div>
 
-    <div class="left-magenta">
+        <div class="divider"></div>
         <div class="num">87</div>
-    </div>
 
-    <div class="right-white">
-        <div class="retro-circle">
-            <div class="stripe"></div>
-            <div class="stripe"></div>
-            <div class="stripe"></div>
+        <div class="swatches">
+            <div class="swatch teal"></div>
+            <div class="swatch orange"></div>
+            <div class="swatch magenta"></div>
         </div>
     </div>
-
-    <div class="divider"></div>
-
-    <div class="swatches">
-        <div class="swatch teal"></div>
-        <div class="swatch orange"></div>
-        <div class="swatch magenta"></div>
-    </div>
-
-</div>
 </body>
 </html>
