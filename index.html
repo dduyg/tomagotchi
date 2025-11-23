@@ -10,24 +10,29 @@
         background: #ffffff;
         font-family: Arial, sans-serif;
     }
+
     .container {
         width: 100vw;
         height: 100vh;
         position: relative;
         display: flex;
     }
+
     /* Left magenta side */
     .left {
         flex: 1;
         background: #d04b9b;
         position: relative;
-    }  
+        z-index: 10; /* On top of everything */
+    }
+
     /* Right white side */
     .right {
         flex: 1;
         background: #ffffff;
         position: relative;
     }
+
     /* Vertical divider */
     .divider {
         width: 4px;
@@ -38,7 +43,7 @@
         transform: translateX(-50%);
     }
 
-    /* Retro circle w/ stripes */
+    /* Retro circle */
     .circle {
         position: absolute;
         top: 50%;
@@ -50,6 +55,7 @@
         border: 5px solid black;
         z-index: 0;
     }
+
     .stripe {
         position: absolute;
         width: 150%; height: 25px;
@@ -61,16 +67,17 @@
     .stripe:nth-child(2) { top: 115px; left: -30px; }
     .stripe:nth-child(3) { top: 170px; left: -30px; }
 
+    /* Number inside LEFT container */
     .num {
         position: absolute;
-        top: 50%; left: 50%;
-        transform: translate(-75%, -10%);    
+        top: 50%;
+        left: calc(100% + 2px); /* shift 2px outside the left container */
+        transform: translateY(-50%);
         font-size: 110px;
         font-weight: bold;
         color: #e64a2e;
         font-family: "Brush Script MT", cursive;
-        z-index: 3;
-        mix-blend-mode: normal;
+        z-index: 20; /* top layer */
         text-shadow: 1px 1px 0 black;
     }
 
@@ -93,7 +100,7 @@
 <body>
 <div class="container">
 
-    <div class="left"></div>
+    <div class="left"><div class="num">87</div></div>
     <div class="right"></div>
 
     <div class="divider"></div>
@@ -103,8 +110,6 @@
         <div class="stripe"></div>
         <div class="stripe"></div>
     </div>
-
-    <div class="num">87</div>
 
     <div class="swatches">
         <div class="swatch teal"></div>
