@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Replicated Design</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+        display: flex;
+    }
+
+    /* Left magenta side */
+    .left {
+        flex: 1;
+        background: #d24892; /* pink/magenta tone */
+        position: relative;
+    }
+
+    /* Right white side */
+    .right {
+        flex: 1;
+        background: #ffffff;
+        position: relative;
+    }
+
+    /* Vertical divider */
+    .divider {
+        width: 4px;
+        background: #000;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        transform: translateX(-50%);
+    }
+
+    /* Retro circle w/ stripes */
+    .circle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-10%, -50%);
+        width: 260px;
+        height: 260px;
+        background: #30A9A3;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid #000;
+    }
+
+    .stripe {
+        width: 200%;
+        height: 22px;
+        background: #ffffff;
+        border-top: 6px solid #000;
+        margin: 14px 0;
+        transform: translateX(-20%);
+    }
+
+    /* Number “87” */
+    .number {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-110%, 20%);
+        font-size: 110px;
+        font-weight: bold;
+        color: #e64a2e;
+        font-family: "Brush Script MT", cursive;
+        text-shadow: -3px 2px 0 #000;
+    }
+
+    /* Color swatches bottom right */
+    .swatches {
+        position: absolute;
+        bottom: 40px;
+        right: 40px;
+        display: flex;
+        width: 85px;
+        height: 85px;
+    }
+
+    .swatch {
+        flex: 1;
+    }
+
+    .teal { background: #30A9A3; }
+    .orange { background: #e64a2e; }
+    .pink { background: #d24892; }
+
+</style>
+</head>
+<body>
+<div class="container">
+
+    <div class="left"></div>
+    <div class="right"></div>
+
+    <div class="divider"></div>
+
+    <div class="circle">
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+    </div>
+
+    <div class="number">87</div>
+
+    <div class="swatches">
+        <div class="swatch teal"></div>
+        <div class="swatch orange"></div>
+        <div class="swatch pink"></div>
+    </div>
+
+</div>
+</body>
+</html>
