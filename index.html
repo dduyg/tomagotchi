@@ -16,40 +16,38 @@
             height: 100vh;
             position: relative;
         }
-    /* Left magenta side */
-    .left {
-        position: absolute;
-        left: 0; top: 0;
-        width: 50%; height: 100%;
-        background: #d04b9b;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        z-index: 2; /* on top of circle */
-    }
-    /* Right white side */
-    .right {
-        position: absolute;
-        right: 0; top: 0;
-        width: 50%; height: 100%;
-        background: #ffffff;
-        display: flex;
-        justify-content: flex-start; /* align circle slightly left */
-        align-items: center;
-    }
-    .divider {
-        width: 4px;
-        background: #000;
-        position: absolute;
-        left: 50%; top: 0; bottom: 0;
-        transform: translateX(-50%);
-        z-index: 2;
+        .left-magenta {
+            position: absolute;
+            left: 0; top: 0;
+            width: 50%; height: 100%;
+            background: #D34E90;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            z-index: 2; /* on top of circle */
+        }
+        .right-white {
+            position: absolute;
+            right: 0; top: 0;
+            width: 50%; height: 100%;
+            background: #ffffff;
+            display: flex;
+            justify-content: flex-start; /* align circle slightly left */
+            align-items: center;
+        }
+        .divider {
+            width: 4px;
+            background: #000;
+            position: absolute;
+            left: 50%; top: 0; bottom: 0;
+            transform: translateX(-50%);
+            z-index: 2;
     }
 
     .retro-circle {
         position: absolute;
         width: 250px; height: 250px;
-        background: #27a8a8;
+        background: #2C9D9B;
         border-radius: 50%;
         border-bottom: 4px solid black;
         overflow: hidden;
@@ -84,19 +82,19 @@
         flex-direction: column;
     }
     .swatch { width: 60px; height: 30px; }
-    .swatch.teal { background: #30A9A3; }
+    .swatch.teal { background: #2C9D9B; }
     .swatch.orange { background: #e64a2e; }
-    .swatch.pink { background: #d24892; }
+    .swatch.magenta { background: #D34E90; }
 </style>
 </head>
 <body>
 <div class="container">
 
-    <div class="left">
+    <div class="left-magenta">
         <div class="num">87</div>
     </div>
 
-    <div class="right">
+    <div class="right-white">
         <div class="retro-circle">
             <div class="stripe"></div>
             <div class="stripe"></div>
@@ -109,7 +107,7 @@
     <div class="swatches">
         <div class="swatch teal"></div>
         <div class="swatch orange"></div>
-        <div class="swatch pink"></div>
+        <div class="swatch magenta"></div>
     </div>
 
 </div>
