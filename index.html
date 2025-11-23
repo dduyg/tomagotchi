@@ -11,7 +11,7 @@
             font-family: Arial, sans-serif;
             overflow: hidden;
         }
-        .container {
+        main {
             width: 100vw;
             height: 100vh;
             position: relative;
@@ -57,14 +57,14 @@
             border-top: 4px solid black;
             transform: rotate(-25deg);
         }
-        .stripe:nth-child(1) { top: 30px; left: -30px; }
-        .stripe:nth-child(2) { top: 70px; left: -30px; }
-        .stripe:nth-child(3) { top: 110px; left: -30px; }
+        .stripe:nth-child(1) {top: 30px; left: -30px;}
+        .stripe:nth-child(2) {top: 70px; left: -30px;}
+        .stripe:nth-child(3) {top: 110px; left: -30px;}
 
         .num { /* Number floating on top of everything */
             position: absolute;
             top: 50%; right: 0;
-            transform: translate(-10%, -50%); /* small offset so it’s not flush */
+            transform: translate(-10%, -50%); /* slight offset from edge */
             font-size: 110px;
             font-weight: bold;
             color: #EA5E2D;
@@ -73,8 +73,7 @@
             z-index: 100;
         }
 
-        /* Color swatches bottom right */
-        .swatches {
+        .swatches { /* Color swatches bottom right */
             position: absolute;
             bottom: 15vh; right: 0;
             display: flex;
@@ -87,8 +86,8 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="left-magenta"></div>
+    <main>
+        <div class="left-magenta"><div class="num">87</div></div>
         <div class="right-white">
             <div class="retro-circle">
                 <div class="stripe"></div>
@@ -98,13 +97,12 @@
         </div>
 
         <div class="divider"></div>
-        <div class="num">87</div>
 
         <div class="swatches">
             <div class="swatch teal"></div>
             <div class="swatch orange"></div>
             <div class="swatch magenta"></div>
         </div>
-    </div>
+    </main>
 </body>
 </html>
