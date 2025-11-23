@@ -3,100 +3,125 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LiminalLoop</title>
+<title>Replicated Design</title>
 <style>
-  body {
-    margin: 0; padding: 0;
-    background: white;
-    font-family: Arial, sans-serif;
-  }
-  .container {
-    display: flex;
-    height: 100vh;
-    width: 100vw;
-  }
-  .left {
-    flex: 1;
-    background: #d04b9b;
-    position: relative;
-  }
-  .right {
-    flex: 1;
-    background: #ffffff;
-    position: relative;
-  }
-  .circle {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translate(-50%, -50%);
-    width: 300px;
-    height: 300px;
-    background: #2ab7b1;
-    border-radius: 50%;
-    overflow: hidden;
-    border-right: 5px solid black;
-  }
-  .circle-lines {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-20%, -50%);
-    width: 250px;
-  }
-  .line {
-    height: 20px;
-    background: white;
-    border-bottom: 5px solid black;
-    margin: 15px 0;
-  }
-  .number {
-    position: absolute;
-    top: 55%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 80px;
-    font-weight: bold;
-    color: #e85128;
-    font-family: 'Brush Script MT', cursive;
-  }
-  .color-blocks {
-    position: absolute;
-    bottom: 40px;
-    right: 40px;
-    display: flex;
-    flex-direction: column;
-  }
-  .block {
-    width: 60px;
-    height: 30px;
-    margin: 5px 0;
-  }
-  .block.teal { background: #2ab7b1; }
-  .block.orange { background: #e85128; }
-  .block.pink { background: #d04b9b; }
+    body {
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+        display: flex;
+    }
+
+    /* Left magenta side */
+    .left {
+        flex: 1;
+        background: #d24892; /* pink/magenta tone */
+        position: relative;
+    }
+
+    /* Right white side */
+    .right {
+        flex: 1;
+        background: #ffffff;
+        position: relative;
+    }
+
+    /* Vertical divider */
+    .divider {
+        width: 4px;
+        background: #000;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        transform: translateX(-50%);
+    }
+
+    /* Retro circle w/ stripes */
+    .circle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-10%, -50%);
+        width: 260px;
+        height: 260px;
+        background: #30A9A3;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid #000;
+    }
+
+    .stripe {
+        width: 200%;
+        height: 22px;
+        background: #ffffff;
+        border-top: 6px solid #000;
+        margin: 14px 0;
+        transform: translateX(-20%);
+    }
+
+    /* Number “87” */
+    .number {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-110%, 20%);
+        font-size: 110px;
+        font-weight: bold;
+        color: #e64a2e;
+        font-family: "Brush Script MT", cursive;
+        text-shadow: -3px 2px 0 #000;
+    }
+
+    /* Color swatches bottom right */
+    .swatches {
+        position: absolute;
+        bottom: 40px;
+        right: 40px;
+        display: flex;
+        width: 85px;
+        height: 85px;
+    }
+
+    .swatch {
+        flex: 1;
+    }
+
+    .teal { background: #30A9A3; }
+    .orange { background: #e64a2e; }
+    .pink { background: #d24892; }
+
 </style>
 </head>
 <body>
-  <div class="container">
+<div class="container">
+
     <div class="left"></div>
     <div class="right"></div>
 
+    <div class="divider"></div>
+
     <div class="circle">
-      <div class="circle-lines">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-      </div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
     </div>
 
     <div class="number">87</div>
 
-    <div class="color-blocks">
-      <div class="block teal"></div>
-      <div class="block orange"></div>
-      <div class="block pink"></div>
+    <div class="swatches">
+        <div class="swatch teal"></div>
+        <div class="swatch orange"></div>
+        <div class="swatch pink"></div>
     </div>
-  </div>
+
+</div>
 </body>
 </html>
