@@ -21,9 +21,6 @@
             left: 0; top: 0;
             width: 50%; height: 100%;
             background: #D34E90;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
             z-index: 2;
         }
         .right-white {
@@ -64,15 +61,13 @@
         .stripe:nth-child(2) { top: 70px; left: -30px; }
         .stripe:nth-child(3) { top: 110px; left: -30px; }
 
-        /* Number floating on top of everything */
-        .num {
+        .num { /* Number floating on top of everything */
             position: absolute;
-            top: 50%;
-            left: 25%; /* center of left side */
-            transform: translate(-50%, -50%);
+            top: 50%; right: 0;
+            transform: translate(-10%, -50%); /* small offset so it’s not flush */
             font-size: 110px;
             font-weight: bold;
-            color: #e64a2e;
+            color: #EA5E2D;
             font-family: "Brush Script MT", cursive;
             text-shadow: 1px 1px 0 black;
             z-index: 100;
@@ -87,7 +82,7 @@
         }
         .swatch {width: 60px; height: 30px;}
         .swatch.teal {background: #2C9D9B;}
-        .swatch.orange {background: #e64a2e;}
+        .swatch.orange {background: #EA5E2D;}
         .swatch.magenta {background: #D34E90;}
     </style>
 </head>
