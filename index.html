@@ -16,28 +16,34 @@
         width: 100vw;
         height: 100vh;
         position: relative;
-        display: flex;
     }
 
     /* Left magenta side */
     .left {
-        flex: 1;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 50%;
+        height: 100%;
         background: #d04b9b;
-        position: relative;
         display: flex;
-        justify-content: center; /* center horizontally */
-        align-items: center;     /* center vertically */
-        z-index: 2;              /* on top of circle */
+        justify-content: center;
+        align-items: center;
+        z-index: 2; /* on top of circle */
     }
 
     /* Right white side */
     .right {
-        flex: 1;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 50%;
+        height: 100%;
         background: #ffffff;
-        position: relative;
         display: flex;
         justify-content: flex-start; /* align circle slightly left */
-        align-items: center;         /* center vertically */
+        align-items: center;         /* vertical center */
+        overflow: visible;           /* allow circle to overflow */
     }
 
     /* Vertical divider */
@@ -49,19 +55,20 @@
         top: 0;
         bottom: 0;
         transform: translateX(-50%);
-        z-index: 2; /* on top of circle */
+        z-index: 2;
     }
 
     /* Retro circle w/ stripes */
     .circle {
-        position: relative;
+        position: absolute;
         width: 250px;
         height: 250px;
         background: #27a8a8;
         border-radius: 50%;
         border: 5px solid black;
-        z-index: 0; /* behind left & divider */
-        left: -125px; /* shift left by half width for half-circle effect */
+        z-index: 1; /* behind left & divider */
+        left: 50%; /* start at the middle */
+        transform: translateX(-125px); /* shift half-width left to show half-circle */
     }
 
     .stripe {
@@ -104,6 +111,7 @@
     .swatch.teal { background: #30A9A3; }
     .swatch.orange { background: #e64a2e; }
     .swatch.pink { background: #d24892; }
+
 </style>
 </head>
 <body>
