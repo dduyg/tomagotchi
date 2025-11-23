@@ -7,28 +7,27 @@
 <style>
     body {
         margin: 0;
+        font-family: sans-serif;
         background: #ffffff;
-        font-family: Arial, sans-serif;
+        overflow: hidden;
     }
 
     .container {
         width: 100vw;
         height: 100vh;
         display: flex;
-        position: relative;
-        overflow: hidden;
     }
 
-    /* Left pink section */
+    /* Left pink half */
     .left {
-        width: 50%;
-        background: #d64894; /* approximated from screenshot */
+        flex: 1;
+        background: #d44a95; /* pink tone */
         position: relative;
     }
 
-    /* Right white section */
+    /* Right white half */
     .right {
-        width: 50%;
+        flex: 1;
         background: #ffffff;
         position: relative;
     }
@@ -38,95 +37,101 @@
         position: absolute;
         left: 50%;
         top: 0;
-        width: 3px;
+        width: 4px;
         height: 100%;
         background: #000;
+        transform: translateX(-2px);
     }
 
-    /* Teal semicircle */
-    .semi-circle {
+    /* Teal circle with diagonal stripes */
+    .circle {
         position: absolute;
-        right: -100px;
         top: 50%;
-        transform: translateY(-50%);
-        width: 200px;
-        height: 200px;
-        background: #2ca8a4;
+        left: calc(50% + 0px);
+        transform: translate(-30%, -50%);
+        width: 300px;
+        height: 300px;
+        background: #27a8a8;
         border-radius: 50%;
-        clip-path: inset(0 0 0 50%);
-        border: 3px solid black;
-        border-left: none;
+        overflow: hidden;
+        border: 5px solid black;
+        z-index: 1;
     }
 
-    /* diagonal stripes */
     .stripe {
         position: absolute;
-        width: 180px;
-        height: 10px;
+        width: 150%;
+        height: 25px;
         background: white;
-        border-bottom: 3px solid black;
-        right: -85px;
+        border-bottom: 6px solid black;
+        transform: rotate(-15deg);
     }
-    .stripe:nth-child(1) { top: 43%; transform: translateY(-50%) rotate(0deg); }
-    .stripe:nth-child(2) { top: 50%; transform: translateY(-50%) rotate(0deg); }
-    .stripe:nth-child(3) { top: 57%; transform: translateY(-50%) rotate(0deg); }
 
-    /* Number "87" */
-    .number {
+    .stripe:nth-child(1) { top: 60px; left: -30px; }
+    .stripe:nth-child(2) { top: 115px; left: -30px; }
+    .stripe:nth-child(3) { top: 170px; left: -30px; }
+
+    /* "84" text */
+    .num {
         position: absolute;
-        top: 55%;
-        left: 40%;
-        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        transform: translate(-75%, -10%);
         font-size: 120px;
         font-weight: bold;
-        color: #e44c2d;
+        color: #f05232; /* orange-red */
         font-family: "Brush Script MT", cursive;
-        letter-spacing: -10px;
+        z-index: 3;
+        mix-blend-mode: normal;
+        text-shadow: 1px 1px 0 black;
     }
 
-    /* Color swatches bottom right */
-    .color-boxes {
+    /* Color swatch on bottom right */
+    .swatch {
         position: absolute;
-        right: 20px;
-        bottom: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
+        width: 80px;
+        height: 80px;
+        bottom: 40px;
+        right: 60px;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, 1fr);
+        border: 3px solid #000;
     }
 
-    .color-box {
-        width: 60px;
-        height: 30px;
-    }
-
-    .c1 { background: #2ca8a4; }
-    .c2 { background: #f26f63; }
-    .c3 { background: #d64894; }
+    .swatch div:nth-child(1) { background: #27a8a8; }
+    .swatch div:nth-child(2) { background: #f05232; }
+    .swatch div:nth-child(3) { background: #d44a95; }
 </style>
 </head>
 <body>
+
 <div class="container">
 
     <div class="left"></div>
     <div class="right"></div>
 
+    <!-- Center divider -->
     <div class="divider"></div>
 
-    <div class="semi-circle"></div>
+    <!-- Teal circle with stripes -->
+    <div class="circle">
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+        <div class="stripe"></div>
+    </div>
 
-    <!-- stripes inside semi-circle -->
-    <div class="stripe"></div>
-    <div class="stripe"></div>
-    <div class="stripe"></div>
+    <!-- Orange "84" text -->
+    <div class="num">84</div>
 
-    <div class="number">87</div>
-
-    <div class="color-boxes">
-        <div class="color-box c1"></div>
-        <div class="color-box c2"></div>
-        <div class="color-box c3"></div>
+    <!-- Color swatch -->
+    <div class="swatch">
+        <div></div>
+        <div></div>
+        <div></div>
     </div>
 
 </div>
+
 </body>
 </html>
