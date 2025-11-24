@@ -321,4 +321,4 @@ elif choice=="2":
     else:
         print("🎊 ALL DONE!")
 else:
-    print("✖ Invalid option. Files remain in /content/output_glyphs.")
+    print("🔄 Try Again: You must choose 1️⃣ or 2️⃣. The processed files are currently staged in output_glyphs.")
