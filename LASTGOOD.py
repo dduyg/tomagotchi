@@ -210,8 +210,14 @@ def process_glyphs(input_folder, output_folder, github_user, github_repo, branch
 # ---------------------- DATA PIPELINE ----------------------
 
 def batch_upload_to_github(repo, output_dir, branch="main"):
+    """
+    Commits local files to a GitHub repository branch using the Git Tree API.
+    """
     files_to_commit = list(output_dir.glob("*"))
     if not files_to_commit: return
+    
+    file_mode = '100644' # Standard file mode for files
+
     try:
         sb = repo.get_branch(branch)
         base_tree = repo.get_git_tree(sb.commit.sha)
@@ -221,10 +227,22 @@ def batch_upload_to_github(repo, output_dir, branch="main"):
                 content_bytes = f.read_bytes()
                 content_b64 = b64encode(content_bytes).decode("utf-8")
                 blob = repo.create_git_blob(content_b64, "base64")
-                elements.append(InputGitTreeElement(f"glyphs/{f.name}", '100644', 'blob', blob.sha))
+                
+                elements.append(InputGitTreeElement(
+                    path=f"glyphs/{f.name}",
+                    mode=file_mode,
+                    type='blob',
+                    sha=blob.sha
+                ))
             else:
                 content = f.read_text("utf-8")
-                elements.append(InputGitTreeElement(f"data/{f.name}", '100644', 'blob', content))
+                elements.append(InputGitTreeElement(
+                    path=f"data/{f.name}",
+                    mode=file_mode,
+                    type='blob',
+                    content=content
+                ))
+        
         tree = repo.create_git_tree(elements, base_tree)
         parent = repo.get_git_commit(sb.commit.sha)
         commit = repo.create_git_commit(f"📦 Batch upload {len(elements)} files", tree, [parent])
