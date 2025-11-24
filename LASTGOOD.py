@@ -321,4 +321,4 @@ elif choice=="2":
     else:
         print("🎊 ALL DONE!")
 else:
-    print("🔄 Try Again: You must choose 1️⃣ or 2️⃣. The processed files are currently staged in output_glyphs.")
+    print("🤷 Oops! Try again, please choose 1️⃣ or 2️⃣. The processed files are currently staged in output_glyphs.")
