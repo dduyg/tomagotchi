@@ -1,6 +1,6 @@
 """
 🔱 𝑨𝒖𝒕𝒐𝒎𝒂𝒕𝒊𝒏𝒈 𝒘𝒐𝒓𝒌𝒇𝒍𝒐𝒘 𝒇𝒐𝒓 𝒕𝒉𝒆 𝒆𝒙𝒕𝒓𝒂𝒄𝒕𝒊𝒐𝒏, 𝒂𝒏𝒂𝒍𝒚𝒔𝒊𝒔, 𝒂𝒏𝒅 𝒔𝒕𝒐𝒓𝒂𝒈𝒆 𝒐𝒇 𝒈𝒍𝒚𝒑𝒉 𝒊𝒎𝒂𝒈𝒆𝒔 𝒘𝒊𝒕𝒉 𝒅𝒆𝒕𝒂𝒊𝒍𝒆𝒅 𝒎𝒆𝒕𝒂𝒅𝒂𝒕𝒂:
-▪️ Input images → Process → Generate renamed outputs + metadata
+▪️ Input assets → Process → Generate renamed outputs + metadata
 ▪️ Extract dominant colors using K-means clustering
 ▪️ Compute quantitative visual metrics:
    edge density, entropy, texture complexity, contrast, shape metrics, edge orientation
@@ -353,7 +353,7 @@ except:
 new_glyphs = process_glyphs(input_dir, output_dir, github_user, github_repo, branch)
 all_glyphs = existing.get("glyphs", []) + new_glyphs
 
-print(f"📡 {len(new_glyphs)} glyphs processed and analyzed successfully")
+print(f"📡 {len(new_glyphs)} glyphs processed successfully")
 
 metadata = {"total": len(all_glyphs), "glyphs": all_glyphs}
 with open(json_path, "w") as f:
