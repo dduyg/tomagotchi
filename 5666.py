@@ -1,5 +1,5 @@
 """
-Automating workflow for extraction, analysis, and storage of glyph images with detailed metadata.
+Automating workflow for the extraction, analysis, and storage of glyph images with detailed metadata.
 
 - Load images and process them to generate renamed outputs and metadata
 - Extract dominant and secondary colors using K-means clustering
