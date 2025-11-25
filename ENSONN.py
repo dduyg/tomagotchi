@@ -348,8 +348,9 @@ except:
 new_glyphs = process_glyphs(input_dir, output_dir, github_user, github_repo, branch)
 all_glyphs = existing.get("glyphs", []) + new_glyphs
 
-metadata = {"total": len(all_glyphs), "glyphs": all_glyphs}
+print(f"📡 {len(new_glyphs)} glyphs processed and analyzed successfully")
 
+metadata = {"total": len(all_glyphs), "glyphs": all_glyphs}
 with open(json_path, "w") as f:
     json.dump(metadata, f, indent=2)
 
@@ -364,7 +365,6 @@ with open(csv_path, "w", newline="", encoding="utf-8") as f:
         "color_harmony", "mood",
         "created_date", "created_time"
     ])
-    
     for g in all_glyphs:
         writer.writerow([
             g["id"],
@@ -388,15 +388,16 @@ with open(csv_path, "w", newline="", encoding="utf-8") as f:
         ])
 
 print("\n🗄️ Where to save results?")
-print("1 - Local ZIP")
-print("2 - Autoload directly to GitHub")
-choice = input("🎚Choose 1 or 2: ").strip()
+print("1 - Save locally as ZIP archive")
+print("2 - Commit directly to GitHub")
+choice = input("🎚 Choose 1 or 2: ").strip()
 
 if choice == "1":
     zip_path = Path("/content/glyphs_processed.zip")
     with zipfile.ZipFile(zip_path, "w") as zipf:
         for f in output_dir.iterdir():
             zipf.write(f, f.name)
+    print(f"📦 ZIP saved locally to: {zip_path}")
     files.download(str(zip_path))
 else:
     token = getpass("🔑 GitHub Personal Access Token: ").strip()
@@ -404,11 +405,13 @@ else:
     user = g.get_user()
     try:
         repo = user.get_repo(github_repo)
+        print(f"✔ Repo found: {github_repo}")
     except:
+        print(f"⚠ Repo '{github_repo}' not found, creating it now...")
         repo = user.create_repo(github_repo)
         repo.create_file("glyphs/.gitkeep", "init", "")
         repo.create_file("data/.gitkeep", "init", "")
-
+        print("🗂️ Base folders created ('glyphs/' and 'data/')")
     batch_upload_to_github(repo, output_dir, branch)
 
 if existing.get("glyphs"):
