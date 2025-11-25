@@ -1,8 +1,5 @@
 """
-Automating the extraction, analysis, and storage of glyph images with detailed metadata.
-
-🔱 GLYPH PROCESSOR
-workflow for batch processing and cataloging glyph images.
+Automating workflow for extraction, analysis, and storage of glyph images with detailed metadata.
 
 - Load images and process them to generate renamed outputs and metadata
 - Extract dominant and secondary colors using K-means clustering
