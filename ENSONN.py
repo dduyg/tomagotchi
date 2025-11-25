@@ -1,6 +1,14 @@
-# ================================================================
-#   GLYPH PROCESSOR  —  REVISION WITH COLOR GROUPS + CSV EXPORT
-# ================================================================
+"""
+🔱 GLYPH PROCESSOR
+- Upload images → Process → Generate renamed images + metadata
+- Extract dominant color using K-means clustering
+- Compute Edge Density + Entropy + Texture + Contrast + Shape + Color Harmony + Mood
+- Incremental metadata updates (JSON + JS)
+- Save options:
+  1. Local ZIP
+  2. Directly to GitHub via API (images → glyphs/, data → data/)
+- Auto-creates GitHub repo/folders if it doesn't exist
+"""
 
 !pip install -q opencv-python-headless scikit-learn scikit-image PyGithub
 
@@ -21,11 +29,6 @@ from github import Github, Auth, GithubException, InputGitTreeElement
 from google.colab import files
 import colorsys
 
-
-# ================================================================
-#  UTILITIES — PROPER ALPHA MASK HANDLING
-# ================================================================
-
 def load_asset(path: Path):
     pil = Image.open(path).convert("RGBA")
     arr = np.array(pil)
@@ -34,17 +37,13 @@ def load_asset(path: Path):
     mask = alpha > 10
     return pil, rgb, alpha, mask
 
-
 def masked_pixels(rgb, mask):
     pts = rgb[mask]
     if len(pts) == 0:
         return np.zeros((1, 3), dtype=np.uint8)
     return pts
 
-
-# ================================================================
-#  COLOR EXTRACTION
-# ================================================================
+# ---------------------- COLOR DETECTION ----------------------
 
 def compute_dominant_color(rgb, mask, k=3):
     pts = masked_pixels(rgb, mask)
@@ -54,7 +53,6 @@ def compute_dominant_color(rgb, mask, k=3):
     centers = kmeans.cluster_centers_
     labels, counts = np.unique(kmeans.labels_, return_counts=True)
     return tuple(int(x) for x in centers[np.argmax(counts)])
-
 
 def compute_secondary_color(rgb, mask, k=3):
     pts = masked_pixels(rgb, mask)
@@ -68,10 +66,8 @@ def compute_secondary_color(rgb, mask, k=3):
     order = np.argsort(counts)[::-1]
     return tuple(int(x) for x in centers[order[1]])
 
-
 def rgb_to_hex(rgb):
     return "{:02x}{:02x}{:02x}".format(*rgb)
-
 
 def rgb_to_lab(rgb):
     r, g, b = [x / 255 for x in rgb]
@@ -89,39 +85,26 @@ def rgb_to_lab(rgb):
     b = 200 * (f(y) - f(z))
     return (L, a, b)
 
-
-# ================================================================
-#  IMPROVED COLOR GROUPING
-# ================================================================
-
 def compute_color_group(rgb):
     r, g, b = rgb
     r_f, g_f, b_f = r/255, g/255, b/255
     h, s, v = colorsys.rgb_to_hsv(r_f, g_f, b_f)
     h *= 360
-
     brightness = 0.2126*r + 0.7152*g + 0.0722*b
     sat = s
 
-    # ---- BLACK / WHITE / GRAY ----
     if brightness < 40:
         return "black"
     if brightness > 230 and sat < 0.20:
         return "white"
     if sat < 0.12 and 40 <= brightness <= 230:
         return "gray"
-
-    # ---- METALLICS ----
     if 35 < h < 65 and 120 < brightness < 220 and 0.20 < sat < 0.55:
         return "gold"
     if brightness > 180 and sat < 0.18:
         return "silver"
-
-    # ---- BROWN ----
     if brightness < 140 and sat > 0.25 and 15 < h < 65:
         return "brown"
-
-    # ---- STANDARD COLORS ----
     if h <= 20 or h >= 345:
         return "red"
     if 20 < h <= 45:
@@ -136,24 +119,18 @@ def compute_color_group(rgb):
         return "purple"
     if 295 < h <= 345:
         return "pink"
-
     return "gray"
 
-
-# ================================================================
-#  METRICS
-# ================================================================
+# ---------------------- PROCESSING GLYPHS ----------------------
 
 def compute_edge_density(rgb, mask):
     gray = cv2.cvtColor(rgb, cv2.COLOR_RGB2GRAY)
     edges = cv2.Canny(gray, 80, 160)
     return round(float(np.mean(edges[mask] > 0)), 4)
 
-
 def compute_entropy(rgb, mask):
     gray = rgb2gray(rgb)
     return round(float(shannon_entropy(gray[mask])), 4)
-
 
 def compute_texture_complexity(rgb, mask):
     gray = cv2.cvtColor(rgb, cv2.COLOR_RGB2GRAY)
@@ -163,26 +140,19 @@ def compute_texture_complexity(rgb, mask):
     ent = -np.sum(hist * np.log2(hist + 1e-10))
     return round(float(ent), 4)
 
-
 def compute_contrast(image_rgba):
     arr = np.array(image_rgba)
     alpha = arr[..., 3]
     mask = alpha > 10
-
     if mask.sum() == 0:
         return 0.0
-
     rgb = arr[..., :3][mask]
     lum = 0.2126 * rgb[:, 0] + 0.7152 * rgb[:, 1] + 0.0722 * rgb[:, 2]
-
     I_max = lum.max()
     I_min = lum.min()
-
     if I_max + I_min == 0:
         return 0.0
-
     return float(round((I_max - I_min) / (I_max + I_min), 4))
-
 
 def compute_shape_metrics(alpha):
     mask = (alpha > 10).astype("uint8") * 255
@@ -197,7 +167,6 @@ def compute_shape_metrics(alpha):
     aspect = w / (h + 1e-6)
     return round(float(circularity), 4), round(float(aspect), 4)
 
-
 def compute_edge_angle(rgb, mask):
     gray = cv2.cvtColor(rgb, cv2.COLOR_RGB2GRAY)
     sx = cv2.Sobel(gray, cv2.CV_64F, 1, 0, 3)
@@ -209,15 +178,9 @@ def compute_edge_angle(rgb, mask):
         return 0.0
     return round(float(abs(np.median(ang[mask][strong])) % 180), 4)
 
-
-# ================================================================
-#  COLOR HARMONY + MOOD
-# ================================================================
-
 def compute_hue(rgb):
     r, g, b = rgb
     return colorsys.rgb_to_hsv(r/255, g/255, b/255)[0] * 360
-
 
 def compute_color_harmony(c1, c2):
     h1 = compute_hue(c1)
@@ -228,7 +191,6 @@ def compute_color_harmony(c1, c2):
     if abs(d - 180) < 30:
         return "complementary"
     return "none"
-
 
 def compute_mood(dom_rgb, entropy, edge, tex, contrast, circ, aspect, angle, harmony):
     brightness = 0.2126*dom_rgb[0] + 0.7152*dom_rgb[1] + 0.0722*dom_rgb[2]
@@ -247,11 +209,6 @@ def compute_mood(dom_rgb, entropy, edge, tex, contrast, circ, aspect, angle, har
     if tex > 1.6 and entropy > 6:
         return "organic"
     return "serene"
-
-
-# ================================================================
-#  PROCESSOR
-# ================================================================
 
 def process_glyphs(input_folder, output_folder, github_user, github_repo, branch="main"):
     os.makedirs(output_folder, exist_ok=True)
@@ -321,37 +278,29 @@ def process_glyphs(input_folder, output_folder, github_user, github_repo, branch
 
     return results
 
-
-# ================================================================
-#  GITHUB UPLOAD
-# ================================================================
+# ---------------------- DATA PIPELINE ----------------------
 
 def batch_upload_to_github(repo, output_dir, branch="main"):
     files_to_commit = list(output_dir.glob("*"))
-    if not files_to_commit:
-        return
+    if not files_to_commit: return
 
     file_mode = '100644'
 
     try:
         sb = repo.get_branch(branch)
         base_tree = repo.get_git_tree(sb.commit.sha)
-
         elements = []
-
         for f in files_to_commit:
             if f.suffix.lower() == ".png":
                 content_bytes = f.read_bytes()
                 content_b64 = b64encode(content_bytes).decode("utf-8")
                 blob = repo.create_git_blob(content_b64, "base64")
-
                 elements.append(InputGitTreeElement(
                     path=f"glyphs/{f.name}",
                     mode=file_mode,
                     type="blob",
                     sha=blob.sha
                 ))
-
             else:
                 content = f.read_text("utf-8")
                 elements.append(InputGitTreeElement(
@@ -366,18 +315,11 @@ def batch_upload_to_github(repo, output_dir, branch="main"):
         commit = repo.create_git_commit(f"Batch upload {len(elements)} files", tree, [parent])
         ref = repo.get_git_ref(f"heads/{branch}")
         ref.edit(commit.sha)
-
-        print(f"✔ Uploaded {len(elements)} files")
-
+        print(f"🌀 Batch commit successful: {len(elements)} files uploaded")
     except GithubException as e:
-        print("GitHub Error:", e)
+        print(f"🤷 Oops! Batch commit failed, try again: GitHub Error {e}")
 
-
-# ================================================================
-#  MAIN FLOW
-# ================================================================
-
-print("\n🔱 Select images…")
+print("\n🔱 Select images to process:\n")
 uploaded = files.upload()
 
 input_dir = Path("/content/input_glyphs"); input_dir.mkdir(exist_ok=True)
@@ -386,13 +328,11 @@ output_dir = Path("/content/output_glyphs"); output_dir.mkdir(exist_ok=True)
 for fname, data in uploaded.items():
     (input_dir / fname).write_bytes(data)
 
-github_user = input("GitHub username: ").strip()
-github_repo = input("GitHub repo name: ").strip()
-branch      = input("Branch name (default=main): ").strip() or "main"
+github_user = input("👾 GitHub username: ").strip()
+github_repo = input("🗃️ GitHub repo name: ").strip()
+branch      = input("🌿 Branch name (default=main): ").strip() or "main"
 
 json_path = output_dir / "glyphs.catalog.json"
-
-# Load existing metadata
 existing = {"total": 0, "glyphs": []}
 
 try:
@@ -404,7 +344,6 @@ except:
     if json_path.exists():
         existing = json.load(open(json_path))
 
-
 # Process new glyphs
 new_glyphs = process_glyphs(input_dir, output_dir, github_user, github_repo, branch)
 all_glyphs = existing.get("glyphs", []) + new_glyphs
@@ -414,7 +353,6 @@ metadata = {"total": len(all_glyphs), "glyphs": all_glyphs}
 with open(json_path, "w") as f:
     json.dump(metadata, f, indent=2)
 
-# Export CSV
 csv_path = output_dir / "glyphs.catalog.csv"
 with open(csv_path, "w", newline="", encoding="utf-8") as f:
     writer = csv.writer(f)
@@ -449,12 +387,10 @@ with open(csv_path, "w", newline="", encoding="utf-8") as f:
             g["created_at"]["time"]
         ])
 
-
-print("\nSave results?")
-print("1 - Download ZIP")
-print("2 - Upload to GitHub")
-
-choice = input("Choose 1 or 2: ").strip()
+print("\n🗄️ Where to save results?")
+print("1 - Local ZIP")
+print("2 - Autoload directly to GitHub")
+choice = input("🎚Choose 1 or 2: ").strip()
 
 if choice == "1":
     zip_path = Path("/content/glyphs_processed.zip")
@@ -463,10 +399,9 @@ if choice == "1":
             zipf.write(f, f.name)
     files.download(str(zip_path))
 else:
-    token = getpass("GitHub token: ").strip()
+    token = getpass("🔑 GitHub Personal Access Token: ").strip()
     g = Github(auth=Auth.Token(token))
     user = g.get_user()
-
     try:
         repo = user.get_repo(github_repo)
     except:
@@ -475,11 +410,7 @@ else:
         repo.create_file("data/.gitkeep", "init", "")
 
     batch_upload_to_github(repo, output_dir, branch)
-    print("🎉 Done!")
 
-# -------------------------------
-# FINAL MESSAGE
-# -------------------------------
 if existing.get("glyphs"):
     print(f"🎊 ALL DONE! Library successfully expanded to {len(all_glyphs)} glyphs in total.")
 else:
