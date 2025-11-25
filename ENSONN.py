@@ -1,13 +1,19 @@
 """
-🔱 GLYPH PROCESSOR
-- Upload images → Process → Generate renamed images + metadata
-- Extract dominant color using K-means clustering
-- Compute Edge Density + Entropy + Texture + Contrast + Shape + Color Harmony + Mood
-- Incremental metadata updates (JSON + JS)
-- Save options:
-  1. Local ZIP
-  2. Directly to GitHub via API (images → glyphs/, data → data/)
-- Auto-creates GitHub repo/folders if it doesn't exist
+🔱 Automating workflow for the extraction, analysis, and storage of glyph images with detailed metadata.
+
+- Load images → Process → Generate renamed outputs + metadata
+- Extract dominant colors using K-means clustering
+- Compute quantitative visual metrics:
+  edge density, entropy, texture complexity, contrast, shape metrics, edge orientation
+- Evaluate color harmony and overall mood classification
+- Metadata: Incremental updates stored in JSON and CSV
+- Flexible storage options:
+    1. Export locally as a ZIP archive
+    2. Directly commit to a GitHub via API (images → glyphs/, data → data/)
+- GitHub Integration:
+    • Auto-creates repository and base folders if missing
+    • Compatible with batch uploads for continuous library expansion
+    • Generates CDN-ready URLs for each glyph
 """
 
 !pip install -q opencv-python-headless scikit-learn scikit-image PyGithub
