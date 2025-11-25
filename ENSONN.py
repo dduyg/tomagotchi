@@ -1,19 +1,18 @@
 """
-🔱 Automating workflow for the extraction, analysis, and storage of glyph images with detailed metadata.
-
-- Load images → Process → Generate renamed outputs + metadata
-- Extract dominant colors using K-means clustering
-- Compute quantitative visual metrics:
-  edge density, entropy, texture complexity, contrast, shape metrics, edge orientation
-- Evaluate color harmony and overall mood classification
-- Metadata: Incremental updates stored in JSON and CSV
-- Flexible storage options:
+🔱 𝑨𝒖𝒕𝒐𝒎𝒂𝒕𝒊𝒏𝒈 𝒘𝒐𝒓𝒌𝒇𝒍𝒐𝒘 𝒇𝒐𝒓 𝒕𝒉𝒆 𝒆𝒙𝒕𝒓𝒂𝒄𝒕𝒊𝒐𝒏, 𝒂𝒏𝒂𝒍𝒚𝒔𝒊𝒔, 𝒂𝒏𝒅 𝒔𝒕𝒐𝒓𝒂𝒈𝒆 𝒐𝒇 𝒈𝒍𝒚𝒑𝒉 𝒊𝒎𝒂𝒈𝒆𝒔 𝒘𝒊𝒕𝒉 𝒅𝒆𝒕𝒂𝒊𝒍𝒆𝒅 𝒎𝒆𝒕𝒂𝒅𝒂𝒕𝒂:
+▪️ Input images → Process → Generate renamed outputs + metadata
+▪️ Extract dominant colors using K-means clustering
+▪️ Compute quantitative visual metrics:
+   edge density, entropy, texture complexity, contrast, shape metrics, edge orientation
+▪️ Evaluate color harmony and overall mood classification
+▪️ Metadata: Incremental updates stored in JSON and CSV
+▪️ Flexible storage options:
     1. Export locally as a ZIP archive
     2. Directly commit to a GitHub via API (images → glyphs/, data → data/)
-- GitHub Integration:
-    • Auto-creates repository and base folders if missing
-    • Compatible with batch uploads for continuous library expansion
-    • Generates CDN-ready URLs for each glyph
+▪️ GitHub Integration:
+    - Auto-creates repository and base folders if missing
+    - Compatible with batch uploads for continuous library expansion
+    - Generates CDN-ready URLs for each glyph
 """
 
 !pip install -q opencv-python-headless scikit-learn scikit-image PyGithub
