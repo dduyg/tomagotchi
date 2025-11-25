@@ -1,10 +1,10 @@
 # ================================================================
-#   GLYPH PROCESSOR  —  REVISION WITH COLOR GROUPS + NEW TIMESTAMP
+#   GLYPH PROCESSOR  —  REVISION WITH COLOR GROUPS + CSV EXPORT
 # ================================================================
 
 !pip install -q opencv-python-headless scikit-learn scikit-image PyGithub
 
-import os, json, uuid, shutil, zipfile
+import os, json, uuid, shutil, zipfile, csv
 from pathlib import Path
 from datetime import datetime, timezone
 from getpass import getpass
@@ -46,7 +46,7 @@ def masked_pixels(rgb, mask):
 #  COLOR EXTRACTION
 # ================================================================
 
-def get_dominant_color(rgb, mask, k=3):
+def compute_dominant_color(rgb, mask, k=3):
     pts = masked_pixels(rgb, mask)
     if len(pts) < k:
         return (200, 200, 200)
@@ -56,7 +56,7 @@ def get_dominant_color(rgb, mask, k=3):
     return tuple(int(x) for x in centers[np.argmax(counts)])
 
 
-def get_secondary_color(rgb, mask, k=3):
+def compute_secondary_color(rgb, mask, k=3):
     pts = masked_pixels(rgb, mask)
     if len(pts) < k:
         return (200, 200, 200)
@@ -94,7 +94,7 @@ def rgb_to_lab(rgb):
 #  IMPROVED COLOR GROUPING
 # ================================================================
 
-def get_color_group(rgb):
+def compute_color_group(rgb):
     r, g, b = rgb
     r_f, g_f, b_f = r/255, g/255, b/255
     h, s, v = colorsys.rgb_to_hsv(r_f, g_f, b_f)
@@ -144,18 +144,18 @@ def get_color_group(rgb):
 #  METRICS
 # ================================================================
 
-def get_edge_density(rgb, mask):
+def compute_edge_density(rgb, mask):
     gray = cv2.cvtColor(rgb, cv2.COLOR_RGB2GRAY)
     edges = cv2.Canny(gray, 80, 160)
     return round(float(np.mean(edges[mask] > 0)), 4)
 
 
-def get_entropy(rgb, mask):
+def compute_entropy(rgb, mask):
     gray = rgb2gray(rgb)
     return round(float(shannon_entropy(gray[mask])), 4)
 
 
-def get_texture_complexity(rgb, mask):
+def compute_texture_complexity(rgb, mask):
     gray = cv2.cvtColor(rgb, cv2.COLOR_RGB2GRAY)
     lbp = local_binary_pattern(gray, 8, 1, "uniform")
     vals = lbp[mask].ravel()
@@ -164,13 +164,27 @@ def get_texture_complexity(rgb, mask):
     return round(float(ent), 4)
 
 
-def get_contrast(rgb, mask):
-    pts = masked_pixels(rgb, mask)
-    gray = 0.299*pts[:,0] + 0.587*pts[:,1] + 0.114*pts[:,2]
-    return round(float((gray.max() - gray.min()) / (gray.max() + gray.min() + 1e-6)), 4)
+def compute_contrast(image_rgba):
+    arr = np.array(image_rgba)
+    alpha = arr[..., 3]
+    mask = alpha > 10
+
+    if mask.sum() == 0:
+        return 0.0
+
+    rgb = arr[..., :3][mask]
+    lum = 0.2126 * rgb[:, 0] + 0.7152 * rgb[:, 1] + 0.0722 * rgb[:, 2]
+
+    I_max = lum.max()
+    I_min = lum.min()
+
+    if I_max + I_min == 0:
+        return 0.0
+
+    return float(round((I_max - I_min) / (I_max + I_min), 4))
 
 
-def get_shape_metrics(alpha):
+def compute_shape_metrics(alpha):
     mask = (alpha > 10).astype("uint8") * 255
     cnts, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     if not cnts:
@@ -184,7 +198,7 @@ def get_shape_metrics(alpha):
     return round(float(circularity), 4), round(float(aspect), 4)
 
 
-def get_edge_angle(rgb, mask):
+def compute_edge_angle(rgb, mask):
     gray = cv2.cvtColor(rgb, cv2.COLOR_RGB2GRAY)
     sx = cv2.Sobel(gray, cv2.CV_64F, 1, 0, 3)
     sy = cv2.Sobel(gray, cv2.CV_64F, 0, 1, 3)
@@ -200,14 +214,14 @@ def get_edge_angle(rgb, mask):
 #  COLOR HARMONY + MOOD
 # ================================================================
 
-def get_hue(rgb):
+def compute_hue(rgb):
     r, g, b = rgb
     return colorsys.rgb_to_hsv(r/255, g/255, b/255)[0] * 360
 
 
-def get_color_harmony(c1, c2):
-    h1 = get_hue(c1)
-    h2 = get_hue(c2)
+def compute_color_harmony(c1, c2):
+    h1 = compute_hue(c1)
+    h2 = compute_hue(c2)
     d = abs(h1 - h2)
     if d < 30:
         return "analogous"
@@ -216,10 +230,10 @@ def get_color_harmony(c1, c2):
     return "none"
 
 
-def get_mood(dom_rgb, entropy, edge, tex, contrast, circ, aspect, angle, harmony):
+def compute_mood(dom_rgb, entropy, edge, tex, contrast, circ, aspect, angle, harmony):
     brightness = 0.2126*dom_rgb[0] + 0.7152*dom_rgb[1] + 0.0722*dom_rgb[2]
     r, g, b = dom_rgb
-    h = get_hue(dom_rgb)
+    h = compute_hue(dom_rgb)
     sat = (max(dom_rgb) - min(dom_rgb)) / (max(dom_rgb) + 1e-6)
 
     if entropy < 4 and edge < 0.05 and sat < 0.25:
@@ -247,20 +261,20 @@ def process_glyphs(input_folder, output_folder, github_user, github_repo, branch
     for path in pngs:
         pil, rgb, alpha, mask = load_asset(path)
 
-        dom = get_dominant_color(rgb, mask)
-        sec = get_secondary_color(rgb, mask)
+        dom = compute_dominant_color(rgb, mask)
+        sec = compute_secondary_color(rgb, mask)
         hex_color = rgb_to_hex(dom)
         lab = rgb_to_lab(dom)
-        group = get_color_group(dom)
+        group = compute_color_group(dom)
 
-        edge = get_edge_density(rgb, mask)
-        ent = get_entropy(rgb, mask)
-        tex = get_texture_complexity(rgb, mask)
-        con = get_contrast(rgb, mask)
-        circ, ar = get_shape_metrics(alpha)
-        ang = get_edge_angle(rgb, mask)
-        harmony = get_color_harmony(dom, sec)
-        mood = get_mood(dom, ent, edge, tex, con, circ, ar, ang, harmony)
+        edge = compute_edge_density(rgb, mask)
+        ent = compute_entropy(rgb, mask)
+        tex = compute_texture_complexity(rgb, mask)
+        con = compute_contrast(pil)
+        circ, ar = compute_shape_metrics(alpha)
+        ang = compute_edge_angle(rgb, mask)
+        harmony = compute_color_harmony(dom, sec)
+        mood = compute_mood(dom, ent, edge, tex, con, circ, ar, ang, harmony)
 
         uid = uuid.uuid4().hex[:8]
 
@@ -400,8 +414,40 @@ metadata = {"total": len(all_glyphs), "glyphs": all_glyphs}
 with open(json_path, "w") as f:
     json.dump(metadata, f, indent=2)
 
-js_path = output_dir / "glyphs.catalog.js"
-js_path.write_text("const GLYPH_DATA = " + json.dumps(all_glyphs, indent=2))
+# Export CSV
+csv_path = output_dir / "glyphs.catalog.csv"
+with open(csv_path, "w", newline="", encoding="utf-8") as f:
+    writer = csv.writer(f)
+    writer.writerow([
+        "id", "filename", "glyph_url",
+        "color_hex", "color_group", "color_rgb", "color_lab",
+        "edge_density", "entropy", "texture", "contrast",
+        "circularity", "aspect_ratio", "edge_angle",
+        "color_harmony", "mood",
+        "created_date", "created_time"
+    ])
+    
+    for g in all_glyphs:
+        writer.writerow([
+            g["id"],
+            g["filename"],
+            g["glyph_url"],
+            g["color"]["hex"],
+            g["color"]["group"],
+            str(g["color"]["rgb"]),
+            str(g["color"]["lab"]),
+            g["metrics"]["edge_density"],
+            g["metrics"]["entropy"],
+            g["metrics"]["texture"],
+            g["metrics"]["contrast"],
+            g["metrics"]["circularity"],
+            g["metrics"]["aspect_ratio"],
+            g["metrics"]["edge_angle"],
+            g["color_harmony"],
+            g["mood"],
+            g["created_at"]["date"],
+            g["created_at"]["time"]
+        ])
 
 
 print("\nSave results?")
@@ -432,7 +478,7 @@ else:
     print("🎉 Done!")
 
 # -------------------------------
-# FINAL MESSAGE (YOUR REQUEST)
+# FINAL MESSAGE
 # -------------------------------
 if existing.get("glyphs"):
     print(f"🎊 ALL DONE! Library successfully expanded to {len(all_glyphs)} glyphs in total.")
