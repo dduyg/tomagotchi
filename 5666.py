@@ -1,7 +1,5 @@
 """
-🔱 GLYPH PROCESSOR
-
-Purpose: Automate the extraction, analysis, and storage of glyph images with detailed metadata.
+Purpose: Automating the extraction, analysis, and storage of glyph images with detailed metadata.
 
 Workflow:
 1. Upload PNG images for processing.
@@ -19,26 +17,11 @@ Workflow:
    - Supports batch commit for all generated files
 """
 
-
 """
-📊 GLYPH PROCESSOR - Data Pipeline
-
-- Ingest PNG images → Process → Generate renamed images with metadata
-- Extract dominant and secondary colors using K-means clustering
-- Compute visual metrics: Edge Density, Entropy, Texture Complexity, Contrast, Shape, Edge Angle, Color Harmony
-- Assign categorical features: Color Group, Mood
-- Incremental metadata updates: JSON + CSV
-- Output options:
-    1. Local ZIP archive
-    2. Direct upload to GitHub repository (images → glyphs/, metadata → data/)
-- Auto-creates GitHub repository/folders if they do not exist
 - Compatible with batch uploads for continuous library expansion
 """
 
 """
-🛠️ GLYPH PROCESSOR - Data-Oriented Asset Pipeline
-
-Features:
 - Input: Upload PNG images for glyph processing
 - Analysis: Extract visual metrics including:
     • Dominant & secondary colors (K-means clustering)
@@ -55,9 +38,6 @@ Features:
 """
 
 """
-🔱 GLYPH PROCESSOR - DATA ASSET PIPELINE
-- Upload and ingest image assets (PNG) for processing
-- Extract dominant and secondary colors using K-Means clustering
 - Compute visual metrics: edge density, entropy, texture complexity, contrast, shape metrics, edge angle
 - Derive color harmony and infer a visual mood descriptor
 - Generate incremental metadata (JSON + CSV)
@@ -68,22 +48,16 @@ Features:
 - Provides detailed logging and status messages for traceability
 """
 
-📊 GLYPH PROCESSOR - DATA PIPELINE
-----------------------------------
-Purpose:
-- Batch process uploaded image assets ("glyphs") into analyzed and standardized outputs
-- Extract key visual features: dominant and secondary color, edge density, entropy, texture, contrast, shape metrics, color harmony, and inferred mood
-- Generate comprehensive metadata for each glyph (JSON + CSV)
+"""
 - Provide flexible storage options:
     1. Export locally as a ZIP archive
     2. Directly commit to a GitHub repository via API
 - Automatically create GitHub repository and standard folders if they do not exist
-- Ensure reproducibility and traceability via timestamped filenames and unique IDs
 """
 
 """
 🔱 GLYPH PROCESSOR
-Data-driven workflow for batch processing and cataloging glyph images.
+workflow for batch processing and cataloging glyph images.
 
 Key Features:
 - Load images and process them to generate renamed outputs and metadata
