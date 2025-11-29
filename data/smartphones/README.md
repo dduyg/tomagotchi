@@ -1,8 +1,6 @@
 # About Dataset
 
-# 📱 Smartphone Specifications and Ratings Dataset (2025)
-
-### 🧩 Overview
+### 📱 Smartphone Specifications and Ratings Dataset (2025)
 
 This dataset contains detailed specifications and performance attributes of **1,006 smartphones** from leading brands such as Apple, Samsung, OnePlus, Realme, Xiaomi, and others.
 
