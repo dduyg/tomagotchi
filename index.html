@@ -3,26 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centered Dropdown</title>
+    <title>Responsive Centered Dropdown</title>
     <style>
-        /* * 1. Basic Reset and Body Setup
-         */
+        /* 1. Basic Reset and Body Setup */
         body {
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            min-height: 200vh; /* Make the body taller to test fixed positioning */
+            min-height: 200vh; /* Make the body tall for testing fixed positioning */
             background-color: #f4f4f9;
         }
 
-        /* * 2. Fixed Top-Right Button Styling
-         */
+        /* 2. Fixed Top-Right Button Styling */
         .dropdown-container {
-            /* Position the container fixed relative to the viewport */
+            /* Fixes the container relative to the viewport */
             position: fixed;
             top: 20px;
             right: 20px;
-            z-index: 100; /* Ensure it stays on top of other content */
+            z-index: 100; /* Ensure it stays on top */
         }
 
         .dropdown-button {
@@ -41,29 +39,25 @@
             background-color: #0056b3;
         }
 
-        /* * 3. Centered Dropdown Panel Styling
-         */
+        /* 3. Centered Dropdown Panel Styling - Default (Desktop/Larger Screens) */
         .dropdown-panel {
-            /* * Position it absolutely relative to the viewport (not the button)
-             * We use position: fixed here so it's always centered on the screen 
-             * even if the user scrolls, aligning with the button's behavior.
-             */
+            /* Positions the panel fixed relative to the viewport */
             position: fixed;
-            top: 50%; /* Start at 50% of the viewport height */
-            left: 50%; /* Start at 50% of the viewport width */
+            top: 50%;
+            left: 50%; /* Start the left edge at the horizontal center */
             
-            /* * Crucial centering technique: 
-             * Translate back by half its own width to perfectly center it horizontally.
-             */
+            /* Crucial centering technique: shift back by half its own width/height */
             transform: translate(-50%, -50%); 
-
-            width: 300px;
+            
+            /* Desktop Width */
+            width: 300px; 
+            
             padding: 20px;
             background-color: white;
             border: 1px solid #ccc;
             border-radius: 8px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            z-index: 99; /* Below the button, but above content */
+            z-index: 99;
             
             /* Initially hidden */
             display: none;
@@ -71,6 +65,23 @@
 
         .dropdown-panel.visible {
             display: block;
+        }
+        
+        /* 4. Media Query for Responsiveness (Small Screens) */
+        @media (max-width: 600px) {
+            /* Adjust the button position slightly for a cleaner mobile look */
+            .dropdown-container {
+                top: 10px;
+                right: 10px;
+            }
+
+            .dropdown-panel {
+                /* On small screens, take up 90% of the screen width */
+                width: 90%; 
+                max-width: 90%; 
+                padding: 15px; 
+                /* Centering remains correct due to the transform property */
+            }
         }
 
         /* Optional: Content styling inside the panel */
@@ -104,8 +115,50 @@
     </div>
 
     <div id="dropdownPanel" class="dropdown-panel">
-        <h3>Centered Dropdown</h3>
-        <p>This panel is **fixed to the center horizontally** in the middle of the screen (using CSS `left: 50%;` and `transform: translateX(-50%);`).</p>
+        <h3>Responsive Dropdown</h3>
+        <p>This panel is **horizontally centered** and adjusts its width to fit small screens (less than 600px wide).</p>
+        <ul>
+            <li>Option A (Always Centered)</li>
+            <li>Option B (Fixed Position)</li>
+            <li>Option C (Responsive Width)</li>
+        </ul>
+    </div>
+
+    <div style="padding-top: 100px; text-align: center;">
+        <h1>Scroll Down to Test the Fixed Button</h1>
+        <p>Resize your browser window (or use DevTools device mode) to test the responsiveness!</p>
+    </div>
+    <div style="height: 1500px;"></div>
+
+
+    <script>
+        // JavaScript Logic to Toggle Visibility and Handle Outside Clicks
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleButton = document.getElementById('dropdownToggle');
+            const dropdownPanel = document.getElementById('dropdownPanel');
+
+            // 1. Toggle on Button Click
+            toggleButton.addEventListener('click', () => {
+                // Toggles the 'visible' class, which controls the 'display: block/none'
+                dropdownPanel.classList.toggle('visible');
+            });
+            
+            // 2. Close on Outside Click
+            document.addEventListener('click', (event) => {
+                // Check if the click occurred outside the button AND outside the panel
+                const isClickInsideButton = toggleButton.contains(event.target);
+                const isClickInsidePanel = dropdownPanel.contains(event.target);
+
+                // If the panel is visible and the click was outside both, hide the panel
+                if (!isClickInsideButton && !isClickInsidePanel && dropdownPanel.classList.contains('visible')) {
+                    dropdownPanel.classList.remove('visible');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
         <ul>
             <li>Option 1</li>
             <li>Option 2</li>
