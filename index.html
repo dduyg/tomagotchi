@@ -3,14 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Dropdown Button</title>
+    <title>Geometric Dropdown Button</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
@@ -18,20 +13,19 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            overflow-x: hidden;
         }
 
-        .button-container {
+        /* Fixed Button Container */
+        .fixed-button-container {
             position: fixed;
-            right: 30px;
-            top: 50%;
-            transform: translateY(-50%);
+            bottom: 40px;
+            right: 40px;
             z-index: 1000;
         }
 
-        .dropdown-btn {
+        /* Main Button */
+        .main-button {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
@@ -40,193 +34,259 @@
             font-weight: 600;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
             display: flex;
             align-items: center;
             gap: 10px;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .dropdown-btn:hover {
+        .main-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .main-button:hover::before {
+            opacity: 1;
+        }
+
+        .main-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
-            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.5);
         }
 
-        .dropdown-btn:active {
+        .main-button:active {
             transform: translateY(0);
         }
 
-        .dropdown-icon {
+        /* Icon */
+        .button-icon {
+            width: 20px;
+            height: 20px;
             transition: transform 0.3s ease;
-            font-size: 12px;
         }
 
-        .dropdown-btn.active .dropdown-icon {
+        .main-button.active .button-icon {
             transform: rotate(180deg);
         }
 
+        /* Dropdown Menu */
         .dropdown-menu {
             position: absolute;
-            top: calc(100% + 15px);
+            bottom: calc(100% + 16px);
             right: 0;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(20px);
             border-radius: 20px;
-            min-width: 250px;
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+            min-width: 280px;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            border: 2px solid rgba(102, 126, 234, 0.2);
-            overflow: hidden;
+            transform: translateY(10px) scale(0.95);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         .dropdown-menu.active {
             opacity: 1;
             visibility: visible;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
-        .dropdown-menu::before {
-            content: '';
-            position: absolute;
-            top: -8px;
-            right: 30px;
-            width: 16px;
-            height: 16px;
-            background: rgba(255, 255, 255, 0.95);
-            transform: rotate(45deg);
-            border-left: 2px solid rgba(102, 126, 234, 0.2);
-            border-top: 2px solid rgba(102, 126, 234, 0.2);
+        /* Dropdown Header */
+        .dropdown-header {
+            padding: 20px 24px 16px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .dropdown-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+
+        .dropdown-subtitle {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Dropdown Items */
+        .dropdown-items {
+            padding: 8px;
         }
 
         .dropdown-item {
-            padding: 16px 24px;
-            color: #333;
-            text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 12px;
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            font-weight: 500;
-        }
-
-        .dropdown-item:last-child {
-            border-bottom: none;
+            gap: 14px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: #333;
         }
 
         .dropdown-item:hover {
-            background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-            padding-left: 30px;
-            color: #667eea;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            transform: translateX(4px);
         }
 
-        .dropdown-item-icon {
-            width: 24px;
-            height: 24px;
+        .item-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 8px;
             color: white;
-            font-size: 14px;
+            font-size: 18px;
+            flex-shrink: 0;
         }
 
-        .dropdown-header {
-            padding: 20px 24px 12px;
+        .item-content {
+            flex: 1;
+        }
+
+        .item-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 2px;
+        }
+
+        .item-description {
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Dropdown Footer */
+        .dropdown-footer {
+            padding: 12px 24px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .footer-link {
             color: #667eea;
-            font-weight: 700;
+            text-decoration: none;
             font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+            font-weight: 600;
+            transition: color 0.2s ease;
         }
 
-        /* Ripple effect */
-        .dropdown-btn::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
+        .footer-link:hover {
+            color: #764ba2;
         }
 
-        .dropdown-btn:active::after {
-            width: 300px;
-            height: 300px;
+        /* Responsive */
+        @media (max-width: 768px) {
+            .fixed-button-container {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .main-button {
+                padding: 14px 24px;
+                font-size: 14px;
+            }
+
+            .dropdown-menu {
+                min-width: 260px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="button-container">
-        <button class="dropdown-btn" id="dropdownBtn">
-            <span>Menu</span>
-            <span class="dropdown-icon">▼</span>
-        </button>
-        
+    <div class="fixed-button-container">
+        <!-- Dropdown Menu -->
         <div class="dropdown-menu" id="dropdownMenu">
-            <div class="dropdown-header">Quick Actions</div>
-            <a href="#" class="dropdown-item">
-                <span class="dropdown-item-icon">🏠</span>
-                <span>Dashboard</span>
-            </a>
-            <a href="#" class="dropdown-item">
-                <span class="dropdown-item-icon">👤</span>
-                <span>Profile</span>
-            </a>
-            <a href="#" class="dropdown-item">
-                <span class="dropdown-item-icon">⚙️</span>
-                <span>Settings</span>
-            </a>
-            <a href="#" class="dropdown-item">
-                <span class="dropdown-item-icon">📊</span>
-                <span>Analytics</span>
-            </a>
-            <a href="#" class="dropdown-item">
-                <span class="dropdown-item-icon">🚪</span>
-                <span>Logout</span>
-            </a>
+            <div class="dropdown-header">
+                <div class="dropdown-title">Quick Actions</div>
+                <div class="dropdown-subtitle">Choose an option below</div>
+            </div>
+            
+            <div class="dropdown-items">
+                <a href="#" class="dropdown-item">
+                    <div class="item-icon">📊</div>
+                    <div class="item-content">
+                        <div class="item-title">Analytics</div>
+                        <div class="item-description">View your statistics</div>
+                    </div>
+                </a>
+                
+                <a href="#" class="dropdown-item">
+                    <div class="item-icon">⚙️</div>
+                    <div class="item-content">
+                        <div class="item-title">Settings</div>
+                        <div class="item-description">Manage preferences</div>
+                    </div>
+                </a>
+                
+                <a href="#" class="dropdown-item">
+                    <div class="item-icon">💬</div>
+                    <div class="item-content">
+                        <div class="item-title">Messages</div>
+                        <div class="item-description">3 new messages</div>
+                    </div>
+                </a>
+                
+                <a href="#" class="dropdown-item">
+                    <div class="item-icon">🔔</div>
+                    <div class="item-content">
+                        <div class="item-title">Notifications</div>
+                        <div class="item-description">Manage alerts</div>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="dropdown-footer">
+                <a href="#" class="footer-link">View All Options →</a>
+            </div>
         </div>
+        
+        <!-- Main Button -->
+        <button class="main-button" id="mainButton">
+            <span>Quick Menu</span>
+            <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </button>
     </div>
 
     <script>
-        const dropdownBtn = document.getElementById('dropdownBtn');
+        const mainButton = document.getElementById('mainButton');
         const dropdownMenu = document.getElementById('dropdownMenu');
 
-        dropdownBtn.addEventListener('click', (e) => {
+        mainButton.addEventListener('click', (e) => {
             e.stopPropagation();
-            dropdownBtn.classList.toggle('active');
+            mainButton.classList.toggle('active');
             dropdownMenu.classList.toggle('active');
         });
 
         // Close dropdown when clicking outside
         document.addEventListener('click', (e) => {
-            if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                dropdownBtn.classList.remove('active');
+            if (!e.target.closest('.fixed-button-container')) {
+                mainButton.classList.remove('active');
                 dropdownMenu.classList.remove('active');
             }
-        });
-
-        // Prevent dropdown from closing when clicking inside menu
-        dropdownMenu.addEventListener('click', (e) => {
-            e.stopPropagation();
         });
 
         // Close dropdown when clicking a menu item
         document.querySelectorAll('.dropdown-item').forEach(item => {
             item.addEventListener('click', () => {
-                dropdownBtn.classList.remove('active');
+                mainButton.classList.remove('active');
                 dropdownMenu.classList.remove('active');
             });
         });
